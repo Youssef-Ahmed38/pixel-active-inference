@@ -7,6 +7,7 @@ so a Kaggle/Colab session that dies can simply be restarted.
 
 from __future__ import annotations
 
+import datetime
 import json
 import os
 import subprocess
@@ -44,7 +45,10 @@ def setup_runtime() -> Runtime:
         if backend == "nccl":
             torch.cuda.set_device(local_rank)
         if not dist.is_initialized():
-            dist.init_process_group(backend)
+            # Long timeout: a worker may wait at a barrier while another does long CPU work (the default
+            # 10 min killed the first Kaggle week-2 run while frames were still being collected).
+            hours = float(os.environ.get("PAI_DIST_TIMEOUT_H", "3"))
+            dist.init_process_group(backend, timeout=datetime.timedelta(hours=hours))
         device = torch.device("cuda", local_rank) if backend == "nccl" else torch.device("cpu")
         return Runtime(device, dist.get_rank(), dist.get_world_size(), local_rank)
     return Runtime(torch.device("cuda" if torch.cuda.is_available() else "cpu"))
