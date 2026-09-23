@@ -1,0 +1,276 @@
+{
+ "distance": [
+  {
+   "goal_scale": 0.1,
+   "tag": "pixelai_dist0.1",
+   "task": "reach",
+   "episodes": 20,
+   "success_rate": 1.0,
+   "start_ee_dist_median": 0.05342053241375272,
+   "final_ee_dist_mean": 0.0041336331006731055,
+   "final_ee_dist_median": 0.003364067320083078,
+   "final_belief_err_mean": 0.013481965460235775,
+   "steps_to_success_median": 19.0,
+   "max_dev_after_success_median": 0.026515871905587754,
+   "steps_outside_after_success_median": 11.5,
+   "control_hz_mean": 124.14807969340431,
+   "disturbances": []
+  },
+  {
+   "goal_scale": 0.2,
+   "tag": "pixelai_dist0.2",
+   "task": "reach",
+   "episodes": 20,
+   "success_rate": 1.0,
+   "start_ee_dist_median": 0.07311487860845492,
+   "final_ee_dist_mean": 0.00509232467722116,
+   "final_ee_dist_median": 0.004603622786538907,
+   "final_belief_err_mean": 0.018770084475996193,
+   "steps_to_success_median": 26.0,
+   "max_dev_after_success_median": 0.026129930656027735,
+   "steps_outside_after_success_median": 14.0,
+   "control_hz_mean": 115.21036550930565,
+   "disturbances": []
+  },
+  {
+   "goal_scale": 0.35,
+   "tag": "pixelai_dist0.35",
+   "task": "reach",
+   "episodes": 20,
+   "success_rate": 1.0,
+   "start_ee_dist_median": 0.10698369125719825,
+   "final_ee_dist_mean": 0.005426917463781602,
+   "final_ee_dist_median": 0.005779474229115071,
+   "final_belief_err_mean": 0.017977086609977603,
+   "steps_to_success_median": 56.5,
+   "max_dev_after_success_median": 0.022256305687217457,
+   "steps_outside_after_success_median": 14.0,
+   "control_hz_mean": 109.8714389130553,
+   "disturbances": []
+  },
+  {
+   "goal_scale": 0.5,
+   "tag": "pixelai_dist0.5",
+   "task": "reach",
+   "episodes": 20,
+   "success_rate": 0.8,
+   "start_ee_dist_median": 0.12160248535005888,
+   "final_ee_dist_mean": 0.03318387856545249,
+   "final_ee_dist_median": 0.008647359359368067,
+   "final_belief_err_mean": 0.011419775330450016,
+   "steps_to_success_median": 102.5,
+   "max_dev_after_success_median": 0.020411155703678116,
+   "steps_outside_after_success_median": 4.5,
+   "control_hz_mean": 108.08639842731608,
+   "disturbances": []
+  },
+  {
+   "goal_scale": 1.0,
+   "tag": "pixelai_dist1.0",
+   "task": "reach",
+   "episodes": 20,
+   "success_rate": 0.35,
+   "start_ee_dist_median": 0.22951970559834256,
+   "final_ee_dist_mean": 0.12376707350586671,
+   "final_ee_dist_median": 0.027752609014340852,
+   "final_belief_err_mean": 0.013437051892419052,
+   "steps_to_success_median": 199.0,
+   "max_dev_after_success_median": 0.023596937673798724,
+   "steps_outside_after_success_median": 12.0,
+   "control_hz_mean": 98.1400732100227,
+   "disturbances": []
+  }
+ ],
+ "disturbance": [
+  {
+   "disturbance": "none",
+   "tag": "pixelai_none",
+   "task": "reach",
+   "episodes": 20,
+   "success_rate": 1.0,
+   "start_ee_dist_median": 0.10698369125719825,
+   "final_ee_dist_mean": 0.005708280455755786,
+   "final_ee_dist_median": 0.005751695552960212,
+   "final_belief_err_mean": 0.016486038501856138,
+   "steps_to_success_median": 56.5,
+   "max_dev_after_success_median": 0.02241434981503293,
+   "steps_outside_after_success_median": 12.5,
+   "control_hz_mean": 99.25426558831535,
+   "disturbances": []
+  },
+  {
+   "disturbance": "push",
+   "tag": "pixelai_push",
+   "task": "reach",
+   "episodes": 20,
+   "success_rate": 1.0,
+   "start_ee_dist_median": 0.10698369125719825,
+   "final_ee_dist_mean": 0.006319640448968236,
+   "final_ee_dist_median": 0.0059381594186976965,
+   "final_belief_err_mean": 0.014366864331873314,
+   "steps_to_success_median": 56.5,
+   "max_dev_after_success_median": 0.03383669738847708,
+   "steps_outside_after_success_median": 32.5,
+   "control_hz_mean": 103.05535401900299,
+   "disturbances": [
+    {
+     "type": "push",
+     "start": 60,
+     "duration": 15,
+     "body": "link5",
+     "force": [
+      0,
+      200,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "disturbance": "occlusion",
+   "tag": "pixelai_occlusion",
+   "task": "reach",
+   "episodes": 20,
+   "success_rate": 1.0,
+   "start_ee_dist_median": 0.10698369125719825,
+   "final_ee_dist_mean": 0.0056896188801465,
+   "final_ee_dist_median": 0.005406091956672892,
+   "final_belief_err_mean": 0.015946559277493173,
+   "steps_to_success_median": 68.5,
+   "max_dev_after_success_median": 0.020088212385834792,
+   "steps_outside_after_success_median": 2.0,
+   "control_hz_mean": 116.4977695449235,
+   "disturbances": [
+    {
+     "type": "occlusion",
+     "start": 30,
+     "duration": 90,
+     "box": [
+      0.3,
+      0.25,
+      0.7,
+      0.6
+     ]
+    }
+   ]
+  },
+  {
+   "disturbance": "lighting",
+   "tag": "pixelai_lighting",
+   "task": "reach",
+   "episodes": 20,
+   "success_rate": 1.0,
+   "start_ee_dist_median": 0.10698369125719825,
+   "final_ee_dist_mean": 0.00554407287378089,
+   "final_ee_dist_median": 0.00621275136585366,
+   "final_belief_err_mean": 0.01862272868076419,
+   "steps_to_success_median": 57.5,
+   "max_dev_after_success_median": 0.021520937504851165,
+   "steps_outside_after_success_median": 6.5,
+   "control_hz_mean": 103.62560411916562,
+   "disturbances": [
+    {
+     "type": "lighting",
+     "start": 30,
+     "duration": -1,
+     "scale": 0.35,
+     "tint": [
+      1.0,
+      0.85,
+      0.7
+     ]
+    }
+   ]
+  },
+  {
+   "disturbance": "camera_shift",
+   "tag": "pixelai_camera_shift",
+   "task": "reach",
+   "episodes": 20,
+   "success_rate": 0.05,
+   "start_ee_dist_median": 0.10698369125719825,
+   "final_ee_dist_mean": 0.032467928290162394,
+   "final_ee_dist_median": 0.03177698407001284,
+   "final_belief_err_mean": 0.05365139618707236,
+   "steps_to_success_median": 35.5,
+   "max_dev_after_success_median": 0.040940919254263505,
+   "steps_outside_after_success_median": 243.5,
+   "control_hz_mean": 111.7887207146384,
+   "disturbances": [
+    {
+     "type": "camera_shift",
+     "start": 30,
+     "duration": -1,
+     "offset": [
+      0.0,
+      0.05,
+      0.03
+     ]
+    }
+   ]
+  },
+  {
+   "disturbance": "payload",
+   "tag": "pixelai_payload",
+   "task": "reach",
+   "episodes": 20,
+   "success_rate": 1.0,
+   "start_ee_dist_median": 0.10698369125719825,
+   "final_ee_dist_mean": 0.0061349530973362374,
+   "final_ee_dist_median": 0.005755136191148079,
+   "final_belief_err_mean": 0.022638948819927056,
+   "steps_to_success_median": 56.5,
+   "max_dev_after_success_median": 0.021817178962828563,
+   "steps_outside_after_success_median": 12.0,
+   "control_hz_mean": 119.82041926184324,
+   "disturbances": [
+    {
+     "type": "payload",
+     "start": 0,
+     "duration": -1,
+     "body": "hand",
+     "mass": 2.0
+    }
+   ]
+  },
+  {
+   "disturbance": "sensor_noise",
+   "tag": "pixelai_sensor_noise",
+   "task": "reach",
+   "episodes": 20,
+   "success_rate": 0.95,
+   "start_ee_dist_median": 0.10698369125719825,
+   "final_ee_dist_mean": 0.014955925832066059,
+   "final_ee_dist_median": 0.005895644265431014,
+   "final_belief_err_mean": 0.013839707722483366,
+   "steps_to_success_median": 66.0,
+   "max_dev_after_success_median": 0.023387183088032285,
+   "steps_outside_after_success_median": 17.0,
+   "control_hz_mean": 92.90624122075775,
+   "disturbances": [
+    {
+     "type": "sensor_noise",
+     "start": 0,
+     "duration": -1,
+     "q_std": 0.02,
+     "image_std": 8.0
+    }
+   ]
+  }
+ ],
+ "perception": {
+  "tag": "pixelai_perception",
+  "task": "perception",
+  "episodes": 20,
+  "success_rate": 1.0,
+  "start_ee_dist_median": 0.0,
+  "final_ee_dist_mean": 0.005529626235232003,
+  "final_ee_dist_median": 0.005666883666380063,
+  "final_belief_err_mean": 0.018282062314254686,
+  "steps_to_success_median": 0.0,
+  "max_dev_after_success_median": 0.005666883666380433,
+  "steps_outside_after_success_median": 0.0,
+  "control_hz_mean": 140.36261311613785,
+  "disturbances": []
+ }
+}

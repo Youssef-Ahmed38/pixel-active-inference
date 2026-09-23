@@ -1,0 +1,886 @@
+{
+  "config": {
+    "seed": 0,
+    "out_dir": "results/thinker",
+    "task": {
+      "horizon": 32,
+      "min_length": 8,
+      "onset_range": [
+        2,
+        20
+      ],
+      "amplitudes": [
+        0.6,
+        1.0,
+        1.5
+      ],
+      "noise_range": [
+        0.25,
+        2.0
+      ],
+      "overlap": 0.5,
+      "heldout_prob": 0.0
+    },
+    "models": [
+      "hrm",
+      "transformer",
+      "mlp"
+    ],
+    "model": {
+      "hrm": {
+        "d_model": 128,
+        "n_heads": 4,
+        "h_layers": 2,
+        "l_layers": 2,
+        "h_cycles": 2,
+        "l_steps": 2,
+        "max_segments": 8,
+        "patch": 2
+      },
+      "transformer": {
+        "d_model": 128,
+        "n_heads": 4,
+        "n_layers": 4,
+        "patch": 2
+      },
+      "mlp": {
+        "hidden": 512,
+        "n_layers": 4
+      }
+    },
+    "train": {
+      "batch_size": 512,
+      "steps": 6000,
+      "baseline_steps": 6000,
+      "lr": 0.001,
+      "warmup_steps": 300,
+      "weight_decay": 0.1,
+      "ce_weight": 0.1,
+      "q_weight": 0.5,
+      "ponder_cost": 0.01,
+      "q_target": "oracle",
+      "amp": "auto",
+      "log_every": 250
+    },
+    "eval": {
+      "n": 20000,
+      "batch": 4096,
+      "n_bins": 5,
+      "speed_batch": 4096,
+      "heldout_n": 4000
+    }
+  },
+  "eval_n": 20000,
+  "device": "NVIDIA GeForce RTX 5060 Laptop GPU",
+  "teacher": {
+    "overall": {
+      "acc": 0.6022999882698059,
+      "teacher_agree": 1.0,
+      "kl_to_teacher": 0.0,
+      "ece": 0.005295457330736553
+    },
+    "heldout_cause": {
+      "mean_max_prob": 0.48801782727241516
+    }
+  },
+  "models": {
+    "hrm": {
+      "params": 807944,
+      "train": {
+        "steps": 6000,
+        "wall_s": 604.0,
+        "examples_seen": 3072000,
+        "final_loss": 0.23815786838531494
+      },
+      "eval": {
+        "overall": {
+          "acc": 0.5960999727249146,
+          "teacher_agree": 0.9503999948501587,
+          "kl_to_teacher": 0.006372589617967606,
+          "ece": 0.008402434583479584
+        },
+        "mean_segments": 1.1780999898910522,
+        "mean_low_level_steps": 4.712399959564209,
+        "segment_histogram": [
+          17167,
+          2558,
+          161,
+          17,
+          11,
+          7,
+          1,
+          78
+        ],
+        "difficulty": {
+          "teacher_entropy": {
+            "bins": [
+              {
+                "range": [
+                  0.0,
+                  0.063
+                ],
+                "n": 4000,
+                "mean_segments": 1.0017499923706055,
+                "acc": 0.9982500672340393,
+                "teacher_acc": 0.9982500672340393,
+                "teacher_agree": 1.0
+              },
+              {
+                "range": [
+                  0.063,
+                  0.6836
+                ],
+                "n": 4000,
+                "mean_segments": 1.3470001220703125,
+                "acc": 0.858500063419342,
+                "teacher_acc": 0.8605000376701355,
+                "teacher_agree": 0.9880000352859497
+              },
+              {
+                "range": [
+                  0.6836,
+                  1.4131
+                ],
+                "n": 4000,
+                "mean_segments": 1.433500051498413,
+                "acc": 0.5660000443458557,
+                "teacher_acc": 0.5750000476837158,
+                "teacher_agree": 0.9285000562667847
+              },
+              {
+                "range": [
+                  1.4131,
+                  1.7243
+                ],
+                "n": 4000,
+                "mean_segments": 1.1040000915527344,
+                "acc": 0.3332500159740448,
+                "teacher_acc": 0.34550002217292786,
+                "teacher_agree": 0.9202500581741333
+              },
+              {
+                "range": [
+                  1.7243,
+                  1.7912
+                ],
+                "n": 4000,
+                "mean_segments": 1.0042500495910645,
+                "acc": 0.22450001537799835,
+                "teacher_acc": 0.23225000500679016,
+                "teacher_agree": 0.9152500629425049
+              }
+            ],
+            "spearman_segments": -0.045518081270795194
+          },
+          "noise_sigma": {
+            "bins": [
+              {
+                "range": [
+                  0.25,
+                  0.3763
+                ],
+                "n": 4000,
+                "mean_segments": 1.2507500648498535,
+                "acc": 0.7725000381469727,
+                "teacher_acc": 0.7777500152587891,
+                "teacher_agree": 0.9785000681877136
+              },
+              {
+                "range": [
+                  0.3763,
+                  0.5811
+                ],
+                "n": 4000,
+                "mean_segments": 1.2262500524520874,
+                "acc": 0.7040000557899475,
+                "teacher_acc": 0.7072500586509705,
+                "teacher_agree": 0.9690000414848328
+              },
+              {
+                "range": [
+                  0.5811,
+                  0.881
+                ],
+                "n": 4000,
+                "mean_segments": 1.1910001039505005,
+                "acc": 0.6155000329017639,
+                "teacher_acc": 0.6255000233650208,
+                "teacher_agree": 0.9520000219345093
+              },
+              {
+                "range": [
+                  0.881,
+                  1.3317
+                ],
+                "n": 4000,
+                "mean_segments": 1.133500099182129,
+                "acc": 0.4922500252723694,
+                "teacher_acc": 0.4985000193119049,
+                "teacher_agree": 0.9360000491142273
+              },
+              {
+                "range": [
+                  1.3317,
+                  1.9995
+                ],
+                "n": 4000,
+                "mean_segments": 1.0890001058578491,
+                "acc": 0.39625000953674316,
+                "teacher_acc": 0.4025000333786011,
+                "teacher_agree": 0.9165000319480896
+              }
+            ],
+            "spearman_segments": -0.046295775349739436
+          },
+          "evidence_length": {
+            "bins": [
+              {
+                "range": [
+                  8.0,
+                  13.0
+                ],
+                "n": 4783,
+                "mean_segments": 1.0959649085998535,
+                "acc": 0.34978047013282776,
+                "teacher_acc": 0.3560526669025421,
+                "teacher_agree": 0.9349780082702637
+              },
+              {
+                "range": [
+                  13.0,
+                  17.0
+                ],
+                "n": 3236,
+                "mean_segments": 1.1180469989776611,
+                "acc": 0.4864029586315155,
+                "teacher_acc": 0.495055615901947,
+                "teacher_agree": 0.9422125816345215
+              },
+              {
+                "range": [
+                  17.0,
+                  22.0
+                ],
+                "n": 3991,
+                "mean_segments": 1.1934353113174438,
+                "acc": 0.6306690573692322,
+                "teacher_acc": 0.6391882300376892,
+                "teacher_agree": 0.9523929357528687
+              },
+              {
+                "range": [
+                  22.0,
+                  27.0
+                ],
+                "n": 4029,
+                "mean_segments": 1.22809636592865,
+                "acc": 0.7458426356315613,
+                "teacher_acc": 0.7500620484352112,
+                "teacher_agree": 0.9617771506309509
+              },
+              {
+                "range": [
+                  27.0,
+                  32.0
+                ],
+                "n": 3961,
+                "mean_segments": 1.2600352764129639,
+                "acc": 0.7960110902786255,
+                "teacher_acc": 0.7997980117797852,
+                "teacher_agree": 0.9621307849884033
+              }
+            ],
+            "spearman_segments": 0.09330893639027232
+          }
+        },
+        "budget": [
+          {
+            "max_segments": 1,
+            "halting": {
+              "acc": 0.5946999788284302,
+              "teacher_agree": 0.9505499601364136,
+              "kl_to_teacher": 0.006904256995767355,
+              "ece": 0.009220095875066725,
+              "mean_segments": 1.0
+            },
+            "forced": {
+              "acc": 0.5946999788284302,
+              "teacher_agree": 0.9505499601364136,
+              "kl_to_teacher": 0.006904256995767355,
+              "ece": 0.009220095875066725
+            }
+          },
+          {
+            "max_segments": 2,
+            "halting": {
+              "acc": 0.59579998254776,
+              "teacher_agree": 0.950499951839447,
+              "kl_to_teacher": 0.00643191346898675,
+              "ece": 0.008672839613953626,
+              "mean_segments": 1.1416499614715576
+            },
+            "forced": {
+              "acc": 0.595550000667572,
+              "teacher_agree": 0.9539999961853027,
+              "kl_to_teacher": 0.005912391003221273,
+              "ece": 0.008547386544768498
+            }
+          },
+          {
+            "max_segments": 3,
+            "halting": {
+              "acc": 0.5959999561309814,
+              "teacher_agree": 0.9505999684333801,
+              "kl_to_teacher": 0.006329241208732128,
+              "ece": 0.008397401800458365,
+              "mean_segments": 1.1553999185562134
+            },
+            "forced": {
+              "acc": 0.5954999923706055,
+              "teacher_agree": 0.9553999900817871,
+              "kl_to_teacher": 0.005477820057421923,
+              "ece": 0.007800574998316989
+            }
+          },
+          {
+            "max_segments": 4,
+            "halting": {
+              "acc": 0.5959999561309814,
+              "teacher_agree": 0.9503999948501587,
+              "kl_to_teacher": 0.006345562636852264,
+              "ece": 0.008517066305931215,
+              "mean_segments": 1.1611000299453735
+            },
+            "forced": {
+              "acc": 0.595550000667572,
+              "teacher_agree": 0.9558999538421631,
+              "kl_to_teacher": 0.005591034423559904,
+              "ece": 0.008101677618549852
+            }
+          },
+          {
+            "max_segments": 5,
+            "halting": {
+              "acc": 0.5959999561309814,
+              "teacher_agree": 0.950499951839447,
+              "kl_to_teacher": 0.006367301102727652,
+              "ece": 0.00845618381734195,
+              "mean_segments": 1.1659499406814575
+            },
+            "forced": {
+              "acc": 0.595550000667572,
+              "teacher_agree": 0.9555999636650085,
+              "kl_to_teacher": 0.005742604844272137,
+              "ece": 0.008103394302156175
+            }
+          },
+          {
+            "max_segments": 6,
+            "halting": {
+              "acc": 0.596049964427948,
+              "teacher_agree": 0.9504500031471252,
+              "kl_to_teacher": 0.0063830651342868805,
+              "ece": 0.008449641852810191,
+              "mean_segments": 1.1702499389648438
+            },
+            "forced": {
+              "acc": 0.5953999757766724,
+              "teacher_agree": 0.955549955368042,
+              "kl_to_teacher": 0.005813080817461014,
+              "ece": 0.008372588066279718
+            }
+          },
+          {
+            "max_segments": 7,
+            "halting": {
+              "acc": 0.5959999561309814,
+              "teacher_agree": 0.9503999948501587,
+              "kl_to_teacher": 0.006383999716490507,
+              "ece": 0.008397646905420025,
+              "mean_segments": 1.1741999387741089
+            },
+            "forced": {
+              "acc": 0.5951499938964844,
+              "teacher_agree": 0.9554499983787537,
+              "kl_to_teacher": 0.005832810886204243,
+              "ece": 0.008269830373828446
+            }
+          },
+          {
+            "max_segments": 8,
+            "halting": {
+              "acc": 0.5960999727249146,
+              "teacher_agree": 0.9503999948501587,
+              "kl_to_teacher": 0.006372589617967606,
+              "ece": 0.008402434583479584,
+              "mean_segments": 1.1780999898910522
+            },
+            "forced": {
+              "acc": 0.595550000667572,
+              "teacher_agree": 0.9557499885559082,
+              "kl_to_teacher": 0.005833019968122244,
+              "ece": 0.008184379793895913
+            }
+          }
+        ],
+        "heldout_cause": {
+          "mean_max_prob": 0.48495858907699585,
+          "mean_max_prob_known": 0.5986428260803223,
+          "mean_segments": 1.2545000314712524
+        },
+        "speed": {
+          "batched": {
+            "batch": 4096,
+            "thinker_ex_per_s": 36640.67540001068,
+            "teacher_ex_per_s": 9198503.709623614
+          },
+          "batch1": {
+            "thinker_ex_per_s": 120.71809885410606,
+            "teacher_ex_per_s": 3602.078399225782
+          }
+        }
+      }
+    },
+    "transformer": {
+      "params": 807686,
+      "train": {
+        "steps": 6000,
+        "wall_s": 64.3,
+        "examples_seen": 3072000,
+        "final_loss": 0.10277315974235535
+      },
+      "eval": {
+        "overall": {
+          "acc": 0.597599983215332,
+          "teacher_agree": 0.9700499773025513,
+          "kl_to_teacher": 0.0026074398774653673,
+          "ece": 0.008895533324244864
+        },
+        "mean_segments": 1.0,
+        "mean_low_level_steps": 1.0,
+        "segment_histogram": [
+          20000
+        ],
+        "difficulty": {
+          "teacher_entropy": {
+            "bins": [
+              {
+                "range": [
+                  0.0,
+                  0.063
+                ],
+                "n": 4000,
+                "mean_segments": 1.0,
+                "acc": 0.9982500672340393,
+                "teacher_acc": 0.9982500672340393,
+                "teacher_agree": 1.0
+              },
+              {
+                "range": [
+                  0.063,
+                  0.6836
+                ],
+                "n": 4000,
+                "mean_segments": 1.0,
+                "acc": 0.8582500219345093,
+                "teacher_acc": 0.8605000376701355,
+                "teacher_agree": 0.9947500228881836
+              },
+              {
+                "range": [
+                  0.6836,
+                  1.4131
+                ],
+                "n": 4000,
+                "mean_segments": 1.0,
+                "acc": 0.5649999976158142,
+                "teacher_acc": 0.5750000476837158,
+                "teacher_agree": 0.9572500586509705
+              },
+              {
+                "range": [
+                  1.4131,
+                  1.7243
+                ],
+                "n": 4000,
+                "mean_segments": 1.0,
+                "acc": 0.34025001525878906,
+                "teacher_acc": 0.34550002217292786,
+                "teacher_agree": 0.9505000710487366
+              },
+              {
+                "range": [
+                  1.7243,
+                  1.7912
+                ],
+                "n": 4000,
+                "mean_segments": 1.0,
+                "acc": 0.22625000774860382,
+                "teacher_acc": 0.23225000500679016,
+                "teacher_agree": 0.9477500319480896
+              }
+            ],
+            "spearman_segments": -0.01496653984491635
+          },
+          "noise_sigma": {
+            "bins": [
+              {
+                "range": [
+                  0.25,
+                  0.3763
+                ],
+                "n": 4000,
+                "mean_segments": 1.0,
+                "acc": 0.7727500200271606,
+                "teacher_acc": 0.7777500152587891,
+                "teacher_agree": 0.9847500324249268
+              },
+              {
+                "range": [
+                  0.3763,
+                  0.5811
+                ],
+                "n": 4000,
+                "mean_segments": 1.0,
+                "acc": 0.7042500376701355,
+                "teacher_acc": 0.7072500586509705,
+                "teacher_agree": 0.9757500290870667
+              },
+              {
+                "range": [
+                  0.5811,
+                  0.881
+                ],
+                "n": 4000,
+                "mean_segments": 1.0,
+                "acc": 0.6207500100135803,
+                "teacher_acc": 0.6255000233650208,
+                "teacher_agree": 0.9737500548362732
+              },
+              {
+                "range": [
+                  0.881,
+                  1.3317
+                ],
+                "n": 4000,
+                "mean_segments": 1.0,
+                "acc": 0.4945000112056732,
+                "teacher_acc": 0.4985000193119049,
+                "teacher_agree": 0.9637500643730164
+              },
+              {
+                "range": [
+                  1.3317,
+                  1.9995
+                ],
+                "n": 4000,
+                "mean_segments": 1.0,
+                "acc": 0.3957500159740448,
+                "teacher_acc": 0.4025000333786011,
+                "teacher_agree": 0.952250063419342
+              }
+            ],
+            "spearman_segments": -0.0038639106486597764
+          },
+          "evidence_length": {
+            "bins": [
+              {
+                "range": [
+                  8.0,
+                  13.0
+                ],
+                "n": 4783,
+                "mean_segments": 1.0,
+                "acc": 0.3474806547164917,
+                "teacher_acc": 0.3560526669025421,
+                "teacher_agree": 0.9571398496627808
+              },
+              {
+                "range": [
+                  13.0,
+                  17.0
+                ],
+                "n": 3236,
+                "mean_segments": 1.0,
+                "acc": 0.488566130399704,
+                "teacher_acc": 0.495055615901947,
+                "teacher_agree": 0.9635351896286011
+              },
+              {
+                "range": [
+                  17.0,
+                  22.0
+                ],
+                "n": 3991,
+                "mean_segments": 1.0,
+                "acc": 0.6379354000091553,
+                "teacher_acc": 0.6391882300376892,
+                "teacher_agree": 0.9734402894973755
+              },
+              {
+                "range": [
+                  22.0,
+                  27.0
+                ],
+                "n": 4029,
+                "mean_segments": 1.0,
+                "acc": 0.746090829372406,
+                "teacher_acc": 0.7500620484352112,
+                "teacher_agree": 0.9764209389686584
+              },
+              {
+                "range": [
+                  27.0,
+                  32.0
+                ],
+                "n": 3961,
+                "mean_segments": 1.0,
+                "acc": 0.7970209717750549,
+                "teacher_acc": 0.7997980117797852,
+                "teacher_agree": 0.9810653924942017
+              }
+            ],
+            "spearman_segments": 0.010709300459773249
+          }
+        },
+        "heldout_cause": {
+          "mean_max_prob": 0.4863368570804596,
+          "mean_max_prob_known": 0.6020952463150024,
+          "mean_segments": 1.0
+        },
+        "speed": {
+          "batched": {
+            "batch": 4096,
+            "thinker_ex_per_s": 203263.04948742065,
+            "teacher_ex_per_s": 8603013.922093375
+          },
+          "batch1": {
+            "thinker_ex_per_s": 393.1550139452896,
+            "teacher_ex_per_s": 3831.3515666935314
+          }
+        }
+      }
+    },
+    "mlp": {
+      "params": 894982,
+      "train": {
+        "steps": 6000,
+        "wall_s": 28.5,
+        "examples_seen": 3072000,
+        "final_loss": 0.10818498581647873
+      },
+      "eval": {
+        "overall": {
+          "acc": 0.5963000059127808,
+          "teacher_agree": 0.9537999629974365,
+          "kl_to_teacher": 0.006599214859306812,
+          "ece": 0.006026884810968081
+        },
+        "mean_segments": 1.0,
+        "mean_low_level_steps": 1.0,
+        "segment_histogram": [
+          20000
+        ],
+        "difficulty": {
+          "teacher_entropy": {
+            "bins": [
+              {
+                "range": [
+                  0.0,
+                  0.063
+                ],
+                "n": 4000,
+                "mean_segments": 1.0,
+                "acc": 0.9982500672340393,
+                "teacher_acc": 0.9982500672340393,
+                "teacher_agree": 1.0
+              },
+              {
+                "range": [
+                  0.063,
+                  0.6836
+                ],
+                "n": 4000,
+                "mean_segments": 1.0,
+                "acc": 0.8547500371932983,
+                "teacher_acc": 0.8605000376701355,
+                "teacher_agree": 0.9857500195503235
+              },
+              {
+                "range": [
+                  0.6836,
+                  1.4131
+                ],
+                "n": 4000,
+                "mean_segments": 1.0,
+                "acc": 0.562000036239624,
+                "teacher_acc": 0.5750000476837158,
+                "teacher_agree": 0.9332500696182251
+              },
+              {
+                "range": [
+                  1.4131,
+                  1.7243
+                ],
+                "n": 4000,
+                "mean_segments": 1.0,
+                "acc": 0.3425000309944153,
+                "teacher_acc": 0.34550002217292786,
+                "teacher_agree": 0.9270000457763672
+              },
+              {
+                "range": [
+                  1.7243,
+                  1.7912
+                ],
+                "n": 4000,
+                "mean_segments": 1.0,
+                "acc": 0.2240000069141388,
+                "teacher_acc": 0.23225000500679016,
+                "teacher_agree": 0.9230000376701355
+              }
+            ],
+            "spearman_segments": -0.01496653984491635
+          },
+          "noise_sigma": {
+            "bins": [
+              {
+                "range": [
+                  0.25,
+                  0.3763
+                ],
+                "n": 4000,
+                "mean_segments": 1.0,
+                "acc": 0.7730000615119934,
+                "teacher_acc": 0.7777500152587891,
+                "teacher_agree": 0.9742500185966492
+              },
+              {
+                "range": [
+                  0.3763,
+                  0.5811
+                ],
+                "n": 4000,
+                "mean_segments": 1.0,
+                "acc": 0.6992500424385071,
+                "teacher_acc": 0.7072500586509705,
+                "teacher_agree": 0.9595000743865967
+              },
+              {
+                "range": [
+                  0.5811,
+                  0.881
+                ],
+                "n": 4000,
+                "mean_segments": 1.0,
+                "acc": 0.6187500357627869,
+                "teacher_acc": 0.6255000233650208,
+                "teacher_agree": 0.9547500610351562
+              },
+              {
+                "range": [
+                  0.881,
+                  1.3317
+                ],
+                "n": 4000,
+                "mean_segments": 1.0,
+                "acc": 0.4922500252723694,
+                "teacher_acc": 0.4985000193119049,
+                "teacher_agree": 0.9450000524520874
+              },
+              {
+                "range": [
+                  1.3317,
+                  1.9995
+                ],
+                "n": 4000,
+                "mean_segments": 1.0,
+                "acc": 0.398250013589859,
+                "teacher_acc": 0.4025000333786011,
+                "teacher_agree": 0.9355000257492065
+              }
+            ],
+            "spearman_segments": -0.0038639106486597764
+          },
+          "evidence_length": {
+            "bins": [
+              {
+                "range": [
+                  8.0,
+                  13.0
+                ],
+                "n": 4783,
+                "mean_segments": 1.0,
+                "acc": 0.3483169376850128,
+                "teacher_acc": 0.3560526669025421,
+                "teacher_agree": 0.9284967184066772
+              },
+              {
+                "range": [
+                  13.0,
+                  17.0
+                ],
+                "n": 3236,
+                "mean_segments": 1.0,
+                "acc": 0.488875150680542,
+                "teacher_acc": 0.495055615901947,
+                "teacher_agree": 0.949938178062439
+              },
+              {
+                "range": [
+                  17.0,
+                  22.0
+                ],
+                "n": 3991,
+                "mean_segments": 1.0,
+                "acc": 0.6309195756912231,
+                "teacher_acc": 0.6391882300376892,
+                "teacher_agree": 0.9511401057243347
+              },
+              {
+                "range": [
+                  22.0,
+                  27.0
+                ],
+                "n": 4029,
+                "mean_segments": 1.0,
+                "acc": 0.7441052794456482,
+                "teacher_acc": 0.7500620484352112,
+                "teacher_agree": 0.9679821729660034
+              },
+              {
+                "range": [
+                  27.0,
+                  32.0
+                ],
+                "n": 3961,
+                "mean_segments": 1.0,
+                "acc": 0.7982832789421082,
+                "teacher_acc": 0.7997980117797852,
+                "teacher_agree": 0.9757636785507202
+              }
+            ],
+            "spearman_segments": 0.010709300459773249
+          }
+        },
+        "heldout_cause": {
+          "mean_max_prob": 0.4873587191104889,
+          "mean_max_prob_known": 0.5995771884918213,
+          "mean_segments": 1.0
+        },
+        "speed": {
+          "batched": {
+            "batch": 4096,
+            "thinker_ex_per_s": 5746686.077336602,
+            "teacher_ex_per_s": 9264406.151732849
+          },
+          "batch1": {
+            "thinker_ex_per_s": 1356.626612266466,
+            "teacher_ex_per_s": 3648.9425364561857
+          }
+        }
+      }
+    }
+  },
+  "total_wall_s": 721.6
+}

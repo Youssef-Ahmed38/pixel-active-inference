@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+third_party/
+data/
+runs/
+results/*.gif
+*.pt
+runs_*.log
+*.log
+results/*_ep*.npz
+results/thinker/checkpoints/
+results/*_reach.json
+results/*_perception.json
+MUJOCO_LOG.TXT
+results/benchmark_*.json

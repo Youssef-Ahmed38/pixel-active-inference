@@ -1,0 +1,79 @@
+== hrm: 0.81M params
+time=26.15 step=250 loss=0.6961 lr=0.0008334 kl_first=0.1552 kl_last=0.1703 q_loss=0.8706 halt_rate_1=0.1113
+time=50.76 step=500 loss=0.4856 lr=0.0009847 kl_first=0.07184 kl_last=0.06607 q_loss=0.6381 halt_rate_1=0.8887
+time=75.54 step=750 loss=0.4788 lr=0.0009657 kl_first=0.06412 kl_last=0.07169 q_loss=0.6115 halt_rate_1=0.8359
+time=100.4 step=1000 loss=0.395 lr=0.0009397 kl_first=0.04083 kl_last=0.04397 q_loss=0.505 halt_rate_1=0.793
+time=125.2 step=1250 loss=0.3562 lr=0.000907 kl_first=0.03279 kl_last=0.02977 q_loss=0.4577 halt_rate_1=0.8047
+time=150.4 step=1500 loss=0.3796 lr=0.0008682 kl_first=0.03768 kl_last=0.03201 q_loss=0.4967 halt_rate_1=0.7246
+time=176.3 step=1750 loss=0.3528 lr=0.0008239 kl_first=0.02848 kl_last=0.02973 q_loss=0.4449 halt_rate_1=0.7832
+time=201.6 step=2000 loss=0.354 lr=0.000775 kl_first=0.03994 kl_last=0.03114 q_loss=0.4516 halt_rate_1=0.7871
+time=227 step=2250 loss=0.324 lr=0.0007222 kl_first=0.0218 kl_last=0.02302 q_loss=0.405 halt_rate_1=0.7324
+time=252.6 step=2500 loss=0.3173 lr=0.0006665 kl_first=0.01913 kl_last=0.01855 q_loss=0.3998 halt_rate_1=0.8262
+time=277.8 step=2750 loss=0.323 lr=0.0006087 kl_first=0.02035 kl_last=0.01856 q_loss=0.4125 halt_rate_1=0.752
+time=303 step=3000 loss=0.2854 lr=0.00055 kl_first=0.02005 kl_last=0.01628 q_loss=0.3594 halt_rate_1=0.8301
+time=328.4 step=3250 loss=0.2836 lr=0.0004913 kl_first=0.01687 kl_last=0.01258 q_loss=0.3465 halt_rate_1=0.8574
+time=353.6 step=3500 loss=0.2785 lr=0.0004335 kl_first=0.01726 kl_last=0.01639 q_loss=0.3361 halt_rate_1=0.8477
+time=378.9 step=3750 loss=0.2564 lr=0.0003778 kl_first=0.01002 kl_last=0.009386 q_loss=0.3181 halt_rate_1=0.8457
+time=403.9 step=4000 loss=0.2505 lr=0.000325 kl_first=0.01014 kl_last=0.007928 q_loss=0.3034 halt_rate_1=0.8457
+time=428.4 step=4250 loss=0.2444 lr=0.0002761 kl_first=0.008214 kl_last=0.01038 q_loss=0.2819 halt_rate_1=0.8438
+time=453.2 step=4500 loss=0.233 lr=0.0002318 kl_first=0.009628 kl_last=0.00659 q_loss=0.2656 halt_rate_1=0.875
+time=478.4 step=4750 loss=0.245 lr=0.000193 kl_first=0.009884 kl_last=0.006595 q_loss=0.2788 halt_rate_1=0.8008
+time=503.1 step=5000 loss=0.2477 lr=0.0001603 kl_first=0.00967 kl_last=0.007981 q_loss=0.2949 halt_rate_1=0.7773
+time=529.2 step=5250 loss=0.2456 lr=0.0001343 kl_first=0.009062 kl_last=0.00748 q_loss=0.2758 halt_rate_1=0.8379
+time=554.8 step=5500 loss=0.2431 lr=0.0001153 kl_first=0.008226 kl_last=0.007971 q_loss=0.2778 halt_rate_1=0.8086
+time=579.9 step=5750 loss=0.2334 lr=0.0001038 kl_first=0.009451 kl_last=0.007737 q_loss=0.262 halt_rate_1=0.8457
+time=605.5 step=6000 loss=0.2382 lr=0.0001 kl_first=0.007459 kl_last=0.006286 q_loss=0.2622 halt_rate_1=0.8477
+   hrm: {"acc": 0.5960999727249146, "teacher_agree": 0.9503999948501587, "kl_to_teacher": 0.006372589617967606, "ece": 0.008402434583479584}  segments=1.18  train 604s
+== transformer: 0.81M params
+time=2.73 step=250 loss=0.1853 lr=0.0008334 kl_first=0.087 kl_last=0.087
+time=5.37 step=500 loss=0.145 lr=0.0009847 kl_first=0.04632 kl_last=0.04632
+time=8.03 step=750 loss=0.1353 lr=0.0009657 kl_first=0.03392 kl_last=0.03392
+time=10.7 step=1000 loss=0.1314 lr=0.0009397 kl_first=0.0332 kl_last=0.0332
+time=13.31 step=1250 loss=0.117 lr=0.000907 kl_first=0.02085 kl_last=0.02085
+time=15.9 step=1500 loss=0.117 lr=0.0008682 kl_first=0.01963 kl_last=0.01963
+time=18.55 step=1750 loss=0.1134 lr=0.0008239 kl_first=0.01427 kl_last=0.01427
+time=21.24 step=2000 loss=0.1092 lr=0.000775 kl_first=0.01401 kl_last=0.01401
+time=23.9 step=2250 loss=0.1094 lr=0.0007222 kl_first=0.01068 kl_last=0.01068
+time=26.49 step=2500 loss=0.1072 lr=0.0006665 kl_first=0.009709 kl_last=0.009709
+time=29.1 step=2750 loss=0.108 lr=0.0006087 kl_first=0.01049 kl_last=0.01049
+time=31.96 step=3000 loss=0.0952 lr=0.00055 kl_first=0.007057 kl_last=0.007057
+time=34.86 step=3250 loss=0.1025 lr=0.0004913 kl_first=0.005396 kl_last=0.005396
+time=37.67 step=3500 loss=0.09973 lr=0.0004335 kl_first=0.005977 kl_last=0.005977
+time=40.27 step=3750 loss=0.09205 lr=0.0003778 kl_first=0.004377 kl_last=0.004377
+time=43.05 step=4000 loss=0.09473 lr=0.000325 kl_first=0.003968 kl_last=0.003968
+time=45.73 step=4250 loss=0.09786 lr=0.0002761 kl_first=0.003325 kl_last=0.003325
+time=48.35 step=4500 loss=0.09671 lr=0.0002318 kl_first=0.003508 kl_last=0.003508
+time=51.07 step=4750 loss=0.1017 lr=0.000193 kl_first=0.003004 kl_last=0.003004
+time=53.73 step=5000 loss=0.09458 lr=0.0001603 kl_first=0.003342 kl_last=0.003342
+time=56.34 step=5250 loss=0.1032 lr=0.0001343 kl_first=0.003512 kl_last=0.003512
+time=59.02 step=5500 loss=0.09932 lr=0.0001153 kl_first=0.003701 kl_last=0.003701
+time=61.72 step=5750 loss=0.09836 lr=0.0001038 kl_first=0.004096 kl_last=0.004096
+time=64.35 step=6000 loss=0.1028 lr=0.0001 kl_first=0.002541 kl_last=0.002541
+   transformer: {"acc": 0.597599983215332, "teacher_agree": 0.9700499773025513, "kl_to_teacher": 0.0026074398774653673, "ece": 0.008895533324244864}  segments=1.00  train 64s
+== mlp: 0.89M params
+time=1.28 step=250 loss=0.1771 lr=0.0008334 kl_first=0.07859 kl_last=0.07859
+time=2.4 step=500 loss=0.1458 lr=0.0009847 kl_first=0.04687 kl_last=0.04687
+time=3.57 step=750 loss=0.1437 lr=0.0009657 kl_first=0.04083 kl_last=0.04083
+time=4.77 step=1000 loss=0.134 lr=0.0009397 kl_first=0.03496 kl_last=0.03496
+time=6.03 step=1250 loss=0.1237 lr=0.000907 kl_first=0.02912 kl_last=0.02912
+time=7.17 step=1500 loss=0.1174 lr=0.0008682 kl_first=0.02024 kl_last=0.02024
+time=8.48 step=1750 loss=0.1294 lr=0.0008239 kl_first=0.02753 kl_last=0.02753
+time=9.8 step=2000 loss=0.124 lr=0.000775 kl_first=0.02743 kl_last=0.02743
+time=11.04 step=2250 loss=0.1226 lr=0.0007222 kl_first=0.02215 kl_last=0.02215
+time=12.32 step=2500 loss=0.1147 lr=0.0006665 kl_first=0.01714 kl_last=0.01714
+time=13.58 step=2750 loss=0.1276 lr=0.0006087 kl_first=0.0289 kl_last=0.0289
+time=14.82 step=3000 loss=0.1076 lr=0.00055 kl_first=0.01771 kl_last=0.01771
+time=16.07 step=3250 loss=0.1103 lr=0.0004913 kl_first=0.0129 kl_last=0.0129
+time=17.29 step=3500 loss=0.1069 lr=0.0004335 kl_first=0.01227 kl_last=0.01227
+time=18.52 step=3750 loss=0.09856 lr=0.0003778 kl_first=0.01047 kl_last=0.01047
+time=19.62 step=4000 loss=0.1001 lr=0.000325 kl_first=0.008954 kl_last=0.008954
+time=20.7 step=4250 loss=0.103 lr=0.0002761 kl_first=0.007487 kl_last=0.007487
+time=21.77 step=4500 loss=0.1021 lr=0.0002318 kl_first=0.00819 kl_last=0.00819
+time=22.85 step=4750 loss=0.1075 lr=0.000193 kl_first=0.007685 kl_last=0.007685
+time=23.95 step=5000 loss=0.1014 lr=0.0001603 kl_first=0.009502 kl_last=0.009502
+time=25.13 step=5250 loss=0.1072 lr=0.0001343 kl_first=0.00767 kl_last=0.00767
+time=26.26 step=5500 loss=0.1042 lr=0.0001153 kl_first=0.007468 kl_last=0.007468
+time=27.37 step=5750 loss=0.1049 lr=0.0001038 kl_first=0.01027 kl_last=0.01027
+time=28.54 step=6000 loss=0.1082 lr=0.0001 kl_first=0.006699 kl_last=0.006699
+   mlp: {"acc": 0.5963000059127808, "teacher_agree": 0.9537999629974365, "kl_to_teacher": 0.006599214859306812, "ece": 0.006026884810968081}  segments=1.00  train 28s
+wrote C:\projects\pixel-active-inference\results\thinker\synthetic_eval.json and synthetic_eval.md (12.0 min)

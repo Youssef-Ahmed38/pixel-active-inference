@@ -1,0 +1,39 @@
+# HRM thinker on synthetic hidden-cause inference (scripts/train_thinker_synthetic.py).
+seed: 0
+out_dir: results/thinker
+
+task:                         # difficulty knobs: noise_range, overlap, min_length / horizon
+  horizon: 32                 # time steps of prediction-error evidence
+  min_length: 8               # evidence length is uniform in [min_length, horizon]
+  onset_range: [2, 20]        # nuisance grid the teacher marginalises over
+  amplitudes: [0.6, 1.0, 1.5]
+  noise_range: [0.25, 2.0]    # log-uniform per example
+  overlap: 0.5                # 0 = distinct signatures, 1 = similar pairs indistinguishable
+  heldout_prob: 0.0           # fraction of examples from the cause the teacher does not know
+
+models: [hrm, transformer, mlp]
+model:
+  hrm: {d_model: 128, n_heads: 4, h_layers: 2, l_layers: 2, h_cycles: 2, l_steps: 2, max_segments: 8, patch: 2}
+  transformer: {d_model: 128, n_heads: 4, n_layers: 4, patch: 2}   # same blocks / params as the HRM, one pass
+  mlp: {hidden: 512, n_layers: 4}
+
+train:
+  batch_size: 512
+  steps: 6000
+  baseline_steps: 6000        # same number of examples as the HRM
+  lr: 1.0e-3
+  warmup_steps: 300
+  weight_decay: 0.1
+  ce_weight: 0.1              # CE to the true cause, on top of KL to the teacher
+  q_weight: 0.5
+  ponder_cost: 0.01           # reward units (1 - TV to teacher) per extra segment
+  q_target: oracle            # oracle | bootstrap (paper)
+  amp: auto
+  log_every: 250
+
+eval:
+  n: 20000
+  batch: 4096
+  n_bins: 5
+  speed_batch: 4096
+  heldout_n: 4000

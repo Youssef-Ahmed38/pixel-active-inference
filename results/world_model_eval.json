@@ -1,0 +1,20 @@
+{
+ "1": {
+  "all_mm": 0.23,
+  "moving_mm": 1.31,
+  "baseline_all_mm": 2.11,
+  "baseline_moving_mm": 14.06
+ },
+ "5": {
+  "all_mm": 1.51,
+  "moving_mm": 5.41,
+  "baseline_all_mm": 7.48,
+  "baseline_moving_mm": 38.54
+ },
+ "20": {
+  "all_mm": 10.42,
+  "moving_mm": 19.33,
+  "baseline_all_mm": 15.61,
+  "baseline_moving_mm": 64.91
+ }
+}

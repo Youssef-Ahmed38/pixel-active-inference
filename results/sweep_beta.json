@@ -1,0 +1,30 @@
+[
+  {
+    "variant": "agent.beta=4 agent.pi_mu=16",
+    "success_rate": 0.0,
+    "final_ee_dist_median": 0.4913355513953631,
+    "steps_to_success_median": null,
+    "final_belief_err_mean": 0.004690809165956178
+  },
+  {
+    "variant": "agent.beta=10 agent.pi_mu=40",
+    "success_rate": 0.0,
+    "final_ee_dist_median": 0.4242899428594329,
+    "steps_to_success_median": 121.0,
+    "final_belief_err_mean": 0.017672940570649574
+  },
+  {
+    "variant": "agent.beta=20 agent.pi_mu=80",
+    "success_rate": 0.0,
+    "final_ee_dist_median": 0.3614142390611951,
+    "steps_to_success_median": 72.0,
+    "final_belief_err_mean": 0.02260030298279353
+  },
+  {
+    "variant": "agent.beta=20 agent.pi_mu=80 agent.pi_v=0",
+    "success_rate": 0.0,
+    "final_ee_dist_median": 0.419329452110584,
+    "steps_to_success_median": 89.0,
+    "final_belief_err_mean": 0.024433297697676687
+  }
+]
