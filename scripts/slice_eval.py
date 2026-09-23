@@ -58,10 +58,11 @@ if __name__ == "__main__":
     for i in range(args.calibration_episodes):
         run_episode(env, wm, cfg, -1, seed=5000 + i, device=device, raw=raw)
     calibration = calibrate(np.stack([r for r, _ in raw]), np.stack([s for _, s in raw]))
+    floor_mm, floor_n = (1000 * calibration.floor[:3]).round(2).tolist(), calibration.floor[3:].round(2).tolist()
     (out / "slice_calibration.json").write_text(json.dumps(
-        {"floor_mm": (1000 * calibration.floor).round(2).tolist(), "threshold": round(calibration.threshold, 2),
+        {"position_floor_mm": floor_mm, "force_floor_N": floor_n, "threshold": round(calibration.threshold, 2),
          "steps": len(raw)}, indent=1))
-    print(f"calibration: floor {1000 * calibration.floor.round(4)} mm, threshold {calibration.threshold:.1f} "
+    print(f"calibration: floor {floor_mm} mm and {floor_n} N, threshold {calibration.threshold:.1f} "
           f"({len(raw)} clean steps)", flush=True)
 
     rows, ep = [], 0

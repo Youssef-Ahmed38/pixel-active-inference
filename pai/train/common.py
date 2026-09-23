@@ -36,17 +36,28 @@ class Runtime:
 
 
 def setup_runtime() -> Runtime:
+    """Single process, or one process per GPU under torchrun. Safe to call more than once."""
     if "WORLD_SIZE" in os.environ and int(os.environ["WORLD_SIZE"]) > 1:
         local_rank = int(os.environ["LOCAL_RANK"])
-        torch.cuda.set_device(local_rank)
-        dist.init_process_group("nccl")
-        return Runtime(torch.device("cuda", local_rank), dist.get_rank(), dist.get_world_size(), local_rank)
+        # nccl on GPUs; PAI_DIST_BACKEND=gloo runs the same multi-process code on CPUs (for tests)
+        backend = os.environ.get("PAI_DIST_BACKEND", "nccl" if torch.cuda.is_available() else "gloo")
+        if backend == "nccl":
+            torch.cuda.set_device(local_rank)
+        if not dist.is_initialized():
+            dist.init_process_group(backend)
+        device = torch.device("cuda", local_rank) if backend == "nccl" else torch.device("cpu")
+        return Runtime(device, dist.get_rank(), dist.get_world_size(), local_rank)
     return Runtime(torch.device("cuda" if torch.cuda.is_available() else "cpu"))
 
 
 def cleanup_runtime(rt: Runtime) -> None:
-    if rt.distributed:
+    if rt.distributed and dist.is_initialized():
         dist.destroy_process_group()
+
+
+def barrier(rt: Runtime) -> None:
+    if rt.distributed:
+        dist.barrier()
 
 
 def amp_dtype(setting: str, device: torch.device) -> torch.dtype | None:
