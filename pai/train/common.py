@@ -105,6 +105,31 @@ def load_checkpoint(out_dir: Path, resume_from: str | None = None) -> dict | Non
     return None
 
 
+class Progress:
+    """Prints `label: done/total (pct), elapsed, rate, ETA` every `every` updates, so long jobs
+    (Kaggle sessions especially) never look stuck."""
+
+    def __init__(self, total: int, label: str, every: int = 10, unit: str = "", enabled: bool = True):
+        self.total, self.label, self.every, self.unit, self.enabled = total, label, max(1, every), unit, enabled
+        self.done, self.t0 = 0, time.time()
+
+    def update(self, n: int = 1, extra: str = "") -> None:
+        self.done += n
+        if not self.enabled or (self.done % self.every and self.done != self.total):
+            return
+        el = time.time() - self.t0
+        rate = self.done / max(el, 1e-9)
+        eta = (self.total - self.done) / max(rate, 1e-9)
+        print(f"  {self.label}: {self.done}/{self.total} ({100 * self.done / max(1, self.total):.0f}%), "
+              f"{_fmt(el)} elapsed, {rate:.1f}{self.unit}/s, ETA {_fmt(eta)}{' | ' + extra if extra else ''}",
+              flush=True)
+
+
+def _fmt(sec: float) -> str:
+    sec = int(sec)
+    return f"{sec // 3600}h{sec % 3600 // 60:02d}m" if sec >= 3600 else f"{sec // 60}m{sec % 60:02d}s"
+
+
 class JsonlLogger:
     def __init__(self, path: Path, enabled: bool = True):
         self.path, self.enabled = path, enabled

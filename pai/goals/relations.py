@@ -16,10 +16,11 @@ from typing import Callable
 
 import torch
 
-from pai.world.entities import GRIP, POS
+from pai.world.entities import GRIP, POS, VEL
 
 GRIP_OPEN = 0.07      # finger opening counted as open (m); fully open is 0.08
 GRIP_CLOSED = 0.05    # opening below this with an object between the fingers counts as holding it
+PLACE_SPEED = 0.04    # m/s; the object must be nearly still before it is released
 
 
 @dataclass
@@ -86,8 +87,11 @@ class RelationalGoal:
             return sq(self._o(x) - tgt) * 100 + closed_cost(x)
 
         def lowered(x):
+            # Place gently: releasing while the object still moves makes it hit a light plate at speed,
+            # which knocks the plate aside or tips it over the object (8 of 9 failures in evaluation v2).
             tgt = torch.cat([self._t(x)[..., :2], torch.full_like(self._t(x)[..., :1], place_z)], -1)
-            return sq(self._o(x) - tgt) * 100 + closed_cost(x)
+            speed = sq(x[..., self.i_o, VEL])
+            return sq(self._o(x) - tgt) * 100 + 20.0 * speed + closed_cost(x)
 
         def released(x):
             tgt_xy = self._t(x)[..., :2]
@@ -106,7 +110,8 @@ class RelationalGoal:
             Subgoal("over_target", over_target, grip=-1.0, done=
                     lambda x: d3(self._o(x)[:2], self._t(x)[:2]) < 0.015 and float(self._o(x)[2]) > place_z + carry - 0.03),
             Subgoal("lowered", lowered, grip=-1.0, done=
-                    lambda x: d3(self._o(x)[:2], self._t(x)[:2]) < 0.015 and abs(float(self._o(x)[2]) - place_z) < 0.01),
+                    lambda x: d3(self._o(x)[:2], self._t(x)[:2]) < 0.015 and abs(float(self._o(x)[2]) - place_z) < 0.01
+                    and float(x[self.i_o, VEL].norm()) < PLACE_SPEED),
             Subgoal("released", released, grip=1.0, done=
                     lambda x: float(self._grip(x)) > GRIP_OPEN and float(self._g(x)[2] - self._o(x)[2]) > hover - 0.03),
         ]

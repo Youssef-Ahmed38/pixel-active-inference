@@ -20,7 +20,7 @@ from pai.perception.slots import SlotModel, match_slots, slot_losses
 from pai.world.entities import TOKEN_DIM
 from torch.nn.parallel import DistributedDataParallel as DDP
 
-from pai.train.common import (JsonlLogger, amp_dtype, autocast, barrier, cleanup_runtime, git_commit,
+from pai.train.common import (JsonlLogger, Progress, amp_dtype, autocast, barrier, cleanup_runtime, git_commit,
                               save_checkpoint, setup_runtime)
 
 
@@ -46,6 +46,8 @@ def extract_features(frames_dir: str | Path, cache_dir: str | Path, n_labels: in
     dino = DinoFeatures(device=rt.device)
     offsets = np.concatenate([[0], np.cumsum(sizes)])
     t0 = time.time()
+    mine = sum(1 for e in range(len(files)) if e % rt.world_size == rt.rank)
+    progress = Progress(mine, f"features (GPU {rt.rank})", every=10, unit=" ep")
     for e, f in enumerate(files):
         i = int(offsets[e])
         episode[i : i + sizes[e]] = e
@@ -59,6 +61,7 @@ def extract_features(frames_dir: str | Path, cache_dir: str | Path, n_labels: in
             feats[i + s : i + s + len(fb)] = fb.cpu().numpy().astype(np.float16)
         masks[i : i + len(idx)] = masks_to_patches(d["masks"][idx], n_labels).reshape(len(idx), 256, n_labels)
         tokens[i : i + len(idx)] = d["tokens"][idx]
+        progress.update()
     feats.flush(), masks.flush(), tokens.flush()
     barrier(rt)
     if rt.is_main:  # written last: its presence marks a complete cache
@@ -108,6 +111,7 @@ def train_slots(cfg, device: str | None = None) -> Path:
         return f, m, t
 
     labels = slice(2, n_labels)
+    progress = Progress(sc.steps, f"slots ({rt.world_size} GPU)", every=100, unit=" steps", enabled=rt.is_main)
     for step in range(1, sc.steps + 1):
         f, m, t = batch(train_idx)
         with autocast(device, dtype):
@@ -119,6 +123,7 @@ def train_slots(cfg, device: str | None = None) -> Path:
         torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
         opt.step()
         sched.step()
+        progress.update(extra=f"loss {float(losses['total'].detach()):.3f}")
         if rt.is_main and (step % sc.log_every == 0 or step == sc.steps):
             logger.log(step=step, **{k: round(float(v.detach()), 4) for k, v in losses.items()},
                        **evaluate_slots(model, batch, val_idx, labels, tok_std))

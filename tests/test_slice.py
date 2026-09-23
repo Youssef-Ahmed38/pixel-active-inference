@@ -201,3 +201,18 @@ def test_unknown_wins_only_when_no_cause_fits():
         evs.append(StepEvidence(t, r, SIG, np.array([0, 0, 0, -1.0]), holding=True))
     assert infer_cause(evs, 0.1).best == "unknown"
     assert infer_cause(_window(), 0.1).posterior["unknown"] < 0.05  # plain noise is not "unknown"
+
+
+def test_lowered_waits_until_object_is_still():
+    objects = {"red": ObjectSpec("red", "block", 0.02, 0.04), "plate": ObjectSpec("plate", "plate", 0.07, 0.012)}
+    goal = RelationalGoal("on", "red", "plate", ["gripper", "red", "plate"], objects)
+    lowered = next(g for g in goal.subgoals if g.name == "lowered")
+    x = torch.zeros(3, TOKEN_DIM)
+    x[2, POS] = torch.tensor([0.5, 0.2, 0.006])
+    x[1, POS] = torch.tensor([0.5, 0.2, 0.012 + 0.02 + 0.035])  # at the release height over the plate
+    x[0, POS], x[0, GRIP] = x[1, POS], 0.04
+    from pai.world.entities import VEL
+    x[1, VEL] = torch.tensor([0.0, 0.0, -0.2])  # still falling
+    assert not lowered.done(x)
+    x[1, VEL] = 0.0
+    assert lowered.done(x)

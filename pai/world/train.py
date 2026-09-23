@@ -14,7 +14,7 @@ from pathlib import Path
 import numpy as np
 import torch
 
-from pai.train.common import JsonlLogger, amp_dtype, autocast, git_commit, load_checkpoint, save_checkpoint
+from pai.train.common import JsonlLogger, Progress, amp_dtype, autocast, git_commit, load_checkpoint, save_checkpoint
 from pai.world.data import ACTION_DIM, load_transitions
 from pai.world.entities import DYNAMIC, FORCE
 from pai.world.model import EnsembleWorldModel
@@ -77,6 +77,7 @@ def train_world_model(cfg, device: str | None = None) -> Path:
     dn = (D - model.delta_mean) / model.delta_std
     fn = (Fz - model.force_mean) / model.force_std
     t0 = time.time()
+    progress = Progress(wc.steps - start + 1, "world model", every=100, unit=" steps")
     for step in range(start, wc.steps + 1):
         for g in opt.param_groups:
             g["lr"] = _lr(step, wc.steps, wc.lr)
@@ -92,6 +93,7 @@ def train_world_model(cfg, device: str | None = None) -> Path:
         loss.backward()
         torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
         opt.step()
+        progress.update(extra=f"loss {loss.item() / wc.n_members:.3f}")
         if step % wc.log_every == 0 or step == wc.steps:
             save_checkpoint(out_dir / "ckpt_last.pt", {"model": model.state_dict(), "opt": opt.state_dict(),
                                                        "step": step})

@@ -21,7 +21,9 @@ IMAGE_SIZE = 224
 
 
 def _worker(args):
-    env_cfg, out_dir, episode_ids, camera, seed = args
+    env_cfg, out_dir, episode_ids, camera, seed, n_total = args
+    t_start = time.time()
+    done_at_start = len(list(out_dir.glob("ep_*.npz")))
     from pai.envs import TabletopEnv
     from pai.world.data import _episode
 
@@ -42,9 +44,12 @@ def _worker(args):
         tmp = path.with_name(path.stem + ".tmp.npz")
         np.savez_compressed(tmp, images=np.stack(images), masks=np.stack(masks), tokens=toks, actions=acts)
         tmp.replace(path)
-        done = len(list(out_dir.glob("ep_*.npz")))
+        done = len([f for f in out_dir.glob("ep_*.npz") if not f.name.endswith(".tmp.npz")])
         if done % 10 == 0:  # progress, so a long silent collection does not look stuck
-            print(f"  frames: {done} episodes written", flush=True)
+            el = time.time() - t_start
+            eta = el / max(1, done - done_at_start) * (n_total - done)
+            print(f"  frames: {done}/{n_total} episodes written, {el / 60:.1f} min elapsed, ETA {eta / 60:.1f} min",
+                  flush=True)
     env.close()
     return len(episode_ids)
 
@@ -58,5 +63,5 @@ def collect_frames(env_cfg, out_dir: str | Path, n_episodes: int, workers: int =
     t0 = time.time()
     print(f"collecting camera frames: {n_episodes} episodes with {workers} workers (CPU) -> {out_dir}", flush=True)
     with mp.get_context("spawn").Pool(workers) as pool:
-        pool.map(_worker, [(env_cfg, out_dir, c, camera, seed) for c in chunks])
+        pool.map(_worker, [(env_cfg, out_dir, c, camera, seed, n_episodes) for c in chunks])
     print(f"{n_episodes} episodes of frames in {time.time() - t0:.0f}s -> {out_dir}")
