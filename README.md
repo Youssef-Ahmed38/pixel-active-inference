@@ -44,13 +44,25 @@ Panda, table, 4 coloured blocks, a plate and a bowl; three cameras; segmentation
 | Surprise and causes | [pai/causes/inference.py](pai/causes/inference.py): calibrated surprise; Bayesian comparison of none / push / heavier_object over position and force errors |
 | Memory and reports | [pai/memory/](pai/memory/): episode records, readable reports, video overlay |
 
-Results so far:
-- World model on 100 held-out episodes: 1.3 mm (0.1 s), 5.4 mm (0.5 s), 19 mm (2 s) for moving
+Results (60 episodes: 20 each for no disturbance, a 30–50 N push at a random time, and a block
+0.3–0.6 kg heavier than it looks; surprise calibrated on 8 separate clean episodes):
+
+| Condition | Task success | Cause identified | Estimate vs truth |
+|---|---|---|---|
+| none | 90% | 95% | – |
+| push | 90% | 90% | onset within 0.08 s |
+| heavier block | 75% | 95% | extra mass within ~5 g on average |
+| **overall** | **85%** (gate > 70%) | **93%** (gate > 70%) | |
+
+Details are in `results/slice_eval.md` and the episode reports in `results/slice_reports.md`. The first
+run (release 2 cm above the plate) is in `results/slice_v1/`: 77% task, 92% cause. The remaining
+failures are mostly "released, but the block did not end up on the plate", under investigation.
+
+- World model on 100 held-out episodes: 1.4 mm (0.1 s), 5.9 mm (0.5 s), 21 mm (2 s) for moving
   entities, vs 14 / 39 / 65 mm for a commanded-motion baseline.
-- Task success in a 6-episode smoke test: 5/6 across none / push / heavier block.
-- Cause identification without force sensing: 0/4. Persistent causes (a heavier block) vanish from
-  one-step prediction errors, and pushes are corrected within 2–3 steps. Hence wrist force
-  sensing, predicted by the world model, is now added.
+- Without wrist force sensing, cause identification was 0/4. Persistent causes (a heavier block)
+  vanish from one-step prediction errors. Predicting the wrist force from the state, without
+  reading it, is what makes them visible.
 
 Fixed along the way:
 - Payload disturbances now scale inertia and refresh MuJoCo's derived constants

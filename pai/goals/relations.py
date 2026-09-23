@@ -58,7 +58,10 @@ class RelationalGoal:
 
     def _decompose(self) -> list[Subgoal]:
         hover, carry = 0.10, 0.12
-        place_z = self.t_top + self.h_o / 2 + 0.02
+        # Release 3.5 cm above the surface: lower and the fingertips catch a plate's rim and lift or
+        # tilt it on the way out (seen in 7 of 60 evaluation episodes, mostly with heavier blocks,
+        # which make the arm sag). The block drops the rest of the way.
+        place_z = self.t_top + self.h_o / 2 + 0.035
         sq = lambda v: (v**2).sum(-1)
         open_cost = lambda x: 20.0 * torch.relu(GRIP_OPEN - self._grip(x)) ** 2 * 100
         closed_cost = lambda x: 20.0 * torch.relu(self._grip(x) - GRIP_CLOSED + 0.01) ** 2 * 100
