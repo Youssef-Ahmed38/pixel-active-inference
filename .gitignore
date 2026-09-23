@@ -15,3 +15,4 @@ results/*_reach.json
 results/*_perception.json
 MUJOCO_LOG.TXT
 results/benchmark_*.json
+results/**/*.gif

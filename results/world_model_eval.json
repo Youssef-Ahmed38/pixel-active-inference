@@ -1,19 +1,19 @@
 {
  "1": {
-  "all_mm": 0.23,
-  "moving_mm": 1.31,
+  "all_mm": 0.26,
+  "moving_mm": 1.42,
   "baseline_all_mm": 2.11,
   "baseline_moving_mm": 14.06
  },
  "5": {
-  "all_mm": 1.51,
-  "moving_mm": 5.41,
+  "all_mm": 1.78,
+  "moving_mm": 5.86,
   "baseline_all_mm": 7.48,
   "baseline_moving_mm": 38.54
  },
  "20": {
-  "all_mm": 10.42,
-  "moving_mm": 19.33,
+  "all_mm": 10.8,
+  "moving_mm": 20.98,
   "baseline_all_mm": 15.61,
   "baseline_moving_mm": 64.91
  }
