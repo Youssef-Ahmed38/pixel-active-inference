@@ -42,6 +42,9 @@ def _worker(args):
         tmp = path.with_name(path.stem + ".tmp.npz")
         np.savez_compressed(tmp, images=np.stack(images), masks=np.stack(masks), tokens=toks, actions=acts)
         tmp.replace(path)
+        done = len(list(out_dir.glob("ep_*.npz")))
+        if done % 10 == 0:  # progress, so a long silent collection does not look stuck
+            print(f"  frames: {done} episodes written", flush=True)
     env.close()
     return len(episode_ids)
 
@@ -53,6 +56,7 @@ def collect_frames(env_cfg, out_dir: str | Path, n_episodes: int, workers: int =
     ids = list(range(n_episodes))
     chunks = [ids[i::workers] for i in range(workers)]
     t0 = time.time()
+    print(f"collecting camera frames: {n_episodes} episodes with {workers} workers (CPU) -> {out_dir}", flush=True)
     with mp.get_context("spawn").Pool(workers) as pool:
         pool.map(_worker, [(env_cfg, out_dir, c, camera, seed) for c in chunks])
     print(f"{n_episodes} episodes of frames in {time.time() - t0:.0f}s -> {out_dir}")
