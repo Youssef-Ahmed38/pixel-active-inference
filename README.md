@@ -49,14 +49,25 @@ Results (60 episodes: 20 each for no disturbance, a 30–50 N push at a random t
 
 | Condition | Task success | Cause identified | Estimate vs truth |
 |---|---|---|---|
-| none | 90% | 95% | – |
-| push | 90% | 90% | onset within 0.08 s |
-| heavier block | 75% | 95% | extra mass within ~5 g on average |
-| **overall** | **85%** (gate > 70%) | **93%** (gate > 70%) | |
+| none | 100% | 100% | – |
+| push | 100% | 95% | onset within 0.06 s on average |
+| heavier block | 95% | 95% | extra mass estimated (not yet scored against the true mass) |
+| **overall** | **98%** (gate > 70%) | **97%** (gate > 70%) | |
 
-Details are in `results/slice_eval.md` and the episode reports in `results/slice_reports.md`. The first
-run (release 2 cm above the plate) is in `results/slice_v1/`: 77% task, 92% cause. The remaining
-failures are mostly "released, but the block did not end up on the plate", under investigation.
+Details are in `results/slice_eval.md` and the episode reports in `results/slice_reports.md`.
+Earlier runs are kept for comparison:
+
+| Run | Change | Task | Cause |
+|---|---|---|---|
+| `results/slice_v1/` | first run, release 2 cm above the plate | 77% | 92% |
+| `results/slice_v2/` | gripper mode from L2, re-grasp fall-back | 85% | 93% |
+| `results/slice_v4/` | per-step surprise calibration | 82% | 93% |
+| `results/slice_v5/` | plate contact fix, hold still while opening | **98%** | **97%** |
+
+The v4 failures were "released, but not on the plate". Replaying the recorded actions showed that a
+slightly tilted block touched the thin plate cylinder at a single contact point and pivoted through
+it. A 3 mm contact margin on the plate fixed all replayed cases. The one v5 failure is a heavier
+block that was never grasped within the step limit.
 
 - World model on 100 held-out episodes: 1.4 mm (0.1 s), 5.9 mm (0.5 s), 21 mm (2 s) for moving
   entities, vs 14 / 39 / 65 mm for a commanded-motion baseline.
