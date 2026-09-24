@@ -40,6 +40,10 @@ class HandleInfo:
     approach_local: tuple         # direction a hand moves to reach the bar (into the fixture), site frame
     open_range: tuple             # (closed q, fully open q)
     success_q: float              # opening counted as achieved beyond this q
+    runtime: object = None        # optional per-episode mechanics (bind / reset / update / post_step / observe
+                                  # / info / settled), e.g. pai.envs.home_doors.HomeDoorRuntime
+    anchor_shift: tuple = (0.0, 0.0, 0.0)   # world offset of the point the body is placed around
+    body_options: dict | None = None        # embodiment name -> attribute overrides, e.g. the Panda's stand
 
 
 def as_handle_info(info) -> HandleInfo:
@@ -179,7 +183,9 @@ def get_fixture_adder(name: str) -> Callable:
 class DoorSceneEnv:
     def __init__(self, embodiment: str | Embodiment = "shadow", fixture_adder: Callable | str = "door",
                  control_dt: float = 0.02, image_size: int = 128, render_images: bool = False,
-                 fixture_pose=((0.5, 0.0, 0.0), 0.0), seed: int | None = 0):
+                 fixture_pose=((0.5, 0.0, 0.0), 0.0), seed: int | None = 0, body_options: dict | None = None):
+        """body_options: embodiment attribute overrides applied before it is placed (e.g. the Panda's
+        stand: {"stand_back": 0.65, "stand_drop": 0.5}); the fixture may suggest its own."""
         self.emb = make_embodiment(embodiment) if isinstance(embodiment, str) else embodiment
         adder = get_fixture_adder(fixture_adder) if isinstance(fixture_adder, str) else fixture_adder
         self.rng = np.random.default_rng(seed)
@@ -208,12 +214,18 @@ class DoorSceneEnv:
         R = pd.site_xmat[sid].reshape(3, 3)
         self.anchor = pd.site_xpos[sid].copy()
         self.approach0 = R @ np.asarray(self.fixture.approach_local, float)
-        self.emb.attach(spec, self.anchor, self.approach0)
+        self.runtime = self.fixture.runtime
+        for k, v in ((self.fixture.body_options or {}).get(self.emb.name, {}) | (body_options or {})).items():
+            if not hasattr(self.emb, k):
+                raise AttributeError(f"{self.emb.name} has no option {k!r}")
+            setattr(self.emb, k, v)
+        self.emb.attach(spec, self.anchor + np.asarray(self.fixture.anchor_shift, float), self.approach0)
 
         a, n = self.anchor, self.approach0
         side = np.cross([0, 0, 1], n)
         cams = {"front": (a - 0.6 * n - 1.3 * side + [0, 0, 0.4], a - 0.3 * n + [0, 0, -0.1]),
-                "fixture": (a - 0.8 * n - 0.7 * side + [0, 0, 0.3], a - 0.1 * n + [0, 0, -0.05])}
+                "fixture": (a - 0.8 * n - 0.7 * side + [0, 0, 0.3], a - 0.1 * n + [0, 0, -0.05]),
+                "overview": (a - 1.7 * n - 1.1 * side + [0, 0, 0.55], a - 0.25 * n + [0, 0, -0.15])}
         for name, (p, t) in cams.items():
             wb.add_camera(name=name, pos=list(p), xyaxes=lookat_xyaxes(p, t), fovy=55)
 
@@ -224,6 +236,8 @@ class DoorSceneEnv:
         m.vis.global_.offheight = max(m.vis.global_.offheight, image_size)
         self.data = mujoco.MjData(m)
         self.emb.bind(m, self.data)
+        if self.runtime is not None:
+            self.runtime.bind(m, self.data)
         self.handle_site = m.site(self.fixture.handle_site).id
         j = m.joint(self.fixture.joint)
         self.fix_qadr, self.fix_vadr = j.qposadr[0], j.dofadr[0]
@@ -234,25 +248,43 @@ class DoorSceneEnv:
         self.reset()
 
     # ------------------------------------------------------------------ lifecycle
-    def reset(self, seed: int | None = None, palm_noise: float = 0.0) -> dict:
+    def reset(self, seed: int | None = None, palm_noise: float = 0.0, **options) -> dict:
+        """options go to the fixture runtime's reset (e.g. lock_state="key", key_place="drawer")."""
         if seed is not None:
             self.rng = np.random.default_rng(seed)
         mujoco.mj_resetData(self.model, self.data)
         offset = self.rng.uniform(-palm_noise, palm_noise, 3) if palm_noise > 0 else None
         self.emb.reset(offset)
+        if self.runtime is not None:
+            self.runtime.reset(self.rng, **options)
+        elif options:
+            raise TypeError(f"reset options {sorted(options)} need a fixture runtime")
         mujoco.mj_forward(self.model, self.data)
         for _ in range(50):  # let the fingers reach the open posture
             self.emb.apply(np.r_[np.zeros(6), 1.0], self.control_dt)
+            if self.runtime is not None:
+                self.runtime.update()
             mujoco.mj_step(self.model, self.data)
+        if self.runtime is not None:
+            self.runtime.settled()
         self.t = 0
         return self._observe()
 
     def step(self, action: np.ndarray) -> dict:
         self.emb.apply(action, self.control_dt)
+        if self.runtime is not None:
+            self.runtime.update()
         for _ in range(self.n_substeps):
             mujoco.mj_step(self.model, self.data)
+        if self.runtime is not None:
+            self.runtime.post_step()
         self.t += 1
         return self._observe()
+
+    @property
+    def info(self) -> dict:
+        """Ground truth of the fixture runtime (never part of the observation)."""
+        return self.runtime.info() if self.runtime is not None else {}
 
     def stable(self) -> bool:
         d = self.data
@@ -297,6 +329,8 @@ class DoorSceneEnv:
     def _observe(self) -> dict:
         obs = self.emb.observe()
         obs["fixture"] = self.fixture_state()
+        if self.runtime is not None:
+            obs.update(self.runtime.observe())
         obs["image"] = self.render() if self.render_images else None
         return obs
 

@@ -155,9 +155,26 @@ the Unitree G1 humanoid with its hands (3), Allegro and LEAP (4), and the Shadow
 
 <img src="docs/media/embodiments/grid.png" width="720">
 
-Next: a home-door set (turning knobs with latches, thumb-turn deadbolts, key locks with real keys
-that may be hidden in a drawer, push and pull doors, door closers, push bars) and an agent that
-discovers how to open a locked door by itself: [docs/DISCOVERY.md](docs/DISCOVERY.md).
+### Home doors, locks and keys
+
+A home-door set ([pai/envs/home_doors.py](pai/envs/home_doors.py)) where every mechanism is physical
+and nothing about the lock state is observed: turning knobs, levers and push bars that release a
+spring latch; push and pull doors; self-closing doors; a thumb-turn deadbolt (a real bolt into a
+pocket in the jamb); and key locks whose cylinder only turns with the matching key inserted. Keys
+are free objects on the cabinet, on a shelf, **inside the drawer** (visible only once it is opened)
+or in the other room (no solution). 1–3 keys per scene, only one fits. 8 door types, 3 of them held
+out for testing.
+
+<img src="docs/media/home_doors/variants.png" width="720">
+
+| <img src="docs/media/home_doors/knob_turn_open.gif" width="240"> | <img src="docs/media/home_doors/key_in_drawer.gif" width="240"> | <img src="docs/media/home_doors/wrong_key_fails.gif" width="240"> |
+|---|---|---|
+| turn the knob, then pull | the key is in the drawer: open it, take the key, insert, turn, open | a wrong key goes in but does not turn |
+
+These clips come from a scripted solver that knows the solution; it only proves the physics is
+solvable (the Robotiq gripper opens 33 of 50 solvable cases, the dexterous hands fewer, see
+`scripts/home_door_demo.py`). The agent itself will get only generic skills and has to discover
+what opens the door: [docs/DISCOVERY.md](docs/DISCOVERY.md).
 
 ## Phase 0 results: PixelAI baseline
 

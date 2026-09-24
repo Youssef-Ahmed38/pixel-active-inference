@@ -561,9 +561,14 @@ class Panda2F(ArmHand):
     def arm_actuators(self):
         return [f"actuator{i}" for i in range(1, 8)]
 
+    stand_back = 0.82    # base distance behind the anchor, along the approach (m)
+    stand_drop = 0.7     # base height below the anchor (the pedestal makes up the rest)
+    stand_offset = (0.0, 0.0, 0.0)   # extra world offset of the base (set per scene via DoorSceneEnv body_options)
+
     def base_pose(self, anchor, approach):
-        base = anchor - 0.82 * approach   # the palm faces the handle from a forward-reaching posture
-        base[2] = anchor[2] - 0.7
+        base = anchor - self.stand_back * approach   # the palm faces the handle from a forward-reaching posture
+        base = base + np.asarray(self.stand_offset, float)
+        base[2] = anchor[2] - self.stand_drop
         return base, quat_from_mat(_axes(approach, [0, 0, 1]))
 
     def prepare_child(self, child):
@@ -590,9 +595,11 @@ class G1Hands(ArmHand):
     ik_rot_weight = 0.5      # 7 joints but a short, limited wrist: position first
     solve_home = False       # this posture already holds the palm sideways, as the grasp wants
 
+    stand_offset = (0.0, 0.0, 0.0)   # extra world offset of the pelvis (e.g. out of a door's sweep)
+
     def base_pose(self, anchor, approach):
         side = np.cross([0, 0, 1], approach)   # robot's left
-        base = anchor - 0.36 * approach + 0.17 * side
+        base = anchor - 0.36 * approach + 0.17 * side + np.asarray(self.stand_offset, float)
         base[2] = 0.0
         return base, quat_from_mat(_axes(approach, [0, 0, 1]))
 
