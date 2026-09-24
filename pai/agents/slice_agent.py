@@ -111,8 +111,8 @@ def run_episode(env, wm, cfg, episode: int, seed: int, disturbances: list[dict] 
         if raw is not None:
             raw.append((residual, model_sigma, step_name))
         sigma = combined_sigma(model_sigma, calibration, step_name)
-        raw_ev = StepEvidence(k, residual, sigma, a_np, holding=holding)
-        ev = StepEvidence(k, residual - hold_bias, sigma, a_np, holding=holding) if holding else raw_ev
+        raw_ev = StepEvidence(k, residual, sigma, a_np, holding=holding, step=step_name)
+        ev = StepEvidence(k, residual - hold_bias, sigma, a_np, holding=holding, step=step_name) if holding else raw_ev
         report = monitor.add(ev, raw_ev)
         surprise.append(round(ev.surprise, 3))
         if evidence is not None:

@@ -102,9 +102,11 @@ if __name__ == "__main__":
                 for k, v in calibration.step_floors.items()}
     (out / f"{args.tag}_calibration.json").write_text(json.dumps(
         {"position_floor_mm": floor_mm, "force_floor_N": floor_n, "threshold": round(calibration.threshold, 2),
-         "per_step_floors": per_step, "steps": len(raw)}, indent=1))
+         "per_step_floors": per_step, "per_step_thresholds": {k: round(v, 1) for k, v in calibration.step_thresholds.items()},
+         "steps": len(raw)}, indent=1))
     print(f"calibration: floor {floor_mm} mm and {floor_n} N, threshold {calibration.threshold:.1f} "
-          f"({len(raw)} clean steps)", flush=True)
+          f"({len(raw)} clean steps); per step "
+          + ", ".join(f"{k} {v:.0f}" for k, v in calibration.step_thresholds.items()), flush=True)
 
     rows, ep = [], 0
     ev_z, ev_hold, ev_phase, ev_ep, labels, teacher, onsets = [], [], [], [], [], [], []

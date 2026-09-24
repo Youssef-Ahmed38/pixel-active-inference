@@ -50,13 +50,18 @@ class Calibration:
     precision): grasping produces large, poorly predictable contact forces, while carrying is almost
     noise-free. One floor for all steps would be set by the noisiest step and hide a heavier object
     while carrying. `floor` is the fallback for steps without enough calibration data.
-    threshold: surprise level that counts as a spike."""
+    threshold: surprise level that counts as a spike, also per step for the same reason: the rare
+    large errors of making contact would otherwise set the alarm level for the quiet carry."""
     floor: np.ndarray = field(default_factory=lambda: SIGMA_FLOOR.copy())
     threshold: float = SURPRISE_THRESHOLD
     step_floors: dict[str, np.ndarray] = field(default_factory=dict)
+    step_thresholds: dict[str, float] = field(default_factory=dict)
 
     def floor_for(self, step: str | None) -> np.ndarray:
         return self.step_floors.get(step, self.floor) if step is not None else self.floor
+
+    def threshold_for(self, step: str | None) -> float:
+        return self.step_thresholds.get(step, self.threshold) if step is not None else self.threshold
 
 
 @dataclass
@@ -66,6 +71,7 @@ class StepEvidence:
     sigma: np.ndarray      # (N_CH,) std: model uncertainty combined with the calibrated floor
     action: np.ndarray     # (A,) the executed action
     holding: bool          # the agent believed it was holding the object
+    step: str | None = None  # the task step (subgoal) at the time
 
     @property
     def surprise(self) -> float:
@@ -99,8 +105,14 @@ def calibrate(clean_residuals: np.ndarray, model_sigmas: np.ndarray, steps: list
         per = np.broadcast_to(floor, clean_residuals.shape)
     sig = np.sqrt(model_sigmas**2 + per**2)
     surprise = 0.5 * ((clean_residuals / sig) ** 2).sum(-1)
-    level = np.convolve(surprise, np.ones(3) / 3, mode="valid")  # the monitor averages 3 steps
-    return Calibration(floor=floor, threshold=float(margin * np.quantile(level, quantile)), step_floors=step_floors)
+    level = np.convolve(surprise, np.ones(3) / 3, mode="full")[: len(surprise)]  # the monitor averages 3 steps
+    step_thresholds = {}
+    if steps is not None:
+        for name in step_floors:
+            m = steps == name
+            step_thresholds[name] = float(margin * np.quantile(level[m], quantile))
+    return Calibration(floor=floor, threshold=float(margin * np.quantile(level[2:], quantile)),
+                       step_floors=step_floors, step_thresholds=step_thresholds)
 
 
 @dataclass
@@ -251,7 +263,7 @@ class SurpriseMonitor:
         recent = self.history[-3:]
         level = np.mean([e.surprise for e in recent])
         due = self._pending is not None and ev.t >= self._pending
-        if level > self.calibration.threshold and ev.t - self._last_trigger > self.cooldown:
+        if level > self.calibration.threshold_for(ev.step) and ev.t - self._last_trigger > self.cooldown:
             self._last_trigger = ev.t
             self._pending = ev.t + self.followup
         elif due:

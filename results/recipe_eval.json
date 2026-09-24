@@ -1,0 +1,997 @@
+{
+ "summary": {
+  "red/full planner": {
+   "success": 0.95,
+   "mean_steps_when_successful": 68.84210526315789,
+   "rollouts_per_step": 512
+  },
+  "red/small planner": {
+   "success": 0.1,
+   "mean_steps_when_successful": 149.0,
+   "rollouts_per_step": 4
+  },
+  "red/small + recipe": {
+   "success": 1.0,
+   "mean_steps_when_successful": 70.45,
+   "rollouts_per_step": 4
+  },
+  "blue/full planner": {
+   "success": 0.9,
+   "mean_steps_when_successful": 87.5,
+   "rollouts_per_step": 512
+  },
+  "blue/small planner": {
+   "success": 0.05,
+   "mean_steps_when_successful": 149.0,
+   "rollouts_per_step": 4
+  },
+  "blue/small + recipe": {
+   "success": 1.0,
+   "mean_steps_when_successful": 60.15,
+   "rollouts_per_step": 4
+  }
+ },
+ "recipe": "Recipe for on(block, plate), learned from episode -1, reused 40x (40 successes):\n  above_object hand at object + (+7, -7, +105) mm, ~11 steps\n  at_object    hand at object + (-3, -4, +2) mm, ~50 steps\n  grasped      hand at object_start + (-2, -1, +3) mm, ~1 steps\n  lifted       hand at object_start + (+9, -16, +89) mm, ~7 steps\n  over_target  hand at target + (+7, +2, +177) mm, ~11 steps\n  lowered      hand at target + (-3, -1, +62) mm, ~14 steps\n  opened       hand at object + (-3, +1, +28) mm, ~2 steps\n  released     hand at object + (-1, +5, +71) mm, ~4 steps\n  needs: hand open; object not already at the target",
+ "episodes": [
+  {
+   "object": "red",
+   "seed": 3000,
+   "agent": "full planner",
+   "success": true,
+   "steps": 70,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3000,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3000,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 74,
+   "recipe_used": true
+  },
+  {
+   "object": "red",
+   "seed": 3001,
+   "agent": "full planner",
+   "success": true,
+   "steps": 70,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3001,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3001,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 53,
+   "recipe_used": true
+  },
+  {
+   "object": "red",
+   "seed": 3002,
+   "agent": "full planner",
+   "success": true,
+   "steps": 83,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3002,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3002,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 73,
+   "recipe_used": true
+  },
+  {
+   "object": "red",
+   "seed": 3003,
+   "agent": "full planner",
+   "success": true,
+   "steps": 75,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3003,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3003,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 66,
+   "recipe_used": true
+  },
+  {
+   "object": "red",
+   "seed": 3004,
+   "agent": "full planner",
+   "success": true,
+   "steps": 64,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3004,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3004,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 65,
+   "recipe_used": true
+  },
+  {
+   "object": "red",
+   "seed": 3005,
+   "agent": "full planner",
+   "success": true,
+   "steps": 72,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3005,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3005,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 149,
+   "recipe_used": true
+  },
+  {
+   "object": "red",
+   "seed": 3006,
+   "agent": "full planner",
+   "success": true,
+   "steps": 59,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3006,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3006,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 56,
+   "recipe_used": true
+  },
+  {
+   "object": "red",
+   "seed": 3007,
+   "agent": "full planner",
+   "success": true,
+   "steps": 80,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3007,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3007,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 149,
+   "recipe_used": true
+  },
+  {
+   "object": "red",
+   "seed": 3008,
+   "agent": "full planner",
+   "success": true,
+   "steps": 58,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3008,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3008,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 69,
+   "recipe_used": true
+  },
+  {
+   "object": "red",
+   "seed": 3009,
+   "agent": "full planner",
+   "success": true,
+   "steps": 77,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3009,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3009,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 62,
+   "recipe_used": true
+  },
+  {
+   "object": "red",
+   "seed": 3010,
+   "agent": "full planner",
+   "success": true,
+   "steps": 81,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3010,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3010,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 64,
+   "recipe_used": true
+  },
+  {
+   "object": "red",
+   "seed": 3011,
+   "agent": "full planner",
+   "success": true,
+   "steps": 62,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3011,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3011,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 59,
+   "recipe_used": true
+  },
+  {
+   "object": "red",
+   "seed": 3012,
+   "agent": "full planner",
+   "success": true,
+   "steps": 57,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3012,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3012,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 65,
+   "recipe_used": true
+  },
+  {
+   "object": "red",
+   "seed": 3013,
+   "agent": "full planner",
+   "success": true,
+   "steps": 67,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3013,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3013,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 72,
+   "recipe_used": true
+  },
+  {
+   "object": "red",
+   "seed": 3014,
+   "agent": "full planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3014,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3014,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 63,
+   "recipe_used": true
+  },
+  {
+   "object": "red",
+   "seed": 3015,
+   "agent": "full planner",
+   "success": true,
+   "steps": 72,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3015,
+   "agent": "small planner",
+   "success": true,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3015,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 54,
+   "recipe_used": true
+  },
+  {
+   "object": "red",
+   "seed": 3016,
+   "agent": "full planner",
+   "success": true,
+   "steps": 62,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3016,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3016,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 58,
+   "recipe_used": true
+  },
+  {
+   "object": "red",
+   "seed": 3017,
+   "agent": "full planner",
+   "success": true,
+   "steps": 74,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3017,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3017,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 56,
+   "recipe_used": true
+  },
+  {
+   "object": "red",
+   "seed": 3018,
+   "agent": "full planner",
+   "success": true,
+   "steps": 63,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3018,
+   "agent": "small planner",
+   "success": true,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3018,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 50,
+   "recipe_used": true
+  },
+  {
+   "object": "red",
+   "seed": 3019,
+   "agent": "full planner",
+   "success": true,
+   "steps": 62,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3019,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "red",
+   "seed": 3019,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 52,
+   "recipe_used": true
+  },
+  {
+   "object": "blue",
+   "seed": 3000,
+   "agent": "full planner",
+   "success": true,
+   "steps": 75,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3000,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3000,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 62,
+   "recipe_used": true
+  },
+  {
+   "object": "blue",
+   "seed": 3001,
+   "agent": "full planner",
+   "success": true,
+   "steps": 77,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3001,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3001,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 53,
+   "recipe_used": true
+  },
+  {
+   "object": "blue",
+   "seed": 3002,
+   "agent": "full planner",
+   "success": true,
+   "steps": 103,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3002,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3002,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 57,
+   "recipe_used": true
+  },
+  {
+   "object": "blue",
+   "seed": 3003,
+   "agent": "full planner",
+   "success": true,
+   "steps": 89,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3003,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3003,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 54,
+   "recipe_used": true
+  },
+  {
+   "object": "blue",
+   "seed": 3004,
+   "agent": "full planner",
+   "success": true,
+   "steps": 135,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3004,
+   "agent": "small planner",
+   "success": true,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3004,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 62,
+   "recipe_used": true
+  },
+  {
+   "object": "blue",
+   "seed": 3005,
+   "agent": "full planner",
+   "success": true,
+   "steps": 63,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3005,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3005,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 55,
+   "recipe_used": true
+  },
+  {
+   "object": "blue",
+   "seed": 3006,
+   "agent": "full planner",
+   "success": true,
+   "steps": 59,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3006,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3006,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 62,
+   "recipe_used": true
+  },
+  {
+   "object": "blue",
+   "seed": 3007,
+   "agent": "full planner",
+   "success": true,
+   "steps": 103,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3007,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3007,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 59,
+   "recipe_used": true
+  },
+  {
+   "object": "blue",
+   "seed": 3008,
+   "agent": "full planner",
+   "success": true,
+   "steps": 87,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3008,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3008,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 56,
+   "recipe_used": true
+  },
+  {
+   "object": "blue",
+   "seed": 3009,
+   "agent": "full planner",
+   "success": true,
+   "steps": 68,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3009,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3009,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 67,
+   "recipe_used": true
+  },
+  {
+   "object": "blue",
+   "seed": 3010,
+   "agent": "full planner",
+   "success": true,
+   "steps": 107,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3010,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3010,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 57,
+   "recipe_used": true
+  },
+  {
+   "object": "blue",
+   "seed": 3011,
+   "agent": "full planner",
+   "success": true,
+   "steps": 89,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3011,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3011,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 62,
+   "recipe_used": true
+  },
+  {
+   "object": "blue",
+   "seed": 3012,
+   "agent": "full planner",
+   "success": true,
+   "steps": 64,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3012,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3012,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 61,
+   "recipe_used": true
+  },
+  {
+   "object": "blue",
+   "seed": 3013,
+   "agent": "full planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3013,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3013,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 67,
+   "recipe_used": true
+  },
+  {
+   "object": "blue",
+   "seed": 3014,
+   "agent": "full planner",
+   "success": true,
+   "steps": 76,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3014,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3014,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 72,
+   "recipe_used": true
+  },
+  {
+   "object": "blue",
+   "seed": 3015,
+   "agent": "full planner",
+   "success": true,
+   "steps": 114,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3015,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3015,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 62,
+   "recipe_used": true
+  },
+  {
+   "object": "blue",
+   "seed": 3016,
+   "agent": "full planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3016,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3016,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 59,
+   "recipe_used": true
+  },
+  {
+   "object": "blue",
+   "seed": 3017,
+   "agent": "full planner",
+   "success": true,
+   "steps": 72,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3017,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3017,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 54,
+   "recipe_used": true
+  },
+  {
+   "object": "blue",
+   "seed": 3018,
+   "agent": "full planner",
+   "success": true,
+   "steps": 125,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3018,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3018,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 66,
+   "recipe_used": true
+  },
+  {
+   "object": "blue",
+   "seed": 3019,
+   "agent": "full planner",
+   "success": true,
+   "steps": 69,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3019,
+   "agent": "small planner",
+   "success": false,
+   "steps": 149,
+   "recipe_used": false
+  },
+  {
+   "object": "blue",
+   "seed": 3019,
+   "agent": "small + recipe",
+   "success": true,
+   "steps": 56,
+   "recipe_used": true
+  }
+ ]
+}
