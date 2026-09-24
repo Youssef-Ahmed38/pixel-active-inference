@@ -33,10 +33,19 @@ SURPRISE_THRESHOLD = 6.0  # mean 0.5*|z|^2 over 3 steps that triggers cause infe
 @dataclass
 class Calibration:
     """How wrong the world model really is when nothing is disturbed, measured on clean calibration
-    episodes (never the evaluation episodes). floor: per-axis residual RMS added to the model's own
-    variance; threshold: surprise level that counts as a spike."""
+    episodes (never the evaluation episodes).
+
+    floor: per-channel noise added to the model's own variance, *per task step* (context-dependent
+    precision): grasping produces large, poorly predictable contact forces, while carrying is almost
+    noise-free. One floor for all steps would be set by the noisiest step and hide a heavier object
+    while carrying. `floor` is the fallback for steps without enough calibration data.
+    threshold: surprise level that counts as a spike."""
     floor: np.ndarray = field(default_factory=lambda: SIGMA_FLOOR.copy())
     threshold: float = SURPRISE_THRESHOLD
+    step_floors: dict[str, np.ndarray] = field(default_factory=dict)
+
+    def floor_for(self, step: str | None) -> np.ndarray:
+        return self.step_floors.get(step, self.floor) if step is not None else self.floor
 
 
 @dataclass
@@ -53,19 +62,34 @@ class StepEvidence:
         return float(0.5 * (z**2).sum())
 
 
-def combined_sigma(model_sigma: np.ndarray, calib: Calibration) -> np.ndarray:
-    return np.sqrt(model_sigma**2 + calib.floor**2)
+def combined_sigma(model_sigma: np.ndarray, calib: Calibration, step: str | None = None) -> np.ndarray:
+    return np.sqrt(model_sigma**2 + calib.floor_for(step) ** 2)
 
 
-def calibrate(clean_residuals: np.ndarray, model_sigmas: np.ndarray, quantile: float = 0.995,
-              margin: float = 1.5) -> Calibration:
-    """clean_residuals, model_sigmas (n, N_CH) from undisturbed episodes."""
-    extra = (clean_residuals**2).mean(0) - (model_sigmas**2).mean(0)
-    floor = np.sqrt(np.maximum(extra, SIGMA_FLOOR**2))
-    sig = np.sqrt(model_sigmas**2 + floor**2)
+def _floor(res: np.ndarray, sig: np.ndarray) -> np.ndarray:
+    """Noise the model does not account for: residual power beyond its own predicted variance."""
+    return np.sqrt(np.maximum((res**2).mean(0) - (sig**2).mean(0), SIGMA_FLOOR**2))
+
+
+def calibrate(clean_residuals: np.ndarray, model_sigmas: np.ndarray, steps: list[str] | None = None,
+              quantile: float = 0.995, margin: float = 1.5, min_samples: int = 20) -> Calibration:
+    """clean_residuals, model_sigmas (n, N_CH) from undisturbed episodes; steps: the task step of each
+    sample. Steps with at least min_samples samples get their own floor."""
+    floor = _floor(clean_residuals, model_sigmas)
+    step_floors = {}
+    if steps is not None:
+        steps = np.asarray(steps)
+        for name in np.unique(steps):
+            m = steps == name
+            if m.sum() >= min_samples:
+                step_floors[str(name)] = _floor(clean_residuals[m], model_sigmas[m])
+        per = np.stack([step_floors.get(str(n), floor) for n in steps])
+    else:
+        per = np.broadcast_to(floor, clean_residuals.shape)
+    sig = np.sqrt(model_sigmas**2 + per**2)
     surprise = 0.5 * ((clean_residuals / sig) ** 2).sum(-1)
     level = np.convolve(surprise, np.ones(3) / 3, mode="valid")  # the monitor averages 3 steps
-    return Calibration(floor=floor, threshold=float(margin * np.quantile(level, quantile)))
+    return Calibration(floor=floor, threshold=float(margin * np.quantile(level, quantile)), step_floors=step_floors)
 
 
 @dataclass

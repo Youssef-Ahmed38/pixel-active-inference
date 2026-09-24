@@ -1,0 +1,100 @@
+{
+ "position_floor_mm": [
+  1.5,
+  1.5,
+  1.5
+ ],
+ "force_floor_N": [
+  6.69,
+  1.55,
+  10.72
+ ],
+ "threshold": 20.88,
+ "per_step_floors": {
+  "above_object": {
+   "position_mm": [
+    1.5,
+    1.5,
+    1.5
+   ],
+   "force_N": [
+    0.3,
+    0.3,
+    0.3
+   ]
+  },
+  "at_object": {
+   "position_mm": [
+    1.5,
+    1.5,
+    1.5
+   ],
+   "force_N": [
+    11.78,
+    2.72,
+    18.9
+   ]
+  },
+  "lifted": {
+   "position_mm": [
+    1.5,
+    1.5,
+    1.5
+   ],
+   "force_N": [
+    0.3,
+    0.78,
+    0.3
+   ]
+  },
+  "lowered": {
+   "position_mm": [
+    1.5,
+    1.5,
+    1.5
+   ],
+   "force_N": [
+    0.3,
+    0.3,
+    0.3
+   ]
+  },
+  "opened": {
+   "position_mm": [
+    1.5,
+    1.5,
+    1.5
+   ],
+   "force_N": [
+    0.92,
+    0.3,
+    0.3
+   ]
+  },
+  "over_target": {
+   "position_mm": [
+    1.5,
+    1.5,
+    1.5
+   ],
+   "force_N": [
+    0.3,
+    0.3,
+    0.3
+   ]
+  },
+  "released": {
+   "position_mm": [
+    1.5,
+    1.5,
+    1.5
+   ],
+   "force_N": [
+    0.3,
+    0.3,
+    0.3
+   ]
+  }
+ },
+ "steps": 668
+}

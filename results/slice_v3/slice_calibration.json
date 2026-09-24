@@ -1,0 +1,14 @@
+{
+ "position_floor_mm": [
+  1.5,
+  1.5,
+  1.5
+ ],
+ "force_floor_N": [
+  0.3,
+  0.3,
+  3.69
+ ],
+ "threshold": 21.21,
+ "steps": 677
+}

@@ -152,6 +152,20 @@ def test_calibration_sets_floor_and_threshold():
     assert 1.0 < cal.threshold < 20.0
 
 
+def test_calibration_per_step_keeps_quiet_steps_sensitive():
+    from pai.causes.inference import calibrate
+
+    rng = np.random.default_rng(0)
+    n = 1000
+    steps = ["grasped"] * n + ["lifted"] * n
+    noise = np.r_[[0.001] * 3, [5.0] * 3], np.r_[[0.001] * 3, [0.05] * 3]   # grasping is noisy, carrying is quiet
+    res = np.vstack([rng.normal(0, 1, (n, 6)) * noise[0], rng.normal(0, 1, (n, 6)) * noise[1]])
+    sig = np.full((2 * n, 6), 1e-4)
+    cal = calibrate(res, sig, steps)
+    assert cal.floor_for("grasped")[5] > 4.0 and cal.floor_for("lifted")[5] < 0.4  # 0.4 = floor minimum 0.3 N
+    assert cal.floor_for("never_seen")[5] == cal.floor[5]
+
+
 def test_planner_respects_gripper_mode_from_goal_level():
     cost = lambda x: ((x[..., 0, POS] - torch.tensor([0.1, 0.0, 0.0])) ** 2).sum(-1)
     planner = MPPIPlanner(_PointMass(), horizon=4, samples=32, iterations=2, smooth_weight=0.0)
@@ -209,7 +223,7 @@ def test_lowered_waits_until_object_is_still():
     lowered = next(g for g in goal.subgoals if g.name == "lowered")
     x = torch.zeros(3, TOKEN_DIM)
     x[2, POS] = torch.tensor([0.5, 0.2, 0.006])
-    x[1, POS] = torch.tensor([0.5, 0.2, 0.012 + 0.02 + 0.035])  # at the release height over the plate
+    x[1, POS] = torch.tensor([0.5, 0.2, 0.012 + 0.02 + 0.025])  # at the release height over the plate
     x[0, POS], x[0, GRIP] = x[1, POS], 0.04
     from pai.world.entities import VEL
     x[1, VEL] = torch.tensor([0.0, 0.0, -0.2])  # still falling

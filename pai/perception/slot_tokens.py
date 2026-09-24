@@ -33,7 +33,7 @@ class SlotPerception:
         self.dino = DinoFeatures(device=device)
         self.env, self.device, self.camera = env, device, camera
         # What each known object should look like, from the scene description (kind + colour).
-        ref = encode(env, env._observe())
+        ref = encode(env, env._observe())  # kind and colour of each object, from the scene description
         self.identity = torch.as_tensor(np.concatenate([ref[1:, KIND], ref[1:, COLOR]], -1), device=device)
         self.reset()
 
@@ -41,8 +41,13 @@ class SlotPerception:
         self.prev_slots = None
         self.prev_pos = None
 
+    def __call__(self, obs: dict, prev_ee: np.ndarray | None = None) -> np.ndarray:
+        """The `perceive` interface of the slice agent: observation -> entity tokens."""
+        tokens, self.last_match_cost = self.perceive(obs["image"], obs, prev_ee)
+        return tokens
+
     @torch.no_grad()
-    def __call__(self, image: np.ndarray, obs: dict, prev_ee: np.ndarray | None = None) -> tuple[np.ndarray, np.ndarray]:
+    def perceive(self, image: np.ndarray, obs: dict, prev_ee: np.ndarray | None = None) -> tuple[np.ndarray, np.ndarray]:
         """image (224, 224, 3) uint8 from `self.camera`; obs for proprioception.
         Returns tokens (N, TOKEN_DIM) and a match cost per object (lower = more confident)."""
         feats = self.dino(image[None]).reshape(1, -1, self.dino.model.embed_dim).float()

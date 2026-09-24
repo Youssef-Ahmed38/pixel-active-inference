@@ -1,0 +1,1282 @@
+{
+ "summary": {
+  "episodes": 60,
+  "none": {
+   "success": 0.85,
+   "cause_accuracy": 1.0,
+   "inferred": {
+    "none": 20
+   }
+  },
+  "push": {
+   "success": 0.85,
+   "cause_accuracy": 0.85,
+   "inferred": {
+    "none": 3,
+    "push": 17
+   }
+  },
+  "heavier_object": {
+   "success": 0.75,
+   "cause_accuracy": 0.95,
+   "inferred": {
+    "heavier_object": 19,
+    "none": 1
+   }
+  },
+  "task_success_overall": 0.8166666666666667,
+  "cause_accuracy_overall": 0.9333333333333333,
+  "cause_accuracy_disturbed": 0.9
+ },
+ "episodes": [
+  {
+   "condition": "none",
+   "success": true,
+   "inferred": "none",
+   "fallbacks": 0,
+   "posterior": null,
+   "steps": 65,
+   "subgoals": {
+    "above_object": 13,
+    "at_object": 21,
+    "grasped": 22,
+    "lifted": 30,
+    "over_target": 47,
+    "lowered": 59,
+    "opened": 61,
+    "released": 65
+   }
+  },
+  {
+   "condition": "none",
+   "success": true,
+   "inferred": "none",
+   "fallbacks": 0,
+   "posterior": null,
+   "steps": 107,
+   "subgoals": {
+    "above_object": 26,
+    "at_object": 58,
+    "grasped": 59,
+    "lifted": 67,
+    "over_target": 88,
+    "lowered": 101,
+    "opened": 103,
+    "released": 107
+   }
+  },
+  {
+   "condition": "none",
+   "success": true,
+   "inferred": "none",
+   "fallbacks": 0,
+   "posterior": null,
+   "steps": 71,
+   "subgoals": {
+    "above_object": 14,
+    "at_object": 22,
+    "grasped": 23,
+    "lifted": 30,
+    "over_target": 43,
+    "lowered": 64,
+    "opened": 66,
+    "released": 71
+   }
+  },
+  {
+   "condition": "none",
+   "success": true,
+   "inferred": "none",
+   "fallbacks": 0,
+   "posterior": null,
+   "steps": 85,
+   "subgoals": {
+    "above_object": 22,
+    "at_object": 30,
+    "grasped": 31,
+    "lifted": 39,
+    "over_target": 54,
+    "lowered": 78,
+    "opened": 80,
+    "released": 85
+   }
+  },
+  {
+   "condition": "none",
+   "success": true,
+   "inferred": "none",
+   "fallbacks": 0,
+   "posterior": null,
+   "steps": 137,
+   "subgoals": {
+    "above_object": 11,
+    "at_object": 81,
+    "grasped": 82,
+    "lifted": 90,
+    "over_target": 114,
+    "lowered": 131,
+    "opened": 133,
+    "released": 137
+   }
+  },
+  {
+   "condition": "none",
+   "success": true,
+   "inferred": "none",
+   "fallbacks": 0,
+   "posterior": null,
+   "steps": 61,
+   "subgoals": {
+    "above_object": 12,
+    "at_object": 20,
+    "grasped": 21,
+    "lifted": 28,
+    "over_target": 41,
+    "lowered": 54,
+    "opened": 56,
+    "released": 61
+   }
+  },
+  {
+   "condition": "none",
+   "success": true,
+   "inferred": "none",
+   "fallbacks": 0,
+   "posterior": null,
+   "steps": 71,
+   "subgoals": {
+    "above_object": 11,
+    "at_object": 24,
+    "grasped": 25,
+    "lifted": 31,
+    "over_target": 51,
+    "lowered": 64,
+    "opened": 66,
+    "released": 71
+   }
+  },
+  {
+   "condition": "none",
+   "success": false,
+   "inferred": "none",
+   "fallbacks": 0,
+   "posterior": null,
+   "steps": 82,
+   "subgoals": {
+    "above_object": 19,
+    "at_object": 31,
+    "grasped": 33,
+    "lifted": 40,
+    "over_target": 55,
+    "lowered": 70,
+    "opened": 78,
+    "released": 82
+   }
+  },
+  {
+   "condition": "none",
+   "success": true,
+   "inferred": "none",
+   "fallbacks": 0,
+   "posterior": null,
+   "steps": 67,
+   "subgoals": {
+    "above_object": 10,
+    "at_object": 27,
+    "grasped": 28,
+    "lifted": 35,
+    "over_target": 46,
+    "lowered": 61,
+    "opened": 63,
+    "released": 67
+   }
+  },
+  {
+   "condition": "none",
+   "success": true,
+   "inferred": "none",
+   "fallbacks": 0,
+   "posterior": null,
+   "steps": 74,
+   "subgoals": {
+    "above_object": 25,
+    "at_object": 34,
+    "grasped": 35,
+    "lifted": 42,
+    "over_target": 54,
+    "lowered": 68,
+    "opened": 70,
+    "released": 74
+   }
+  },
+  {
+   "condition": "none",
+   "success": false,
+   "inferred": "none",
+   "fallbacks": 0,
+   "posterior": null,
+   "steps": 95,
+   "subgoals": {
+    "above_object": 11,
+    "at_object": 50,
+    "grasped": 51,
+    "lifted": 57,
+    "over_target": 68,
+    "lowered": 85,
+    "opened": 91,
+    "released": 95
+   }
+  },
+  {
+   "condition": "none",
+   "success": true,
+   "inferred": "none",
+   "fallbacks": 0,
+   "posterior": null,
+   "steps": 62,
+   "subgoals": {
+    "above_object": 11,
+    "at_object": 19,
+    "grasped": 20,
+    "lifted": 27,
+    "over_target": 40,
+    "lowered": 56,
+    "opened": 58,
+    "released": 62
+   }
+  },
+  {
+   "condition": "none",
+   "success": true,
+   "inferred": "none",
+   "fallbacks": 0,
+   "posterior": null,
+   "steps": 81,
+   "subgoals": {
+    "above_object": 10,
+    "at_object": 38,
+    "grasped": 39,
+    "lifted": 48,
+    "over_target": 59,
+    "lowered": 75,
+    "opened": 77,
+    "released": 81
+   }
+  },
+  {
+   "condition": "none",
+   "success": false,
+   "inferred": "none",
+   "fallbacks": 0,
+   "posterior": null,
+   "steps": 85,
+   "subgoals": {
+    "above_object": 23,
+    "at_object": 36,
+    "grasped": 37,
+    "lifted": 44,
+    "over_target": 63,
+    "lowered": 79,
+    "opened": 81,
+    "released": 85
+   }
+  },
+  {
+   "condition": "none",
+   "success": true,
+   "inferred": "none",
+   "fallbacks": 0,
+   "posterior": null,
+   "steps": 63,
+   "subgoals": {
+    "above_object": 10,
+    "at_object": 18,
+    "grasped": 21,
+    "lifted": 28,
+    "over_target": 42,
+    "lowered": 56,
+    "opened": 58,
+    "released": 63
+   }
+  },
+  {
+   "condition": "none",
+   "success": true,
+   "inferred": "none",
+   "fallbacks": 0,
+   "posterior": null,
+   "steps": 66,
+   "subgoals": {
+    "above_object": 12,
+    "at_object": 20,
+    "grasped": 21,
+    "lifted": 28,
+    "over_target": 42,
+    "lowered": 59,
+    "opened": 61,
+    "released": 66
+   }
+  },
+  {
+   "condition": "none",
+   "success": true,
+   "inferred": "none",
+   "fallbacks": 0,
+   "posterior": null,
+   "steps": 84,
+   "subgoals": {
+    "above_object": 10,
+    "at_object": 40,
+    "grasped": 41,
+    "lifted": 48,
+    "over_target": 62,
+    "lowered": 77,
+    "opened": 79,
+    "released": 84
+   }
+  },
+  {
+   "condition": "none",
+   "success": true,
+   "inferred": "none",
+   "fallbacks": 0,
+   "posterior": null,
+   "steps": 92,
+   "subgoals": {
+    "above_object": 17,
+    "at_object": 43,
+    "grasped": 44,
+    "lifted": 50,
+    "over_target": 65,
+    "lowered": 85,
+    "opened": 87,
+    "released": 92
+   }
+  },
+  {
+   "condition": "none",
+   "success": true,
+   "inferred": "none",
+   "fallbacks": 0,
+   "posterior": null,
+   "steps": 60,
+   "subgoals": {
+    "above_object": 10,
+    "at_object": 17,
+    "grasped": 25,
+    "lifted": 32,
+    "over_target": 43,
+    "lowered": 53,
+    "opened": 55,
+    "released": 60
+   }
+  },
+  {
+   "condition": "none",
+   "success": true,
+   "inferred": "none",
+   "fallbacks": 0,
+   "posterior": null,
+   "steps": 123,
+   "subgoals": {
+    "above_object": 10,
+    "at_object": 82,
+    "grasped": 83,
+    "lifted": 90,
+    "over_target": 105,
+    "lowered": 117,
+    "opened": 119,
+    "released": 123
+   }
+  },
+  {
+   "condition": "push",
+   "success": true,
+   "inferred": "none",
+   "fallbacks": 0,
+   "posterior": null,
+   "steps": 100,
+   "subgoals": {
+    "above_object": 9,
+    "at_object": 56,
+    "grasped": 57,
+    "lifted": 64,
+    "over_target": 78,
+    "lowered": 93,
+    "opened": 95,
+    "released": 100
+   }
+  },
+  {
+   "condition": "push",
+   "success": true,
+   "inferred": "push",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 1.0,
+    "heavier_object": 0.0,
+    "unknown": 0.0
+   },
+   "steps": 69,
+   "subgoals": {
+    "above_object": 13,
+    "at_object": 21,
+    "grasped": 22,
+    "lifted": 29,
+    "over_target": 51,
+    "lowered": 63,
+    "opened": 65,
+    "released": 69
+   }
+  },
+  {
+   "condition": "push",
+   "success": true,
+   "inferred": "push",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 1.0,
+    "heavier_object": 0.0,
+    "unknown": 0.0
+   },
+   "steps": 87,
+   "subgoals": {
+    "above_object": 31,
+    "at_object": 45,
+    "grasped": 46,
+    "lifted": 53,
+    "over_target": 66,
+    "lowered": 81,
+    "opened": 83,
+    "released": 87
+   }
+  },
+  {
+   "condition": "push",
+   "success": true,
+   "inferred": "push",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 1.0,
+    "heavier_object": 0.0,
+    "unknown": 0.0
+   },
+   "steps": 60,
+   "subgoals": {
+    "above_object": 12,
+    "at_object": 20,
+    "grasped": 21,
+    "lifted": 28,
+    "over_target": 44,
+    "lowered": 55,
+    "opened": 57,
+    "released": 60
+   }
+  },
+  {
+   "condition": "push",
+   "success": true,
+   "inferred": "none",
+   "fallbacks": 0,
+   "posterior": null,
+   "steps": 106,
+   "subgoals": {
+    "above_object": 14,
+    "at_object": 51,
+    "grasped": 52,
+    "lifted": 60,
+    "over_target": 80,
+    "lowered": 99,
+    "opened": 101,
+    "released": 106
+   }
+  },
+  {
+   "condition": "push",
+   "success": true,
+   "inferred": "push",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 1.0,
+    "heavier_object": 0.0,
+    "unknown": 0.0
+   },
+   "steps": 73,
+   "subgoals": {
+    "above_object": 18,
+    "at_object": 25,
+    "grasped": 26,
+    "lifted": 34,
+    "over_target": 48,
+    "lowered": 66,
+    "opened": 68,
+    "released": 73
+   }
+  },
+  {
+   "condition": "push",
+   "success": true,
+   "inferred": "push",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 2.2065486051173603e-94,
+    "push": 1.0,
+    "heavier_object": 3.738497319502618e-97,
+    "unknown": 1.050156449081305e-61
+   },
+   "steps": 73,
+   "subgoals": {
+    "above_object": 13,
+    "at_object": 26,
+    "grasped": 27,
+    "lifted": 36,
+    "over_target": 52,
+    "lowered": 67,
+    "opened": 69,
+    "released": 73
+   }
+  },
+  {
+   "condition": "push",
+   "success": true,
+   "inferred": "push",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 1.0,
+    "heavier_object": 0.0,
+    "unknown": 0.0
+   },
+   "steps": 66,
+   "subgoals": {
+    "above_object": 12,
+    "at_object": 19,
+    "grasped": 22,
+    "lifted": 28,
+    "over_target": 46,
+    "lowered": 59,
+    "opened": 61,
+    "released": 66
+   }
+  },
+  {
+   "condition": "push",
+   "success": true,
+   "inferred": "none",
+   "fallbacks": 0,
+   "posterior": null,
+   "steps": 80,
+   "subgoals": {
+    "above_object": 12,
+    "at_object": 33,
+    "grasped": 34,
+    "lifted": 43,
+    "over_target": 61,
+    "lowered": 73,
+    "opened": 75,
+    "released": 80
+   }
+  },
+  {
+   "condition": "push",
+   "success": true,
+   "inferred": "push",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 1.0,
+    "heavier_object": 0.0,
+    "unknown": 0.0
+   },
+   "steps": 79,
+   "subgoals": {
+    "above_object": 18,
+    "at_object": 37,
+    "grasped": 38,
+    "lifted": 45,
+    "over_target": 60,
+    "lowered": 73,
+    "opened": 75,
+    "released": 79
+   }
+  },
+  {
+   "condition": "push",
+   "success": false,
+   "inferred": "push",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 9.005300406474221e-38,
+    "push": 1.0,
+    "heavier_object": 0.0,
+    "unknown": 5.2890141288932254e-48
+   },
+   "steps": 149,
+   "subgoals": {
+    "above_object": 11,
+    "at_object": 108,
+    "grasped": 109,
+    "lifted": 116,
+    "over_target": 129,
+    "lowered": 148
+   }
+  },
+  {
+   "condition": "push",
+   "success": true,
+   "inferred": "push",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 1.0,
+    "heavier_object": 0.0,
+    "unknown": 0.0
+   },
+   "steps": 87,
+   "subgoals": {
+    "above_object": 16,
+    "at_object": 47,
+    "grasped": 48,
+    "lifted": 55,
+    "over_target": 68,
+    "lowered": 80,
+    "opened": 82,
+    "released": 87
+   }
+  },
+  {
+   "condition": "push",
+   "success": false,
+   "inferred": "push",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 1.0,
+    "heavier_object": 0.0,
+    "unknown": 6.237622327973009e-115
+   },
+   "steps": 96,
+   "subgoals": {
+    "above_object": 11,
+    "at_object": 60,
+    "grasped": 61,
+    "lifted": 67,
+    "over_target": 80,
+    "lowered": 91,
+    "opened": 93,
+    "released": 96
+   }
+  },
+  {
+   "condition": "push",
+   "success": false,
+   "inferred": "push",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 1.0,
+    "heavier_object": 0.0,
+    "unknown": 0.0
+   },
+   "steps": 92,
+   "subgoals": {
+    "above_object": 34,
+    "at_object": 42,
+    "grasped": 43,
+    "lifted": 50,
+    "over_target": 69,
+    "lowered": 84,
+    "opened": 88,
+    "released": 92
+   }
+  },
+  {
+   "condition": "push",
+   "success": true,
+   "inferred": "push",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 1.0,
+    "heavier_object": 0.0,
+    "unknown": 0.0
+   },
+   "steps": 79,
+   "subgoals": {
+    "above_object": 11,
+    "at_object": 35,
+    "grasped": 36,
+    "lifted": 44,
+    "over_target": 57,
+    "lowered": 72,
+    "opened": 74,
+    "released": 79
+   }
+  },
+  {
+   "condition": "push",
+   "success": true,
+   "inferred": "push",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 1.0,
+    "heavier_object": 0.0,
+    "unknown": 0.0
+   },
+   "steps": 74,
+   "subgoals": {
+    "above_object": 11,
+    "at_object": 24,
+    "grasped": 27,
+    "lifted": 35,
+    "over_target": 51,
+    "lowered": 67,
+    "opened": 69,
+    "released": 74
+   }
+  },
+  {
+   "condition": "push",
+   "success": true,
+   "inferred": "push",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 1.0,
+    "heavier_object": 0.0,
+    "unknown": 0.0
+   },
+   "steps": 64,
+   "subgoals": {
+    "above_object": 9,
+    "at_object": 17,
+    "grasped": 18,
+    "lifted": 25,
+    "over_target": 40,
+    "lowered": 58,
+    "opened": 60,
+    "released": 64
+   }
+  },
+  {
+   "condition": "push",
+   "success": true,
+   "inferred": "push",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 1.0,
+    "heavier_object": 0.0,
+    "unknown": 0.0
+   },
+   "steps": 68,
+   "subgoals": {
+    "above_object": 11,
+    "at_object": 19,
+    "grasped": 20,
+    "lifted": 27,
+    "over_target": 46,
+    "lowered": 61,
+    "opened": 63,
+    "released": 68
+   }
+  },
+  {
+   "condition": "push",
+   "success": true,
+   "inferred": "push",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 1.0,
+    "heavier_object": 0.0,
+    "unknown": 0.0
+   },
+   "steps": 65,
+   "subgoals": {
+    "above_object": 11,
+    "at_object": 19,
+    "grasped": 26,
+    "lifted": 32,
+    "over_target": 43,
+    "lowered": 58,
+    "opened": 60,
+    "released": 65
+   }
+  },
+  {
+   "condition": "push",
+   "success": true,
+   "inferred": "push",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 1.0,
+    "heavier_object": 0.0,
+    "unknown": 0.0
+   },
+   "steps": 62,
+   "subgoals": {
+    "above_object": 11,
+    "at_object": 19,
+    "grasped": 20,
+    "lifted": 26,
+    "over_target": 41,
+    "lowered": 56,
+    "opened": 58,
+    "released": 62
+   }
+  },
+  {
+   "condition": "heavier_object",
+   "success": false,
+   "inferred": "heavier_object",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 2.6005525915784763e-06,
+    "heavier_object": 0.9999973994474084,
+    "unknown": 1.6767283437501307e-148
+   },
+   "steps": 94,
+   "subgoals": {
+    "above_object": 16,
+    "at_object": 55,
+    "grasped": 56,
+    "lifted": 64,
+    "over_target": 75,
+    "lowered": 89,
+    "opened": 91,
+    "released": 94
+   }
+  },
+  {
+   "condition": "heavier_object",
+   "success": true,
+   "inferred": "heavier_object",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 1.091052425945858e-05,
+    "heavier_object": 0.9999890894757405,
+    "unknown": 3.084186161602212e-109
+   },
+   "steps": 75,
+   "subgoals": {
+    "above_object": 16,
+    "at_object": 24,
+    "grasped": 25,
+    "lifted": 33,
+    "over_target": 56,
+    "lowered": 69,
+    "opened": 71,
+    "released": 75
+   }
+  },
+  {
+   "condition": "heavier_object",
+   "success": false,
+   "inferred": "heavier_object",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 0.00020448280696152665,
+    "heavier_object": 0.9997955171930385,
+    "unknown": 1.451846824519695e-153
+   },
+   "steps": 105,
+   "subgoals": {
+    "above_object": 12,
+    "at_object": 29,
+    "grasped": 30,
+    "lifted": 37,
+    "over_target": 51,
+    "lowered": 99,
+    "opened": 103,
+    "released": 105
+   }
+  },
+  {
+   "condition": "heavier_object",
+   "success": true,
+   "inferred": "heavier_object",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 2.706918087204598e-06,
+    "heavier_object": 0.9999972930819128,
+    "unknown": 3.39369482988141e-99
+   },
+   "steps": 62,
+   "subgoals": {
+    "above_object": 11,
+    "at_object": 19,
+    "grasped": 20,
+    "lifted": 27,
+    "over_target": 43,
+    "lowered": 56,
+    "opened": 58,
+    "released": 62
+   }
+  },
+  {
+   "condition": "heavier_object",
+   "success": true,
+   "inferred": "heavier_object",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 4.7360963940202e-06,
+    "heavier_object": 0.999995263903606,
+    "unknown": 4.314609045019366e-116
+   },
+   "steps": 75,
+   "subgoals": {
+    "above_object": 12,
+    "at_object": 20,
+    "grasped": 33,
+    "lifted": 37,
+    "over_target": 54,
+    "lowered": 69,
+    "opened": 73,
+    "released": 75
+   }
+  },
+  {
+   "condition": "heavier_object",
+   "success": false,
+   "inferred": "heavier_object",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 3.5625443285198454e-06,
+    "heavier_object": 0.9999964374556715,
+    "unknown": 3.7297827207922317e-104
+   },
+   "steps": 75,
+   "subgoals": {
+    "above_object": 20,
+    "at_object": 29,
+    "grasped": 30,
+    "lifted": 38,
+    "over_target": 52,
+    "lowered": 70,
+    "opened": 72,
+    "released": 75
+   }
+  },
+  {
+   "condition": "heavier_object",
+   "success": true,
+   "inferred": "heavier_object",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 8.968095755024922e-05,
+    "heavier_object": 0.9999103190424499,
+    "unknown": 4.104876057534706e-122
+   },
+   "steps": 149,
+   "subgoals": {
+    "above_object": 14,
+    "at_object": 102,
+    "grasped": 103,
+    "lifted": 112,
+    "over_target": 129,
+    "lowered": 141,
+    "opened": 147
+   }
+  },
+  {
+   "condition": "heavier_object",
+   "success": false,
+   "inferred": "none",
+   "fallbacks": 0,
+   "posterior": null,
+   "steps": 149,
+   "subgoals": {
+    "above_object": 11,
+    "at_object": 18
+   }
+  },
+  {
+   "condition": "heavier_object",
+   "success": true,
+   "inferred": "heavier_object",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 6.0940908620549e-06,
+    "heavier_object": 0.999993905909138,
+    "unknown": 8.418542804899631e-109
+   },
+   "steps": 115,
+   "subgoals": {
+    "above_object": 14,
+    "at_object": 70,
+    "grasped": 71,
+    "lifted": 78,
+    "over_target": 87,
+    "lowered": 109,
+    "opened": 111,
+    "released": 115
+   }
+  },
+  {
+   "condition": "heavier_object",
+   "success": true,
+   "inferred": "heavier_object",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 7.2624999670392845e-06,
+    "heavier_object": 0.999992737500033,
+    "unknown": 6.254963791984077e-98
+   },
+   "steps": 65,
+   "subgoals": {
+    "above_object": 19,
+    "at_object": 27,
+    "grasped": 28,
+    "lifted": 35,
+    "over_target": 47,
+    "lowered": 59,
+    "opened": 61,
+    "released": 65
+   }
+  },
+  {
+   "condition": "heavier_object",
+   "success": false,
+   "inferred": "heavier_object",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 5.546306343829801e-06,
+    "heavier_object": 0.9999944536936561,
+    "unknown": 6.718106373637001e-121
+   },
+   "steps": 68,
+   "subgoals": {
+    "above_object": 9,
+    "at_object": 18,
+    "grasped": 19,
+    "lifted": 30,
+    "over_target": 45,
+    "lowered": 60,
+    "opened": 63,
+    "released": 68
+   }
+  },
+  {
+   "condition": "heavier_object",
+   "success": true,
+   "inferred": "heavier_object",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 1.413057584863545e-06,
+    "heavier_object": 0.9999985869424152,
+    "unknown": 1.1957514656833516e-106
+   },
+   "steps": 68,
+   "subgoals": {
+    "above_object": 16,
+    "at_object": 23,
+    "grasped": 24,
+    "lifted": 32,
+    "over_target": 45,
+    "lowered": 62,
+    "opened": 64,
+    "released": 68
+   }
+  },
+  {
+   "condition": "heavier_object",
+   "success": true,
+   "inferred": "heavier_object",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 2.128006251497599e-06,
+    "heavier_object": 0.9999978719937486,
+    "unknown": 1.7336928034691765e-100
+   },
+   "steps": 55,
+   "subgoals": {
+    "above_object": 10,
+    "at_object": 18,
+    "grasped": 19,
+    "lifted": 26,
+    "over_target": 37,
+    "lowered": 49,
+    "opened": 51,
+    "released": 55
+   }
+  },
+  {
+   "condition": "heavier_object",
+   "success": true,
+   "inferred": "heavier_object",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 1.293967957995075e-06,
+    "heavier_object": 0.999998706032042,
+    "unknown": 3.4048752520582956e-134
+   },
+   "steps": 84,
+   "subgoals": {
+    "above_object": 12,
+    "at_object": 29,
+    "grasped": 30,
+    "lifted": 38,
+    "over_target": 63,
+    "lowered": 76,
+    "opened": 80,
+    "released": 84
+   }
+  },
+  {
+   "condition": "heavier_object",
+   "success": true,
+   "inferred": "heavier_object",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 1.9596722442647983e-06,
+    "heavier_object": 0.9999980403277559,
+    "unknown": 2.3216569729862286e-112
+   },
+   "steps": 62,
+   "subgoals": {
+    "above_object": 12,
+    "at_object": 25,
+    "grasped": 26,
+    "lifted": 34,
+    "over_target": 43,
+    "lowered": 58,
+    "opened": 60,
+    "released": 62
+   }
+  },
+  {
+   "condition": "heavier_object",
+   "success": true,
+   "inferred": "heavier_object",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 1.6942208965735334e-06,
+    "heavier_object": 0.9999983057791033,
+    "unknown": 2.2376256253822155e-143
+   },
+   "steps": 68,
+   "subgoals": {
+    "above_object": 9,
+    "at_object": 18,
+    "grasped": 23,
+    "lifted": 30,
+    "over_target": 48,
+    "lowered": 62,
+    "opened": 68,
+    "released": 68
+   }
+  },
+  {
+   "condition": "heavier_object",
+   "success": true,
+   "inferred": "heavier_object",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 1.1237002157957692e-05,
+    "heavier_object": 0.9999887629978421,
+    "unknown": 1.4733902492851154e-105
+   },
+   "steps": 78,
+   "subgoals": {
+    "above_object": 11,
+    "at_object": 28,
+    "grasped": 29,
+    "lifted": 39,
+    "over_target": 54,
+    "lowered": 68,
+    "opened": 74,
+    "released": 78
+   }
+  },
+  {
+   "condition": "heavier_object",
+   "success": true,
+   "inferred": "heavier_object",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 3.3928436556853386e-06,
+    "heavier_object": 0.9999966071563444,
+    "unknown": 1.199227425303134e-166
+   },
+   "steps": 109,
+   "subgoals": {
+    "above_object": 16,
+    "at_object": 63,
+    "grasped": 64,
+    "lifted": 72,
+    "over_target": 87,
+    "lowered": 103,
+    "opened": 105,
+    "released": 109
+   }
+  },
+  {
+   "condition": "heavier_object",
+   "success": true,
+   "inferred": "heavier_object",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 3.942379299416895e-06,
+    "heavier_object": 0.9999960576207005,
+    "unknown": 1.9554914891111374e-114
+   },
+   "steps": 149,
+   "subgoals": {
+    "above_object": 10,
+    "at_object": 116,
+    "grasped": 117,
+    "lifted": 124,
+    "over_target": 135,
+    "lowered": 148
+   }
+  },
+  {
+   "condition": "heavier_object",
+   "success": true,
+   "inferred": "heavier_object",
+   "fallbacks": 0,
+   "posterior": {
+    "none": 0.0,
+    "push": 6.542883958871601e-05,
+    "heavier_object": 0.9999345711604113,
+    "unknown": 9.459755982698591e-99
+   },
+   "steps": 84,
+   "subgoals": {
+    "above_object": 10,
+    "at_object": 44,
+    "grasped": 45,
+    "lifted": 52,
+    "over_target": 65,
+    "lowered": 77,
+    "opened": 79,
+    "released": 84
+   }
+  }
+ ]
+}

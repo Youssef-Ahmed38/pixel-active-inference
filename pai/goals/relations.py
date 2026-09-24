@@ -59,10 +59,10 @@ class RelationalGoal:
 
     def _decompose(self) -> list[Subgoal]:
         hover, carry = 0.10, 0.12
-        # Release 3.5 cm above the surface: lower and the fingertips catch a plate's rim and lift or
-        # tilt it on the way out (seen in 7 of 60 evaluation episodes, mostly with heavier blocks,
-        # which make the arm sag). The block drops the rest of the way.
-        place_z = self.t_top + self.h_o / 2 + 0.035
+        # Release 2.5 cm above the surface; the block drops the rest of the way. (Diagnosis in
+        # results/slice_v3: failed placements came from the hand moving sideways while the fingers
+        # opened, throwing the block into the plate, not from the release height.)
+        place_z = self.t_top + self.h_o / 2 + 0.025
         sq = lambda v: (v**2).sum(-1)
         open_cost = lambda x: 20.0 * torch.relu(GRIP_OPEN - self._grip(x)) ** 2 * 100
         closed_cost = lambda x: 20.0 * torch.relu(self._grip(x) - GRIP_CLOSED + 0.01) ** 2 * 100
@@ -93,11 +93,16 @@ class RelationalGoal:
             speed = sq(x[..., self.i_o, VEL])
             return sq(self._o(x) - tgt) * 100 + 20.0 * speed + closed_cost(x)
 
+        def opened(x):
+            # Hold still while the fingers open: moving the hand at release throws the object.
+            still = sq(x[..., self.i_g, VEL])
+            return 200.0 * still + open_cost(x)
+
         def released(x):
-            tgt_xy = self._t(x)[..., :2]
-            resting = (self._o(x)[..., 2] - (self.t_top + self.h_o / 2)) ** 2
+            # Retreat straight up: stay above the object, rise to the hover height.
+            over = sq(self._g(x)[..., :2] - self._o(x)[..., :2])
             away = torch.relu(self._o(x)[..., 2] + hover - self._g(x)[..., 2]) ** 2
-            return 100 * (sq(self._o(x)[..., :2] - tgt_xy) + resting + away) + open_cost(x)
+            return 100 * (over + away) + open_cost(x)
 
         d3 = lambda x, y: float((x - y).norm())
         return [
@@ -112,6 +117,8 @@ class RelationalGoal:
             Subgoal("lowered", lowered, grip=-1.0, done=
                     lambda x: d3(self._o(x)[:2], self._t(x)[:2]) < 0.015 and abs(float(self._o(x)[2]) - place_z) < 0.01
                     and float(x[self.i_o, VEL].norm()) < PLACE_SPEED),
+            Subgoal("opened", opened, grip=1.0, done=
+                    lambda x: float(self._grip(x)) > GRIP_OPEN and float(x[self.i_o, VEL].norm()) < PLACE_SPEED),
             Subgoal("released", released, grip=1.0, done=
                     lambda x: float(self._grip(x)) > GRIP_OPEN and float(self._g(x)[2] - self._o(x)[2]) > hover - 0.03),
         ]

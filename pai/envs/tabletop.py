@@ -47,8 +47,14 @@ def _add_objects(spec: mujoco.MjSpec, cfg) -> dict[str, ObjectSpec]:
     p = cfg.plate
     body = wb.add_body(name="plate", pos=[0.5, 0.2, p.height / 2])
     body.add_freejoint()
+    # A 12 mm cylinder is fragile in MuJoCo. A block that lands tilted touches it with a single contact
+    # point, pivots through the plate and gets the plate ejected: 8 of 9 placement failures in
+    # evaluation v3/v4 (diagnosis: replaying the recorded falls). A 3 mm contact margin detects the
+    # contact before touching and stops all replayed falls; the price is that objects rest ~3 mm above
+    # the plate. The stiffer solref additionally limits how deep a fast block sinks in.
     body.add_geom(name="plate_geom", type=geom.mjGEOM_CYLINDER, size=[p.radius, p.height / 2, 0], rgba=list(p.rgba),
-                  mass=float(p.mass), friction=[float(cfg.object_friction), 0.01, 0.001], condim=4)
+                  mass=float(p.mass), friction=[float(cfg.object_friction), 0.01, 0.001], condim=4,
+                  solref=[0.005, 1.0], margin=0.003)
     objects["plate"] = ObjectSpec("plate", "plate", radius=float(p.radius), height=float(p.height))
 
     bw = cfg.bowl
