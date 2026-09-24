@@ -196,6 +196,40 @@ solvable (the Robotiq gripper opens 33 of 50 solvable cases, the dexterous hands
 `scripts/home_door_demo.py`). The agent itself will get only generic skills and has to discover
 what opens the door: [docs/DISCOVERY.md](docs/DISCOVERY.md).
 
+### Discovering how to open a locked door
+
+The discovery agent ([pai/discovery/](pai/discovery/), [docs/DISCOVERY.md](docs/DISCOVERY.md)) is never
+told what a key, a keyhole or a knob is. It sees opaque parts and objects, generic skills it can
+apply to them, and what changes. It keeps a Bayesian belief over rules of the form "the door opens
+with probe P while conditions C hold", learns which action changes what, picks experiments by
+expected information gain per second of effort, plans once a rule is likely, explains what it found,
+stops when nothing reachable is left ("the key must be elsewhere"), and stores a recipe for next time.
+
+Symbolic door with the same mechanics, 200 scenes per case, held-out door types; mean actions until
+the door opens (success rate when below 100%):
+
+| case | discovery | novelty-only curiosity | random |
+|---|---|---|---|
+| latched (turn the knob while pulling) | **6.9** | 117.1 (99.5%) | 84.0 (99.5%) |
+| thumb-turn deadbolt | **36.8** | 134.5 (99%) | 119.1 (98%) |
+| key in the drawer | **222.0** (99%) | 685.5 (44%) | 776.6 (45%) |
+| thumb-turn + key | **211.0** | 558.3 (61%) | 745.6 (46%) |
+| key in the other room (no solution) | stops and says so in 200/200 | runs to the budget | runs to the budget |
+
+With a recipe from one solved door, a new key-locked door of a held-out type takes 145 actions
+instead of 205. In MuJoCo (Robotiq gripper, same agent unchanged) it opened 18 of 25 solvable doors:
+all latched and deadbolted ones, 8 of 15 key-locked ones; the failures are the body's (dropped keys,
+missed inserts). Full tables: [results/discovery_eval.md](results/discovery_eval.md).
+
+Caveats (see [docs/DISCOVERY.md](docs/DISCOVERY.md#limits-of-this-evaluation-from-an-independent-review)): the agent has a built-in preference for parts near the door, the physics scene has no decoy parts yet, and
+held-out types change the door, not the lock mechanisms. A clean re-run on fresh seeds, decoys in
+physics and an ablation without the locality prior come next.
+
+<img src="docs/media/discovery/key_in_drawer.gif" width="360">
+
+<sub>The agent in physics, key hidden in the drawer: each frame shows its action, what changed, its
+most probable rule, and the probability it still gives to a cause it has not thought of.</sub>
+
 ## Phase 0 results: PixelAI baseline
 
 Decoder: 11.4M parameters, 60k renders, 30k steps (~45 min on an RTX 5060 laptop GPU),
