@@ -102,9 +102,22 @@ def train_slots(cfg, device: str | None = None) -> Path:
     logger.log(event="start", frames=len(train_idx), val_frames=len(val_idx), gpus=rt.world_size,
                commit=git_commit(), params=sum(p.numel() for p in model.parameters()))
 
+    # The slot model is small, so reading random frames from disk on the CPU (Kaggle has 2 cores)
+    # is slower than the GPU's work and the GPU waits. When the whole cache fits, it is copied to
+    # GPU memory once (features in fp16: ~3.4 GB for 17k frames) and batches never touch the CPU.
+    on_gpu = _fits_on_gpu(sc.get("gpu_cache", "auto"), device, feats, masks, tokens)
+    if on_gpu:
+        feats, masks, tokens = _to_gpu(feats, device), _to_gpu(masks, device), _to_gpu(tokens, device, half=False)
+        logger.log(event="gpu_cache", gb=round(sum(a.numel() * a.element_size() for a in (feats, masks, tokens)) / 1e9, 2))
+        if rt.is_main:
+            print("feature cache copied to GPU memory", flush=True)
+
     def batch(idx):
         # sorted reads are faster on memmaps; tiny validation sets are sampled with replacement
         b = np.sort(rng.choice(idx, sc.batch_size, replace=len(idx) < sc.batch_size))
+        if on_gpu:
+            bi = torch.as_tensor(b, device=device)
+            return feats[bi].float(), masks[bi].float(), (tokens[bi].float() - tok_mean) / tok_std
         f = torch.as_tensor(np.asarray(feats[b]), device=device).float()
         m = torch.as_tensor(np.asarray(masks[b]), device=device).float()
         t = (torch.as_tensor(np.asarray(tokens[b]), device=device) - tok_mean) / tok_std
@@ -137,6 +150,29 @@ def train_slots(cfg, device: str | None = None) -> Path:
 
 
 @torch.no_grad()
+def _fits_on_gpu(mode, device, *arrays) -> bool:
+    """mode: True, False or "auto" (use it when the cache takes under half of the free GPU memory)."""
+    if device.type != "cuda" or mode is False or str(mode).lower() == "false":
+        return False
+    if mode is True or str(mode).lower() == "true":
+        return True
+    need = sum(a.nbytes for a in arrays)  # upper bound: features and masks are stored as fp16
+    free, _ = torch.cuda.mem_get_info(device)
+    return need < 0.5 * free
+
+
+def _to_gpu(a: np.ndarray, device, half: bool = True, chunk: int = 1024) -> torch.Tensor:
+    """Copy a memmap to the GPU in chunks, never holding it all in CPU memory. half: floats as fp16
+    (features and masks; tokens keep float32, their positions need the precision)."""
+    dtype = torch.from_numpy(np.asarray(a[:1])).dtype
+    if half and np.issubdtype(a.dtype, np.floating):
+        dtype = torch.float16
+    out = torch.empty(a.shape, dtype=dtype, device=device)
+    for s in range(0, len(a), chunk):
+        out[s : s + chunk] = torch.from_numpy(np.asarray(a[s : s + chunk])).to(device, dtype)
+    return out
+
+
 def evaluate_slots(model, batch_fn, val_idx, labels: slice, tok_std, n_batches: int = 4) -> dict:
     """Object mIoU of matched slots, and position error (mm) of the slot token readout."""
     model.eval()

@@ -109,6 +109,9 @@ class Friction(Disturbance):
             body = env.model.body(self.params["body"]).id
             geoms = np.flatnonzero(env.model.geom_bodyid == body)
             env.model.geom_friction[geoms, 0] = env._nominal["geom_friction"][geoms, 0] * self.params.get("scale", 0.2)
+            # MuJoCo combines two touching geoms' friction with max(), so a slippery object held by
+            # grippy fingers would not be slippery at all. Priority makes the object's value win.
+            env.model.geom_priority[geoms] = 1
 
 
 class SensorNoise(Disturbance):

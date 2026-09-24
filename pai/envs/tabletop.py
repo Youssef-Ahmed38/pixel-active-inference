@@ -17,6 +17,8 @@ plus privileged
 
 from __future__ import annotations
 
+from typing import Callable
+
 import mujoco
 import numpy as np
 
@@ -75,7 +77,9 @@ def _add_objects(spec: mujoco.MjSpec, cfg) -> dict[str, ObjectSpec]:
     return objects
 
 
-def build_tabletop_model(cfg) -> tuple[mujoco.MjModel, dict[str, ObjectSpec]]:
+def build_tabletop_model(cfg, extra: Callable[[mujoco.MjSpec], None] | None = None,
+                         ) -> tuple[mujoco.MjModel, dict[str, ObjectSpec]]:
+    """extra, if given, adds more bodies to the spec just before compiling (e.g. articulated fixtures)."""
     spec = mujoco.MjSpec.from_file(str(PANDA_XML))
     wb = spec.worldbody
     geom = mujoco.mjtGeom
@@ -106,6 +110,8 @@ def build_tabletop_model(cfg) -> tuple[mujoco.MjModel, dict[str, ObjectSpec]]:
     grip.biasprm[2] *= k
 
     objects = _add_objects(spec, cfg)
+    if extra is not None:
+        extra(spec)
     spec.visual.headlight.ambient = [0.25, 0.25, 0.25]
     spec.visual.headlight.diffuse = [0.3, 0.3, 0.3]
     model = spec.compile()
@@ -119,7 +125,7 @@ def build_tabletop_model(cfg) -> tuple[mujoco.MjModel, dict[str, ObjectSpec]]:
 class TabletopEnv:
     def __init__(self, cfg, disturbances: list[Disturbance] | None = None):
         self.cfg = cfg
-        self.model, self.objects = build_tabletop_model(cfg)
+        self.model, self.objects = self._build_model(cfg)
         self.data = mujoco.MjData(self.model)
         self.renderer = mujoco.Renderer(self.model, cfg.image_size, cfg.image_size)
         m = self.model
@@ -148,6 +154,7 @@ class TabletopEnv:
             "body_mass": m.body_mass.copy(),
             "body_inertia": m.body_inertia.copy(),
             "geom_friction": m.geom_friction.copy(),
+            "geom_priority": m.geom_priority.copy(),
             "actuator_gainprm": m.actuator_gainprm.copy(),
             "actuator_biasprm": m.actuator_biasprm.copy(),
         }
@@ -156,6 +163,10 @@ class TabletopEnv:
         self.events = EventLog(self)
         self.t = 0
         self.reset()
+
+    def _build_model(self, cfg) -> tuple[mujoco.MjModel, dict[str, ObjectSpec]]:
+        """Subclasses override this to add bodies (see build_tabletop_model's `extra`)."""
+        return build_tabletop_model(cfg)
 
     # ------------------------------------------------------------------ compliance
     def set_stiffness(self, scale: float) -> None:

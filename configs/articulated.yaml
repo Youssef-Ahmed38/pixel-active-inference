@@ -1,0 +1,45 @@
+# Week 5 articulated scene: Panda tabletop + fixtures (drawers, doors, lids, ...) from pai.envs.fixtures.
+seed: 0
+
+env:
+  image_size: 256
+  render_images: false        # true to render obs["image"] every step
+  control_dt: 0.02            # 50 Hz
+  control: ee                 # ee: [dx, dy, dz, dyaw, grip] | joint_velocity: [7 velocities, grip]
+  max_ee_vel: 0.25            # m/s
+  max_yaw_vel: 1.5            # rad/s
+  max_joint_vel: 1.5          # rad/s
+  ik_damping: 0.05
+  ik_nullspace_gain: 0.02
+  ee_low: [0.2, -0.4, 0.005]  # grip-site workspace box (m)
+  ee_high: [0.8, 0.4, 0.55]
+  stiffness: 0.15             # compliant arm, as in the tabletop scene
+  gripper_strength: 10.0
+  home_q: [0.0, 0.0, 0.0, -2.2, 0.0, 2.2, 0.785]
+  settle_steps: 200
+  spawn_low: [0.25, -0.4]     # object xy spawn region; fixtures' swept areas are excluded
+  spawn_high: [0.5, 0.4]
+  object_friction: 1.0
+  table_rgba: [0.55, 0.42, 0.3, 1]
+  blocks:
+    - {name: red,   size: 0.04, mass: 0.08, rgba: [0.85, 0.15, 0.15, 1]}
+    - {name: green, size: 0.04, mass: 0.08, rgba: [0.15, 0.7, 0.2, 1]}
+  plate: {radius: 0.07, height: 0.012, mass: 0.2, rgba: [0.92, 0.92, 0.9, 1]}
+  bowl:  {radius: 0.07, height: 0.05, mass: 0.3, rgba: [0.3, 0.55, 0.75, 1]}
+  # Fixtures: `type` names an entry of pai.envs.fixtures.FIXTURE_TYPES, or give `family` (+ `split`)
+  # to sample one. Parameters are drawn from fixture_seed; pose and hidden causes change per reset.
+  # pos_* bound the fixture front's bottom-centre (world xy); it faces the robot base +- yaw_range.
+  fixture_seed: 0
+  fixtures:
+    - {name: drawer, type: drawer_bar,    pos_low: [0.56, -0.2], pos_high: [0.6, -0.15], yaw_range: 0.1}
+    - {name: door,   type: door_bar_left, pos_low: [0.56, 0.15], pos_high: [0.6, 0.2],   yaw_range: 0.1}
+  # Hidden cause probabilities per part and episode (latched only applies to lever handles).
+  causes: {none: 1.0, locked: 0.0, stuck: 0.0, blocked: 0.0, latched: 0.0}
+  cameras:
+    - {name: overview, pos: [-0.35, -0.85, 0.85], target: [0.5, 0.0, 0.1],  fovy: 50}
+    - {name: side,     pos: [0.35, -1.0, 0.45],   target: [0.5, 0.0, 0.12], fovy: 50}
+    - {name: top,      pos: [0.3, 0.0, 1.2],      target: [0.5, 0.0, 0.0],  fovy: 55}
+  render:
+    msaa: 4
+    shadow_size: 1024
+  disturbances: []

@@ -8,28 +8,43 @@ from pai.planning.mppi import MPPIPlanner
 from pai.world.entities import DYNAMIC, FORCE, GRIP, POS, TOKEN_DIM
 from pai.world.model import EnsembleWorldModel, load_world_model
 
-SIG = np.r_[np.full(3, 0.001), np.full(3, 0.3)]
+SIG = np.r_[np.full(3, 0.001), np.full(3, 0.3), np.full(6, 0.001)]
 
 
-def _window(n=20, rng=None, push=None, sag=0.0, holding=False):
+def _window(n=20, rng=None, push=None, sag=0.0, holding=False, slip=None, camera=None):
+    """Synthetic evidence. push=(t0, t1, offset on the 9 arm channels); slip=(t0, object offset,
+    force change); camera=(t0, jump of everything seen)."""
     rng = rng or np.random.default_rng(0)
     evs = []
     for t in range(n):
-        r = rng.normal(0, 1, 6) * SIG
+        r = rng.normal(0, 1, 12) * SIG
         a = np.array([0, 0, 0.2 if holding else 0.0, -1.0])
         if push and push[0] <= t < push[1]:
-            r += push[2]
+            r[:9] += push[2]
         if holding:
             r[2] -= sag
+            r[8] -= sag  # the held object sags with the hand
             r[5] += sag * 1000  # 1 mm of sag comes with ~1 N of extra pull
+        if slip and holding and t >= slip[0]:
+            r[6:9] += slip[1]
+            r[3:6] += slip[2]
+        if camera and t == camera[0]:
+            r[6:9] += camera[1]
+            r[9:12] += camera[1]
         evs.append(StepEvidence(t, r, SIG, a, holding))
     return evs
 
 
 def test_cause_inference_identifies_each_cause():
     assert infer_cause(_window(), 0.1).best == "none"
-    assert infer_cause(_window(push=(6, 11, np.array([0.004, -0.002, 0.0, 20.0, -10.0, 0.0]))), 0.1).best == "push"
+    push = np.r_[0.004, -0.002, 0.0, 20.0, -10.0, 0.0, 0.0, 0.0, 0.0]
+    assert infer_cause(_window(push=(6, 11, push)), 0.1).best == "push"
     assert infer_cause(_window(sag=0.004, holding=True), 0.1).best == "heavier_object"
+    slip = (8, np.array([0.0, 0.0, -0.006]), np.array([0.0, 0.0, -2.0]))
+    assert infer_cause(_window(holding=True, slip=slip), 0.1).best == "slippery_object"
+    rep = infer_cause(_window(camera=(9, np.array([-0.04, 0.02, 0.0]))), 0.1)
+    assert rep.best == "camera_shift"
+    assert np.allclose(rep.params["camera_shift"]["camera_offset_mm"], [40, -20, 0], atol=2)
 
 
 def test_heavier_object_impossible_without_holding():
@@ -41,7 +56,7 @@ def test_surprise_monitor_triggers_only_on_spikes():
     mon = SurpriseMonitor(0.1)
     for ev in _window(n=40):
         assert mon.add(ev) is None
-    for ev in _window(n=40, push=(10, 16, np.array([0.01, 0.0, 0.0, 40.0, 0.0, 0.0]))):
+    for ev in _window(n=40, push=(10, 16, np.r_[0.01, 0.0, 0.0, 40.0, 0.0, 0.0, 0.0, 0.0, 0.0])):
         mon.add(ev)
     assert mon.reports and mon.episode_verdict().best == "push"
 
@@ -145,10 +160,10 @@ def test_calibration_sets_floor_and_threshold():
     from pai.causes.inference import calibrate
 
     rng = np.random.default_rng(0)
-    res = rng.normal(0, 1, (2000, 6)) * np.r_[[0.003] * 3, [1.0] * 3]  # real errors: 3 mm, 1 N
-    sig = np.tile(np.r_[[0.0005] * 3, [0.2] * 3], (2000, 1))           # while it claims 0.5 mm, 0.2 N
+    res = rng.normal(0, 1, (2000, 12)) * np.r_[[0.003] * 3, [1.0] * 3, [0.003] * 6]  # real errors: 3 mm, 1 N
+    sig = np.tile(np.r_[[0.0005] * 3, [0.2] * 3, [0.0005] * 6], (2000, 1))           # while it claims 0.5 mm, 0.2 N
     cal = calibrate(res, sig)
-    assert np.allclose(cal.floor[:3], 0.003, rtol=0.1) and np.allclose(cal.floor[3:], 0.98, rtol=0.1)
+    assert np.allclose(cal.floor[:3], 0.003, rtol=0.1) and np.allclose(cal.floor[3:6], 0.98, rtol=0.1)
     assert 1.0 < cal.threshold < 20.0
 
 
@@ -158,9 +173,9 @@ def test_calibration_per_step_keeps_quiet_steps_sensitive():
     rng = np.random.default_rng(0)
     n = 1000
     steps = ["grasped"] * n + ["lifted"] * n
-    noise = np.r_[[0.001] * 3, [5.0] * 3], np.r_[[0.001] * 3, [0.05] * 3]   # grasping is noisy, carrying is quiet
-    res = np.vstack([rng.normal(0, 1, (n, 6)) * noise[0], rng.normal(0, 1, (n, 6)) * noise[1]])
-    sig = np.full((2 * n, 6), 1e-4)
+    noise = np.r_[[0.001] * 3, [5.0] * 3, [0.001] * 6], np.r_[[0.001] * 3, [0.05] * 3, [0.001] * 6]   # grasping is noisy, carrying is quiet
+    res = np.vstack([rng.normal(0, 1, (n, 12)) * noise[0], rng.normal(0, 1, (n, 12)) * noise[1]])
+    sig = np.full((2 * n, 12), 1e-4)
     cal = calibrate(res, sig, steps)
     assert cal.floor_for("grasped")[5] > 4.0 and cal.floor_for("lifted")[5] < 0.4  # 0.4 = floor minimum 0.3 N
     assert cal.floor_for("never_seen")[5] == cal.floor[5]
@@ -211,7 +226,7 @@ def test_unknown_wins_only_when_no_cause_fits():
     rng = np.random.default_rng(1)
     evs = []
     for t in range(20):
-        r = rng.normal(0, 1, 6) * SIG * 8 * (1 if t % 2 else -1)
+        r = rng.normal(0, 1, 12) * SIG * 8 * (1 if t % 2 else -1)
         evs.append(StepEvidence(t, r, SIG, np.array([0, 0, 0, -1.0]), holding=True))
     assert infer_cause(evs, 0.1).best == "unknown"
     assert infer_cause(_window(), 0.1).posterior["unknown"] < 0.05  # plain noise is not "unknown"
@@ -230,3 +245,40 @@ def test_lowered_waits_until_object_is_still():
     assert not lowered.done(x)
     x[1, VEL] = 0.0
     assert lowered.done(x)
+
+
+def test_recipe_extraction_and_proposal_transfer_to_a_new_layout():
+    """A recipe stores where the hand went relative to the roles, so in a new layout its proposal
+    heads for the new object, not for where the old one was."""
+    from types import SimpleNamespace
+
+    from pai.memory.recipes import check_preconditions, extract_recipe, proposal
+
+    names = ["gripper", "red", "plate"]
+    objects = {"red": SimpleNamespace(kind="block"), "plate": SimpleNamespace(kind="plate")}
+    T = 6
+    tokens = np.zeros((T + 1, 3, TOKEN_DIM), np.float32)
+    tokens[:, 1, POS] = [0.5, 0.1, 0.02]      # the object starts here
+    tokens[:, 2, POS] = [0.4, -0.2, 0.006]    # the plate
+    tokens[:3, 0, GRIP] = 0.08                # hand open until the grasp
+    tokens[2, 0, POS] = [0.5, 0.1, 0.12]      # end of above_object: 10 cm above the object
+    tokens[5, 0, POS] = [0.4, -0.2, 0.06]     # end of over_target: above the plate
+    rec = SimpleNamespace(tokens=tokens, phases={"above_object": (0, 2), "over_target": (3, 5)}, episode=7)
+    r = extract_recipe(rec, "on", "red", "plate", names, objects, ["above_object", "over_target"])
+    assert [s.reference for s in r.steps] == ["object", "target"]
+    assert np.allclose(r.steps[0].offset, [0, 0, 0.10], atol=1e-6)
+    assert "hand open" in r.preconditions and check_preconditions(r, tokens[0], 1, 2) == []
+
+    new = tokens[0].copy()
+    new[1, POS] = [0.3, 0.3, 0.02]            # new layout
+    prop = proposal(r, "above_object", new, tokens[0, 1, POS], 2, horizon=20, dt=0.1, i_o=1)
+    end = new[0, POS] + (prop[:, :3] * 0.1).sum(0)
+    assert np.allclose(end, [0.3, 0.3, 0.12], atol=1e-4)
+    assert proposal(r, "released", new, new[1, POS], 2, horizon=5, dt=0.1) is None
+
+
+def test_push_while_holding_is_not_a_slip():
+    """A sideways push on a hand that holds the object moves the object and the wrist force
+    sideways; slipping is gravity-driven and cannot explain that."""
+    push = np.r_[0.001, 0.0, 0.0, 25.0, -15.0, 0.0, 0.003, 0.0, 0.0]
+    assert infer_cause(_window(holding=True, push=(6, 9, push)), 0.1).best == "push"

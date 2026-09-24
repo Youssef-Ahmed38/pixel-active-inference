@@ -72,6 +72,7 @@ slots:
   lr: 4.0e-4
   batch_size: 64
   steps: 20000
+  gpu_cache: auto             # copy the feature cache to GPU memory when it fits (GPU no longer waits on the CPU)
   mask_weight: 1.0            # supervision from simulator masks (rule 2); later reduced to 0
   token_weight: 1.0
   log_every: 1000

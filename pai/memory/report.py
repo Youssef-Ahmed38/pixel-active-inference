@@ -13,6 +13,8 @@ CAUSE_TEXT = {
     "none": "nothing unusual happened",
     "push": "something pushed my arm",
     "heavier_object": "the object is heavier than I expected",
+    "slippery_object": "the object is sliding in my hand",
+    "camera_shift": "my camera moved: everything I see jumped while my hand did not",
     "unknown": "something happened that I cannot explain yet",
 }
 
@@ -40,6 +42,12 @@ def episode_report(rec: EpisodeRecord, dt: float = 0.1) -> str:
         lines.append(f"  My explanation: {CAUSE_TEXT[cause]}, probability {p:.2f}{extra}.")
     else:
         lines.append(f"  My explanation: {CAUSE_TEXT['none']}.")
-    truth = [f"{d['disturbance']} at {d['t'] * 0.02:.1f} s" for d in rec.true_disturbances]
+    for a in rec.adaptations:
+        detail = ", ".join(f"{k}={v}" for k, v in a.items() if k not in ("t", "cause", "action"))
+        lines.append(f"  What I changed: at {a['t'] * dt:.1f} s, {a['action']}{f' ({detail})' if detail else ''}.")
+    truth = [f"{d['disturbance']} at {d['t'] * 0.02:.1f} s"
+             + (f" ({', '.join(f'{k}={v}' for k, v in d.get('params', {}).items() if k not in ('body',))})"
+                if d.get("params") else "")
+             for d in rec.true_disturbances]
     lines.append(f"  Ground truth: {', '.join(truth) if truth else 'no disturbance'}.")
     return "\n".join(lines)

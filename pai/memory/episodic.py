@@ -27,6 +27,7 @@ class EpisodeRecord:
     cause_params: dict | None
     true_disturbances: list[dict]
     fallbacks: int = 0              # times a carrying subgoal lost the object and fell back
+    adaptations: list[dict] = field(default_factory=list)  # what the agent changed after an explanation
     surprise_threshold: float = 6.0  # calibrated spike threshold used in this episode
     events: list[dict] = field(default_factory=list)
     # Trajectory for replay in imagination: entity tokens (T+1, N, D), actions (T, A), and the

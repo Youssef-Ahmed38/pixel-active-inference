@@ -61,8 +61,11 @@ class MPPIPlanner:
         return total, pragmatic, epistemic
 
     @torch.no_grad()
-    def act(self, tokens: torch.Tensor, cost_fn, grip: float | None = None) -> tuple[torch.Tensor, dict]:
-        """grip: gripper mode fixed by the goal level (L2); then only the motion is planned."""
+    def act(self, tokens: torch.Tensor, cost_fn, grip: float | None = None,
+            proposal: torch.Tensor | None = None) -> tuple[torch.Tensor, dict]:
+        """grip: gripper mode fixed by the goal level (L2); then only the motion is planned.
+        proposal (H, A): an extra candidate, e.g. from a recalled recipe. It is scored like every
+        sample, so it is used only if the world model predicts it to be good."""
         self.plan = torch.cat([self.plan[1:], self.plan[-1:]])  # warm start: shift the previous plan
         if grip is not None:
             self.plan[:, 3] = grip
@@ -70,6 +73,8 @@ class MPPIPlanner:
             eps = torch.randn(self.K, self.H, self.plan.shape[1], device=self.device) * self.noise
             eps[0] = 0  # always evaluate the current plan itself
             cand = torch.maximum(torch.minimum(self.plan + eps, self.high), self.low)
+            if proposal is not None and self.K > 1:
+                cand[1] = torch.maximum(torch.minimum(proposal, self.high), self.low)
             if grip is not None:
                 cand[..., 3] = grip
             total, prag, epi = self.rollout(tokens, cand, cost_fn)
