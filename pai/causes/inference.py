@@ -7,16 +7,26 @@ scene" (3, m). The standardised prediction error z = (observed - predicted) / si
 signal. When it spikes, competing explanations are compared on the recent window:
 
     none             errors are noise:                    r ~ N(0, sigma^2)
-    push             an external force on the arm: a constant offset on the gripper, force and
-                     object channels on an interval [t0, t1) (the rest of the scene is not pushed)
+    push             an external force on the arm: a constant offset on the gripper and force channels
+                     on an interval [t0, t1); the object moves only with the hand (by the gripper's
+                     offset where it follows the hand, not at all otherwise), the scene not at all
     heavier_object   a held object weighs more than expected: while holding, a constant extra pull c
                      on the wrist force z (c >= 0) and a sag s of hand and object (s >= 0)
-    slippery_object  the object slides in the hand: while holding, on an interval, the object sinks and
-                     the wrist feels less of its weight (both downward, gravity-driven), while the
-                     gripper itself moves as predicted
+    slippery_object  the object slides in the hand: on an interval, the object moves relative to the
+                     fingers while the gripper itself moves as predicted: sideways wherever the
+                     fingers are around it, and while held also sinking (gravity) with the wrist
+                     feeling less of its weight; a drop is the extreme case
     camera_shift     the camera was bumped: at one step t0, everything seen (object and scene) jumps
                      by the same vector while the gripper, felt through the body, does not
     unknown          none of the above: errors explained only as much broader noise (a catch-all)
+
+One contact model is shared by all hypotheses. While the agent holds the object, it follows the
+hand in x, y and z and its weight is on the wrist. While the fingers close on it (GRASP_STEPS) it
+follows the fingers sideways only: it still rests on the table, which carries its weight, so it
+can neither sink, nor pull harder, nor lose weight the wrist never carried. Otherwise it is free.
+What separates a push from a slip is where the force acts: a push acts on the arm, so the hand
+moves and a gripped object only moves with it; a slip is the object moving relative to a hand that
+moves as predicted.
 
 Each hypothesis is scored by its maximised log-likelihood minus a BIC complexity penalty,
 0.5 * n_params * log(n), an approximation of the log model evidence. The posterior over causes is
@@ -38,6 +48,10 @@ CHANNELS = ("gripper_x", "gripper_y", "gripper_z", "force_x", "force_y", "force_
 N_CH = len(CHANNELS)
 G, F, O, S = slice(0, 3), slice(3, 6), slice(6, 9), slice(9, 12)
 SIGMA_FLOOR = np.array([0.0015] * 3 + [0.3] * 3 + [0.0015] * 6)  # minimum noise per channel: 1.5 mm, 0.3 N
+# task steps in which the fingers close around the object before the agent counts it as held: the
+# object then moves with the fingers sideways (and a slippery one can be squeezed out), but it still
+# rests on the table, so its weight is not on the wrist: it cannot sink, get heavier or lose weight
+GRASP_STEPS = ("grasped",)
 SURPRISE_THRESHOLD = float(N_CH)  # mean 0.5*|z|^2 over 3 steps (twice its noise-only mean) that triggers inference
 
 
@@ -136,72 +150,91 @@ def infer_cause(window: list[StepEvidence], dt: float) -> CauseReport:
     Sg = np.stack([e.sigma for e in window])  # already includes the calibrated floor
     n = len(window)
     logn = np.log(R.size)
-    hold = np.array([e.holding for e in window], float)
+    # Contact state per step (see GRASP_STEPS): the fingers around the object (it moves with them
+    # sideways) and its weight on the wrist (it can sink, and the wrist can feel its weight change).
+    fingers = np.array([e.holding or e.step in GRASP_STEPS for e in window], float)
+    weight = np.array([e.holding for e in window], float)
+    follows = np.stack([fingers, fingers, weight], 1)  # (n, 3): how the object follows the hand in x, y, z
     evidence, params = {}, {}
 
     evidence["none"] = _loglik(R, Sg)
     params["none"] = {}
 
-    # push: a constant offset u on gripper, force and object channels on a contiguous interval;
-    # search the interval, u in closed form (precision-weighted mean)
-    arm = slice(0, 9)
+    # push: an external force on the arm on a contiguous interval: a constant offset on the gripper
+    # and wrist force channels. The push acts on the arm, not on the object, so the object moves only
+    # with the hand: by the gripper's offset where it follows the hand (`follows`), not at all
+    # otherwise. An object moving on its own (squeezed out of the fingers, dropped) is not a push.
+    # Search the interval, the offsets in closed form (precision-weighted means).
     best = (-np.inf, None)
     for t0 in range(n):
         for t1 in range(t0 + 1, n + 1):
-            w = 1.0 / Sg[t0:t1, arm] ** 2
-            u = (w * R[t0:t1, arm]).sum(0) / w.sum(0)
+            wg = 1.0 / Sg[t0:t1, G] ** 2
+            wo = follows[t0:t1] / Sg[t0:t1, O] ** 2
+            ug = (wg * R[t0:t1, G] + wo * R[t0:t1, O]).sum(0) / (wg + wo).sum(0)
+            wf = 1.0 / Sg[t0:t1, F] ** 2
+            uf = (wf * R[t0:t1, F]).sum(0) / wf.sum(0)
             resid = R.copy()
-            resid[t0:t1, arm] -= u
+            resid[t0:t1, G] -= ug
+            resid[t0:t1, F] -= uf
+            resid[t0:t1, O] -= follows[t0:t1] * ug
             ll = _loglik(resid, Sg)
             if ll > best[0]:
-                best = (ll, (t0, t1, u))
-    t0, t1, u = best[1]
-    evidence["push"] = best[0] - 0.5 * (9 + 2) * logn  # offset per channel + the interval
+                best = (ll, (t0, t1, ug, uf))
+    t0, t1, ug, uf = best[1]
+    evidence["push"] = best[0] - 0.5 * (6 + 2) * logn  # hand and force offsets + the interval
     params["push"] = {"onset": window[t0].t, "end": window[t1 - 1].t,
-                      "force_N": u[F].round(1).tolist(), "offset_mm": (1000 * u[G]).round(1).tolist()}
+                      "force_N": uf.round(1).tolist(), "offset_mm": (1000 * ug).round(1).tolist()}
 
-    # heavier object: while holding, extra pull on the wrist (force z up) and a sag of hand and object
-    if hold.sum() >= 2:
+    # heavier object: while its weight is on the wrist, an extra pull (force z up) and a sag of hand
+    # and object.
+    if weight.sum() >= 2:
         w_f = 1.0 / Sg[:, 5] ** 2
         w_z = 1.0 / Sg[:, 2] ** 2 + 1.0 / Sg[:, 8] ** 2
-        c = max(0.0, float((w_f * hold * R[:, 5]).sum() / (w_f * hold).sum()))  # extra weight (N), >= 0
+        c = max(0.0, float((w_f * weight * R[:, 5]).sum() / (w_f * weight).sum()))  # extra weight (N), >= 0
         sag = -(R[:, 2] / Sg[:, 2] ** 2 + R[:, 8] / Sg[:, 8] ** 2)
-        s_ = max(0.0, float((hold * sag).sum() / (w_z * hold).sum()))           # sag (m), >= 0
+        s_ = max(0.0, float((weight * sag).sum() / (w_z * weight).sum()))           # sag (m), >= 0
         resid = R.copy()
-        resid[:, 5] -= c * hold
-        resid[:, 2] += s_ * hold
-        resid[:, 8] += s_ * hold
+        resid[:, 5] -= c * weight
+        resid[:, 2] += s_ * weight
+        resid[:, 8] += s_ * weight
         evidence["heavier_object"] = _loglik(resid, Sg) - 0.5 * 2 * logn
         params["heavier_object"] = {"extra_weight_N": round(c, 2), "extra_mass_kg": round(c / 9.81, 3),
                                     "sag_mm": round(1000 * s_, 2)}
     else:
-        evidence["heavier_object"] = -np.inf  # nothing held: this cause cannot explain anything
+        evidence["heavier_object"] = -np.inf  # no weight on the wrist: this cause cannot explain anything
         params["heavier_object"] = {}
 
-    # slippery object: while holding, on an interval [t0, t1), the object sinks in the hand and the
-    # wrist carries less of its weight, while the gripper itself moves as predicted. Slipping is
-    # driven by gravity, so both effects point down: object z <= 0 and force z <= 0 (the pull of the
-    # object on the wrist is lost). Sideways errors cannot be a slip; a push produces those.
-    ch = np.array([5, 8])  # force z, object z
+    # slippery object: on an interval [t0, t1), the object moves relative to the fingers while the
+    # gripper itself moves as predicted (unlike a push, which moves the hand). Low friction lets it
+    # slide sideways in the grip wherever the fingers are around it, e.g. squeezed out as they close
+    # (object x, y free). Where its weight is on the wrist, gravity also makes it sink (object z <= 0)
+    # and the wrist carry less of its weight (force z <= 0); a drop is the extreme case: a large sink
+    # and the object's weight lost. A slip changes only how much of its weight the wrist carries;
+    # sideways forces come from outside (a push).
+    ch = np.array([5, 6, 7, 8])  # force z, object x, y, z
+    down = np.array([True, False, False, True])
+    acts = np.stack([weight, fingers, fingers, weight], 1)  # (n, 4): where each channel can change
     best = (-np.inf, None)
-    if hold.sum() >= 2:
+    if fingers.sum() >= 2:
         steps = np.arange(n)
         for t0 in range(n):
             for t1 in range(t0 + 1, n + 1):
-                m = hold * ((steps >= t0) & (steps < t1))
+                m = acts * ((steps >= t0) & (steps < t1))[:, None]
                 if m.sum() < 1:
                     continue
-                w = m[:, None] / Sg[:, ch] ** 2
-                v = np.minimum(0.0, (w * R[:, ch]).sum(0) / w.sum(0))
+                w = m / Sg[:, ch] ** 2
+                v = (w * R[:, ch]).sum(0) / np.maximum(w.sum(0), 1e-12)  # 0 where the channel cannot change
+                v = np.where(down, np.minimum(0.0, v), v)
                 resid = R.copy()
-                resid[:, ch] -= m[:, None] * v
+                resid[:, ch] -= m * v
                 ll = _loglik(resid, Sg)
                 if ll > best[0]:
                     best = (ll, (t0, v))
     if best[1] is not None:
         t0, v = best[1]
-        evidence["slippery_object"] = best[0] - 0.5 * (2 + 2) * logn
-        params["slippery_object"] = {"onset": window[t0].t, "sink_mm": round(-1000 * float(v[1]), 1),
+        evidence["slippery_object"] = best[0] - 0.5 * (4 + 2) * logn
+        params["slippery_object"] = {"onset": window[t0].t, "sink_mm": round(-1000 * float(v[3]), 1),
+                                     "slide_mm": (1000 * v[1:3]).round(1).tolist(),
                                      "weight_lost_N": round(-float(v[0]), 2)}
     else:
         evidence["slippery_object"] = -np.inf

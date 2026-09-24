@@ -52,6 +52,39 @@ ARGS   = ("--config configs/tabletop.yaml --tag pixel --no-gif "
 - **GPUs:** this job uses one. It is an evaluation, not training, so the second T4 idles; running
   it on the laptop is equally fine.
 
+## Job C: many real episodes as thinker evidence (week 4), needs the world model
+
+The week-4 gate trains the HRM thinker on real agent episodes; `slice_eval.py` gives only 100.
+`scripts/collect_evidence.py` runs the same agent, disturbances and teacher on both GPUs (one
+process per T4, each on its own shards of 50 episodes) and merges them into one evidence file.
+It needs only `world_model.pt`, from the `pai-models` dataset of job B (**Add Input → Datasets →
+pai-models**).
+
+```python
+PRE    = ""
+SCRIPT = "scripts/collect_evidence.py"
+ARGS   = ("--config configs/tabletop.yaml --episodes 200 "
+          "slice.world_model=/kaggle/input/pai-models/world_model.pt")
+```
+
+- **Episodes:** `--episodes` is per condition, so 200 x 5 conditions = 1000 episodes. Env seeds
+  10000+ (disjoint from `slice_eval.py`'s 1000+ and the calibration's 5000+).
+- **Output:** `pai/runs/evidence/collected_evidence.npz` (the merged file), the shards
+  `shard_*.npz`, `calibration.pkl` and `meta.json`. Train on it with
+  `python scripts/train_thinker_real.py runs/evidence/collected_evidence.npz` (after downloading).
+- **Time:** measured on the laptop (RTX 5060, 1 process): 30 episodes in 7.1 min = 255
+  episodes/hour, after 8 calibration episodes. A T4 has not been timed yet; assuming a similar
+  per-process rate (the planner is small, the simulator runs on the CPU), 1000 episodes on two
+  processes take about 2 h. Each rank prints an ETA after every episode; if it projects well under
+  the 12 h limit, `--episodes 400` doubles the data.
+- **Resuming:** shards already written are skipped. Attach the stopped version's output and set
+  `RESTORE_FROM` to its `pai` folder; the same `ARGS` then runs only the missing shards (a changed
+  `--episodes`, `--chunk` or `--conditions` is refused: use a new `--out`).
+- **Merging by hand:** `python scripts/collect_evidence.py --merge runs/evidence`. Two accounts
+  running the same `ARGS` produce the *same* episodes (same seeds); to split work between accounts,
+  add `--episode-seed 20000` to the second one's `ARGS` (10000 + 1000 episodes stays below it) and
+  pass both merged files to `train_thinker_real.py`.
+
 ## Resuming a stopped training job
 
 Training scripts resume from `ckpt_last.pt` in their output folder. In a new session, attach the

@@ -1,8 +1,10 @@
 import json
 
 import numpy as np
+import torch
 
 from pai.config import Config
+from pai.perception.slots import SlotModel
 from pai.perception.train_slots import train_slots
 from pai.world.model import load_world_model
 from pai.world.train import train_world_model
@@ -39,8 +41,17 @@ def test_slot_training_runs_on_tiny_cache(tmp_path):
     np.save(cache / "masks.npy", (m / m.sum(-1, keepdims=True)).astype(np.float16))
     np.save(cache / "tokens.npy", rng.normal(size=(N, 7, 19)).astype(np.float32))
     np.save(cache / "episode.npy", np.repeat(np.arange(20), 2).astype(np.int32))
-    sc = {"cache_dir": str(cache), "out_dir": str(tmp_path / "slots"), "n_slots": 8, "dim": 32, "iters": 2,
-          "lr": 1e-3, "batch_size": 4, "steps": 3, "mask_weight": 1.0, "token_weight": 1.0, "log_every": 3}
-    path = train_slots(Config({"seed": 0, "slots": sc}), device="cpu")
-    last = json.loads((tmp_path / "slots" / "log.jsonl").read_text().splitlines()[-1])
-    assert path.exists() and 0.0 <= last["val_object_miou"] <= 1.0 and np.isfinite(last["total"])
+    for assignment in ("hungarian", "fixed"):
+        out = tmp_path / f"slots_{assignment}"
+        sc = {"cache_dir": str(cache), "out_dir": str(out), "n_slots": 8, "dim": 32, "iters": 2,
+              "lr": 1e-3, "batch_size": 4, "steps": 3, "mask_weight": 1.0, "token_weight": 1.0, "log_every": 3,
+              "assignment": assignment, "val_episodes": [0, 7]}
+        path = train_slots(Config({"seed": 0, "slots": sc}), device="cpu")
+        last = json.loads((out / "log.jsonl").read_text().splitlines()[-1])
+        assert path.exists() and 0.0 <= last["val_object_miou"] <= 1.0 and np.isfinite(last["total"])
+        assert "val_miou_l2" in last and "val_pos_err_mm_l7" in last  # per-object metrics at the end
+        # the checkpoint loads the way SlotPerception loads it
+        ckpt = torch.load(path, weights_only=False)
+        model = SlotModel(**ckpt["model_config"])
+        model.load_state_dict(ckpt["model"])
+        assert ckpt["assignment"] == assignment and ckpt["object_labels"] == [2, 8]

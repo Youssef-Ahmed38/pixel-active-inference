@@ -1,16 +1,20 @@
 """One-shot recipe reuse: learn a recipe from ONE success, reuse it in new layouts with less thinking.
 
     python scripts/recipe_eval.py --config configs/tabletop.yaml --episodes 20
+    python scripts/recipe_eval.py --config configs/tabletop.yaml --why-only   # step 1 only
 
 1. Source: one episode of on(red, plate) with the full planner. If it succeeds, its recipe is
-   extracted, and counterfactual replay in the world model says which steps the success needed.
+   extracted, and counterfactual replay in the world model says which steps the success needed:
+   per phase, imagination starts at the recorded state at the start of the phase, replays that
+   phase's actions (changed or not) and is judged by the phase's own subgoal (pai.causes.credit).
 2. Test on new layouts (seeds never used before), three agents:
      full planner        the reference (samples, iterations from the config)
      small planner       a planner with a fraction of the compute (--samples, --iterations)
      small + recipe      the same small planner, with the recalled recipe as an extra candidate
    A recipe is useful if "small + recipe" succeeds where "small planner" fails, i.e. a solved task
    needs less thinking the second time.
-Writes results/recipe_eval.{json,md} and results/recipe_library.json.
+Writes results/recipe_eval.{json,md} and results/recipe_library.json. --why-only learns the recipe
+from the source episode, prints it with its "why" and writes nothing.
 """
 
 import json
@@ -21,12 +25,12 @@ import torch
 from _cli import parse
 
 from pai.agents.slice_agent import run_episode
-from pai.causes.credit import assign_credit
+from pai.causes.credit import assign_phase_credit
 from pai.envs import TabletopEnv
 from pai.goals.relations import RelationalGoal
 from pai.memory.recipes import RecipeLibrary, check_preconditions, extract_recipe
 from pai.train.common import Progress
-from pai.world.entities import POS, encode, entity_names
+from pai.world.entities import encode, entity_names
 from pai.world.model import load_world_model
 
 
@@ -36,6 +40,9 @@ def extra(ap):
     ap.add_argument("--iterations", type=int, default=1, help="MPPI iterations of the small planner")
     ap.add_argument("--source-seed", type=int, default=2000)
     ap.add_argument("--objects", default="red", help="comma-separated blocks to test on (the recipe is learned on red)")
+    ap.add_argument("--why-only", action="store_true", help="learn the recipe and its why, print it, stop")
+    ap.add_argument("--tail", type=int, default=3, help="hold-still steps after a replayed phase")
+    ap.add_argument("--no-abduction", action="store_true", help="plain open-loop replay of each phase")
 
 
 def with_planner(cfg, samples, iterations):
@@ -49,8 +56,9 @@ if __name__ == "__main__":
     wm = load_world_model(cfg.slice.world_model, device)
     env = TabletopEnv(type(cfg.env)({**cfg.env, "render_images": False}), disturbances=[])
     out = Path("results")
-    (out / "recipe_library.json").unlink(missing_ok=True)
-    library = RecipeLibrary(out / "recipe_library.json")
+    if not args.why_only:
+        (out / "recipe_library.json").unlink(missing_ok=True)
+    library = RecipeLibrary(None if args.why_only else out / "recipe_library.json")
     names = entity_names(env)
 
     # 1. one success -> one recipe
@@ -63,22 +71,20 @@ if __name__ == "__main__":
         seed += 1
     goal = RelationalGoal("on", "red", "plate", names, env.objects)
     order = [g.name for g in goal.subgoals]
-    rest_z = goal.t_top + goal.h_o / 2
 
-    def on_target(x):  # final imagined state: object resting on the target
-        o, t = x[goal.i_o, POS], x[goal.i_t, POS]
-        return float(((o[:2] - t[:2]) ** 2).sum() + (o[2] - rest_z) ** 2)
-
-    base, credit = assign_credit(wm, rec.tokens, rec.actions, on_target, rec.phases, success_threshold=0.03 ** 2,
-                                 device=device)
-    why = [{"name": c.name, "description": c.description, "necessary": bool(c.necessary),
-            "importance": round(c.importance, 5)} for c in credit[:5]] if base < 0.03 ** 2 else []
+    credit = assign_phase_credit(wm, rec.tokens, rec.actions, rec.phases, goal.subgoals, tail=args.tail,
+                                 abduction=not args.no_abduction, device=device)
+    why = [{"name": c.name, "description": c.description, "phase": c.phase, "necessary": bool(c.necessary),
+            "importance": round(c.importance, 5)} for c in credit if c.valid]
     recipe = extract_recipe(rec, "on", "red", "plate", names, env.objects, order, why)
     library.add(recipe)
     print(recipe.describe(), flush=True)
-    if not why:
-        print(f"(counterfactual replay: the imagined replay itself misses the goal, cost {base:.4f}; "
-              "no 'why' recorded)", flush=True)
+    untested = [f"{c.name} (judged by '{c.phase}')" for c in credit if not c.valid]
+    if untested:
+        print("(counterfactual replay: the unmodified replay already fails the judging subgoal, so the model "
+              "cannot judge: " + ", ".join(untested) + ")", flush=True)
+    if args.why_only:
+        raise SystemExit(0)
 
     # 2. reuse in new layouts
     small = with_planner(cfg, args.samples, args.iterations)

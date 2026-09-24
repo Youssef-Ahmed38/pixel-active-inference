@@ -115,6 +115,17 @@ single contact point and pivoted through it; a 3 mm contact margin fixed all rep
   vanish from one-step prediction errors. Predicting the wrist force from the state, without
   reading it, is what makes them visible.
 
+### Objects from pixels (sprint weeks 2–3)
+
+The first Kaggle run of object slots learned nothing (object overlap 0.0, position error equal to
+guessing the mean): from the front camera at 224 px a block covered half of one DINOv2 patch. With
+a workspace camera at 448 px (a block covers ~5 of 32x32 patches), one slot per object, mask
+supervision on the slot attention, and positions read out geometrically from each slot's mask
+through a learned image-to-table mapping, held-out episodes give object overlap 0.67 and position
+error **10.7 mm mean, 3.7 mm median** (local run, 194 training episodes). Still open: objects in the
+gripper (their height is not visible from the mask position; ~150 mm error). The full Kaggle run
+with this setup comes next.
+
 ### Repeating a success: one-shot recipes
 
 After ONE successful episode the agent stores a recipe: where its hand went relative to the
@@ -154,6 +165,15 @@ The same upper levels can drive any body through one action (palm velocity, rota
 the Unitree G1 humanoid with its hands (3), Allegro and LEAP (4), and the Shadow hand (5, human-like).
 
 <img src="docs/media/embodiments/grid.png" width="720">
+
+### Generic skills for every body
+
+The door agent gets motor skills, not solutions ([pai/skills/](pai/skills/)): reach, grasp, release,
+turn about an axis, push/pull, insert a held object, retreat. They act on any part or object given
+as a pose and axis, work through the common body interface, and report their own outcome,
+including **stalled** (commanded motion, no progress), which is how a locked door will be noticed.
+
+<img src="docs/media/skills/grid.gif" width="720">
 
 ### Home doors, locks and keys
 

@@ -31,8 +31,9 @@ if __name__ == "__main__":
     sc = cfg.slots
     rt = setup_runtime()
     if rt.is_main:  # rendering is CPU-bound; the other GPU process waits
-        collect_frames(cfg.env, sc.frames_dir, args.episodes, workers=args.workers, seed=int(cfg.seed) + 101)
+        collect_frames(cfg.env, sc.frames_dir, args.episodes, workers=args.workers, seed=int(cfg.seed) + 101,
+                       camera=sc.camera, image_size=int(sc.image_size))
     barrier(rt)
     if not (Path(sc.cache_dir) / "episode.npy").exists():
-        extract_features(sc.frames_dir, sc.cache_dir, n_labels=2 + 6)
+        extract_features(sc.frames_dir, sc.cache_dir, n_labels=2 + 6, feat_dim=int(sc.get("feat_dim", 384)))
     print(train_slots(cfg))

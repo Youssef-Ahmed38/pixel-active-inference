@@ -75,14 +75,16 @@ if __name__ == "__main__":
     device = "cuda" if torch.cuda.is_available() else "cpu"
     wm = load_world_model(cfg.slice.world_model, device)
     pixels = args.slots is not None
-    # From pixels the camera image is needed every step, at the DINOv2 size (224 = 16 x 14 patches).
+    size = None
+    if pixels:  # render at the resolution the slots were trained on
+        size = int(torch.load(args.slots, map_location="cpu", weights_only=False).get("image_size", 224))
     env_cfg = type(cfg.env)({**cfg.env, "render_images": pixels or not args.no_gif,
-                             **({"image_size": 224} if pixels else {})})
+                             **({"image_size": size} if pixels else {})})
     env = TabletopEnv(env_cfg, disturbances=[])
     perceive = None
     if pixels:
         from pai.perception.slot_tokens import SlotPerception
-        perceive = SlotPerception(env, args.slots, device=device, camera=cfg.env.cameras[0].name)
+        perceive = SlotPerception(env, args.slots, device=device)
     out = Path("results")
     (out / f"{args.tag}_memory.jsonl").unlink(missing_ok=True)
     memory = EpisodicMemory(out / f"{args.tag}_memory.jsonl")

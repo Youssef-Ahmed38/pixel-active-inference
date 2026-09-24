@@ -282,3 +282,104 @@ def test_push_while_holding_is_not_a_slip():
     sideways; slipping is gravity-driven and cannot explain that."""
     push = np.r_[0.001, 0.0, 0.0, 25.0, -15.0, 0.0, 0.003, 0.0, 0.0]
     assert infer_cause(_window(holding=True, push=(6, 9, push)), 0.1).best == "push"
+
+
+def _grasp_window(n=20, rng=None, obj=None, force=None, grip=None, onset=8, steps=1, holding=False):
+    """Evidence while the fingers close on the object (task step "grasped", not yet held), with an
+    extra error on the object, force and gripper channels on steps [onset, onset + steps)."""
+    rng = rng or np.random.default_rng(3)
+    evs = []
+    for t in range(n):
+        r = rng.normal(0, 1, 12) * SIG
+        if onset <= t < onset + steps:
+            for sl, v in ((slice(6, 9), obj), (slice(3, 6), force), (slice(0, 3), grip)):
+                if v is not None:
+                    r[sl] += v
+        evs.append(StepEvidence(t, r, SIG, np.array([0, 0, 0, -1.0]), holding, step="grasped"))
+    return evs
+
+
+def test_object_squeezed_out_while_grasping_is_a_slip_not_a_push():
+    """A slippery object squirts sideways out of the closing fingers: the object moves, the hand and
+    the wrist force do not. A push acts on the arm, so it cannot move an object that is not held."""
+    rep = infer_cause(_grasp_window(obj=np.array([-0.009, 0.003, 0.0])), 0.1)
+    assert rep.best == "slippery_object"
+    assert rep.posterior["push"] < 0.01
+    assert np.allclose(rep.params["slippery_object"]["slide_mm"], [-9, 3], atol=1.5)
+
+
+def test_drop_is_a_slip_with_the_weight_lost():
+    """The carried object falls out of the hand: a large sink and the wrist loses its weight, while
+    the hand moves as predicted."""
+    rep = infer_cause(_grasp_window(obj=np.array([0.002, -0.012, -0.028]), force=np.array([0.0, 0.0, -3.0]),
+                                    holding=True), 0.1)
+    assert rep.best == "slippery_object"
+    prm = rep.params["slippery_object"]
+    assert prm["sink_mm"] > 20 and prm["weight_lost_N"] > 2
+
+
+def test_no_weight_lost_while_the_object_rests_on_the_table():
+    """As the fingers close, the table carries the object's weight: a slippery object squeezed out
+    sideways is a slip, but the slip cannot claim a sink or a weight the wrist never carried."""
+    rep = infer_cause(_grasp_window(obj=np.array([-0.009, 0.003, -0.004]), force=np.array([0.0, 0.0, -2.0])), 0.1)
+    assert rep.best == "slippery_object"
+    prm = rep.params["slippery_object"]
+    assert prm["sink_mm"] == 0 and prm["weight_lost_N"] == 0
+    assert np.allclose(prm["slide_mm"], [-9, 3], atol=1.5)
+
+
+def test_push_while_grasping_drags_the_object_sideways_only():
+    """A shove on the arm while the fingers close: the object is dragged along sideways, but the
+    table holds it up, so it does not follow the hand up. offset_mm is the hand's own offset."""
+    push = dict(grip=np.array([0.005, -0.004, 0.006]), obj=np.array([0.005, -0.004, 0.0]),
+                force=np.array([30.0, -20.0, 5.0]))
+    rep = infer_cause(_grasp_window(onset=7, steps=3, **push), 0.1)
+    assert rep.best == "push"
+    assert np.allclose(rep.params["push"]["offset_mm"], [5, -4, 6], atol=1.0)
+
+
+def test_push_moves_a_held_object_with_the_hand():
+    """A sideways shove on the hand while carrying: hand, held object and wrist force all change; the
+    object moves by the hand's offset, which is what the push's offset_mm reports."""
+    rng = np.random.default_rng(4)
+    evs = []
+    for t in range(20):
+        r = rng.normal(0, 1, 12) * SIG
+        if 7 <= t < 10:
+            r[0:3] += [-0.005, -0.0015, -0.003]
+            r[6:9] += [-0.005, -0.0015, -0.003]
+            r[3:6] += [45.0, 13.0, 0.0]
+        evs.append(StepEvidence(t, r, SIG, np.array([0, 0, 0.2, -1.0]), True, step="lowered"))
+    rep = infer_cause(evs, 0.1)
+    assert rep.best == "push"
+    assert np.allclose(rep.params["push"]["offset_mm"], [-5, -1.5, -3], atol=1.5)
+    assert np.allclose(rep.params["push"]["force_N"], [45, 13, 0], atol=1)
+
+
+def test_phase_credit_with_abduction_survives_model_drift():
+    """The real world drifts +1 cm per step in x, which the toy model does not know. A plain local
+    replay then misses the 'move' subgoal (invalid test); with abduction the unmodified replay
+    reproduces the episode, skipping the move breaks 'move', and skipping the wait does not matter."""
+    from pai.causes.credit import assign_phase_credit
+    from pai.goals.relations import Subgoal
+
+    T = 10
+    actions = np.zeros((T, 4), np.float32)
+    actions[:5, 0] = 0.5
+    tokens = np.zeros((T + 1, 2, TOKEN_DIM), np.float32)
+    for t in range(T):
+        tokens[t + 1] = tokens[t]
+        tokens[t + 1, 0, 0] += actions[t, 0] * 0.1 + 0.01  # x = 0.30 after the move, 0.35 at the end
+    phases = {"move": (0, 5), "wait": (5, 10)}
+    x_of = lambda x: x[..., 0, 0]
+    subgoals = [Subgoal("move", lambda x: (x_of(x) - 0.3) ** 2, lambda x: abs(float(x_of(x)) - 0.3) < 0.01),
+                Subgoal("wait", lambda x: torch.relu(0.25 - x_of(x)) ** 2, lambda x: float(x_of(x)) > 0.25)]
+    plain = {r.name: r for r in assign_phase_credit(_PointMass(), tokens, actions, phases, subgoals, tail=0,
+                                                    abduction=False)}
+    assert not plain["skip_move"].valid and plain["skip_wait"].valid
+    results = assign_phase_credit(_PointMass(), tokens, actions, phases, subgoals, tail=0)
+    by = {r.name: r for r in results}
+    assert all(r.valid for r in results)
+    assert by["skip_move"].necessary and by["skip_move"].phase == "move" and by["skip_move"].importance > 0.01
+    assert not by["skip_wait"].necessary
+    assert results[0].name == "skip_move"

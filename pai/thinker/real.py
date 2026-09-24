@@ -206,18 +206,25 @@ def _signature(label: str, z: np.ndarray, holding: np.ndarray, rng: np.random.Ge
     t = len(z)
     held = np.flatnonzero(holding)
     amp = lambda k: rng.choice([-1, 1], k) * rng.uniform(3, 5, k)  # noqa: E731
-    if label == "push":  # offset on gripper, force and object for a few steps
+    if label == "push":  # offset on gripper and force; a held object moves with the hand
         onset = int(rng.integers(5, t - 10))
-        z[onset:onset + 6, :O.stop] += amp(O.stop)
+        g, f = amp(3), amp(3)
+        z[onset:onset + 6, :3] += g
+        z[onset:onset + 6, F] += f
+        z[onset:onset + 6, O] += g * holding[onset:onset + 6, None]
     elif label == "heavier_object":  # extra pull on force z, hand and object sag, while holding
         onset = int(held[0])
         z[holding, 5] += rng.uniform(3, 5)
         z[holding, 2] -= rng.uniform(2, 4)
         z[holding, 8] -= rng.uniform(2, 4)
-    elif label == "slippery_object":  # object and force off from t0 while holding, gripper as predicted
+    elif label == "slippery_object":  # object off from t0 while holding, gripper as predicted
         onset = int(held[rng.integers(0, max(1, len(held) // 2))])
         m = holding & (np.arange(t) >= onset)
-        z[m, F.start:O.stop] += amp(O.stop - F.start)
+        # gravity-driven, as in the teacher: the object slides (sideways any way, down only) and
+        # the wrist feels less of its weight
+        z[m, O.start:O.start + 2] += amp(2)
+        z[m, O.start + 2] -= rng.uniform(3, 5)
+        z[m, F.start + 2] -= rng.uniform(3, 5)
     elif label == "camera_shift":  # one-step jump of everything seen, same vector for object and scene
         onset = int(rng.integers(5, t - 5))
         d = amp(3)

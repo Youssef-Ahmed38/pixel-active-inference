@@ -33,6 +33,9 @@ env:
     - {name: front, pos: [1.35, 0.0, 0.85], target: [0.45, 0.0, 0.05], fovy: 50}
     - {name: side,  pos: [0.5, -1.1, 0.7],  target: [0.45, 0.0, 0.05], fovy: 50}
     - {name: top,   pos: [0.9, 0.0, 1.25],  target: [0.45, 0.0, 0.0],  fovy: 50}
+    # Workspace camera for object perception: at 448 px a 4 cm block covers ~5 DINOv2 patches
+    # (the front camera at 224 px gave it half of one, too small for slots to find).
+    - {name: work,  pos: [1.05, 0.0, 0.95], target: [0.5, 0.0, 0.02], fovy: 36}
   render:
     msaa: 0
     shadow_size: 0
@@ -66,6 +69,9 @@ slots:
   frames_dir: data/slice_frames
   cache_dir: data/slice_features
   out_dir: runs/slots
+  camera: work
+  image_size: 448             # 32 x 32 DINOv2 patches
+  feat_dim: 128               # DINOv2 features compressed by PCA (fitted on the first episodes)
   n_slots: 8                  # 6 objects + robot + background
   dim: 128
   iters: 3
@@ -73,6 +79,11 @@ slots:
   batch_size: 64
   steps: 20000
   gpu_cache: auto             # copy the feature cache to GPU memory when it fits (GPU no longer waits on the CPU)
+  assignment: fixed           # slot l is label l (a slot per object); "hungarian": interchangeable slots
   mask_weight: 1.0            # supervision from simulator masks (rule 2); later reduced to 0
+  attn_weight: 1.0            # the same supervision on the last slot-attention map
+  recon_weight: 1.0           # DINOSAUR feature reconstruction (features scaled to unit std)
   token_weight: 1.0
+  pos_weight: 1.0             # L1 on the geometric position readout (normalised units)
+  val_fraction: 0.05          # held-out episodes (or list them: val_episodes: [1, 10, ...])
   log_every: 1000

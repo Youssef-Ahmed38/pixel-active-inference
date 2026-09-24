@@ -8,9 +8,9 @@ A recipe is distilled from ONE successful episode:
                 of the scene's roles, not of absolute positions, so it transfers to new layouts
     preconditions  facts true at the start that the success relied on (hand open and empty, the
                 object not already there); checked before reuse
-    why         the factors the success depended on, found by counterfactual replay in the
-                world model (pai.causes.credit): "skipping the lift breaks it", "slowing down
-                does not"
+    why         the factors the success depended on, found by per-phase counterfactual replay in
+                the world model (pai.causes.credit): "skipping the lift breaks 'lifted'",
+                "carrying at half speed does not matter"; each judged by the subgoal it serves
 
 Reuse: in a new episode with the same kind of goal, the recipe turns into a *proposal* for the
 planner: a straight-line hand motion towards the current step's waypoint. The planner scores it
@@ -68,8 +68,9 @@ class Recipe:
         if self.preconditions:
             lines.append("  needs: " + "; ".join(self.preconditions))
         for w in self.why:
-            lines.append(f"  why: {w['description']} -> {'breaks it' if w['necessary'] else 'does not matter'}"
-                         f" (goal cost {w['importance']:+.4f})")
+            judge = w.get("phase") or "goal"  # older recipes were judged by the final goal
+            verdict = f"breaks '{judge}'" if w["necessary"] else "does not matter"
+            lines.append(f"  why: {w['description']} -> {verdict} ({judge} cost {w['importance']:+.4f})")
         return "\n".join(lines)
 
 
