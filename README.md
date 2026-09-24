@@ -71,6 +71,24 @@ time. Surprise is calibrated on 8 separate clean episodes.
 </tr>
 </table>
 
+**Does acting on an explanation help?** The same evaluation with adaptation switched off
+(`results/noadapt_v7/noadapt_eval.md`; the agent still explains, but does not change what it does):
+
+| Condition | Task success, adapting | Task success, not adapting |
+|---|---|---|
+| camera shift | **90%** | 20% |
+| slippery block | **75%** | 45% |
+| heavier block | 90% | 95% |
+
+Recalibrating after a camera shift is what keeps the task working (for comparison, the PixelAI baseline, which matches images,
+reached its goal in 5% of camera-shift episodes of its reaching task in Phase 0; a different task, so only indicative). Expecting the extra weight does not change
+success; the planner already copes with it.
+
+**Thinker on real episodes** (`results/thinker/real_v7.md`): trained on the evidence of these 100
+episodes to imitate the Bayesian teacher, the HRM thinker agrees with it in 81.7 ± 8.5% of test
+episodes, a same-size transformer in 90.0 ± 8.2% (3 seeds, 20 test episodes each). The week-4 gate
+(HRM > 90%) is not passed yet; more real episodes come next.
+
 Details: `results/slice_v7/` (tables, calibration, one report per episode, the per-step evidence
 used to train the thinker). The history of runs:
 
