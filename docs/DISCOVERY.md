@@ -62,18 +62,36 @@ are only partly built.
 - The body model is hand-written (skill durations, hand speed), not the learned world model.
 - Where keys are is not learned as such: there is a generic prior that opening things reveals
   things, and recipes bias the search towards containers after a success.
+- **Locality is a switch.** `agent.Locality(radius=0.7, probe_prior=1.0, lit_prior=1.0, explain="near")`
+  holds the built-in locality assumptions: probes only on parts within 0.7 m of the door, a distance
+  penalty in the prior over probes and over conditions, and explanations that keep only conditions near
+  the door. `Locality.off()` removes all four: probes on any part in view, no distance penalties, and
+  the evidence-based explanation filter (`explain.py`: a condition is kept only if the same probe failed
+  without it and either the contrast is clean or the belief puts more than half its mass on it).
+- **Decoys.** MockWorld with `shared_shapes=True` adds decoys shaped like the mechanisms: a
+  non-graspable disc on the cabinet like the lock cylinder, a wing on the leaf that turns and stays
+  turned like the thumb-turn, and a door dial shaped like the handle. The MuJoCo scene has physical
+  decoys (`home_doors.DECOYS`, `decoys=True`): a dial on the leaf shaped like the handle, a thumb-turn
+  copy on the leaf, a coat hook, a disc with a keyhole and a wing on the cabinet front, and a free peg
+  about a key's length on the shelf. None of them is connected to anything, and nothing in their ids
+  or attributes tells them apart from mechanisms.
+- **Other bodies.** `bodies.py` runs the same PhysicsWorld with any embodiment and records the
+  ground truth after every action (`TracedWorld`), so a door that stayed shut can be put down to the
+  body (skills that did not execute or stalled) or to the agent (`failure_cause`).
 
+## How it is evaluated
 
 - **Trials to first success** on each door type, against (a) random exploration over the same
   skills, (b) curiosity without the causal-rule belief (novelty only), (c) an oracle that knows the
   solution (the scripted solver; physics check only, never used by the agent).
-- **Trials on the second encounter** (one-shot reuse), on held-out door and lock types, and with
-  another embodiment (Panda, dexterous hands, the G1 humanoid).
+- **Trials on the second encounter** (one-shot reuse), on held-out door types, and with other
+  embodiments (Panda, dexterous hands, the G1 humanoid).
 - **Explanation accuracy:** the agent's stated reason ("the door was locked; the brass key in the
   top drawer unlocked it") against the simulator's event log (key_inserted, key_turned,
   bolt_retracted, latch_released).
 - **No-solution cases:** the key is behind the locked door. The agent should conclude it cannot
   open it and say why, instead of trying forever.
+- **Ablations:** locality off, decoys shaped like the mechanisms, and both together.
 
 ## Build order
 
@@ -88,85 +106,219 @@ are only partly built.
 
 ## Results
 
-Every number here is from `scripts/discovery_eval.py`. The full tables, with 95% bootstrap intervals,
-are in [results/discovery_eval.md](../results/discovery_eval.md) and the raw numbers in
-`results/discovery_eval.json` and `results/discovery_physics.json`. All three agents get the same
-skills and the same budget of 1000 actions; a failure counts as 1000.
+These are the results of a clean re-run on fresh seeds. The agent's parameters were frozen before
+it, and every scene seed and agent seed is offset by 100000 from the development seeds. Full tables
+with 95% bootstrap intervals (2000 resamples) are in
+[results/discovery_v2/eval.md](../results/discovery_v2/eval.md) and the raw numbers in
+`results/discovery_v2/*.json`. The other-bodies run is in
+[results/discovery_bodies/report.md](../results/discovery_bodies/report.md). In the mock all agents
+get the same skills and a budget of 1000 actions, and a failure counts as 1000.
 
-**MockWorld, 200 scenes per case and split** (the symbolic door; test = the 3 held-out door types).
+```
+.venv/Scripts/python scripts/discovery_eval.py mock --seed-offset 100000 --out results/discovery_v2 --processes 8 --config default
+.venv/Scripts/python scripts/discovery_eval.py mock ... --config shared --reuse 0
+.venv/Scripts/python scripts/discovery_eval.py mock ... --config loc_off --agents discovery --reuse 0
+.venv/Scripts/python scripts/discovery_eval.py mock ... --config both_off --agents discovery
+.venv/Scripts/python scripts/discovery_eval.py physics --seed-offset 100000 --decoys --config default|loc_off --budget 300 --limit 3000 --out results/discovery_v2
+.venv/Scripts/python scripts/discovery_eval.py report2 --out results/discovery_v2
+.venv/Scripts/python scripts/discovery_bodies_eval.py oracle | agent --seeds 2 --processes 6 | report
+```
+
+**MockWorld, 200 scenes per case and split, default agent** (test = the 3 held-out door types).
 Mean actions until the door opens, and in brackets the success rate when it is below 100%:
 
 | case | discovery (train) | novelty (train) | random (train) | discovery (test) | novelty (test) | random (test) |
 |---|---|---|---|---|---|---|
-| unlocked | 1.6 | 14.2 | 10.5 | 1.6 | 22.1 | 19.4 |
-| latch | 5.9 | 49.2 | 49.5 | 6.9 | 117.1 (99.5%) | 84.0 (99.5%) |
-| deadbolt | 35.0 | 87.1 (99.5%) | 87.7 | 36.8 | 134.5 (99%) | 119.1 (98%) |
-| key on the table | 172.1 (99.5%) | 451.3 (71%) | 569.2 (68%) | 197.1 | 486.2 (70%) | 662.8 (58%) |
-| key in the drawer | 186.3 | 634.9 (51%) | 785.8 (47%) | 222.0 (99%) | 685.5 (44%) | 776.6 (45%) |
-| thumb-turn + key | 205.8 | 519.8 (67%) | 605.5 (64%) | 211.0 | 558.3 (61%) | 745.6 (46%) |
-| all solvable | 101.1 (99.9%) | 292.7 (81%) | 351.4 (80%) | 112.6 (99.8%) | 333.9 (79%) | 401.3 (74%) |
+| unlocked | 1.6 | 24.6 | 5.6 | 1.6 | 24.3 | 8.7 |
+| latch | 5.9 | 45.9 | 38.1 | 7.0 | 109.6 (99.5%) | 87.1 (99.5%) |
+| deadbolt | 31.2 | 95.9 | 75.9 | 35.4 | 135.7 (99.5%) | 96.8 (99.5%) |
+| key on the table | 165.0 | 531.1 (63%) | 545.1 (69.5%) | 209.4 (99.5%) | 559.3 (64.5%) | 675.8 (60%) |
+| key in the drawer | 186.1 (99.5%) | 597.5 (51.5%) | 726.4 (52%) | 202.2 | 635.3 (52.5%) | 784.2 (48.5%) |
+| thumb-turn + key | 208.1 | 577.8 (62.5%) | 680.6 (61.5%) | 214.2 | 529.7 (69.5%) | 688.7 (57%) |
+| all solvable | 99.7 (99.9%) | 312.1 (79.5%) | 345.3 (80.5%) | 111.6 (99.9%) | 332.3 (80.9%) | 390.2 (77.4%) |
 
-(Cells without a rate succeeded in every scene.)
+(Cells without a rate succeeded in every scene.) The 95% interval of the discovery agent over all
+solvable scenes is [93.6, 105.8] on train and [105.1, 117.8] on test.
 
-- **Explanations.** Accuracy against the simulator's truth is 1.00 on unlocked, latched and no-solution
-  doors, 0.96-0.97 on deadbolts, 0.97-0.99 on key locks and 0.92-0.93 on doors with both locks. The
-  errors are mostly false deadbolt claims on key-locked doors (21 and 14 on train, 40 and 35 on test
-  out of 200 each): the agent throws the thumb bolt itself while exploring, then undoes it, and it
-  names that as a second lock. Counted only on the mechanisms really there, accuracy is 0.99-1.00
-  on key locks and 0.92-0.95 on deadbolts and "both".
+- **Explanations.** Accuracy against the simulator's truth is 1.00 on unlocked and latched doors,
+  0.959 / 0.974 (train / test) on deadbolts, 0.993 / 0.975 with the key on the table, 0.985 / 0.978
+  with the key in the drawer, 0.929 / 0.927 with both locks, and 1.000 / 0.999 on no-solution doors.
+  All false claims are on key-locked doors: 10 and 35 (key on the table, train and test) and 18 and
+  36 (key in the drawer) over 200 scenes each.
 - **No solution** (the key is in the other room). The discovery agent stops and says so in 200/200
-  train and 200/200 test scenes, after a mean of 322 (train) and 356 (test) actions. It gave up
-  wrongly on 1 of the 1200 solvable test scenes and none of the train ones. The baselines have no
+  train and 199/200 test scenes, after a mean of 330.6 (train) and 366.2 (test) actions. It gave up
+  wrongly on 1 of the 1200 solvable train scenes and none of the test ones. The baselines have no
   stopping rule and run to the budget.
 - **Second encounter.** A recipe from one solved train scene, then a new scene of the same lock state
-  (100 pairs each, same agent seed, paired difference): key-locked doors 188 -> 122 actions on a new
-  train scene and 205 -> 145 on a held-out type; both locks 214 -> 132 and 217 -> 124; deadbolt 30 -> 18
-  and 37 -> 25; latch 7.1 -> 3.4 on held-out types. On train latch scenes the mean barely changes
-  (6.1 -> 4.9, interval of the difference [-2.9, +1.0]) though the median halves (6 -> 3): a few
-  recipes misled it. With the recipe it needed more actions in 3-20% of the pairs.
+  (100 pairs each, same agent seed, paired difference). Mean actions without and with the recipe, on
+  a new train scene and on a held-out type:
 
-**PhysicsWorld** (MuJoCo, Robotiq gripper, 2 keys, the same agent, unchanged; 2 train types x 6 cases
-x 2 seeds and the held-out hd_knob_pull_right x 6 cases x 1 seed; budget 300 actions). Opened 18 of
-25 solvable doors: all 5 latched, all 5 deadbolted, 3/5 with the key on the table, 2/5 with the key in
-the drawer, 3/5 with both locks. Mean 90 actions (699 s simulated) to success; explanation accuracy
-1.00 on 16 of the 18 successes and 0.88 on the other two. The 5 no-solution doors all ran out the
-300-action budget (in the mock, giving up takes a mean of 322-356 actions). The 30 episodes took
-711 min of simulated time and 348 s of wall time on 10 processes. The failures come from the body:
-keys dropped or not lifted, inserts that miss, and a key pulled while turned, which the agent then
-has to learn around, not from wrong reasoning about the lock.
+  | lock | train scene | held-out type | paired difference (held-out) | more actions with the recipe (held-out) |
+  |---|---|---|---|---|
+  | latch | 5.5 -> 4.7 | 7.5 -> 2.9 | -4.7 [-6.0, -3.3] | 3% |
+  | deadbolt | 29.6 -> 19.0 | 36.3 -> 24.1 | -12.2 [-15.5, -8.8] | 8% |
+  | key | 173.4 -> 113.9 | 210.2 -> 150.8 | -59.4 [-87.7, -26.0] | 17% |
+  | both | 207.0 -> 136.8 | 214.7 -> 127.8 | -87.0 [-110.3, -68.4] | 9% |
 
-<img src="media/discovery/key_in_drawer.gif" width="360">
+  On train latch scenes the mean barely changes (paired difference -0.9 [-2.1, 0.4]) though the
+  median halves (6 -> 3): some recipes mislead it, and it needed more actions in 18% of those pairs.
 
-The agent on hd_knob_pull_left (key in the drawer, seed 1, 254 actions, success): each frame shows
-the action, what changed, its most probable rule and the mass it still gives to a cause it has not
-thought of; the last frame is its explanation.
+**Ablations (MockWorld, discovery agent, same scenes).** `loc_off` is `Locality.off()`; `shared` is
+MockWorld with decoys shaped like the mechanisms; `both_off` is both. Mean actions on the held-out
+test types (success rate when below 100%):
 
-Fixes made while integrating (pai/discovery/belief.py, all neutral on the mock: key 187.9 / 201.9 and
-both 225.6 / 228.3 mean actions on 60 train / test scenes, against 186.7 / 199.7 and 226.8 / 228.4
-before): a pick known to change nothing no longer counts as enabling the object skills; pulling a held
-key back out of a part pays the same restore charge as any other state change (it looped insert /
-withdraw in physics, where that pick is offered); and a skill that fails to run 3 times in a row in
-the same context is recorded as having no effect there (it retried an impossible insert forever).
+| case | default | loc_off | shared | both_off |
+|---|---|---|---|---|
+| unlocked | 1.6 | 3.2 | 1.6 | 11.1 |
+| latch | 7.0 | 37.0 | 9.4 | 23.2 |
+| deadbolt | 35.4 | 66.8 (99%) | 83.2 (98.5%) | 150.5 (98.5%) |
+| key on the table | 209.4 (99.5%) | 286.6 (99%) | 287.1 (99%) | 415.4 (94.5%) |
+| key in the drawer | 202.2 | 278.9 (97.5%) | 280.3 | 389.6 (96.5%) |
+| thumb-turn + key | 214.2 | 280.6 (97.5%) | 282.9 (99.5%) | 373.5 (98.5%) |
+| all solvable (test) | 111.6 (99.9%) | 158.8 (98.8%) | 157.4 (99.5%) | 227.2 (98.0%) |
+| all solvable (train) | 99.7 (99.9%) | 144.7 (98.9%) | 144.9 (99.8%) | 202.4 (99.0%) |
+| wrongly gave up (train / test, of 1200) | 1 / 0 | 7 / 7 | 1 / 1 | 0 / 1 |
+| no solution: gave up (train / test, of 200) | 200 / 199 | 200 / 200 | 200 / 200 | 125 / 107 |
+
+- **Solving does not depend on the locality prior, but it costs.** With locality off, or with decoys
+  shaped like the mechanisms, the agent needs 41-45% more actions over all solvable scenes. With both,
+  it needs about twice as many (202.4 train, 227.2 test). That is still fewer than the default-config
+  novelty baseline (312.1, 332.3). With decoys shaped like the mechanisms, the baselines also get
+  worse (all solvable: novelty 339.8 / 386.9, random 408.2 / 419.4, train / test), and the discovery
+  agent keeps its lead.
+- **Explanations get worse under every ablation.** On held-out deadbolts, accuracy is 0.974 under
+  default, 0.886 with locality off, 0.884 with shared shapes and 0.909 with both. False claims on
+  held-out latched doors go from 0 to 35 with locality off.
+- **Giving up needs a larger budget under both_off**: the no-solution stop fired within 1000 actions
+  in only 125 of 200 train and 107 of 200 test scenes.
+- **Recipes help more when the prior helps less.** Under both_off the paired saving on held-out types
+  is -14.0 [-19.1, -8.2] actions for latch, -93.9 [-123.7, -70.9] for deadbolt (142.8 -> 48.9),
+  -158.1 [-198.2, -120.4] for the key and -153.7 [-185.3, -123.2] for both locks.
+
+**PhysicsWorld with physical decoys** (MuJoCo, Robotiq gripper, 2 keys, decoys on, the same agent
+unchanged; 2 train types x 6 cases x 2 seeds and the held-out hd_knob_pull_right x 6 cases x 1 seed;
+budget 300 actions and 3000 s wall per episode):
+
+| config | latch | deadbolt | key on the table | key in the drawer | both | opened (solvable) | no solution: gave up |
+|---|---|---|---|---|---|---|---|
+| default | 5/5 | 5/5 | 1/5 | 0/5 | 1/5 | 12/25 | 0/5 |
+| locality off | 5/5 | 2/5 | 0/5 | 0/5 | 1/5 | 8/25 | 0/5 |
+
+- Under default the successes took a mean of 70.7 actions (629 s simulated), and the explanation
+  accuracy over successes is 0.93.
+- **The deadbolt 5/5 is not a discovery of the bolt** (independent review): each deadbolt episode
+  has exactly the same action sequence as the latch-only episode with the same type and seed. An
+  exploratory `turn_push` of the thumb piece retracted the bolt by chance (replayed:
+  hd_knob_pull_left, seed 100000, action 18), the door then opened on the handle, and every
+  deadbolt explanation says only "latched" (accuracy 0.857, the bolt missed). With locality off
+  the episodes differ and 2/5 open.
+- 3 of the 15 key-locked physics episodes are on hd_knob_pull_right, where the scripted oracle
+  also fails to turn the key with this gripper: they may be physically unreachable.
+- pai/discovery/physics.py changed after these runs (recorded code hash 30b85911b1f7); one
+  replay under the current file reproduced the recorded episode exactly, but no wider check was
+  made, and results/discovery_bodies records no code hashes.
+- **Decoys take about half the actions:** 3213 of 6248 under default and 2972 of 7328 with locality
+  off (`decoy_actions_*.json`).
+- **The key cases are budget-limited.** Every default episode that failed stopped at the 300-action
+  budget, and no no-solution door was given up within it.
+- No episode went unstable or hit the wall limit. The longest took 1354 s wall. The two runs took
+  3748 s (5 processes) and 1550 s (8 processes). These are 30 episodes per config, so the physics
+  rows are indicative.
+
+<img src="media/discovery/robotiq_2f85_deadbolt.gif" width="360">
+
+The agent with the Robotiq gripper and decoys on (hd_lever_pull_right, deadbolt, seed 200000, 142
+actions, success). Each frame shows the action, what changed, its most probable rule and the mass it
+still gives to a cause it has not thought of; the last frame is its explanation: "The door was
+latched: it opens when I keep turning the bar part p10 while pulling. It was also bolted: it only
+moved after I turned the wing part p3."
+
+**Other bodies** (PhysicsWorld with decoys on, 2 keys, the same agent unchanged; types
+hd_knob_pull_left and hd_lever_pull_right, seeds 200000 and 200001, 24 episodes per body; budget 300
+actions or 600 s wall per episode). Here "unlocked" has no working latch and "latch" is the spring
+latch only. The oracle is the scripted solver on the same scenes.
+
+| body | unlocked | latch | deadbolt | key on the table | key in the drawer | opened (of 20) | oracle (of 20) | actions whose skill did not execute |
+|---|---|---|---|---|---|---|---|---|
+| Robotiq 2F-85 (reference) | 4/4 | 4/4 | 2/4 | 0/4 | 0/4 | 10 | 15 | 2% of 3714 |
+| Panda | 0/4 | 0/4 | 0/4 | 0/4 | 0/4 | 0 | 3 | 100% of 4974 |
+| Allegro | 4/4 | 2/4 | 2/4 | 0/4 | 0/4 | 8 | 3 | 55% of 4869 |
+| LEAP | 3/4 | 2/4 | 1/4 | 0/4 | 0/4 | 6 | 2 | 20% of 3130 |
+| Shadow | 4/4 | 0/4 | 0/4 | 0/4 | 0/4 | 4 | 5 | 94% of 4990 |
+| G1 (Dex3 hand) | 0/4 | 0/4 | 0/4 | 0/4 | 0/4 | 0 | 0 | 74% of 1305 |
+
+No body gave up on a no-solution door (0/4 each).
+
+Why solvable doors stayed shut (`bodies.failure_cause`, from the ground-truth trace):
+
+| body | not executed | stalled | reasoning | timeout |
+|---|---|---|---|---|
+| Robotiq 2F-85 | 0 | 0 | 3 | 7 |
+| Panda | 20 | 0 | 0 | 0 |
+| Allegro | 7 | 3 | 1 | 1 |
+| LEAP | 11 | 1 | 1 | 1 |
+| Shadow | 14 | 0 | 2 | 0 |
+| G1 | 10 | 1 | 0 | 9 |
+
+- **On the hands, most failures are the body's.** Their skills do not execute (mostly failed grasps).
+  With the Robotiq gripper, 7 of the 10 failures were the 600 s wall limit running out at the key
+  insert. All 24 G1 episodes hit that limit.
+- **It is also an agent problem.** A skill that does not execute gives the agent no evidence, so the
+  part it rates most informative stays on top. Panda spent all 4974 of its actions on failed grasps of
+  the fixed door hook, up to 300 in a row. Shadow's grasp of the handle failed 2999 of 3006 times.
+- **The oracle is no upper bound for hands.** The agent opened more doors than the scripted oracle
+  with Allegro (8 against 3) and LEAP (6 against 2): it also opens doors through decoys and leaf
+  parts (Shadow opened unlocked doors by pulling the wing decoy on the leaf), while the oracle always
+  uses the handle.
+
+<img src="media/discovery/allegro_latch.gif" width="360">
+
+The same agent with the Allegro hand (hd_knob_pull_left, latch, seed 200000, 19 actions, success):
+"The door was latched: it opens when I keep turning the round part p10 while pulling." More clips:
+`media/discovery/leap_deadbolt.gif`, `media/discovery/shadow_unlocked.gif`. Panda and G1 opened no
+door, so they have no clip.
+
+**First run (parameters set on overlapping seeds).** The first evaluation
+([results/discovery_eval.md](../results/discovery_eval.md), `results/discovery_physics.json`) used
+seeds 0-199. The parameters were set during development, the integration fixes to `belief.py` were
+checked on the first 60 of those seeds, and the physics scene had no decoys. Over all solvable mock scenes it gave 101.1
+(train) and 112.6 (test) actions, and every per-case interval of the clean re-run overlaps its
+interval. In physics without decoys it opened 18 of 25 solvable doors (latched doors in 6.0 actions),
+against 12 of 25 with decoys. Its clip is `media/discovery/key_in_drawer.gif`.
 
 ## Limits of this evaluation (from an independent review)
 
-- **Built-in locality.** Probes are limited to parts within 0.7 m of the door, and conditions far
-  from the door are penalised; explanations also keep only conditions near the door. The mock
-  adds decoy parts on the door leaf (a dial in 50% of scenes, a hook in 30%), but the physics
-  scene has **no decoys**: there, every part on the door is a mechanism. Next: decoys in physics
-  and an ablation without the locality prior.
-- **Shapes.** In the mock each part shape belongs to one mechanism (the lock cylinder is the only
-  non-graspable disc, the thumb-turn the only "wing"). Recipes use shape with weight 0.2, so part
-  of the reuse gain may be shape matching. Next: shared shapes between decoys and mechanisms.
+Addressed since the review: the numbers above come from fresh seeds with frozen parameters; the
+physics scene has decoys; locality can be switched off and has been ablated; the mock has decoys
+shaped like the mechanisms; other bodies have been measured, with failure causes from a ground-truth
+trace. What is still open:
+
+- **Locality is still the default, and it helps.** Removing it costs 41-45% more actions in the mock,
+  and 12/25 -> 8/25 opened in physics. The baselines keep their 0.7 m probe radius in every config.
+  The recipe role feature "near" (`recipes.NEAR` = 0.7 m, weight 0.3) is a locality cue learned from
+  the first scene, and it has no switch.
+- **Mock and physics decoys differ.** Mock hooks have the shape "peg", which physics never produces,
+  and the mock has no cabinet wing. The mock pen is 0.14-0.16 long, while physics keys are about
+  0.10-0.12, so its length gives it away. The mock's push-bar dial copies the bar's size. Decoy
+  positions do not match.
 - **Rule size** max 2 conditions is exactly what the hardest case needs.
 - **Held-out door types** differ in swing, handle and knob direction; the lock mechanisms are the
   same. Held-out *mechanisms* are not tested.
-- **Parameters** (radius, proximity, reveal and novelty weights, recipe bonuses) were set during
-  development; the integration fixes were checked on 60 train and 60 test scenes that are the
-  first 60 of the reported 200. A clean re-run on fresh seeds is needed before quoting numbers.
-- **Not yet measured:** transfer to other bodies (Panda, dexterous hands, G1), and the claim that
-  physics failures are the body's (the log records actions, not failure causes). The physics run
-  used a 600 s wall limit per episode.
+- **Mixed code versions.** Other work changed `agent.py` between the v2 runs; each file records the
+  code hash. A replay check found the shared-config means for unlocked, latch and deadbolt identical,
+  and 41 of 42 both_off episodes identical (one went from 993 to 1000 actions). The default and
+  loc_off mock runs were not cross-checked. In the bodies run, 3 short episodes replayed identically
+  under the latest code; no long episode was replayed.
+- **Physics is small and budget-bound.** There are 30 episodes per config and 24 per body. The key
+  cases mostly stop at the 300-action budget, and about half of all actions go to decoys. No physics
+  no-solution door was given up within 300 actions, against 199-200 of 200 in the mock at 1000. The
+  bodies run used a 600 s wall limit, which ended 7 of the 10 Robotiq failures and every G1 episode.
+  The v2 physics run used 3000 s.
+- **Failed skills give no evidence**, so with bodies that cannot grasp a part the agent keeps
+  choosing it (Panda: up to 300 failed grasps in a row). This needs an agent change, for example a
+  cost for a skill that does not execute.
+- **Thumb bolt under pull and push.** The bodies traces show the thumb bolt retracting under pull (20)
+  and push (27) actions. Whether that matches the intended thumb-turn mechanics is not checked.
 
 ## Related work to position against
 

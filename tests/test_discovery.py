@@ -7,7 +7,7 @@ import re
 import numpy as np
 import pytest
 
-from pai.discovery.agent import AGENTS, DiscoveryAgent, _Episode, compare, format_table
+from pai.discovery.agent import AGENTS, DiscoveryAgent, Locality, _Episode, compare, format_table
 from pai.discovery.belief import ActionModel, Belief, context, score_actions
 from pai.discovery.explain import explain, score
 from pai.discovery.mock import LOCK_STATES, MockWorld, Scenario, available_states, sample_scenario, scenario_types
@@ -297,3 +297,111 @@ def test_recipe_reuse_reduces_actions_on_a_new_scene():
     print("\nactions on a held-out door type, without / with the recipe of a first scene:",
           {k: f"{a:.1f} / {b:.1f}" for k, (a, b) in res.items()})
     assert all(b < a for a, b in res.values())
+
+
+# ---------------------------------------------------------------------------------------- locality ablation
+def test_locality_switches_and_defaults():
+    assert DiscoveryAgent().locality == Locality() and DiscoveryAgent(radius=0.5).locality.radius == 0.5
+    off = Locality.off()
+    assert (off.radius, off.probe_prior, off.lit_prior, off.explain) == (None, 0.0, 0.0, "evidence")
+    assert Locality().without("radius") == Locality(radius=None)
+    w = world(lock="latch", place="table", n_keys=1)
+    drawer = w.truth()["parts"]["drawer"]
+    ag = DiscoveryAgent(seed=0)
+    ag.run(w, 1)
+    assert not any(p[1] == drawer for p in ag.belief.probes)                 # far from the door: not a probe
+    w = world(lock="latch", place="table", n_keys=1)
+    ag = DiscoveryAgent(seed=0, locality=Locality.off())
+    log = ag.run(w, 1)
+    assert ("pull", drawer) in ag.belief.probes and log.locality["explain"] == "evidence"
+    lb = ag.belief.log_prior
+    assert np.ptp(lb[ag.belief.h_size == 0]) == 0                           # no distance penalty on probes
+
+
+@pytest.mark.parametrize("lock", ["latch", "deadbolt", "key"])
+def test_agent_opens_doors_without_locality(lock):
+    rng = np.random.default_rng(500 + LOCK_STATES.index(lock))
+    sc = sample_scenario(rng, "train", lock_state=lock, key_place="drawer", shared_shapes=True)
+    w = MockWorld(sc)
+    log = DiscoveryAgent(seed=1, locality=Locality.off()).run(w, 1000)
+    assert log.reached_goal, (lock, sc, log.n_actions)
+    s = score(explain(log).claims, w.truth(), log)
+    print(f"\n{lock}, no locality, shared shapes: {log.n_actions} actions, explanation {s['accuracy']:.2f}")
+
+
+def _hand_log(att_dial: float):
+    """deadbolt: probe, turn the cabinet dial, probe, turn the thumb back, probe (opens); the belief's rule
+    is the thumb and it gives `att_dial` of its mass to rules that also need the dial."""
+    w = world("hd_knob_pull_left", "deadbolt", "table", n_keys=1, dial=True)
+    P = w.truth()["parts"]
+    probe = ("turn_pull", P["handle"], 1)
+    ep = _Episode(w)
+    for a in (probe, ("turn", P["dial"], 1), probe, ("turn", P["thumb"], -1), probe):
+        ep.step(a, "test")
+    log = ep.finish("goal")
+    th, dl = f"part:{P['thumb']}.angle", f"part:{P['dial']}.angle"
+    log.final_map = {"probe": probe, "literals": {th: "rest"}, "p": 0.5}
+    log.consistent = [{"literals": {th: "rest"}, "p": 1 - att_dial}, {"literals": {th: "rest", dl: "pos"}, "p": att_dial}]
+    return log, P
+
+
+def test_evidence_filter_replaces_nearness():
+    log, P = _hand_log(0.1)
+    assert log.reached_goal
+    for mode in ("near", "evidence"):
+        c = explain(log, mode=mode).claims
+        assert c["deadbolt_part"] == P["thumb"] and not c["bolt_alternatives"], mode   # the dial only came along
+    log, P = _hand_log(0.6)                  # the belief attributes the far dial: only the evidence rule keeps it
+    assert not explain(log, mode="near").claims["bolt_alternatives"]
+    c = explain(log, mode="evidence").claims
+    assert c["deadbolt_part"] == P["thumb"] and c["bolt_alternatives"] == [P["dial"]]
+    log.locality = {"explain": "evidence"}   # the mode the agent ran with is the default
+    assert explain(log).claims["bolt_alternatives"] == [P["dial"]]
+
+
+# ---------------------------------------------------------------------------------------- shared shapes
+def test_mock_shared_shapes_decoys():
+    for shared in (False, True):
+        w = world("hd_knob_pull_left", "both", "table", n_keys=1, door_dial=True, shared_shapes=shared)
+        P, ents = w.truth()["parts"], {e.id: e for e in w.entities()}
+        look = lambda n, *k: (ents[P[n]].joint, ents[P[n]].graspable, *(ents[P[n]].attrs[x] for x in k))   # noqa: E731
+        same = lambda n, *k: [m for m in P if m != n and look(m, *k) == look(n, *k)]              # noqa: E731
+        if not shared:   # (the round knob is round like the dials, but not of their size)
+            assert not same("cylinder", "shape") and not same("thumb", "shape") and not same("handle", "shape", "size")
+            continue
+        assert same("cylinder", "shape") == ["cab_disc"] and same("thumb", "shape") == ["door_wing"]
+        assert same("handle", "shape", "size") == ["door_dial"]
+        wing = P["door_wing"]
+        assert run(w, ("turn", wing, 1)).changed == {f"part:{wing}.angle": ("rest", "pos")}   # persistent
+        assert run(w, ("turn_pull", P["handle"], 1)).stalled                                 # bolts nothing
+        key = w.truth()["matching_key"]
+        run(w, ("pick", key))
+        assert run(w, ("insert", key, P["cab_disc"])).stalled                                 # not a keyhole
+    w = world("hd_knob_pull_left", "unlocked", "table", n_keys=1, shared_shapes=True)
+    assert not run(w, ("pull", w.truth()["parts"]["door_wing"])).stalled and w.goal_reached()   # on the leaf
+    sc = sample_scenario(np.random.default_rng(1), "train", shared_shapes=True)
+    plain = sample_scenario(np.random.default_rng(1), "train")
+    assert sc.door_dial and dataclasses.replace(sc, shared_shapes=False, door_dial=False) == \
+        dataclasses.replace(plain, door_dial=False)
+
+
+def test_recipe_reuse_with_shared_shapes():
+    """The decoys share the mechanisms' shapes, so the shape cue of a recipe cannot pick the mechanism;
+    reuse still helps, with the shape cue and without it."""
+    res = {}
+    for lock in ("latch", "deadbolt"):
+        cold, warm, blind = [], [], []
+        for i in range(8):
+            rng = np.random.default_rng(3000 + i)
+            first = sample_scenario(rng, "train", lock_state=lock, key_place="table", shared_shapes=True)
+            second = sample_scenario(rng, "test", lock_state=lock, key_place="table", shared_shapes=True)
+            first_log = DiscoveryAgent(seed=i).run(MockWorld(first), 400)
+            book, book0 = RecipeBook(), RecipeBook(b_shape=0.0)
+            assert book.learn(first_log) is not None and book0.learn(first_log) is not None
+            cold.append(DiscoveryAgent(seed=i).run(MockWorld(second), 400).n_actions)
+            warm.append(DiscoveryAgent(seed=i).run(MockWorld(second), 400, recipes=book).n_actions)
+            blind.append(DiscoveryAgent(seed=i).run(MockWorld(second), 400, recipes=book0).n_actions)
+        res[lock] = (float(np.mean(cold)), float(np.mean(warm)), float(np.mean(blind)))
+    print("\nshared shapes, held-out type, actions without / with the recipe / with it but no shape cue:",
+          {k: "{:.1f} / {:.1f} / {:.1f}".format(*v) for k, v in res.items()})
+    assert all(b < a and c < a for a, b, c in res.values())

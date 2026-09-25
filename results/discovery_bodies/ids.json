@@ -1,0 +1,62 @@
+{
+ "hd_knob_pull_left|200000": {
+  "p4": "door",
+  "p10": "handle",
+  "p1": "drawer",
+  "p3": "thumb",
+  "p6": "cylinder",
+  "p7": "door_dial",
+  "p2": "door_wing",
+  "p5": "door_hook",
+  "p8": "cab_disc",
+  "p9": "cab_wing",
+  "o2": "home_key0",
+  "o1": "home_key1",
+  "o3": "dec_peg"
+ },
+ "hd_knob_pull_left|200001": {
+  "p8": "door",
+  "p7": "handle",
+  "p4": "drawer",
+  "p6": "thumb",
+  "p2": "cylinder",
+  "p9": "door_dial",
+  "p5": "door_wing",
+  "p10": "door_hook",
+  "p1": "cab_disc",
+  "p3": "cab_wing",
+  "o3": "home_key0",
+  "o2": "home_key1",
+  "o1": "dec_peg"
+ },
+ "hd_lever_pull_right|200000": {
+  "p4": "door",
+  "p10": "handle",
+  "p1": "drawer",
+  "p3": "thumb",
+  "p6": "cylinder",
+  "p7": "door_dial",
+  "p2": "door_wing",
+  "p5": "door_hook",
+  "p8": "cab_disc",
+  "p9": "cab_wing",
+  "o2": "home_key0",
+  "o1": "home_key1",
+  "o3": "dec_peg"
+ },
+ "hd_lever_pull_right|200001": {
+  "p8": "door",
+  "p7": "handle",
+  "p4": "drawer",
+  "p6": "thumb",
+  "p2": "cylinder",
+  "p9": "door_dial",
+  "p5": "door_wing",
+  "p10": "door_hook",
+  "p1": "cab_disc",
+  "p3": "cab_wing",
+  "o3": "home_key0",
+  "o2": "home_key1",
+  "o1": "dec_peg"
+ }
+}

@@ -12,6 +12,9 @@ the lock state, which key matches, or where a key was put (env.info), except in 
                the free bodies (keys) that are in view. A key lying inside the closed drawer (its bow
                inside the cabinet cavity) or behind the wall while the door is shut is not in view; that
                is decided from geometry every time, never from the placement record.
+               With the fixture's decoys on (home_doors.DECOYS) the look-alikes are ordinary parts and
+               objects: a dial, a wing and a coat hook on the leaf, a turning disc and a wing on the
+               cabinet, a peg on the shelf; nothing here tells them from the mechanisms.
                Ids are "p<k>" / "o<k>", shuffled per reset seed. Attributes are generic and use the
                MockWorld's vocabulary: joint type; graspable (false for a flat face flush with its
                panel: the door leaf, the lock cylinder); shape from the geom primitive (panel, plate,
@@ -148,11 +151,12 @@ class PhysicsWorld:
 
     def __init__(self, type_name: str = "hd_knob_pull_left", embodiment: str = "robotiq_2f85", seed: int = 0,
                  lock_state: str | None = None, key_place: str | None = None, env: DoorSceneEnv | None = None,
-                 max_action_steps: int = 3000, **fixture_overrides):
+                 max_action_steps: int = 3000, contact_repair: bool = True, **fixture_overrides):
         self.env = env or DoorSceneEnv(embodiment, home_door_fixture(type_name, **fixture_overrides), seed=seed)
         self.rt, self.m, self.d, self.emb = self.env.runtime, self.env.model, self.env.data, self.env.emb
         self.dt = self.env.control_dt
         self.max_action_steps = max_action_steps
+        self.contact_repair = contact_repair
         self._motion = HomeDoorOracle(self.env)    # only its motion primitives (_goto, _grasp, _hold, _cmd)
         self._build_parts()
         self.reset(seed, lock_state=lock_state, key_place=key_place)
@@ -197,8 +201,12 @@ class PhysicsWorld:
             # a face flush with the door, nothing to close a hand on: not graspable (as in the mock)
             parts.append(_Part("cylinder", gid(f"{r.name}_cyl_rim"), cyl, joint=jid(r.key_lock["plug"]),
                                carrier=door_j, graspable=False))
+        for name, dc in r.decoys.items():    # look-alikes: parts like any other
+            parts.append(_Part(name, gid(dc["geom"]), site_frame(dc["site"]),
+                               joint=jid(dc["joint"]) if dc["joint"] else None,
+                               carrier=door_j if dc["on_door"] else None, graspable=dc["graspable"]))
         self.parts = parts
-        self.objects = [dict(k) for k in self.rt.keys]
+        self.objects = [dict(k) for k in self.rt.keys] + [dict(k) for k in self.rt.props]
         for k in self.objects:
             k["geoms"] = [g for g in range(m.ngeom) if m.geom_bodyid[g] == k["body"]]
             # its look: colour from the geom with the most volume (a key's bow), shape from the longest
@@ -232,6 +240,7 @@ class PhysicsWorld:
         self._opened = False                   # the goal was reached in this episode
         self._flip: dict[str, float] = {}      # inserted object -> which way round it went in
         self.unstable = False
+        self._trace_body = None
         self.t = 0
         self._q0 = {p.name: float(self.m.qpos0[self.m.jnt_qposadr[p.joint]]) for p in self.parts if p.joint is not None}
         # the neutral pose: the body's start pose raised above table height, so that turning the hand into
@@ -304,8 +313,10 @@ class PhysicsWorld:
         """Roll of the object's width axis about the part's joint, from the part's rest orientation (a
         flat blade fits either way round: measured from the way it went in)."""
         m, d = self.m, self.d
+        if p.joint is None:                 # a fixed part (the door hook): nothing to turn about
+            return 0.0
         b = m.jnt_bodyid[p.joint]
-        Rp = d.xmat[m.body_parentid[b]].reshape(3, 3)
+        Rp =d.xmat[m.body_parentid[b]].reshape(3, 3)
         Rl = np.zeros(9)
         mujoco.mju_quat2Mat(Rl, m.body_quat[b])
         R_rest = Rp @ Rl.reshape(3, 3)
@@ -412,6 +423,13 @@ class PhysicsWorld:
         self.obs = self.env.step(a)
         self.t += 1
         self._steps += 1
+        if getattr(self, "_trace_body", None) is not None:
+            pairs = self._key_contact_pairs()
+            if pairs != self._trace_pairs:
+                self._trace_events.append({"t": self.t,
+                                           "started": [list(pair) for pair in sorted(pairs - self._trace_pairs)],
+                                           "ended": [list(pair) for pair in sorted(self._trace_pairs - pairs)]})
+                self._trace_pairs = pairs
         if not self.env.stable():
             raise _Abort("unstable")
         if self._steps > self.max_action_steps:
@@ -560,6 +578,12 @@ class PhysicsWorld:
         kind, eid = action[0], action[1]
         arg = action[2] if len(action) > 2 else None
         before_f, before_vis = self.features(), {e.id for e in self.entities() if e.kind == "object"}
+        before_tip = self._key_pose(self._obj_by_id[eid])[0].copy() if eid in self._obj_by_id else None
+        before_force = np.asarray(self.obs["finger_force"]).copy()
+        before_contacts = int(self.d.ncon)
+        self._trace_body = self._obj_by_id[eid]["body"] if eid in self._obj_by_id else None
+        self._trace_pairs = self._key_contact_pairs()
+        self._trace_events = []
         self._steps, t0 = 0, time.time()
         executed, stalled, notes = False, False, ""
         try:
@@ -589,7 +613,33 @@ class PhysicsWorld:
         changed.update({k: (v, None) for k, v in before_f.items() if k not in after})
         revealed = [e for e in self.entities() if e.kind == "object" and e.id not in before_vis]
         self.last_wall = time.time() - t0
+        self.last_diagnostic = {
+            "tip_before": before_tip.round(5).tolist() if before_tip is not None else None,
+            "tip_after": self._key_pose(self._obj_by_id[eid])[0].round(5).tolist()
+            if eid in self._obj_by_id else None,
+            "finger_force_before": before_force.round(4).tolist(),
+            "finger_force_after": np.asarray(self.obs["finger_force"]).round(4).tolist(),
+            "contacts_before": before_contacts, "contacts_after": int(self.d.ncon),
+            "contact_events": self._trace_events,
+            "verification": ("rotation_observed" if kind == "turn_held" and
+                             any(key.endswith(".angle") for key in changed) else
+                             "door_open_observed" if self.goal_reached_now() else "unverified"),
+        }
         return Outcome(tuple(action), executed, stalled, changed, revealed, self._steps * self.dt, notes)
+
+    def _key_contact_pairs(self) -> set[tuple[str, str]]:
+        """Contacting body pairs involving the acted-on object or fingers."""
+        if self._trace_body is None:
+            return set()
+        out = set()
+        for i in range(self.d.ncon):
+            contact = self.d.contact[i]
+            a, b = int(self.m.geom_bodyid[contact.geom1]), int(self.m.geom_bodyid[contact.geom2])
+            if (self._trace_body not in (a, b) and
+                    self.emb.body_finger[a] < 0 and self.emb.body_finger[b] < 0):
+                continue
+            out.add(tuple(sorted((self.m.body(a).name, self.m.body(b).name))))
+        return out
 
     def _do_part(self, kind: str, p: _Part, sign) -> tuple[bool, bool, str]:
         if kind == "press_push" or not p.graspable:     # nothing to grasp: press a closed hand into it
@@ -718,7 +768,45 @@ class PhysicsWorld:
                 break
             depth = new
         inside = self._inserted_in(k) is p
-        return bool(aligned or inside), not inside, f"depth={depth:.3f}"
+        retries = 0
+        # Re-seat a stalled blade from just outside the mouth. Force feedback is
+        # expressed as lack of depth progress; the observed tip-to-slot residual
+        # selects the first lateral correction. No lock state is read here.
+        if self.contact_repair and not inside and self._holding(k):
+            _, frame = p.frame()
+            side = frame[:, 2]
+            normal = np.cross(x, side)
+            tip = self._key_pose(k)[0]
+            lateral = tip - p.frame()[0] - depth * x
+            directed = -np.clip(float(lateral @ side), -0.003, 0.003) * side
+            offsets = [directed, 0.0025 * side, -0.0025 * side,
+                       0.0025 * normal, -0.0025 * normal]
+            for offset in offsets:
+                if not self._holding(k) or self._steps + 330 >= self.max_action_steps:
+                    break
+                retries += 1
+                for _ in range(100):
+                    a, _, _ = aligned_cmd(p.frame()[0] - 0.018 * x + offset)
+                    self._step(a)
+                monitor = StallMonitor(window=25, min_cmd=0.01)
+                depth = float((self._key_pose(k)[0] - p.frame()[0]) @ x)
+                for _ in range(180):
+                    a, _, _ = aligned_cmd(p.frame()[0] + min(depth + 0.012, INSERT_DEPTH) * x + offset)
+                    self._step(a)
+                    new = float((self._key_pose(k)[0] - p.frame()[0]) @ x)
+                    if self._inserted_in(k) is p:
+                        break
+                    if monitor.update(0.04 * self.dt, new - depth):
+                        break
+                    depth = new
+                inside = self._inserted_in(k) is p
+                if inside:
+                    break
+        tip = self._key_pose(k)[0]
+        depth = float((tip - p.frame()[0]) @ x)
+        lateral_error = float(np.linalg.norm(tip - p.frame()[0] - depth * x))
+        return bool(aligned or inside), not inside, (f"depth={depth:.3f} lateral={lateral_error:.3f} "
+                                                      f"retries={retries}")
 
     def _do_turn_held(self, oid: str, sign: int) -> tuple[bool, bool, str]:
         k = self._obj_by_id[oid]

@@ -32,6 +32,15 @@ a 12 cm wall):
 - door closer: joint stiffness (spring to closed) and damping on the hinge. Push doors open away from the
   agent, pull doors towards it.
 
+Decoys (optional, off by default: fixture parameter "decoys" = True for all of DECOYS, or a subset of it).
+Things that look like mechanisms and act on nothing: a friction-held dial on the door leaf below the
+handle that looks like the handle (a round knob's head, a ball knob's, or a 12 cm bar for a lever or a
+push bar), a friction-held wing on the leaf above the thumb-turn's height (its rose, post and wing), a
+coat hook on the leaf (a short peg, about the size of a thumb-turn's wing), a rotatable escutcheon disc
+with a keyhole on the cabinet front (the lock cylinder's rim), a turnable wing on the cabinet front and a
+square peg lying on the shelf (a free body about a key's length). No equality, latch or bolt refers to them, and no lock
+captures the peg; their layout is drawn from the key seed, so a fixture without decoys is unchanged.
+
 Keys rest on small cradles: on the side cabinet top ("table"), on the shelf ("shelf"), inside the drawer
 ("drawer": open it first) or on the table in the other room ("other_room": unreachable, a no-solution
 case when the door is key-locked). Placement, lock state and which key matches are drawn per reset and
@@ -69,6 +78,7 @@ DOOR_OPEN_FRAC = 0.35    # door opening fraction counted as open (0.66 rad of 1.
 DEBOUNCE = 3
 LOCK_STATES = ("unlocked", "deadbolt", "key", "both")
 PLACEMENTS = ("table", "shelf", "drawer", "other_room")
+DECOYS = ("door_dial", "door_wing", "door_hook", "cab_disc", "cab_wing", "peg")
 
 WALL_RGBA = [0.86, 0.85, 0.8, 1]
 FRAME_RGBA = [0.95, 0.95, 0.93, 1]
@@ -102,6 +112,8 @@ class HomeDoor:
     keys: list = field(default_factory=list)       # [{"body", "shaft_geoms", "weld_eq", "bitting", "grip_site"}]
     cradles: dict = field(default_factory=dict)    # placement -> [(parent body, local pos, local quat)]
     drawer: dict | None = None      # {"joint", "site", "range"}
+    decoys: dict = field(default_factory=dict)     # name -> {"geom", "site", "joint" (or None), "on_door", "graspable"}
+    props: list = field(default_factory=list)      # decoy free bodies: [{"body", "grip_site", "rest"}]
     bodies: list = field(default_factory=list)
 
 
@@ -316,11 +328,19 @@ def _cradle(parent, name: str, pos, yaw: float, key_shape: str, shaft: float, ba
     return key_pos, [np.cos(yaw / 2), 0, 0, np.sin(yaw / 2)]
 
 
+CAB_W, CAB_D, CAB_H = 0.42, 0.32, 0.9    # side cabinet width, depth, height
+SHELF_Z = 1.25
+
+
+def _cab_y(p: dict) -> float:
+    """Centre of the side cabinet along the wall (fixture frame)."""
+    return p["latch_sign"] * (p["width"] / 2 + 0.14 + CAB_W / 2)
+
+
 def _side_cabinet(spec, root, p: dict, cradles: dict, key_def: dict) -> dict:
     """Cabinet beside the door on the latch side (a drawer, a table-top) and a wall shelf above it."""
-    ls, W = p["latch_sign"], p["width"]
-    CW, CD, CH = 0.42, 0.32, 0.9
-    yc = ls * (W / 2 + 0.14 + CW / 2)
+    CW, CD, CH = CAB_W, CAB_D, CAB_H
+    yc = _cab_y(p)
     x0, x1 = 0.02, 0.02 + CD
     t = 0.015
     xc = (x0 + x1) / 2
@@ -361,10 +381,127 @@ def _side_cabinet(spec, root, p: dict, cradles: dict, key_def: dict) -> dict:
     back = sh + 0.012 + 0.03             # tip-to-front-edge distance
     cradles["table"] = [(root.name,) + _cradle(root, f"cr_table{i}", [x1 - back, yc + dy, CH], np.pi, shape, sh, bar_y)
                         for i, dy in enumerate((-0.1, 0.1))]
-    _box(root, "shelf", [0.11, 0.22, 0.012], [0.11, yc, 1.25], CAB_RGBA)
-    cradles["shelf"] = [(root.name,) + _cradle(root, "cr_shelf", [0.22 - back, yc, 1.262], np.pi, shape, sh, bar_y)]
+    _box(root, "shelf", [0.11, 0.22, 0.012], [0.11, yc, SHELF_Z], CAB_RGBA)
+    cradles["shelf"] = [(root.name,) + _cradle(root, "cr_shelf", [0.22 - back, yc, SHELF_Z + 0.012], np.pi, shape, sh,
+                                               bar_y)]
     cradles["drawer"] = [("cab_drawer",) + _cradle(drawer, "cr_drawer", [-0.21, 0.0, 0.01], np.pi, shape, sh, bar_y)]
     return {"joint": dj, "site": "cab_drawer_handle", "range": (0.0, 0.25)}
+
+
+def _decoys(spec, root, door, p: dict, names, face, n: np.ndarray, to_hinge: np.ndarray, panel_y: float) -> tuple:
+    """Look-alikes connected to nothing (see the module docstring). `face(z)`: a point on the door's
+    agent-side face on the hardware line (door frame); `panel_y`: the leaf's centre (door frame).
+    Returns (parts, props) for HomeDoor.decoys / .props."""
+    rng = np.random.default_rng([int(p["key_seed"]), 9173])     # the layout: from the key seed, not the env rng
+    parts, props = {}, []
+    up = [0, 0, 1.0]
+    bar = p["handle"] in ("lever", "push_bar")
+    if "door_dial" in names:     # a privacy dial with the handle's look, below it towards the hinge: clear of
+        # the handle and the hand on it (past a lever's arm or a push bar's end) and, on a push door, of the
+        # far table the leaf swings over
+        lat, dz = {"lever": ((0.25, 0.35), (0.1, 0.14)), "push_bar": ((0.68, 0.7), (0.1, 0.14))}.get(
+            p["handle"], ((0.1, 0.16), (0.04, 0.08)))
+        pos = face(p["handle_z"] - rng.uniform(*dz)) + to_hinge * rng.uniform(*lat)
+        body = door.add_body(name="dec_dial", pos=pos.tolist())
+        body.add_joint(name="dec_dial_hinge", type=mujoco.mjtJoint.mjJNT_HINGE, axis=n.tolist(), range=[-1.2, 1.2],
+                       limited=mujoco.mjtLimited.mjLIMITED_TRUE, damping=[0.02, 0, 0], frictionloss=0.05,
+                       armature=0.001)
+        door.add_geom(name="dec_dial_rose", type=_g.mjGEOM_CYLINDER, size=[0.032, 0.004, 0],
+                      fromto=[*pos, *(pos + n * 0.008)], rgba=BRASS, density=3000)
+        body.add_geom(name="dec_dial_neck", type=_g.mjGEOM_CAPSULE, size=[0.011, 0, 0],
+                      fromto=[*(n * 0.004), *(n * 0.05)], rgba=BRASS, density=3000)
+        if bar:                  # a bar across the neck's end (upright at rest)
+            body.add_geom(name="dec_dial_head", type=_g.mjGEOM_CAPSULE, size=[0.012, 0.048, 0],
+                          pos=(n * 0.062).tolist(), quat=_quat_z_to(up), rgba=BRASS, density=2000,
+                          friction=[1.2, 0.02, 0.001])
+        elif p["handle"] == "knob_round":
+            body.add_geom(name="dec_dial_head", type=_g.mjGEOM_CYLINDER, size=[0.029, 0.017, 0],
+                          fromto=[*(n * 0.05), *(n * 0.084)], rgba=BRASS, density=3000, friction=[1.2, 0.02, 0.001])
+        else:
+            body.add_geom(name="dec_dial_head", type=_g.mjGEOM_ELLIPSOID, size=[0.022, 0.032, 0.032],
+                          pos=(n * 0.068).tolist(), quat=_frame_quat(n, up), rgba=BRASS, density=3000,
+                          friction=[1.2, 0.02, 0.001])
+        body.add_site(name="dec_dial_site", pos=(n * (0.062 if bar else 0.067)).tolist(), quat=_frame_quat(n, up))
+        parts["door_dial"] = {"geom": "dec_dial_head", "site": "dec_dial_site", "joint": "dec_dial_hinge",
+                              "on_door": True, "graspable": True}
+    if "door_wing" in names:     # a thumb-turn's rose, post and wing higher on the leaf, towards the hinge
+        pos = face(p["handle_z"] + p["thumb_dz"] + rng.uniform(0.1, 0.16)) + to_hinge * rng.uniform(0.15, 0.3)
+        body = door.add_body(name="dec_dwing", pos=pos.tolist())
+        body.add_joint(name="dec_dwing_hinge", type=mujoco.mjtJoint.mjJNT_HINGE, axis=n.tolist(),
+                       range=[-THUMB_RANGE, THUMB_RANGE], limited=mujoco.mjtLimited.mjLIMITED_TRUE,
+                       damping=[0.02, 0, 0], frictionloss=0.08, armature=0.002)
+        door.add_geom(name="dec_dwing_rose", type=_g.mjGEOM_CYLINDER, size=[0.03, 0.004, 0],
+                      fromto=[*pos, *(pos + n * 0.008)], rgba=STEEL, density=3000)
+        body.add_geom(name="dec_dwing_post", type=_g.mjGEOM_CYLINDER, size=[0.01, 0, 0],
+                      fromto=[*(n * 0.004), *(n * 0.04)], rgba=STEEL, density=3000)
+        body.add_geom(name="dec_dwing_wing", type=_g.mjGEOM_CAPSULE, size=[0.012, 0.035, 0], pos=(n * 0.05).tolist(),
+                      quat=_quat_z_to(up), rgba=STEEL, density=2000, friction=[1.2, 0.02, 0.001])
+        body.add_site(name="dec_dwing_site", pos=(n * 0.05).tolist(), quat=_frame_quat(n, up))
+        parts["door_wing"] = {"geom": "dec_dwing_wing", "site": "dec_dwing_site", "joint": "dec_dwing_hinge",
+                              "on_door": True, "graspable": True}
+    if "door_hook" in names:     # a coat hook high on the leaf's hinge half: a short peg, fixed
+        pos = np.array([face(0.0)[0], panel_y + to_hinge[1] * rng.uniform(0.05, 0.2), rng.uniform(1.4, 1.55)])
+        door.add_geom(name="dec_hook_plate", type=_g.mjGEOM_CYLINDER, size=[0.02, 0.003, 0],
+                      fromto=[*pos, *(pos + n * 0.006)], rgba=STEEL, density=3000)
+        door.add_geom(name="dec_hook_peg", type=_g.mjGEOM_CAPSULE, size=[0.009, 0, 0],
+                      fromto=[*(pos + n * 0.006), *(pos + n * 0.056)], rgba=STEEL, density=3000,
+                      friction=[1.2, 0.02, 0.001])
+        door.add_site(name="dec_hook_site", pos=(pos + n * 0.04).tolist(), quat=_frame_quat(n, up))
+        parts["door_hook"] = {"geom": "dec_hook_peg", "site": "dec_hook_site", "joint": None, "on_door": True,
+                              "graspable": True}
+    # the cabinet's lower front (below the drawer), one each side of its centre
+    yc, xf = _cab_y(p), 0.02 + CAB_D - 0.02
+    side = 1.0 if rng.random() < 0.5 else -1.0
+    zs = rng.uniform(0.5, 0.62, 2)
+    if "cab_disc" in names:      # an escutcheon that turns: the lock cylinder's rim, plug face and keyhole
+        pos = np.array([xf, yc + side * 0.1, zs[0]])
+        body = root.add_body(name="dec_disc", pos=pos.tolist())
+        body.add_joint(name="dec_disc_hinge", type=mujoco.mjtJoint.mjJNT_HINGE, axis=n.tolist(), range=[-1.7, 1.7],
+                       limited=mujoco.mjtLimited.mjLIMITED_TRUE, damping=[0.02, 0, 0], frictionloss=0.05,
+                       armature=0.002)
+        body.add_geom(name="dec_disc_rim", type=_g.mjGEOM_CYLINDER, size=[0.022, 0.005, 0],
+                      fromto=[0, 0, 0, *(n * 0.01)], rgba=BRASS, density=3000)
+        body.add_geom(name="dec_disc_face", type=_g.mjGEOM_CYLINDER, size=[0.015, 0.0012, 0],
+                      fromto=[*(n * 0.0102), *(n * 0.0122)], rgba=[0.9, 0.78, 0.4, 1], contype=0, conaffinity=0,
+                      density=3000)
+        body.add_geom(name="dec_disc_slot", type=_g.mjGEOM_BOX, size=[0.0006, 0.0025, 0.008],
+                      pos=(n * 0.0124).tolist(), rgba=DARK, contype=0, conaffinity=0, density=100)
+        body.add_site(name="dec_disc_site", pos=(n * 0.01).tolist(), quat=_frame_quat(n, up))
+        spec.add_exclude(bodyname1=root.name, bodyname2="dec_disc")   # the base is static: no parent filter
+        parts["cab_disc"] = {"geom": "dec_disc_rim", "site": "dec_disc_site", "joint": "dec_disc_hinge",
+                             "on_door": False, "graspable": False}
+    if "cab_wing" in names:      # a thumb-turn's rose, post and wing, turning both ways and staying put
+        pos = np.array([xf, yc - side * 0.1, zs[1]])
+        body = root.add_body(name="dec_wing", pos=pos.tolist())
+        body.add_joint(name="dec_wing_hinge", type=mujoco.mjtJoint.mjJNT_HINGE, axis=n.tolist(),
+                       range=[-THUMB_RANGE, THUMB_RANGE], limited=mujoco.mjtLimited.mjLIMITED_TRUE,
+                       damping=[0.02, 0, 0], frictionloss=0.08, armature=0.002)
+        root.add_geom(name="dec_wing_rose", type=_g.mjGEOM_CYLINDER, size=[0.03, 0.004, 0],
+                      fromto=[*pos, *(pos + n * 0.008)], rgba=STEEL, density=3000)
+        body.add_geom(name="dec_wing_post", type=_g.mjGEOM_CYLINDER, size=[0.01, 0, 0],
+                      fromto=[*(n * 0.004), *(n * 0.04)], rgba=STEEL, density=3000)
+        body.add_geom(name="dec_wing_wing", type=_g.mjGEOM_CAPSULE, size=[0.012, 0.035, 0], pos=(n * 0.05).tolist(),
+                      quat=_quat_z_to(up), rgba=STEEL, density=2000, friction=[1.2, 0.02, 0.001])
+        body.add_site(name="dec_wing_site", pos=(n * 0.05).tolist(), quat=_frame_quat(n, up))
+        spec.add_exclude(bodyname1=root.name, bodyname2="dec_wing")
+        parts["cab_wing"] = {"geom": "dec_wing_wing", "site": "dec_wing_site", "joint": "dec_wing_hinge",
+                             "on_door": False, "graspable": True}
+    if "peg" in names:           # a square peg about a key's length on two posts on the shelf, beside its key
+        L = float(rng.uniform(0.09, 0.12))                    # cradle (a key's bow lies on that cradle's -y side)
+        body = spec.worldbody.add_body(name="dec_peg", pos=[0, 0, -5.0])
+        body.add_freejoint(name="dec_peg_free")
+        # body frame as a key's (x towards the wall at rest); y along its length, the bar a hand closes on
+        body.add_geom(name="dec_peg_geom", type=_g.mjGEOM_BOX, size=[0.012, L / 2, 0.012], rgba=STEEL, density=1200,
+                      friction=[1.2, 0.02, 0.001])
+        body.add_site(name="dec_peg_grip")
+        y, h = yc + 0.14, 0.07
+        for i, s in enumerate((-1, 1)):
+            root.add_geom(name=f"cr_peg_post{i}", type=_g.mjGEOM_BOX, size=[0.006, 0.006, h / 2],
+                          pos=[0.12, y + s * (L / 2 - 0.012), SHELF_Z + 0.012 + h / 2], rgba=[0.3, 0.3, 0.32, 1],
+                          density=1000)
+        rest = (root.name, [0.12, y, SHELF_Z + 0.012 + h + 0.012], [0.0, 0, 0, 1.0])   # yawed by pi, as a key
+        props.append({"body": "dec_peg", "grip_site": "dec_peg_grip", "rest": rest})
+    return parts, props
 
 
 def _other_room(root, p: dict, cradles: dict, key_def: dict) -> None:
@@ -445,6 +582,11 @@ def add_home_door(spec: mujoco.MjSpec, fx: FixtureSpec, name: str = "home", pos=
     rec.keys = key_defs
     rec.drawer = _side_cabinet(spec, root, p, rec.cradles, key_defs[0])
     _other_room(root, p, rec.cradles, key_defs[0])
+    names = DECOYS if p.get("decoys") is True else tuple(p.get("decoys") or ())
+    if set(names) - set(DECOYS):
+        raise ValueError(f"unknown decoys {sorted(set(names) - set(DECOYS))} (have {DECOYS})")
+    if names:
+        rec.decoys, rec.props = _decoys(spec, root, door, p, names, face, n, to_hinge, -hs * wl / 2)
     rec.bodies = [root.name] + [b.name for b in spec.bodies if b.name not in before]
     return rec
 
@@ -495,6 +637,15 @@ class HomeDoorRuntime:
             self.cradle_frames[place] = [(m.body(bn).id, np.asarray(pos, float), np.asarray(q, float)) for bn, pos, q in lst]
         self.drawer = {"q": J(r.drawer["joint"]).qposadr[0], "jnt": J(r.drawer["joint"]).id,
                        "site": m.site(r.drawer["site"]).id, "range": r.drawer["range"]}
+        # decoy free bodies: put back on their rest pose at every reset, never captured by a lock
+        self.props = []
+        for pr in r.props:
+            b = m.body(pr["body"]).id
+            jid = m.body_jntadr[b]
+            bn, pos, q = pr["rest"]
+            self.props.append({"body": b, "qpos": m.jnt_qposadr[jid], "qvel": m.jnt_dofadr[jid],
+                               "grip": m.site(pr["grip_site"]).id, "name": pr["body"],
+                               "rest": (m.body(bn).id, np.asarray(pos, float), np.asarray(q, float))})
 
     # ------------------------------------------------------------------ reset
     def available_states(self) -> list[str]:
@@ -551,6 +702,13 @@ class HomeDoorRuntime:
             m.geom_conaffinity[k["geoms"]] = k["conaff"]
             if k["weld"] is not None:
                 d.eq_active[k["weld"]] = 0
+        for k in self.props:
+            bid, pos, quat = k["rest"]
+            wq = np.zeros(4)
+            mujoco.mju_mulQuat(wq, d.xquat[bid], quat)
+            d.qpos[k["qpos"]:k["qpos"] + 3] = d.xpos[bid] + d.xmat[bid].reshape(3, 3) @ pos
+            d.qpos[k["qpos"] + 3:k["qpos"] + 7] = wq
+            d.qvel[k["qvel"]:k["qvel"] + 6] = 0
         if r.key_lock:
             m.eq_data[self.kl["lock"], 0] = 0.0
         self.welded: int | None = None

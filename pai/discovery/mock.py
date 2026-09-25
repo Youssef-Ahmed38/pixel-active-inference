@@ -22,7 +22,13 @@ milliseconds per episode. The mechanics mirror HomeDoorRuntime, discretised:
   handle (an empty container), a coat hook, a pen-like object that fits nowhere; and, so that "close to
   the door" is not an oracle for "matters", door-mounted ones: a persistent round dial on the leaf next
   to the handle (a privacy indicator) and a coat hook on the leaf.
-- parts mounted on the leaf (handle, thumb-turn, door dial, door hook) carry the door when pulled or
+- shared shapes (Scenario.shared_shapes, off by default): so that a part's shape does not say which
+  mechanism it is, decoys take the mechanisms' shapes: a non-graspable disc on the cabinet front like
+  the lock cylinder (nothing goes into it), a persistent wing-shaped turn on the leaf like the
+  thumb-turn (it bolts nothing), and the door dial (then always present) takes the handle's shape and
+  size. Without the option each shape belongs to one mechanism (the lock cylinder is the only
+  non-graspable disc, the thumb-turn the only wing).
+- parts mounted on the leaf (handle, thumb-turn, door dial, door hook, door wing) carry the door when pulled or
   pushed, as in pai.discovery.physics (their carrier is the door hinge); only the handle releases the
   latch. The thumb-turn's thrown position reads "pos" (turned +1), as in physics.py where the thumb's
   angle is its physical orientation.
@@ -74,6 +80,7 @@ class Scenario:
     pen: bool = False               # a non-key elongated object
     door_dial: bool = False         # a persistent dial on the door leaf, next to the handle
     door_hook: bool = False         # a coat hook on the door leaf
+    shared_shapes: bool = False     # decoys shaped like the mechanisms (a disc, a wing, a handle-like dial)
     p_fail: float = 0.07
     extra: dict = field(default_factory=dict)
 
@@ -87,8 +94,11 @@ class Scenario:
 
 
 def sample_scenario(rng: np.random.Generator, split: str = "train", lock_state: str | None = None,
-                    key_place: str | None = None, type_name: str | None = None, p_fail: float = 0.07) -> Scenario:
-    """A random scene: a door type from the split that supports `lock_state`, placements, distractors."""
+                    key_place: str | None = None, type_name: str | None = None, p_fail: float = 0.07,
+                    shared_shapes: bool = False) -> Scenario:
+    """A random scene: a door type from the split that supports `lock_state`, placements, distractors.
+    shared_shapes: decoys shaped like the mechanisms (the door dial then always present); the random
+    draws here are the same as without it (the MockWorld built from it differs in more than the decoys)."""
     names = [n for n in scenario_types(split) if lock_state is None or lock_state in available_states(n)]
     if type_name is None:
         if not names:
@@ -104,8 +114,8 @@ def sample_scenario(rng: np.random.Generator, split: str = "train", lock_state: 
         place = key_place or str(rng.choice(PLACEMENTS, p=[0.3, 0.25, 0.3, 0.15]))
     return Scenario(type_name, state, place, n_keys=int(rng.integers(1, 4)) if has_key else 0,
                     seed=int(rng.integers(1 << 30)), dial=bool(rng.random() < 0.8), cabinet=bool(rng.random() < 0.6),
-                    pen=bool(rng.random() < 0.5), p_fail=p_fail, door_dial=bool(rng.random() < 0.5),
-                    door_hook=bool(rng.random() < 0.3))
+                    pen=bool(rng.random() < 0.5), p_fail=p_fail, door_dial=bool(rng.random() < 0.5) or shared_shapes,
+                    door_hook=bool(rng.random() < 0.3), shared_shapes=shared_shapes)
 
 
 class MockWorld:
@@ -146,6 +156,16 @@ class MockWorld:
                                                  hz + float(rng.uniform(-0.05, 0.22))), {"shape": "round", "size": 0.05})
         if sc.door_hook:
             spec["door_hook"] = ("none", True, (0.04, float(rng.uniform(-0.15, 0.15)), 1.75), {"shape": "peg", "size": 0.06})
+        if sc.shared_shapes:
+            # their places from a separate stream (the ids, colours and draws after this still differ)
+            srng = np.random.default_rng([sc.seed, 1])
+            spec["cab_disc"] = ("hinge", False, (0.26, cab_y - ls * float(srng.uniform(0.08, 0.14)), 0.72),
+                                {"shape": "disc", "size": 0.044})
+            spec["door_wing"] = ("hinge", True, (0.05, hy - ls * float(srng.uniform(0.1, 0.3)),
+                                                 hz + float(srng.uniform(0.3, 0.45))), {"shape": "wing", "size": 0.07})
+            if "door_dial" in spec:
+                j, g, pos, _ = spec["door_dial"]
+                spec["door_dial"] = (j, g, pos, {"shape": hattrs[1]["shape"], "size": hattrs[1]["size"]})
         names = list(spec)
         ids = [f"p{i + 1}" for i in rng.permutation(len(names))]
         self.pid = dict(zip(names, ids))
@@ -181,7 +201,7 @@ class MockWorld:
         self.unlock_sign = int(rng.choice([-1, 1]))
         self.plug, self.a0 = 0, self.tail
         self.door_open = self.drawer_open = self.cab_open = False
-        self.dial_q = {n: 0 for n in ("dial", "door_dial") if n in self.pid}   # persistent dials
+        self.dial_q = {n: 0 for n in ("dial", "door_dial", "door_wing") if n in self.pid}   # persistent dials
         self.hand: str | None = None
         self.hand_pos = np.array([0.6, 0.0, 1.0])
         self.t = 0.0
@@ -325,7 +345,7 @@ class MockWorld:
 
     def _move(self, name: str, fam: str, released: bool) -> bool:
         """Pull or push a part (moving whatever it is attached to); returns stalled."""
-        if name in ("door", "handle", "thumb", "door_dial", "door_hook"):   # the leaf and what is on it
+        if name in ("door", "handle", "thumb", "door_dial", "door_hook", "door_wing"):   # the leaf and what is on it
             if self.door_open:
                 return fam == "pull" if self.swing == "push" else False
             if name == "door" and fam == "pull":
@@ -358,7 +378,7 @@ class MockWorld:
                 self.cab_open = False
                 return False
             return True
-        return True    # dial, hook, cylinder: fixed to the furniture
+        return True    # dial, hook, cylinder, cabinet disc: fixed to the furniture
 
     def _object(self, a: Action) -> tuple[bool, str]:
         kind, oid = a[0], a[1]

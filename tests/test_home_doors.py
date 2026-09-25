@@ -182,3 +182,96 @@ def test_oracle_finds_the_key_in_the_drawer_and_opens_the_door():
         < r["events"].index("door_opened")
     r = run_oracle(env, seed=0, lock_state="key", key_place="other_room")
     assert not r["opened"] and "other room" in r["why"]
+
+
+# ---------------------------------------------------------------------------------------- decoys
+def _decoy_names(m) -> set:
+    return {m.body(b).name for b in range(m.nbody) if m.body(b).name.startswith("dec_")} | \
+        {m.joint(j).name for j in range(m.njnt) if m.joint(j).name.startswith("dec_")}
+
+
+def test_decoys_are_off_by_default_and_every_type_builds_stable_with_them():
+    from pai.envs.home_doors import DECOYS
+    assert not _decoy_names(home_env("hd_knob_pull_left").model)
+    for type_name in HOME_DOOR_TYPES:
+        env = home_env(type_name, decoys=True)
+        rec = env.runtime.rec
+        assert set(rec.decoys) == set(DECOYS) - {"peg"} and [pr["body"] for pr in rec.props] == ["dec_peg"]
+        env.reset(seed=0)
+        obs = run(env, 60)
+        assert env.stable() and obs["articulations"]["door"]["opening"] < 0.01
+        peg = env.runtime.props[0]
+        bid, pos, _ = peg["rest"]
+        rest = env.data.xpos[bid] + env.data.xmat[bid].reshape(3, 3) @ pos
+        assert np.linalg.norm(env.data.xpos[peg["body"]] - rest) < 0.01        # it lies still on its posts
+    env = home_env("hd_knob_pull_left", decoys=("cab_disc",))
+    assert set(env.runtime.rec.decoys) == {"cab_disc"} and not env.runtime.props
+    with pytest.raises(ValueError):
+        home_env("hd_knob_pull_left", decoys=("trapdoor",))
+
+
+def test_decoys_are_connected_to_nothing():
+    """No equality refers to a decoy, and turning every decoy joint to its stop (torques on the joints)
+    leaves bolts, latch and lock as they were: the door stays shut under a pull and nothing is logged."""
+    env = home_env("hd_knob_pull_left", decoys=True)
+    m, d, rt = env.model, env.data, env.runtime
+    dec_j = [j for j in range(m.njnt)
+             if m.joint(j).name.startswith("dec_") and m.jnt_type[j] == mujoco.mjtJoint.mjJNT_HINGE]
+    dec_b = {m.body(b).id for b in range(m.nbody) if m.body(b).name.startswith("dec_")}
+    assert len(dec_j) == 4 and len(dec_b) == 5
+    for e in range(m.neq):
+        if m.eq_type[e] == mujoco.mjtEq.mjEQ_JOINT:
+            assert m.eq_obj1id[e] not in dec_j and m.eq_obj2id[e] not in dec_j
+        elif m.eq_objtype[e] == mujoco.mjtObj.mjOBJ_BODY:
+            assert m.eq_obj1id[e] not in dec_b and m.eq_obj2id[e] not in dec_b
+    for state in ("both", "unlocked"):
+        for sign in (1.0, -1.0):
+            env.reset(seed=0, lock_state=state, key_place="table")
+            bolts = {k: rt.bolt_thrown(k) for k in rt.bolt_q}
+            q0 = d.qpos[[m.jnt_qposadr[j] for j in dec_j]].copy()
+            for _ in range(80):
+                d.qfrc_applied[:] = 0
+                d.qfrc_applied[[m.jnt_dofadr[j] for j in dec_j]] = sign * 0.5
+                d.qfrc_applied[rt.door["dof"]] = 25.0
+                env.step(HOLD)
+            d.qfrc_applied[:] = 0
+            moved = np.abs(d.qpos[[m.jnt_qposadr[j] for j in dec_j]] - q0)
+            assert np.all(moved > 0.5), moved                                  # they do turn
+            assert env.stable() and d.qpos[rt.door["q"]] < 0.03                 # the latch (and bolts) hold the door
+            assert {k: rt.bolt_thrown(k) for k in rt.bolt_q} == bolts
+            assert abs(d.qpos[rt.kl["plug_q"]]) < 0.05 and not rt.inserted
+            assert [e["type"] for e in rt.events] == ["home_reset"]
+
+
+def test_the_peg_is_never_taken_for_a_key():
+    """Held at the keyhole mouth, aligned, and pushed in, the peg is not captured (only keys are)."""
+    env = home_env("hd_knob_pull_left", decoys=True)
+    rt, m, d = env.runtime, env.model, env.data
+    env.reset(seed=0, lock_state="key", key_place="table")
+    peg = rt.props[0]
+    pb = rt.kl["plug_body"]
+    R = d.xmat[pb].reshape(3, 3).copy()
+    q = np.zeros(4)
+    mujoco.mju_mat2Quat(q, R.flatten())
+    d.qpos[peg["qpos"]:peg["qpos"] + 3] = d.xpos[pb] - 0.03 * R[:, 0]
+    d.qpos[peg["qpos"] + 3:peg["qpos"] + 7] = q
+    d.qvel[peg["qvel"]:peg["qvel"] + 6] = 0
+    mujoco.mj_forward(m, d)
+    lift = 9.81 * m.body_subtreemass[peg["body"]]
+    for _ in range(80):
+        d.xfrc_applied[peg["body"]] = 0
+        d.xfrc_applied[peg["body"], :3] = 3.0 * R[:, 0] + [0, 0, lift]
+        env.step(HOLD)
+    d.xfrc_applied[:] = 0
+    assert env.stable() and rt.welded is None and not rt.inserted and rt.bolt_thrown("key")
+    assert "key_inserted" not in [e["type"] for e in rt.events]
+
+
+def test_the_oracle_opens_a_push_door_with_decoys_as_without():
+    """The look-alikes stand in nobody's way: the scripted solver opens a push door (its leaf swings over
+    the far table) with the key in the drawer, decoys on."""
+    from pai.envs.home_oracle import run_oracle
+    env = home_env("hd_knob_push_right", decoys=True)
+    r = run_oracle(env, seed=0, lock_state="key", key_place="drawer")
+    assert r["opened"] and not r["why"], r["why"]
+    assert r["events"].index("drawer_opened") < r["events"].index("key_inserted") < r["events"].index("door_opened")

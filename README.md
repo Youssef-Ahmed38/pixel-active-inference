@@ -231,30 +231,51 @@ with probe P while conditions C hold", learns which action changes what, picks e
 expected information gain per second of effort, plans once a rule is likely, explains what it found,
 stops when nothing reachable is left ("the key must be elsewhere"), and stores a recipe for next time.
 
-Symbolic door with the same mechanics, 200 scenes per case, held-out door types; mean actions until
-the door opens (success rate when below 100%):
+Clean re-run on fresh seeds (parameters frozen, seeds offset by 100000). Symbolic door with the same
+mechanics, 200 scenes per case, held-out door types; mean actions until the door opens (success rate
+when below 100%):
 
 | case | discovery | novelty-only curiosity | random |
 |---|---|---|---|
-| latched (turn the knob while pulling) | **6.9** | 117.1 (99.5%) | 84.0 (99.5%) |
-| thumb-turn deadbolt | **36.8** | 134.5 (99%) | 119.1 (98%) |
-| key in the drawer | **222.0** (99%) | 685.5 (44%) | 776.6 (45%) |
-| thumb-turn + key | **211.0** | 558.3 (61%) | 745.6 (46%) |
-| key in the other room (no solution) | stops and says so in 200/200 | runs to the budget | runs to the budget |
+| latched (turn the knob while pulling) | **7.0** | 109.6 (99.5%) | 87.1 (99.5%) |
+| thumb-turn deadbolt | **35.4** | 135.7 (99.5%) | 96.8 (99.5%) |
+| key in the drawer | **202.2** | 635.3 (52.5%) | 784.2 (48.5%) |
+| thumb-turn + key | **214.2** | 529.7 (69.5%) | 688.7 (57%) |
+| key in the other room (no solution) | stops and says so in 199/200 | runs to the budget | runs to the budget |
 
-With a recipe from one solved door, a new key-locked door of a held-out type takes 145 actions
-instead of 205. In MuJoCo (Robotiq gripper, same agent unchanged) it opened 18 of 25 solvable doors:
-all latched and deadbolted ones, 8 of 15 key-locked ones; the failures are the body's (dropped keys,
-missed inserts). Full tables: [results/discovery_eval.md](results/discovery_eval.md).
+With a recipe from one solved door, a new key-locked door of a held-out type takes 150.8 actions
+instead of 210.2. The built-in preference for parts near the door helps but is not what solves it.
+Over all solvable held-out scenes the agent needs 111.6 actions, 158.8 with locality switched off,
+157.4 with decoys shaped like the mechanisms, and 227.2 with both. The novelty baseline needs 332.3
+with locality on and no such decoys.
 
-Caveats (see [docs/DISCOVERY.md](docs/DISCOVERY.md#limits-of-this-evaluation-from-an-independent-review)): the agent has a built-in preference for parts near the door, the physics scene has no decoy parts yet, and
-held-out types change the door, not the lock mechanisms. A clean re-run on fresh seeds, decoys in
-physics and an ablation without the locality prior come next.
+In MuJoCo, with decoys on the door and the cabinet (Robotiq gripper, same agent unchanged), it opened
+12 of 25 solvable doors: all 5 latched ones, all 5 deadbolted ones (but by chance: an exploratory turn
+of the thumb piece retracted the bolt, and its explanations miss the bolt) and 2 of 15 key-locked ones
+(3 of which the scripted solver cannot open with this gripper either). About half of
+its actions went to decoys, and the key cases ran out the 300-action budget. With other bodies it
+opened 10 (Robotiq), 8 (Allegro), 6 (LEAP), 4 (Shadow) and 0 (Panda, G1) of 20 solvable doors. On the
+hands most failures are skills that did not execute. Full tables:
+[results/discovery_v2/eval.md](results/discovery_v2/eval.md) and
+[results/discovery_bodies/report.md](results/discovery_bodies/report.md).
 
-<img src="docs/media/discovery/key_in_drawer.gif" width="360">
+Caveats (see [docs/DISCOVERY.md](docs/DISCOVERY.md#limits-of-this-evaluation-from-an-independent-review)):
+- The physics numbers are small: 30 episodes per config and 24 per body.
+- Held-out types change the door, not the lock mechanisms.
+- In physics the agent never gave up on a no-solution door within 300 actions.
+- A skill that fails to execute gives the agent no evidence, so with Panda it kept trying to grasp the
+  same part, up to 300 times in a row.
 
-<sub>The agent in physics, key hidden in the drawer: each frame shows its action, what changed, its
-most probable rule, and the probability it still gives to a cause it has not thought of.</sub>
+The first run on overlapping seeds ([results/discovery_eval.md](results/discovery_eval.md)) gave mock
+numbers whose intervals overlap these in every case. It opened 18 of 25 doors in physics, but that
+scene had no decoys.
+
+<img src="docs/media/discovery/key_in_drawer.gif" width="360"> <img src="docs/media/discovery/allegro_latch.gif" width="360">
+
+<sub>Left: the agent in physics (first run, no decoys), key hidden in the drawer. Right: the same
+agent with the Allegro hand and decoys on, a latched door (19 actions). Each frame shows its action,
+what changed, its most probable rule, and the probability it still gives to a cause it has not
+thought of.</sub>
 
 ## Phase 0 results: PixelAI baseline
 

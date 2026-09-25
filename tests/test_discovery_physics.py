@@ -199,3 +199,99 @@ def test_holding_an_object_changes_what_can_be_done():
     assert o.executed and not o.stalled and not o.changed and w.features()[f"obj:{good}.where"] == "held"
     o = w.execute(("insert", good, ids["cylinder"]))
     assert w.features()[f"obj:{good}.where"] == f"in:{ids['cylinder']}" and ("turn_held", good, 1) in w.actions()
+
+
+# ---------------------------------------------------------------------------------------- decoys
+DECOY_PARTS = ("door_dial", "door_wing", "door_hook", "cab_disc", "cab_wing")
+
+
+def test_decoys_are_ordinary_entities_whose_shapes_are_the_mechanisms():
+    """With the fixture's decoys on, the look-alikes are parts and objects like any other: the same
+    attribute keys, and each one's (joint, graspable, shape, size) is that of a real mechanism, so
+    neither shape nor size tells them apart. Ids and attributes still carry no semantics."""
+    for type_name in ("hd_knob_pull_left", "hd_ball_pull_left", "hd_lever_pull_right", "hd_pushbar_push_left"):
+        w = world(type_name, n_keys=2, decoys=True)
+        w.reset(0, lock_state="unlocked", key_place="table")
+        ids = ids_of(w)
+        ents = {e.id: e for e in w.entities()}
+        assert set(DECOY_PARTS) | {"dec_peg"} <= set(ids)
+        assert all(set(e.attrs) == {"shape", "size", "colour"} for e in ents.values())
+        look = lambda n: (ents[ids[n]].joint, ents[ids[n]].graspable, ents[ids[n]].attrs["shape"])   # noqa: E731
+        size = lambda n: ents[ids[n]].attrs["size"]                                                  # noqa: E731
+        handle = ents[ids["handle"]].attrs["shape"]
+        assert ents[ids["door_dial"]].attrs["shape"] == handle
+        if handle != "bar" or type_name == "hd_lever_pull_right":        # a push bar is 0.6 m, its look-alike 0.12
+            assert size("door_dial") == size("handle")
+        assert look("cab_disc") == ("hinge", False, "disc")
+        assert look("door_wing") == look("cab_wing") == ("hinge", True, "wing")
+        assert ents[ids["door_hook"]].attrs["shape"] == "wing" and ents[ids["door_hook"]].joint == "none"
+        if "cylinder" in ids:
+            assert (look("cab_disc"), size("cab_disc")) == (look("cylinder"), size("cylinder"))
+        if "thumb" in ids:
+            assert (look("door_wing"), size("door_wing")) == (look("thumb"), size("thumb")) == \
+                (look("cab_wing"), size("cab_wing"))
+        objs = [e for e in ents.values() if e.kind == "object"]
+        assert {e.attrs["shape"] for e in objs} == {"elongated"} and len(objs) == 3        # 2 keys and the peg
+        assert abs(size("dec_peg") - size("home_key0")) < 0.05
+        shown = [(e.id, e.attrs) for e in ents.values()] + [list(w.features().items()), w.actions(), w.goal()]
+        assert not [s for s in _strings(shown) if SEMANTIC.search(s)]
+        # probes are offered on them exactly as on the mechanisms of the same look
+        acts = w.actions()
+        assert {a[0] for a in acts if a[1] == ids["cab_disc"]} == {"push"}
+        assert {(a[0], *a[2:]) for a in acts if a[1] == ids["door_wing"]} == \
+            {(a[0], *a[2:]) for a in acts if a[1] == ids["handle"]}
+    w = world("hd_knob_pull_left", n_keys=2)
+    w.reset(0, lock_state="unlocked", key_place="table")
+    assert not {n for n in ids_of(w) if n in DECOY_PARTS or n.startswith("dec_")}          # off by default
+
+
+def test_decoys_share_the_mock_worlds_vocabulary():
+    """The decoys the MockWorld's shared-shape scenes also have agree on joint and graspable, and on
+    shape except the door hook (the mock calls a hook "peg", a word the physics' primitive-only shape
+    classes never produce; here it is a short capsule, a "wing")."""
+    for type_name in ("hd_knob_pull_left", "hd_lever_pull_right"):
+        w = world(type_name, n_keys=2, decoys=True)
+        w.reset(0, lock_state="unlocked", key_place="table")
+        mw = MockWorld(Scenario(type_name, "latch", "table", n_keys=2, seed=0, p_fail=0.0, door_dial=True,
+                                door_hook=True, shared_shapes=True))
+        pe = {e.id: e for e in w.entities()}
+        me = {e.id: e for e in mw.entities()}
+        pid, mid = ids_of(w), mw.pid
+        shared = set(pid) & set(mid) & set(DECOY_PARTS)
+        assert {"door_dial", "door_wing", "door_hook", "cab_disc"} <= shared
+        for n in shared:
+            a, b = pe[pid[n]], me[mid[n]]
+            assert (a.joint, a.graspable) == (b.joint, b.graspable), (type_name, n)
+            if n != "door_hook":
+                assert a.attrs["shape"] == b.attrs["shape"], (type_name, n)
+        kind = lambda f: re.sub(r"[po]\d+", "#", f)     # noqa: E731
+        assert {kind(k) for k in w.features()} <= {kind(k) for k in mw.features()} | {"obj:#.angle", "obj:#.where"}
+
+
+def test_working_the_decoys_never_changes_the_door():
+    """On a door locked by both locks, turning the look-alikes (they turn and stay turned), pressing
+    the disc and putting the peg to the keyhole change nothing about the door: the bolts, the latch, the
+    door hinge and the lock's plug stay where they were, and the runtime logs no event."""
+    w = world("hd_knob_pull_left", n_keys=2, decoys=True)
+    w.reset(0, lock_state="both", key_place="table")
+    ids = ids_of(w)
+    rt, d = w.rt, w.d
+
+    def door_state():
+        return (round(float(d.qpos[rt.door["q"]]), 3), {k: round(float(d.qpos[q]), 4) for k, q in rt.bolt_q.items()},
+                bool(d.eq_active[rt.latch]), round(float(d.qpos[rt.kl["plug_q"]]), 2), rt.inserted)
+
+    before = door_state()
+    turned = set()
+    for a in [("turn", ids["door_dial"], 1), ("turn", ids["door_wing"], -1), ("turn", ids["cab_wing"], 1),
+              ("push", ids["cab_disc"]), ("turn", ids["door_hook"], 1), ("pick", ids["dec_peg"]),
+              ("insert", ids["dec_peg"], ids["cylinder"])]:
+        o = w.execute(a)
+        assert not w.unstable and not w.goal_reached(), (a, o.notes)
+        turned |= {k for k, (x, y) in o.changed.items() if k.endswith(".angle") and y in ("pos", "neg")}
+        assert door_state() == before, (a, o.notes)
+    assert {f"part:{ids[n]}.angle" for n in ("door_dial", "door_wing", "cab_wing")} <= turned
+    assert w.features()[f"obj:{ids['dec_peg']}.where"] != f"in:{ids['cylinder']}"
+    assert w.truth()["events"] == ["home_reset"]
+    o = w.execute(("pull", ids["handle"]))                       # and the door is as locked as before
+    assert o.stalled and not w.goal_reached()

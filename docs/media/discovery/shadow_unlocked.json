@@ -1,0 +1,50 @@
+{
+ "body": "shadow",
+ "type": "hd_lever_pull_right",
+ "case": "unlocked",
+ "seed": 200000,
+ "success": true,
+ "actions": 8,
+ "sim_s": 103.9,
+ "frames": 56,
+ "bytes": 646401,
+ "explanation": "The door opens by pulling the wing part p2.",
+ "actions_list": [
+  [
+   "push",
+   "p5"
+  ],
+  [
+   "pull",
+   "p5"
+  ],
+  [
+   "press_push",
+   "p5"
+  ],
+  [
+   "turn_push",
+   "p5",
+   -1
+  ],
+  [
+   "turn_push",
+   "p5",
+   1
+  ],
+  [
+   "turn_pull",
+   "p5",
+   1
+  ],
+  [
+   "turn_pull",
+   "p5",
+   -1
+  ],
+  [
+   "pull",
+   "p2"
+  ]
+ ]
+}

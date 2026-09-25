@@ -17,7 +17,14 @@ On a new scene (other ids, layout, door type) RecipeBook.priors() turns the book
 bonuses for the belief: per probe (released vs plain, pull vs push family, direction, role similarity of
 the part) and per literal (the same feature kind and value class on an entity of a similar role, e.g.
 "a disc-like part near the goal turned either way" or "an elongated object inside such a part"), plus a
-bias on the value of opening containers. The belief stays a belief: a recipe that does not fit (a door
+bias on the value of opening containers.
+
+Shape is one cue among five (weight b_shape = 0.2 of 1.3), never a key on its own: nothing here looks
+an entity up by its shape, so a scene where a decoy shares a mechanism's shape (MockWorld with
+Scenario.shared_shapes: a disc on the cabinet like the lock cylinder, a wing on the leaf like the
+thumb-turn, a door dial shaped like the handle) only makes the shape term equal for the two, and the
+other cues (joint, graspable, near, offset on the goal) have to tell them apart. b_shape = 0 removes
+shape altogether (an ablation). The belief stays a belief: a recipe that does not fit (a door
 without a lock) is overruled by the first failed probes.
 """
 
@@ -47,11 +54,12 @@ def role(e, goal, ents: dict | None = None) -> dict:
             "offset": d(e) / max(half, 1e-6) if near else None}
 
 
-def similarity(a: dict, b: dict, offset_scale: float = 0.1) -> float:
-    """0..1: how well two roles match (different kinds do not match at all); offsets match smoothly."""
+def similarity(a: dict, b: dict, offset_scale: float = 0.1, shape: float = 0.2) -> float:
+    """0..1: how well two roles match (different kinds do not match at all); offsets match smoothly.
+    `shape`: the weight of the shape cue (0 = ignore shapes)."""
     if a is None or b is None or a["kind"] != b["kind"]:
         return 0.0
-    w = {"joint": 0.2, "graspable": 0.2, "shape": 0.2, "near": 0.3, "is_goal": 0.1}
+    w = {"joint": 0.2, "graspable": 0.2, "shape": shape, "near": 0.3, "is_goal": 0.1}
     s = sum(wt for k, wt in w.items() if a.get(k) == b.get(k))
     oa, ob = a.get("offset"), b.get("offset")
     s += 0.3 * (float(np.exp(-abs(oa - ob) / offset_scale)) if oa is not None and ob is not None else float(oa == ob))
@@ -119,10 +127,10 @@ class RecipeBook:
     """A library of recipes and the priors they induce on a new scene."""
 
     def __init__(self, b_released: float = 1.5, b_family: float = 0.5, b_dir: float = 0.3, b_role: float = 1.5,
-                 b_lit: float = 3.0, rho_container: float = 0.4):
+                 b_lit: float = 3.0, rho_container: float = 0.4, b_shape: float = 0.2):
         self.recipes: list[Recipe] = []
         self.b_released, self.b_family, self.b_dir, self.b_role = b_released, b_family, b_dir, b_role
-        self.b_lit, self.rho_container = b_lit, rho_container
+        self.b_lit, self.rho_container, self.b_shape = b_lit, rho_container, b_shape
 
     def __len__(self) -> int:
         return len(self.recipes)
@@ -141,6 +149,8 @@ class RecipeBook:
         goal = ents.get(goal_id)
         roles = {eid: role(e, goal, ents) for eid, e in ents.items()}
 
+        sim = lambda a, b: similarity(a, b, shape=self.b_shape)   # noqa: E731
+
         def rl(eid):
             if eid not in roles and eid in ents:
                 roles[eid] = role(ents[eid], goal, ents)
@@ -152,7 +162,7 @@ class RecipeBook:
                 best = 0.0
                 for r in self.recipes:
                     b = (self.b_released * ((p[0] in RELEASED) == r.released) + self.b_family * (FAMILY[p[0]] == r.family)
-                         + self.b_dir * (len(p) > 2 and p[2] == r.probe_dir) + self.b_role * similarity(rl(p[1]), r.probe_role))
+                         + self.b_dir * (len(p) > 2 and p[2] == r.probe_dir) + self.b_role * sim(rl(p[1]), r.probe_role))
                     best = max(best, b)
                 out[i] = best
             return out
@@ -166,15 +176,15 @@ class RecipeBook:
                     for ck, cvc, crole, cin in r.conditions:
                         if ck != kind or cvc != vc:
                             continue
-                        s = similarity(rl(e), crole)
+                        s = sim(rl(e), crole)
                         if cin is not None:
-                            s *= similarity(rl(v[3:]), cin)
+                            s *= sim(rl(v[3:]), cin)
                         best = max(best, self.b_lit * s * s)
                     # the object that fitted, wherever it ends up: also 'in' the part that turned
                     if r.key_role is not None and kind == "where" and vc == "in":
                         cin = next((c[3] for c in r.conditions if c[3] is not None), None)
                         part_role = next((c[2] for c in r.conditions if c[0] == "angle" and c[1] == "turned"), cin)
-                        s = similarity(rl(e), r.key_role) * similarity(rl(v[3:]), part_role)
+                        s = sim(rl(e), r.key_role) * sim(rl(v[3:]), part_role)
                         best = max(best, self.b_lit * s * s)
                 out[i] = best
             return out

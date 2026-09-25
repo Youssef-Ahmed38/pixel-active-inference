@@ -1,0 +1,98 @@
+{
+ "body": "allegro",
+ "type": "hd_knob_pull_left",
+ "case": "latch",
+ "seed": 200000,
+ "success": true,
+ "actions": 19,
+ "sim_s": 178.0,
+ "frames": 74,
+ "bytes": 729532,
+ "explanation": "The door was latched: it opens when I keep turning the round part p10 while pulling.",
+ "actions_list": [
+  [
+   "push",
+   "p5"
+  ],
+  [
+   "pull",
+   "p5"
+  ],
+  [
+   "press_push",
+   "p5"
+  ],
+  [
+   "turn_push",
+   "p5",
+   -1
+  ],
+  [
+   "turn_push",
+   "p5",
+   1
+  ],
+  [
+   "turn_pull",
+   "p5",
+   1
+  ],
+  [
+   "turn_pull",
+   "p5",
+   -1
+  ],
+  [
+   "pull",
+   "p2"
+  ],
+  [
+   "push",
+   "p3"
+  ],
+  [
+   "pull",
+   "p3"
+  ],
+  [
+   "press_push",
+   "p3"
+  ],
+  [
+   "turn_push",
+   "p3",
+   1
+  ],
+  [
+   "turn_pull",
+   "p3",
+   1
+  ],
+  [
+   "turn_pull",
+   "p3",
+   -1
+  ],
+  [
+   "push",
+   "p6"
+  ],
+  [
+   "push",
+   "p10"
+  ],
+  [
+   "pull",
+   "p10"
+  ],
+  [
+   "press_push",
+   "p10"
+  ],
+  [
+   "turn_pull",
+   "p10",
+   -1
+  ]
+ ]
+}

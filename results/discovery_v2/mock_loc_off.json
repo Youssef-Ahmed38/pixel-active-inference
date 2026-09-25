@@ -1,0 +1,1983 @@
+{
+ "config": {
+  "n": 200,
+  "budget": 1000,
+  "seed": 0,
+  "seed_offset": 100000,
+  "config": "loc_off",
+  "locality": {
+   "radius": null,
+   "probe_prior": 0.0,
+   "lit_prior": 0.0,
+   "explain": "evidence"
+  },
+  "shared_shapes": false,
+  "agents": [
+   "discovery"
+  ],
+  "reuse_pairs": 0,
+  "bootstrap": 2000,
+  "processes": 8,
+  "wall_eval_s": 2787,
+  "wall_reuse_s": 0,
+  "code": {
+   "pai/discovery/__init__.py": "aa360bad9b2b",
+   "pai/discovery/agent.py": "1ecf84275bcd",
+   "pai/discovery/belief.py": "4e2639da131c",
+   "pai/discovery/bodies.py": "3c9ea7a9d2ab",
+   "pai/discovery/explain.py": "8a73388961ed",
+   "pai/discovery/interface.py": "dd6a4c757344",
+   "pai/discovery/mock.py": "574cf79af2af",
+   "pai/discovery/physics.py": "30b85911b1f7",
+   "pai/discovery/recipes.py": "d38ead481bdf",
+   "pai/envs/home_doors.py": "56b66578d05a",
+   "scripts/discovery_eval.py": "53a8f16c0a58"
+  }
+ },
+ "cases": {
+  "test": {
+   "both": {
+    "discovery": {
+     "n": 200,
+     "success": {
+      "v": 0.975,
+      "ci": [
+       0.95,
+       0.995
+      ],
+      "n": 200
+     },
+     "actions_capped": {
+      "v": 280.555,
+      "ci": [
+       259.32962499999996,
+       302.001125
+      ],
+      "n": 200
+     },
+     "actions_to_success": {
+      "v": 262.10769230769233,
+      "ci": [
+       247.36410256410255,
+       277.0825641025641
+      ],
+      "n": 195
+     },
+     "actions_to_success_median": {
+      "v": 245.0,
+      "ci": [
+       228.0,
+       255.0
+      ],
+      "n": 195
+     },
+     "time_to_success": {
+      "v": 1086.365459851252,
+      "ci": [
+       1025.6935556613373,
+       1147.5990302803048
+      ],
+      "n": 195
+     },
+     "time_to_success_median": {
+      "v": 1014.3001168735569,
+      "ci": [
+       946.1829731965856,
+       1064.0612851731564
+      ],
+      "n": 195
+     },
+     "gave_up": {
+      "v": 0.015,
+      "ci": [
+       0.0,
+       0.035
+      ],
+      "n": 200
+     },
+     "wall": 19.35273307200002,
+     "explanation": {
+      "v": 0.8525,
+      "ci": [
+       0.831875,
+       0.871875
+      ],
+      "n": 200
+     },
+     "explanation_relevant": {
+      "v": 0.8525,
+      "ci": [
+       0.831875,
+       0.871875
+      ],
+      "n": 200
+     },
+     "false_claims": 0
+    }
+   },
+   "deadbolt": {
+    "discovery": {
+     "n": 200,
+     "success": {
+      "v": 0.99,
+      "ci": [
+       0.975,
+       1.0
+      ],
+      "n": 200
+     },
+     "actions_capped": {
+      "v": 66.835,
+      "ci": [
+       51.588875,
+       85.8705
+      ],
+      "n": 200
+     },
+     "actions_to_success": {
+      "v": 57.40909090909091,
+      "ci": [
+       47.499368686868685,
+       69.71262626262627
+      ],
+      "n": 198
+     },
+     "actions_to_success_median": {
+      "v": 16.5,
+      "ci": [
+       15.0,
+       30.5
+      ],
+      "n": 198
+     },
+     "time_to_success": {
+      "v": 247.108370062292,
+      "ci": [
+       203.85528231294313,
+       301.13335408677324
+      ],
+      "n": 198
+     },
+     "time_to_success_median": {
+      "v": 70.93903134608291,
+      "ci": [
+       65.77234433732272,
+       137.63369915448118
+      ],
+      "n": 198
+     },
+     "gave_up": {
+      "v": 0.0,
+      "ci": [
+       0.0,
+       0.0
+      ],
+      "n": 200
+     },
+     "wall": 5.078181911999937,
+     "explanation": {
+      "v": 0.8864285714285713,
+      "ci": [
+       0.8742857142857143,
+       0.8978571428571429
+      ],
+      "n": 200
+     },
+     "explanation_relevant": {
+      "v": 0.8125,
+      "ci": [
+       0.795,
+       0.83
+      ],
+      "n": 200
+     },
+     "false_claims": 2
+    }
+   },
+   "key_drawer": {
+    "discovery": {
+     "n": 200,
+     "success": {
+      "v": 0.975,
+      "ci": [
+       0.95,
+       0.995
+      ],
+      "n": 200
+     },
+     "actions_capped": {
+      "v": 278.855,
+      "ci": [
+       260.65387499999997,
+       300.29537500000004
+      ],
+      "n": 200
+     },
+     "actions_to_success": {
+      "v": 260.36410256410255,
+      "ci": [
+       248.6051282051282,
+       274.1498717948718
+      ],
+      "n": 195
+     },
+     "actions_to_success_median": {
+      "v": 247.0,
+      "ci": [
+       234.0,
+       256.0
+      ],
+      "n": 195
+     },
+     "time_to_success": {
+      "v": 1084.1089414046517,
+      "ci": [
+       1034.521428489034,
+       1141.4380664984653
+      ],
+      "n": 195
+     },
+     "time_to_success_median": {
+      "v": 1029.8690792021098,
+      "ci": [
+       974.661480203804,
+       1062.1419919256293
+      ],
+      "n": 195
+     },
+     "gave_up": {
+      "v": 0.015,
+      "ci": [
+       0.0,
+       0.035
+      ],
+      "n": 200
+     },
+     "wall": 12.799249272499965,
+     "explanation": {
+      "v": 0.909375,
+      "ci": [
+       0.886859375,
+       0.930625
+      ],
+      "n": 200
+     },
+     "explanation_relevant": {
+      "v": 0.9478571428571427,
+      "ci": [
+       0.9242857142857143,
+       0.9685714285714286
+      ],
+      "n": 200
+     },
+     "false_claims": 72
+    }
+   },
+   "key_table": {
+    "discovery": {
+     "n": 200,
+     "success": {
+      "v": 0.99,
+      "ci": [
+       0.975,
+       1.0
+      ],
+      "n": 200
+     },
+     "actions_capped": {
+      "v": 286.56,
+      "ci": [
+       269.88737499999996,
+       304.118
+      ],
+      "n": 200
+     },
+     "actions_to_success": {
+      "v": 279.35353535353534,
+      "ci": [
+       264.81729797979796,
+       294.3891414141414
+      ],
+      "n": 198
+     },
+     "actions_to_success_median": {
+      "v": 270.5,
+      "ci": [
+       256.5,
+       278.5
+      ],
+      "n": 198
+     },
+     "time_to_success": {
+      "v": 1160.3777976657038,
+      "ci": [
+       1099.8956956285708,
+       1222.3275910272791
+      ],
+      "n": 198
+     },
+     "time_to_success_median": {
+      "v": 1121.8298219058315,
+      "ci": [
+       1055.0924129956124,
+       1162.811885858084
+      ],
+      "n": 198
+     },
+     "gave_up": {
+      "v": 0.005,
+      "ci": [
+       0.0,
+       0.015
+      ],
+      "n": 200
+     },
+     "wall": 16.972514403500007,
+     "explanation": {
+      "v": 0.924375,
+      "ci": [
+       0.908125,
+       0.93875
+      ],
+      "n": 200
+     },
+     "explanation_relevant": {
+      "v": 0.9707142857142856,
+      "ci": [
+       0.9564285714285714,
+       0.9828571428571428
+      ],
+      "n": 200
+     },
+     "false_claims": 80
+    }
+   },
+   "latch": {
+    "discovery": {
+     "n": 200,
+     "success": {
+      "v": 1.0,
+      "ci": [
+       1.0,
+       1.0
+      ],
+      "n": 200
+     },
+     "actions_capped": {
+      "v": 36.975,
+      "ci": [
+       33.37425,
+       40.795625
+      ],
+      "n": 200
+     },
+     "actions_to_success": {
+      "v": 36.975,
+      "ci": [
+       33.37425,
+       40.795625
+      ],
+      "n": 200
+     },
+     "actions_to_success_median": {
+      "v": 18.5,
+      "ci": [
+       16.0,
+       45.0
+      ],
+      "n": 200
+     },
+     "time_to_success": {
+      "v": 162.54456283763432,
+      "ci": [
+       146.65398433784003,
+       179.08331395769633
+      ],
+      "n": 200
+     },
+     "time_to_success_median": {
+      "v": 80.72643046864738,
+      "ci": [
+       69.98749807832331,
+       201.50507274881434
+      ],
+      "n": 200
+     },
+     "gave_up": {
+      "v": 0.0,
+      "ci": [
+       0.0,
+       0.0
+      ],
+      "n": 200
+     },
+     "wall": 1.6807350280000537,
+     "explanation": {
+      "v": 0.9750000000000001,
+      "ci": [
+       0.9671428571428572,
+       0.9821428571428572
+      ],
+      "n": 200
+     },
+     "explanation_relevant": {
+      "v": 1.0,
+      "ci": [
+       1.0,
+       1.0
+      ],
+      "n": 200
+     },
+     "false_claims": 35
+    }
+   },
+   "no_solution": {
+    "discovery": {
+     "n": 200,
+     "success": {
+      "v": 0.0,
+      "ci": [
+       0.0,
+       0.0
+      ],
+      "n": 200
+     },
+     "actions_capped": {
+      "v": 1000.0,
+      "ci": [
+       1000.0,
+       1000.0
+      ],
+      "n": 200
+     },
+     "actions_to_success": {
+      "v": null,
+      "ci": [
+       null,
+       null
+      ],
+      "n": 0
+     },
+     "actions_to_success_median": {
+      "v": null,
+      "ci": [
+       null,
+       null
+      ],
+      "n": 0
+     },
+     "time_to_success": {
+      "v": null,
+      "ci": [
+       null,
+       null
+      ],
+      "n": 0
+     },
+     "time_to_success_median": {
+      "v": null,
+      "ci": [
+       null,
+       null
+      ],
+      "n": 0
+     },
+     "gave_up": {
+      "v": 1.0,
+      "ci": [
+       1.0,
+       1.0
+      ],
+      "n": 200
+     },
+     "wall": 15.68768969250008,
+     "actions_to_give_up": {
+      "v": 533.675,
+      "ci": [
+       506.5635,
+       558.843625
+      ],
+      "n": 200
+     },
+     "actions_to_give_up_median": {
+      "v": 535.0,
+      "ci": [
+       481.4375,
+       597.0
+      ],
+      "n": 200
+     },
+     "time_to_give_up": {
+      "v": 2307.9661978425966,
+      "ci": [
+       2190.670831704114,
+       2415.6650195233906
+      ],
+      "n": 200
+     },
+     "explanation": {
+      "v": 1.0,
+      "ci": [
+       1.0,
+       1.0
+      ],
+      "n": 200
+     },
+     "explanation_relevant": {
+      "v": 1.0,
+      "ci": [
+       1.0,
+       1.0
+      ],
+      "n": 200
+     },
+     "false_claims": 0
+    }
+   },
+   "unlocked": {
+    "discovery": {
+     "n": 200,
+     "success": {
+      "v": 1.0,
+      "ci": [
+       1.0,
+       1.0
+      ],
+      "n": 200
+     },
+     "actions_capped": {
+      "v": 3.2,
+      "ci": [
+       3.025,
+       3.38
+      ],
+      "n": 200
+     },
+     "actions_to_success": {
+      "v": 3.2,
+      "ci": [
+       3.025,
+       3.38
+      ],
+      "n": 200
+     },
+     "actions_to_success_median": {
+      "v": 3.0,
+      "ci": [
+       3.0,
+       4.0
+      ],
+      "n": 200
+     },
+     "time_to_success": {
+      "v": 13.382727471675649,
+      "ci": [
+       12.653204248189823,
+       14.077944719308844
+      ],
+      "n": 200
+     },
+     "time_to_success_median": {
+      "v": 13.698852920998085,
+      "ci": [
+       13.608897155582891,
+       15.147994025755992
+      ],
+      "n": 200
+     },
+     "gave_up": {
+      "v": 0.0,
+      "ci": [
+       0.0,
+       0.0
+      ],
+      "n": 200
+     },
+     "wall": 0.142182401,
+     "explanation": {
+      "v": 1.0,
+      "ci": [
+       1.0,
+       1.0
+      ],
+      "n": 200
+     },
+     "explanation_relevant": {
+      "v": 1.0,
+      "ci": [
+       1.0,
+       1.0
+      ],
+      "n": 200
+     },
+     "false_claims": 0
+    }
+   }
+  },
+  "train": {
+   "both": {
+    "discovery": {
+     "n": 200,
+     "success": {
+      "v": 0.995,
+      "ci": [
+       0.985,
+       1.0
+      ],
+      "n": 200
+     },
+     "actions_capped": {
+      "v": 269.145,
+      "ci": [
+       253.48612500000002,
+       285.72125
+      ],
+      "n": 200
+     },
+     "actions_to_success": {
+      "v": 265.47236180904525,
+      "ci": [
+       251.50603015075376,
+       280.2925879396985
+      ],
+      "n": 199
+     },
+     "actions_to_success_median": {
+      "v": 249.0,
+      "ci": [
+       241.95,
+       264.0
+      ],
+      "n": 199
+     },
+     "time_to_success": {
+      "v": 1104.482503522477,
+      "ci": [
+       1045.8686297507008,
+       1166.8295257635673
+      ],
+      "n": 199
+     },
+     "time_to_success_median": {
+      "v": 1040.9412373271364,
+      "ci": [
+       993.715396149569,
+       1103.4481798355012
+      ],
+      "n": 199
+     },
+     "gave_up": {
+      "v": 0.005,
+      "ci": [
+       0.0,
+       0.015
+      ],
+      "n": 200
+     },
+     "wall": 9.895233844999984,
+     "explanation": {
+      "v": 0.878125,
+      "ci": [
+       0.860625,
+       0.893125
+      ],
+      "n": 200
+     },
+     "explanation_relevant": {
+      "v": 0.878125,
+      "ci": [
+       0.860625,
+       0.893125
+      ],
+      "n": 200
+     },
+     "false_claims": 0
+    }
+   },
+   "deadbolt": {
+    "discovery": {
+     "n": 200,
+     "success": {
+      "v": 0.985,
+      "ci": [
+       0.965,
+       1.0
+      ],
+      "n": 200
+     },
+     "actions_capped": {
+      "v": 73.28,
+      "ci": [
+       54.043625,
+       96.64587499999999
+      ],
+      "n": 200
+     },
+     "actions_to_success": {
+      "v": 59.16751269035533,
+      "ci": [
+       46.20203045685279,
+       75.55926395939086
+      ],
+      "n": 197
+     },
+     "actions_to_success_median": {
+      "v": 28.0,
+      "ci": [
+       16.0,
+       50.0
+      ],
+      "n": 197
+     },
+     "time_to_success": {
+      "v": 255.90354322416155,
+      "ci": [
+       200.30254575242463,
+       326.5914338898205
+      ],
+      "n": 197
+     },
+     "time_to_success_median": {
+      "v": 127.07839783031832,
+      "ci": [
+       67.9502793053338,
+       210.81160998885096
+      ],
+      "n": 197
+     },
+     "gave_up": {
+      "v": 0.0,
+      "ci": [
+       0.0,
+       0.0
+      ],
+      "n": 200
+     },
+     "wall": 4.204219097499999,
+     "explanation": {
+      "v": 0.8871428571428571,
+      "ci": [
+       0.8742857142857141,
+       0.9
+      ],
+      "n": 200
+     },
+     "explanation_relevant": {
+      "v": 0.8145,
+      "ci": [
+       0.7975,
+       0.8325
+      ],
+      "n": 200
+     },
+     "false_claims": 2
+    }
+   },
+   "key_drawer": {
+    "discovery": {
+     "n": 200,
+     "success": {
+      "v": 0.96,
+      "ci": [
+       0.93,
+       0.985
+      ],
+      "n": 200
+     },
+     "actions_capped": {
+      "v": 262.14,
+      "ci": [
+       239.644,
+       286.69237499999997
+      ],
+      "n": 200
+     },
+     "actions_to_success": {
+      "v": 231.39583333333334,
+      "ci": [
+       219.472265625,
+       246.0046875
+      ],
+      "n": 192
+     },
+     "actions_to_success_median": {
+      "v": 215.0,
+      "ci": [
+       197.0,
+       226.5
+      ],
+      "n": 192
+     },
+     "time_to_success": {
+      "v": 953.0957762346687,
+      "ci": [
+       903.5780305442601,
+       1014.5747805167491
+      ],
+      "n": 192
+     },
+     "time_to_success_median": {
+      "v": 878.5021400972745,
+      "ci": [
+       806.7666287831005,
+       934.5580133941877
+      ],
+      "n": 192
+     },
+     "gave_up": {
+      "v": 0.03,
+      "ci": [
+       0.01,
+       0.055
+      ],
+      "n": 200
+     },
+     "wall": 8.487688083000002,
+     "explanation": {
+      "v": 0.945625,
+      "ci": [
+       0.925625,
+       0.963125
+      ],
+      "n": 200
+     },
+     "explanation_relevant": {
+      "v": 0.9614285714285714,
+      "ci": [
+       0.94,
+       0.9807142857142856
+      ],
+      "n": 200
+     },
+     "false_claims": 33
+    }
+   },
+   "key_table": {
+    "discovery": {
+     "n": 200,
+     "success": {
+      "v": 0.995,
+      "ci": [
+       0.985,
+       1.0
+      ],
+      "n": 200
+     },
+     "actions_capped": {
+      "v": 235.08,
+      "ci": [
+       220.885,
+       251.291125
+      ],
+      "n": 200
+     },
+     "actions_to_success": {
+      "v": 231.23618090452263,
+      "ci": [
+       218.3954773869347,
+       246.15175879396986
+      ],
+      "n": 199
+     },
+     "actions_to_success_median": {
+      "v": 219.0,
+      "ci": [
+       201.0,
+       236.0
+      ],
+      "n": 199
+     },
+     "time_to_success": {
+      "v": 951.7053608281407,
+      "ci": [
+       897.6775217523865,
+       1015.0291408626342
+      ],
+      "n": 199
+     },
+     "time_to_success_median": {
+      "v": 902.7562201533071,
+      "ci": [
+       823.9587493343167,
+       965.2243053035428
+      ],
+      "n": 199
+     },
+     "gave_up": {
+      "v": 0.0,
+      "ci": [
+       0.0,
+       0.0
+      ],
+      "n": 200
+     },
+     "wall": 8.899775263000038,
+     "explanation": {
+      "v": 0.96375,
+      "ci": [
+       0.95125,
+       0.975
+      ],
+      "n": 200
+     },
+     "explanation_relevant": {
+      "v": 0.9864285714285714,
+      "ci": [
+       0.9771428571428572,
+       0.9942857142857143
+      ],
+      "n": 200
+     },
+     "false_claims": 39
+    }
+   },
+   "latch": {
+    "discovery": {
+     "n": 200,
+     "success": {
+      "v": 1.0,
+      "ci": [
+       1.0,
+       1.0
+      ],
+      "n": 200
+     },
+     "actions_capped": {
+      "v": 25.595,
+      "ci": [
+       22.15,
+       29.315125000000002
+      ],
+      "n": 200
+     },
+     "actions_to_success": {
+      "v": 25.595,
+      "ci": [
+       22.15,
+       29.315125000000002
+      ],
+      "n": 200
+     },
+     "actions_to_success_median": {
+      "v": 12.0,
+      "ci": [
+       11.5,
+       13.5
+      ],
+      "n": 200
+     },
+     "time_to_success": {
+      "v": 111.61139871278675,
+      "ci": [
+       96.58870426837541,
+       127.87147758017231
+      ],
+      "n": 200
+     },
+     "time_to_success_median": {
+      "v": 53.89644353899709,
+      "ci": [
+       49.883903470072944,
+       58.75205920616907
+      ],
+      "n": 200
+     },
+     "gave_up": {
+      "v": 0.0,
+      "ci": [
+       0.0,
+       0.0
+      ],
+      "n": 200
+     },
+     "wall": 0.9180690069999673,
+     "explanation": {
+      "v": 0.9878571428571428,
+      "ci": [
+       0.9821428571428572,
+       0.9928571428571429
+      ],
+      "n": 200
+     },
+     "explanation_relevant": {
+      "v": 1.0,
+      "ci": [
+       1.0,
+       1.0
+      ],
+      "n": 200
+     },
+     "false_claims": 17
+    }
+   },
+   "no_solution": {
+    "discovery": {
+     "n": 200,
+     "success": {
+      "v": 0.0,
+      "ci": [
+       0.0,
+       0.0
+      ],
+      "n": 200
+     },
+     "actions_capped": {
+      "v": 1000.0,
+      "ci": [
+       1000.0,
+       1000.0
+      ],
+      "n": 200
+     },
+     "actions_to_success": {
+      "v": null,
+      "ci": [
+       null,
+       null
+      ],
+      "n": 0
+     },
+     "actions_to_success_median": {
+      "v": null,
+      "ci": [
+       null,
+       null
+      ],
+      "n": 0
+     },
+     "time_to_success": {
+      "v": null,
+      "ci": [
+       null,
+       null
+      ],
+      "n": 0
+     },
+     "time_to_success_median": {
+      "v": null,
+      "ci": [
+       null,
+       null
+      ],
+      "n": 0
+     },
+     "gave_up": {
+      "v": 1.0,
+      "ci": [
+       1.0,
+       1.0
+      ],
+      "n": 200
+     },
+     "wall": 6.504215554999991,
+     "actions_to_give_up": {
+      "v": 479.105,
+      "ci": [
+       449.837,
+       508.164
+      ],
+      "n": 200
+     },
+     "actions_to_give_up_median": {
+      "v": 460.5,
+      "ci": [
+       425.0,
+       493.5
+      ],
+      "n": 200
+     },
+     "time_to_give_up": {
+      "v": 2068.306349467222,
+      "ci": [
+       1942.7137510153107,
+       2192.1955185765723
+      ],
+      "n": 200
+     },
+     "explanation": {
+      "v": 1.0,
+      "ci": [
+       1.0,
+       1.0
+      ],
+      "n": 200
+     },
+     "explanation_relevant": {
+      "v": 1.0,
+      "ci": [
+       1.0,
+       1.0
+      ],
+      "n": 200
+     },
+     "false_claims": 0
+    }
+   },
+   "unlocked": {
+    "discovery": {
+     "n": 200,
+     "success": {
+      "v": 1.0,
+      "ci": [
+       1.0,
+       1.0
+      ],
+      "n": 200
+     },
+     "actions_capped": {
+      "v": 3.21,
+      "ci": [
+       3.02,
+       3.41
+      ],
+      "n": 200
+     },
+     "actions_to_success": {
+      "v": 3.21,
+      "ci": [
+       3.02,
+       3.41
+      ],
+      "n": 200
+     },
+     "actions_to_success_median": {
+      "v": 3.0,
+      "ci": [
+       3.0,
+       4.0
+      ],
+      "n": 200
+     },
+     "time_to_success": {
+      "v": 13.474034935204791,
+      "ci": [
+       12.712781717969165,
+       14.30060717214332
+      ],
+      "n": 200
+     },
+     "time_to_success_median": {
+      "v": 13.764989656684449,
+      "ci": [
+       13.652037021908125,
+       15.275948083033146
+      ],
+      "n": 200
+     },
+     "gave_up": {
+      "v": 0.0,
+      "ci": [
+       0.0,
+       0.0
+      ],
+      "n": 200
+     },
+     "wall": 0.11153278649992898,
+     "explanation": {
+      "v": 1.0,
+      "ci": [
+       1.0,
+       1.0
+      ],
+      "n": 200
+     },
+     "explanation_relevant": {
+      "v": 1.0,
+      "ci": [
+       1.0,
+       1.0
+      ],
+      "n": 200
+     },
+     "false_claims": 0
+    }
+   }
+  }
+ },
+ "overall": {
+  "train": {
+   "discovery": {
+    "n": 1200,
+    "success": {
+     "v": 0.9891666666666666,
+     "ci": [
+      0.9833333333333333,
+      0.9941666666666666
+     ],
+     "n": 1200
+    },
+    "actions_capped": {
+     "v": 144.74166666666667,
+     "ci": [
+      135.99397916666666,
+      154.09564583333332
+     ],
+     "n": 1200
+    },
+    "actions_to_success": {
+     "v": 135.3748946925021,
+     "ci": [
+      127.64589300758213,
+      143.40309604043807
+     ],
+     "n": 1187
+    },
+    "actions_to_success_median": {
+     "v": 112.0,
+     "ci": [
+      100.0,
+      130.0
+     ],
+     "n": 1187
+    },
+    "time_to_success": {
+     "v": 562.4312205455667,
+     "ci": [
+      530.4941079795145,
+      595.6899272097916
+     ],
+     "n": 1187
+    },
+    "time_to_success_median": {
+     "v": 460.80336065767904,
+     "ci": [
+      412.8544349890993,
+      530.5266290223788
+     ],
+     "n": 1187
+    },
+    "gave_up": {
+     "v": 0.005833333333333334,
+     "ci": [
+      0.0025,
+      0.01
+     ],
+     "n": 1200
+    },
+    "wall": 5.41941968033332,
+    "explanation": {
+     "v": 0.94375,
+     "ci": [
+      0.9377652529761904,
+      0.9493005952380952
+     ],
+     "n": 1200
+    },
+    "explanation_relevant": {
+     "v": 0.9400803571428571,
+     "ci": [
+      0.9331514880952381,
+      0.9467713541666667
+     ],
+     "n": 1200
+    },
+    "false_claims": 91
+   }
+  },
+  "test": {
+   "discovery": {
+    "n": 1200,
+    "success": {
+     "v": 0.9883333333333333,
+     "ci": [
+      0.9816666666666667,
+      0.9941666666666666
+     ],
+     "n": 1200
+    },
+    "actions_capped": {
+     "v": 158.83,
+     "ci": [
+      149.39264583333335,
+      168.05125
+     ],
+     "n": 1200
+    },
+    "actions_to_success": {
+     "v": 148.90050590219224,
+     "ci": [
+      140.9231871838111,
+      157.01570404721753
+     ],
+     "n": 1186
+    },
+    "actions_to_success_median": {
+     "v": 139.5,
+     "ci": [
+      108.0,
+      155.0
+     ],
+     "n": 1186
+    },
+    "time_to_success": {
+     "v": 621.5094667090273,
+     "ci": [
+      588.1195393947513,
+      655.3367243188254
+     ],
+     "n": 1186
+    },
+    "time_to_success_median": {
+     "v": 573.7787470847186,
+     "ci": [
+      460.86702241437376,
+      636.1586080895732
+     ],
+     "n": 1186
+    },
+    "gave_up": {
+     "v": 0.005833333333333334,
+     "ci": [
+      0.0025,
+      0.010833333333333334
+     ],
+     "n": 1200
+    },
+    "wall": 9.337599348166664,
+    "explanation": {
+     "v": 0.9246130952380952,
+     "ci": [
+      0.9174252232142857,
+      0.9313541666666667
+     ],
+     "n": 1200
+    },
+    "explanation_relevant": {
+     "v": 0.9305952380952381,
+     "ci": [
+      0.9229304315476188,
+      0.9380059523809524
+     ],
+     "n": 1200
+    },
+    "false_claims": 189
+   }
+  }
+ },
+ "reuse": {
+  "latch": {
+   "pairs": 0,
+   "recipes": 0,
+   "train": {
+    "cold": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "cold_median": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_median": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "diff": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "cold_success": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_success": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_fewer": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_more": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    }
+   },
+   "test": {
+    "cold": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "cold_median": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_median": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "diff": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "cold_success": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_success": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_fewer": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_more": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    }
+   }
+  },
+  "deadbolt": {
+   "pairs": 0,
+   "recipes": 0,
+   "train": {
+    "cold": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "cold_median": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_median": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "diff": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "cold_success": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_success": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_fewer": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_more": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    }
+   },
+   "test": {
+    "cold": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "cold_median": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_median": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "diff": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "cold_success": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_success": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_fewer": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_more": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    }
+   }
+  },
+  "key": {
+   "pairs": 0,
+   "recipes": 0,
+   "train": {
+    "cold": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "cold_median": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_median": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "diff": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "cold_success": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_success": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_fewer": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_more": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    }
+   },
+   "test": {
+    "cold": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "cold_median": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_median": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "diff": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "cold_success": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_success": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_fewer": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_more": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    }
+   }
+  },
+  "both": {
+   "pairs": 0,
+   "recipes": 0,
+   "train": {
+    "cold": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "cold_median": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_median": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "diff": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "cold_success": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_success": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_fewer": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_more": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    }
+   },
+   "test": {
+    "cold": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "cold_median": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_median": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "diff": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "cold_success": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_success": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_fewer": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    },
+    "warm_more": {
+     "v": null,
+     "ci": [
+      null,
+      null
+     ],
+     "n": 0
+    }
+   }
+  }
+ },
+ "examples": {
+  "test/both": "The door was latched: it opens when I keep turning the ball part p8 while pushing. It was also locked: it only opened after I put the object o3 into the disc part p1 and turned it.",
+  "test/deadbolt": "The door was latched: it opens when I keep turning the bar part p8 while pushing. It was probably also bolted: it only moved after I turned the round part p2 (or after I turned the wing part p4: I could not tell which).",
+  "test/key_drawer": "The door was latched: it opens when I keep turning the round part p1 while pulling. It was also locked: it only opened after I put the object o1 I found inside the panel part p6 into the disc part p5 and turned it.",
+  "test/key_table": "The door was latched: it opens when I keep turning the bar part p1 while pushing (I did not check that plain pushing fails there). It was also bolted: it only moved after I turned the round part p6. It was also locked: it only opened after I put the object o1 into the disc part p2 and turned it. Object o2 did not go in.",
+  "test/latch": "The door was latched: it opens when I keep turning the ball part p4 while pushing.",
+  "test/no_solution": "I could not open it and stopped after 509 actions: I opened every container I found, tried every object I found in every part, and tested every rule I could still bring about. Object o1 went into the disc part p1 but did not turn it. The disc part p1 is probably a lock whose key is not within my reach.",
+  "test/unlocked": "The door opens by pushing the wing part p2.",
+  "train/both": "The door was latched: it opens when I keep turning the bar part p7 while pulling. It was also locked: it only opened after I put the object o2 I found inside the panel part p4 into the disc part p5 and turned it.",
+  "train/deadbolt": "The door was latched: it opens when I keep turning the bar part p8 while pulling.",
+  "train/key_drawer": "The door was latched: it opens when I keep turning the ball part p6 while pulling. It was also locked: it only opened after I put the object o3 I found inside the panel part p4 into the disc part p8 and turned it.",
+  "train/key_table": "The door was latched: it opens when I keep turning the round part p5 while pushing (I did not check that plain pushing fails there). It was also bolted: it only moved after I turned the round part p2. It was also locked: it only opened after I put the object o2 into the disc part p7 and turned it.",
+  "train/latch": "The door was latched: it opens when I keep turning the bar part p5 while pulling.",
+  "train/no_solution": "I could not open it and stopped after 233 actions: I opened every container I found, tried every object I found in every part, and tested every rule I could still bring about. What holds it is probably the disc part p3: none of my actions changed it, and nothing I found went into it.",
+  "train/unlocked": "The door opens by pulling the peg part p5."
+ }
+}

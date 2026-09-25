@@ -1,0 +1,283 @@
+{
+ "episodes": [
+  {
+   "split": "test",
+   "type": "hd_knob_pull_right",
+   "case": "latch",
+   "seed": 100000,
+   "success": true,
+   "actions": 25,
+   "on_decoys": 12
+  },
+  {
+   "split": "test",
+   "type": "hd_knob_pull_right",
+   "case": "deadbolt",
+   "seed": 100000,
+   "success": true,
+   "actions": 25,
+   "on_decoys": 12
+  },
+  {
+   "split": "test",
+   "type": "hd_knob_pull_right",
+   "case": "key_table",
+   "seed": 100000,
+   "success": false,
+   "actions": 300,
+   "on_decoys": 159
+  },
+  {
+   "split": "test",
+   "type": "hd_knob_pull_right",
+   "case": "key_drawer",
+   "seed": 100000,
+   "success": false,
+   "actions": 300,
+   "on_decoys": 148
+  },
+  {
+   "split": "test",
+   "type": "hd_knob_pull_right",
+   "case": "both",
+   "seed": 100000,
+   "success": true,
+   "actions": 290,
+   "on_decoys": 153
+  },
+  {
+   "split": "test",
+   "type": "hd_knob_pull_right",
+   "case": "no_solution",
+   "seed": 100000,
+   "success": false,
+   "actions": 300,
+   "on_decoys": 160
+  },
+  {
+   "split": "train",
+   "type": "hd_knob_pull_left",
+   "case": "latch",
+   "seed": 100000,
+   "success": true,
+   "actions": 24,
+   "on_decoys": 12
+  },
+  {
+   "split": "train",
+   "type": "hd_knob_pull_left",
+   "case": "latch",
+   "seed": 100001,
+   "success": true,
+   "actions": 28,
+   "on_decoys": 14
+  },
+  {
+   "split": "train",
+   "type": "hd_knob_pull_left",
+   "case": "deadbolt",
+   "seed": 100000,
+   "success": true,
+   "actions": 24,
+   "on_decoys": 12
+  },
+  {
+   "split": "train",
+   "type": "hd_knob_pull_left",
+   "case": "deadbolt",
+   "seed": 100001,
+   "success": true,
+   "actions": 28,
+   "on_decoys": 14
+  },
+  {
+   "split": "train",
+   "type": "hd_knob_pull_left",
+   "case": "key_table",
+   "seed": 100000,
+   "success": false,
+   "actions": 300,
+   "on_decoys": 150
+  },
+  {
+   "split": "train",
+   "type": "hd_knob_pull_left",
+   "case": "key_table",
+   "seed": 100001,
+   "success": false,
+   "actions": 300,
+   "on_decoys": 169
+  },
+  {
+   "split": "train",
+   "type": "hd_knob_pull_left",
+   "case": "key_drawer",
+   "seed": 100000,
+   "success": false,
+   "actions": 300,
+   "on_decoys": 153
+  },
+  {
+   "split": "train",
+   "type": "hd_knob_pull_left",
+   "case": "key_drawer",
+   "seed": 100001,
+   "success": false,
+   "actions": 300,
+   "on_decoys": 144
+  },
+  {
+   "split": "train",
+   "type": "hd_knob_pull_left",
+   "case": "both",
+   "seed": 100000,
+   "success": false,
+   "actions": 300,
+   "on_decoys": 156
+  },
+  {
+   "split": "train",
+   "type": "hd_knob_pull_left",
+   "case": "both",
+   "seed": 100001,
+   "success": false,
+   "actions": 300,
+   "on_decoys": 153
+  },
+  {
+   "split": "train",
+   "type": "hd_knob_pull_left",
+   "case": "no_solution",
+   "seed": 100000,
+   "success": false,
+   "actions": 300,
+   "on_decoys": 150
+  },
+  {
+   "split": "train",
+   "type": "hd_knob_pull_left",
+   "case": "no_solution",
+   "seed": 100001,
+   "success": false,
+   "actions": 300,
+   "on_decoys": 172
+  },
+  {
+   "split": "train",
+   "type": "hd_lever_pull_right",
+   "case": "latch",
+   "seed": 100000,
+   "success": true,
+   "actions": 25,
+   "on_decoys": 12
+  },
+  {
+   "split": "train",
+   "type": "hd_lever_pull_right",
+   "case": "latch",
+   "seed": 100001,
+   "success": true,
+   "actions": 28,
+   "on_decoys": 14
+  },
+  {
+   "split": "train",
+   "type": "hd_lever_pull_right",
+   "case": "deadbolt",
+   "seed": 100000,
+   "success": true,
+   "actions": 25,
+   "on_decoys": 12
+  },
+  {
+   "split": "train",
+   "type": "hd_lever_pull_right",
+   "case": "deadbolt",
+   "seed": 100001,
+   "success": true,
+   "actions": 28,
+   "on_decoys": 14
+  },
+  {
+   "split": "train",
+   "type": "hd_lever_pull_right",
+   "case": "key_table",
+   "seed": 100000,
+   "success": false,
+   "actions": 300,
+   "on_decoys": 158
+  },
+  {
+   "split": "train",
+   "type": "hd_lever_pull_right",
+   "case": "key_table",
+   "seed": 100001,
+   "success": true,
+   "actions": 298,
+   "on_decoys": 143
+  },
+  {
+   "split": "train",
+   "type": "hd_lever_pull_right",
+   "case": "key_drawer",
+   "seed": 100000,
+   "success": false,
+   "actions": 300,
+   "on_decoys": 146
+  },
+  {
+   "split": "train",
+   "type": "hd_lever_pull_right",
+   "case": "key_drawer",
+   "seed": 100001,
+   "success": false,
+   "actions": 300,
+   "on_decoys": 152
+  },
+  {
+   "split": "train",
+   "type": "hd_lever_pull_right",
+   "case": "both",
+   "seed": 100000,
+   "success": false,
+   "actions": 300,
+   "on_decoys": 163
+  },
+  {
+   "split": "train",
+   "type": "hd_lever_pull_right",
+   "case": "both",
+   "seed": 100001,
+   "success": false,
+   "actions": 300,
+   "on_decoys": 153
+  },
+  {
+   "split": "train",
+   "type": "hd_lever_pull_right",
+   "case": "no_solution",
+   "seed": 100000,
+   "success": false,
+   "actions": 300,
+   "on_decoys": 151
+  },
+  {
+   "split": "train",
+   "type": "hd_lever_pull_right",
+   "case": "no_solution",
+   "seed": 100001,
+   "success": false,
+   "actions": 300,
+   "on_decoys": 152
+  }
+ ],
+ "total": {
+  "decoy": 3213,
+  "d:door_hook": 827,
+  "d:door_wing": 961,
+  "other": 3035,
+  "d:door_dial": 890,
+  "d:cab_wing": 440,
+  "d:cab_disc": 95
+ }
+}

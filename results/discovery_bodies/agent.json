@@ -1,0 +1,5927 @@
+{
+ "config": {
+  "bodies": [
+   "robotiq_2f85",
+   "panda_2f",
+   "allegro",
+   "leap",
+   "shadow",
+   "g1_hands"
+  ],
+  "types": [
+   "hd_knob_pull_left",
+   "hd_lever_pull_right"
+  ],
+  "cases": [
+   "unlocked",
+   "latch",
+   "deadbolt",
+   "key_table",
+   "key_drawer",
+   "no_solution"
+  ],
+  "seeds": 2,
+  "seeds_per_body": {
+   "robotiq_2f85": 2,
+   "panda_2f": 2,
+   "allegro": 2,
+   "leap": 2,
+   "shadow": 2,
+   "g1_hands": 2
+  },
+  "seed0": 200000,
+  "budget": 300,
+  "limit_s": 600.0,
+  "fixture": {
+   "n_keys": 2,
+   "decoys": true
+  },
+  "processes": 6,
+  "wall_s_runs": [
+   7294,
+   480,
+   1857,
+   1915
+  ]
+ },
+ "episodes": [
+  {
+   "body": "robotiq_2f85",
+   "type": "hd_knob_pull_left",
+   "case": "unlocked",
+   "seed": 200000,
+   "solvable": true,
+   "success": true,
+   "acc": 1.0,
+   "rel": 1.0,
+   "false": 0,
+   "text": "The door opens by pulling the wing part p5.",
+   "stopped": "goal",
+   "actions": 2,
+   "sim": 19.5,
+   "wall": 2.0,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 0,
+   "n_stalled": 1,
+   "n_aborted": 0,
+   "notes_failed": {},
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "robotiq_2f85",
+   "type": "hd_knob_pull_left",
+   "case": "unlocked",
+   "seed": 200001,
+   "solvable": true,
+   "success": true,
+   "acc": 1.0,
+   "rel": 1.0,
+   "false": 0,
+   "text": "The door opens by pulling the wing part p10.",
+   "stopped": "goal",
+   "actions": 1,
+   "sim": 8.2,
+   "wall": 0.8,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 0,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {},
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "robotiq_2f85",
+   "type": "hd_knob_pull_left",
+   "case": "latch",
+   "seed": 200000,
+   "solvable": true,
+   "success": true,
+   "acc": 0.8571428571428571,
+   "rel": 1.0,
+   "false": 1,
+   "text": "The door was latched: it opens when I keep turning the round part p10 while pulling. It was also bolted: it only moved after I turned the wing part p2.",
+   "stopped": "goal",
+   "actions": 116,
+   "sim": 993.0,
+   "wall": 285.3,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 0,
+   "n_stalled": 105,
+   "n_aborted": 0,
+   "notes_failed": {},
+   "failure": null,
+   "unlock_signs": [
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "robotiq_2f85",
+   "type": "hd_knob_pull_left",
+   "case": "latch",
+   "seed": 200001,
+   "solvable": true,
+   "success": true,
+   "acc": 0.8571428571428571,
+   "rel": 1.0,
+   "false": 1,
+   "text": "The door was latched: it opens when I keep turning the round part p7 while pulling (I did not check that plain pulling fails there). It was probably also bolted: it only moved after I turned the wing part p5 (or after I turned the round part p9: I could not tell which).",
+   "stopped": "goal",
+   "actions": 214,
+   "sim": 1869.9,
+   "wall": 436.5,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 2,
+   "n_stalled": 185,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 2
+   },
+   "failure": null,
+   "unlock_signs": [
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "robotiq_2f85",
+   "type": "hd_knob_pull_left",
+   "case": "deadbolt",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": 0.42857142857142855,
+   "rel": 0.4,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 2654.9,
+   "wall": 567.9,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 10,
+   "n_stalled": 241,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 6,
+    "dropped it": 3,
+    "depth=-0.003": 1
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "open door",
+    "attempts": 0,
+    "notes": [],
+    "why": "not_tried"
+   },
+   "unlock_signs": [
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "insert",
+     "p6",
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "robotiq_2f85",
+   "type": "hd_knob_pull_left",
+   "case": "deadbolt",
+   "seed": 200001,
+   "solvable": true,
+   "success": true,
+   "acc": 0.8571428571428571,
+   "rel": 1.0,
+   "false": 0,
+   "text": "The door was latched: it opens when I keep turning the round part p7 while pulling. It was also bolted: it only moved after I turned the wing part p6.",
+   "stopped": "goal",
+   "actions": 263,
+   "sim": 2283.6,
+   "wall": 478.1,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 14,
+   "n_stalled": 202,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 4,
+    "could not lift it": 4,
+    "dropped it": 4,
+    "depth=-0.003": 1,
+    "depth=-0.025": 1
+   },
+   "failure": null,
+   "unlock_signs": [
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "insert",
+     "p2",
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "robotiq_2f85",
+   "type": "hd_knob_pull_left",
+   "case": "key_table",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": 0.625,
+   "rel": 0.5714285714285714,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 2632.6,
+   "wall": 241.8,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 8,
+   "n_stalled": 241,
+   "n_aborted": 0,
+   "notes_failed": {
+    "dropped it": 4,
+    "could not lift it": 4
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "insert key",
+    "attempts": 0,
+    "notes": [],
+    "why": "not_tried"
+   },
+   "unlock_signs": [
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "robotiq_2f85",
+   "type": "hd_knob_pull_left",
+   "case": "key_table",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 214,
+   "sim": 2005.5,
+   "wall": 604.1,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 12,
+   "n_stalled": 171,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 12
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "insert key",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": [
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "robotiq_2f85",
+   "type": "hd_knob_pull_left",
+   "case": "key_drawer",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 253,
+   "sim": 2263.7,
+   "wall": 603.0,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 1,
+   "n_stalled": 214,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 1
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "insert key",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": [
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "robotiq_2f85",
+   "type": "hd_knob_pull_left",
+   "case": "key_drawer",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 264,
+   "sim": 2682.2,
+   "wall": 611.0,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 17,
+   "n_stalled": 210,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 4,
+    "could not lift it": 12,
+    "dropped it": 1
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "insert key",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": [
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "robotiq_2f85",
+   "type": "hd_knob_pull_left",
+   "case": "no_solution",
+   "seed": 200000,
+   "solvable": false,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 216,
+   "sim": 1913.6,
+   "wall": 601.2,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 1,
+   "n_stalled": 194,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 1
+   },
+   "failure": null,
+   "unlock_signs": [
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "robotiq_2f85",
+   "type": "hd_knob_pull_left",
+   "case": "no_solution",
+   "seed": 200001,
+   "solvable": false,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 182,
+   "sim": 1559.0,
+   "wall": 602.4,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 1,
+   "n_stalled": 166,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 1
+   },
+   "failure": null,
+   "unlock_signs": [
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "robotiq_2f85",
+   "type": "hd_lever_pull_right",
+   "case": "unlocked",
+   "seed": 200000,
+   "solvable": true,
+   "success": true,
+   "acc": 1.0,
+   "rel": 1.0,
+   "false": 0,
+   "text": "The door opens by pulling the wing part p5.",
+   "stopped": "goal",
+   "actions": 2,
+   "sim": 18.9,
+   "wall": 1.7,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 0,
+   "n_stalled": 1,
+   "n_aborted": 0,
+   "notes_failed": {},
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "robotiq_2f85",
+   "type": "hd_lever_pull_right",
+   "case": "unlocked",
+   "seed": 200001,
+   "solvable": true,
+   "success": true,
+   "acc": 1.0,
+   "rel": 1.0,
+   "false": 0,
+   "text": "The door opens by pulling the wing part p10.",
+   "stopped": "goal",
+   "actions": 1,
+   "sim": 8.1,
+   "wall": 0.9,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 0,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {},
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "robotiq_2f85",
+   "type": "hd_lever_pull_right",
+   "case": "latch",
+   "seed": 200000,
+   "solvable": true,
+   "success": true,
+   "acc": 0.8571428571428571,
+   "rel": 1.0,
+   "false": 1,
+   "text": "The door was latched: it opens when I keep turning the bar part p10 while pulling (I did not check that plain pulling fails there). It was also bolted: it only moved after I turned the wing part p2.",
+   "stopped": "goal",
+   "actions": 104,
+   "sim": 886.9,
+   "wall": 245.8,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 0,
+   "n_stalled": 90,
+   "n_aborted": 0,
+   "notes_failed": {},
+   "failure": null,
+   "unlock_signs": [
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "robotiq_2f85",
+   "type": "hd_lever_pull_right",
+   "case": "latch",
+   "seed": 200001,
+   "solvable": true,
+   "success": true,
+   "acc": 0.8571428571428571,
+   "rel": 1.0,
+   "false": 1,
+   "text": "The door was latched: it opens when I keep turning the bar part p7 while pulling. It was probably also bolted: it only moved after I turned the bar part p9.",
+   "stopped": "goal",
+   "actions": 103,
+   "sim": 855.2,
+   "wall": 215.1,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 1,
+   "n_stalled": 91,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 1
+   },
+   "failure": null,
+   "unlock_signs": [
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "robotiq_2f85",
+   "type": "hd_lever_pull_right",
+   "case": "deadbolt",
+   "seed": 200000,
+   "solvable": true,
+   "success": true,
+   "acc": 1.0,
+   "rel": 1.0,
+   "false": 0,
+   "text": "The door was latched: it opens when I keep turning the bar part p10 while pulling. It was also bolted: it only moved after I turned the wing part p3.",
+   "stopped": "goal",
+   "actions": 142,
+   "sim": 1219.5,
+   "wall": 394.5,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 1,
+   "n_stalled": 130,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 1
+   },
+   "failure": null,
+   "unlock_signs": [
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "robotiq_2f85",
+   "type": "hd_lever_pull_right",
+   "case": "deadbolt",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 148,
+   "sim": 1306.9,
+   "wall": 607.1,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 6,
+   "n_stalled": 125,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 6
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "turn thumb",
+    "attempts": 7,
+    "notes": [
+     "moved",
+     "turned"
+    ],
+    "why": "undone"
+   },
+   "unlock_signs": [
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "robotiq_2f85",
+   "type": "hd_lever_pull_right",
+   "case": "key_table",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 139,
+   "sim": 1237.9,
+   "wall": 601.0,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 0,
+   "n_stalled": 120,
+   "n_aborted": 0,
+   "notes_failed": {},
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "insert key",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": [
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "robotiq_2f85",
+   "type": "hd_lever_pull_right",
+   "case": "key_table",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 145,
+   "sim": 1218.3,
+   "wall": 603.8,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 1,
+   "n_stalled": 132,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 1
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "insert key",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": [
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "robotiq_2f85",
+   "type": "hd_lever_pull_right",
+   "case": "key_drawer",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 156,
+   "sim": 1377.3,
+   "wall": 602.5,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 0,
+   "n_stalled": 134,
+   "n_aborted": 0,
+   "notes_failed": {},
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "insert key",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": [
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "robotiq_2f85",
+   "type": "hd_lever_pull_right",
+   "case": "key_drawer",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 163,
+   "sim": 1375.8,
+   "wall": 602.0,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 1,
+   "n_stalled": 148,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 1
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "insert key",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": [
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "robotiq_2f85",
+   "type": "hd_lever_pull_right",
+   "case": "no_solution",
+   "seed": 200000,
+   "solvable": false,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 145,
+   "sim": 1249.7,
+   "wall": 601.8,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 0,
+   "n_stalled": 128,
+   "n_aborted": 0,
+   "notes_failed": {},
+   "failure": null,
+   "unlock_signs": [
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "robotiq_2f85",
+   "type": "hd_lever_pull_right",
+   "case": "no_solution",
+   "seed": 200001,
+   "solvable": false,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 141,
+   "sim": 1190.7,
+   "wall": 601.8,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 0,
+   "n_stalled": 126,
+   "n_aborted": 0,
+   "notes_failed": {},
+   "failure": null,
+   "unlock_signs": [
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "panda_2f",
+   "type": "hd_knob_pull_left",
+   "case": "unlocked",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 82,
+   "sim": 1477.9,
+   "wall": 600.7,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 82,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 82
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open door",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "panda_2f",
+   "type": "hd_knob_pull_left",
+   "case": "unlocked",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 64,
+   "sim": 1390.1,
+   "wall": 602.2,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 64,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 64
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open door",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "panda_2f",
+   "type": "hd_knob_pull_left",
+   "case": "latch",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 84,
+   "sim": 1510.2,
+   "wall": 603.4,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 84,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 84
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open door",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "panda_2f",
+   "type": "hd_knob_pull_left",
+   "case": "latch",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 69,
+   "sim": 1498.4,
+   "wall": 606.9,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 69,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 69
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open door",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "panda_2f",
+   "type": "hd_knob_pull_left",
+   "case": "deadbolt",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": 0.5714285714285714,
+   "rel": 0.25,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 5391.1,
+   "wall": 395.8,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 300,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 300
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "turn thumb",
+    "attempts": 0,
+    "notes": [],
+    "why": "not_tried"
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "panda_2f",
+   "type": "hd_knob_pull_left",
+   "case": "deadbolt",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": 0.5714285714285714,
+   "rel": 0.25,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 6506.5,
+   "wall": 478.5,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 300,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 300
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "turn thumb",
+    "attempts": 0,
+    "notes": [],
+    "why": "not_tried"
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "panda_2f",
+   "type": "hd_knob_pull_left",
+   "case": "key_table",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": 0.5,
+   "rel": 0.42857142857142855,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 5423.4,
+   "wall": 386.7,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 300,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 300
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "pick key",
+    "attempts": 0,
+    "notes": [],
+    "why": "not_tried"
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "panda_2f",
+   "type": "hd_knob_pull_left",
+   "case": "key_table",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": 0.5,
+   "rel": 0.42857142857142855,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 6506.5,
+   "wall": 464.3,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 300,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 300
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "pick key",
+    "attempts": 0,
+    "notes": [],
+    "why": "not_tried"
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "panda_2f",
+   "type": "hd_knob_pull_left",
+   "case": "key_drawer",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": 0.375,
+   "rel": 0.2857142857142857,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 5989.8,
+   "wall": 411.0,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 300,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 300
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "open drawer",
+    "attempts": 0,
+    "notes": [],
+    "why": "not_tried"
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "panda_2f",
+   "type": "hd_knob_pull_left",
+   "case": "key_drawer",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": 0.375,
+   "rel": 0.2857142857142857,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 6506.5,
+   "wall": 465.0,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 300,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 300
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "open drawer",
+    "attempts": 0,
+    "notes": [],
+    "why": "not_tried"
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "panda_2f",
+   "type": "hd_knob_pull_left",
+   "case": "no_solution",
+   "seed": 200000,
+   "solvable": false,
+   "success": false,
+   "acc": 0.5,
+   "rel": 0.5,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 5992.4,
+   "wall": 363.9,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 300,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 300
+   },
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "panda_2f",
+   "type": "hd_knob_pull_left",
+   "case": "no_solution",
+   "seed": 200001,
+   "solvable": false,
+   "success": false,
+   "acc": 0.75,
+   "rel": 0.75,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 6506.5,
+   "wall": 413.9,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 300,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 300
+   },
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "panda_2f",
+   "type": "hd_lever_pull_right",
+   "case": "unlocked",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 85,
+   "sim": 1493.3,
+   "wall": 606.2,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 85,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 85
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open door",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "panda_2f",
+   "type": "hd_lever_pull_right",
+   "case": "unlocked",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 87,
+   "sim": 1500.8,
+   "wall": 603.9,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 87,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 87
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open door",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "panda_2f",
+   "type": "hd_lever_pull_right",
+   "case": "latch",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 88,
+   "sim": 1545.0,
+   "wall": 602.0,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 88,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 88
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open door",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "panda_2f",
+   "type": "hd_lever_pull_right",
+   "case": "latch",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 95,
+   "sim": 1638.2,
+   "wall": 603.1,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 95,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 95
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open door",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "panda_2f",
+   "type": "hd_lever_pull_right",
+   "case": "deadbolt",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": 0.5714285714285714,
+   "rel": 0.25,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 5263.4,
+   "wall": 331.1,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 300,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 300
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "turn thumb",
+    "attempts": 0,
+    "notes": [],
+    "why": "not_tried"
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "panda_2f",
+   "type": "hd_lever_pull_right",
+   "case": "deadbolt",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": 0.5714285714285714,
+   "rel": 0.25,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 5177.0,
+   "wall": 328.6,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 300,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 300
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "turn thumb",
+    "attempts": 0,
+    "notes": [],
+    "why": "not_tried"
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "panda_2f",
+   "type": "hd_lever_pull_right",
+   "case": "key_table",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": 0.5,
+   "rel": 0.42857142857142855,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 5265.5,
+   "wall": 414.0,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 300,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 300
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "pick key",
+    "attempts": 0,
+    "notes": [],
+    "why": "not_tried"
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "panda_2f",
+   "type": "hd_lever_pull_right",
+   "case": "key_table",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": 0.5,
+   "rel": 0.42857142857142855,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 5172.7,
+   "wall": 386.5,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 300,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 300
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "pick key",
+    "attempts": 0,
+    "notes": [],
+    "why": "not_tried"
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "panda_2f",
+   "type": "hd_lever_pull_right",
+   "case": "key_drawer",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 187,
+   "sim": 3285.7,
+   "wall": 603.8,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 187,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 187
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open drawer",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "panda_2f",
+   "type": "hd_lever_pull_right",
+   "case": "key_drawer",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 170,
+   "sim": 2930.8,
+   "wall": 601.7,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 170,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 170
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open drawer",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "panda_2f",
+   "type": "hd_lever_pull_right",
+   "case": "no_solution",
+   "seed": 200000,
+   "solvable": false,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 197,
+   "sim": 3458.2,
+   "wall": 604.9,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 197,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 197
+   },
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "panda_2f",
+   "type": "hd_lever_pull_right",
+   "case": "no_solution",
+   "seed": 200001,
+   "solvable": false,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 166,
+   "sim": 2862.5,
+   "wall": 601.2,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 166,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 166
+   },
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "allegro",
+   "type": "hd_knob_pull_left",
+   "case": "unlocked",
+   "seed": 200000,
+   "solvable": true,
+   "success": true,
+   "acc": 1.0,
+   "rel": 1.0,
+   "false": 0,
+   "text": "The door opens by pulling the wing part p2.",
+   "stopped": "goal",
+   "actions": 11,
+   "sim": 131.7,
+   "wall": 16.0,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 2,
+   "n_stalled": 7,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 2
+   },
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "allegro",
+   "type": "hd_knob_pull_left",
+   "case": "unlocked",
+   "seed": 200001,
+   "solvable": true,
+   "success": true,
+   "acc": 1.0,
+   "rel": 1.0,
+   "false": 0,
+   "text": "The door opens by pulling the wing part p5.",
+   "stopped": "goal",
+   "actions": 9,
+   "sim": 99.2,
+   "wall": 24.2,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 1,
+   "n_stalled": 7,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 1
+   },
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "allegro",
+   "type": "hd_knob_pull_left",
+   "case": "latch",
+   "seed": 200000,
+   "solvable": true,
+   "success": true,
+   "acc": 1.0,
+   "rel": 1.0,
+   "false": 0,
+   "text": "The door was latched: it opens when I keep turning the round part p10 while pulling.",
+   "stopped": "goal",
+   "actions": 19,
+   "sim": 178.0,
+   "wall": 25.1,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 0,
+   "n_stalled": 18,
+   "n_aborted": 0,
+   "notes_failed": {},
+   "failure": null,
+   "unlock_signs": [
+    [
+     "press_push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "allegro",
+   "type": "hd_knob_pull_left",
+   "case": "latch",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": 0.7142857142857143,
+   "rel": 0.3333333333333333,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 1652.1,
+   "wall": 441.7,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 277,
+   "n_stalled": 23,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 277
+   },
+   "failure": {
+    "cause": "stalled",
+    "blocked_at": "open door",
+    "attempts": 2,
+    "notes": [
+     "moved"
+    ],
+    "why": null
+   },
+   "unlock_signs": [
+    [
+     "press_push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "allegro",
+   "type": "hd_knob_pull_left",
+   "case": "deadbolt",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": 0.5714285714285714,
+   "rel": 0.25,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 1621.4,
+   "wall": 196.0,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 278,
+   "n_stalled": 22,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 278
+   },
+   "failure": {
+    "cause": "stalled",
+    "blocked_at": "open door",
+    "attempts": 2,
+    "notes": [
+     "moved"
+    ],
+    "why": null
+   },
+   "unlock_signs": [
+    [
+     "pull",
+     null,
+     "thumb"
+    ],
+    [
+     "press_push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "allegro",
+   "type": "hd_knob_pull_left",
+   "case": "deadbolt",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": 0.5714285714285714,
+   "rel": 0.25,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 1641.6,
+   "wall": 474.6,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 281,
+   "n_stalled": 19,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 281
+   },
+   "failure": {
+    "cause": "stalled",
+    "blocked_at": "open door",
+    "attempts": 2,
+    "notes": [
+     "moved"
+    ],
+    "why": null
+   },
+   "unlock_signs": [
+    [
+     "pull",
+     null,
+     "thumb"
+    ],
+    [
+     "push",
+     null,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "allegro",
+   "type": "hd_knob_pull_left",
+   "case": "key_table",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": 0.5,
+   "rel": 0.42857142857142855,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 1606.8,
+   "wall": 172.4,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 283,
+   "n_stalled": 17,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 283
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "pick key",
+    "attempts": 0,
+    "notes": [],
+    "why": "not_tried"
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "allegro",
+   "type": "hd_knob_pull_left",
+   "case": "key_table",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": 0.5,
+   "rel": 0.42857142857142855,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 1653.7,
+   "wall": 480.9,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 277,
+   "n_stalled": 23,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 277
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "pick key",
+    "attempts": 0,
+    "notes": [],
+    "why": "not_tried"
+   },
+   "unlock_signs": [
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "allegro",
+   "type": "hd_knob_pull_left",
+   "case": "key_drawer",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": 0.375,
+   "rel": 0.2857142857142857,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 1620.9,
+   "wall": 183.1,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 278,
+   "n_stalled": 22,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 278
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "open drawer",
+    "attempts": 0,
+    "notes": [],
+    "why": "not_tried"
+   },
+   "unlock_signs": [
+    [
+     "turn_pull",
+     1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "allegro",
+   "type": "hd_knob_pull_left",
+   "case": "key_drawer",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": 0.375,
+   "rel": 0.2857142857142857,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 1639.3,
+   "wall": 485.8,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 282,
+   "n_stalled": 18,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 282
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "open drawer",
+    "attempts": 0,
+    "notes": [],
+    "why": "not_tried"
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "allegro",
+   "type": "hd_knob_pull_left",
+   "case": "no_solution",
+   "seed": 200000,
+   "solvable": false,
+   "success": false,
+   "acc": 0.5,
+   "rel": 0.5,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 1619.8,
+   "wall": 132.4,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 278,
+   "n_stalled": 22,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 278
+   },
+   "failure": null,
+   "unlock_signs": [
+    [
+     "turn_pull",
+     1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "allegro",
+   "type": "hd_knob_pull_left",
+   "case": "no_solution",
+   "seed": 200001,
+   "solvable": false,
+   "success": false,
+   "acc": 0.75,
+   "rel": 0.75,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 1652.2,
+   "wall": 487.0,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 277,
+   "n_stalled": 23,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 277
+   },
+   "failure": null,
+   "unlock_signs": [
+    [
+     "turn_pull",
+     1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "allegro",
+   "type": "hd_lever_pull_right",
+   "case": "unlocked",
+   "seed": 200000,
+   "solvable": true,
+   "success": true,
+   "acc": 1.0,
+   "rel": 1.0,
+   "false": 0,
+   "text": "The door opens by pulling the wing part p2.",
+   "stopped": "goal",
+   "actions": 8,
+   "sim": 104.0,
+   "wall": 15.9,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 0,
+   "n_stalled": 7,
+   "n_aborted": 0,
+   "notes_failed": {},
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "allegro",
+   "type": "hd_lever_pull_right",
+   "case": "unlocked",
+   "seed": 200001,
+   "solvable": true,
+   "success": true,
+   "acc": 1.0,
+   "rel": 1.0,
+   "false": 0,
+   "text": "The door opens by pulling the wing part p5.",
+   "stopped": "goal",
+   "actions": 8,
+   "sim": 97.2,
+   "wall": 24.9,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 0,
+   "n_stalled": 7,
+   "n_aborted": 0,
+   "notes_failed": {},
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "allegro",
+   "type": "hd_lever_pull_right",
+   "case": "latch",
+   "seed": 200000,
+   "solvable": true,
+   "success": true,
+   "acc": 1.0,
+   "rel": 1.0,
+   "false": 0,
+   "text": "The door was latched: it opens when I keep turning the bar part p10 while pulling.",
+   "stopped": "goal",
+   "actions": 18,
+   "sim": 159.9,
+   "wall": 18.0,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 1,
+   "n_stalled": 16,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 1
+   },
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "allegro",
+   "type": "hd_lever_pull_right",
+   "case": "latch",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 263,
+   "sim": 3011.8,
+   "wall": 600.9,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 36,
+   "n_stalled": 205,
+   "n_aborted": 0,
+   "notes_failed": {
+    "could not lift it": 17,
+    "grasp failed": 18,
+    "dropped it": 1
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "turn thumb",
+    "attempts": 9,
+    "notes": [
+     "moved",
+     "turned"
+    ],
+    "why": "undone"
+   },
+   "unlock_signs": [
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "pick",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "pull",
+     null,
+     "thumb"
+    ],
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "allegro",
+   "type": "hd_lever_pull_right",
+   "case": "deadbolt",
+   "seed": 200000,
+   "solvable": true,
+   "success": true,
+   "acc": 0.8571428571428571,
+   "rel": 0.75,
+   "false": 0,
+   "text": "The door opens by pulling the bar part p10. It was also bolted: it only moved after I turned the wing part p3.",
+   "stopped": "goal",
+   "actions": 292,
+   "sim": 3125.5,
+   "wall": 342.0,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 28,
+   "n_stalled": 220,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 14,
+    "could not lift it": 14
+   },
+   "failure": null,
+   "unlock_signs": [
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "press_push",
+     null,
+     "thumb"
+    ],
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     1,
+     "thumb"
+    ],
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "allegro",
+   "type": "hd_lever_pull_right",
+   "case": "deadbolt",
+   "seed": 200001,
+   "solvable": true,
+   "success": true,
+   "acc": 0.8571428571428571,
+   "rel": 0.75,
+   "false": 0,
+   "text": "The door was latched: it opens when I keep turning the bar part p7 while pulling.",
+   "stopped": "goal",
+   "actions": 20,
+   "sim": 177.1,
+   "wall": 56.0,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 0,
+   "n_stalled": 19,
+   "n_aborted": 0,
+   "notes_failed": {},
+   "failure": null,
+   "unlock_signs": [
+    [
+     "press_push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "allegro",
+   "type": "hd_lever_pull_right",
+   "case": "key_table",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": 0.5,
+   "rel": 0.42857142857142855,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 2985.1,
+   "wall": 358.6,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 10,
+   "n_stalled": 231,
+   "n_aborted": 0,
+   "notes_failed": {
+    "could not lift it": 9,
+    "grasp failed": 1
+   },
+   "failure": {
+    "cause": "not_executed",
+    "blocked_at": "pick key",
+    "attempts": 3,
+    "notes": [
+     "could not lift it"
+    ],
+    "why": null
+   },
+   "unlock_signs": [
+    [
+     "press_push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     1,
+     "thumb"
+    ],
+    [
+     "pull",
+     null,
+     "thumb"
+    ],
+    [
+     "pull",
+     null,
+     "thumb"
+    ],
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "press_push",
+     null,
+     "thumb"
+    ],
+    [
+     "press_push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "allegro",
+   "type": "hd_lever_pull_right",
+   "case": "key_table",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 209,
+   "sim": 1888.6,
+   "wall": 601.5,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 2,
+   "n_stalled": 185,
+   "n_aborted": 0,
+   "notes_failed": {
+    "could not lift it": 1,
+    "grasp failed": 1
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "insert key",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": [
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     1,
+     "thumb"
+    ],
+    [
+     "press_push",
+     null,
+     "thumb"
+    ],
+    [
+     "press_push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     1,
+     "thumb"
+    ],
+    [
+     "pull",
+     null,
+     "thumb"
+    ],
+    [
+     "press_push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "allegro",
+   "type": "hd_lever_pull_right",
+   "case": "key_drawer",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": 0.375,
+   "rel": 0.2857142857142857,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 2988.7,
+   "wall": 318.6,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 16,
+   "n_stalled": 227,
+   "n_aborted": 0,
+   "notes_failed": {
+    "could not lift it": 10,
+    "grasp failed": 6
+   },
+   "failure": {
+    "cause": "not_executed",
+    "blocked_at": "pick key",
+    "attempts": 3,
+    "notes": [
+     "could not lift it"
+    ],
+    "why": null
+   },
+   "unlock_signs": [
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     1,
+     "thumb"
+    ],
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "pull",
+     null,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "allegro",
+   "type": "hd_lever_pull_right",
+   "case": "key_drawer",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 202,
+   "sim": 2051.9,
+   "wall": 603.7,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 12,
+   "n_stalled": 155,
+   "n_aborted": 0,
+   "notes_failed": {
+    "could not lift it": 11,
+    "dropped it": 1
+   },
+   "failure": {
+    "cause": "not_executed",
+    "blocked_at": "pick key",
+    "attempts": 3,
+    "notes": [
+     "could not lift it"
+    ],
+    "why": null
+   },
+   "unlock_signs": [
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "press_push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "pull",
+     null,
+     "thumb"
+    ],
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "pull",
+     null,
+     "thumb"
+    ],
+    [
+     "pull",
+     null,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "allegro",
+   "type": "hd_lever_pull_right",
+   "case": "no_solution",
+   "seed": 200000,
+   "solvable": false,
+   "success": false,
+   "acc": 0.75,
+   "rel": 0.75,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 3090.1,
+   "wall": 304.6,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 34,
+   "n_stalled": 228,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 5,
+    "dropped it": 6,
+    "could not lift it": 15,
+    "depth=-0.057": 1,
+    "depth=-0.050": 1,
+    "depth=-0.053": 1,
+    "depth=-0.046": 1,
+    "depth=-0.041": 1,
+    "depth=-0.003": 1,
+    "depth=0.001": 1,
+    "depth=-0.299": 1
+   },
+   "failure": null,
+   "unlock_signs": [
+    [
+     "press_push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     1,
+     "thumb"
+    ],
+    [
+     "pull",
+     null,
+     "thumb"
+    ],
+    [
+     "pull",
+     null,
+     "thumb"
+    ],
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "pull",
+     null,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "pull",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     1,
+     "thumb"
+    ],
+    [
+     "press_push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "allegro",
+   "type": "hd_lever_pull_right",
+   "case": "no_solution",
+   "seed": 200001,
+   "solvable": false,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 210,
+   "sim": 1953.8,
+   "wall": 600.7,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 7,
+   "n_stalled": 176,
+   "n_aborted": 0,
+   "notes_failed": {
+    "could not lift it": 5,
+    "dropped it": 2
+   },
+   "failure": null,
+   "unlock_signs": [
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     1,
+     "thumb"
+    ],
+    [
+     "pull",
+     null,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "leap",
+   "type": "hd_knob_pull_left",
+   "case": "unlocked",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 49,
+   "sim": 1103.7,
+   "wall": 606.1,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 49,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 49
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open door",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "leap",
+   "type": "hd_knob_pull_left",
+   "case": "unlocked",
+   "seed": 200001,
+   "solvable": true,
+   "success": true,
+   "acc": 1.0,
+   "rel": 1.0,
+   "false": 0,
+   "text": "The door opens by pulling the wing part p5.",
+   "stopped": "goal",
+   "actions": 12,
+   "sim": 195.3,
+   "wall": 63.6,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 4,
+   "n_stalled": 7,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 4
+   },
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "leap",
+   "type": "hd_knob_pull_left",
+   "case": "latch",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 42,
+   "sim": 939.9,
+   "wall": 615.7,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 42,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 42
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open door",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "leap",
+   "type": "hd_knob_pull_left",
+   "case": "latch",
+   "seed": 200001,
+   "solvable": true,
+   "success": true,
+   "acc": 1.0,
+   "rel": 1.0,
+   "false": 0,
+   "text": "The door was latched: it opens when I keep turning the round part p7 while pulling.",
+   "stopped": "goal",
+   "actions": 26,
+   "sim": 358.6,
+   "wall": 125.4,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 4,
+   "n_stalled": 21,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 4
+   },
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "leap",
+   "type": "hd_knob_pull_left",
+   "case": "deadbolt",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 61,
+   "sim": 1372.9,
+   "wall": 615.6,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 61,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 61
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "turn thumb",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "leap",
+   "type": "hd_knob_pull_left",
+   "case": "deadbolt",
+   "seed": 200001,
+   "solvable": true,
+   "success": true,
+   "acc": 0.8571428571428571,
+   "rel": 0.75,
+   "false": 0,
+   "text": "The door was latched: it opens when I keep turning the round part p7 while pulling.",
+   "stopped": "goal",
+   "actions": 33,
+   "sim": 463.0,
+   "wall": 142.5,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 4,
+   "n_stalled": 28,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 4
+   },
+   "failure": null,
+   "unlock_signs": [
+    [
+     "press_push",
+     null,
+     "thumb"
+    ],
+    [
+     "press_push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "leap",
+   "type": "hd_knob_pull_left",
+   "case": "key_table",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 75,
+   "sim": 1689.6,
+   "wall": 604.8,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 75,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 75
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "pick key",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "leap",
+   "type": "hd_knob_pull_left",
+   "case": "key_table",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 156,
+   "sim": 2262.0,
+   "wall": 606.0,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 18,
+   "n_stalled": 125,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 9,
+    "could not lift it": 9
+   },
+   "failure": {
+    "cause": "not_executed",
+    "blocked_at": "pick key",
+    "attempts": 3,
+    "notes": [
+     "could not lift it"
+    ],
+    "why": null
+   },
+   "unlock_signs": [
+    [
+     "turn_pull",
+     1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "leap",
+   "type": "hd_knob_pull_left",
+   "case": "key_drawer",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 60,
+   "sim": 1373.7,
+   "wall": 606.4,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 60,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 60
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open drawer",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "leap",
+   "type": "hd_knob_pull_left",
+   "case": "key_drawer",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 185,
+   "sim": 2649.7,
+   "wall": 606.5,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 22,
+   "n_stalled": 141,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 13,
+    "could not lift it": 9
+   },
+   "failure": {
+    "cause": "not_executed",
+    "blocked_at": "pick key",
+    "attempts": 3,
+    "notes": [
+     "could not lift it"
+    ],
+    "why": null
+   },
+   "unlock_signs": [
+    [
+     "turn_pull",
+     1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "leap",
+   "type": "hd_knob_pull_left",
+   "case": "no_solution",
+   "seed": 200000,
+   "solvable": false,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 78,
+   "sim": 1785.1,
+   "wall": 605.1,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 78,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 78
+   },
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "leap",
+   "type": "hd_knob_pull_left",
+   "case": "no_solution",
+   "seed": 200001,
+   "solvable": false,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 179,
+   "sim": 2539.4,
+   "wall": 607.1,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 15,
+   "n_stalled": 153,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 9,
+    "could not lift it": 6
+   },
+   "failure": null,
+   "unlock_signs": [
+    [
+     "turn_pull",
+     1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "press_push",
+     null,
+     "thumb"
+    ],
+    [
+     "press_push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "pull",
+     null,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "leap",
+   "type": "hd_lever_pull_right",
+   "case": "unlocked",
+   "seed": 200000,
+   "solvable": true,
+   "success": true,
+   "acc": 1.0,
+   "rel": 1.0,
+   "false": 0,
+   "text": "The door opens by pulling the wing part p2.",
+   "stopped": "goal",
+   "actions": 8,
+   "sim": 85.3,
+   "wall": 31.1,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 0,
+   "n_stalled": 7,
+   "n_aborted": 0,
+   "notes_failed": {},
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "leap",
+   "type": "hd_lever_pull_right",
+   "case": "unlocked",
+   "seed": 200001,
+   "solvable": true,
+   "success": true,
+   "acc": 1.0,
+   "rel": 1.0,
+   "false": 0,
+   "text": "The door opens by pulling the wing part p5.",
+   "stopped": "goal",
+   "actions": 8,
+   "sim": 82.8,
+   "wall": 22.3,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 0,
+   "n_stalled": 7,
+   "n_aborted": 0,
+   "notes_failed": {},
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "leap",
+   "type": "hd_lever_pull_right",
+   "case": "latch",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 101,
+   "sim": 1032.2,
+   "wall": 609.0,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 8,
+   "n_stalled": 87,
+   "n_aborted": 0,
+   "notes_failed": {
+    "could not lift it": 8
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open door",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": [
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "leap",
+   "type": "hd_lever_pull_right",
+   "case": "latch",
+   "seed": 200001,
+   "solvable": true,
+   "success": true,
+   "acc": 0.8571428571428571,
+   "rel": 1.0,
+   "false": 1,
+   "text": "The door was latched: it opens when I keep turning the bar part p7 while pulling. It was probably also bolted: it only moved after I turned the bar part p9.",
+   "stopped": "goal",
+   "actions": 189,
+   "sim": 1822.9,
+   "wall": 563.1,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 9,
+   "n_stalled": 149,
+   "n_aborted": 0,
+   "notes_failed": {
+    "could not lift it": 9
+   },
+   "failure": null,
+   "unlock_signs": [
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "pull",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "leap",
+   "type": "hd_lever_pull_right",
+   "case": "deadbolt",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 210,
+   "sim": 1981.4,
+   "wall": 602.3,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 6,
+   "n_stalled": 173,
+   "n_aborted": 0,
+   "notes_failed": {
+    "could not lift it": 6
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "turn thumb",
+    "attempts": 9,
+    "notes": [
+     "moved",
+     "turned"
+    ],
+    "why": "undone"
+   },
+   "unlock_signs": [
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "press_push",
+     null,
+     "thumb"
+    ],
+    [
+     "press_push",
+     null,
+     "thumb"
+    ],
+    [
+     "press_push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "press_push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "pull",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "leap",
+   "type": "hd_lever_pull_right",
+   "case": "deadbolt",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 239,
+   "sim": 2501.7,
+   "wall": 600.9,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 33,
+   "n_stalled": 186,
+   "n_aborted": 0,
+   "notes_failed": {
+    "could not lift it": 9,
+    "grasp failed": 24
+   },
+   "failure": {
+    "cause": "stalled",
+    "blocked_at": "open door",
+    "attempts": 2,
+    "notes": [
+     "moved"
+    ],
+    "why": null
+   },
+   "unlock_signs": [
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "press_push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "leap",
+   "type": "hd_lever_pull_right",
+   "case": "key_table",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 263,
+   "sim": 2504.8,
+   "wall": 603.7,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 9,
+   "n_stalled": 221,
+   "n_aborted": 0,
+   "notes_failed": {
+    "could not lift it": 9
+   },
+   "failure": {
+    "cause": "not_executed",
+    "blocked_at": "pick key",
+    "attempts": 3,
+    "notes": [
+     "could not lift it"
+    ],
+    "why": null
+   },
+   "unlock_signs": [
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "press_push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "pull",
+     null,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "leap",
+   "type": "hd_lever_pull_right",
+   "case": "key_table",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 181,
+   "sim": 2158.2,
+   "wall": 606.9,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 36,
+   "n_stalled": 136,
+   "n_aborted": 0,
+   "notes_failed": {
+    "could not lift it": 9,
+    "grasp failed": 27
+   },
+   "failure": {
+    "cause": "not_executed",
+    "blocked_at": "pick key",
+    "attempts": 3,
+    "notes": [
+     "could not lift it"
+    ],
+    "why": null
+   },
+   "unlock_signs": [
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "leap",
+   "type": "hd_lever_pull_right",
+   "case": "key_drawer",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 285,
+   "sim": 2798.2,
+   "wall": 603.6,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 15,
+   "n_stalled": 231,
+   "n_aborted": 0,
+   "notes_failed": {
+    "could not lift it": 9,
+    "grasp failed": 6
+   },
+   "failure": {
+    "cause": "not_executed",
+    "blocked_at": "pick key",
+    "attempts": 3,
+    "notes": [
+     "could not lift it"
+    ],
+    "why": null
+   },
+   "unlock_signs": [
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     1,
+     "thumb"
+    ],
+    [
+     "pull",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "leap",
+   "type": "hd_lever_pull_right",
+   "case": "key_drawer",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 245,
+   "sim": 2595.8,
+   "wall": 602.8,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 51,
+   "n_stalled": 178,
+   "n_aborted": 0,
+   "notes_failed": {
+    "could not lift it": 9,
+    "grasp failed": 42
+   },
+   "failure": {
+    "cause": "not_executed",
+    "blocked_at": "pick key",
+    "attempts": 3,
+    "notes": [
+     "could not lift it"
+    ],
+    "why": null
+   },
+   "unlock_signs": [
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "leap",
+   "type": "hd_lever_pull_right",
+   "case": "no_solution",
+   "seed": 200000,
+   "solvable": false,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 283,
+   "sim": 2636.4,
+   "wall": 603.1,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 6,
+   "n_stalled": 243,
+   "n_aborted": 0,
+   "notes_failed": {
+    "could not lift it": 6
+   },
+   "failure": null,
+   "unlock_signs": [
+    [
+     "turn",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "leap",
+   "type": "hd_lever_pull_right",
+   "case": "no_solution",
+   "seed": 200001,
+   "solvable": false,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 162,
+   "sim": 1614.9,
+   "wall": 600.5,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 15,
+   "n_stalled": 136,
+   "n_aborted": 0,
+   "notes_failed": {
+    "could not lift it": 6,
+    "grasp failed": 9
+   },
+   "failure": null,
+   "unlock_signs": [
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "shadow",
+   "type": "hd_knob_pull_left",
+   "case": "unlocked",
+   "seed": 200000,
+   "solvable": true,
+   "success": true,
+   "acc": 0.8571428571428571,
+   "rel": 1.0,
+   "false": 1,
+   "text": "The door was latched: it opens when I keep turning the wing part p5 while pulling.",
+   "stopped": "goal",
+   "actions": 9,
+   "sim": 111.4,
+   "wall": 40.3,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 2,
+   "n_stalled": 5,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 2
+   },
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "shadow",
+   "type": "hd_knob_pull_left",
+   "case": "unlocked",
+   "seed": 200001,
+   "solvable": true,
+   "success": true,
+   "acc": 1.0,
+   "rel": 1.0,
+   "false": 0,
+   "text": "The door opens by pulling the wing part p5.",
+   "stopped": "goal",
+   "actions": 5,
+   "sim": 68.4,
+   "wall": 10.6,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 1,
+   "n_stalled": 1,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 1
+   },
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "shadow",
+   "type": "hd_knob_pull_left",
+   "case": "latch",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 126,
+   "sim": 1295.8,
+   "wall": 603.3,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 114,
+   "n_stalled": 12,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 114
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open door",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "shadow",
+   "type": "hd_knob_pull_left",
+   "case": "latch",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": 0.7142857142857143,
+   "rel": 0.3333333333333333,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 3421.2,
+   "wall": 455.9,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 290,
+   "n_stalled": 10,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 290
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "open door",
+    "attempts": 0,
+    "notes": [],
+    "why": "not_tried"
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "shadow",
+   "type": "hd_knob_pull_left",
+   "case": "deadbolt",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 84,
+   "sim": 1123.8,
+   "wall": 608.6,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 58,
+   "n_stalled": 26,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 58
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "turn thumb",
+    "attempts": 2,
+    "notes": [
+     "moved"
+    ],
+    "why": "undone"
+   },
+   "unlock_signs": [
+    [
+     "press_push",
+     null,
+     "thumb"
+    ],
+    [
+     "turn_push",
+     -1,
+     "thumb"
+    ],
+    [
+     "turn_pull",
+     -1,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "shadow",
+   "type": "hd_knob_pull_left",
+   "case": "deadbolt",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": 0.5714285714285714,
+   "rel": 0.25,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 4256.1,
+   "wall": 579.8,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 286,
+   "n_stalled": 14,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 286
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "open door",
+    "attempts": 0,
+    "notes": [],
+    "why": "not_tried"
+   },
+   "unlock_signs": [
+    [
+     "press_push",
+     null,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "shadow",
+   "type": "hd_knob_pull_left",
+   "case": "key_table",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 130,
+   "sim": 1336.2,
+   "wall": 601.7,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 118,
+   "n_stalled": 12,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 118
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "pick key",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "shadow",
+   "type": "hd_knob_pull_left",
+   "case": "key_table",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": 0.5,
+   "rel": 0.42857142857142855,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 3421.2,
+   "wall": 454.5,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 290,
+   "n_stalled": 10,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 290
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "pick key",
+    "attempts": 0,
+    "notes": [],
+    "why": "not_tried"
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "shadow",
+   "type": "hd_knob_pull_left",
+   "case": "key_drawer",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 122,
+   "sim": 1243.2,
+   "wall": 601.4,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 110,
+   "n_stalled": 12,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 110
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open drawer",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "shadow",
+   "type": "hd_knob_pull_left",
+   "case": "key_drawer",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": 0.375,
+   "rel": 0.2857142857142857,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 3422.9,
+   "wall": 469.5,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 290,
+   "n_stalled": 10,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 290
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "open drawer",
+    "attempts": 0,
+    "notes": [],
+    "why": "not_tried"
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "shadow",
+   "type": "hd_knob_pull_left",
+   "case": "no_solution",
+   "seed": 200000,
+   "solvable": false,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 124,
+   "sim": 1263.5,
+   "wall": 600.7,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 112,
+   "n_stalled": 12,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 112
+   },
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "shadow",
+   "type": "hd_knob_pull_left",
+   "case": "no_solution",
+   "seed": 200001,
+   "solvable": false,
+   "success": false,
+   "acc": 0.75,
+   "rel": 0.75,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 3423.4,
+   "wall": 466.0,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 290,
+   "n_stalled": 10,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 290
+   },
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "shadow",
+   "type": "hd_lever_pull_right",
+   "case": "unlocked",
+   "seed": 200000,
+   "solvable": true,
+   "success": true,
+   "acc": 1.0,
+   "rel": 1.0,
+   "false": 0,
+   "text": "The door opens by pulling the wing part p2.",
+   "stopped": "goal",
+   "actions": 8,
+   "sim": 103.9,
+   "wall": 49.2,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 0,
+   "n_stalled": 4,
+   "n_aborted": 0,
+   "notes_failed": {},
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "shadow",
+   "type": "hd_lever_pull_right",
+   "case": "unlocked",
+   "seed": 200001,
+   "solvable": true,
+   "success": true,
+   "acc": 1.0,
+   "rel": 1.0,
+   "false": 0,
+   "text": "The door opens by pulling the wing part p5.",
+   "stopped": "goal",
+   "actions": 8,
+   "sim": 103.7,
+   "wall": 13.1,
+   "unstable": false,
+   "opened_ever": true,
+   "n_not_executed": 0,
+   "n_stalled": 4,
+   "n_aborted": 0,
+   "notes_failed": {},
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "shadow",
+   "type": "hd_lever_pull_right",
+   "case": "latch",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 207,
+   "sim": 1150.7,
+   "wall": 600.9,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 189,
+   "n_stalled": 18,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 189
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "turn thumb",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "shadow",
+   "type": "hd_lever_pull_right",
+   "case": "latch",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": 0.7142857142857143,
+   "rel": 0.3333333333333333,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 1610.9,
+   "wall": 234.6,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 286,
+   "n_stalled": 14,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 286
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "turn thumb",
+    "attempts": 0,
+    "notes": [],
+    "why": "undone"
+   },
+   "unlock_signs": [
+    [
+     "press_push",
+     null,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "shadow",
+   "type": "hd_lever_pull_right",
+   "case": "deadbolt",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 267,
+   "sim": 1462.8,
+   "wall": 602.8,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 249,
+   "n_stalled": 18,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 249
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open door",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": [
+    [
+     "press_push",
+     null,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "shadow",
+   "type": "hd_lever_pull_right",
+   "case": "deadbolt",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": 0.5714285714285714,
+   "rel": 0.25,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 1614.8,
+   "wall": 234.6,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 286,
+   "n_stalled": 14,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 286
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "open door",
+    "attempts": 0,
+    "notes": [],
+    "why": "not_tried"
+   },
+   "unlock_signs": [
+    [
+     "press_push",
+     null,
+     "thumb"
+    ]
+   ]
+  },
+  {
+   "body": "shadow",
+   "type": "hd_lever_pull_right",
+   "case": "key_table",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": 0.5,
+   "rel": 0.42857142857142855,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 1637.1,
+   "wall": 504.6,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 282,
+   "n_stalled": 18,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 282
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "pick key",
+    "attempts": 0,
+    "notes": [],
+    "why": "not_tried"
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "shadow",
+   "type": "hd_lever_pull_right",
+   "case": "key_table",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": 0.5,
+   "rel": 0.42857142857142855,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 1610.9,
+   "wall": 235.3,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 286,
+   "n_stalled": 14,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 286
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "pick key",
+    "attempts": 0,
+    "notes": [],
+    "why": "not_tried"
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "shadow",
+   "type": "hd_lever_pull_right",
+   "case": "key_drawer",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": 0.375,
+   "rel": 0.2857142857142857,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 1628.8,
+   "wall": 552.2,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 282,
+   "n_stalled": 18,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 282
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "open drawer",
+    "attempts": 0,
+    "notes": [],
+    "why": "not_tried"
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "shadow",
+   "type": "hd_lever_pull_right",
+   "case": "key_drawer",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": 0.375,
+   "rel": 0.2857142857142857,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 1610.9,
+   "wall": 234.3,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 286,
+   "n_stalled": 14,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 286
+   },
+   "failure": {
+    "cause": "reasoning",
+    "blocked_at": "open drawer",
+    "attempts": 0,
+    "notes": [],
+    "why": "not_tried"
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "shadow",
+   "type": "hd_lever_pull_right",
+   "case": "no_solution",
+   "seed": 200000,
+   "solvable": false,
+   "success": false,
+   "acc": 0.5,
+   "rel": 0.5,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 1637.1,
+   "wall": 567.8,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 282,
+   "n_stalled": 18,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 282
+   },
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "shadow",
+   "type": "hd_lever_pull_right",
+   "case": "no_solution",
+   "seed": 200001,
+   "solvable": false,
+   "success": false,
+   "acc": 0.75,
+   "rel": 0.75,
+   "false": 0,
+   "text": "I did not manage to open it within 300 actions.",
+   "stopped": "budget",
+   "actions": 300,
+   "sim": 1610.9,
+   "wall": 230.0,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 286,
+   "n_stalled": 14,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 286
+   },
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "g1_hands",
+   "type": "hd_knob_pull_left",
+   "case": "unlocked",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 21,
+   "sim": 462.1,
+   "wall": 626.3,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 0,
+   "n_stalled": 21,
+   "n_aborted": 0,
+   "notes_failed": {},
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open door",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "g1_hands",
+   "type": "hd_knob_pull_left",
+   "case": "unlocked",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 84,
+   "sim": 2154.4,
+   "wall": 607.5,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 66,
+   "n_stalled": 18,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 66
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open door",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "g1_hands",
+   "type": "hd_knob_pull_left",
+   "case": "latch",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 21,
+   "sim": 462.1,
+   "wall": 628.2,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 0,
+   "n_stalled": 21,
+   "n_aborted": 0,
+   "notes_failed": {},
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open door",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "g1_hands",
+   "type": "hd_knob_pull_left",
+   "case": "latch",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 83,
+   "sim": 2084.4,
+   "wall": 605.4,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 56,
+   "n_stalled": 27,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 56
+   },
+   "failure": {
+    "cause": "stalled",
+    "blocked_at": "open door",
+    "attempts": 2,
+    "notes": [
+     "grasp failed",
+     "moved"
+    ],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "g1_hands",
+   "type": "hd_knob_pull_left",
+   "case": "deadbolt",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 20,
+   "sim": 439.2,
+   "wall": 626.7,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 0,
+   "n_stalled": 20,
+   "n_aborted": 0,
+   "notes_failed": {},
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "turn thumb",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "g1_hands",
+   "type": "hd_knob_pull_left",
+   "case": "deadbolt",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 83,
+   "sim": 2076.1,
+   "wall": 606.6,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 53,
+   "n_stalled": 30,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 53
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "turn thumb",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "g1_hands",
+   "type": "hd_knob_pull_left",
+   "case": "key_table",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 19,
+   "sim": 416.3,
+   "wall": 604.8,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 0,
+   "n_stalled": 19,
+   "n_aborted": 0,
+   "notes_failed": {},
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "pick key",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "g1_hands",
+   "type": "hd_knob_pull_left",
+   "case": "key_table",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 77,
+   "sim": 1932.6,
+   "wall": 603.8,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 52,
+   "n_stalled": 25,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 52
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "pick key",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "g1_hands",
+   "type": "hd_knob_pull_left",
+   "case": "key_drawer",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 20,
+   "sim": 439.2,
+   "wall": 611.3,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 0,
+   "n_stalled": 20,
+   "n_aborted": 0,
+   "notes_failed": {},
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open drawer",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "g1_hands",
+   "type": "hd_knob_pull_left",
+   "case": "key_drawer",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 68,
+   "sim": 1700.6,
+   "wall": 607.3,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 10,
+   "n_stalled": 58,
+   "n_aborted": 4,
+   "notes_failed": {
+    "could not lift it": 2,
+    "aborted: step budget": 4,
+    "grasp failed": 4
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "pick key",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "g1_hands",
+   "type": "hd_knob_pull_left",
+   "case": "no_solution",
+   "seed": 200000,
+   "solvable": false,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 20,
+   "sim": 439.2,
+   "wall": 630.8,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 0,
+   "n_stalled": 20,
+   "n_aborted": 0,
+   "notes_failed": {},
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "g1_hands",
+   "type": "hd_knob_pull_left",
+   "case": "no_solution",
+   "seed": 200001,
+   "solvable": false,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 67,
+   "sim": 1678.1,
+   "wall": 604.7,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 9,
+   "n_stalled": 58,
+   "n_aborted": 4,
+   "notes_failed": {
+    "could not lift it": 2,
+    "aborted: step budget": 4,
+    "grasp failed": 3
+   },
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "g1_hands",
+   "type": "hd_lever_pull_right",
+   "case": "unlocked",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 25,
+   "sim": 649.0,
+   "wall": 610.6,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 25,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 25
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open door",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "g1_hands",
+   "type": "hd_lever_pull_right",
+   "case": "unlocked",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 97,
+   "sim": 2518.1,
+   "wall": 602.7,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 97,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 97
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open door",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "g1_hands",
+   "type": "hd_lever_pull_right",
+   "case": "latch",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 25,
+   "sim": 649.0,
+   "wall": 609.0,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 25,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 25
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open door",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "g1_hands",
+   "type": "hd_lever_pull_right",
+   "case": "latch",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 97,
+   "sim": 2518.1,
+   "wall": 603.9,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 97,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 97
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open door",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "g1_hands",
+   "type": "hd_lever_pull_right",
+   "case": "deadbolt",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 25,
+   "sim": 649.0,
+   "wall": 604.3,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 25,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 25
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "turn thumb",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "g1_hands",
+   "type": "hd_lever_pull_right",
+   "case": "deadbolt",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 93,
+   "sim": 2414.3,
+   "wall": 606.1,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 93,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 93
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "turn thumb",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "g1_hands",
+   "type": "hd_lever_pull_right",
+   "case": "key_table",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 25,
+   "sim": 649.0,
+   "wall": 603.5,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 25,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 25
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "pick key",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "g1_hands",
+   "type": "hd_lever_pull_right",
+   "case": "key_table",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 93,
+   "sim": 2414.3,
+   "wall": 606.6,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 93,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 93
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "pick key",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "g1_hands",
+   "type": "hd_lever_pull_right",
+   "case": "key_drawer",
+   "seed": 200000,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 25,
+   "sim": 649.0,
+   "wall": 614.8,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 25,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 25
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open drawer",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "g1_hands",
+   "type": "hd_lever_pull_right",
+   "case": "key_drawer",
+   "seed": 200001,
+   "solvable": true,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 94,
+   "sim": 2440.2,
+   "wall": 600.9,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 94,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 94
+   },
+   "failure": {
+    "cause": "timeout",
+    "blocked_at": "open drawer",
+    "attempts": 0,
+    "notes": [],
+    "why": null
+   },
+   "unlock_signs": []
+  },
+  {
+   "body": "g1_hands",
+   "type": "hd_lever_pull_right",
+   "case": "no_solution",
+   "seed": 200000,
+   "solvable": false,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 27,
+   "sim": 700.9,
+   "wall": 608.4,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 27,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 27
+   },
+   "failure": null,
+   "unlock_signs": []
+  },
+  {
+   "body": "g1_hands",
+   "type": "hd_lever_pull_right",
+   "case": "no_solution",
+   "seed": 200001,
+   "solvable": false,
+   "success": false,
+   "acc": null,
+   "rel": null,
+   "false": 0,
+   "text": "",
+   "stopped": "timeout",
+   "actions": 96,
+   "sim": 2492.2,
+   "wall": 604.6,
+   "unstable": false,
+   "opened_ever": false,
+   "n_not_executed": 96,
+   "n_stalled": 0,
+   "n_aborted": 0,
+   "notes_failed": {
+    "grasp failed": 96
+   },
+   "failure": null,
+   "unlock_signs": []
+  }
+ ]
+}

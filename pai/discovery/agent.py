@@ -23,6 +23,20 @@ keyhole is. Each step:
    untested-but-reachable rules is never compared with UNKNOWN, which explains every failure and so
    would swamp a rule that simply was not tested yet.
 
+Locality. Four built-in "causes act locally" assumptions, each of which a Locality switches off for
+an ablation (the defaults are the ones every reported number was measured with):
+
+- radius       the probes (the moves that may reach the goal) are the probe actions on parts within
+               0.7 m of the goal part; None = a probe of any part in view (the goal part stays given)
+- probe_prior  a prior penalty on probes by the probe part's distance from the goal part (0 = off)
+- lit_prior    the same penalty on the literals of the conditions C (0 = off); conditions on any part
+               are always in the hypothesis space, the penalty only makes far ones less probable
+- explain      'near': the explanation keeps only conditions on entities near the goal part;
+               'evidence': only those the agent's own log or belief supports (see pai.discovery.explain)
+
+Locality.off() switches all four off. The switches in use are recorded in the log (log.locality), so
+explain(log) applies the matching filter.
+
 Baselines (same skills, same budget accounting): RandomAgent (uniform over the offered actions, probing
 the door after each) and NoveltyAgent (prefers never-tried actions and entities, no causal belief).
 compare() runs them side by side and prints a table.
@@ -33,7 +47,7 @@ from __future__ import annotations
 import heapq
 import itertools
 import time
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field, replace
 
 import numpy as np
 
@@ -45,6 +59,24 @@ from pai.discovery.interface import PROBE_KINDS, Action, Entity, World
 SKILL_TIME = {"pick": 3.0, "release": 1.5, "insert": 4.0, "turn_held": 2.0, "turn": 2.0, "pull": 3.0, "push": 3.0,
               "turn_pull": 4.0, "turn_push": 4.0, "press_push": 3.5}
 HAND_SPEED = 1.2   # s per metre
+
+
+@dataclass(frozen=True)
+class Locality:
+    """The built-in locality assumptions (see the module docstring); the defaults are the reported ones."""
+    radius: float | None = 0.7     # probes on parts within this distance (m) of the goal part; None = any part
+    probe_prior: float = 1.0       # weight of the distance penalty in the prior over probes (0 = off)
+    lit_prior: float = 1.0         # weight of the distance penalty in the prior over literals (0 = off)
+    explain: str = "near"          # explanation filter: "near" (the goal part) | "evidence" (log and belief)
+
+    @classmethod
+    def off(cls) -> "Locality":
+        return cls(radius=None, probe_prior=0.0, lit_prior=0.0, explain="evidence")
+
+    def without(self, *names: str) -> "Locality":
+        """This locality with the named assumptions switched off, e.g. without("radius", "lit_prior")."""
+        off = asdict(Locality.off())
+        return replace(self, **{n: off[n] for n in names})
 
 
 @dataclass
@@ -64,6 +96,12 @@ class EpisodeLog:
     revealed_by: dict = field(default_factory=dict)   # entity id -> the action whose outcome revealed it
     no_solution_mass: float | None = None
     wall_time: float = 0.0
+    locality: dict = field(default_factory=dict)     # the Locality switches the agent ran with
+    consistent: list = field(default_factory=list)   # at a success: the rules with the successful probe that
+    #                                                  held and got nothing wrong, [{"literals", "p"}], p
+    #                                                  normalised over them (the belief's attribution)
+
+
 
 
 def _pos(ents: dict, eid: str) -> np.ndarray:
@@ -74,10 +112,11 @@ def target_of(a: Action) -> str:
     return a[2] if a[0] == "insert" else a[1]
 
 
-def near_goal_probes(actions: list[Action], ents: dict, goal_part: str, radius: float) -> list[Action]:
+def near_goal_probes(actions: list[Action], ents: dict, goal_part: str, radius: float | None) -> list[Action]:
+    """Probe actions on parts within `radius` of the goal part (radius None: on any part in view)."""
     g = _pos(ents, goal_part)
     return [a for a in actions if a[0] in PROBE_KINDS and a[1] in ents
-            and np.linalg.norm(_pos(ents, a[1]) - g) <= radius]
+            and (radius is None or np.linalg.norm(_pos(ents, a[1]) - g) <= radius)]
 
 
 class _Episode:
@@ -154,13 +193,16 @@ class DiscoveryAgent:
                  no_solution: float = 0.05, radius: float = 0.7, proximity: float = 0.5, seed: int = 0,
                  snapshot_every: int = 10, n_plan: int = 6, lit_locality: float = 1.0, sweep: int | None = None,
                  kappa_reveal: float = 0.3, base_novel: float = 0.01, init_bonus: float = 0.0,
-                 extent: bool = True):
+                 extent: bool = True, locality: Locality | None = None):
         self.max_lits, self.eps, self.p_unknown = max_lits, eps, p_unknown
         # no_solution: kept for compatibility; giving up no longer thresholds a mass (see the docstring)
         self.exploit_p, self.no_solution_p = exploit, no_solution
-        self.radius, self.proximity = radius, proximity
+        # radius and lit_locality are the older spelling of Locality(radius=..., lit_prior=...); a
+        # `locality` given overrides them
+        self.locality = loc = locality or Locality(radius=radius, lit_prior=lit_locality)
+        self.radius, self.proximity = loc.radius, proximity
         self.rng = np.random.default_rng(seed)
-        self.snapshot_every, self.n_plan, self.lit_locality = snapshot_every, n_plan, lit_locality
+        self.snapshot_every, self.n_plan, self.lit_locality = snapshot_every, n_plan, loc.lit_prior
         self.sweep, self.kappa_reveal, self.base_novel, self.init_bonus = sweep, kappa_reveal, base_novel, init_bonus
         self.extent = extent      # locality measured from the goal part's extent (else from its centre)
         self.belief: Belief | None = None
@@ -169,6 +211,7 @@ class DiscoveryAgent:
     # ------------------------------------------------------------------ main loop
     def run(self, world: World, budget_actions: int = 300, recipes=None) -> EpisodeLog:
         ep = _Episode(world)
+        ep.log.locality = asdict(self.locality)
         ents, gp = ep.ents, ep.goal_part
         probes = near_goal_probes(world.actions(), ents, gp, self.radius)
         g = _pos(ents, gp)
@@ -179,7 +222,8 @@ class DiscoveryAgent:
             a door leaf is equally local to it."""
             return max(0.0, float(np.linalg.norm(_pos(ents, e) - g)) - g_r)
 
-        prox = lambda ps: np.array([-gap(p[1]) / self.proximity for p in ps])  # noqa: E731
+        w_probe = self.locality.probe_prior
+        prox = lambda ps: np.array([-w_probe * gap(p[1]) / self.proximity for p in ps])  # noqa: E731
 
         first = dict(ep.state)   # how things were when first seen: found ready for use, until I disturbed them
 
@@ -259,6 +303,7 @@ class DiscoveryAgent:
             mask = (bel.h_probe == bel.pidx[a]) & bel.holds({f: v for f, v in s.items() if is_scene_feature(f)})
             if mask.any():   # the simplest rule that got nothing wrong, if there is one
                 mask &= bel.h_err == bel.h_err[mask].min()
+                ep.log.consistent = self._attribution(mask)
                 # among equally probable ones, the rule whose conditions became true last: the probes
                 # before that change failed
                 w, _ = bel.weights()
@@ -273,6 +318,16 @@ class DiscoveryAgent:
                     mask[best] = True
             return bel.map(mask)
         return bel.map()
+
+    def _attribution(self, mask: np.ndarray, k: int = 300) -> list[dict]:
+        """The k most probable rules in `mask`, with their posterior renormalised over the mask."""
+        bel = self.belief
+        w, _ = bel.weights()
+        idx = np.flatnonzero(mask)
+        z = float(w[idx].sum())
+        idx = idx[np.argsort(-w[idx])][:k]
+        return [{"literals": bel.describe(int(i), w)["literals"], "p": float(w[i]) / z if z > 0 else 0.0}
+                for i in idx]
 
     def _sweep(self, ep: _Episode, acts: list[Action], poss: np.ndarray) -> Action | None:
         """Next step towards testing the most probable condition C (summed over probes) among the rules

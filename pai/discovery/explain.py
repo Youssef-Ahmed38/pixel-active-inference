@@ -13,6 +13,26 @@ The explanation is built from what the agent knows, never from the world's groun
   opening something), which other objects went into that part but would not turn (wrong keys) or did not
   go in at all, and whether a plain push/pull failed where turning while pulling worked (the latch).
 
+The filter "near the goal" is one of the agent's locality assumptions (pai.discovery.agent.Locality).
+With Locality(explain="evidence") (recorded in log.locality, or passed as mode="evidence") it is
+replaced by a rule that uses only the agent's own evidence, wherever the entity is. A condition
+(f = v) that did not hold at the start is kept only if the log shows the door failing without it:
+the successful probe ran and failed while f != v (for a rule condition, at least once; for a step
+outside the rule, while the rule's conditions held), and one of
+
+  (a) contrast: the probe also failed while f != v and every other condition (of the rule, or of the
+      rule plus the other candidate steps) held, i.e. with it the door opened, without it (and with
+      everything else) it did not;
+  (b) attribution: the belief puts more than half of its mass on it. Among the rules that got
+      nothing wrong, held at the success and use the successful probe (log.consistent), the rules
+      with a condition on the same entity (a key and the part it sits in count as one) carry
+      p > 0.5.
+
+A condition that only came along (the drawer opened to find the key, a dial turned on the way) is
+then dropped when another rule without it explains the log as well, with no locality assumption. In
+a failed episode, the part that none of the agent's actions moved is looked for among the parts the
+best remaining rules are about, rather than among the parts near the goal.
+
 explain(log) returns the text and a machine-checkable dict of claims; score(claims, truth, log) compares
 them with MockWorld.truth() (explanation accuracy). truth() is used only there.
 """
@@ -76,7 +96,15 @@ def _objects_tried(log, part: str) -> tuple[list, list, list]:
     return turned, stuck, no_fit
 
 
-def claims_of(log, radius: float = 0.7) -> dict:
+def _filter_of(log, mode: str | None) -> str:
+    return mode or (getattr(log, "locality", None) or {}).get("explain", "near")
+
+
+def claims_of(log, radius: float = 0.7, mode: str | None = None) -> dict:
+    """The claims of the explanation; `mode` "near" | "evidence" (default: the one in log.locality,
+    else "near"), see the module docstring."""
+    evidence = _filter_of(log, mode) == "evidence"
+    near = (lambda e: True) if evidence else (lambda e: _near(log, e, radius))   # noqa: E731
     c = {"opened": bool(log.reached_goal), "no_solution": log.stopped_reason == "no_solution",
          "latched": None, "latch_tested": False, "probe": None, "release_part": None, "deadbolt_part": None,
          "key_part": None, "key_used": None, "key_found_in": None, "wrong_keys": [], "no_fit": [], "turned": [],
@@ -90,16 +118,16 @@ def claims_of(log, radius: float = 0.7) -> dict:
         # and causes act locally: a condition on something far from the door (the drawer I opened to
         # find the key) is how I got there, not what holds the door
         conds = {f: v for f, v in (log.final_map or {}).get("literals", {}).items()
-                 if first.get(f) != v and _near(log, v[3:] if v.startswith("in:") else entity_of(f), radius)}
+                 if first.get(f) != v and near(v[3:] if v.startswith("in:") else entity_of(f))}
         probably = {}
         for f, v in s.items():
             if not is_scene_feature(f) or f in conds or first.get(f) == v:
                 continue
             e = entity_of(f)
             where = v[3:] if v.startswith("in:") else None
-            if _near(log, where or e, radius) and (f.endswith(".angle") or where) and v != "rest":
+            if near(where or e) and (f.endswith(".angle") or where) and v != "rest":
                 probably[f] = v
-            elif _near(log, e, radius) and f.endswith(".angle") and v == "rest":
+            elif near(e) and f.endswith(".angle") and v == "rest":
                 probably[f] = v            # turned back to rest from how it was at the start
         # keep a condition only with a contrast in the log: the same probe failed while it was false; a
         # step I took and left in place without such a contrast is not claimed
@@ -112,9 +140,18 @@ def claims_of(log, radius: float = 0.7) -> dict:
             grp = holder_of(f, v)
             return any(st.get(f) != v and all(st.get(g) == u for g, u in given.items() if holder_of(g, u) != grp)
                        for st in fails)
-        conds = {f: v for f, v in conds.items() if contrast(f, v, {})}
-        # a step outside the rule: only if the probe failed without it while the rule's conditions held
-        probably = {f: v for f, v in probably.items() if f not in conds and contrast(f, v, conds)}
+        if not evidence:
+            conds = {f: v for f, v in conds.items() if contrast(f, v, {})}
+            # a step outside the rule: only if the probe failed without it while the rule's conditions held
+            probably = {f: v for f, v in probably.items() if f not in conds and contrast(f, v, conds)}
+        else:
+            # no locality: a failure without it, and either a failure without it while everything else
+            # held, or the belief attributes it (the module docstring)
+            att = _attribution(log, first, holder_of)
+            conds = {f: v for f, v in conds.items() if contrast(f, v, {}) and
+                     (contrast(f, v, {g: u for g, u in conds.items() if g != f}) or att.get(holder_of(f, v), 0) > 0.5)}
+            probably = {f: v for f, v in probably.items() if f not in conds and contrast(f, v, {}) and
+                        (contrast(f, v, conds) or att.get(holder_of(f, v), 0) > 0.5)}
         c["conditions"], c["probably"] = conds, probably
         allc = {**probably, **conds}
         # which object sits in which part at the success
@@ -152,8 +189,10 @@ def claims_of(log, radius: float = 0.7) -> dict:
         (gf, _), = log.goal.items()
         moved = {a[2] if a[0] == "insert" else a[1] for a, o in zip(log.actions, log.outcomes) if o.executed and not o.stalled}
         stuck = [e for e, x in log.entities.items() if x.kind == "part" and x.joint != "none" and e != entity_of(gf)
-                 and e not in moved and _near(log, e, radius)]
+                 and e not in moved and near(e)]
         top = [entity_of(f) for h in (log.snapshots[-1]["top"] if log.snapshots else []) for f in h["literals"]]
+        if evidence and set(stuck) & set(top):
+            stuck = [e for e in stuck if e in top]          # what the best rules are about, not what is near
         stuck.sort(key=lambda e: top.index(e) if e in top else len(top))
         c["stuck_part"] = stuck[0] if stuck else None
     if c["key_part"] is not None:
@@ -166,6 +205,18 @@ def claims_of(log, radius: float = 0.7) -> dict:
             a = log.revealed_by[k]
             c["key_found_in"] = a[2] if a[0] == "insert" else a[1]
     return c
+
+
+def _attribution(log, first: dict, holder_of) -> dict:
+    """Entity -> the belief's mass on the consistent rules at the success (log.consistent) that have a
+    condition on it that did not hold at the start (a key and the part it sits in are one entity)."""
+    rules = getattr(log, "consistent", None) or []
+    z = sum(r["p"] for r in rules)
+    att: dict = {}
+    for r in rules:
+        for g in {holder_of(f, v) for f, v in r["literals"].items() if first.get(f) != v}:
+            att[g] = att.get(g, 0.0) + r["p"] / max(z, 1e-12)
+    return att
 
 
 def text_of(c: dict, log) -> str:
@@ -221,8 +272,8 @@ def text_of(c: dict, log) -> str:
     return " ".join(out)
 
 
-def explain(log, radius: float = 0.7) -> Explanation:
-    c = claims_of(log, radius)
+def explain(log, radius: float = 0.7, mode: str | None = None) -> Explanation:
+    c = claims_of(log, radius, mode)
     return Explanation(text_of(c, log), c)
 
 
