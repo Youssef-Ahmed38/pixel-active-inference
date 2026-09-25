@@ -29,7 +29,6 @@ from pai.memory.recipes import proposal
 from pai.perception.camera_frame import CameraFramePerception
 from pai.planning.mppi import MPPIPlanner
 from pai.world.entities import FORCE, POS, entity_names
-from pai.cognition.causes import select_arm_cause
 
 HOLDING_SUBGOALS = range(3, 6)  # lifted, over_target, lowered: the object should be in the hand
 ADAPT_CONFIDENCE = 0.9          # posterior needed before an explanation changes behaviour
@@ -40,8 +39,7 @@ def run_episode(env, wm, cfg, episode: int, seed: int, disturbances: list[dict] 
                 relation: str = "on", obj: str = "red", target: str = "plate", device="cpu",
                 frames: list | None = None, calibration: Calibration | None = None,
                 raw: list | None = None, perceive=None, adapt: bool = True,
-                evidence: list | None = None, recipe=None, cognitive_memory=None,
-                online_thinker=None) -> EpisodeRecord:
+                evidence: list | None = None, recipe=None) -> EpisodeRecord:
     """raw, if given, collects (residual, model_sigma, step name) per step, used to calibrate
     surprise. evidence, if given, collects (z, holding, subgoal index) per step for the thinker.
     adapt: act on confident explanations (off for the ablation).
@@ -70,7 +68,6 @@ def run_episode(env, wm, cfg, episode: int, seed: int, disturbances: list[dict] 
     plan_dt = env.control_dt * sc.action_repeat
     subgoal_times, surprise = {}, []
     traj_tokens, traj_actions, phases = [tokens.copy()], [], {}
-    thinker_events = []
     k = 0
     for k in range(sc.max_plan_steps):
         x = torch.as_tensor(tokens, device=device)
@@ -120,14 +117,8 @@ def run_episode(env, wm, cfg, episode: int, seed: int, disturbances: list[dict] 
         surprise.append(round(ev.surprise, 3))
         if evidence is not None:
             evidence.append((residual / ev.sigma, holding, goal.index))
-        thinker_report = (online_thinker.observe(k, residual / ev.sigma, holding,
-                                                trigger=report is not None)
-                          if online_thinker is not None else None)
-        if thinker_report is not None:
-            thinker_events.append({"type": "thinker_cause", **thinker_report})
-        cause, confident = select_arm_cause(report, thinker_report, ADAPT_CONFIDENCE)
-        if adapt and confident:
-            prm = report.params[cause]
+        if adapt and report is not None and report.posterior[report.best] > ADAPT_CONFIDENCE:
+            cause, prm = report.best, report.params[report.best]
             if (cause == "camera_shift" and hasattr(sense, "correction") and getattr(sense, "allow_recalibration", True)
                     and prm["onset"] not in camera_fixed):
                 camera_fixed.add(prm["onset"])  # one jump, one correction, however often it is re-explained
@@ -156,7 +147,7 @@ def run_episode(env, wm, cfg, episode: int, seed: int, disturbances: list[dict] 
 
     verdict = monitor.episode_verdict()
     truth = [e for e in env.events.events if e["type"] == "disturbance_start"]
-    record = EpisodeRecord(
+    return EpisodeRecord(
         episode=episode, goal=f"{relation}({obj}, {target})", success=bool(success), steps=k,
         subgoal_times=subgoal_times, surprise=surprise,
         inferred_cause=verdict.best if verdict else "none",
@@ -171,9 +162,5 @@ def run_episode(env, wm, cfg, episode: int, seed: int, disturbances: list[dict] 
         phases=phases,
         events=[e for e in env.events.events if e["type"] in ("grasp", "release", "slip", "relation_true",
                                                                  "relation_false", "disturbance_start",
-                                                                 "disturbance_end")] + thinker_events,
+                                                                 "disturbance_end")],
     )
-    if cognitive_memory is not None:
-        from pai.cognition.adapters import from_arm_record
-        cognitive_memory.add(from_arm_record(record, names))
-    return record
