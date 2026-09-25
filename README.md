@@ -121,10 +121,10 @@ The first Kaggle run of object slots learned nothing (object overlap 0.0, positi
 guessing the mean): from the front camera at 224 px a block covered half of one DINOv2 patch. With
 a workspace camera at 448 px (a block covers ~5 of 32x32 patches), one slot per object, mask
 supervision on the slot attention, and positions read out geometrically from each slot's mask
-through a learned image-to-table mapping, held-out episodes give object overlap 0.67 and position
-error **10.7 mm mean, 3.7 mm median** (local run, 194 training episodes). Still open: objects in the
-gripper (their height is not visible from the mask position; ~150 mm error). The full Kaggle run
-with this setup comes next.
+through a learned image-to-table mapping. The full run (300 episodes, 18,300 frames, batch sized
+to fill the GPU, `results/slots/joba_log.jsonl`) gives on held-out episodes object overlap **0.68** and
+position error **7.8 mm mean, 2.8 mm median** (per object 4.5-12 mm). Still open: objects in the
+gripper (their height is not visible from the mask position).
 
 ### Repeating a success: one-shot recipes
 
