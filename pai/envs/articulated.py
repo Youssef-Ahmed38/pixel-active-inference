@@ -166,7 +166,7 @@ class ArticulatedEnv(TabletopEnv):
         finally:
             self.renderer.disable_segmentation_rendering()
         geom_ids, obj_types = seg[..., 0], seg[..., 1]
-        is_geom = (obj_types == mujoco.mjtObj.mjOBJ_GEOM) & (geom_ids >= 0)
+        is_geom = (obj_types == int(mujoco.mjtObj.mjOBJ_GEOM)) & (geom_ids >= 0)  # int(): see TabletopEnv
         body = np.full(geom_ids.shape, -1)
         body[is_geom] = self.model.geom_bodyid[geom_ids[is_geom]]
         base = 2 + len(self.objects)

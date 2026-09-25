@@ -305,15 +305,17 @@ class TabletopEnv:
         finally:
             self.renderer.disable_segmentation_rendering()
         geom_ids, obj_types = seg[..., 0], seg[..., 1]
-        labels = np.zeros(geom_ids.shape, np.int32)
-        is_geom = (obj_types == mujoco.mjtObj.mjOBJ_GEOM) & (geom_ids >= 0)
-        body = np.full(geom_ids.shape, -1)
-        body[is_geom] = self.model.geom_bodyid[geom_ids[is_geom]]
-        arm_ids = [self.model.body(n).id for n in ARM_BODIES + ["link0"]]
-        labels[np.isin(body, arm_ids)] = 1
-        for i, name in enumerate(self.objects):
-            labels[body == self.obj_body[name]] = 2 + i
-        return labels
+        # one table lookup per pixel (label of each geom id, index 0 = no geom): ~100x faster than
+        # per-label masks, which made segmentation the bottleneck of frame collection
+        if getattr(self, "_geom_label", None) is None:
+            body_label = np.zeros(self.model.nbody, np.int32)
+            body_label[[self.model.body(n).id for n in ARM_BODIES + ["link0"]]] = 1
+            for i, name in enumerate(self.objects):
+                body_label[self.obj_body[name]] = 2 + i
+            self._geom_label = np.r_[0, body_label[self.model.geom_bodyid]].astype(np.int32)
+        # int(): comparing an array with the enum object itself goes element by element in Python
+        idx = np.where((obj_types == int(mujoco.mjtObj.mjOBJ_GEOM)) & (geom_ids >= 0), geom_ids + 1, 0)
+        return self._geom_label[idx]
 
     def wrist_force(self) -> np.ndarray:
         """Force measured between the arm and the hand, in the world frame (N). With nothing held it
