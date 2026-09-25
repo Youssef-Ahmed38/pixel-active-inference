@@ -126,6 +126,32 @@ to fill the GPU, `results/slots/joba_log.jsonl`) gives on held-out episodes obje
 position error **7.8 mm mean, 2.8 mm median** (per object 4.5-12 mm). Still open: objects in the
 gripper (their height is not visible from the mask position).
 
+### The whole agent from camera images (sprint week 3)
+
+The same agent, now seeing the objects only through the camera (DINOv2 features, object slots),
+while its own hand is sensed through the body. Two things were needed for grasping from pixels, both
+from touch and proprioception, not vision: an object between closed fingers moves with the hand (the
+camera cannot see a lifted block's height and loses it under the fingers), and an object under the
+hand keeps its last clear position unless the camera clearly sees it elsewhere.
+
+100 episodes on fresh seeds never used while developing (`results/pixel_v3/`):
+
+| Condition | Task success | Cause identified | (exact state, v7) |
+|---|---|---|---|
+| none | 85% | 85% | 100% / 100% |
+| push | 85% | **100%** | 100% / 90% |
+| heavier block | 85% | 60% | 90% / 90% |
+| slippery block | 35% | 75% | 75% / 60% |
+| camera shift | 85% | 10% | 90% / 100% |
+| **overall** | **75%** (gate > 50%) | **66%** | 91% / 88% |
+
+<img src="docs/media/pixel/heavier_object.gif" width="480">
+
+Open: the slippery block is often recognised but still slides out; a camera shift barely changes
+what the slot readout reports (it maps image to table directly), so it is rarely named, and
+recalibrating from pixels is off because perception noise raised false camera alarms. Earlier runs
+on the development seeds: `results/pixel_v1/` (77% / 59%), `results/pixel_v2/` (74% / 51%).
+
 ### Repeating a success: one-shot recipes
 
 After ONE successful episode the agent stores a recipe: where its hand went relative to the

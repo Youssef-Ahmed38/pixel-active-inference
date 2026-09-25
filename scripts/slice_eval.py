@@ -68,6 +68,7 @@ def extra(ap):
                     help="slot checkpoint: perceive objects from the camera instead of exact simulator state")
     ap.add_argument("--tag", default="slice", help="prefix of the result files")
     ap.add_argument("--no-adapt", action="store_true", help="ablation: explanations do not change behaviour")
+    ap.add_argument("--episode-seed", type=int, default=1000, help="env seed of episode i is this + i")
 
 
 if __name__ == "__main__":
@@ -116,7 +117,7 @@ if __name__ == "__main__":
         for i in range(int(cfg.slice.episodes)):
             frames = [] if (i == 0 and not args.no_gif) else None
             evidence = []
-            rec = run_episode(env, wm, cfg, ep, seed=1000 + i, disturbances=disturbance_for(cond, rng),
+            rec = run_episode(env, wm, cfg, ep, seed=args.episode_seed + i, disturbances=disturbance_for(cond, rng),
                               device=device, frames=frames, calibration=calibration, perceive=perceive,
                               adapt=not args.no_adapt, evidence=evidence)
             if evidence:
