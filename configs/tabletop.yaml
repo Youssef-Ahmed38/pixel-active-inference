@@ -78,6 +78,9 @@ slots:
   lr: 4.0e-4
   batch_size: 64
   steps: 20000
+  batch_size_auto: false       # true: grow the batch to fill vram_fill of each GPU (steps and lr scaled)
+  vram_fill: 0.9
+  pool_memory: true            # several GPUs: split the frames between them (one pool, no copies)
   gpu_cache: auto             # copy the feature cache to GPU memory when it fits (GPU no longer waits on the CPU)
   assignment: fixed           # slot l is label l (a slot per object); "hungarian": interchangeable slots
   mask_weight: 1.0            # supervision from simulator masks (rule 2); later reduced to 0

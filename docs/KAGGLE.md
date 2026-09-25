@@ -22,10 +22,16 @@ jobs on theirs.
 ```python
 PRE    = "python scripts/collect_frames.py --config configs/tabletop.yaml --episodes 300 --workers 4 --out /tmp/frames"
 SCRIPT = "scripts/week2_slots.py"
-ARGS   = "--config configs/tabletop.yaml --episodes 300 --workers 4 slots.frames_dir=/tmp/frames slots.cache_dir=/tmp/features slots.out_dir=runs/slots"
+ARGS   = "--config configs/tabletop.yaml --episodes 300 --workers 4 slots.frames_dir=/tmp/frames slots.cache_dir=/tmp/features slots.out_dir=runs/slots slots.batch_size_auto=true"
 ```
 
 - **Output:** `pai/runs/slots/slots.pt` and `log.jsonl`.
+- **Both T4s as one pool:** the frames are split between the two GPUs (each frame on exactly one,
+  no copies), so together they hold up to 2 x 15 GB of data. Every step both draw their half of one
+  global batch and update the one shared model. `slots.batch_size_auto=true` then grows that global
+  batch until the pool is ~90% full, with fewer steps and a larger learning rate for the same number
+  of frames seen. The log prints each GPU's part (`GPU 0: ... frames in memory`) and the batch
+  (`auto batch: one global batch of ...`).
 - **Time:** frames 10–20 min on the CPUs, features ~5 min, then slot training on both GPUs.
 
 ## Job B: the agent from camera images (week 3), needs two model files

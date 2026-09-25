@@ -132,8 +132,6 @@ def train_slots(cfg, device: str | None = None) -> Path:
                       iters=sc.iters).to(device)
     gpu_ids = [rt.local_rank] if device.type == "cuda" else None  # None: CPU processes (gloo tests)
     net = DDP(model, device_ids=gpu_ids) if rt.distributed else model
-    opt = torch.optim.AdamW(model.parameters(), lr=sc.lr, weight_decay=1e-4)
-    sched = torch.optim.lr_scheduler.OneCycleLR(opt, max_lr=sc.lr, total_steps=sc.steps, pct_start=0.05)
     dtype = amp_dtype("auto", device)
     tok_mean = torch.as_tensor(np.asarray(tokens[train_idx[:20000]]).reshape(-1, TOKEN_DIM).mean(0), device=device)
     tok_std = torch.as_tensor(np.asarray(tokens[train_idx[:20000]]).reshape(-1, TOKEN_DIM).std(0) + 1e-3, device=device)
@@ -145,19 +143,35 @@ def train_slots(cfg, device: str | None = None) -> Path:
     # The slot model is small, so reading random frames from disk on the CPU (Kaggle has 2 cores)
     # is slower than the GPU's work and the GPU waits. When the whole cache fits, it is copied to
     # GPU memory once (features in fp16: ~3.4 GB for 17k frames) and batches never touch the CPU.
-    on_gpu = _fits_on_gpu(sc.get("gpu_cache", "auto"), device, feats, masks, tokens)
+    # All GPUs as ONE memory pool: the training frames are split between them, each frame stored on
+    # exactly one GPU (no copies), so together they hold a dataset up to world_size x one card.
+    # Every step each GPU draws its share of one global batch from its part of the pool, and DDP
+    # averages the gradients into one update of the one shared model. Held-out frames live on the
+    # main GPU, which runs the evaluation.
+    pool = rt.distributed and str(sc.get("pool_memory", True)).lower() == "true"
+    if pool:
+        train_idx = train_idx[rt.rank :: rt.world_size]
+    local = np.union1d(train_idx, val_idx) if rt.is_main else train_idx  # the frames this GPU holds
+    on_gpu = _fits_on_gpu(sc.get("gpu_cache", "auto"), device, feats, masks, tokens, share=len(local) / len(feats))
+    to_local = None
     if on_gpu:
-        feats, masks, tokens = _to_gpu(feats, device), _to_gpu(masks, device), _to_gpu(tokens, device, half=False)
-        logger.log(event="gpu_cache", gb=round(sum(a.numel() * a.element_size() for a in (feats, masks, tokens)) / 1e9, 2))
-        if rt.is_main:
-            print("feature cache copied to GPU memory", flush=True)
+        feats, masks, tokens = (_to_gpu(feats, device, rows=local), _to_gpu(masks, device, rows=local),
+                                _to_gpu(tokens, device, half=False, rows=local))
+        to_local = np.full(len(episode), -1, np.int64)
+        to_local[local] = np.arange(len(local))
+        gb = sum(a.numel() * a.element_size() for a in (feats, masks, tokens)) / 1e9
+        logger.log(event="gpu_cache", gb=round(gb, 2), frames=len(local), pooled=pool)
+        print(f"GPU {rt.rank}: {len(local)} frames ({gb:.2f} GB) in memory"
+              + (f", its part of one pool over {rt.world_size} GPUs" if pool else ""), flush=True)
+
+    bs, steps, lr = int(sc.batch_size), int(sc.steps), float(sc.lr)
 
     def batch(idx, b=None):
         # sorted reads are faster on memmaps; tiny validation sets are sampled with replacement
         if b is None:
-            b = np.sort(rng.choice(idx, sc.batch_size, replace=len(idx) < sc.batch_size))
+            b = np.sort(rng.choice(idx, bs, replace=len(idx) < bs))
         if on_gpu:
-            bi = torch.as_tensor(b, device=device)
+            bi = torch.as_tensor(to_local[b], device=device)
             return feats[bi].float(), masks[bi].float(), (tokens[bi].float() - tok_mean) / tok_std
         f = torch.as_tensor(np.asarray(feats[b]), device=device).float()
         m = torch.as_tensor(np.asarray(masks[b]), device=device).float()
@@ -166,23 +180,47 @@ def train_slots(cfg, device: str | None = None) -> Path:
 
     labels = slice(2, n_labels)
     assignment = str(sc.get("assignment", "hungarian"))
-    progress = Progress(sc.steps, f"slots ({rt.world_size} GPU)", every=100, unit=" steps", enabled=rt.is_main)
-    for step in range(1, sc.steps + 1):
-        f, m, t = batch(train_idx)
+
+    def train_loss(f, m, t, module):
         with autocast(device, dtype):
-            out = net(f)
+            out = module(f)
         out = {k: v.float() for k, v in out.items()}
-        losses = slot_losses(out, f, m, t, labels, mask_weight=sc.mask_weight, token_weight=sc.token_weight,
-                             recon_weight=float(sc.get("recon_weight", 1.0)), attn_weight=float(sc.get("attn_weight", 1.0)),
-                             pos_weight=float(sc.get("pos_weight", 1.0)), assignment=assignment)
+        return slot_losses(out, f, m, t, labels, mask_weight=sc.mask_weight, token_weight=sc.token_weight,
+                           recon_weight=float(sc.get("recon_weight", 1.0)), attn_weight=float(sc.get("attn_weight", 1.0)),
+                           pos_weight=float(sc.get("pos_weight", 1.0)), assignment=assignment)
+
+    # Fill the pool with a larger batch (after the data is in place). The GPUs share one large global
+    # batch per step (DDP averages their gradients into one update), the run needs
+    # proportionally fewer steps for the same number of frames seen, and the learning rate grows with
+    # the square root of the batch (the usual rule for Adam).
+    if str(sc.get("batch_size_auto", False)).lower() == "true" and device.type == "cuda":
+        auto = _auto_batch(lambda n: train_loss(*batch(train_idx, np.sort(rng.choice(train_idx, n))), model)["total"],
+                           model, device, fill=float(sc.get("vram_fill", 0.9)))
+        if rt.distributed:  # the same batch on every GPU (the smallest that fits everywhere)
+            t_ = torch.tensor(auto, device=device)
+            torch.distributed.all_reduce(t_, op=torch.distributed.ReduceOp.MIN)
+            auto = int(t_)
+        scale = auto / bs
+        bs, steps, lr = auto, max(1000, int(round(steps / scale))), lr * scale**0.5
+        logger.log(event="auto_batch", batch_per_gpu=bs, global_batch=bs * rt.world_size, steps=steps, lr=lr)
+        if rt.is_main:
+            print(f"auto batch: one global batch of {bs * rt.world_size} per step ({bs} on each of {rt.world_size} "
+                  f"GPUs), {steps} steps, lr {lr:.2e}", flush=True)
+    opt = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=1e-4)
+    sched = torch.optim.lr_scheduler.OneCycleLR(opt, max_lr=lr, total_steps=steps, pct_start=0.05)
+    log_every = max(1, int(round(int(sc.log_every) * steps / int(sc.steps))))
+    progress = Progress(steps, f"slots ({rt.world_size} GPU, batch {bs}x{rt.world_size})", every=100, unit=" steps",
+                        enabled=rt.is_main)
+    for step in range(1, steps + 1):
+        losses = train_loss(*batch(train_idx), net)
         opt.zero_grad(set_to_none=True)
         losses["total"].backward()
         torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
         opt.step()
         sched.step()
         progress.update(extra=f"loss {float(losses['total'].detach()):.3f}")
-        if rt.is_main and (step % sc.log_every == 0 or step == sc.steps):
-            final = step == sc.steps  # the last evaluation covers every held-out frame
+        if rt.is_main and (step % log_every == 0 or step == steps):
+            final = step == steps  # the last evaluation covers every held-out frame
             logger.log(step=step, **{k: round(float(v.detach()), 4) for k, v in losses.items()},
                        **evaluate_slots(model, batch, val_idx, labels, tok_std, n_frames=None if final else 256,
                                         batch_size=sc.batch_size, per_label=final, assignment=assignment))
@@ -199,26 +237,53 @@ def train_slots(cfg, device: str | None = None) -> Path:
     return path
 
 
-def _fits_on_gpu(mode, device, *arrays) -> bool:
+def _auto_batch(loss_fn, model, device, fill: float = 0.9, probe: int = 16, step: int = 16) -> int:
+    """Largest batch (a multiple of `step`) whose forward + backward fits in `fill` of the GPU's memory,
+    measured with a probe batch and then confirmed (halving on out-of-memory)."""
+    torch.cuda.synchronize(device)
+    torch.cuda.empty_cache()
+    base = torch.cuda.memory_allocated(device)
+    torch.cuda.reset_peak_memory_stats(device)
+    loss_fn(probe).backward()
+    per_sample = (torch.cuda.max_memory_allocated(device) - base) / probe
+    model.zero_grad(set_to_none=True)
+    total = torch.cuda.get_device_properties(device).total_memory
+    n = max(step, int((fill * total - base) / per_sample) // step * step)
+    while n > step:
+        try:
+            torch.cuda.empty_cache()
+            loss_fn(n).backward()
+            model.zero_grad(set_to_none=True)
+            if torch.cuda.max_memory_allocated(device) <= fill * total:
+                break
+        except torch.cuda.OutOfMemoryError:
+            model.zero_grad(set_to_none=True)
+        n = n // 2 // step * step or step
+    torch.cuda.empty_cache()
+    return n
+
+
+def _fits_on_gpu(mode, device, *arrays, share: float = 1.0) -> bool:
     """mode: True, False or "auto" (use it when the cache takes under half of the free GPU memory)."""
     if device.type != "cuda" or mode is False or str(mode).lower() == "false":
         return False
     if mode is True or str(mode).lower() == "true":
         return True
-    need = sum(a.nbytes for a in arrays)  # upper bound: features and masks are stored as fp16
+    need = share * sum(a.nbytes for a in arrays)  # upper bound: features and masks are stored as fp16
     free, _ = torch.cuda.mem_get_info(device)
     return need < 0.5 * free
 
 
-def _to_gpu(a: np.ndarray, device, half: bool = True, chunk: int = 1024) -> torch.Tensor:
-    """Copy a memmap to the GPU in chunks, never holding it all in CPU memory. half: floats as fp16
-    (features and masks; tokens keep float32, their positions need the precision)."""
+def _to_gpu(a: np.ndarray, device, half: bool = True, chunk: int = 1024, rows: np.ndarray | None = None) -> torch.Tensor:
+    """Copy (the given rows of) a memmap to the GPU in chunks, never holding it all in CPU memory.
+    half: floats as fp16 (features and masks; tokens keep float32, their positions need the precision)."""
     dtype = torch.from_numpy(np.asarray(a[:1])).dtype
     if half and np.issubdtype(a.dtype, np.floating):
         dtype = torch.float16
-    out = torch.empty(a.shape, dtype=dtype, device=device)
-    for s in range(0, len(a), chunk):
-        out[s : s + chunk] = torch.from_numpy(np.asarray(a[s : s + chunk])).to(device, dtype)
+    rows = np.arange(len(a)) if rows is None else np.asarray(rows)
+    out = torch.empty((len(rows), *a.shape[1:]), dtype=dtype, device=device)
+    for s in range(0, len(rows), chunk):
+        out[s : s + chunk] = torch.from_numpy(np.asarray(a[rows[s : s + chunk]])).to(device, dtype)
     return out
 
 
