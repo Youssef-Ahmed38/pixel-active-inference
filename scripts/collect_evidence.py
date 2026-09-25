@@ -183,7 +183,8 @@ def main() -> None:
         print(f"wrote {merge(args.merge, Path(args.merge) / f'{args.tag}_evidence.npz')}")
         return
     rt = setup_runtime()
-    device = str(rt.device)
+    # PAI_DEVICE=cuda: several CPU-backend (gloo) ranks sharing one GPU, e.g. on a Windows laptop
+    device = os.environ.get("PAI_DEVICE", str(rt.device))
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     plan = episode_plan(args.conditions, args.episodes)

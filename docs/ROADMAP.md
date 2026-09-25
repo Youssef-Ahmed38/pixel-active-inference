@@ -115,10 +115,14 @@ exact Bayesian teacher, HRM matched the teacher but did *not* beat a same-size o
 | single cause (`results/thinker/synthetic_eval.md`) | 95.0% / 0.0064 | 97.0% / 0.0026 | 10.1 vs 1.1 min |
 | up to 3 causes, explaining away (`results/thinker/multicause_eval.md`) | 87.9% / 0.080 | 93.2% / 0.029 | 13.8 vs 1.2 min |
 | **real agent episodes**, 5 causes, 100 episodes of run v7 (`results/thinker/real_v7.md`) | 81.7 ± 8.5% / 0.64 | 90.0 ± 8.2% / 0.74 | 197 vs 46 s per seed |
+| **real agent episodes**, 5 causes, 1000 episodes (`results/thinker/real_c1000.md`) | **96.0 ± 1.1%** / 0.154 | 95.8 ± 1.5% / 0.163 | 414 vs 64 s per seed |
 
 On real episodes (60 training episodes per seed, 3 seeds) the transformer again agrees more with the
 teacher, while HRM has the lower KL. With 20 test episodes per seed, one episode is 5 points, so
 the gap is within about one standard deviation; more real episodes are needed before the gate decides.
+With 1000 real episodes (600 for training per seed) HRM reaches 96.0 ± 1.1% agreement (worst seed 95.0%):
+**the week-4 gate (> 90%) is passed**. It is on par with the transformer (95.8 ± 1.5%), not better, and
+trains 6x slower; its advantage is still expected on sequential problems, not on cause inference.
 
 HRM does spend more thought on harder cases in one sense (1.0 -> 1.9 rounds from 0 to 3 simultaneous
 causes), but extra rounds barely improve accuracy. Likely reason: cause inference is combinatorial,

@@ -1,0 +1,1808 @@
+{
+  "tag": "c1000",
+  "config": {
+    "seed": 0,
+    "seeds": 3,
+    "out_dir": "results/thinker",
+    "models": [
+      "hrm",
+      "transformer"
+    ],
+    "gate": 0.9,
+    "device": "auto",
+    "data": {
+      "window": 20,
+      "after": 5,
+      "jitter": 3,
+      "n_phase": 10,
+      "val_frac": 0.2,
+      "test_frac": 0.2,
+      "split_per_seed": true
+    },
+    "model": {
+      "hrm": {
+        "d_model": 64,
+        "n_heads": 4,
+        "h_layers": 2,
+        "l_layers": 2,
+        "h_cycles": 2,
+        "l_steps": 2,
+        "max_segments": 4,
+        "patch": 1
+      },
+      "transformer": {
+        "d_model": 64,
+        "n_heads": 4,
+        "n_layers": 4,
+        "patch": 1
+      },
+      "mlp": {
+        "hidden": 128,
+        "n_layers": 3
+      }
+    },
+    "train": {
+      "batch_size": 64,
+      "steps": 2000,
+      "lr": 0.001,
+      "warmup_steps": 100,
+      "weight_decay": 0.1,
+      "ce_weight": 0.1,
+      "q_weight": 0.5,
+      "ponder_cost": 0.01,
+      "q_target": "oracle",
+      "amp": "auto",
+      "log_every": 100,
+      "select": "best_val"
+    },
+    "eval": {
+      "batch": 1024
+    }
+  },
+  "device": "NVIDIA GeForce RTX 5060 Laptop GPU",
+  "n_seeds": 3,
+  "data": {
+    "files": [
+      "runs/evidence/collected_evidence.npz"
+    ],
+    "episodes": 1000,
+    "causes": [
+      "none",
+      "push",
+      "heavier_object",
+      "slippery_object",
+      "camera_shift",
+      "unknown"
+    ],
+    "channels": [
+      "gripper_x",
+      "gripper_y",
+      "gripper_z",
+      "force_x",
+      "force_y",
+      "force_z",
+      "object_x",
+      "object_y",
+      "object_z",
+      "scene_x",
+      "scene_y",
+      "scene_z"
+    ],
+    "in_dim": 23,
+    "label_counts": {
+      "camera_shift": 200,
+      "heavier_object": 200,
+      "none": 200,
+      "push": 200,
+      "slippery_object": 200
+    },
+    "split_seed": 2,
+    "split_sizes": {
+      "train": 600,
+      "val": 200,
+      "test": 200
+    },
+    "window": 20,
+    "after": 5,
+    "jitter": 3,
+    "splits_per_seed": {
+      "0": {
+        "train": 600,
+        "val": 200,
+        "test": 200
+      },
+      "1": {
+        "train": 600,
+        "val": 200,
+        "test": 200
+      },
+      "2": {
+        "train": 600,
+        "val": 200,
+        "test": 200
+      }
+    }
+  },
+  "teacher": {
+    "acc": {
+      "mean": 0.9099999666213989,
+      "std": 0.008164958022559074,
+      "values": [
+        0.9099999666213989,
+        0.8999999761581421,
+        0.9199999570846558
+      ]
+    },
+    "ece": {
+      "mean": 0.08998165422435511,
+      "std": 0.00812164200484187,
+      "values": [
+        0.09089022558200088,
+        0.09944313764572144,
+        0.07961159944534302
+      ]
+    },
+    "confusion": {
+      "camera_shift": {
+        "none": 0,
+        "push": 0,
+        "heavier_object": 0,
+        "slippery_object": 0,
+        "camera_shift": 118,
+        "unknown": 2
+      },
+      "heavier_object": {
+        "none": 0,
+        "push": 13,
+        "heavier_object": 107,
+        "slippery_object": 0,
+        "camera_shift": 0,
+        "unknown": 0
+      },
+      "none": {
+        "none": 109,
+        "push": 11,
+        "heavier_object": 0,
+        "slippery_object": 0,
+        "camera_shift": 0,
+        "unknown": 0
+      },
+      "push": {
+        "none": 2,
+        "push": 118,
+        "heavier_object": 0,
+        "slippery_object": 0,
+        "camera_shift": 0,
+        "unknown": 0
+      },
+      "slippery_object": {
+        "none": 4,
+        "push": 19,
+        "heavier_object": 0,
+        "slippery_object": 94,
+        "camera_shift": 0,
+        "unknown": 3
+      }
+    }
+  },
+  "models": {
+    "hrm": {
+      "params": 192008,
+      "train_wall_s": {
+        "mean": 414.0333333333333,
+        "std": 111.40081787052651,
+        "values": [
+          571.3,
+          343.5,
+          327.3
+        ]
+      },
+      "test": {
+        "teacher_agree": {
+          "mean": 0.9599999785423279,
+          "std": 0.010801224196486508,
+          "values": [
+            0.9549999833106995,
+            0.949999988079071,
+            0.9749999642372131
+          ]
+        },
+        "acc": {
+          "mean": 0.8966666460037231,
+          "std": 0.011785101780616189,
+          "values": [
+            0.9049999713897705,
+            0.8799999952316284,
+            0.9049999713897705
+          ]
+        },
+        "kl_to_teacher": {
+          "mean": 0.15409022818009058,
+          "std": 0.05096278703623636,
+          "values": [
+            0.22114695608615875,
+            0.14343881607055664,
+            0.09768491238355637
+          ]
+        },
+        "ece": {
+          "mean": 0.08090315757074412,
+          "std": 0.011569017403676574,
+          "values": [
+            0.06455413415448574,
+            0.08962110329587408,
+            0.08853423526187254
+          ]
+        },
+        "mean_segments": {
+          "mean": 1.0583333174387615,
+          "std": 0.06561672521828806,
+          "values": [
+            1.0,
+            1.149999976158142,
+            1.024999976158142
+          ]
+        }
+      },
+      "val": {
+        "teacher_agree": {
+          "mean": 0.9766666293144226,
+          "std": 0.010274013540209443,
+          "values": [
+            0.9749999642372131,
+            0.9649999737739563,
+            0.9899999499320984
+          ]
+        },
+        "acc": {
+          "mean": 0.8883333206176758,
+          "std": 0.004714040712246475,
+          "values": [
+            0.8849999904632568,
+            0.8949999809265137,
+            0.8849999904632568
+          ]
+        },
+        "kl_to_teacher": {
+          "mean": 0.11180135607719421,
+          "std": 0.04522075110077083,
+          "values": [
+            0.12800100445747375,
+            0.15727907419204712,
+            0.05012398958206177
+          ]
+        },
+        "ece": {
+          "mean": 0.09106416663610473,
+          "std": 0.005289453579713524,
+          "values": [
+            0.08501896773442263,
+            0.09027111981963504,
+            0.09790241235425653
+          ]
+        },
+        "mean_segments": {
+          "mean": 1.0549999872843425,
+          "std": 0.060964467789694936,
+          "values": [
+            1.0,
+            1.1399999856948853,
+            1.024999976158142
+          ]
+        }
+      },
+      "confusion": {
+        "camera_shift": {
+          "none": 0,
+          "push": 1,
+          "heavier_object": 0,
+          "slippery_object": 0,
+          "camera_shift": 118,
+          "unknown": 1
+        },
+        "heavier_object": {
+          "none": 1,
+          "push": 11,
+          "heavier_object": 107,
+          "slippery_object": 1,
+          "camera_shift": 0,
+          "unknown": 0
+        },
+        "none": {
+          "none": 109,
+          "push": 11,
+          "heavier_object": 0,
+          "slippery_object": 0,
+          "camera_shift": 0,
+          "unknown": 0
+        },
+        "push": {
+          "none": 2,
+          "push": 118,
+          "heavier_object": 0,
+          "slippery_object": 0,
+          "camera_shift": 0,
+          "unknown": 0
+        },
+        "slippery_object": {
+          "none": 9,
+          "push": 23,
+          "heavier_object": 0,
+          "slippery_object": 86,
+          "camera_shift": 2,
+          "unknown": 0
+        }
+      },
+      "confusion_vs_teacher": {
+        "camera_shift": {
+          "none": 0,
+          "push": 1,
+          "heavier_object": 0,
+          "slippery_object": 0,
+          "camera_shift": 117,
+          "unknown": 0
+        },
+        "heavier_object": {
+          "none": 0,
+          "push": 0,
+          "heavier_object": 107,
+          "slippery_object": 0,
+          "camera_shift": 0,
+          "unknown": 0
+        },
+        "none": {
+          "none": 113,
+          "push": 2,
+          "heavier_object": 0,
+          "slippery_object": 0,
+          "camera_shift": 0,
+          "unknown": 0
+        },
+        "push": {
+          "none": 5,
+          "push": 153,
+          "heavier_object": 0,
+          "slippery_object": 2,
+          "camera_shift": 1,
+          "unknown": 0
+        },
+        "slippery_object": {
+          "none": 3,
+          "push": 5,
+          "heavier_object": 0,
+          "slippery_object": 85,
+          "camera_shift": 1,
+          "unknown": 0
+        },
+        "unknown": {
+          "none": 0,
+          "push": 3,
+          "heavier_object": 0,
+          "slippery_object": 0,
+          "camera_shift": 1,
+          "unknown": 1
+        }
+      },
+      "runs": [
+        {
+          "acc": 0.9049999713897705,
+          "teacher_agree": 0.9549999833106995,
+          "kl_to_teacher": 0.22114695608615875,
+          "ece": 0.06455413415448574,
+          "n": 200,
+          "mean_segments": 1.0,
+          "confusion": {
+            "camera_shift": {
+              "none": 0,
+              "push": 0,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 40,
+              "unknown": 0
+            },
+            "heavier_object": {
+              "none": 0,
+              "push": 4,
+              "heavier_object": 35,
+              "slippery_object": 1,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "none": {
+              "none": 38,
+              "push": 2,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "push": {
+              "none": 0,
+              "push": 40,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "slippery_object": {
+              "none": 3,
+              "push": 7,
+              "heavier_object": 0,
+              "slippery_object": 28,
+              "camera_shift": 2,
+              "unknown": 0
+            }
+          },
+          "confusion_vs_teacher": {
+            "camera_shift": {
+              "none": 0,
+              "push": 0,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 39,
+              "unknown": 0
+            },
+            "heavier_object": {
+              "none": 0,
+              "push": 0,
+              "heavier_object": 35,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "none": {
+              "none": 38,
+              "push": 0,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "push": {
+              "none": 1,
+              "push": 52,
+              "heavier_object": 0,
+              "slippery_object": 2,
+              "camera_shift": 1,
+              "unknown": 0
+            },
+            "slippery_object": {
+              "none": 2,
+              "push": 0,
+              "heavier_object": 0,
+              "slippery_object": 27,
+              "camera_shift": 1,
+              "unknown": 0
+            },
+            "unknown": {
+              "none": 0,
+              "push": 1,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 1,
+              "unknown": 0
+            }
+          },
+          "seed": 0,
+          "best_step": 300,
+          "train": {
+            "steps": 2000,
+            "wall_s": 571.3,
+            "examples_seen": 128000,
+            "final_loss": 0.09303229302167892
+          },
+          "val": {
+            "acc": 0.8849999904632568,
+            "teacher_agree": 0.9749999642372131,
+            "kl_to_teacher": 0.12800100445747375,
+            "ece": 0.08501896773442263,
+            "n": 200,
+            "mean_segments": 1.0,
+            "confusion": {
+              "camera_shift": {
+                "none": 0,
+                "push": 0,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 40,
+                "unknown": 0
+              },
+              "heavier_object": {
+                "none": 0,
+                "push": 3,
+                "heavier_object": 37,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "none": {
+                "none": 36,
+                "push": 4,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "push": {
+                "none": 4,
+                "push": 36,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "slippery_object": {
+                "none": 5,
+                "push": 7,
+                "heavier_object": 0,
+                "slippery_object": 28,
+                "camera_shift": 0,
+                "unknown": 0
+              }
+            },
+            "confusion_vs_teacher": {
+              "camera_shift": {
+                "none": 0,
+                "push": 0,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 39,
+                "unknown": 0
+              },
+              "heavier_object": {
+                "none": 0,
+                "push": 0,
+                "heavier_object": 36,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "none": {
+                "none": 43,
+                "push": 0,
+                "heavier_object": 0,
+                "slippery_object": 1,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "push": {
+                "none": 1,
+                "push": 50,
+                "heavier_object": 1,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "slippery_object": {
+                "none": 1,
+                "push": 0,
+                "heavier_object": 0,
+                "slippery_object": 27,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "unknown": {
+                "none": 0,
+                "push": 0,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 1,
+                "unknown": 0
+              }
+            }
+          }
+        },
+        {
+          "acc": 0.8799999952316284,
+          "teacher_agree": 0.949999988079071,
+          "kl_to_teacher": 0.14343881607055664,
+          "ece": 0.08962110329587408,
+          "n": 200,
+          "mean_segments": 1.149999976158142,
+          "confusion": {
+            "camera_shift": {
+              "none": 0,
+              "push": 1,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 38,
+              "unknown": 1
+            },
+            "heavier_object": {
+              "none": 1,
+              "push": 4,
+              "heavier_object": 35,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "none": {
+              "none": 36,
+              "push": 4,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "push": {
+              "none": 0,
+              "push": 40,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "slippery_object": {
+              "none": 3,
+              "push": 10,
+              "heavier_object": 0,
+              "slippery_object": 27,
+              "camera_shift": 0,
+              "unknown": 0
+            }
+          },
+          "confusion_vs_teacher": {
+            "camera_shift": {
+              "none": 0,
+              "push": 1,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 38,
+              "unknown": 0
+            },
+            "heavier_object": {
+              "none": 0,
+              "push": 0,
+              "heavier_object": 35,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "none": {
+              "none": 37,
+              "push": 1,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "push": {
+              "none": 3,
+              "push": 52,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "slippery_object": {
+              "none": 0,
+              "push": 3,
+              "heavier_object": 0,
+              "slippery_object": 27,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "unknown": {
+              "none": 0,
+              "push": 2,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 1
+            }
+          },
+          "seed": 1,
+          "best_step": 600,
+          "train": {
+            "steps": 2000,
+            "wall_s": 343.5,
+            "examples_seen": 128000,
+            "final_loss": 0.0887548178434372
+          },
+          "val": {
+            "acc": 0.8949999809265137,
+            "teacher_agree": 0.9649999737739563,
+            "kl_to_teacher": 0.15727907419204712,
+            "ece": 0.09027111981963504,
+            "n": 200,
+            "mean_segments": 1.1399999856948853,
+            "confusion": {
+              "camera_shift": {
+                "none": 0,
+                "push": 0,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 40,
+                "unknown": 0
+              },
+              "heavier_object": {
+                "none": 0,
+                "push": 1,
+                "heavier_object": 39,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "none": {
+                "none": 36,
+                "push": 4,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "push": {
+                "none": 2,
+                "push": 38,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "slippery_object": {
+                "none": 4,
+                "push": 10,
+                "heavier_object": 0,
+                "slippery_object": 26,
+                "camera_shift": 0,
+                "unknown": 0
+              }
+            },
+            "confusion_vs_teacher": {
+              "camera_shift": {
+                "none": 0,
+                "push": 0,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 40,
+                "unknown": 0
+              },
+              "heavier_object": {
+                "none": 0,
+                "push": 0,
+                "heavier_object": 39,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "none": {
+                "none": 40,
+                "push": 0,
+                "heavier_object": 0,
+                "slippery_object": 1,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "push": {
+                "none": 1,
+                "push": 49,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "slippery_object": {
+                "none": 1,
+                "push": 2,
+                "heavier_object": 0,
+                "slippery_object": 25,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "unknown": {
+                "none": 0,
+                "push": 2,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              }
+            }
+          }
+        },
+        {
+          "acc": 0.9049999713897705,
+          "teacher_agree": 0.9749999642372131,
+          "kl_to_teacher": 0.09768491238355637,
+          "ece": 0.08853423526187254,
+          "n": 200,
+          "mean_segments": 1.024999976158142,
+          "confusion": {
+            "camera_shift": {
+              "none": 0,
+              "push": 0,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 40,
+              "unknown": 0
+            },
+            "heavier_object": {
+              "none": 0,
+              "push": 3,
+              "heavier_object": 37,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "none": {
+              "none": 35,
+              "push": 5,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "push": {
+              "none": 2,
+              "push": 38,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "slippery_object": {
+              "none": 3,
+              "push": 6,
+              "heavier_object": 0,
+              "slippery_object": 31,
+              "camera_shift": 0,
+              "unknown": 0
+            }
+          },
+          "confusion_vs_teacher": {
+            "camera_shift": {
+              "none": 0,
+              "push": 0,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 40,
+              "unknown": 0
+            },
+            "heavier_object": {
+              "none": 0,
+              "push": 0,
+              "heavier_object": 37,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "none": {
+              "none": 38,
+              "push": 1,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "push": {
+              "none": 1,
+              "push": 49,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "slippery_object": {
+              "none": 1,
+              "push": 2,
+              "heavier_object": 0,
+              "slippery_object": 31,
+              "camera_shift": 0,
+              "unknown": 0
+            }
+          },
+          "seed": 2,
+          "best_step": 1100,
+          "train": {
+            "steps": 2000,
+            "wall_s": 327.3,
+            "examples_seen": 128000,
+            "final_loss": 0.10177816450595856
+          },
+          "val": {
+            "acc": 0.8849999904632568,
+            "teacher_agree": 0.9899999499320984,
+            "kl_to_teacher": 0.05012398958206177,
+            "ece": 0.09790241235425653,
+            "n": 200,
+            "mean_segments": 1.024999976158142,
+            "confusion": {
+              "camera_shift": {
+                "none": 0,
+                "push": 0,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 40,
+                "unknown": 0
+              },
+              "heavier_object": {
+                "none": 1,
+                "push": 5,
+                "heavier_object": 34,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "none": {
+                "none": 38,
+                "push": 2,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "push": {
+                "none": 1,
+                "push": 39,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "slippery_object": {
+                "none": 3,
+                "push": 11,
+                "heavier_object": 0,
+                "slippery_object": 26,
+                "camera_shift": 0,
+                "unknown": 0
+              }
+            },
+            "confusion_vs_teacher": {
+              "camera_shift": {
+                "none": 0,
+                "push": 0,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 40,
+                "unknown": 0
+              },
+              "heavier_object": {
+                "none": 0,
+                "push": 0,
+                "heavier_object": 33,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "none": {
+                "none": 43,
+                "push": 1,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "push": {
+                "none": 0,
+                "push": 56,
+                "heavier_object": 1,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "slippery_object": {
+                "none": 0,
+                "push": 0,
+                "heavier_object": 0,
+                "slippery_object": 26,
+                "camera_shift": 0,
+                "unknown": 0
+              }
+            }
+          }
+        }
+      ]
+    },
+    "transformer": {
+      "params": 191878,
+      "train_wall_s": {
+        "mean": 63.633333333333326,
+        "std": 2.548637980482039,
+        "values": [
+          61.4,
+          62.3,
+          67.2
+        ]
+      },
+      "test": {
+        "teacher_agree": {
+          "mean": 0.9583333134651184,
+          "std": 0.01545601608580654,
+          "values": [
+            0.9449999928474426,
+            0.9799999594688416,
+            0.949999988079071
+          ]
+        },
+        "acc": {
+          "mean": 0.8933333158493042,
+          "std": 0.0023570203561232377,
+          "values": [
+            0.8899999856948853,
+            0.8949999809265137,
+            0.8949999809265137
+          ]
+        },
+        "kl_to_teacher": {
+          "mean": 0.162875826160113,
+          "std": 0.06579358749563739,
+          "values": [
+            0.23884783685207367,
+            0.07836687564849854,
+            0.17141276597976685
+          ]
+        },
+        "ece": {
+          "mean": 0.08893978353184069,
+          "std": 0.0018089142617766095,
+          "values": [
+            0.0878985191484121,
+            0.09148404676021671,
+            0.08743678468689331
+          ]
+        },
+        "mean_segments": {
+          "mean": 1.0,
+          "std": 0.0,
+          "values": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "val": {
+        "teacher_agree": {
+          "mean": 0.9716666340827942,
+          "std": 0.014337195105376597,
+          "values": [
+            0.9699999690055847,
+            0.9549999833106995,
+            0.9899999499320984
+          ]
+        },
+        "acc": {
+          "mean": 0.8849999904632568,
+          "std": 0.018708269092256955,
+          "values": [
+            0.8650000095367432,
+            0.9099999666213989,
+            0.8799999952316284
+          ]
+        },
+        "kl_to_teacher": {
+          "mean": 0.10436817755301793,
+          "std": 0.04540736968139312,
+          "values": [
+            0.09881778806447983,
+            0.16254769265651703,
+            0.051739051938056946
+          ]
+        },
+        "ece": {
+          "mean": 0.09207735384586664,
+          "std": 0.009258939801682506,
+          "values": [
+            0.09615575467546145,
+            0.07926239664179263,
+            0.10081391022034586
+          ]
+        },
+        "mean_segments": {
+          "mean": 1.0,
+          "std": 0.0,
+          "values": [
+            1.0,
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "confusion": {
+        "camera_shift": {
+          "none": 0,
+          "push": 2,
+          "heavier_object": 0,
+          "slippery_object": 0,
+          "camera_shift": 117,
+          "unknown": 1
+        },
+        "heavier_object": {
+          "none": 0,
+          "push": 10,
+          "heavier_object": 108,
+          "slippery_object": 2,
+          "camera_shift": 0,
+          "unknown": 0
+        },
+        "none": {
+          "none": 107,
+          "push": 13,
+          "heavier_object": 0,
+          "slippery_object": 0,
+          "camera_shift": 0,
+          "unknown": 0
+        },
+        "push": {
+          "none": 2,
+          "push": 117,
+          "heavier_object": 0,
+          "slippery_object": 0,
+          "camera_shift": 1,
+          "unknown": 0
+        },
+        "slippery_object": {
+          "none": 6,
+          "push": 23,
+          "heavier_object": 0,
+          "slippery_object": 87,
+          "camera_shift": 3,
+          "unknown": 1
+        }
+      },
+      "confusion_vs_teacher": {
+        "camera_shift": {
+          "none": 0,
+          "push": 1,
+          "heavier_object": 0,
+          "slippery_object": 0,
+          "camera_shift": 116,
+          "unknown": 1
+        },
+        "heavier_object": {
+          "none": 0,
+          "push": 0,
+          "heavier_object": 107,
+          "slippery_object": 0,
+          "camera_shift": 0,
+          "unknown": 0
+        },
+        "none": {
+          "none": 111,
+          "push": 4,
+          "heavier_object": 0,
+          "slippery_object": 0,
+          "camera_shift": 0,
+          "unknown": 0
+        },
+        "push": {
+          "none": 1,
+          "push": 154,
+          "heavier_object": 1,
+          "slippery_object": 3,
+          "camera_shift": 2,
+          "unknown": 0
+        },
+        "slippery_object": {
+          "none": 3,
+          "push": 3,
+          "heavier_object": 0,
+          "slippery_object": 86,
+          "camera_shift": 2,
+          "unknown": 0
+        },
+        "unknown": {
+          "none": 0,
+          "push": 3,
+          "heavier_object": 0,
+          "slippery_object": 0,
+          "camera_shift": 1,
+          "unknown": 1
+        }
+      },
+      "runs": [
+        {
+          "acc": 0.8899999856948853,
+          "teacher_agree": 0.9449999928474426,
+          "kl_to_teacher": 0.23884783685207367,
+          "ece": 0.0878985191484121,
+          "n": 200,
+          "mean_segments": 1.0,
+          "confusion": {
+            "camera_shift": {
+              "none": 0,
+              "push": 1,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 39,
+              "unknown": 0
+            },
+            "heavier_object": {
+              "none": 0,
+              "push": 4,
+              "heavier_object": 36,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "none": {
+              "none": 37,
+              "push": 3,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "push": {
+              "none": 0,
+              "push": 39,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 1,
+              "unknown": 0
+            },
+            "slippery_object": {
+              "none": 1,
+              "push": 9,
+              "heavier_object": 0,
+              "slippery_object": 27,
+              "camera_shift": 2,
+              "unknown": 1
+            }
+          },
+          "confusion_vs_teacher": {
+            "camera_shift": {
+              "none": 0,
+              "push": 1,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 38,
+              "unknown": 0
+            },
+            "heavier_object": {
+              "none": 0,
+              "push": 0,
+              "heavier_object": 35,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "none": {
+              "none": 37,
+              "push": 1,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "push": {
+              "none": 0,
+              "push": 52,
+              "heavier_object": 1,
+              "slippery_object": 1,
+              "camera_shift": 2,
+              "unknown": 0
+            },
+            "slippery_object": {
+              "none": 1,
+              "push": 2,
+              "heavier_object": 0,
+              "slippery_object": 26,
+              "camera_shift": 1,
+              "unknown": 0
+            },
+            "unknown": {
+              "none": 0,
+              "push": 0,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 1,
+              "unknown": 1
+            }
+          },
+          "seed": 0,
+          "best_step": 200,
+          "train": {
+            "steps": 2000,
+            "wall_s": 61.4,
+            "examples_seen": 128000,
+            "final_loss": 0.03167729079723358
+          },
+          "val": {
+            "acc": 0.8650000095367432,
+            "teacher_agree": 0.9699999690055847,
+            "kl_to_teacher": 0.09881778806447983,
+            "ece": 0.09615575467546145,
+            "n": 200,
+            "mean_segments": 1.0,
+            "confusion": {
+              "camera_shift": {
+                "none": 0,
+                "push": 0,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 40,
+                "unknown": 0
+              },
+              "heavier_object": {
+                "none": 0,
+                "push": 4,
+                "heavier_object": 36,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "none": {
+                "none": 34,
+                "push": 6,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "push": {
+                "none": 3,
+                "push": 36,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 1,
+                "unknown": 0
+              },
+              "slippery_object": {
+                "none": 5,
+                "push": 8,
+                "heavier_object": 0,
+                "slippery_object": 27,
+                "camera_shift": 0,
+                "unknown": 0
+              }
+            },
+            "confusion_vs_teacher": {
+              "camera_shift": {
+                "none": 0,
+                "push": 0,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 39,
+                "unknown": 0
+              },
+              "heavier_object": {
+                "none": 0,
+                "push": 0,
+                "heavier_object": 36,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "none": {
+                "none": 41,
+                "push": 3,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "push": {
+                "none": 0,
+                "push": 51,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 1,
+                "unknown": 0
+              },
+              "slippery_object": {
+                "none": 1,
+                "push": 0,
+                "heavier_object": 0,
+                "slippery_object": 27,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "unknown": {
+                "none": 0,
+                "push": 0,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 1,
+                "unknown": 0
+              }
+            }
+          }
+        },
+        {
+          "acc": 0.8949999809265137,
+          "teacher_agree": 0.9799999594688416,
+          "kl_to_teacher": 0.07836687564849854,
+          "ece": 0.09148404676021671,
+          "n": 200,
+          "mean_segments": 1.0,
+          "confusion": {
+            "camera_shift": {
+              "none": 0,
+              "push": 1,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 39,
+              "unknown": 0
+            },
+            "heavier_object": {
+              "none": 0,
+              "push": 5,
+              "heavier_object": 35,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "none": {
+              "none": 35,
+              "push": 5,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "push": {
+              "none": 0,
+              "push": 40,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "slippery_object": {
+              "none": 2,
+              "push": 8,
+              "heavier_object": 0,
+              "slippery_object": 30,
+              "camera_shift": 0,
+              "unknown": 0
+            }
+          },
+          "confusion_vs_teacher": {
+            "camera_shift": {
+              "none": 0,
+              "push": 0,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 39,
+              "unknown": 0
+            },
+            "heavier_object": {
+              "none": 0,
+              "push": 0,
+              "heavier_object": 35,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "none": {
+              "none": 37,
+              "push": 1,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "push": {
+              "none": 0,
+              "push": 55,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "slippery_object": {
+              "none": 0,
+              "push": 0,
+              "heavier_object": 0,
+              "slippery_object": 30,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "unknown": {
+              "none": 0,
+              "push": 3,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            }
+          },
+          "seed": 1,
+          "best_step": 300,
+          "train": {
+            "steps": 2000,
+            "wall_s": 62.3,
+            "examples_seen": 128000,
+            "final_loss": 0.03155621513724327
+          },
+          "val": {
+            "acc": 0.9099999666213989,
+            "teacher_agree": 0.9549999833106995,
+            "kl_to_teacher": 0.16254769265651703,
+            "ece": 0.07926239664179263,
+            "n": 200,
+            "mean_segments": 1.0,
+            "confusion": {
+              "camera_shift": {
+                "none": 0,
+                "push": 0,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 40,
+                "unknown": 0
+              },
+              "heavier_object": {
+                "none": 0,
+                "push": 1,
+                "heavier_object": 39,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "none": {
+                "none": 37,
+                "push": 3,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "push": {
+                "none": 2,
+                "push": 38,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "slippery_object": {
+                "none": 3,
+                "push": 8,
+                "heavier_object": 0,
+                "slippery_object": 28,
+                "camera_shift": 1,
+                "unknown": 0
+              }
+            },
+            "confusion_vs_teacher": {
+              "camera_shift": {
+                "none": 0,
+                "push": 0,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 40,
+                "unknown": 0
+              },
+              "heavier_object": {
+                "none": 0,
+                "push": 0,
+                "heavier_object": 39,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "none": {
+                "none": 39,
+                "push": 1,
+                "heavier_object": 0,
+                "slippery_object": 1,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "push": {
+                "none": 2,
+                "push": 47,
+                "heavier_object": 0,
+                "slippery_object": 1,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "slippery_object": {
+                "none": 1,
+                "push": 0,
+                "heavier_object": 0,
+                "slippery_object": 26,
+                "camera_shift": 1,
+                "unknown": 0
+              },
+              "unknown": {
+                "none": 0,
+                "push": 2,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              }
+            }
+          }
+        },
+        {
+          "acc": 0.8949999809265137,
+          "teacher_agree": 0.949999988079071,
+          "kl_to_teacher": 0.17141276597976685,
+          "ece": 0.08743678468689331,
+          "n": 200,
+          "mean_segments": 1.0,
+          "confusion": {
+            "camera_shift": {
+              "none": 0,
+              "push": 0,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 39,
+              "unknown": 1
+            },
+            "heavier_object": {
+              "none": 0,
+              "push": 1,
+              "heavier_object": 37,
+              "slippery_object": 2,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "none": {
+              "none": 35,
+              "push": 5,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "push": {
+              "none": 2,
+              "push": 38,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "slippery_object": {
+              "none": 3,
+              "push": 6,
+              "heavier_object": 0,
+              "slippery_object": 30,
+              "camera_shift": 1,
+              "unknown": 0
+            }
+          },
+          "confusion_vs_teacher": {
+            "camera_shift": {
+              "none": 0,
+              "push": 0,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 39,
+              "unknown": 1
+            },
+            "heavier_object": {
+              "none": 0,
+              "push": 0,
+              "heavier_object": 37,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "none": {
+              "none": 37,
+              "push": 2,
+              "heavier_object": 0,
+              "slippery_object": 0,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "push": {
+              "none": 1,
+              "push": 47,
+              "heavier_object": 0,
+              "slippery_object": 2,
+              "camera_shift": 0,
+              "unknown": 0
+            },
+            "slippery_object": {
+              "none": 2,
+              "push": 1,
+              "heavier_object": 0,
+              "slippery_object": 30,
+              "camera_shift": 1,
+              "unknown": 0
+            }
+          },
+          "seed": 2,
+          "best_step": 700,
+          "train": {
+            "steps": 2000,
+            "wall_s": 67.2,
+            "examples_seen": 128000,
+            "final_loss": 0.03702908009290695
+          },
+          "val": {
+            "acc": 0.8799999952316284,
+            "teacher_agree": 0.9899999499320984,
+            "kl_to_teacher": 0.051739051938056946,
+            "ece": 0.10081391022034586,
+            "n": 200,
+            "mean_segments": 1.0,
+            "confusion": {
+              "camera_shift": {
+                "none": 0,
+                "push": 0,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 40,
+                "unknown": 0
+              },
+              "heavier_object": {
+                "none": 1,
+                "push": 6,
+                "heavier_object": 33,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "none": {
+                "none": 38,
+                "push": 2,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "push": {
+                "none": 1,
+                "push": 39,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "slippery_object": {
+                "none": 4,
+                "push": 10,
+                "heavier_object": 0,
+                "slippery_object": 26,
+                "camera_shift": 0,
+                "unknown": 0
+              }
+            },
+            "confusion_vs_teacher": {
+              "camera_shift": {
+                "none": 0,
+                "push": 0,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 40,
+                "unknown": 0
+              },
+              "heavier_object": {
+                "none": 0,
+                "push": 0,
+                "heavier_object": 33,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "none": {
+                "none": 43,
+                "push": 0,
+                "heavier_object": 0,
+                "slippery_object": 1,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "push": {
+                "none": 0,
+                "push": 57,
+                "heavier_object": 0,
+                "slippery_object": 0,
+                "camera_shift": 0,
+                "unknown": 0
+              },
+              "slippery_object": {
+                "none": 1,
+                "push": 0,
+                "heavier_object": 0,
+                "slippery_object": 25,
+                "camera_shift": 0,
+                "unknown": 0
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "total_wall_s": 1471.7,
+  "gate_pass": true
+}

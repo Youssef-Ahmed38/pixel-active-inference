@@ -84,10 +84,10 @@ Recalibrating after a camera shift is what keeps the task working (for compariso
 reached its goal in 5% of camera-shift episodes of its reaching task in Phase 0; a different task, so only indicative). Expecting the extra weight does not change
 success; the planner already copes with it.
 
-**Thinker on real episodes** (`results/thinker/real_v7.md`): trained on the evidence of these 100
-episodes to imitate the Bayesian teacher, the HRM thinker agrees with it in 81.7 ± 8.5% of test
-episodes, a same-size transformer in 90.0 ± 8.2% (3 seeds, 20 test episodes each). The week-4 gate
-(HRM > 90%) is not passed yet; more real episodes come next.
+**Thinker on real episodes** (`results/thinker/real_c1000.md`): trained on the evidence of 1000 real
+episodes to imitate the Bayesian teacher, the HRM thinker agrees with it in **96.0 ± 1.1%** of test
+episodes (worst seed 95.0%), a same-size transformer in 95.8 ± 1.5% (3 seeds, 200 test episodes each):
+the week-4 gate (HRM > 90%) is passed. With only 100 episodes it had been 81.7% vs 90.0%.
 
 Details: `results/slice_v7/` (tables, calibration, one report per episode, the per-step evidence
 used to train the thinker). The history of runs:
