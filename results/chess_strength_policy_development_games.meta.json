@@ -1,0 +1,56 @@
+{
+  "provenance": {
+    "git_commit": "d39dcd491b5a3c46ee27db0956da4bbaa5cd2944",
+    "source_sha256": "e23eda7df77bf8785d7757bb2ab94037ef4fb08c265f2f15bceee200a063754d",
+    "seeds": [
+      54420
+    ],
+    "time_controls": {
+      "both_sides_movetime_seconds": [
+        1.0
+      ],
+      "opponent_extra_depth_cap": null,
+      "agent_node_safety_cap": 1000000
+    },
+    "command": "scripts/chess_ladder.py promote --engine runs/chess_teacher/stockfish/stockfish-windows-x86-64-universal.exe --agent-value runs/chess_strength_data/linear_candidate.json --policy runs/chess_strength_data/policy.npz --times 1.0 --quiescence 2 --pairs 2 --opening-seed 54420 --workers 4 --reuse-pv --output results/chess_strength_policy_development_games.jsonl"
+  },
+  "opening_seed": 54420,
+  "pairs": 2,
+  "max_plies": 512,
+  "roots": [
+    "rnbq1knr/pppppp1p/7b/6p1/1P6/P2P4/2PBPPPP/RN1QKBNR b KQ - 2 4",
+    "rnbqkbnr/pp1ppp1p/8/2p3p1/2P2P2/8/PP1PP1PP/RNBQKBNR w KQkq - 0 3"
+  ],
+  "groups": {
+    "t1.0_incumbent": {
+      "kind": "promotion",
+      "candidate": {
+        "kind": "agent",
+        "directory": "runs\\chess_rules",
+        "value": "runs\\chess_strength_data\\linear_candidate.json",
+        "time": 1.0,
+        "nodes": 1000000,
+        "quiescence": 2,
+        "reuse_pv": true,
+        "policy": "runs\\chess_strength_data\\policy.npz"
+      },
+      "opponent": {
+        "kind": "agent",
+        "directory": "runs\\chess_rules",
+        "value": "runs\\chess_rules\\value.json",
+        "time": 1.0,
+        "nodes": 1000000,
+        "quiescence": 0,
+        "reuse_pv": true
+      }
+    }
+  },
+  "checkpoint_hashes": {
+    "runs\\chess_strength_data\\linear_candidate.json": "d7b1f4098561dcd2",
+    "runs\\chess_rules\\value.json": "001a9ae670cbe51f",
+    "runs\\chess_rules\\rules.json": "92f93d445f4b0f4a",
+    "runs\\chess_rules\\state.json": "84e32613d8899907",
+    "runs\\chess_rules\\endings.json": "86241b595f941790",
+    "runs\\chess_strength_data\\policy.npz": "83c434969214de2a"
+  }
+}
