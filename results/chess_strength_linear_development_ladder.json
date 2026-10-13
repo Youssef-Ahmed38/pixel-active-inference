@@ -1,0 +1,4379 @@
+{
+  "provenance": {
+    "git_commit": "5cd72f9ba5ec3f96d5a4656d5f8e4f36cf33594d",
+    "source_sha256": "4ba708a34051e9857b8d62d7e012350f4c4ea00f8a973387f44439d53a6fcba7",
+    "seeds": [
+      54410
+    ],
+    "time_controls": {
+      "both_sides_movetime_seconds": [
+        0.2
+      ],
+      "opponent_extra_depth_cap": null,
+      "agent_node_safety_cap": 1000000
+    },
+    "command": "scripts/chess_ladder.py ladder --engine runs/chess_teacher/stockfish/stockfish-windows-x86-64-universal.exe --agent-value runs/chess_strength_data/linear_candidate.json --times 0.2 --rungs 1320 --quiescence 2 --pairs 3 --opening-seed 54410 --workers 2 --reuse-pv --output results/chess_strength_linear_development_ladder.jsonl"
+  },
+  "opening_seed": 54410,
+  "roots": [
+    "rnbqkbnr/ppppp1p1/5p2/1N6/7p/P7/1PPPPPPP/R1BQKBNR w KQkq - 0 4",
+    "rnbqkbnr/pppp1pp1/7p/4p3/6P1/2N5/PPPPPP1P/R1BQKBNR w KQkq - 0 3",
+    "r1bqkbnr/ppp1pppp/2n5/3p4/8/4PN2/PPPP1PPP/RNBQKB1R w KQkq - 2 3"
+  ],
+  "checkpoint_hashes": {
+    "runs\\chess_strength_data\\linear_candidate.json": "d7b1f4098561dcd2",
+    "runs\\chess_rules\\value.json": "001a9ae670cbe51f",
+    "runs\\chess_rules\\rules.json": "92f93d445f4b0f4a",
+    "runs\\chess_rules\\state.json": "84e32613d8899907",
+    "runs\\chess_rules\\endings.json": "86241b595f941790"
+  },
+  "groups": {
+    "t0.2_elo1320": {
+      "games": 6,
+      "pairs": 3,
+      "unresolved_games": 0,
+      "wins": 0,
+      "draws": 0,
+      "losses": 6,
+      "score": 0.0,
+      "score_ci95_pair_bootstrap": [
+        0.0,
+        0.0
+      ],
+      "score_ci95_wilson_games": [
+        0.0,
+        0.39033429165637346
+      ],
+      "elo_difference": null,
+      "elo_difference_ci95": [
+        null,
+        null
+      ],
+      "lower_bound_above_half": false,
+      "complete_colour_pairs": true,
+      "paired_sign_test_p_one_sided": 1.0,
+      "promotion_gate_passed": false,
+      "statistical_assumptions": "independent opening clusters; sign symmetry under equal-strength null",
+      "players": {
+        "kind": "ladder",
+        "candidate": {
+          "kind": "agent",
+          "directory": "runs\\chess_rules",
+          "value": "runs\\chess_strength_data\\linear_candidate.json",
+          "time": 0.2,
+          "nodes": 1000000,
+          "quiescence": 2,
+          "reuse_pv": true
+        },
+        "opponent": {
+          "kind": "engine",
+          "uci_elo": 1320,
+          "movetime": 0.2,
+          "engine_path": "C:\\projects\\pixel-active-inference\\runs\\chess_teacher\\stockfish\\stockfish-windows-x86-64-universal.exe"
+        }
+      },
+      "scheduled_games": 6,
+      "schedule_complete": true,
+      "failures": []
+    }
+  },
+  "conditional_elo_by_movetime": {
+    "0.2": {
+      "estimate": null,
+      "reason": "all anchored scores are zero or all are one"
+    }
+  },
+  "rating_scope": "conditional Elo relative to configured Stockfish anchors under stated limits; not calibrated human Elo",
+  "raw_games": [
+    {
+      "status": "complete",
+      "result": "1-0",
+      "termination": "CHECKMATE",
+      "plies": 5,
+      "failure": null,
+      "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"1-0\"]\n[FEN \"rnbqkbnr/ppppp1p1/5p2/1N6/7p/P7/1PPPPPPP/R1BQKBNR w KQkq - 0 4\"]\n[SetUp \"1\"]\n\n4. e4 Rh5 5. Qxh5+ g6 6. Qxg6# 1-0",
+      "search_records": [
+        {
+          "depth": 0,
+          "nodes": 18,
+          "seconds": 0.20980899999267422,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.21026950000668876
+        },
+        {
+          "depth": 1,
+          "nodes": 20,
+          "seconds": 0.20790340000530705,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.20840380000299774
+        }
+      ],
+      "commands": [
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e2e4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h8h5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d1h5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g7g6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h5g6"
+          ]
+        }
+      ],
+      "agent_depth_mean": 0.5,
+      "agent_seconds_mean": 0.20885619999899063,
+      "id": "t0.2_elo1320|0|black",
+      "group": "t0.2_elo1320",
+      "pair": 0,
+      "candidate_color": "black",
+      "root": "rnbqkbnr/ppppp1p1/5p2/1N6/7p/P7/1PPPPPPP/R1BQKBNR w KQkq - 0 4",
+      "seed": 54410,
+      "white": {
+        "kind": "engine",
+        "uci_elo": 1320,
+        "movetime": 0.2,
+        "engine_path": "C:\\projects\\pixel-active-inference\\runs\\chess_teacher\\stockfish\\stockfish-windows-x86-64-universal.exe"
+      },
+      "black": {
+        "kind": "agent",
+        "directory": "runs\\chess_rules",
+        "value": "runs\\chess_strength_data\\linear_candidate.json",
+        "time": 0.2,
+        "nodes": 1000000,
+        "quiescence": 2,
+        "reuse_pv": true
+      },
+      "provenance": {
+        "git_commit": "5cd72f9ba5ec3f96d5a4656d5f8e4f36cf33594d",
+        "source_sha256": "4ba708a34051e9857b8d62d7e012350f4c4ea00f8a973387f44439d53a6fcba7",
+        "seeds": [
+          54410
+        ],
+        "time_controls": {
+          "both_sides_movetime_seconds": [
+            0.2
+          ],
+          "opponent_extra_depth_cap": null,
+          "agent_node_safety_cap": 1000000
+        },
+        "command": "scripts/chess_ladder.py ladder --engine runs/chess_teacher/stockfish/stockfish-windows-x86-64-universal.exe --agent-value runs/chess_strength_data/linear_candidate.json --times 0.2 --rungs 1320 --quiescence 2 --pairs 3 --opening-seed 54410 --workers 2 --reuse-pv --output results/chess_strength_linear_development_ladder.jsonl"
+      },
+      "wall_seconds": 29.57184672355652
+    },
+    {
+      "status": "complete",
+      "result": "0-1",
+      "termination": "CHECKMATE",
+      "plies": 58,
+      "failure": null,
+      "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"0-1\"]\n[FEN \"rnbqkbnr/pppp1pp1/7p/4p3/6P1/2N5/PPPPPP1P/R1BQKBNR w KQkq - 0 3\"]\n[SetUp \"1\"]\n\n3. Nf3 Nc6 4. Nxe5 d5 5. Nxc6 bxc6 6. Ne4 dxe4 7. Bh3 a5 8. Rf1 Qd6 9. d3 Qe6 10. Bxh6 Qxh6 11. dxe4 Qh4 12. e5 Bd7 13. Qxd7+ Kxd7 14. Rd1+ Ke8 15. e4 a4 16. e6 Bd6 17. Rxd6 cxd6 18. exf7+ Kf8 19. fxg8=Q+ Kxg8 20. e5 Qxh3 21. exd6 Re8+ 22. Kd2 Qxf1 23. h3 Qe1+ 24. Kd3 Qe2+ 25. Kd4 c5+ 26. Kxc5 Qxc2+ 27. Kb5 Rb8+ 28. Ka5 Ra8+ 29. Kb5 Rb8+ 30. Ka5 Qd2+ 31. Kxa4 Qb4# 0-1",
+      "search_records": [
+        {
+          "depth": 0,
+          "nodes": 10,
+          "seconds": 0.20097940001869574,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.2014391999982763
+        },
+        {
+          "depth": 0,
+          "nodes": 23,
+          "seconds": 0.20150309999007732,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.2019502999901306
+        },
+        {
+          "depth": 0,
+          "nodes": 14,
+          "seconds": 0.2058590000087861,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.206327699997928
+        },
+        {
+          "depth": 0,
+          "nodes": 10,
+          "seconds": 0.2069445000088308,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20806829998036847
+        },
+        {
+          "depth": 0,
+          "nodes": 15,
+          "seconds": 0.2037595000001602,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.204307100008009
+        },
+        {
+          "depth": 0,
+          "nodes": 11,
+          "seconds": 0.2086643000075128,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20929110000724904
+        },
+        {
+          "depth": 1,
+          "nodes": 36,
+          "seconds": 0.20141430001240224,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.2021244000061415
+        },
+        {
+          "depth": 0,
+          "nodes": 15,
+          "seconds": 0.20875819999491796,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20963430000119843
+        },
+        {
+          "depth": 0,
+          "nodes": 13,
+          "seconds": 0.20632860000478104,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.2070417999930214
+        },
+        {
+          "depth": 0,
+          "nodes": 12,
+          "seconds": 0.21846540001570247,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.21937820001039654
+        },
+        {
+          "depth": 0,
+          "nodes": 14,
+          "seconds": 0.21120970000629313,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.2120400999847334
+        },
+        {
+          "depth": 0,
+          "nodes": 28,
+          "seconds": 0.20246560001396574,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.2032687999890186
+        },
+        {
+          "depth": 0,
+          "nodes": 11,
+          "seconds": 0.21212630000081845,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.21303630000329576
+        },
+        {
+          "depth": 0,
+          "nodes": 10,
+          "seconds": 0.20274010000866838,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20372319998568855
+        },
+        {
+          "depth": 0,
+          "nodes": 15,
+          "seconds": 0.2022774999786634,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20954679997521453
+        },
+        {
+          "depth": 1,
+          "nodes": 33,
+          "seconds": 0.2039054000051692,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20503730000928044
+        },
+        {
+          "depth": 0,
+          "nodes": 18,
+          "seconds": 0.20330479997210205,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20444910001242533
+        },
+        {
+          "depth": 0,
+          "nodes": 13,
+          "seconds": 0.20816489998833276,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20931529998779297
+        },
+        {
+          "depth": 0,
+          "nodes": 12,
+          "seconds": 0.21978330001002178,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.22102490000543185
+        },
+        {
+          "depth": 1,
+          "nodes": 16,
+          "seconds": 0.22280670001055114,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.22418229997856542
+        },
+        {
+          "depth": 0,
+          "nodes": 31,
+          "seconds": 0.2061210999963805,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20761370001127943
+        },
+        {
+          "depth": 1,
+          "nodes": 21,
+          "seconds": 0.21383979998063296,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.218806000018958
+        },
+        {
+          "depth": 0,
+          "nodes": 13,
+          "seconds": 0.2236138000153005,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.22798799999873154
+        },
+        {
+          "depth": 0,
+          "nodes": 13,
+          "seconds": 0.23424340001656674,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.24097559999790974
+        },
+        {
+          "depth": 0,
+          "nodes": 9,
+          "seconds": 0.21038750000298023,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.22262779998709448
+        },
+        {
+          "depth": 1,
+          "nodes": 30,
+          "seconds": 0.20592970002326183,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.2084743999876082
+        },
+        {
+          "depth": 0,
+          "nodes": 9,
+          "seconds": 0.22286839998560026,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.22481669997796416
+        },
+        {
+          "depth": 1,
+          "nodes": 20,
+          "seconds": 0.2036882000102196,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.2091299000021536
+        },
+        {
+          "depth": 0,
+          "nodes": 8,
+          "seconds": 0.2414349000027869,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.2431192999938503
+        }
+      ],
+      "commands": [
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g1f3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b8c6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f3e5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d7d5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e5c6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b7c6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c3e4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d5e4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f1h3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a7a5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h1f1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d8d6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d2d3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d6e6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c1h6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e6h6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d3e4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h6h4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e4e5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c8d7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d1d7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e8d7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a1d1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d7e8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e2e4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a5a4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e5e6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f8d6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d1d6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c7d6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e6f7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e8f8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f7g8q"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f8g8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e4e5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h4h3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e5d6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a8e8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e1d2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h3f1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h2h3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f1e1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d2d3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e1e2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d3d4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c6c5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d4c5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e2c2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c5b5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e8b8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b5a5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b8a8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a5b5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a8b8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b5a5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2d2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a5a4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d2b4"
+          ]
+        }
+      ],
+      "agent_depth_mean": 0.20689655172413793,
+      "agent_seconds_mean": 0.21081335862379938,
+      "id": "t0.2_elo1320|1|white",
+      "group": "t0.2_elo1320",
+      "pair": 1,
+      "candidate_color": "white",
+      "root": "rnbqkbnr/pppp1pp1/7p/4p3/6P1/2N5/PPPPPP1P/R1BQKBNR w KQkq - 0 3",
+      "seed": 54411,
+      "white": {
+        "kind": "agent",
+        "directory": "runs\\chess_rules",
+        "value": "runs\\chess_strength_data\\linear_candidate.json",
+        "time": 0.2,
+        "nodes": 1000000,
+        "quiescence": 2,
+        "reuse_pv": true
+      },
+      "black": {
+        "kind": "engine",
+        "uci_elo": 1320,
+        "movetime": 0.2,
+        "engine_path": "C:\\projects\\pixel-active-inference\\runs\\chess_teacher\\stockfish\\stockfish-windows-x86-64-universal.exe"
+      },
+      "provenance": {
+        "git_commit": "5cd72f9ba5ec3f96d5a4656d5f8e4f36cf33594d",
+        "source_sha256": "4ba708a34051e9857b8d62d7e012350f4c4ea00f8a973387f44439d53a6fcba7",
+        "seeds": [
+          54410
+        ],
+        "time_controls": {
+          "both_sides_movetime_seconds": [
+            0.2
+          ],
+          "opponent_extra_depth_cap": null,
+          "agent_node_safety_cap": 1000000
+        },
+        "command": "scripts/chess_ladder.py ladder --engine runs/chess_teacher/stockfish/stockfish-windows-x86-64-universal.exe --agent-value runs/chess_strength_data/linear_candidate.json --times 0.2 --rungs 1320 --quiescence 2 --pairs 3 --opening-seed 54410 --workers 2 --reuse-pv --output results/chess_strength_linear_development_ladder.jsonl"
+      },
+      "wall_seconds": 11.842574119567871
+    },
+    {
+      "status": "complete",
+      "result": "1-0",
+      "termination": "CHECKMATE",
+      "plies": 61,
+      "failure": null,
+      "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"1-0\"]\n[FEN \"rnbqkbnr/pppp1pp1/7p/4p3/6P1/2N5/PPPPPP1P/R1BQKBNR w KQkq - 0 3\"]\n[SetUp \"1\"]\n\n3. h3 Nf6 4. Bg2 e4 5. Nxe4 Nxe4 6. Bxe4 Qh4 7. d3 Qxf2+ 8. Kxf2 d6 9. c4 Bxg4 10. hxg4 Nc6 11. Bxc6+ bxc6 12. a3 Rd8 13. e3 Rg8 14. Bd2 Be7 15. Nf3 Rf8 16. Ke2 Bf6 17. d4 Bxd4 18. exd4 a6 19. Re1 f6 20. Qc1 Rf7 21. Rb1 a5 22. Ra1 a4 23. Ra2 c5 24. Bf4 cxd4 25. Kf2+ Kd7 26. Qd2 c6 27. Nxd4 Kc7 28. Qd1 c5 29. Nf5 Rff8 30. Re7+ Rd7 31. Qxd6+ Kb7 32. Rxd7+ Ka8 33. Qa6# 1-0",
+      "search_records": [
+        {
+          "depth": 0,
+          "nodes": 15,
+          "seconds": 0.20798370000557043,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.20839239997440018
+        },
+        {
+          "depth": 1,
+          "nodes": 41,
+          "seconds": 0.20261529998970218,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.2030185000039637
+        },
+        {
+          "depth": 0,
+          "nodes": 22,
+          "seconds": 0.2014193999930285,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.201848999975482
+        },
+        {
+          "depth": 0,
+          "nodes": 19,
+          "seconds": 0.20415229999343865,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.20470409997506067
+        },
+        {
+          "depth": 0,
+          "nodes": 13,
+          "seconds": 0.20231079999939539,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.20291990000987425
+        },
+        {
+          "depth": 0,
+          "nodes": 16,
+          "seconds": 0.20962180002243258,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.21042250000755303
+        },
+        {
+          "depth": 0,
+          "nodes": 27,
+          "seconds": 0.20131319999927655,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.20191709999926388
+        },
+        {
+          "depth": 0,
+          "nodes": 14,
+          "seconds": 0.20303750000311993,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.20388509999611415
+        },
+        {
+          "depth": 1,
+          "nodes": 12,
+          "seconds": 0.20154020001064055,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.20261189999291673
+        },
+        {
+          "depth": 0,
+          "nodes": 13,
+          "seconds": 0.20637390000047162,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.2071799999976065
+        },
+        {
+          "depth": 1,
+          "nodes": 21,
+          "seconds": 0.20466149999992922,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.2056115999876056
+        },
+        {
+          "depth": 1,
+          "nodes": 27,
+          "seconds": 0.20129170001018792,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.2020360000024084
+        },
+        {
+          "depth": 0,
+          "nodes": 14,
+          "seconds": 0.20356039999751374,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.20442580000963062
+        },
+        {
+          "depth": 0,
+          "nodes": 11,
+          "seconds": 0.20631829998455942,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.20755120000103489
+        },
+        {
+          "depth": 0,
+          "nodes": 9,
+          "seconds": 0.20681609999155626,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.2126834999944549
+        },
+        {
+          "depth": 0,
+          "nodes": 14,
+          "seconds": 0.20381380000617355,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.2049477999971714
+        },
+        {
+          "depth": 1,
+          "nodes": 33,
+          "seconds": 0.2018949000048451,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.20309319999068975
+        },
+        {
+          "depth": 0,
+          "nodes": 12,
+          "seconds": 0.20215870000538416,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.20329159998800606
+        },
+        {
+          "depth": 0,
+          "nodes": 13,
+          "seconds": 0.2000945000036154,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.20136949999141507
+        },
+        {
+          "depth": 0,
+          "nodes": 13,
+          "seconds": 0.20411029999377206,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.20681380000314675
+        },
+        {
+          "depth": 0,
+          "nodes": 0,
+          "seconds": 0.3950528999848757,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.3962445000070147
+        },
+        {
+          "depth": 0,
+          "nodes": 33,
+          "seconds": 0.20042529999045655,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.2017479999922216
+        },
+        {
+          "depth": 1,
+          "nodes": 18,
+          "seconds": 0.22174329997505993,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.22881499998038635
+        },
+        {
+          "depth": 0,
+          "nodes": 15,
+          "seconds": 0.2041412999969907,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.20874959998764098
+        },
+        {
+          "depth": 0,
+          "nodes": 12,
+          "seconds": 0.21237049999763258,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.214089100016281
+        },
+        {
+          "depth": 0,
+          "nodes": 15,
+          "seconds": 0.21028759999899194,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.21195799999986775
+        },
+        {
+          "depth": 1,
+          "nodes": 33,
+          "seconds": 0.2006868000025861,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.20201139998971485
+        },
+        {
+          "depth": 0,
+          "nodes": 12,
+          "seconds": 0.20043399999849498,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.20280699999420904
+        },
+        {
+          "depth": 0,
+          "nodes": 12,
+          "seconds": 0.21368110002367757,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.215524600003846
+        },
+        {
+          "depth": 0,
+          "nodes": 15,
+          "seconds": 0.21811139999772422,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.21988200000487268
+        }
+      ],
+      "commands": [
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h2h3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g8f6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f1g2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e5e4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c3e4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f6e4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g2e4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d8h4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d2d3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h4f2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e1f2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d7d6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2c4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c8g4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h3g4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b8c6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e4c6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b7c6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a2a3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a8d8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e2e3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h8g8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c1d2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f8e7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g1f3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g8f8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f2e2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e7f6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d3d4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f6d4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e3d4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a7a6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h1e1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f7f6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d1c1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f8f7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a1b1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a6a5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b1a1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a5a4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a1a2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c6c5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d2f4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c5d4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e2f2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e8d7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c1d2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c7c6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f3d4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d7c7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d2d1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c6c5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d4f5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f7f8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e1e7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d8d7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d1d6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c7b7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e7d7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b7a8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d6a6"
+          ]
+        }
+      ],
+      "agent_depth_mean": 0.23333333333333334,
+      "agent_seconds_mean": 0.21173408333270344,
+      "id": "t0.2_elo1320|1|black",
+      "group": "t0.2_elo1320",
+      "pair": 1,
+      "candidate_color": "black",
+      "root": "rnbqkbnr/pppp1pp1/7p/4p3/6P1/2N5/PPPPPP1P/R1BQKBNR w KQkq - 0 3",
+      "seed": 54411,
+      "white": {
+        "kind": "engine",
+        "uci_elo": 1320,
+        "movetime": 0.2,
+        "engine_path": "C:\\projects\\pixel-active-inference\\runs\\chess_teacher\\stockfish\\stockfish-windows-x86-64-universal.exe"
+      },
+      "black": {
+        "kind": "agent",
+        "directory": "runs\\chess_rules",
+        "value": "runs\\chess_strength_data\\linear_candidate.json",
+        "time": 0.2,
+        "nodes": 1000000,
+        "quiescence": 2,
+        "reuse_pv": true
+      },
+      "provenance": {
+        "git_commit": "5cd72f9ba5ec3f96d5a4656d5f8e4f36cf33594d",
+        "source_sha256": "4ba708a34051e9857b8d62d7e012350f4c4ea00f8a973387f44439d53a6fcba7",
+        "seeds": [
+          54410
+        ],
+        "time_controls": {
+          "both_sides_movetime_seconds": [
+            0.2
+          ],
+          "opponent_extra_depth_cap": null,
+          "agent_node_safety_cap": 1000000
+        },
+        "command": "scripts/chess_ladder.py ladder --engine runs/chess_teacher/stockfish/stockfish-windows-x86-64-universal.exe --agent-value runs/chess_strength_data/linear_candidate.json --times 0.2 --rungs 1320 --quiescence 2 --pairs 3 --opening-seed 54410 --workers 2 --reuse-pv --output results/chess_strength_linear_development_ladder.jsonl"
+      },
+      "wall_seconds": 12.754725217819214
+    },
+    {
+      "status": "complete",
+      "result": "0-1",
+      "termination": "CHECKMATE",
+      "plies": 142,
+      "failure": null,
+      "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"0-1\"]\n[FEN \"rnbqkbnr/ppppp1p1/5p2/1N6/7p/P7/1PPPPPPP/R1BQKBNR w KQkq - 0 4\"]\n[SetUp \"1\"]\n\n4. Nxc7+ Qxc7 5. Nf3 d6 6. Nxh4 Rxh4 7. e4 e6 8. e5 dxe5 9. Ra2 g5 10. Qh5+ Kd8 11. Qxh4 Qxc2 12. Qxg5 Qxc1+ 13. Ke2 Qd1+ 14. Kxd1 fxg5 15. Kc2 Bh6 16. d3 Ke7 17. Rg1 Bd7 18. Be2 a5 19. Rd1 Bg7 20. Bf3 Nc6 21. Bxc6 Rc8 22. h3 Bxc6 23. f3 Ba4+ 24. Kd2 Bxd1 25. Kxd1 Ke8 26. a4 Bf8 27. Ke1 Bg7 28. Kd1 g4 29. hxg4 Rd8 30. Kc2 Bf8 31. d4 Rc8+ 32. Kd3 Rd8 33. Kc2 exd4 34. g5 Rc8+ 35. Kd3 Bb4 36. Kxd4 Rc1 37. Kd3 Kd7 38. b3 Rc3+ 39. Kd2 Ne7 40. Rc2 Rc5+ 41. Kd3 Rf5 42. Rc7+ Kd6 43. Rxe7 Kxe7 44. Kc2 Rxg5 45. g4 Bc5 46. b4 axb4 47. a5 b3+ 48. Kxb3 Rd5 49. Kc2 Kd6 50. a6 b5 51. a7 Bxa7 52. g5 Rxg5 53. Kb2 Bb8 54. Kc2 b4 55. Kb2 Rd5 56. Kc2 Rf5 57. Kb2 Rh5 58. Kc2 Rc5+ 59. Kb2 Rd5 60. Kc2 Bc7 61. Kb2 Rd4 62. Kc2 Kc5 63. Kb2 Rd5 64. Kc2 Rd4 65. Kb2 Be5 66. Kc2 Bb8 67. Kb2 Rd5 68. Kc2 Be5 69. f4 Bd6 70. f5 Bb8 71. fxe6 Be5 72. Kb1 b3 73. Kc1 Kb4 74. Kb1 Rd1# 0-1",
+      "search_records": [
+        {
+          "depth": 0,
+          "nodes": 14,
+          "seconds": 0.2040821999835316,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20456029998604208
+        },
+        {
+          "depth": 0,
+          "nodes": 17,
+          "seconds": 0.21585480001522228,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.216372599999886
+        },
+        {
+          "depth": 0,
+          "nodes": 9,
+          "seconds": 0.21006369998212904,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.21096929998020642
+        },
+        {
+          "depth": 0,
+          "nodes": 11,
+          "seconds": 0.20139180001569912,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.2019037999853026
+        },
+        {
+          "depth": 0,
+          "nodes": 22,
+          "seconds": 0.22177229999215342,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.22242770000593737
+        },
+        {
+          "depth": 0,
+          "nodes": 9,
+          "seconds": 0.205163700011326,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20586970000294968
+        },
+        {
+          "depth": 0,
+          "nodes": 12,
+          "seconds": 0.2009732000005897,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20166920000337996
+        },
+        {
+          "depth": 0,
+          "nodes": 11,
+          "seconds": 0.2468622000014875,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.24754209999809973
+        },
+        {
+          "depth": 0,
+          "nodes": 15,
+          "seconds": 0.20311239999136887,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20400009999866597
+        },
+        {
+          "depth": 1,
+          "nodes": 26,
+          "seconds": 0.20384370000101626,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20456800001556985
+        },
+        {
+          "depth": 1,
+          "nodes": 17,
+          "seconds": 0.21701110000140034,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.21799810000811704
+        },
+        {
+          "depth": 0,
+          "nodes": 17,
+          "seconds": 0.20400679999147542,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20489719999022782
+        },
+        {
+          "depth": 0,
+          "nodes": 15,
+          "seconds": 0.2067070000048261,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20769179999479093
+        },
+        {
+          "depth": 1,
+          "nodes": 41,
+          "seconds": 0.2040522999886889,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20488100001239218
+        },
+        {
+          "depth": 0,
+          "nodes": 14,
+          "seconds": 0.2120001000002958,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.21333060000324622
+        },
+        {
+          "depth": 0,
+          "nodes": 12,
+          "seconds": 0.20236909997765906,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.21744889998808503
+        },
+        {
+          "depth": 0,
+          "nodes": 14,
+          "seconds": 0.21437460000743158,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.215525899984641
+        },
+        {
+          "depth": 0,
+          "nodes": 13,
+          "seconds": 0.20236739999381825,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20929059997433797
+        },
+        {
+          "depth": 0,
+          "nodes": 29,
+          "seconds": 0.21080000000074506,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.21200130000943318
+        },
+        {
+          "depth": 0,
+          "nodes": 15,
+          "seconds": 0.21011519999592565,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.21145199998863973
+        },
+        {
+          "depth": 1,
+          "nodes": 13,
+          "seconds": 0.21908899999107234,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.22036570002092049
+        },
+        {
+          "depth": 1,
+          "nodes": 17,
+          "seconds": 0.20097350000287406,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20616480000899173
+        },
+        {
+          "depth": 1,
+          "nodes": 20,
+          "seconds": 0.20566939999116585,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.21142359997611493
+        },
+        {
+          "depth": 1,
+          "nodes": 17,
+          "seconds": 0.21075880000717007,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.21432610001647845
+        },
+        {
+          "depth": 0,
+          "nodes": 14,
+          "seconds": 0.20824710000306368,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.2139335000247229
+        },
+        {
+          "depth": 0,
+          "nodes": 7,
+          "seconds": 0.20717869998770766,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.22018870001193136
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.23813389998394996,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.25185190001502633
+        },
+        {
+          "depth": 0,
+          "nodes": 14,
+          "seconds": 0.20465310002327897,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20688679997692816
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.23432620000676252,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.24158609998994507
+        },
+        {
+          "depth": 0,
+          "nodes": 10,
+          "seconds": 0.2198993000201881,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.23093379999045283
+        },
+        {
+          "depth": 0,
+          "nodes": 8,
+          "seconds": 0.2250097999931313,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.23134030000073835
+        },
+        {
+          "depth": 1,
+          "nodes": 9,
+          "seconds": 0.20904129999689758,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.210830399999395
+        },
+        {
+          "depth": 1,
+          "nodes": 20,
+          "seconds": 0.2441473000217229,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.24588040000526235
+        },
+        {
+          "depth": 0,
+          "nodes": 9,
+          "seconds": 0.21126000001095235,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.21806660000584088
+        },
+        {
+          "depth": 0,
+          "nodes": 7,
+          "seconds": 0.2145038000016939,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.21639409998897463
+        },
+        {
+          "depth": 0,
+          "nodes": 8,
+          "seconds": 0.21098629999323748,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.21400639999774285
+        },
+        {
+          "depth": 0,
+          "nodes": 10,
+          "seconds": 0.20842839998658746,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.211004699987825
+        },
+        {
+          "depth": 0,
+          "nodes": 8,
+          "seconds": 0.20121079997625202,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.2083107999933418
+        },
+        {
+          "depth": 0,
+          "nodes": 7,
+          "seconds": 0.30265440000221133,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.3124549000058323
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.20894989999942482,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.2111764999863226
+        },
+        {
+          "depth": 0,
+          "nodes": 9,
+          "seconds": 0.2014750000089407,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20360569999320433
+        },
+        {
+          "depth": 1,
+          "nodes": 22,
+          "seconds": 0.42140210000798106,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.42399599999771453
+        },
+        {
+          "depth": 0,
+          "nodes": 8,
+          "seconds": 0.20938750001369044,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.21185270001296885
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.2123853999946732,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.22909929999150336
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.20143519999692217,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.2205944999877829
+        },
+        {
+          "depth": 1,
+          "nodes": 18,
+          "seconds": 0.20745409998926334,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.2108726000005845
+        },
+        {
+          "depth": 0,
+          "nodes": 7,
+          "seconds": 0.20985470002051443,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.21194000000832602
+        },
+        {
+          "depth": 0,
+          "nodes": 10,
+          "seconds": 0.2221873999806121,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.22774259999278001
+        },
+        {
+          "depth": 0,
+          "nodes": 8,
+          "seconds": 0.2257333000015933,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.22845280001638457
+        },
+        {
+          "depth": 0,
+          "nodes": 8,
+          "seconds": 0.22846469999058172,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.24344469999778084
+        },
+        {
+          "depth": 1,
+          "nodes": 14,
+          "seconds": 0.20616710002650507,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.22510799998417497
+        },
+        {
+          "depth": 1,
+          "nodes": 19,
+          "seconds": 0.2246953999856487,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.22694480000063777
+        },
+        {
+          "depth": 1,
+          "nodes": 8,
+          "seconds": 0.22644709999440238,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.24124050000682473
+        },
+        {
+          "depth": 0,
+          "nodes": 10,
+          "seconds": 0.24522670000442304,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.2521781999967061
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.21308660000795498,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.23077640001429245
+        },
+        {
+          "depth": 1,
+          "nodes": 15,
+          "seconds": 0.20797019999008626,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.21260780000011437
+        },
+        {
+          "depth": 1,
+          "nodes": 21,
+          "seconds": 0.20391329997801222,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20668259999365546
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.22693629999412224,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.23326460001408122
+        },
+        {
+          "depth": 1,
+          "nodes": 8,
+          "seconds": 0.2138365999853704,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.22087270001065917
+        },
+        {
+          "depth": 1,
+          "nodes": 6,
+          "seconds": 0.21554410000680946,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.21904389999690466
+        },
+        {
+          "depth": 1,
+          "nodes": 12,
+          "seconds": 0.21119619999080896,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.22538670001085848
+        },
+        {
+          "depth": 1,
+          "nodes": 26,
+          "seconds": 0.2139723000000231,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.217061500006821
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.2107110999932047,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.21675230000982992
+        },
+        {
+          "depth": 1,
+          "nodes": 10,
+          "seconds": 0.22271529998397455,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.23251490000984631
+        },
+        {
+          "depth": 1,
+          "nodes": 8,
+          "seconds": 0.22029310002108105,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.24075709999306127
+        },
+        {
+          "depth": 1,
+          "nodes": 12,
+          "seconds": 0.20454700000118464,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20981899998150766
+        },
+        {
+          "depth": 1,
+          "nodes": 21,
+          "seconds": 0.2087388999934774,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.2120271000021603
+        },
+        {
+          "depth": 1,
+          "nodes": 10,
+          "seconds": 0.21735829999670386,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.22785560000920668
+        },
+        {
+          "depth": 1,
+          "nodes": 9,
+          "seconds": 0.22413300001062453,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.24683569997432642
+        },
+        {
+          "depth": 1,
+          "nodes": 12,
+          "seconds": 0.21745710002142005,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.22112509998260066
+        },
+        {
+          "depth": 1,
+          "nodes": 18,
+          "seconds": 0.202173199999379,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.205676699988544
+        }
+      ],
+      "commands": [
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b5c7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d8c7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g1f3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d7d6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f3h4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h8h4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e2e4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e7e6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e4e5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d6e5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a1a2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g7g5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d1h5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e8d8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h5h4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c7c2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h4g5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2c1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e1e2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c1d1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e2d1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f6g5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d1c2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f8h6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d2d3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d8e7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h1g1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c8d7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f1e2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a7a5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g1d1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h6g7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e2f3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b8c6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f3c6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a8c8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h2h3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d7c6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f2f3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c6a4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2d2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a4d1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d2d1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e7e8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a3a4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g7f8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d1e1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f8g7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e1d1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g5g4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h3g4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c8d8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d1c2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g7f8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d3d4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d8c8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2d3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c8d8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d3c2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e5d4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g4g5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d8c8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2d3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f8b4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d3d4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c8c1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d4d3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e8d7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b2b3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c1c3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d3d2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g8e7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a2c2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c3c5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d2d3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c5f5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2c7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d7d6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c7e7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d6e7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d3c2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f5g5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g2g4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b4c5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b3b4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a5b4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a4a5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b4b3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2b3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g5d5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b3c2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e7d6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a5a6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b7b5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a6a7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c5a7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g4g5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d5g5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2b2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a7b8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b2c2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b5b4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2b2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g5d5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b2c2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d5f5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2b2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f5h5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b2c2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h5c5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2b2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c5d5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b2c2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b8c7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2b2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d5d4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b2c2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d6c5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2b2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d4d5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b2c2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d5d4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2b2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c7e5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b2c2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e5b8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2b2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d4d5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b2c2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b8e5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f3f4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e5d6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f4f5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d6b8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f5e6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b8e5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2b1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b4b3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b1c1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c5b4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c1b1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d5d1"
+          ]
+        }
+      ],
+      "agent_depth_mean": 0.39436619718309857,
+      "agent_seconds_mean": 0.21773159014008625,
+      "id": "t0.2_elo1320|0|white",
+      "group": "t0.2_elo1320",
+      "pair": 0,
+      "candidate_color": "white",
+      "root": "rnbqkbnr/ppppp1p1/5p2/1N6/7p/P7/1PPPPPPP/R1BQKBNR w KQkq - 0 4",
+      "seed": 54410,
+      "white": {
+        "kind": "agent",
+        "directory": "runs\\chess_rules",
+        "value": "runs\\chess_strength_data\\linear_candidate.json",
+        "time": 0.2,
+        "nodes": 1000000,
+        "quiescence": 2,
+        "reuse_pv": true
+      },
+      "black": {
+        "kind": "engine",
+        "uci_elo": 1320,
+        "movetime": 0.2,
+        "engine_path": "C:\\projects\\pixel-active-inference\\runs\\chess_teacher\\stockfish\\stockfish-windows-x86-64-universal.exe"
+      },
+      "provenance": {
+        "git_commit": "5cd72f9ba5ec3f96d5a4656d5f8e4f36cf33594d",
+        "source_sha256": "4ba708a34051e9857b8d62d7e012350f4c4ea00f8a973387f44439d53a6fcba7",
+        "seeds": [
+          54410
+        ],
+        "time_controls": {
+          "both_sides_movetime_seconds": [
+            0.2
+          ],
+          "opponent_extra_depth_cap": null,
+          "agent_node_safety_cap": 1000000
+        },
+        "command": "scripts/chess_ladder.py ladder --engine runs/chess_teacher/stockfish/stockfish-windows-x86-64-universal.exe --agent-value runs/chess_strength_data/linear_candidate.json --times 0.2 --rungs 1320 --quiescence 2 --pairs 3 --opening-seed 54410 --workers 2 --reuse-pv --output results/chess_strength_linear_development_ladder.jsonl"
+      },
+      "wall_seconds": 59.43409276008606
+    },
+    {
+      "status": "complete",
+      "result": "0-1",
+      "termination": "CHECKMATE",
+      "plies": 30,
+      "failure": null,
+      "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"0-1\"]\n[FEN \"r1bqkbnr/ppp1pppp/2n5/3p4/8/4PN2/PPPP1PPP/RNBQKB1R w KQkq - 2 3\"]\n[SetUp \"1\"]\n\n3. d3 Nf6 4. Nc3 g6 5. Ne4 dxe4 6. dxe4 Bg4 7. Qxd8+ Nxd8 8. e5 Ne4 9. e6 g5 10. exf7+ Nxf7 11. Nxg5 Nexg5 12. Bd2 a6 13. Bxa6 bxa6 14. Rf1 Rg8 15. Rb1 Rd8 16. Rd1 Ne4 17. Bc3 Rxd1# 0-1",
+      "search_records": [
+        {
+          "depth": 0,
+          "nodes": 13,
+          "seconds": 0.20544400002108887,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20591869999771006
+        },
+        {
+          "depth": 0,
+          "nodes": 16,
+          "seconds": 0.20158200000878423,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20198899999377318
+        },
+        {
+          "depth": 0,
+          "nodes": 33,
+          "seconds": 0.21879799998714589,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.21919919998617843
+        },
+        {
+          "depth": 0,
+          "nodes": 18,
+          "seconds": 0.22152349998941645,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.22218150002299808
+        },
+        {
+          "depth": 0,
+          "nodes": 11,
+          "seconds": 0.20244520000414923,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20303820000845008
+        },
+        {
+          "depth": 0,
+          "nodes": 15,
+          "seconds": 0.21407580000231974,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.21469329998944886
+        },
+        {
+          "depth": 0,
+          "nodes": 13,
+          "seconds": 0.20358180001494475,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20418689999496564
+        },
+        {
+          "depth": 0,
+          "nodes": 34,
+          "seconds": 0.20458119999966584,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20515600001090206
+        },
+        {
+          "depth": 0,
+          "nodes": 19,
+          "seconds": 0.20617339998716488,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20709619999979623
+        },
+        {
+          "depth": 0,
+          "nodes": 14,
+          "seconds": 0.21650719997705892,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.21750679999240674
+        },
+        {
+          "depth": 0,
+          "nodes": 15,
+          "seconds": 0.20801900001242757,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20883450002293102
+        },
+        {
+          "depth": 0,
+          "nodes": 17,
+          "seconds": 0.21939929999643937,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.22034570001414977
+        },
+        {
+          "depth": 1,
+          "nodes": 35,
+          "seconds": 0.2271236999949906,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.22792679999838583
+        },
+        {
+          "depth": 0,
+          "nodes": 13,
+          "seconds": 0.20682540000416338,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.20788739999989048
+        },
+        {
+          "depth": 0,
+          "nodes": 13,
+          "seconds": 0.20817309999256395,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.22009930000058375
+        }
+      ],
+      "commands": [
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d2d3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g8f6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b1c3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g7g6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c3e4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d5e4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d3e4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c8g4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d1d8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c6d8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e4e5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f6e4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e5e6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g6g5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e6f7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d8f7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f3g5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e4g5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c1d2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a7a6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f1a6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b7a6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h1f1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h8g8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a1b1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a8d8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b1d1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g5e4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d2c3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d8d1"
+          ]
+        }
+      ],
+      "agent_depth_mean": 0.06666666666666667,
+      "agent_seconds_mean": 0.21095017333282157,
+      "id": "t0.2_elo1320|2|white",
+      "group": "t0.2_elo1320",
+      "pair": 2,
+      "candidate_color": "white",
+      "root": "r1bqkbnr/ppp1pppp/2n5/3p4/8/4PN2/PPPP1PPP/RNBQKB1R w KQkq - 2 3",
+      "seed": 54412,
+      "white": {
+        "kind": "agent",
+        "directory": "runs\\chess_rules",
+        "value": "runs\\chess_strength_data\\linear_candidate.json",
+        "time": 0.2,
+        "nodes": 1000000,
+        "quiescence": 2,
+        "reuse_pv": true
+      },
+      "black": {
+        "kind": "engine",
+        "uci_elo": 1320,
+        "movetime": 0.2,
+        "engine_path": "C:\\projects\\pixel-active-inference\\runs\\chess_teacher\\stockfish\\stockfish-windows-x86-64-universal.exe"
+      },
+      "provenance": {
+        "git_commit": "5cd72f9ba5ec3f96d5a4656d5f8e4f36cf33594d",
+        "source_sha256": "4ba708a34051e9857b8d62d7e012350f4c4ea00f8a973387f44439d53a6fcba7",
+        "seeds": [
+          54410
+        ],
+        "time_controls": {
+          "both_sides_movetime_seconds": [
+            0.2
+          ],
+          "opponent_extra_depth_cap": null,
+          "agent_node_safety_cap": 1000000
+        },
+        "command": "scripts/chess_ladder.py ladder --engine runs/chess_teacher/stockfish/stockfish-windows-x86-64-universal.exe --agent-value runs/chess_strength_data/linear_candidate.json --times 0.2 --rungs 1320 --quiescence 2 --pairs 3 --opening-seed 54410 --workers 2 --reuse-pv --output results/chess_strength_linear_development_ladder.jsonl"
+      },
+      "wall_seconds": 6.367993116378784
+    },
+    {
+      "status": "complete",
+      "result": "1-0",
+      "termination": "CHECKMATE",
+      "plies": 37,
+      "failure": null,
+      "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"1-0\"]\n[FEN \"r1bqkbnr/ppp1pppp/2n5/3p4/8/4PN2/PPPP1PPP/RNBQKB1R w KQkq - 2 3\"]\n[SetUp \"1\"]\n\n3. c3 Bh3 4. gxh3 Nf6 5. Bg2 Ne5 6. Nxe5 e6 7. Qb3 Rg8 8. Kd1 d4 9. Re1 dxe3 10. Bh1 exf2 11. Rf1 Qxd2+ 12. Bxd2 Rd8 13. Qxb7 Rxd2+ 14. Nxd2 Nh5 15. Qc8+ Ke7 16. Qd7+ Kf6 17. Ne4+ Kxe5 18. a3 Bxa3 19. Qd4+ Kf5 20. Qxf2+ Ke5 21. Qd4# 1-0",
+      "search_records": [
+        {
+          "depth": 0,
+          "nodes": 13,
+          "seconds": 0.20895800000289455,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.20932300001732074
+        },
+        {
+          "depth": 0,
+          "nodes": 18,
+          "seconds": 0.2078404999920167,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.2083062999881804
+        },
+        {
+          "depth": 0,
+          "nodes": 12,
+          "seconds": 0.2094541999977082,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.20997690001968294
+        },
+        {
+          "depth": 0,
+          "nodes": 19,
+          "seconds": 0.2144910000206437,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.21502040000632405
+        },
+        {
+          "depth": 1,
+          "nodes": 40,
+          "seconds": 0.20085500000277534,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.20134020000114106
+        },
+        {
+          "depth": 0,
+          "nodes": 14,
+          "seconds": 0.22252619999926537,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.2230810999753885
+        },
+        {
+          "depth": 0,
+          "nodes": 16,
+          "seconds": 0.20125929999630898,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.20191070000873879
+        },
+        {
+          "depth": 0,
+          "nodes": 14,
+          "seconds": 0.21574829999008216,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.2164968000142835
+        },
+        {
+          "depth": 0,
+          "nodes": 18,
+          "seconds": 0.20741540001472458,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.2082014000043273
+        },
+        {
+          "depth": 0,
+          "nodes": 24,
+          "seconds": 0.20886199999949895,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.20951649997732602
+        },
+        {
+          "depth": 0,
+          "nodes": 19,
+          "seconds": 0.21082399997976609,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.21161559998290613
+        },
+        {
+          "depth": 0,
+          "nodes": 16,
+          "seconds": 0.2063384000211954,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.21327090001432225
+        },
+        {
+          "depth": 1,
+          "nodes": 23,
+          "seconds": 0.208670499996515,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.20963580001262017
+        },
+        {
+          "depth": 1,
+          "nodes": 45,
+          "seconds": 0.20102810001117177,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.20219250000081956
+        },
+        {
+          "depth": 1,
+          "nodes": 30,
+          "seconds": 0.21225500002037734,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.21332800001255237
+        },
+        {
+          "depth": 0,
+          "nodes": 18,
+          "seconds": 0.20725810001022182,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.2083062999881804
+        },
+        {
+          "depth": 0,
+          "nodes": 15,
+          "seconds": 0.2044443000049796,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.2088882999960333
+        },
+        {
+          "depth": 1,
+          "nodes": 14,
+          "seconds": 0.206880200013984,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.21286810000310652
+        }
+      ],
+      "commands": [
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2c3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c8h3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g2h3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g8f6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f1g2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c6e5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f3e5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e7e6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d1b3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h8g8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e1d1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d5d4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h1e1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d4e3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g2h1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e3f2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e1f1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d8d2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c1d2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a8d8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b3b7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d8d2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b1d2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f6h5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b7c8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e8e7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c8d7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e7f6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d2e4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f6e5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a2a3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f8a3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d7d4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e5f5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d4f2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f5e5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f2d4"
+          ]
+        }
+      ],
+      "agent_depth_mean": 0.2777777777777778,
+      "agent_seconds_mean": 0.2086171388930072,
+      "id": "t0.2_elo1320|2|black",
+      "group": "t0.2_elo1320",
+      "pair": 2,
+      "candidate_color": "black",
+      "root": "r1bqkbnr/ppp1pppp/2n5/3p4/8/4PN2/PPPP1PPP/RNBQKB1R w KQkq - 2 3",
+      "seed": 54412,
+      "white": {
+        "kind": "engine",
+        "uci_elo": 1320,
+        "movetime": 0.2,
+        "engine_path": "C:\\projects\\pixel-active-inference\\runs\\chess_teacher\\stockfish\\stockfish-windows-x86-64-universal.exe"
+      },
+      "black": {
+        "kind": "agent",
+        "directory": "runs\\chess_rules",
+        "value": "runs\\chess_strength_data\\linear_candidate.json",
+        "time": 0.2,
+        "nodes": 1000000,
+        "quiescence": 2,
+        "reuse_pv": true
+      },
+      "provenance": {
+        "git_commit": "5cd72f9ba5ec3f96d5a4656d5f8e4f36cf33594d",
+        "source_sha256": "4ba708a34051e9857b8d62d7e012350f4c4ea00f8a973387f44439d53a6fcba7",
+        "seeds": [
+          54410
+        ],
+        "time_controls": {
+          "both_sides_movetime_seconds": [
+            0.2
+          ],
+          "opponent_extra_depth_cap": null,
+          "agent_node_safety_cap": 1000000
+        },
+        "command": "scripts/chess_ladder.py ladder --engine runs/chess_teacher/stockfish/stockfish-windows-x86-64-universal.exe --agent-value runs/chess_strength_data/linear_candidate.json --times 0.2 --rungs 1320 --quiescence 2 --pairs 3 --opening-seed 54410 --workers 2 --reuse-pv --output results/chess_strength_linear_development_ladder.jsonl"
+      },
+      "wall_seconds": 7.739265441894531
+    }
+  ]
+}

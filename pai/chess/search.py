@@ -1,6 +1,7 @@
 """Bounded lookahead over learned states, legality, endings and position value."""
 from dataclasses import dataclass
 import time
+import numpy as np
 
 from pai.chess.representation import BoardAction
 from pai.chess.state import GameState
@@ -34,7 +35,7 @@ class LearnedChessSearch:
     An optional draw claim is an additional zero-valued action. It never removes
     playable moves. Only complete iterations replace the previously chosen move.
     """
-    def __init__(self, state_model, evaluator, value, ordering_value=None):
+    def __init__(self, state_model, evaluator, value, ordering_value=None, policy_prior=None):
         if evaluator.state_model is not state_model:
             raise ValueError("search and evaluator must share one state model")
         self.state_model = state_model
@@ -43,6 +44,15 @@ class LearnedChessSearch:
         # A candidate leaf evaluator can be tested without also changing the
         # traversal order and therefore the depth completed under a node cap.
         self.ordering_value = value if ordering_value is None else ordering_value
+        self._prediction_cache = {}
+        self.policy_prior = policy_prior
+
+    def _predictions(self, model, observations):
+        missing = [o for o in observations if (id(model), o) not in self._prediction_cache]
+        if missing:
+            scores = model.predict_many(missing) if hasattr(model, "predict_many") else [model.predict(o) for o in missing]
+            self._prediction_cache.update(((id(model), o), float(score)) for o, score in zip(missing, scores))
+        return [self._prediction_cache[(id(model), o)] for o in observations]
 
     def _children(self, state, actions):
         # Templates contain learned effects with counters rooted at 0/1.
@@ -58,9 +68,9 @@ class LearnedChessSearch:
                               history + (template.board,))
             children.append((action, child))
         observations = [child.board for _, child in children]
-        scores = (self.ordering_value.predict_many(observations) if hasattr(self.ordering_value, "predict_many") else
-                  [self.ordering_value.predict(obs) for obs in observations])
-        children = [(score * (1 if state.board.turn else -1), action, child)
+        scores = (self.policy_prior.predict_actions(state.board,actions) if self.policy_prior is not None else
+                  np.asarray(self._predictions(self.ordering_value, observations)) * (1 if state.board.turn else -1))
+        children = [(score, action, child)
                     for score, (action, child) in zip(scores, children)]
         return sorted(children, key=lambda row: (-row[0], row[1].uci()))
 
@@ -87,6 +97,9 @@ class LearnedChessSearch:
         # perf_counter uses the high-resolution platform clock. On Windows,
         # monotonic can have a 15 ms tick and miss short search deadlines.
         start = time.perf_counter()
+        # Only board-value calls are cached, never history-dependent search
+        # scores. A fresh cache also permits deliberate model changes between moves.
+        self._prediction_cache = {}
         deadline = float("inf") if time_limit is None else start + time_limit
         nodes = 0
         exhausted = False
@@ -111,7 +124,7 @@ class LearnedChessSearch:
                 return score, (), False, None
             claim, witness = self.claim_option(position, actions)
             if depth == 0:
-                score = self.value.predict(position.board) * (1 if position.board.turn else -1)
+                score = self._predictions(self.value, [position.board])[0] * (1 if position.board.turn else -1)
                 if quiet_left == 0:
                     return (max(0.0, score) if claim else score), (), claim and score <= 0, witness
                 safe = self.evaluator.safe(position.board)

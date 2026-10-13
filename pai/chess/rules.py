@@ -30,6 +30,15 @@ def _geometry():
 
 
 BETWEEN = _geometry()
+PATHS = np.full((64, 64, 6), -1, dtype=np.int16)
+for _src in range(64):
+    for _dst in range(64):
+        _cells = np.flatnonzero(BETWEEN[_src, _dst])
+        PATHS[_src, _dst, :len(_cells)] = _cells
+try:
+    from pai.chess import fast_rules as _compiled
+except ImportError:
+    _compiled = None
 ACTIONS = candidate_actions()
 ACTION_ARRAY = np.array([(a.source, a.destination, a.promotion) for a in ACTIONS], dtype=np.int16)
 
@@ -49,6 +58,8 @@ class LearnedTree:
         return cls(tree.feature, tree.threshold, tree.children_left, tree.children_right, values)
 
     def predict(self, x):
+        if _compiled is not None:
+            return _compiled.tree_predict(np.asarray(x), self.feature, self.threshold, self.left, self.right, self.value)
         nodes = np.zeros(len(x), dtype=np.int32)
         while True:
             active = np.flatnonzero(self.left[nodes] >= 0)
@@ -77,7 +88,35 @@ class CategoricalTrees:
     def feature(self):
         return np.concatenate([tree.feature for tree in self.groups.values()])
 
+    def packed(self):
+        signature = tuple((code,id(tree),tuple(map(tuple,(self.guards or {}).get(code,())))) for code,tree in self.groups.items())
+        if getattr(self,"_packed_signature",None) != signature:
+            size = max(self.groups,default=0) + 1
+            starts = np.full(size,-1,dtype=np.int64)
+            enabled = np.zeros(size,dtype=bool)
+            width = max([len(g) for g in (self.guards or {}).values()] + [1])
+            cols = np.full((size,width),-1,dtype=np.int64)
+            vals = np.zeros((size,width),dtype=np.float64)
+            parts = {k: [] for k in ("feature","threshold","left","right","value")}
+            offset = 0
+            for code,tree in self.groups.items():
+                starts[code], enabled[code] = offset, np.any(tree.value)
+                for k in parts:
+                    data = getattr(tree,k)
+                    parts[k].append(np.where(data >= 0,data + offset,data) if k in ("left","right") else data)
+                for j,(col,val) in enumerate((self.guards or {}).get(code,())):
+                    cols[code,j],vals[code,j] = col,val
+                offset += len(tree.feature)
+            arrays = [np.concatenate(parts[k]) for k in parts]
+            arrays[-1] = arrays[-1].astype(bool)
+            self._packed_signature = signature
+            self._packed_data = (starts,*arrays,cols,vals,enabled)
+        return self._packed_data
+
     def predict(self, x):
+        if _compiled is not None and self.groups:
+            packed = self.packed()
+            return _compiled.categorical(x,self.column,-1 if self.relation_column is None else self.relation_column,*packed[:-1])
         result = np.zeros(len(x), dtype=bool)
         categories = x[:, self.column].astype(int)
         if self.relation_column is not None:
@@ -100,7 +139,7 @@ class CategoricalTrees:
                    data.get("relation_column"), {int(k): v for k, v in data.get("guards", {}).items()})
 
 
-def spatial_features(obs, actions, attack_table):
+def spatial_features_reference(obs, actions, attack_table):
     """Generic coordinates, token identities, paths, and learned attack fields."""
     board = np.array(obs.pieces, dtype=np.int16)
     src, dst, promo = np.asarray(actions).T
@@ -147,10 +186,19 @@ def spatial_features(obs, actions, attack_table):
     base.append((target_code != 0).astype(int))
     return np.column_stack(base).astype(np.float32)
 
+def spatial_features(obs, actions, attack_table):
+    if _compiled is None:
+        return spatial_features_reference(obs, actions, attack_table)
+    return _compiled.spatial(np.asarray(obs.pieces, dtype=np.int16), obs.turn,
+                             np.asarray(obs.castling, dtype=np.int16), obs.ep_square,
+                             np.asarray(actions, dtype=np.int16).reshape(-1, 3), PATHS, attack_table)
+
 
 def safety_features(pieces, turn, attack_table):
     """Attack counts for every token type; the tree learns which must be safe."""
     board = np.asarray(pieces, dtype=np.int16)
+    if _compiled is not None:
+        return _compiled.safety_batch(board[None],turn,PATHS,attack_table)[0].tolist()
     blockers = np.tensordot(BETWEEN, (board != 0).astype(np.int16), axes=([2], [0]))
     attack = attack_table[board[:, None], np.arange(64)[:, None], np.arange(64)[None, :], (blockers > 0).astype(int)]
     white = ((board > 0) & (board <= 6)).astype(np.int16) @ attack
@@ -161,6 +209,41 @@ def safety_features(pieces, turn, attack_table):
         features += [int(white[positions].max()) if len(positions) else 0,
                      int(black[positions].max()) if len(positions) else 0]
     return features
+
+
+BETWEEN_FLAT = BETWEEN.reshape(4096, 64).T.astype(np.float32)  # occupied @ this = blockers
+
+
+def learned_attack_fields(boards, attack_table):
+    """Batched learned attack relation: (B, 64, 64) attack and per-square counts.
+
+    Exactly the same computation as the per-board path in ``spatial_features``
+    and ``safety_features``; only the batching differs.
+    """
+    boards = np.asarray(boards, dtype=np.int16).reshape(-1, 64)
+    blocked = ((boards != 0).astype(np.float32) @ BETWEEN_FLAT).reshape(-1, 64, 64) > 0
+    squares = np.arange(64)
+    attack = np.asarray(attack_table)[boards[:, :, None], squares[None, :, None], squares[None, None, :],
+                                      blocked.astype(np.intp)]
+    white_mask = ((boards > 0) & (boards <= 6)).astype(np.int16)
+    black_mask = (boards > 6).astype(np.int16)
+    white = np.einsum("bs,bsd->bd", white_mask, attack.astype(np.int16))
+    black = np.einsum("bs,bsd->bd", black_mask, attack.astype(np.int16))
+    return attack, white, black
+
+
+def safety_features_batch(boards, turn, attack_table):
+    """Vectorized ``safety_features`` for many boards with the same side to move."""
+    boards = np.asarray(boards, dtype=np.int16).reshape(-1, 64)
+    if _compiled is not None:
+        return _compiled.safety_batch(boards, turn, PATHS, attack_table)
+    _, white, black = learned_attack_fields(boards, attack_table)
+    columns = [np.full(len(boards), turn)]
+    for code in range(1, 13):
+        here = boards == code
+        # Attack counts are nonnegative, so a zero fill equals the empty-set default.
+        columns += [np.where(here, white, 0).max(1), np.where(here, black, 0).max(1)]
+    return np.column_stack(columns)
 
 
 class LearnedChessRules:
@@ -190,14 +273,53 @@ class LearnedChessRules:
 
     def classify(self, obs, actions=ACTION_ARRAY):
         actions = np.asarray(actions, dtype=np.int16).reshape(-1, 3)
+        selected = np.arange(len(actions))
+        categorical = isinstance(self.proposal, CategoricalTrees) and self.proposal.column == 0 and self.proposal.relation_column in (None,39,40)
+        if categorical and _compiled is not None and self.proposal.groups:
+            packed = self.proposal.packed()
+            selected = np.flatnonzero(_compiled.prefilter(np.asarray(obs.pieces,dtype=np.int16),obs.turn,actions,
+                                     -1 if self.proposal.relation_column is None else self.proposal.relation_column,
+                                     packed[-1],packed[-3],packed[-2],PATHS,self.attack_table))
+        elif categorical:
+            # Algebraic pruning of fitted categorical regions whose leaves are
+            # all false (including missing groups). No movement predicate.
+            tokens = np.asarray(obs.pieces)[actions[:, 0]]
+            own = ((tokens > 0) & ((tokens <= 6) == bool(obs.turn))).astype(int)
+            targets = np.asarray(obs.pieces)[actions[:, 1]]
+            target_own = ((targets > 0) & ((targets <= 6) == bool(obs.turn))).astype(int)
+            cheap = {0: tokens, 3: actions[:, 2], 40: own, 41: target_own, 46: targets != 0}
+            if self.proposal.relation_column == 39:
+                if _compiled is not None:
+                    blockers, attack, _, _ = _compiled.fields(np.asarray(obs.pieces, dtype=np.int16), PATHS, self.attack_table)
+                else:
+                    blockers = np.tensordot(BETWEEN, np.asarray(obs.pieces) != 0, axes=([2], [0]))
+                    attack = self.attack_table[np.asarray(obs.pieces)[:, None], np.arange(64)[:, None], np.arange(64)[None, :], (blockers > 0).astype(int)]
+                cheap[39] = attack[actions[:, 0], actions[:, 1]]
+                cheap[12] = blockers[actions[:, 0], actions[:, 1]]
+            category = tokens if self.proposal.relation_column is None else tokens * 2 + cheap[self.proposal.relation_column]
+            eligible = np.zeros(len(actions), dtype=bool)
+            for code, tree in self.proposal.groups.items():
+                if not np.any(tree.value):
+                    continue
+                region = category == code
+                for col, value in (self.proposal.guards or {}).get(code, ()):
+                    if col in cheap:
+                        region &= cheap[col] == value
+                eligible |= region
+            selected = np.flatnonzero(eligible)
+        result = np.zeros(len(actions), dtype=bool)
+        if not len(selected):
+            return result
+        actions = actions[selected]
         features = spatial_features(obs, actions, self.attack_table)
         predicted = self.proposal.predict(features).astype(bool)
         proposed = np.flatnonzero(predicted)
         if len(proposed):
             effects = self._effects(obs, actions[proposed], features[proposed])
-            safety = np.asarray([safety_features(b, obs.turn, self.attack_table) for b in effects])
+            safety = safety_features_batch(effects, obs.turn, self.attack_table)
             predicted[proposed] &= self.safety.predict(safety).astype(bool)
-        return predicted
+        result[selected] = predicted
+        return result
 
     def legal_actions(self, obs):
         return tuple(ACTIONS[i] for i in np.flatnonzero(self.classify(obs)))

@@ -1,0 +1,55 @@
+{
+  "provenance": {
+    "git_commit": "5cd72f9ba5ec3f96d5a4656d5f8e4f36cf33594d",
+    "source_sha256": "4ba708a34051e9857b8d62d7e012350f4c4ea00f8a973387f44439d53a6fcba7",
+    "seeds": [
+      54410
+    ],
+    "time_controls": {
+      "both_sides_movetime_seconds": [
+        0.2
+      ],
+      "opponent_extra_depth_cap": null,
+      "agent_node_safety_cap": 1000000
+    },
+    "command": "scripts/chess_ladder.py promote --engine runs/chess_teacher/stockfish/stockfish-windows-x86-64-universal.exe --agent-value runs/chess_strength_data/linear_candidate.json --times 0.2 --quiescence 2 --pairs 3 --opening-seed 54410 --workers 4 --reuse-pv --output results/chess_strength_linear_development_games.jsonl"
+  },
+  "opening_seed": 54410,
+  "pairs": 3,
+  "max_plies": 512,
+  "roots": [
+    "rnbqkbnr/ppppp1p1/5p2/1N6/7p/P7/1PPPPPPP/R1BQKBNR w KQkq - 0 4",
+    "rnbqkbnr/pppp1pp1/7p/4p3/6P1/2N5/PPPPPP1P/R1BQKBNR w KQkq - 0 3",
+    "r1bqkbnr/ppp1pppp/2n5/3p4/8/4PN2/PPPP1PPP/RNBQKB1R w KQkq - 2 3"
+  ],
+  "groups": {
+    "t0.2_incumbent": {
+      "kind": "promotion",
+      "candidate": {
+        "kind": "agent",
+        "directory": "runs\\chess_rules",
+        "value": "runs\\chess_strength_data\\linear_candidate.json",
+        "time": 0.2,
+        "nodes": 1000000,
+        "quiescence": 2,
+        "reuse_pv": true
+      },
+      "opponent": {
+        "kind": "agent",
+        "directory": "runs\\chess_rules",
+        "value": "runs\\chess_rules\\value.json",
+        "time": 0.2,
+        "nodes": 1000000,
+        "quiescence": 0,
+        "reuse_pv": true
+      }
+    }
+  },
+  "checkpoint_hashes": {
+    "runs\\chess_strength_data\\linear_candidate.json": "d7b1f4098561dcd2",
+    "runs\\chess_rules\\value.json": "001a9ae670cbe51f",
+    "runs\\chess_rules\\rules.json": "92f93d445f4b0f4a",
+    "runs\\chess_rules\\state.json": "84e32613d8899907",
+    "runs\\chess_rules\\endings.json": "86241b595f941790"
+  }
+}

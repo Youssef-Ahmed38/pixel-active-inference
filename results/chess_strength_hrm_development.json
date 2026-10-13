@@ -1,0 +1,85 @@
+{
+  "git_commit": "5b8eafad7292ed68a9cf3dfd71208d649fb0549d",
+  "source_sha256": "59c94999e08cd0039af6fb00467a0efedc1d8374aba843579db3b0a39d13a163",
+  "seeds": [
+    41400,
+    10400,
+    10401,
+    10402,
+    10403,
+    20400,
+    20401
+  ],
+  "time_controls": {
+    "teacher": {
+      "depth": 8
+    }
+  },
+  "command": "scripts/chess_strength_hrm.py",
+  "training_positions": 1200,
+  "history": [
+    {
+      "epoch": 1,
+      "training_loss": 0.2310888227798506,
+      "validation_mae_cp": 244.07332595639866
+    },
+    {
+      "epoch": 2,
+      "training_loss": 0.20805755279496985,
+      "validation_mae_cp": 246.5675200180486
+    },
+    {
+      "epoch": 3,
+      "training_loss": 0.20848673733746767,
+      "validation_mae_cp": 243.95971271962773
+    },
+    {
+      "epoch": 4,
+      "training_loss": 0.20514646854255533,
+      "validation_mae_cp": 243.91815210257465
+    },
+    {
+      "epoch": 5,
+      "training_loss": 0.20592803394681886,
+      "validation_mae_cp": 243.19433587572354
+    },
+    {
+      "epoch": 6,
+      "training_loss": 0.20506111071967878,
+      "validation_mae_cp": 241.60532331273623
+    },
+    {
+      "epoch": 7,
+      "training_loss": 0.20449392286452767,
+      "validation_mae_cp": 240.0975690602291
+    },
+    {
+      "epoch": 8,
+      "training_loss": 0.20125553521629647,
+      "validation_mae_cp": 247.12431038922145
+    }
+  ],
+  "candidate": {
+    "positions": 2500,
+    "mae_cp": 227.0761001815796,
+    "rmse_cp": 309.69465846631164,
+    "win_prob_mae": 0.15738391782579247,
+    "zero_baseline_mae_cp": 483.6136,
+    "advantage_sign_accuracy": 0.8244406196213425,
+    "advantage_sign_examples": 1743
+  },
+  "incumbent": {
+    "positions": 2500,
+    "mae_cp": 302.2185072998047,
+    "rmse_cp": 375.57684647269735,
+    "win_prob_mae": 0.21838297766945733,
+    "zero_baseline_mae_cp": 483.6136,
+    "advantage_sign_accuracy": 0.7842799770510613,
+    "advantage_sign_examples": 1743
+  },
+  "limitations": [
+    "shared HRM value only; no learned chess halting",
+    "fixed two thinking segments",
+    "development corpus; no final strength conclusion"
+  ]
+}

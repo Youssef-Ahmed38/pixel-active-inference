@@ -1,0 +1,61 @@
+{
+  "git_commit": "6bd271d567f45d01069a0839bb767c00955160f7",
+  "source_sha256": "7e7edb729afa7ed63bddda3642649531599e937072d65d4eb18cb045064a3ed7",
+  "seeds": [
+    84400
+  ],
+  "time_controls": {
+    "benchmark": "30 warm repetitions per board; one numerical thread"
+  },
+  "command": "scripts/chess_strength_benchmark.py --engine runs/chess_teacher/stockfish/stockfish-windows-x86-64-universal.exe",
+  "roots": [
+    "rnbqkbnr/p1p1pppp/3p4/1p6/1P6/P6P/2PPPPP1/RNBQKBNR b KQkq - 0 3",
+    "rnbqkbnr/1pppp1pp/8/p4p2/4P3/1P1B4/P1PP1PPP/RNBQK1NR b KQkq - 1 3",
+    "rnbqkbnr/1pppppp1/p7/7p/3P3P/1P6/P1P1PPP1/RNBQKBNR b KQkq - 0 3",
+    "rnb1kbnr/ppq1pppp/3p4/2p5/1P6/4P1P1/P1PPNP1P/RNBQKB1R b KQkq - 2 4",
+    "rnbqkbnr/pp1pp1pp/5p2/2p5/5P2/6PP/PPPPP3/RNBQKBNR b KQkq - 0 3",
+    "rnb1kbnr/ppppqppp/4p3/8/8/3P3P/PPP1PPP1/RNBQKBNR w KQkq - 1 3",
+    "rnbqkbnr/ppp1pp1p/6p1/3p4/4P3/7N/PPPP1PPP/RNBQKB1R w KQkq - 0 3",
+    "rnb1kbnr/pppqpppp/8/P2p4/8/5P2/1PPPP1PP/RNBQKBNR b KQkq - 0 3",
+    "rnbqkbnr/p2p1ppp/4p3/1Bp5/P7/4PP2/1PPP2PP/RNBQK1NR b KQkq - 0 4",
+    "rnbqkbnr/ppppp2p/5pp1/8/3P1P2/7N/PPP1P1PP/RNBQKB1R b KQkq - 0 3"
+  ],
+  "results": {
+    "numpy_reference": {
+      "mean_seconds_per_board": 0.010765645000016472,
+      "per_board_seconds": [
+        0.010529193333544148,
+        0.005295979999937117,
+        0.008088803333036292,
+        0.01267807333303305,
+        0.01187227333333188,
+        0.012063180000404827,
+        0.012200420000590384,
+        0.010543169999922004,
+        0.012693903333274647,
+        0.01169145333309037
+      ]
+    },
+    "compiled": {
+      "mean_seconds_per_board": 0.0012786436665919612,
+      "per_board_seconds": [
+        0.001355173333043543,
+        0.0012262633332284167,
+        0.0011657099996227771,
+        0.0013974100002087653,
+        0.0012266633333638311,
+        0.001288906666256177,
+        0.001369719999881151,
+        0.001351323332831574,
+        0.0012447766668628902,
+        0.0011604900006204843
+      ]
+    }
+  },
+  "exact_legal_set_equivalence": true,
+  "speedup": 8.419581843869555,
+  "limitations": [
+    "warm legality microbenchmark only; not whole-search throughput",
+    "shared-host load can affect timings"
+  ]
+}

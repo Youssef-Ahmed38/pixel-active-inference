@@ -1,0 +1,120 @@
+{
+  "git_commit": "5cd72f9ba5ec3f96d5a4656d5f8e4f36cf33594d",
+  "source_sha256": "0ca5c32d6d5fdd64fb467125f05355eb90e059c26d0327be922eab5c65e90b60",
+  "seeds": [
+    42400,
+    10400,
+    10401,
+    10402,
+    10403,
+    20400,
+    20401,
+    36400,
+    36401,
+    36402,
+    36403,
+    36404,
+    36405,
+    36406,
+    36407
+  ],
+  "time_controls": {
+    "teacher": {
+      "depth": 8
+    }
+  },
+  "command": "scripts/chess_strength_policy.py",
+  "training": {
+    "training_examples": 12000,
+    "validation_examples": 2500,
+    "teacher_top1_accuracy": 0.2655999958515167,
+    "seed": 42400,
+    "features": "generic relative token geometry and learned attack field"
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "validation_teacher_top1": 0.23800000548362732
+    },
+    {
+      "epoch": 2,
+      "validation_teacher_top1": 0.23960000276565552
+    },
+    {
+      "epoch": 3,
+      "validation_teacher_top1": 0.2540000081062317
+    },
+    {
+      "epoch": 4,
+      "validation_teacher_top1": 0.25360000133514404
+    },
+    {
+      "epoch": 5,
+      "validation_teacher_top1": 0.25839999318122864
+    },
+    {
+      "epoch": 6,
+      "validation_teacher_top1": 0.2587999999523163
+    },
+    {
+      "epoch": 7,
+      "validation_teacher_top1": 0.2587999999523163
+    },
+    {
+      "epoch": 8,
+      "validation_teacher_top1": 0.257999986410141
+    },
+    {
+      "epoch": 9,
+      "validation_teacher_top1": 0.25999999046325684
+    },
+    {
+      "epoch": 10,
+      "validation_teacher_top1": 0.262800008058548
+    },
+    {
+      "epoch": 11,
+      "validation_teacher_top1": 0.2603999972343445
+    },
+    {
+      "epoch": 12,
+      "validation_teacher_top1": 0.2612000107765198
+    },
+    {
+      "epoch": 13,
+      "validation_teacher_top1": 0.25999999046325684
+    },
+    {
+      "epoch": 14,
+      "validation_teacher_top1": 0.2655999958515167
+    },
+    {
+      "epoch": 15,
+      "validation_teacher_top1": 0.25920000672340393
+    },
+    {
+      "epoch": 16,
+      "validation_teacher_top1": 0.2572000026702881
+    },
+    {
+      "epoch": 17,
+      "validation_teacher_top1": 0.262800008058548
+    },
+    {
+      "epoch": 18,
+      "validation_teacher_top1": 0.25519999861717224
+    },
+    {
+      "epoch": 19,
+      "validation_teacher_top1": 0.2540000081062317
+    },
+    {
+      "epoch": 20,
+      "validation_teacher_top1": 0.26440000534057617
+    }
+  ],
+  "limitations": [
+    "teacher-generated policy labels; no engine at inference",
+    "development top1 accuracy is not playing strength"
+  ]
+}

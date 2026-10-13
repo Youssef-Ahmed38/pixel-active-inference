@@ -1,0 +1,46 @@
+{
+  "git_commit": "6bd271d567f45d01069a0839bb767c00955160f7",
+  "source_sha256": "7e7edb729afa7ed63bddda3642649531599e937072d65d4eb18cb045064a3ed7",
+  "seeds": [
+    30400,
+    30401,
+    64400
+  ],
+  "time_controls": {
+    "both_sides_movetime_seconds": 1.0
+  },
+  "command": "scripts/chess_strength_promote.py",
+  "approved": true,
+  "config": {
+    "kind": "agent",
+    "directory": "runs\\chess_rules",
+    "value": "runs\\chess_strength_data\\linear_candidate.json",
+    "time": 1.0,
+    "nodes": 1000000,
+    "quiescence": 2,
+    "reuse_pv": true,
+    "policy": "runs\\chess_strength_data\\policy.npz"
+  },
+  "checkpoint_hashes": {
+    "runs\\chess_strength_data\\linear_candidate.json": "d7b1f4098561dcd2131ac874c362cb9fd4a3b01b23b210758e478e20d0f8c68a",
+    "runs\\chess_rules\\value.json": "001a9ae670cbe51f26a400a42b59a11a698e7dab91364baa714f24e815a58fc1",
+    "runs\\chess_rules\\rules.json": "92f93d445f4b0f4ae111368c5d0f7d73902aeccab5a778ad641587cfc2a61874",
+    "runs\\chess_rules\\state.json": "84e32613d8899907132c95f5206c2227a50b72a0f406bdfe358693aa436bba48",
+    "runs\\chess_rules\\endings.json": "86241b595f941790929a90b452c0b82621897f7d4652c1c23a3bbe602d89af19",
+    "runs\\chess_strength_data\\policy.npz": "83c434969214de2abbce15dda8865afc0f9adb8f427e48f1069b0bbcac2e2385"
+  },
+  "position_report": "results/chess_strength_final_positions.json",
+  "game_report": "results/chess_strength_final_promotion.json",
+  "position_gate": {
+    "positions": 1969,
+    "sign_p": 9.715557098388672e-06
+  },
+  "game_gate": {
+    "games": 20,
+    "wins": 17,
+    "draws": 2,
+    "losses": 1,
+    "promotion_gate_passed": true
+  },
+  "preserved_incumbent": "runs/chess_rules/value.json"
+}

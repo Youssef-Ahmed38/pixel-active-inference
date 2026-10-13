@@ -1,0 +1,45 @@
+{
+  "git_commit": "7a55e67015f1d14143ac4032e261a8062a1e83d4",
+  "source_sha256": "bbe9b83e4829d0a197343ec6b1544634bbeb2d21fa0909ab8ac367fb0a888e4a",
+  "seeds": [
+    10400,
+    10401,
+    10402,
+    10403,
+    20400,
+    20401,
+    36400,
+    36401,
+    36402,
+    36403,
+    36404,
+    36405,
+    36406,
+    36407
+  ],
+  "time_controls": {
+    "teacher": {
+      "depth": 8
+    }
+  },
+  "command": "scripts/chess_strength_linear.py",
+  "candidate": {
+    "positions": 2500,
+    "mae_cp": 214.63216661834716,
+    "rmse_cp": 292.224569957599,
+    "win_prob_mae": 0.13378392099298084,
+    "zero_baseline_mae_cp": 483.6136,
+    "advantage_sign_accuracy": 0.8869764773379232,
+    "advantage_sign_examples": 1743
+  },
+  "ridge": 100.0,
+  "incumbent": {
+    "positions": 2500,
+    "mae_cp": 302.2185072998047,
+    "rmse_cp": 375.57684647269735,
+    "win_prob_mae": 0.21838297766945733,
+    "zero_baseline_mae_cp": 483.6136,
+    "advantage_sign_accuracy": 0.7842799770510613,
+    "advantage_sign_examples": 1743
+  }
+}
