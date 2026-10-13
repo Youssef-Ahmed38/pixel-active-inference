@@ -228,6 +228,10 @@ def pair_statistics(games, bootstrap=20000, seed=0):
     idx = rng.integers(0, len(pairs), size=(bootstrap, len(pairs)))
     boot = sums[idx].sum(1) / counts[idx].sum(1)
     low, high = (float(x) for x in np.percentile(boot, [2.5, 97.5]))
+    radius = math.sqrt(math.log(40)/(2*len(pairs)))
+    conservative = [max(0.,rate-radius),min(1.,rate+radius)]
+    degenerate = bool(np.all(boot == boot[0]))
+    reported_ci = conservative if degenerate else [low,high]
     # Wilson interval on the per-game score (independence assumption) for reference.
     z = 1.959964
     centre = (rate + z * z / (2 * n)) / (1 + z * z / n)
@@ -242,10 +246,12 @@ def pair_statistics(games, bootstrap=20000, seed=0):
             "score": rate, "score_ci95_pair_bootstrap": [low, high],
             "score_ci95_wilson_games": [centre - half, centre + half],
             "elo_difference": elo_from_score(rate),
-            "elo_difference_ci95": [elo_from_score(low), elo_from_score(high)],
+            "elo_difference_ci95": [elo_from_score(v) for v in reported_ci],
+            "score_ci95_reported":reported_ci,"score_ci95_hoeffding_pairs":conservative,
+            "bootstrap_degenerate":degenerate,
             "lower_bound_above_half": low > 0.5, "complete_colour_pairs": complete_pairs,
             "paired_sign_test_p_one_sided": sign_p,
-            "promotion_gate_passed": bool(complete_pairs and len(pairs) >= 10 and low > .5 and sign_p < .05),
+            "promotion_gate_passed": bool(complete_pairs and len(pairs) >= 10 and reported_ci[0] > .5 and sign_p < .05),
             "statistical_assumptions": "independent opening clusters; sign symmetry under equal-strength null"}
 
 

@@ -213,3 +213,35 @@ def test_policy_roundtrip_and_colour_symmetry(tmp_path):
     prior.save(tmp_path / "policy.npz")
     loaded = LearnedPolicyPrior.load(tmp_path / "policy.npz")
     np.testing.assert_array_equal(loaded.predict_actions(observation(board),actions),prior.predict_actions(observation(board),actions))
+
+def test_degenerate_bootstrap_does_not_imply_perfect_certainty():
+    rows = [game(i,c,"1/2-1/2") for i in range(10) for c in ("white","black")]
+    stats = pair_statistics(rows)
+    assert stats["bootstrap_degenerate"]
+    assert stats["score_ci95_reported"][0] < .5 < stats["score_ci95_reported"][1]
+
+def test_promoted_manifest_rejects_unapproved_or_changed_artifacts(tmp_path):
+    import json,hashlib
+    from pai.chess.agent import AgentPlayer
+    artifact = tmp_path / "checkpoint"
+    artifact.write_text("initial")
+    manifest = tmp_path / "manifest.json"
+    manifest.write_text(json.dumps({"approved":False}))
+    with pytest.raises(ValueError,match="promotion"): AgentPlayer.from_manifest(manifest)
+    manifest.write_text(json.dumps({"approved":True,"checkpoint_hashes":{str(artifact):hashlib.sha256(b"initial").hexdigest()}}))
+    artifact.write_text("changed")
+    with pytest.raises(ValueError,match="identity"): AgentPlayer.from_manifest(manifest)
+
+def test_distillation_keeps_colour_orbits_and_trajectory_identity():
+    from pai.chess.distill import position_hash,rows_to_arrays
+    board = chess.Board()
+    mirrored = board.mirror()
+    assert position_hash(board.fen()) == position_hash(mirrored.fen())
+    later_clock = board.copy()
+    later_clock.halfmove_clock = 50
+    later_clock.fullmove_number = 20
+    assert position_hash(board.fen()) == position_hash(later_clock.fen())
+    rows = [(board.fen(),200.,"e2e4","seed:game"),(mirrored.fen(),200.,"e7e5","other:game")]
+    x,y = rows_to_arrays(rows,np.zeros((13,64,64,2),dtype=np.int8))
+    np.testing.assert_array_equal(x[0],x[1])
+    np.testing.assert_array_equal(y,[200.,200.])

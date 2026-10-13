@@ -3,6 +3,17 @@ from pathlib import Path
 from pai.chess.state import GameState
 
 class AgentPlayer:
+    @classmethod
+    def from_manifest(cls,path):
+        import hashlib,json
+        manifest = json.loads(Path(path).read_text())
+        if not manifest.get("approved"):
+            raise ValueError("agent manifest has not passed promotion")
+        for filename,expected in manifest["checkpoint_hashes"].items():
+            if hashlib.sha256(Path(filename).read_bytes()).hexdigest() != expected:
+                raise ValueError("promoted checkpoint identity mismatch")
+        return cls(manifest["config"])
+
     def __init__(self,config):
         from threadpoolctl import threadpool_limits
         self.thread_limit = threadpool_limits(limits=1)
