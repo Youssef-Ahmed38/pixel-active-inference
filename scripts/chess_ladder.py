@@ -110,6 +110,7 @@ def main():
                                  args.opening_seed, meta["provenance"]))
         run_schedule(jobs, args.output, args.workers)
     report = summarise(load_games(args.output), meta)
+    report["analysis_provenance"] = metadata([args.opening_seed],meta["provenance"]["time_controls"])
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(json.dumps(report, indent=2, allow_nan=False) + "\n")
     print(json.dumps({"groups": report["groups"], "conditional_elo_by_movetime": report["conditional_elo_by_movetime"]}, indent=2))

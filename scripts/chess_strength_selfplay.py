@@ -31,7 +31,7 @@ def main():
         for _ in range(args.plies):
             if teacher.game_outcome() is not None: break
             positions.append(teacher.board.fen())
-            command, stats = player.command(teacher, random.Random(args.seed + index))
+            command, stats = player.command_from_belief(teacher.observe())
             if command is None or not teacher.execute(command).executed:
                 failure = "rejected agent command"
                 break

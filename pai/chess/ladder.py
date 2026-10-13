@@ -23,6 +23,7 @@ import numpy as np
 from pai.chess.representation import BoardAction
 from pai.chess.state import GameState
 from pai.chess.teacher import ChessTeacher
+from pai.chess.agent import AgentPlayer
 
 ENGINE = "runs/chess_teacher/stockfish/stockfish-windows-x86-64-universal.exe"
 
@@ -31,51 +32,6 @@ ENGINE = "runs/chess_teacher/stockfish/stockfish-windows-x86-64-universal.exe"
 
 def file_hash(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
-
-
-class AgentPlayer:
-    """The learned agent: learned rules/state/endings + a value + bounded search."""
-
-    def __init__(self, config):
-        from threadpoolctl import threadpool_limits
-        self.thread_limit = threadpool_limits(limits=1)
-        import torch
-        torch.set_num_threads(1)
-        from pai.chess import LearnedChessRules, LearnedChessStateModel, LearnedChessEvaluator, LearnedChessSearch
-        from pai.chess.hrm_value import load_value
-        directory = Path(config.get("directory", "runs/chess_rules"))
-        rules = LearnedChessRules.load(directory / "rules.json")
-        state = LearnedChessStateModel.load(directory / "state.json", rules)
-        endings = LearnedChessEvaluator.load(directory / "endings.json", state)
-        value = load_value(config.get("value", directory / "value.json"))
-        ordering = load_value(config["ordering"]) if config.get("ordering") else None
-        prior = None
-        if config.get("policy"):
-            from pai.chess.policy import LearnedPolicyPrior
-            prior = LearnedPolicyPrior.load(config["policy"])
-        self.planner = LearnedChessSearch(state, endings, value, ordering, prior)
-        self.config = dict(config)
-        self.warmed = False
-
-    def prepare(self, belief):
-        if not self.warmed:
-            self.planner.search(GameState.from_belief(belief), max_depth=1, max_nodes=32)
-            self.warmed = True
-
-    def command(self, teacher, rng):
-        return self.command_from_belief(teacher.observe())
-
-    def command_from_belief(self, belief):
-        state = GameState.from_belief(belief)
-        c = self.config
-        result = self.planner.search(state, max_depth=c.get("max_depth", 32), max_nodes=c.get("nodes", 10 ** 9),
-                                     time_limit=c.get("time"), max_quiescence=c.get("quiescence", 0),
-                                     reuse_pv=c.get("reuse_pv", False))
-        return result.command(), {"depth": result.completed_depth, "nodes": result.nodes,
-                                  "seconds": result.elapsed_seconds, "budget_exhausted": result.budget_exhausted}
-
-    def close(self):
-        pass
 
 
 class EnginePlayer:
@@ -153,7 +109,10 @@ def play_game(white, black, root_fen, max_plies=400, seed=0):
             break
         player = white if teacher.board.turn else black
         start = time.perf_counter()
-        command, stats = player.command(teacher, rng)
+        if hasattr(player,"command_from_belief"):
+            command,stats = player.command_from_belief(teacher.observe())
+        else:
+            command, stats = player.command(teacher, rng)
         measured = time.perf_counter() - start
         if stats is not None:
             agent_stats.append({**stats, "side": "white" if teacher.board.turn else "black", "wall_seconds": measured})
@@ -275,7 +234,7 @@ def pair_statistics(games, bootstrap=20000, seed=0):
     half = z * math.sqrt(rate * (1 - rate) / n + z * z / (4 * n * n)) / (1 + z * z / n)
     complete_pairs = all(len(v) == 2 for v in pairs) and unresolved == 0
     advantages = [np.mean(v) - .5 for v in pairs if len(v) == 2]
-    positive, negative = sum(a > 0 for a in advantages), sum(a < 0 for a in advantages)
+    positive, negative = int(sum(a > 0 for a in advantages)), int(sum(a < 0 for a in advantages))
     informative = positive + negative
     sign_p = sum(math.comb(informative, k) for k in range(positive, informative + 1)) / 2 ** informative if informative else 1.0
     return {"games": n, "pairs": len(pairs), "unresolved_games": unresolved,
@@ -286,7 +245,7 @@ def pair_statistics(games, bootstrap=20000, seed=0):
             "elo_difference_ci95": [elo_from_score(low), elo_from_score(high)],
             "lower_bound_above_half": low > 0.5, "complete_colour_pairs": complete_pairs,
             "paired_sign_test_p_one_sided": sign_p,
-            "promotion_gate_passed": complete_pairs and len(pairs) >= 10 and low > .5 and sign_p < .05,
+            "promotion_gate_passed": bool(complete_pairs and len(pairs) >= 10 and low > .5 and sign_p < .05),
             "statistical_assumptions": "independent opening clusters; sign symmetry under equal-strength null"}
 
 
