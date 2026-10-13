@@ -163,6 +163,39 @@ def safety_features(pieces, turn, attack_table):
     return features
 
 
+BETWEEN_FLAT = BETWEEN.reshape(4096, 64).T.astype(np.float32)  # occupied @ this = blockers
+
+
+def learned_attack_fields(boards, attack_table):
+    """Batched learned attack relation: (B, 64, 64) attack and per-square counts.
+
+    Exactly the same computation as the per-board path in ``spatial_features``
+    and ``safety_features``; only the batching differs.
+    """
+    boards = np.asarray(boards, dtype=np.int16).reshape(-1, 64)
+    blocked = ((boards != 0).astype(np.float32) @ BETWEEN_FLAT).reshape(-1, 64, 64) > 0
+    squares = np.arange(64)
+    attack = np.asarray(attack_table)[boards[:, :, None], squares[None, :, None], squares[None, None, :],
+                                      blocked.astype(np.intp)]
+    white_mask = ((boards > 0) & (boards <= 6)).astype(np.int16)
+    black_mask = (boards > 6).astype(np.int16)
+    white = np.einsum("bs,bsd->bd", white_mask, attack.astype(np.int16))
+    black = np.einsum("bs,bsd->bd", black_mask, attack.astype(np.int16))
+    return attack, white, black
+
+
+def safety_features_batch(boards, turn, attack_table):
+    """Vectorized ``safety_features`` for many boards with the same side to move."""
+    boards = np.asarray(boards, dtype=np.int16).reshape(-1, 64)
+    _, white, black = learned_attack_fields(boards, attack_table)
+    columns = [np.full(len(boards), turn)]
+    for code in range(1, 13):
+        here = boards == code
+        # Attack counts are nonnegative, so a zero fill equals the empty-set default.
+        columns += [np.where(here, white, 0).max(1), np.where(here, black, 0).max(1)]
+    return np.column_stack(columns)
+
+
 class LearnedChessRules:
     def __init__(self, attack_table, proposal, moved_token, extra_edits, edit_patterns, safety,
                  training_positions=(), training_summary=None):
@@ -195,7 +228,7 @@ class LearnedChessRules:
         proposed = np.flatnonzero(predicted)
         if len(proposed):
             effects = self._effects(obs, actions[proposed], features[proposed])
-            safety = np.asarray([safety_features(b, obs.turn, self.attack_table) for b in effects])
+            safety = safety_features_batch(effects, obs.turn, self.attack_table)
             predicted[proposed] &= self.safety.predict(safety).astype(bool)
         return predicted
 
