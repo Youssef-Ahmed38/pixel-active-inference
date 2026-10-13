@@ -1,0 +1,321 @@
+{
+  "config": {
+    "physics": false,
+    "size": 15,
+    "move_budget": 500,
+    "fixture_budget": 120,
+    "keys": 1,
+    "lock_state": "both",
+    "key_place": "drawer"
+  },
+  "summary": {
+    "n": 6,
+    "passed": 6,
+    "success_rate": 1.0
+  },
+  "episodes": [
+    {
+      "seed": 0,
+      "success": true,
+      "stage": "complete",
+      "moves": 30,
+      "fixture_actions": 25,
+      "drawer_open": true,
+      "door_open": true,
+      "entered_exit": true,
+      "events": [
+        {
+          "stage": "open_drawer",
+          "success": true,
+          "actions": 2
+        },
+        {
+          "stage": "carry_object",
+          "object": "o1",
+          "executed": true,
+          "stalled": false
+        },
+        {
+          "stage": "try_fixture",
+          "action": [
+            "insert",
+            "o1",
+            "p7"
+          ],
+          "stalled": false
+        },
+        {
+          "stage": "try_turn",
+          "action": [
+            "turn_held",
+            "o1",
+            1
+          ],
+          "stalled": false
+        },
+        {
+          "stage": "open_door",
+          "success": true,
+          "actions": 19
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "success": true,
+      "stage": "complete",
+      "moves": 82,
+      "fixture_actions": 24,
+      "drawer_open": true,
+      "door_open": true,
+      "entered_exit": true,
+      "events": [
+        {
+          "stage": "open_drawer",
+          "success": true,
+          "actions": 1
+        },
+        {
+          "stage": "carry_object",
+          "object": "o1",
+          "executed": true,
+          "stalled": false
+        },
+        {
+          "stage": "try_fixture",
+          "action": [
+            "insert",
+            "o1",
+            "p6"
+          ],
+          "stalled": false
+        },
+        {
+          "stage": "try_turn",
+          "action": [
+            "turn_held",
+            "o1",
+            1
+          ],
+          "stalled": true
+        },
+        {
+          "stage": "try_turn",
+          "action": [
+            "turn_held",
+            "o1",
+            -1
+          ],
+          "stalled": false
+        },
+        {
+          "stage": "open_door",
+          "success": true,
+          "actions": 18
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "success": true,
+      "stage": "complete",
+      "moves": 108,
+      "fixture_actions": 29,
+      "drawer_open": true,
+      "door_open": true,
+      "entered_exit": true,
+      "events": [
+        {
+          "stage": "open_drawer",
+          "success": true,
+          "actions": 2
+        },
+        {
+          "stage": "carry_object",
+          "object": "o1",
+          "executed": true,
+          "stalled": false
+        },
+        {
+          "stage": "try_fixture",
+          "action": [
+            "insert",
+            "o1",
+            "p4"
+          ],
+          "stalled": false
+        },
+        {
+          "stage": "try_turn",
+          "action": [
+            "turn_held",
+            "o1",
+            1
+          ],
+          "stalled": false
+        },
+        {
+          "stage": "open_door",
+          "success": true,
+          "actions": 23
+        }
+      ]
+    },
+    {
+      "seed": 3,
+      "success": true,
+      "stage": "complete",
+      "moves": 37,
+      "fixture_actions": 29,
+      "drawer_open": true,
+      "door_open": true,
+      "entered_exit": true,
+      "events": [
+        {
+          "stage": "open_drawer",
+          "success": true,
+          "actions": 2
+        },
+        {
+          "stage": "carry_object",
+          "object": "o1",
+          "executed": true,
+          "stalled": false
+        },
+        {
+          "stage": "try_fixture",
+          "action": [
+            "insert",
+            "o1",
+            "p4"
+          ],
+          "stalled": false
+        },
+        {
+          "stage": "try_turn",
+          "action": [
+            "turn_held",
+            "o1",
+            1
+          ],
+          "stalled": true
+        },
+        {
+          "stage": "try_turn",
+          "action": [
+            "turn_held",
+            "o1",
+            -1
+          ],
+          "stalled": false
+        },
+        {
+          "stage": "open_door",
+          "success": true,
+          "actions": 22
+        }
+      ]
+    },
+    {
+      "seed": 4,
+      "success": true,
+      "stage": "complete",
+      "moves": 135,
+      "fixture_actions": 26,
+      "drawer_open": true,
+      "door_open": true,
+      "entered_exit": true,
+      "events": [
+        {
+          "stage": "open_drawer",
+          "success": true,
+          "actions": 2
+        },
+        {
+          "stage": "carry_object",
+          "object": "o1",
+          "executed": true,
+          "stalled": false
+        },
+        {
+          "stage": "try_fixture",
+          "action": [
+            "insert",
+            "o1",
+            "p1"
+          ],
+          "stalled": false
+        },
+        {
+          "stage": "try_turn",
+          "action": [
+            "turn_held",
+            "o1",
+            1
+          ],
+          "stalled": false
+        },
+        {
+          "stage": "open_door",
+          "success": true,
+          "actions": 20
+        }
+      ]
+    },
+    {
+      "seed": 5,
+      "success": true,
+      "stage": "complete",
+      "moves": 151,
+      "fixture_actions": 26,
+      "drawer_open": true,
+      "door_open": true,
+      "entered_exit": true,
+      "events": [
+        {
+          "stage": "open_drawer",
+          "success": true,
+          "actions": 2
+        },
+        {
+          "stage": "carry_object",
+          "object": "o1",
+          "executed": true,
+          "stalled": false
+        },
+        {
+          "stage": "try_fixture",
+          "action": [
+            "insert",
+            "o1",
+            "p2"
+          ],
+          "stalled": false
+        },
+        {
+          "stage": "try_turn",
+          "action": [
+            "turn_held",
+            "o1",
+            1
+          ],
+          "stalled": true
+        },
+        {
+          "stage": "try_turn",
+          "action": [
+            "turn_held",
+            "o1",
+            -1
+          ],
+          "stalled": false
+        },
+        {
+          "stage": "open_door",
+          "success": true,
+          "actions": 19
+        }
+      ]
+    }
+  ]
+}

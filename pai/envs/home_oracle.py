@@ -21,13 +21,19 @@ from __future__ import annotations
 
 import numpy as np
 
-from pai.envs.embodiments import rot_error, rotvec_to_mat
+from pai.envs.embodiments import ArmHand, rot_error, rotvec_to_mat
+from pai.skills.clearance import Clearance
+from pai.skills.grasp_table import GRASPS
 
 KP, KR = 4.0, 3.0
 TURN_SPEED = 0.8        # rad/s for knobs, thumb-turns and keys
 DOOR_LEAD = 0.12        # rad the door target runs ahead of the door
 DOOR_GOAL = 0.9         # rad (door_opened is logged at 0.66)
 DRAWER_GOAL = 0.85      # opening fraction
+ROLLS = (0.0, np.pi / 4, -np.pi / 4)   # approach rolls about a bar tried for a grasp
+KEY_ROLLS = (0.0, np.pi / 4, -np.pi / 4, np.pi / 2, -np.pi / 2)   # key bow: from above to along the shaft
+KEY_TRIES = 2          # grasps tried on a key before giving up
+TRANSIT_CLEAR = 0.42   # m in front of the door's hinge line where the hand changes height and turns
 KEY_PUSH = 0.034        # m past the keyhole mouth the key tip is pushed (full depth 0.03)
 
 
@@ -45,6 +51,10 @@ class HomeDoorOracle:
         self._gen = None
         self.t = 0
         self.force_key: str | None = None   # use this key instead of the matching one (e.g. to show a wrong key)
+        self.close_level = -1.0             # the grasp command a "closed" hand gets (per grasp, see grasp_params)
+        # per part class: how this body grasps it (pai.skills.grasp_table); a class without an entry is grasped
+        # the way that fits best (Clearance)
+        self.grasp_params: dict = dict(GRASPS.get(self.emb.name, {}))
 
     # ------------------------------------------------------------------ driver
     def done(self) -> bool:
@@ -78,6 +88,8 @@ class HomeDoorOracle:
         # Steer the commanded palm target, not the measured palm: a hand blocked by contact (a key at the end
         # of its travel, a stiff door) then pushes with a bounded force instead of winding the target up.
         e = self.emb
+        if grasp < 0:
+            grasp = self.close_level
         return np.r_[KP * (pos - e.target_pos), KR * rot_error(e.target_rot, R), grasp]
 
     def _goto(self, obs, pos, R, grasp, tol=0.012, rtol=0.12, steps=250, hold=0):
@@ -99,11 +111,45 @@ class HomeDoorOracle:
             obs = yield self._cmd(obs, pos, R, grasp)
         return obs
 
-    def _grasp(self, obs, pos_fn, axis, approach, standoff=0.1, close_steps=40):
-        """Pre-grasp in front of a bar-like handle, straight in, close in place."""
-        R = self.emb.grasp_rot(axis, approach, obs["palm_rot"])
+    def _wall(self, obs):
+        """(outward horizontal normal of the door wall, a point on the hinge line): the transit frame."""
+        if getattr(self, "_wall_frame", None) is None:
+            a = obs["articulations"]
+            d = a["door"]
+            n = rotvec_to_mat(-d["joint_axis"] * d["q"]) @ a["handle"]["normal"]   # as when the door is shut
+            n[2] = 0.0
+            self._wall_frame = (n / np.linalg.norm(n), a["door"]["joint_anchor"].copy())
+        return self._wall_frame
+
+    def _transit(self, obs, pos, R, grasp, clear=TRANSIT_CLEAR):
+        """Go to (pos, R) through free space: back off from the wall to `clear` (m in front of the hinge
+        line) if the hand is closer, change height and orientation out there, then move in. A straight
+        move would sweep the hand up through a shelf or down across a table top."""
+        n, w0 = self._wall(obs)
+        u = lambda p: float(np.dot(p - w0, n))   # noqa: E731
+        cur = obs["palm_pos"].copy()
+        if np.linalg.norm(pos - cur) < 0.06:
+            return obs
+        us = max(u(cur), u(pos), clear)
+        if u(cur) < us - 0.02:
+            obs = yield from self._goto(obs, cur + (us - u(cur)) * n, obs["palm_rot"].copy(), grasp, tol=0.03,
+                                        rtol=0.3, steps=150)
+        mid = pos + (us - u(pos)) * n
+        obs = yield from self._goto(obs, mid, R, grasp, tol=0.04, rtol=0.2, steps=250)
+        return obs
+
+    def _grasp(self, obs, pos_fn, axis, approach, standoff=0.1, close_steps=40, R=None, offset=None):
+        """Pre-grasp in front of a bar-like handle, straight in, close in place. R: the palm orientation
+        (default: the body's grasp_rot for the bar axis and approach); offset: of the grasp centre from the
+        part, in the palm frame."""
+        if R is None:
+            R = self.emb.grasp_rot(axis, approach, obs["palm_rot"])
+        if offset is not None and np.any(offset):
+            f, off = pos_fn, R @ np.asarray(offset, float)
+            pos_fn = lambda o: f(o) + off   # noqa: E731
         z = R[:, 2]
         # turn into the grasp orientation well clear of the handle (a turning hand sweeps things off tables)
+        obs = yield from self._transit(obs, pos_fn(obs) - (standoff + 0.12) * z, R, 1.0)
         obs = yield from self._goto(obs, pos_fn(obs) - (standoff + 0.12) * z, R, 1.0, tol=0.04, rtol=0.2, steps=250)
         obs = yield from self._goto(obs, pos_fn(obs) - standoff * z, R, 1.0, tol=0.02, rtol=0.15, steps=200)
         obs = yield from self._goto(obs, pos_fn(obs), R, 1.0, tol=0.006, steps=150)
@@ -154,11 +200,89 @@ class HomeDoorOracle:
             obs = yield self._cmd(obs, c + Rr @ (p0 - c), Rr @ R0, grasp)
         raise Failed("door: timeout")
 
+    # ------------------------------------------------------------------ grasp choice
+    @property
+    def clearance(self) -> Clearance:
+        if getattr(self, "_clearance", None) is None:
+            self._clearance = Clearance(self.env)
+        return self._clearance
+
+    def _grasp_cands(self, obs, axis, approach, symmetric=False, rolls=(0.0,)) -> list:
+        """Palm orientations that grasp a bar (axis) from `approach`: both ways round the bar, the approach
+        rolled about the bar by `rolls` (rad), and for a round part (symmetric about the approach: a knob) the
+        bar axis anywhere across it. The first is the body's default (grasp_rot)."""
+        ap = np.asarray(approach, float) / np.linalg.norm(approach)
+        axes = [np.asarray(axis, float)]
+        if symmetric:
+            axes += [rotvec_to_mat(ap * phi) @ axes[0] for phi in np.arange(1, 6) * np.pi / 6]
+        out = []
+        for a in axes:
+            for psi in rolls:
+                z = rotvec_to_mat(a / np.linalg.norm(a) * psi) @ ap
+                R1 = self.emb.grasp_rot(a, z, obs["palm_rot"])
+                out += [R1, self.emb.grasp_rot(a, z, R1 @ np.diag([-1.0, -1.0, 1.0]))]
+        return out
+
+    def _choose(self, pos, cands, ignore=(), sweep=None, standoff=0.1, closure=0.6):
+        """The candidate orientation whose body fits best (Clearance) at the pre-grasp (open hand), at the
+        grasp and along `sweep(pos, R) -> [(pos, R, joints)]` (what the grasp is for). Ties keep the order."""
+        best, best_c = None, np.inf
+        clr = self.clearance
+        for R in cands:
+            poses = [(pos - standoff * R[:, 2], R, {}, 0.0), (pos, R, {}, closure)]
+            poses += [(p, Rr, j, closure) for p, Rr, j in (sweep(pos, R) if sweep else [])]
+            c, q0 = 0.0, None
+            for p, Rr, j, cl in poses:
+                c += clr.cost(p, Rr, closure=cl, ignore=ignore, joints=j, q0=q0)
+                q0 = clr.last_q if isinstance(self.emb, ArmHand) else None
+            if c < best_c - 1e-3:
+                best, best_c = R, c
+        self.last_choice_cost = best_c
+        return best
+
+    @staticmethod
+    def _grasp_R(axis, approach, roll=0.0, flip=0, spin=0.0) -> np.ndarray:
+        """Palm orientation for a bar `axis` (turned by `spin` about the approach: a knob's grasp across its
+        face), approached along `approach` rolled by `roll` about the bar; palm y = +bar axis (flip 0) or -."""
+        ap = np.asarray(approach, float) / np.linalg.norm(approach)
+        a = rotvec_to_mat(ap * spin) @ np.asarray(axis, float)
+        a /= np.linalg.norm(a)
+        z = rotvec_to_mat(a * roll) @ ap
+        z = z - np.dot(z, a) * a
+        z /= np.linalg.norm(z)
+        y = a if not flip else -a
+        return np.column_stack([np.cross(y, z), y, z])
+
+    def _part_grasp(self, obs, cls, pos, axis, approach, symmetric=False, ignore=(), sweep=None, rolls=None):
+        """(palm orientation, grasp-centre offset) for grasping a part of class `cls`, and set the closing
+        command: this body's entry in grasp_params, else the candidate that fits best (Clearance)."""
+        p = self.grasp_params.get(cls)
+        if p:
+            self.close_level = float(p.get("grip", -1.0))
+            return (self._grasp_R(axis, approach, p.get("roll", 0.0), p.get("flip", 0), p.get("spin", 0.0)),
+                    np.asarray(p.get("off", (0.0, 0.0, 0.0)), float))
+        self.close_level = -1.0
+        cands = self._grasp_cands(obs, axis, approach, symmetric=symmetric,
+                                  rolls=(0.0,) if symmetric else (ROLLS if rolls is None else rolls))
+        return self._choose(pos, cands, ignore=ignore, sweep=sweep), np.zeros(3)
+
+    @staticmethod
+    def _about(axis, c, ang, pos, R):
+        Rr = rotvec_to_mat(np.asarray(axis, float) * ang)
+        return c + Rr @ (pos - c), Rr @ R
+
     # ------------------------------------------------------------------ skills
     def _open_drawer(self, obs):
         self.stage = "drawer"
         a = obs["articulations"]["drawer"]
-        obs = yield from self._grasp(obs, lambda o: o["articulations"]["drawer"]["handle_pos"], a["handle_axis"], -a["normal"])
+        rt = self.rt
+
+        def sweep(pos, R):
+            return [(pos + a["pull_dir"] * 0.2, R, {rt.drawer["q"]: 0.2})]
+        R, off = self._part_grasp(obs, "drawer", a["handle_pos"], a["handle_axis"], -a["normal"],
+                                  ignore=(self._body_of(rt.drawer["jnt"]),), sweep=sweep)
+        obs = yield from self._grasp(obs, lambda o: o["articulations"]["drawer"]["handle_pos"], a["handle_axis"], -a["normal"],
+                                     R=R, offset=off)
         d = a["pull_dir"].copy()
         p0, R0 = obs["palm_pos"].copy(), obs["palm_rot"].copy()
         for k in range(400):
@@ -186,44 +310,75 @@ class HomeDoorOracle:
         def key_pose():
             return d.xpos[kid["body"]].copy(), d.xmat[kid["body"]].reshape(3, 3).copy()
 
-        _, Rk = key_pose()
-        # take the bow from above (it sits 7 cm above its cradle) and lift; if the key is not in the hand
-        # afterwards, put it back down and try from the front (along the shaft) instead
         grip = lambda o: d.site_xpos[kid["grip"]].copy()   # noqa: E731  (privileged: also inside a drawer)
-        for attempt, approach in enumerate((np.array([0, 0, -1.0]), Rk[:, 0].copy())):
-            if attempt and self.env.info["keys"][name]["slot"][0] == "drawer":
-                break                         # the drawer front is in the way of a front grasp
+        in_drawer = self.env.info["keys"][name]["slot"][0] == "drawer"
+        kl = obs["articulations"]["key_lock"]
+        x, mouth = kl["keyhole_axis"], kl["keyhole_pos"]
+        jax = kl["joint_axis"]
+        plug_q = self.rt.kl["plug_q"]
+        clr = self.clearance
+
+        def slot_frames():
+            """The two key poses that fit the keyhole (the blade fits either way round)."""
+            return [np.column_stack([x, s * kl["slot_dir"], np.cross(x, s * kl["slot_dir"])]) for s in (1, -1)]
+
+        def insert_cost(rel_p, rel_R, closure=0.6):
+            """Clearance of the body holding the key (palm pose rel_p, rel_R in the key frame) in the lock and
+            through the quarter turn, for the better of the two ways round; and that way (the key pose)."""
+            best = (np.inf, None)
+            for Rd in slot_frames():
+                c, q0 = 0.0, None
+                for th in (0.0, np.pi / 4, np.pi / 2):
+                    p, R = self._about(jax, mouth, th, mouth + 0.028 * x + Rd @ rel_p, Rd @ rel_R)
+                    c += clr.cost(p, R, closure=closure, ignore=(kid["body"],), joints={plug_q: th}, q0=q0)
+                    q0 = clr.last_q if isinstance(self.emb, ArmHand) else None
+                if c < best[0] - 1e-3:
+                    best = (c, Rd)
+            return best
+
+        cls = "key_drawer" if in_drawer else "key"
+        pk0, Rk = key_pose()
+        g0 = grip(obs)
+        table = self.grasp_params.get(cls)
+        if table:
+            self.close_level = float(table.get("grip", -1.0))
+            ranked = [(self._grasp_R(Rk[:, 1], [0, 0, -1.0], table.get("roll", 0.0), table.get("flip", 0)),
+                       np.asarray(table.get("off", (0.0, 0.0, 0.0)), float))]
+        else:
+            # every way round the bow, from above to along the shaft (towards the tip or from it); ranked by how
+            # well the body fits at the bow, lifted, and holding the key in the lock through the turn
+            self.close_level = -1.0
+            scored = []
+            for R in self._grasp_cands(obs, Rk[:, 1], [0, 0, -1.0], rolls=KEY_ROLLS):
+                z = R[:, 2]
+                c = clr.cost(g0 - 0.12 * z, R, closure=0.0, ignore=(kid["body"],))
+                c += clr.cost(g0, R, closure=0.6, ignore=(kid["body"],))
+                c += clr.cost(g0 + [0, 0, 0.2], R, closure=0.6, ignore=(kid["body"],))
+                c += insert_cost(Rk.T @ (g0 - pk0), Rk.T @ R)[0]
+                scored.append((c, len(scored), R))
+            ranked = [(R, np.zeros(3)) for _, _, R in sorted(scored, key=lambda t: t[:2])[:KEY_TRIES]]
+        held = False
+        for R, off in ranked:
             z0 = key_pose()[0][2]
-            obs = yield from self._grasp(obs, grip, key_pose()[1][:, 1], approach, standoff=0.12)
+            obs = yield from self._grasp(obs, grip, Rk[:, 1], R[:, 2], standoff=0.12, R=R, offset=off)
             for lift in ([0, 0, 0.1], [0, 0, 0.1]):
                 obs = yield from self._goto(obs, obs["palm_pos"] + lift, obs["palm_rot"].copy(), -1.0, tol=0.02,
                                             steps=150)
             held = key_pose()[0][2] - z0 > 0.1 and np.linalg.norm(grip(obs) - obs["palm_pos"]) < 0.06
             if held:
                 break
-            obs = yield from self._release(obs, -approach, 0.1, up=0.05)
-        else:
-            raise Failed("could not pick up the key")
+            obs = yield from self._release(obs, -R[:, 2], 0.1, up=0.05)
+            if self.rt._left_slot(kid) and not in_drawer:
+                break                         # knocked off its cradle: another try would not find it there
         if not held:
             raise Failed("could not pick up the key")
         pk, Rk = key_pose()
-        # align in front of the keyhole (the blade fits either way round: take the nearer)
         self.stage = "insert_key"
-        kl = obs["articulations"]["key_lock"]
-        x, mouth = kl["keyhole_axis"], kl["keyhole_pos"]
-        # The blade fits either way round. Pick the way that keeps the hand's body (behind the palm, -z) on
-        # the hinge side: the lock is next to the latch jamb, which stands proud of the door face. The
-        # quarter turn then also swings the bow towards the hinge side, away from jamb and thumb-turn.
-        hinge = obs["articulations"]["door"]["joint_anchor"] - mouth
-        hinge[2] = 0.0
-        hinge /= np.linalg.norm(hinge)
-        cands = []
-        for s in (1, -1):
-            y = s * kl["slot_dir"]
-            Rd = np.column_stack([x, y, np.cross(x, y)])
-            Rp = Rd @ (Rk.T @ obs["palm_rot"])
-            cands.append((float(np.dot(-Rp[:, 2], hinge)), Rd))
-        _, Rd = max(cands, key=lambda c: c[0])
+        # the way round that fits the body best through the turn (a body swinging down hits the handle under
+        # the lock, one on the latch side the jamb), as the key sits in the hand now
+        _, Rd = insert_cost(Rk.T @ (obs["palm_pos"] - pk), Rk.T @ obs["palm_rot"], closure=None)
+        if Rd is None:
+            Rd = slot_frames()[0]
 
         def aligned_cmd(obs, tip_goal):
             """Palm command that puts the key (as it sits in the hand now) at tip_goal with pose Rd."""
@@ -233,6 +388,16 @@ class HomeDoorOracle:
             pos = self.emb.target_pos + (tip_goal - pk) + (Rd - Rk_now) @ (Rk_now.T @ (obs["palm_pos"] - pk))
             return self._cmd(obs, pos, Rp, -1.0), pk, Rk_now
 
+        def palm_for(obs, tip_goal):
+            """Palm pose that puts the key (as it sits in the hand now) at tip_goal with pose Rd."""
+            pk, Rk_now = key_pose()
+            return tip_goal + Rd @ (Rk_now.T @ (obs["palm_pos"] - pk)), Rd @ (Rk_now.T @ obs["palm_rot"])
+
+        def in_hand(obs):
+            return np.linalg.norm(grip(obs) - obs["palm_pos"]) < 0.06
+
+        # carry it out in front of the wall first (a straight move would drag it across the shelf edge)
+        obs = yield from self._transit(obs, *palm_for(obs, mouth - 0.12 * x), -1.0)
         for goal_depth, tol, steps in ((-0.12, 0.02, 400), (-0.03, 0.004, 300)):
             for k in range(steps):
                 a, pk, Rk_now = aligned_cmd(obs, mouth + goal_depth * x)
@@ -241,6 +406,8 @@ class HomeDoorOracle:
                         and abs(np.dot(Rk_now[:, 1], Rd[:, 1])) > 0.99):
                     break
                 obs = yield a
+                if not in_hand(obs):
+                    raise Failed("dropped the key")
         for k in range(300):   # slide in along the axis, correcting the key pose as measured
             if self.rt.inserted:
                 break
@@ -252,16 +419,28 @@ class HomeDoorOracle:
             raise Failed("key did not go in")
         self.stage = "turn_key"
         bolt = self.rt.bolt_q["key"]
-        obs = yield from self._rotate(obs, "key_lock", np.pi / 2, lambda o: self.env.data.qpos[bolt] < 0.002,
+        obs = yield from self._rotate(obs, "key_lock", np.pi / 2, lambda o: self.env.data.qpos[bolt] < 0.007,
                                       extra=0.25, steps=300)
         obs = yield from self._release(obs, -x, 0.1)
         return obs
 
+    def _body_of(self, jnt: int) -> int:
+        return int(self.env.model.jnt_bodyid[jnt])
+
     def _unlock_thumb(self, obs):
         self.stage = "thumb"
         a = obs["articulations"]["thumb_turn"]
-        obs = yield from self._grasp(obs, lambda o: o["articulations"]["thumb_turn"]["handle_pos"], a["handle_axis"], -a["normal"])
-        obs = yield from self._rotate(obs, "thumb_turn", -a["q"] - 0.2, lambda o: o["articulations"]["thumb_turn"]["q"] < 0.08)
+        rt = self.rt
+        turn = -a["q"] - 0.2
+
+        def sweep(pos, R):
+            return [(*self._about(a["joint_axis"], a["joint_anchor"], f * turn, pos, R),
+                     {rt.thumb["q"]: a["q"] + f * turn}) for f in (0.5, 1.0)]
+        R, off = self._part_grasp(obs, "thumb", a["handle_pos"], a["handle_axis"], -a["normal"],
+                                  ignore=(self._body_of(rt.thumb["jnt"]),), sweep=sweep)
+        obs = yield from self._grasp(obs, lambda o: o["articulations"]["thumb_turn"]["handle_pos"], a["handle_axis"],
+                                     -a["normal"], R=R, offset=off)
+        obs = yield from self._rotate(obs, "thumb_turn", turn, lambda o: o["articulations"]["thumb_turn"]["q"] < 0.08)
         obs = yield from self._release(obs, a["normal"], 0.1)
         return obs
 
@@ -269,16 +448,31 @@ class HomeDoorOracle:
         self.stage = "handle"
         h = obs["articulations"]["handle"]
         kind = h["kind"]
+        rt = self.rt
         site = lambda o: o["articulations"]["handle"]["handle_pos"]   # noqa: E731
+        door = obs["articulations"]["door"]
         if kind == "push_bar":
             R = self.emb.grasp_rot(h["handle_axis"], -h["normal"], obs["palm_rot"])
             z = R[:, 2]
+            obs = yield from self._transit(obs, site(obs) - 0.1 * z, R, -1.0)
             obs = yield from self._goto(obs, site(obs) - 0.1 * z, R, -1.0, tol=0.02, steps=300)
             obs = yield from self._goto(obs, site(obs) + 0.035 * z, R, -1.0, tol=0.01, steps=150)
         else:
-            obs = yield from self._grasp(obs, site, h["handle_axis"], -h["normal"])
-            thr = self.rt.rec.handle_threshold
+            thr = rt.rec.handle_threshold
             angle = 0.8 if kind.startswith("knob") else 0.55
+            turned = min(thr + 0.15, angle)
+
+            def sweep(pos, R):
+                p1, R1 = self._about(h["joint_axis"], h["joint_anchor"], turned, pos, R)
+                out = [(p1, R1, {rt.handle_q: turned})]
+                for th in (0.25, 0.5):
+                    out.append((*self._about(door["joint_axis"], door["joint_anchor"], th, p1, R1),
+                                {rt.handle_q: turned, rt.door["q"]: th}))
+                return out
+            R, off = self._part_grasp(obs, kind, h["handle_pos"], h["handle_axis"], -h["normal"],
+                                      symmetric=kind.startswith("knob"), ignore=(self._body_of(rt.handle_jnt),),
+                                      sweep=sweep)
+            obs = yield from self._grasp(obs, site, h["handle_axis"], -h["normal"], R=R, offset=off)
             obs = yield from self._rotate(obs, "handle", angle, lambda o: o["articulations"]["handle"]["q"] > thr + 0.08,
                                           extra=0.3)
         self.stage = "door"

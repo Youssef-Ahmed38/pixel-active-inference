@@ -1,0 +1,44 @@
+{
+  "config": {
+    "physics": false,
+    "type_name": "hd_knob_pull_left",
+    "embodiment": "robotiq_2f85",
+    "lock_state": "deadbolt",
+    "key_place": "table",
+    "tasks": [
+      "door"
+    ]
+  },
+  "summary": {
+    "door": {
+      "n": 3,
+      "success_rate": 1.0
+    }
+  },
+  "episodes": [
+    {
+      "seed": 0,
+      "task": "door",
+      "success": true,
+      "actions": 23,
+      "reason": "goal",
+      "recorded_outcomes": 23
+    },
+    {
+      "seed": 1,
+      "task": "door",
+      "success": true,
+      "actions": 56,
+      "reason": "goal",
+      "recorded_outcomes": 56
+    },
+    {
+      "seed": 2,
+      "task": "door",
+      "success": true,
+      "actions": 26,
+      "reason": "goal",
+      "recorded_outcomes": 26
+    }
+  ]
+}

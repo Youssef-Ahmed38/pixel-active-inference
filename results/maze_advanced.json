@@ -1,0 +1,570 @@
+{
+  "config": {
+    "seeds": 3,
+    "sizes": [
+      15,
+      21
+    ],
+    "sensor_ranges": [
+      2,
+      3
+    ],
+    "budget": 700,
+    "odom_noise": 0.35,
+    "disturbances": [
+      "passage_blocked",
+      "camera_shift"
+    ]
+  },
+  "summary": {
+    "goal_rate": 1.0,
+    "full_coverage_rate": 1.0,
+    "mean_coverage": 1.0,
+    "mean_pose_error_cells": 0.0,
+    "mean_raw_odom_error_cells": 5.732915396443992,
+    "block_detection_rate": 1.0,
+    "shift_detection_rate": 1.0
+  },
+  "episodes": [
+    {
+      "seed": 5000,
+      "size": 15,
+      "sensor_range": 2,
+      "steps": 153,
+      "visited": 99,
+      "reachable": 99,
+      "coverage": 1.0,
+      "goal_found": true,
+      "goal_step": 77,
+      "collisions": 1,
+      "mean_pose_error": 0.0,
+      "mean_raw_odom_error": 2.473920966034367,
+      "loop_closures": 55,
+      "camera_corrections": 1,
+      "truth_causes": [
+        "passage_blocked",
+        "camera_shift"
+      ],
+      "cause_reports": [
+        {
+          "step": 32,
+          "cause": "passage_blocked",
+          "target": [
+            1,
+            13
+          ],
+          "action": "mark the passage closed and replan"
+        },
+        {
+          "step": 50,
+          "cause": "camera_shift",
+          "offset": [
+            0,
+            1
+          ],
+          "action": "recalibrate the image-to-map offset"
+        }
+      ],
+      "cause_recall": {
+        "passage_blocked": true,
+        "camera_shift": true
+      },
+      "body_time": 153.0
+    },
+    {
+      "seed": 5001,
+      "size": 15,
+      "sensor_range": 2,
+      "steps": 162,
+      "visited": 102,
+      "reachable": 102,
+      "coverage": 1.0,
+      "goal_found": true,
+      "goal_step": 22,
+      "collisions": 1,
+      "mean_pose_error": 0.0,
+      "mean_raw_odom_error": 3.8258679566030596,
+      "loop_closures": 61,
+      "camera_corrections": 1,
+      "truth_causes": [
+        "passage_blocked",
+        "camera_shift"
+      ],
+      "cause_reports": [
+        {
+          "step": 31,
+          "cause": "passage_blocked",
+          "target": [
+            13,
+            4
+          ],
+          "action": "mark the passage closed and replan"
+        },
+        {
+          "step": 50,
+          "cause": "camera_shift",
+          "offset": [
+            0,
+            1
+          ],
+          "action": "recalibrate the image-to-map offset"
+        }
+      ],
+      "cause_recall": {
+        "passage_blocked": true,
+        "camera_shift": true
+      },
+      "body_time": 162.0
+    },
+    {
+      "seed": 5002,
+      "size": 15,
+      "sensor_range": 2,
+      "steps": 163,
+      "visited": 99,
+      "reachable": 99,
+      "coverage": 1.0,
+      "goal_found": true,
+      "goal_step": 86,
+      "collisions": 1,
+      "mean_pose_error": 0.0,
+      "mean_raw_odom_error": 4.300964296756742,
+      "loop_closures": 45,
+      "camera_corrections": 1,
+      "truth_causes": [
+        "passage_blocked",
+        "camera_shift"
+      ],
+      "cause_reports": [
+        {
+          "step": 31,
+          "cause": "passage_blocked",
+          "target": [
+            3,
+            10
+          ],
+          "action": "mark the passage closed and replan"
+        },
+        {
+          "step": 50,
+          "cause": "camera_shift",
+          "offset": [
+            0,
+            1
+          ],
+          "action": "recalibrate the image-to-map offset"
+        }
+      ],
+      "cause_recall": {
+        "passage_blocked": true,
+        "camera_shift": true
+      },
+      "body_time": 163.0
+    },
+    {
+      "seed": 5000,
+      "size": 15,
+      "sensor_range": 3,
+      "steps": 136,
+      "visited": 99,
+      "reachable": 99,
+      "coverage": 1.0,
+      "goal_found": true,
+      "goal_step": 26,
+      "collisions": 1,
+      "mean_pose_error": 0.0,
+      "mean_raw_odom_error": 2.2274197660018835,
+      "loop_closures": 26,
+      "camera_corrections": 1,
+      "truth_causes": [
+        "passage_blocked",
+        "camera_shift"
+      ],
+      "cause_reports": [
+        {
+          "step": 32,
+          "cause": "passage_blocked",
+          "target": [
+            9,
+            9
+          ],
+          "action": "mark the passage closed and replan"
+        },
+        {
+          "step": 50,
+          "cause": "camera_shift",
+          "offset": [
+            0,
+            1
+          ],
+          "action": "recalibrate the image-to-map offset"
+        }
+      ],
+      "cause_recall": {
+        "passage_blocked": true,
+        "camera_shift": true
+      },
+      "body_time": 136.0
+    },
+    {
+      "seed": 5001,
+      "size": 15,
+      "sensor_range": 3,
+      "steps": 159,
+      "visited": 102,
+      "reachable": 102,
+      "coverage": 1.0,
+      "goal_found": true,
+      "goal_step": 22,
+      "collisions": 1,
+      "mean_pose_error": 0.0,
+      "mean_raw_odom_error": 3.804687039631014,
+      "loop_closures": 55,
+      "camera_corrections": 1,
+      "truth_causes": [
+        "passage_blocked",
+        "camera_shift"
+      ],
+      "cause_reports": [
+        {
+          "step": 31,
+          "cause": "passage_blocked",
+          "target": [
+            13,
+            4
+          ],
+          "action": "mark the passage closed and replan"
+        },
+        {
+          "step": 50,
+          "cause": "camera_shift",
+          "offset": [
+            0,
+            1
+          ],
+          "action": "recalibrate the image-to-map offset"
+        }
+      ],
+      "cause_recall": {
+        "passage_blocked": true,
+        "camera_shift": true
+      },
+      "body_time": 159.0
+    },
+    {
+      "seed": 5002,
+      "size": 15,
+      "sensor_range": 3,
+      "steps": 163,
+      "visited": 99,
+      "reachable": 99,
+      "coverage": 1.0,
+      "goal_found": true,
+      "goal_step": 86,
+      "collisions": 1,
+      "mean_pose_error": 0.0,
+      "mean_raw_odom_error": 4.300964296756742,
+      "loop_closures": 45,
+      "camera_corrections": 1,
+      "truth_causes": [
+        "passage_blocked",
+        "camera_shift"
+      ],
+      "cause_reports": [
+        {
+          "step": 31,
+          "cause": "passage_blocked",
+          "target": [
+            3,
+            10
+          ],
+          "action": "mark the passage closed and replan"
+        },
+        {
+          "step": 50,
+          "cause": "camera_shift",
+          "offset": [
+            0,
+            1
+          ],
+          "action": "recalibrate the image-to-map offset"
+        }
+      ],
+      "cause_recall": {
+        "passage_blocked": true,
+        "camera_shift": true
+      },
+      "body_time": 163.0
+    },
+    {
+      "seed": 5000,
+      "size": 21,
+      "sensor_range": 2,
+      "steps": 337,
+      "visited": 207,
+      "reachable": 207,
+      "coverage": 1.0,
+      "goal_found": true,
+      "goal_step": 28,
+      "collisions": 1,
+      "mean_pose_error": 0.0,
+      "mean_raw_odom_error": 6.964240922682787,
+      "loop_closures": 116,
+      "camera_corrections": 1,
+      "truth_causes": [
+        "passage_blocked",
+        "camera_shift"
+      ],
+      "cause_reports": [
+        {
+          "step": 31,
+          "cause": "passage_blocked",
+          "target": [
+            9,
+            16
+          ],
+          "action": "mark the passage closed and replan"
+        },
+        {
+          "step": 50,
+          "cause": "camera_shift",
+          "offset": [
+            0,
+            1
+          ],
+          "action": "recalibrate the image-to-map offset"
+        }
+      ],
+      "cause_recall": {
+        "passage_blocked": true,
+        "camera_shift": true
+      },
+      "body_time": 337.0
+    },
+    {
+      "seed": 5001,
+      "size": 21,
+      "sensor_range": 2,
+      "steps": 327,
+      "visited": 214,
+      "reachable": 214,
+      "coverage": 1.0,
+      "goal_found": true,
+      "goal_step": 242,
+      "collisions": 1,
+      "mean_pose_error": 0.0,
+      "mean_raw_odom_error": 7.049796470267136,
+      "loop_closures": 105,
+      "camera_corrections": 1,
+      "truth_causes": [
+        "passage_blocked",
+        "camera_shift"
+      ],
+      "cause_reports": [
+        {
+          "step": 31,
+          "cause": "passage_blocked",
+          "target": [
+            5,
+            18
+          ],
+          "action": "mark the passage closed and replan"
+        },
+        {
+          "step": 50,
+          "cause": "camera_shift",
+          "offset": [
+            0,
+            1
+          ],
+          "action": "recalibrate the image-to-map offset"
+        }
+      ],
+      "cause_recall": {
+        "passage_blocked": true,
+        "camera_shift": true
+      },
+      "body_time": 327.0
+    },
+    {
+      "seed": 5002,
+      "size": 21,
+      "sensor_range": 2,
+      "steps": 359,
+      "visited": 208,
+      "reachable": 208,
+      "coverage": 1.0,
+      "goal_found": true,
+      "goal_step": 93,
+      "collisions": 1,
+      "mean_pose_error": 0.0,
+      "mean_raw_odom_error": 9.971858489576736,
+      "loop_closures": 112,
+      "camera_corrections": 1,
+      "truth_causes": [
+        "camera_shift",
+        "passage_blocked"
+      ],
+      "cause_reports": [
+        {
+          "step": 50,
+          "cause": "camera_shift",
+          "offset": [
+            0,
+            1
+          ],
+          "action": "recalibrate the image-to-map offset"
+        },
+        {
+          "step": 67,
+          "cause": "passage_blocked",
+          "target": [
+            17,
+            2
+          ],
+          "action": "mark the passage closed and replan"
+        }
+      ],
+      "cause_recall": {
+        "passage_blocked": true,
+        "camera_shift": true
+      },
+      "body_time": 359.0
+    },
+    {
+      "seed": 5000,
+      "size": 21,
+      "sensor_range": 3,
+      "steps": 323,
+      "visited": 207,
+      "reachable": 207,
+      "coverage": 1.0,
+      "goal_found": true,
+      "goal_step": 28,
+      "collisions": 1,
+      "mean_pose_error": 0.0,
+      "mean_raw_odom_error": 6.526540633109092,
+      "loop_closures": 102,
+      "camera_corrections": 1,
+      "truth_causes": [
+        "passage_blocked",
+        "camera_shift"
+      ],
+      "cause_reports": [
+        {
+          "step": 31,
+          "cause": "passage_blocked",
+          "target": [
+            9,
+            16
+          ],
+          "action": "mark the passage closed and replan"
+        },
+        {
+          "step": 50,
+          "cause": "camera_shift",
+          "offset": [
+            0,
+            1
+          ],
+          "action": "recalibrate the image-to-map offset"
+        }
+      ],
+      "cause_recall": {
+        "passage_blocked": true,
+        "camera_shift": true
+      },
+      "body_time": 323.0
+    },
+    {
+      "seed": 5001,
+      "size": 21,
+      "sensor_range": 3,
+      "steps": 320,
+      "visited": 214,
+      "reachable": 214,
+      "coverage": 1.0,
+      "goal_found": true,
+      "goal_step": 206,
+      "collisions": 1,
+      "mean_pose_error": 0.0,
+      "mean_raw_odom_error": 6.931570661850549,
+      "loop_closures": 95,
+      "camera_corrections": 1,
+      "truth_causes": [
+        "passage_blocked",
+        "camera_shift"
+      ],
+      "cause_reports": [
+        {
+          "step": 31,
+          "cause": "passage_blocked",
+          "target": [
+            4,
+            13
+          ],
+          "action": "mark the passage closed and replan"
+        },
+        {
+          "step": 50,
+          "cause": "camera_shift",
+          "offset": [
+            0,
+            1
+          ],
+          "action": "recalibrate the image-to-map offset"
+        }
+      ],
+      "cause_recall": {
+        "passage_blocked": true,
+        "camera_shift": true
+      },
+      "body_time": 320.0
+    },
+    {
+      "seed": 5002,
+      "size": 21,
+      "sensor_range": 3,
+      "steps": 373,
+      "visited": 208,
+      "reachable": 208,
+      "coverage": 1.0,
+      "goal_found": true,
+      "goal_step": 93,
+      "collisions": 1,
+      "mean_pose_error": 0.0,
+      "mean_raw_odom_error": 10.417153258057791,
+      "loop_closures": 126,
+      "camera_corrections": 1,
+      "truth_causes": [
+        "camera_shift",
+        "passage_blocked"
+      ],
+      "cause_reports": [
+        {
+          "step": 50,
+          "cause": "camera_shift",
+          "offset": [
+            0,
+            1
+          ],
+          "action": "recalibrate the image-to-map offset"
+        },
+        {
+          "step": 67,
+          "cause": "passage_blocked",
+          "target": [
+            17,
+            2
+          ],
+          "action": "mark the passage closed and replan"
+        }
+      ],
+      "cause_recall": {
+        "passage_blocked": true,
+        "camera_shift": true
+      },
+      "body_time": 373.0
+    }
+  ]
+}

@@ -1,0 +1,366 @@
+{
+  "config": {
+    "seeds": [
+      40000,
+      40001,
+      40002,
+      40003,
+      40004,
+      40005
+    ],
+    "budget": 700,
+    "checkpoint": "C:\\projects\\pixel-active-inference\\runs\\cross_domain_thinker\\maze_transfer.pt",
+    "appearance_jitter": 12.0,
+    "odometry_noise": 0.35
+  },
+  "summary": {
+    "baseline": {
+      "n": 6,
+      "goal_rate": 1.0,
+      "full_coverage_rate": 1.0,
+      "mean_coverage": 1.0,
+      "mean_steps": 615.6666666666666
+    },
+    "online_thinker": {
+      "n": 6,
+      "goal_rate": 1.0,
+      "full_coverage_rate": 1.0,
+      "mean_coverage": 1.0,
+      "mean_steps": 615.6666666666666
+    }
+  },
+  "episodes": [
+    {
+      "seed": 40000,
+      "condition": "baseline",
+      "size": 15,
+      "goal_found": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 524,
+      "truth_causes": [
+        "camera_shift",
+        "passage_blocked"
+      ],
+      "thinker_recall": {
+        "camera_shift": false,
+        "passage_blocked": false
+      },
+      "thinker_actions": []
+    },
+    {
+      "seed": 40000,
+      "condition": "online_thinker",
+      "size": 15,
+      "goal_found": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 524,
+      "truth_causes": [
+        "camera_shift",
+        "passage_blocked"
+      ],
+      "thinker_recall": {
+        "camera_shift": true,
+        "passage_blocked": false
+      },
+      "thinker_actions": [
+        {
+          "step": 55,
+          "cause": "camera_shift",
+          "action": "accept visual frame recalibration"
+        }
+      ]
+    },
+    {
+      "seed": 40001,
+      "condition": "baseline",
+      "size": 21,
+      "goal_found": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 700,
+      "truth_causes": [
+        "passage_blocked",
+        "camera_shift"
+      ],
+      "thinker_recall": {
+        "passage_blocked": false,
+        "camera_shift": false
+      },
+      "thinker_actions": []
+    },
+    {
+      "seed": 40001,
+      "condition": "online_thinker",
+      "size": 21,
+      "goal_found": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 700,
+      "truth_causes": [
+        "passage_blocked",
+        "camera_shift"
+      ],
+      "thinker_recall": {
+        "passage_blocked": true,
+        "camera_shift": true
+      },
+      "thinker_actions": [
+        {
+          "step": 21,
+          "cause": "passage_blocked",
+          "action": "invalidate blocked route"
+        },
+        {
+          "step": 39,
+          "cause": "camera_shift",
+          "action": "accept visual frame recalibration"
+        }
+      ]
+    },
+    {
+      "seed": 40002,
+      "condition": "baseline",
+      "size": 15,
+      "goal_found": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 558,
+      "truth_causes": [
+        "passage_blocked",
+        "camera_shift"
+      ],
+      "thinker_recall": {
+        "passage_blocked": false,
+        "camera_shift": false
+      },
+      "thinker_actions": []
+    },
+    {
+      "seed": 40002,
+      "condition": "online_thinker",
+      "size": 15,
+      "goal_found": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 558,
+      "truth_causes": [
+        "passage_blocked",
+        "camera_shift"
+      ],
+      "thinker_recall": {
+        "passage_blocked": true,
+        "camera_shift": true
+      },
+      "thinker_actions": [
+        {
+          "step": 23,
+          "cause": "passage_blocked",
+          "action": "invalidate blocked route"
+        },
+        {
+          "step": 40,
+          "cause": "camera_shift",
+          "action": "accept visual frame recalibration"
+        }
+      ]
+    },
+    {
+      "seed": 40003,
+      "condition": "baseline",
+      "size": 21,
+      "goal_found": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 700,
+      "truth_causes": [
+        "passage_blocked",
+        "camera_shift"
+      ],
+      "thinker_recall": {
+        "passage_blocked": false,
+        "camera_shift": false
+      },
+      "thinker_actions": []
+    },
+    {
+      "seed": 40003,
+      "condition": "online_thinker",
+      "size": 21,
+      "goal_found": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 700,
+      "truth_causes": [
+        "passage_blocked",
+        "camera_shift"
+      ],
+      "thinker_recall": {
+        "passage_blocked": true,
+        "camera_shift": true
+      },
+      "thinker_actions": [
+        {
+          "step": 24,
+          "cause": "passage_blocked",
+          "action": "invalidate blocked route"
+        },
+        {
+          "step": 41,
+          "cause": "camera_shift",
+          "action": "accept visual frame recalibration"
+        }
+      ]
+    },
+    {
+      "seed": 40004,
+      "condition": "baseline",
+      "size": 15,
+      "goal_found": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 512,
+      "truth_causes": [
+        "camera_shift",
+        "passage_blocked"
+      ],
+      "thinker_recall": {
+        "camera_shift": false,
+        "passage_blocked": false
+      },
+      "thinker_actions": []
+    },
+    {
+      "seed": 40004,
+      "condition": "online_thinker",
+      "size": 15,
+      "goal_found": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 512,
+      "truth_causes": [
+        "camera_shift",
+        "passage_blocked"
+      ],
+      "thinker_recall": {
+        "camera_shift": true,
+        "passage_blocked": false
+      },
+      "thinker_actions": [
+        {
+          "step": 42,
+          "cause": "camera_shift",
+          "action": "accept visual frame recalibration"
+        }
+      ]
+    },
+    {
+      "seed": 40005,
+      "condition": "baseline",
+      "size": 21,
+      "goal_found": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 700,
+      "truth_causes": [
+        "passage_blocked",
+        "camera_shift"
+      ],
+      "thinker_recall": {
+        "passage_blocked": false,
+        "camera_shift": false
+      },
+      "thinker_actions": []
+    },
+    {
+      "seed": 40005,
+      "condition": "online_thinker",
+      "size": 21,
+      "goal_found": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 700,
+      "truth_causes": [
+        "passage_blocked",
+        "camera_shift"
+      ],
+      "thinker_recall": {
+        "passage_blocked": true,
+        "camera_shift": false
+      },
+      "thinker_actions": [
+        {
+          "step": 25,
+          "cause": "passage_blocked",
+          "action": "invalidate blocked route"
+        },
+        {
+          "step": 45,
+          "cause": "passage_blocked",
+          "action": "invalidate blocked route"
+        },
+        {
+          "step": 46,
+          "cause": "passage_blocked",
+          "action": "invalidate blocked route"
+        },
+        {
+          "step": 52,
+          "cause": "passage_blocked",
+          "action": "invalidate blocked route"
+        },
+        {
+          "step": 55,
+          "cause": "passage_blocked",
+          "action": "invalidate blocked route"
+        },
+        {
+          "step": 58,
+          "cause": "passage_blocked",
+          "action": "invalidate blocked route"
+        },
+        {
+          "step": 61,
+          "cause": "passage_blocked",
+          "action": "invalidate blocked route"
+        },
+        {
+          "step": 77,
+          "cause": "passage_blocked",
+          "action": "invalidate blocked route"
+        },
+        {
+          "step": 82,
+          "cause": "passage_blocked",
+          "action": "invalidate blocked route"
+        },
+        {
+          "step": 84,
+          "cause": "passage_blocked",
+          "action": "invalidate blocked route"
+        },
+        {
+          "step": 88,
+          "cause": "passage_blocked",
+          "action": "invalidate blocked route"
+        },
+        {
+          "step": 102,
+          "cause": "passage_blocked",
+          "action": "invalidate blocked route"
+        },
+        {
+          "step": 115,
+          "cause": "passage_blocked",
+          "action": "invalidate blocked route"
+        },
+        {
+          "step": 117,
+          "cause": "passage_blocked",
+          "action": "invalidate blocked route"
+        }
+      ]
+    }
+  ]
+}

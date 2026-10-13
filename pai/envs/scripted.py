@@ -30,9 +30,17 @@ def _grasp_yaw(block_yaw: float) -> float:
 class PickPlace:
     """Phases: above object -> descend -> close -> lift -> above target -> descend -> open -> retreat."""
 
-    def __init__(self, env, obj: str, target: str, gain: float = 6.0):
+    def __init__(self, env, obj: str, target: str, gain: float = 6.0, lift_z: float | None = LIFT_Z,
+                 carry_above: float = HOVER, grasp_raise: float = GRASP_RAISE, regrasp: bool = False):
+        """lift_z, carry_above: absolute lift height and carry height above the release point (m).
+        A slippery object creeps out of the fingers the longer it is held, so a low, short carry
+        (lift_z=None: only to the carry height, carry_above=0) is what can get it to the target. grasp_raise: grasp
+        height above the object centre. regrasp: closed loop, start again from the approach when
+        the object is lost while carrying (the default is the open-loop sequence)."""
         self.env, self.obj, self.target, self.gain = env, obj, target, gain
+        self.lift_z, self.carry_above, self.grasp_raise, self.regrasp = lift_z, carry_above, grasp_raise, regrasp
         self.phase, self.timer = 0, 0
+        self.attempts = 1
 
     def _target_top(self, state) -> float:
         spec: ObjectSpec = self.env.objects[self.target]
@@ -40,6 +48,11 @@ class PickPlace:
         if spec.kind == "bowl":
             return base + 0.01  # drop into the bowl just above its base
         return base + spec.height / 2
+
+    def _lost(self, obs) -> bool:
+        """The object is no longer between the fingers."""
+        rel = obs["state"][self.obj]["pos"] - obs["ee_pos"]
+        return bool(np.linalg.norm(rel) > 0.03 or obs["gripper"] < 0.01)
 
     def done(self) -> bool:
         return self.phase >= 8
@@ -54,15 +67,18 @@ class PickPlace:
 
         waypoints = {
             0: (np.r_[obj_pos[:2], obj_pos[2] + HOVER], 1.0),
-            1: (np.r_[obj_pos[:2], obj_pos[2] + GRASP_RAISE], 1.0),
+            1: (np.r_[obj_pos[:2], obj_pos[2] + self.grasp_raise], 1.0),
             2: (None, -1.0),                                   # close
-            3: (np.r_[ee[:2], LIFT_Z], -1.0),  # absolute: the block rises with the hand
-            4: (np.r_[tgt_xy, place_z + HOVER], -1.0),
+            3: (np.r_[ee[:2], place_z + self.carry_above if self.lift_z is None else self.lift_z], -1.0),  # absolute: the block rises with the hand
+            4: (np.r_[tgt_xy, place_z + self.carry_above], -1.0),
             5: (np.r_[tgt_xy, place_z], -1.0),
             6: (None, 1.0),                                    # open
             7: (np.r_[ee[:2], place_z + HOVER], 1.0),
         }
         if self.done():
+            return np.array([0, 0, 0, 0, 1.0])
+        if self.regrasp and 3 <= self.phase <= 5 and self._lost(obs):
+            self.phase, self.timer, self.attempts = 0, 0, self.attempts + 1
             return np.array([0, 0, 0, 0, 1.0])
         goal, grip = waypoints[self.phase]
         yaw_err = 0.0

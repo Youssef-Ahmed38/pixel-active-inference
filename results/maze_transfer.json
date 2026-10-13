@@ -1,0 +1,60 @@
+{
+  "config": {
+    "train_seeds": [
+      2000,
+      2011
+    ],
+    "test_seeds": [
+      4000,
+      4029
+    ],
+    "train_size": 15,
+    "test_size": 21,
+    "budget": 160
+  },
+  "train_scores": {
+    "0.0": {
+      "mean_coverage": 0.9950732914525035,
+      "goal_rate": 1.0,
+      "mean_goal_step_capped": 59.25
+    },
+    "0.01": {
+      "mean_coverage": 0.9867007729257384,
+      "goal_rate": 1.0,
+      "mean_goal_step_capped": 39.416666666666664
+    },
+    "0.03": {
+      "mean_coverage": 0.9867007729257384,
+      "goal_rate": 1.0,
+      "mean_goal_step_capped": 39.416666666666664
+    },
+    "0.1": {
+      "mean_coverage": 0.9867007729257384,
+      "goal_rate": 1.0,
+      "mean_goal_step_capped": 39.416666666666664
+    },
+    "0.3": {
+      "mean_coverage": 0.9850341062590718,
+      "goal_rate": 1.0,
+      "mean_goal_step_capped": 39.416666666666664
+    }
+  },
+  "selected_gain_weight": 0.0,
+  "test_scores": {
+    "transferred": {
+      "mean_coverage": 0.6417258512879997,
+      "goal_rate": 0.8333333333333334,
+      "mean_goal_step_capped": 82.4
+    },
+    "fixed_default": {
+      "mean_coverage": 0.6552507195753693,
+      "goal_rate": 0.8,
+      "mean_goal_step_capped": 82.03333333333333
+    },
+    "random": {
+      "mean_coverage": 0.08634026454663249,
+      "goal_rate": 0.23333333333333334,
+      "mean_goal_step_capped": 134.26666666666668
+    }
+  }
+}

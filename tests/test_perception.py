@@ -82,3 +82,112 @@ def test_mask_supervision_is_learned():
     inter = (a[:, 2:5] * t).sum(-1)
     iou = inter / (a[:, 2:5].sum(-1) + t.sum(-1) - inter)
     assert float(iou.mean()) > 0.5, float(iou.mean())
+
+
+# ---------------------------------------------------------------------------------------------
+# Pixel geometry (pai.perception.slot_tokens.PixelGeometry): objects placed from their own pixels
+# ---------------------------------------------------------------------------------------------
+
+import mujoco  # noqa: E402
+import pytest  # noqa: E402
+
+from pai.config import REPO_ROOT, load_config  # noqa: E402
+from pai.perception.slot_tokens import PixelGeometry, SlotPerception  # noqa: E402
+
+
+@pytest.fixture(scope="module")
+def work_env():
+    from pai.envs import TabletopEnv
+    cfg = load_config(REPO_ROOT / "configs" / "tabletop.yaml", ["env.image_size=448", "env.render_images=false"])
+    env = TabletopEnv(cfg.env, disturbances=[])
+    yield env
+    env.close()
+
+
+def _truth(env, obs):
+    return np.stack([obs["state"][n]["pos"] for n in env.objects])
+
+
+def test_projection_matches_the_rendered_objects(work_env):
+    env = work_env
+    obs = env.reset(seed=30001)
+    g = PixelGeometry(env, "work", 448)
+    seg = env.render_segmentation("work")
+    for o, x in enumerate(_truth(env, obs)[:4]):          # the blocks
+        v, u = np.nonzero(seg == 2 + o)
+        assert np.abs(g.project(x) - [u.mean() + 0.5, v.mean() + 0.5]).max() < 1.5
+        back = g.on_plane(u.mean() + 0.5, v.mean() + 0.5, x[2])
+        assert np.linalg.norm(back - x) < 0.002
+
+
+def test_blocks_on_the_table_are_placed_to_a_few_mm(work_env):
+    env = work_env
+    g = PixelGeometry(env, "work", 448)
+    for seed in (30002, 30003):
+        obs = env.reset(seed=seed)
+        g.label(env.render("work"))
+        for o, x in enumerate(_truth(env, obs)[:4]):
+            b = g.blob(o, g.project(x + [0.03, -0.02, 0]), 70)   # found near a rough prior
+            c = g.on_plane(b[0].mean(), b[1].mean(), g.rest_z[o])
+            assert np.linalg.norm((c - x)[:2]) < 0.003, (seed, o)
+        # the plate (white, as parts of the robot) and the bowl are fitted by silhouette
+        for o in (4, 5):
+            x = _truth(env, obs)[o]
+            p = g.fit(o, np.r_[x[:2] + [0.01, 0.01], g.rest_z[o]], 0.0, "xy",
+                      steps=(0.008, 0.004, 0.002, 0.001, 0.0005))
+            assert np.linalg.norm((p - x)[:2]) < 0.01, (seed, o)
+
+
+def test_a_partly_hidden_block_is_fitted_not_dragged(work_env):
+    """Half of the block hidden (grey, like the hand): the centroid shifts, the silhouette fit does not."""
+    env = work_env
+    obs = env.reset(seed=30004)
+    g = PixelGeometry(env, "work", 448)
+    img = env.render("work").copy()
+    x = _truth(env, obs)[0]
+    yaw = float(np.arctan2(*_yaw_sc(obs["state"]["red"]["quat"])))
+    u0, v0 = g.project(x)
+    img[: int(v0), int(u0) - 40: int(u0) + 40] = 150          # a grey occluder over the top half
+    g.label(img)
+    b = g.blob(0, g.project(x), 70)
+    c = g.on_plane(b[0].mean(), b[1].mean(), g.rest_z[0])
+    p = g.fit(0, c, yaw, "xy")
+    assert np.linalg.norm((c - x)[:2]) > 0.004                # the partial view drags the centroid
+    assert np.linalg.norm((p - x)[:2]) < 0.002
+
+
+def _yaw_sc(quat):
+    w, x, y, z = quat
+    return 2 * (w * z + x * y), 1 - 2 * (y * y + z * z)
+
+
+def test_height_of_a_lifted_block_is_measured_along_the_vertical(work_env):
+    env = work_env
+    obs = env.reset(seed=30005)
+    g = PixelGeometry(env, "work", 448)
+    adr = env.obj_qpos["red"]
+    for z in (0.06, 0.12):
+        env.data.qpos[adr + 2] = z
+        mujoco.mj_forward(env.model, env.data)
+        x = env.data.qpos[adr: adr + 3].copy()
+        yaw = float(np.arctan2(*_yaw_sc(env.data.qpos[adr + 3: adr + 7])))
+        g.label(env.render("work"))
+        p = g.fit(0, np.r_[x[:2], z + 0.03], yaw, "z", steps=(0.004, 0.002, 0.001, 0.0005))
+        assert abs(p[2] - z) < 0.003
+
+
+def test_camera_bump_reaches_the_perception_camera(work_env):
+    from pai.envs import build_disturbances
+    env = work_env
+    sp = object.__new__(SlotPerception)       # only the camera logic, no slot checkpoint needed
+    sp.env, sp.camera, sp.bump_follows = env, "work", True
+    env.disturbances = build_disturbances([{"type": "camera_shift", "start": 0, "duration": -1,
+                                            "offset": [0.04, -0.02, 0.0]}])
+    env.reset(seed=30006)
+    env.step(np.zeros(5))
+    sp._follow_bump()
+    c = env.model.camera("work").id
+    assert np.allclose(env.model.cam_pos[c] - env._nominal["cam_pos"][c], [0.04, -0.02, 0.0])
+    env.disturbances = build_disturbances([])
+    env.reset(seed=30006)                      # a reset restores every camera
+    assert np.allclose(env.model.cam_pos[c], env._nominal["cam_pos"][c])

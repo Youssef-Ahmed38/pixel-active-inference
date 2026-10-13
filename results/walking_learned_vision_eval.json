@@ -1,0 +1,107 @@
+{
+  "config": {
+    "seeds": [
+      40000,
+      40001,
+      40002,
+      40003,
+      40004,
+      40005,
+      40006,
+      40007,
+      40008,
+      40009
+    ],
+    "budget": 750,
+    "fall_at": 80,
+    "learned_model": "runs\\maze_tile_vision.npz"
+  },
+  "summary": {
+    "n": 10,
+    "goal_rate": 1.0,
+    "full_coverage_rate": 1.0,
+    "recovery_rate": 1.0
+  },
+  "episodes": [
+    {
+      "seed": 40000,
+      "goal": true,
+      "full_coverage": true,
+      "falls": 1,
+      "recoveries": 1,
+      "steps": 517
+    },
+    {
+      "seed": 40001,
+      "goal": true,
+      "full_coverage": true,
+      "falls": 1,
+      "recoveries": 1,
+      "steps": 750
+    },
+    {
+      "seed": 40002,
+      "goal": true,
+      "full_coverage": true,
+      "falls": 1,
+      "recoveries": 1,
+      "steps": 561
+    },
+    {
+      "seed": 40003,
+      "goal": true,
+      "full_coverage": true,
+      "falls": 1,
+      "recoveries": 1,
+      "steps": 750
+    },
+    {
+      "seed": 40004,
+      "goal": true,
+      "full_coverage": true,
+      "falls": 1,
+      "recoveries": 1,
+      "steps": 544
+    },
+    {
+      "seed": 40005,
+      "goal": true,
+      "full_coverage": true,
+      "falls": 1,
+      "recoveries": 1,
+      "steps": 750
+    },
+    {
+      "seed": 40006,
+      "goal": true,
+      "full_coverage": true,
+      "falls": 1,
+      "recoveries": 1,
+      "steps": 552
+    },
+    {
+      "seed": 40007,
+      "goal": true,
+      "full_coverage": true,
+      "falls": 1,
+      "recoveries": 1,
+      "steps": 750
+    },
+    {
+      "seed": 40008,
+      "goal": true,
+      "full_coverage": true,
+      "falls": 1,
+      "recoveries": 1,
+      "steps": 552
+    },
+    {
+      "seed": 40009,
+      "goal": true,
+      "full_coverage": true,
+      "falls": 1,
+      "recoveries": 1,
+      "steps": 750
+    }
+  ]
+}

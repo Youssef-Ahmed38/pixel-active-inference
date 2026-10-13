@@ -1,0 +1,43 @@
+{
+  "config": {
+    "seeds": [
+      125
+    ],
+    "budget_per_goal": 150,
+    "sequence": "stack"
+  },
+  "summary": {
+    "n": 1,
+    "success_rate": 1.0
+  },
+  "episodes": [
+    {
+      "seed": 125,
+      "success": true,
+      "goals": [
+        {
+          "goal": "on(blue, plate)",
+          "success": true,
+          "steps": 73
+        },
+        {
+          "goal": "on(red, blue)",
+          "success": true,
+          "steps": 93
+        }
+      ],
+      "final_relations": [
+        [
+          "on",
+          "blue",
+          "plate"
+        ],
+        [
+          "on",
+          "red",
+          "blue"
+        ]
+      ]
+    }
+  ]
+}

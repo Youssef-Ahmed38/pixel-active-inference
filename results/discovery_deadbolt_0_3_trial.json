@@ -1,0 +1,2693 @@
+{
+  "config": {
+    "physics": true,
+    "type_name": "hd_lever_pull_right",
+    "embodiment": "robotiq_2f85",
+    "lock_state": "deadbolt",
+    "key_place": "table",
+    "tasks": [
+      "door"
+    ],
+    "contact_repair": true
+  },
+  "summary": {
+    "door": {
+      "n": 4,
+      "success_rate": 1.0
+    }
+  },
+  "episodes": [
+    {
+      "seed": 0,
+      "task": "door",
+      "success": true,
+      "actions": 48,
+      "reason": "goal",
+      "recorded_outcomes": 48,
+      "stalled_skills": 44,
+      "action_history": [
+        {
+          "step": 1,
+          "action": [
+            "push",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 2,
+          "action": [
+            "pull",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 3,
+          "action": [
+            "press_push",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 4,
+          "action": [
+            "turn_push",
+            "p5",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.001 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 5,
+          "action": [
+            "turn_pull",
+            "p5",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 6,
+          "action": [
+            "turn_pull",
+            "p5",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 7,
+          "action": [
+            "turn_push",
+            "p5",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 8,
+          "action": [
+            "push",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 9,
+          "action": [
+            "pull",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 10,
+          "action": [
+            "push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 11,
+          "action": [
+            "press_push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 12,
+          "action": [
+            "turn_pull",
+            "p3",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.08",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 13,
+          "action": [
+            "turn_pull",
+            "p3",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 14,
+          "action": [
+            "turn_push",
+            "p3",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.64",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 15,
+          "action": [
+            "turn_push",
+            "p3",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 16,
+          "action": [
+            "push",
+            "p2"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 17,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 18,
+          "action": [
+            "push",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 19,
+          "action": [
+            "pull",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 20,
+          "action": [
+            "push",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 21,
+          "action": [
+            "push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 22,
+          "action": [
+            "pull",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 23,
+          "action": [
+            "press_push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 24,
+          "action": [
+            "push",
+            "p2"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 25,
+          "action": [
+            "press_push",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 26,
+          "action": [
+            "turn_push",
+            "p5",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 27,
+          "action": [
+            "turn_pull",
+            "p5",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 28,
+          "action": [
+            "turn_push",
+            "p5",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.001 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 29,
+          "action": [
+            "turn_pull",
+            "p5",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 30,
+          "action": [
+            "turn_push",
+            "p3",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {
+            "part:p3.angle": [
+              "pos",
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 31,
+          "action": [
+            "turn_push",
+            "p3",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {
+            "part:p3.angle": [
+              "rest",
+              "pos"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 32,
+          "action": [
+            "turn_pull",
+            "p3",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {
+            "part:p3.angle": [
+              "pos",
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 33,
+          "action": [
+            "turn_pull",
+            "p3",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {
+            "part:p3.angle": [
+              "rest",
+              "pos"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 34,
+          "action": [
+            "turn",
+            "p3",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "turned=0.92",
+          "changed": {
+            "part:p3.angle": [
+              "pos",
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 35,
+          "action": [
+            "push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 36,
+          "action": [
+            "pull",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 37,
+          "action": [
+            "push",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 38,
+          "action": [
+            "push",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 39,
+          "action": [
+            "pull",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 40,
+          "action": [
+            "push",
+            "p2"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 41,
+          "action": [
+            "turn_pull",
+            "p3",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.07",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 42,
+          "action": [
+            "press_push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 43,
+          "action": [
+            "turn_push",
+            "p3",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.07",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 44,
+          "action": [
+            "press_push",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 45,
+          "action": [
+            "turn_push",
+            "p5",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 46,
+          "action": [
+            "turn_push",
+            "p5",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.001 turned=0.68",
+          "changed": {
+            "part:p2.open": [
+              "closed",
+              "ajar"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 47,
+          "action": [
+            "turn_pull",
+            "p5",
+            1
+          ],
+          "mode": "explore",
+          "executed": false,
+          "stalled": false,
+          "notes": "grasp failed",
+          "changed": {
+            "part:p2.open": [
+              "ajar",
+              "closed"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 48,
+          "action": [
+            "turn_pull",
+            "p5",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.901 turned=0.68",
+          "changed": {
+            "part:p2.open": [
+              "closed",
+              "open"
+            ],
+            "part:p5.angle": [
+              "rest",
+              "pos"
+            ]
+          },
+          "hand_before": "empty"
+        }
+      ],
+      "failed_inserts": [],
+      "physical_state": {
+        "key_locked": false,
+        "deadbolt_locked": false,
+        "opened": true
+      }
+    },
+    {
+      "seed": 1,
+      "task": "door",
+      "success": true,
+      "actions": 38,
+      "reason": "goal",
+      "recorded_outcomes": 38,
+      "stalled_skills": 32,
+      "action_history": [
+        {
+          "step": 1,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 2,
+          "action": [
+            "push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 3,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 4,
+          "action": [
+            "turn_push",
+            "p1",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.001 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 5,
+          "action": [
+            "turn_push",
+            "p1",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 6,
+          "action": [
+            "turn_pull",
+            "p1",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 7,
+          "action": [
+            "turn_pull",
+            "p1",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 8,
+          "action": [
+            "push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 9,
+          "action": [
+            "pull",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 10,
+          "action": [
+            "push",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 11,
+          "action": [
+            "press_push",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 12,
+          "action": [
+            "turn_pull",
+            "p4",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.08",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 13,
+          "action": [
+            "turn_push",
+            "p4",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 14,
+          "action": [
+            "turn_push",
+            "p4",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 15,
+          "action": [
+            "turn_pull",
+            "p4",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 16,
+          "action": [
+            "push",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 17,
+          "action": [
+            "pull",
+            "p2"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p2.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 18,
+          "action": [
+            "pick",
+            "o2"
+          ],
+          "mode": "object_trial",
+          "executed": true,
+          "stalled": false,
+          "notes": "lifted",
+          "changed": {
+            "obj:o2.where": [
+              "free",
+              "held"
+            ],
+            "body:hand": [
+              "empty",
+              "o2"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 19,
+          "action": [
+            "insert",
+            "o2",
+            "p3"
+          ],
+          "mode": "object_trial",
+          "executed": true,
+          "stalled": false,
+          "notes": "depth=0.029 lateral=0.000 retries=0",
+          "changed": {
+            "obj:o2.where": [
+              "held",
+              "in:p3"
+            ]
+          },
+          "hand_before": "o2"
+        },
+        {
+          "step": 20,
+          "action": [
+            "turn_held",
+            "o2",
+            1
+          ],
+          "mode": "object_trial",
+          "executed": true,
+          "stalled": true,
+          "notes": "turned=0.00",
+          "changed": {},
+          "hand_before": "o2"
+        },
+        {
+          "step": 21,
+          "action": [
+            "turn_held",
+            "o2",
+            -1
+          ],
+          "mode": "object_trial",
+          "executed": true,
+          "stalled": true,
+          "notes": "turned=0.00",
+          "changed": {},
+          "hand_before": "o2"
+        },
+        {
+          "step": 22,
+          "action": [
+            "pick",
+            "o2"
+          ],
+          "mode": "object_trial",
+          "executed": true,
+          "stalled": false,
+          "notes": "withdrawn",
+          "changed": {
+            "obj:o2.where": [
+              "in:p3",
+              "free"
+            ],
+            "body:hand": [
+              "o2",
+              "empty"
+            ]
+          },
+          "hand_before": "o2"
+        },
+        {
+          "step": 23,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 24,
+          "action": [
+            "push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 25,
+          "action": [
+            "push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 26,
+          "action": [
+            "push",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 27,
+          "action": [
+            "pull",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 28,
+          "action": [
+            "push",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 29,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 30,
+          "action": [
+            "press_push",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 31,
+          "action": [
+            "turn_pull",
+            "p4",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {
+            "part:p4.angle": [
+              "pos",
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 32,
+          "action": [
+            "turn_pull",
+            "p4",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {
+            "part:p4.angle": [
+              "rest",
+              "pos"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 33,
+          "action": [
+            "turn_push",
+            "p4",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {
+            "part:p4.angle": [
+              "pos",
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 34,
+          "action": [
+            "turn_pull",
+            "p1",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 35,
+          "action": [
+            "turn_push",
+            "p1",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.001 turned=0.68",
+          "changed": {
+            "part:p5.open": [
+              "closed",
+              "ajar"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 36,
+          "action": [
+            "turn_push",
+            "p1",
+            -1
+          ],
+          "mode": "explore",
+          "executed": false,
+          "stalled": false,
+          "notes": "grasp failed",
+          "changed": {
+            "part:p5.open": [
+              "ajar",
+              "closed"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 37,
+          "action": [
+            "turn_push",
+            "p1",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 38,
+          "action": [
+            "turn_pull",
+            "p1",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.904 turned=0.68",
+          "changed": {
+            "part:p5.open": [
+              "closed",
+              "open"
+            ],
+            "part:p1.angle": [
+              "rest",
+              "pos"
+            ]
+          },
+          "hand_before": "empty"
+        }
+      ],
+      "failed_inserts": [],
+      "physical_state": {
+        "key_locked": false,
+        "deadbolt_locked": false,
+        "opened": true
+      }
+    },
+    {
+      "seed": 2,
+      "task": "door",
+      "success": true,
+      "actions": 30,
+      "reason": "goal",
+      "recorded_outcomes": 30,
+      "stalled_skills": 28,
+      "action_history": [
+        {
+          "step": 1,
+          "action": [
+            "push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 2,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 3,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 4,
+          "action": [
+            "turn_pull",
+            "p1",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 5,
+          "action": [
+            "turn_pull",
+            "p1",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 6,
+          "action": [
+            "turn_push",
+            "p1",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.001 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 7,
+          "action": [
+            "turn_push",
+            "p1",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 8,
+          "action": [
+            "push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 9,
+          "action": [
+            "pull",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 10,
+          "action": [
+            "push",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 11,
+          "action": [
+            "press_push",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 12,
+          "action": [
+            "turn_push",
+            "p4",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 13,
+          "action": [
+            "turn_pull",
+            "p4",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {
+            "part:p4.angle": [
+              "pos",
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 14,
+          "action": [
+            "turn_pull",
+            "p4",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {
+            "part:p4.angle": [
+              "rest",
+              "pos"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 15,
+          "action": [
+            "turn_push",
+            "p4",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 16,
+          "action": [
+            "push",
+            "p2"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 17,
+          "action": [
+            "pull",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p5.open": [
+              "closed",
+              "open"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 18,
+          "action": [
+            "turn_pull",
+            "p4",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.08",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 19,
+          "action": [
+            "push",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 20,
+          "action": [
+            "pull",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 21,
+          "action": [
+            "push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 22,
+          "action": [
+            "push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 23,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 24,
+          "action": [
+            "push",
+            "p2"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 25,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 26,
+          "action": [
+            "press_push",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 27,
+          "action": [
+            "turn_pull",
+            "p4",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 28,
+          "action": [
+            "turn_push",
+            "p4",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {
+            "part:p4.angle": [
+              "pos",
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 29,
+          "action": [
+            "turn_push",
+            "p1",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 30,
+          "action": [
+            "turn_pull",
+            "p1",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.902 turned=0.67",
+          "changed": {
+            "part:p2.open": [
+              "closed",
+              "open"
+            ],
+            "part:p1.angle": [
+              "rest",
+              "pos"
+            ]
+          },
+          "hand_before": "empty"
+        }
+      ],
+      "failed_inserts": [],
+      "physical_state": {
+        "key_locked": false,
+        "deadbolt_locked": false,
+        "opened": true
+      }
+    },
+    {
+      "seed": 3,
+      "task": "door",
+      "success": true,
+      "actions": 60,
+      "reason": "goal",
+      "recorded_outcomes": 60,
+      "stalled_skills": 48,
+      "action_history": [
+        {
+          "step": 1,
+          "action": [
+            "push",
+            "p2"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 2,
+          "action": [
+            "pull",
+            "p2"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 3,
+          "action": [
+            "press_push",
+            "p2"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 4,
+          "action": [
+            "turn_pull",
+            "p2",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 5,
+          "action": [
+            "turn_pull",
+            "p2",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 6,
+          "action": [
+            "turn_push",
+            "p2",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.001 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 7,
+          "action": [
+            "turn_push",
+            "p2",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 8,
+          "action": [
+            "push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 9,
+          "action": [
+            "pull",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 10,
+          "action": [
+            "push",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 11,
+          "action": [
+            "press_push",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 12,
+          "action": [
+            "turn_push",
+            "p4",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 13,
+          "action": [
+            "turn_push",
+            "p4",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 14,
+          "action": [
+            "turn_pull",
+            "p4",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 15,
+          "action": [
+            "turn_pull",
+            "p4",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 16,
+          "action": [
+            "push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 17,
+          "action": [
+            "pull",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p5.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 18,
+          "action": [
+            "pick",
+            "o2"
+          ],
+          "mode": "object_trial",
+          "executed": true,
+          "stalled": false,
+          "notes": "lifted",
+          "changed": {
+            "obj:o2.where": [
+              "free",
+              "held"
+            ],
+            "body:hand": [
+              "empty",
+              "o2"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 19,
+          "action": [
+            "insert",
+            "o2",
+            "p1"
+          ],
+          "mode": "object_trial",
+          "executed": true,
+          "stalled": false,
+          "notes": "depth=0.029 lateral=0.000 retries=0",
+          "changed": {
+            "obj:o2.where": [
+              "held",
+              "in:p1"
+            ]
+          },
+          "hand_before": "o2"
+        },
+        {
+          "step": 20,
+          "action": [
+            "turn_held",
+            "o2",
+            1
+          ],
+          "mode": "object_trial",
+          "executed": true,
+          "stalled": true,
+          "notes": "turned=0.00",
+          "changed": {},
+          "hand_before": "o2"
+        },
+        {
+          "step": 21,
+          "action": [
+            "turn_held",
+            "o2",
+            -1
+          ],
+          "mode": "object_trial",
+          "executed": true,
+          "stalled": true,
+          "notes": "turned=0.00",
+          "changed": {},
+          "hand_before": "o2"
+        },
+        {
+          "step": 22,
+          "action": [
+            "pick",
+            "o2"
+          ],
+          "mode": "object_trial",
+          "executed": true,
+          "stalled": false,
+          "notes": "withdrawn",
+          "changed": {
+            "obj:o2.where": [
+              "in:p1",
+              "free"
+            ],
+            "body:hand": [
+              "o2",
+              "empty"
+            ]
+          },
+          "hand_before": "o2"
+        },
+        {
+          "step": 23,
+          "action": [
+            "pull",
+            "p2"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 24,
+          "action": [
+            "push",
+            "p2"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 25,
+          "action": [
+            "push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 26,
+          "action": [
+            "pull",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 27,
+          "action": [
+            "push",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 28,
+          "action": [
+            "press_push",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 29,
+          "action": [
+            "push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 30,
+          "action": [
+            "press_push",
+            "p2"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 31,
+          "action": [
+            "turn_pull",
+            "p2",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 32,
+          "action": [
+            "turn_push",
+            "p2",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.001 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 33,
+          "action": [
+            "turn_pull",
+            "p2",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 34,
+          "action": [
+            "turn_push",
+            "p2",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 35,
+          "action": [
+            "turn_pull",
+            "p4",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 36,
+          "action": [
+            "turn_pull",
+            "p4",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 37,
+          "action": [
+            "turn_push",
+            "p4",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 38,
+          "action": [
+            "turn_push",
+            "p4",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 39,
+          "action": [
+            "turn",
+            "p4",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "turned=1.51",
+          "changed": {
+            "part:p4.angle": [
+              "pos",
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 40,
+          "action": [
+            "pull",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 41,
+          "action": [
+            "push",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 42,
+          "action": [
+            "press_push",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 43,
+          "action": [
+            "push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 44,
+          "action": [
+            "pull",
+            "p2"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 45,
+          "action": [
+            "push",
+            "p2"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 46,
+          "action": [
+            "push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 47,
+          "action": [
+            "turn_pull",
+            "p4",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.07",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 48,
+          "action": [
+            "turn_push",
+            "p4",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {
+            "part:p4.angle": [
+              "rest",
+              "pos"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 49,
+          "action": [
+            "turn",
+            "p4",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "turned=0.94",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 50,
+          "action": [
+            "turn",
+            "p2",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "turned=0.47",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 51,
+          "action": [
+            "turn",
+            "p2",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "turned=1.10",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 52,
+          "action": [
+            "turn",
+            "p4",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "turned=1.60",
+          "changed": {
+            "part:p4.angle": [
+              "pos",
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 53,
+          "action": [
+            "turn_push",
+            "p4",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.06",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 54,
+          "action": [
+            "turn_pull",
+            "p4",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {
+            "part:p4.angle": [
+              "rest",
+              "pos"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 55,
+          "action": [
+            "turn",
+            "p4",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "turned=0.78",
+          "changed": {
+            "part:p4.angle": [
+              "pos",
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 56,
+          "action": [
+            "press_push",
+            "p2"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 57,
+          "action": [
+            "turn_pull",
+            "p2",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 58,
+          "action": [
+            "turn_push",
+            "p2",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.001 turned=0.67",
+          "changed": {
+            "part:p3.open": [
+              "closed",
+              "ajar"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 59,
+          "action": [
+            "turn_push",
+            "p2",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.050 turned=0.42",
+          "changed": {
+            "part:p3.open": [
+              "ajar",
+              "closed"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 60,
+          "action": [
+            "turn_pull",
+            "p2",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.901 turned=0.67",
+          "changed": {
+            "part:p3.open": [
+              "closed",
+              "open"
+            ],
+            "part:p2.angle": [
+              "rest",
+              "pos"
+            ]
+          },
+          "hand_before": "empty"
+        }
+      ],
+      "failed_inserts": [],
+      "physical_state": {
+        "key_locked": false,
+        "deadbolt_locked": false,
+        "opened": true
+      }
+    }
+  ]
+}

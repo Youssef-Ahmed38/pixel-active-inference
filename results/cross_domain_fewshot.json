@@ -1,0 +1,135 @@
+{
+  "config": {
+    "arm_file": "C:\\projects\\pixel-active-inference\\results\\slice_v7\\slice_evidence.npz",
+    "maze_per_cause": 8,
+    "arm_steps": 120,
+    "maze_steps": 40,
+    "seed": 0,
+    "maze_train_per_cause": 1
+  },
+  "causes": [
+    "none",
+    "push",
+    "heavier_object",
+    "slippery_object",
+    "camera_shift",
+    "passage_blocked",
+    "unknown"
+  ],
+  "features": [
+    "body_motion",
+    "contact",
+    "focal_entity",
+    "scene",
+    "vertical_body",
+    "vertical_force",
+    "vertical_entity",
+    "holding",
+    "maze_domain"
+  ],
+  "splits": {
+    "arm_train": 60,
+    "arm_test": 40,
+    "maze_train": 3,
+    "maze_test": 21
+  },
+  "arm_pretrained": {
+    "n": 40,
+    "accuracy": 0.825,
+    "by_cause": {
+      "none": {
+        "n": 8,
+        "correct": 6
+      },
+      "push": {
+        "n": 8,
+        "correct": 8
+      },
+      "heavier_object": {
+        "n": 8,
+        "correct": 7
+      },
+      "slippery_object": {
+        "n": 8,
+        "correct": 4
+      },
+      "camera_shift": {
+        "n": 8,
+        "correct": 8
+      }
+    }
+  },
+  "learning_curve": [
+    {
+      "maze_steps": 0,
+      "transfer_accuracy": 0.6666666666666666,
+      "scratch_accuracy": 0.0
+    },
+    {
+      "maze_steps": 1,
+      "transfer_accuracy": 0.6666666666666666,
+      "scratch_accuracy": 0.0
+    },
+    {
+      "maze_steps": 2,
+      "transfer_accuracy": 0.6666666666666666,
+      "scratch_accuracy": 0.0
+    },
+    {
+      "maze_steps": 5,
+      "transfer_accuracy": 0.6666666666666666,
+      "scratch_accuracy": 0.6666666666666666
+    },
+    {
+      "maze_steps": 10,
+      "transfer_accuracy": 1.0,
+      "scratch_accuracy": 1.0
+    },
+    {
+      "maze_steps": 20,
+      "transfer_accuracy": 1.0,
+      "scratch_accuracy": 1.0
+    },
+    {
+      "maze_steps": 40,
+      "transfer_accuracy": 1.0,
+      "scratch_accuracy": 1.0
+    }
+  ],
+  "maze_transfer": {
+    "n": 21,
+    "accuracy": 1.0,
+    "by_cause": {
+      "none": {
+        "n": 7,
+        "correct": 7
+      },
+      "camera_shift": {
+        "n": 7,
+        "correct": 7
+      },
+      "passage_blocked": {
+        "n": 7,
+        "correct": 7
+      }
+    }
+  },
+  "maze_scratch": {
+    "n": 21,
+    "accuracy": 1.0,
+    "by_cause": {
+      "none": {
+        "n": 7,
+        "correct": 7
+      },
+      "camera_shift": {
+        "n": 7,
+        "correct": 7
+      },
+      "passage_blocked": {
+        "n": 7,
+        "correct": 7
+      }
+    }
+  }
+}

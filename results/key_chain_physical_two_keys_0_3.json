@@ -1,0 +1,380 @@
+{
+  "config": {
+    "physics": true,
+    "size": 15,
+    "move_budget": 500,
+    "fixture_budget": 30,
+    "keys": 2,
+    "type_name": "hd_lever_pull_right",
+    "lock_state": "both",
+    "key_place": "drawer"
+  },
+  "summary": {
+    "n": 4,
+    "passed": 4,
+    "success_rate": 1.0
+  },
+  "episodes": [
+    {
+      "seed": 0,
+      "success": true,
+      "stage": "complete",
+      "moves": 30,
+      "fixture_actions": 42,
+      "drawer_open": true,
+      "door_open": true,
+      "entered_exit": true,
+      "events": [
+        {
+          "stage": "open_drawer",
+          "success": true,
+          "actions": 2
+        },
+        {
+          "stage": "carry_object",
+          "object": "o2",
+          "executed": true,
+          "stalled": false
+        },
+        {
+          "stage": "try_fixture",
+          "action": [
+            "insert",
+            "o2",
+            "p4"
+          ],
+          "stalled": false
+        },
+        {
+          "stage": "try_turn",
+          "action": [
+            "turn_held",
+            "o2",
+            1
+          ],
+          "stalled": false
+        },
+        {
+          "stage": "open_door",
+          "success": false,
+          "actions": 30
+        },
+        {
+          "stage": "repair",
+          "action": [
+            "turn_held",
+            "o2",
+            1
+          ],
+          "stalled": true,
+          "changed": true
+        },
+        {
+          "stage": "repair",
+          "action": [
+            "turn_held",
+            "o2",
+            -1
+          ],
+          "stalled": true,
+          "changed": false
+        },
+        {
+          "stage": "repair",
+          "action": [
+            "release",
+            "o2"
+          ],
+          "stalled": false,
+          "changed": true
+        },
+        {
+          "stage": "repair",
+          "action": [
+            "turn",
+            "p3",
+            -1
+          ],
+          "stalled": false,
+          "changed": true
+        },
+        {
+          "stage": "repair",
+          "action": [
+            "turn_pull",
+            "p5",
+            -1
+          ],
+          "stalled": true,
+          "changed": false
+        },
+        {
+          "stage": "repair",
+          "action": [
+            "turn_pull",
+            "p5",
+            1
+          ],
+          "stalled": false,
+          "changed": true
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "success": true,
+      "stage": "complete",
+      "moves": 82,
+      "fixture_actions": 41,
+      "drawer_open": true,
+      "door_open": true,
+      "entered_exit": true,
+      "events": [
+        {
+          "stage": "open_drawer",
+          "success": true,
+          "actions": 1
+        },
+        {
+          "stage": "carry_object",
+          "object": "o1",
+          "executed": true,
+          "stalled": false
+        },
+        {
+          "stage": "try_fixture",
+          "action": [
+            "insert",
+            "o1",
+            "p3"
+          ],
+          "stalled": false
+        },
+        {
+          "stage": "try_turn",
+          "action": [
+            "turn_held",
+            "o1",
+            1
+          ],
+          "stalled": false
+        },
+        {
+          "stage": "open_door",
+          "success": false,
+          "actions": 30
+        },
+        {
+          "stage": "repair",
+          "action": [
+            "turn_held",
+            "o1",
+            1
+          ],
+          "stalled": true,
+          "changed": true
+        },
+        {
+          "stage": "repair",
+          "action": [
+            "turn_held",
+            "o1",
+            -1
+          ],
+          "stalled": true,
+          "changed": false
+        },
+        {
+          "stage": "repair",
+          "action": [
+            "release",
+            "o1"
+          ],
+          "stalled": false,
+          "changed": true
+        },
+        {
+          "stage": "repair",
+          "action": [
+            "turn",
+            "p4",
+            -1
+          ],
+          "stalled": false,
+          "changed": true
+        },
+        {
+          "stage": "repair",
+          "action": [
+            "turn_pull",
+            "p1",
+            -1
+          ],
+          "stalled": true,
+          "changed": false
+        },
+        {
+          "stage": "repair",
+          "action": [
+            "turn_pull",
+            "p1",
+            1
+          ],
+          "stalled": false,
+          "changed": true
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "success": true,
+      "stage": "complete",
+      "moves": 108,
+      "fixture_actions": 35,
+      "drawer_open": true,
+      "door_open": true,
+      "entered_exit": true,
+      "events": [
+        {
+          "stage": "open_drawer",
+          "success": true,
+          "actions": 2
+        },
+        {
+          "stage": "carry_object",
+          "object": "o2",
+          "executed": true,
+          "stalled": false
+        },
+        {
+          "stage": "try_fixture",
+          "action": [
+            "insert",
+            "o2",
+            "p3"
+          ],
+          "stalled": false
+        },
+        {
+          "stage": "try_turn",
+          "action": [
+            "turn_held",
+            "o2",
+            1
+          ],
+          "stalled": false
+        },
+        {
+          "stage": "open_door",
+          "success": true,
+          "actions": 29
+        }
+      ]
+    },
+    {
+      "seed": 3,
+      "success": true,
+      "stage": "complete",
+      "moves": 37,
+      "fixture_actions": 42,
+      "drawer_open": true,
+      "door_open": true,
+      "entered_exit": true,
+      "events": [
+        {
+          "stage": "open_drawer",
+          "success": true,
+          "actions": 2
+        },
+        {
+          "stage": "carry_object",
+          "object": "o1",
+          "executed": true,
+          "stalled": false
+        },
+        {
+          "stage": "try_fixture",
+          "action": [
+            "insert",
+            "o1",
+            "p1"
+          ],
+          "stalled": false
+        },
+        {
+          "stage": "try_turn",
+          "action": [
+            "turn_held",
+            "o1",
+            1
+          ],
+          "stalled": false
+        },
+        {
+          "stage": "open_door",
+          "success": false,
+          "actions": 30
+        },
+        {
+          "stage": "repair",
+          "action": [
+            "turn_held",
+            "o1",
+            1
+          ],
+          "stalled": true,
+          "changed": true
+        },
+        {
+          "stage": "repair",
+          "action": [
+            "turn_held",
+            "o1",
+            -1
+          ],
+          "stalled": true,
+          "changed": false
+        },
+        {
+          "stage": "repair",
+          "action": [
+            "release",
+            "o1"
+          ],
+          "stalled": false,
+          "changed": true
+        },
+        {
+          "stage": "repair",
+          "action": [
+            "turn",
+            "p4",
+            -1
+          ],
+          "stalled": false,
+          "changed": true
+        },
+        {
+          "stage": "repair",
+          "action": [
+            "turn_pull",
+            "p2",
+            -1
+          ],
+          "stalled": true,
+          "changed": false
+        },
+        {
+          "stage": "repair",
+          "action": [
+            "turn_pull",
+            "p2",
+            1
+          ],
+          "stalled": false,
+          "changed": true
+        }
+      ]
+    }
+  ]
+}

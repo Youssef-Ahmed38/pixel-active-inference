@@ -81,6 +81,7 @@ class Scenario:
     door_dial: bool = False         # a persistent dial on the door leaf, next to the handle
     door_hook: bool = False         # a coat hook on the door leaf
     shared_shapes: bool = False     # decoys shaped like the mechanisms (a disc, a wing, a handle-like dial)
+    dense_decoys: bool = False      # additional matching cabinet wing, hooks, and elongated prop
     p_fail: float = 0.07
     extra: dict = field(default_factory=dict)
 
@@ -95,7 +96,7 @@ class Scenario:
 
 def sample_scenario(rng: np.random.Generator, split: str = "train", lock_state: str | None = None,
                     key_place: str | None = None, type_name: str | None = None, p_fail: float = 0.07,
-                    shared_shapes: bool = False) -> Scenario:
+                    shared_shapes: bool = False, dense_decoys: bool = False) -> Scenario:
     """A random scene: a door type from the split that supports `lock_state`, placements, distractors.
     shared_shapes: decoys shaped like the mechanisms (the door dial then always present); the random
     draws here are the same as without it (the MockWorld built from it differs in more than the decoys)."""
@@ -115,7 +116,8 @@ def sample_scenario(rng: np.random.Generator, split: str = "train", lock_state: 
     return Scenario(type_name, state, place, n_keys=int(rng.integers(1, 4)) if has_key else 0,
                     seed=int(rng.integers(1 << 30)), dial=bool(rng.random() < 0.8), cabinet=bool(rng.random() < 0.6),
                     pen=bool(rng.random() < 0.5), p_fail=p_fail, door_dial=bool(rng.random() < 0.5) or shared_shapes,
-                    door_hook=bool(rng.random() < 0.3), shared_shapes=shared_shapes)
+                    door_hook=bool(rng.random() < 0.3), shared_shapes=shared_shapes,
+                    dense_decoys=dense_decoys)
 
 
 class MockWorld:
@@ -127,6 +129,7 @@ class MockWorld:
         f = sc.fixed
         rng = self.rng
         self.swing, self.handle = f["swing"], f["handle"]
+        self.closer = f.get("closer_kind", "none") != "none"   # a door closer swings an open door shut
         self.knob_dir = f["knob_dir"]
         ls = 1.0 if f["hinge"] == "left" else -1.0          # latch side (+y when hinged on the left)
         w = float(rng.uniform(0.82, 0.92))
@@ -166,6 +169,15 @@ class MockWorld:
             if "door_dial" in spec:
                 j, g, pos, _ = spec["door_dial"]
                 spec["door_dial"] = (j, g, pos, {"shape": hattrs[1]["shape"], "size": hattrs[1]["size"]})
+            if sc.dense_decoys:
+                # Additional physical look-alikes are opt-in: shared_shapes keeps its
+                # established three-decoy benchmark and deterministic object layout.
+                spec["cab_wing"] = ("hinge", True, (0.13, cab_y + ls * float(srng.uniform(-0.12, 0.12)), 0.59),
+                                    {"shape": "wing", "size": 0.07})
+                for n in ("hook", "door_hook"):
+                    if n in spec:
+                        j, g, pos, _ = spec[n]
+                        spec[n] = (j, g, pos, {"shape": "wing", "size": 0.07})
         names = list(spec)
         ids = [f"p{i + 1}" for i in rng.permutation(len(names))]
         self.pid = dict(zip(names, ids))
@@ -182,10 +194,12 @@ class MockWorld:
         for i in range(sc.n_keys):
             place = sc.key_place if i == match_i else str(rng.choice(decoy_places))
             objs.append({"name": f"key{i}", "fits": True, "matches": i == match_i, "place": place,
-                         "attrs": {"shape": "elongated", "size": round(float(rng.uniform(0.09, 0.12)), 3)}})
+                         "attrs": {"shape": "elongated", "size": round(float(rng.uniform(
+                             0.09 if sc.dense_decoys else 0.14,
+                             0.12 if sc.dense_decoys else 0.16)), 3)}})
         if sc.pen:
             objs.append({"name": "pen", "fits": False, "matches": False, "place": str(rng.choice(decoy_places)),
-                         "attrs": {"shape": "elongated", "size": round(float(rng.uniform(0.14, 0.16)), 3)}})
+                         "attrs": {"shape": "elongated", "size": round(float(rng.uniform(0.09, 0.12)), 3)}})
         oids = [f"o{i + 1}" for i in rng.permutation(len(objs))]
         self.objs = {}
         for o, oid in zip(objs, oids):
@@ -201,7 +215,8 @@ class MockWorld:
         self.unlock_sign = int(rng.choice([-1, 1]))
         self.plug, self.a0 = 0, self.tail
         self.door_open = self.drawer_open = self.cab_open = False
-        self.dial_q = {n: 0 for n in ("dial", "door_dial", "door_wing") if n in self.pid}   # persistent dials
+        self.hand_on_door = False       # the hand still holds the door it just opened (until the next action)
+        self.dial_q = {n: 0 for n in ("dial", "door_dial", "door_wing", "cab_wing") if n in self.pid}   # persistent dials
         self.hand: str | None = None
         self.hand_pos = np.array([0.6, 0.0, 1.0])
         self.t = 0.0
@@ -289,6 +304,11 @@ class MockWorld:
         cost = BASE_COST[kind] + TRAVEL * float(np.linalg.norm(tgt - self.hand_pos))
         self.hand_pos = tgt
         self.n += 1
+        if self.door_open and self.closer and self.hand_on_door:
+            # letting go of the door I opened (every action starts by letting go): the closer shuts it and
+            # the spring latch catches again, unless a bolt was thrown while it stood open
+            self._close_door()
+        self.hand_on_door = False
         if self.rng.random() < self.sc.p_fail:
             self.t += cost * 0.6
             return Outcome(action, False, False, {}, [], cost * 0.6, "skill failed")
@@ -347,7 +367,10 @@ class MockWorld:
         """Pull or push a part (moving whatever it is attached to); returns stalled."""
         if name in ("door", "handle", "thumb", "door_dial", "door_hook", "door_wing"):   # the leaf and what is on it
             if self.door_open:
-                return fam == "pull" if self.swing == "push" else False
+                if fam != self.swing:          # the closing move: it swings back shut (and latches)
+                    return not self._close_door()
+                self.hand_on_door = True
+                return False
             if name == "door" and fam == "pull":
                 return True
             if released:
@@ -358,6 +381,7 @@ class MockWorld:
                 if released and self.latch:
                     self._log("latch_released")
                 self.door_open = True
+                self.hand_on_door = True
                 self._log("door_opened")
                 return False
             return True
@@ -379,6 +403,14 @@ class MockWorld:
                 return False
             return True
         return True    # dial, hook, cylinder, cabinet disc: fixed to the furniture
+
+    def _close_door(self) -> bool:
+        """Swing the open door shut; a bolt thrown while it stood open hits the frame and keeps it open."""
+        if self.thumb == 1 or self.tail == 1:
+            return False
+        self.door_open = False
+        self._log("door_closed")
+        return True
 
     def _object(self, a: Action) -> tuple[bool, str]:
         kind, oid = a[0], a[1]

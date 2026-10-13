@@ -1,0 +1,28 @@
+{
+  "config": {
+    "physics": true,
+    "type_name": "hd_knob_pull_left",
+    "embodiment": "robotiq_2f85",
+    "lock_state": "deadbolt",
+    "key_place": "table",
+    "tasks": [
+      "door"
+    ]
+  },
+  "summary": {
+    "door": {
+      "n": 1,
+      "success_rate": 1.0
+    }
+  },
+  "episodes": [
+    {
+      "seed": 0,
+      "task": "door",
+      "success": true,
+      "actions": 72,
+      "reason": "goal",
+      "recorded_outcomes": 72
+    }
+  ]
+}

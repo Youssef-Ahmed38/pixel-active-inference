@@ -1,0 +1,206 @@
+{
+  "config": {
+    "episodes": 8,
+    "budget": 600,
+    "size": 21,
+    "sensor_range": 3,
+    "seed": 0,
+    "stop_at_goal": false
+  },
+  "summary": {
+    "explorer": {
+      "mean_coverage": 1.0,
+      "full_coverage_rate": 1.0,
+      "goal_found_rate": 1.0,
+      "mean_goal_step_capped": 152.375,
+      "max_steps": 360,
+      "mean_collisions": 0.0
+    },
+    "random": {
+      "mean_coverage": 0.17711784301816,
+      "full_coverage_rate": 0.0,
+      "goal_found_rate": 0.0,
+      "mean_goal_step_capped": 600.0,
+      "max_steps": 600,
+      "mean_collisions": 0.0
+    }
+  },
+  "episodes": [
+    {
+      "scene_seed": 0,
+      "agent": "explorer",
+      "steps": 316,
+      "coverage": 1.0,
+      "visited": 210,
+      "reachable": 210,
+      "found_goal": true,
+      "goal_step": 246,
+      "collisions": 0
+    },
+    {
+      "scene_seed": 0,
+      "agent": "random",
+      "steps": 600,
+      "coverage": 0.2761904761904762,
+      "visited": 58,
+      "reachable": 210,
+      "found_goal": false,
+      "goal_step": null,
+      "collisions": 0
+    },
+    {
+      "scene_seed": 1,
+      "agent": "explorer",
+      "steps": 354,
+      "coverage": 1.0,
+      "visited": 207,
+      "reachable": 207,
+      "found_goal": true,
+      "goal_step": 225,
+      "collisions": 0
+    },
+    {
+      "scene_seed": 1,
+      "agent": "random",
+      "steps": 600,
+      "coverage": 0.10144927536231885,
+      "visited": 21,
+      "reachable": 207,
+      "found_goal": false,
+      "goal_step": null,
+      "collisions": 0
+    },
+    {
+      "scene_seed": 2,
+      "agent": "explorer",
+      "steps": 360,
+      "coverage": 1.0,
+      "visited": 212,
+      "reachable": 212,
+      "found_goal": true,
+      "goal_step": 46,
+      "collisions": 0
+    },
+    {
+      "scene_seed": 2,
+      "agent": "random",
+      "steps": 600,
+      "coverage": 0.1320754716981132,
+      "visited": 28,
+      "reachable": 212,
+      "found_goal": false,
+      "goal_step": null,
+      "collisions": 0
+    },
+    {
+      "scene_seed": 3,
+      "agent": "explorer",
+      "steps": 312,
+      "coverage": 1.0,
+      "visited": 203,
+      "reachable": 203,
+      "found_goal": true,
+      "goal_step": 186,
+      "collisions": 0
+    },
+    {
+      "scene_seed": 3,
+      "agent": "random",
+      "steps": 600,
+      "coverage": 0.2660098522167488,
+      "visited": 54,
+      "reachable": 203,
+      "found_goal": false,
+      "goal_step": null,
+      "collisions": 0
+    },
+    {
+      "scene_seed": 4,
+      "agent": "explorer",
+      "steps": 351,
+      "coverage": 1.0,
+      "visited": 207,
+      "reachable": 207,
+      "found_goal": true,
+      "goal_step": 60,
+      "collisions": 0
+    },
+    {
+      "scene_seed": 4,
+      "agent": "random",
+      "steps": 600,
+      "coverage": 0.1932367149758454,
+      "visited": 40,
+      "reachable": 207,
+      "found_goal": false,
+      "goal_step": null,
+      "collisions": 0
+    },
+    {
+      "scene_seed": 5,
+      "agent": "explorer",
+      "steps": 318,
+      "coverage": 1.0,
+      "visited": 209,
+      "reachable": 209,
+      "found_goal": true,
+      "goal_step": 241,
+      "collisions": 0
+    },
+    {
+      "scene_seed": 5,
+      "agent": "random",
+      "steps": 600,
+      "coverage": 0.1339712918660287,
+      "visited": 28,
+      "reachable": 209,
+      "found_goal": false,
+      "goal_step": null,
+      "collisions": 0
+    },
+    {
+      "scene_seed": 6,
+      "agent": "explorer",
+      "steps": 342,
+      "coverage": 1.0,
+      "visited": 207,
+      "reachable": 207,
+      "found_goal": true,
+      "goal_step": 58,
+      "collisions": 0
+    },
+    {
+      "scene_seed": 6,
+      "agent": "random",
+      "steps": 600,
+      "coverage": 0.17391304347826086,
+      "visited": 36,
+      "reachable": 207,
+      "found_goal": false,
+      "goal_step": null,
+      "collisions": 0
+    },
+    {
+      "scene_seed": 7,
+      "agent": "explorer",
+      "steps": 326,
+      "coverage": 1.0,
+      "visited": 207,
+      "reachable": 207,
+      "found_goal": true,
+      "goal_step": 157,
+      "collisions": 0
+    },
+    {
+      "scene_seed": 7,
+      "agent": "random",
+      "steps": 600,
+      "coverage": 0.14009661835748793,
+      "visited": 29,
+      "reachable": 207,
+      "found_goal": false,
+      "goal_step": null,
+      "collisions": 0
+    }
+  ]
+}

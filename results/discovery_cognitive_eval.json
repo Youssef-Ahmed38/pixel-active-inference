@@ -1,0 +1,206 @@
+{
+  "summary": {
+    "door": {
+      "n": 12,
+      "success_rate": 1.0
+    },
+    "drawer": {
+      "n": 12,
+      "success_rate": 1.0
+    }
+  },
+  "episodes": [
+    {
+      "seed": 0,
+      "task": "door",
+      "success": true,
+      "actions": 5,
+      "reason": "goal",
+      "recorded_outcomes": 5
+    },
+    {
+      "seed": 0,
+      "task": "drawer",
+      "success": true,
+      "actions": 7,
+      "reason": "goal",
+      "recorded_outcomes": 7
+    },
+    {
+      "seed": 1,
+      "task": "door",
+      "success": true,
+      "actions": 3,
+      "reason": "goal",
+      "recorded_outcomes": 3
+    },
+    {
+      "seed": 1,
+      "task": "drawer",
+      "success": true,
+      "actions": 23,
+      "reason": "goal",
+      "recorded_outcomes": 23
+    },
+    {
+      "seed": 2,
+      "task": "door",
+      "success": true,
+      "actions": 9,
+      "reason": "goal",
+      "recorded_outcomes": 9
+    },
+    {
+      "seed": 2,
+      "task": "drawer",
+      "success": true,
+      "actions": 7,
+      "reason": "goal",
+      "recorded_outcomes": 7
+    },
+    {
+      "seed": 3,
+      "task": "door",
+      "success": true,
+      "actions": 7,
+      "reason": "goal",
+      "recorded_outcomes": 7
+    },
+    {
+      "seed": 3,
+      "task": "drawer",
+      "success": true,
+      "actions": 14,
+      "reason": "goal",
+      "recorded_outcomes": 14
+    },
+    {
+      "seed": 4,
+      "task": "door",
+      "success": true,
+      "actions": 6,
+      "reason": "goal",
+      "recorded_outcomes": 6
+    },
+    {
+      "seed": 4,
+      "task": "drawer",
+      "success": true,
+      "actions": 8,
+      "reason": "goal",
+      "recorded_outcomes": 8
+    },
+    {
+      "seed": 5,
+      "task": "door",
+      "success": true,
+      "actions": 10,
+      "reason": "goal",
+      "recorded_outcomes": 10
+    },
+    {
+      "seed": 5,
+      "task": "drawer",
+      "success": true,
+      "actions": 15,
+      "reason": "goal",
+      "recorded_outcomes": 15
+    },
+    {
+      "seed": 6,
+      "task": "door",
+      "success": true,
+      "actions": 3,
+      "reason": "goal",
+      "recorded_outcomes": 3
+    },
+    {
+      "seed": 6,
+      "task": "drawer",
+      "success": true,
+      "actions": 8,
+      "reason": "goal",
+      "recorded_outcomes": 8
+    },
+    {
+      "seed": 7,
+      "task": "door",
+      "success": true,
+      "actions": 9,
+      "reason": "goal",
+      "recorded_outcomes": 9
+    },
+    {
+      "seed": 7,
+      "task": "drawer",
+      "success": true,
+      "actions": 14,
+      "reason": "goal",
+      "recorded_outcomes": 14
+    },
+    {
+      "seed": 8,
+      "task": "door",
+      "success": true,
+      "actions": 8,
+      "reason": "goal",
+      "recorded_outcomes": 8
+    },
+    {
+      "seed": 8,
+      "task": "drawer",
+      "success": true,
+      "actions": 7,
+      "reason": "goal",
+      "recorded_outcomes": 7
+    },
+    {
+      "seed": 9,
+      "task": "door",
+      "success": true,
+      "actions": 4,
+      "reason": "goal",
+      "recorded_outcomes": 4
+    },
+    {
+      "seed": 9,
+      "task": "drawer",
+      "success": true,
+      "actions": 7,
+      "reason": "goal",
+      "recorded_outcomes": 7
+    },
+    {
+      "seed": 10,
+      "task": "door",
+      "success": true,
+      "actions": 4,
+      "reason": "goal",
+      "recorded_outcomes": 4
+    },
+    {
+      "seed": 10,
+      "task": "drawer",
+      "success": true,
+      "actions": 15,
+      "reason": "goal",
+      "recorded_outcomes": 15
+    },
+    {
+      "seed": 11,
+      "task": "door",
+      "success": true,
+      "actions": 9,
+      "reason": "goal",
+      "recorded_outcomes": 9
+    },
+    {
+      "seed": 11,
+      "task": "drawer",
+      "success": true,
+      "actions": 14,
+      "reason": "goal",
+      "recorded_outcomes": 14
+    }
+  ]
+}

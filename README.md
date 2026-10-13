@@ -3,11 +3,52 @@
 Hierarchical, pixel-based active inference for a simulated Franka Panda, building on
 PixelAI (Sancaktar et al., 2020). Everything runs in simulation (MuJoCo).
 
-**Status: sprint week 4 of 8.** Vertical slice with cause inference, adaptation and recipes; doors, drawers and six bodies; perception from pixels training on Kaggle.
+**Status: sprint work in progress.** Vertical slice with cause inference, adaptation and recipes;
+doors and drawers; a simple mobile maze exploration demo; perception from pixels training on Kaggle.
 The full plan is in [docs/ROADMAP.md](docs/ROADMAP.md) (main target, Stage 1 phases, Stages 2–7), the 8-week
 application sprint in [docs/SPRINT.md](docs/SPRINT.md), verified literature in [docs/LITERATURE.md](docs/LITERATURE.md), and time and compute estimates in
 [docs/TIME_AND_COMPUTE.md](docs/TIME_AND_COMPUTE.md).
 The phase table below predates the roadmap.
+
+Stage 5 chess includes teacher-generated lessons, shared cognitive episode records,
+and a [learned relational rule model](docs/CHESS_RULES.md) with correction training over
+complete action spaces and fresh-board evaluation. The [original neural baseline](docs/CHESS_STAGE5.md)
+is preserved for comparison. Two fresh suites matched all 1,128 complete legal-move sets
+and all 26,745 legal piece transitions. The [complete state model](docs/CHESS_STATE.md)
+adds learned turn, castling/en passant updates, counters and history: two fresh suites
+passed all 27,161 complete transitions and 798 rollout steps. The
+[learned evaluator and value baseline](docs/CHESS_EVALUATION.md) passed all 27,306
+fresh ending checks and distills Stockfish position scores into agent weights.
+[Bounded multi-move search and draw-claim execution](docs/CHESS_SEARCH.md) now run
+through shared cognitive skills; larger search budgets solved the tested queen traps.
+[Self-play updates and Stockfish matches](docs/CHESS_PLAY.md) now run with saved
+replay, candidate validation and resumable PGNs. The first candidate was rejected
+on fresh validation; the learner lost all 12 completed matches. A separate
+[learned-state MCTS baseline](docs/CHESS_MCTS.md) passed correctness checks but
+solved fewer queen traps than alpha-beta. [Chess HRM and contextual value candidates](docs/CHESS_VALUE_UPDATES.md)
+are trained and integrated. The HRM candidate did not improve fresh value error;
+the contextual candidate improved value error but regressed on some tactical tests.
+A demonstrated playing-strength improvement remains pending.
+Search now supports separate ordering checkpoints and prior-PV ordering, while
+match reports save each game and resume unplayed schedule slots. The Windows
+short-deadline clock issue is fixed for both planners.
+
+[Stage 6 grounded text](docs/LANGUAGE_STAGE6.md) learns English/Arabic word meanings
+and templates, connects instructions to shared goals, and narrates observations.
+Four physical two-instruction sequences passed on two arm layouts in both languages.
+Recorded-scene teaching now passes all 118 held-out conversation rows per language
+on two additional layouts, with each meaning audited against the episode log.
+Separate uncertain-cause models pass 483/483 held-out meanings per language;
+causal hypotheses retain observation indices and are never labelled verified facts.
+[Stage 7 bicycle](docs/BIKE_STAGE7.md) now has a free MuJoCo bicycle and simplified
+rider: a student trained on actions inferred from observed motion rode 10 metres
+on 10/10 fresh seeds. Practice improved a harder paired holdout from 7/10 to 10/10.
+RGB frame-orientation models and a hybrid visual balance interface are now built.
+The finer-grid visual hybrid passed 20/20 fresh starts, matching the practiced
+sensor policy. Speed/joint sensors and camera tracking are still supplied.
+Full video motion extraction and Stage 2 locomotion transfer remain pending.
+Three repeated practice runs passed 20/20, 20/20 and 19/20 on twenty shared fresh
+layouts; paired scratch runs passed 2/20, 1/20 and 0/20. Stage 2 transfer remains untested.
 
 | Phase | Content | State |
 |---|---|---|
@@ -276,6 +317,34 @@ scene had no decoys.
 agent with the Allegro hand and decoys on, a latched door (19 actions). Each frame shows its action,
 what changed, its most probable rule, and the probability it still gives to a cause it has not
 thought of.</sub>
+
+## Maze exploration (early sprint week 6 demo)
+
+A simple mobile body sees only nearby cells, keeps a place map, and selects reachable frontiers
+by expected new area per travel step. Over 30 paired mazes at 160 steps, it visited **65.2%** of
+reachable cells versus **10.4%** for a random walker, and reached the hidden goal in 22/30 versus
+5/30. With a 600-step cap, the explorer reached the goal and visited every reachable cell in
+**60/60** mazes across two seed sets. This implements the exploration and memory idea with discrete moves; learned visual place
+recognition and walking remain future work. See [docs/MAZE.md](docs/MAZE.md) and
+`results/maze_complete.json`.
+
+An extended maze demo now uses local RGB camera patches, remembered views, noisy odometry, a
+continuous mobile movement skill, and inferred passage-block/camera-shift causes. See the
+[demo](docs/media/maze/exploration.gif) and [advanced evaluation](results/maze_advanced.json).
+Its color decoder and mobile dynamics are still hand specified; the small-to-large maze transfer
+experiment did not improve coverage over the fixed frontier policy.
+
+The [arm and maze alignment](docs/ALIGNMENT.md) now defines common cognitive contracts,
+planning score, cause posterior and memory, and runs both tasks through a shared controller.
+A separate few-shot HRM pilot tests transfer from existing arm cause evidence to maze causes;
+both the arm-pretrained and scratch models reach 21/21 after 40 updates on three small splits.
+Pretraining can help earlier in training, while broader transfer remains unproven.
+The [live cause and task extensions](docs/EXTENSIONS.md) add online thinker hooks, a fresh-maze
+evaluation, door and drawer cognitive records, and ordered two-relation arm tasks.
+The [next builds](docs/NEXT_BUILDS.md) add measured causal probes, longer relation sequences,
+locally trained maze tile vision, a stepping body and physical lock evaluations.
+The [integrated key chain](docs/INTEGRATED_KEY_CHAIN.md) combines maze search,
+drawer discovery, a carried key, and a locked physical door in one episode.
 
 ## Phase 0 results: PixelAI baseline
 

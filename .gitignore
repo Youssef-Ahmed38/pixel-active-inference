@@ -16,3 +16,9 @@ results/*_perception.json
 MUJOCO_LOG.TXT
 results/benchmark_*.json
 results/**/*.gif
+# intermediate outputs of long evaluations (the final JSON/MD summaries are kept)
+results/**/*.partial.jsonl
+results/**/partial/
+results/**/logs/
+results/**/*.err
+results/**/*.log

@@ -1,0 +1,1490 @@
+{
+  "config": {
+    "physics": true,
+    "type_name": "hd_lever_pull_right",
+    "embodiment": "robotiq_2f85",
+    "lock_state": "key",
+    "key_place": "drawer",
+    "tasks": [
+      "door"
+    ],
+    "contact_repair": true
+  },
+  "summary": {
+    "door": {
+      "n": 2,
+      "success_rate": 0.5
+    }
+  },
+  "episodes": [
+    {
+      "seed": 2,
+      "task": "door",
+      "success": false,
+      "actions": 300,
+      "reason": "budget",
+      "recorded_outcomes": 300,
+      "stalled_skills": 167,
+      "failed_inserts": [
+        {
+          "type": "action_trace",
+          "step": 73,
+          "action": [
+            "insert",
+            "o2",
+            "p5"
+          ],
+          "executed": false,
+          "stalled": true,
+          "notes": "depth=0.157 lateral=0.094 retries=0",
+          "changed": {},
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.11741,
+              0.79045,
+              0.96969
+            ],
+            "tip_after": [
+              0.00922,
+              0.79014,
+              0.88633
+            ],
+            "finger_force_before": [
+              353.5195,
+              353.5
+            ],
+            "finger_force_after": [
+              698.1932,
+              207.6838
+            ],
+            "contacts_before": 20,
+            "contacts_after": 32,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 74,
+          "action": [
+            "insert",
+            "o2",
+            "p5"
+          ],
+          "executed": false,
+          "stalled": true,
+          "notes": "depth=0.158 lateral=0.092 retries=0",
+          "changed": {},
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.00922,
+              0.79014,
+              0.88633
+            ],
+            "tip_after": [
+              0.00964,
+              0.79006,
+              0.88492
+            ],
+            "finger_force_before": [
+              698.1932,
+              207.6838
+            ],
+            "finger_force_after": [
+              700.7932,
+              212.3069
+            ],
+            "contacts_before": 32,
+            "contacts_after": 32,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 75,
+          "action": [
+            "insert",
+            "o2",
+            "p5"
+          ],
+          "executed": false,
+          "stalled": true,
+          "notes": "depth=0.158 lateral=0.092 retries=0",
+          "changed": {},
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.00964,
+              0.79006,
+              0.88492
+            ],
+            "tip_after": [
+              0.00973,
+              0.79003,
+              0.8846
+            ],
+            "finger_force_before": [
+              700.7932,
+              212.3069
+            ],
+            "finger_force_after": [
+              701.3879,
+              213.3533
+            ],
+            "contacts_before": 32,
+            "contacts_after": 32,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 76,
+          "action": [
+            "insert",
+            "o2",
+            "p1"
+          ],
+          "executed": true,
+          "stalled": true,
+          "notes": "depth=-0.001 lateral=0.002 retries=5",
+          "changed": {},
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.00973,
+              0.79003,
+              0.8846
+            ],
+            "tip_after": [
+              0.47378,
+              0.2975,
+              0.95663
+            ],
+            "finger_force_before": [
+              701.3879,
+              213.3533
+            ],
+            "finger_force_after": [
+              274.6515,
+              401.0702
+            ],
+            "contacts_before": 32,
+            "contacts_after": 21,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 106,
+          "action": [
+            "insert",
+            "o2",
+            "p4"
+          ],
+          "executed": true,
+          "stalled": true,
+          "notes": "depth=-0.096 lateral=1.325 retries=2",
+          "changed": {
+            "obj:o2.where": [
+              "held",
+              "free"
+            ]
+          },
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.54223,
+              0.38282,
+              1.29899
+            ],
+            "tip_after": [
+              0.39355,
+              -0.04645,
+              0.00246
+            ],
+            "finger_force_before": [
+              357.3625,
+              348.7493
+            ],
+            "finger_force_after": [
+              0.0,
+              0.0
+            ],
+            "contacts_before": 21,
+            "contacts_after": 16,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 134,
+          "action": [
+            "insert",
+            "o1",
+            "p1"
+          ],
+          "executed": true,
+          "stalled": true,
+          "notes": "depth=-0.002 lateral=0.008 retries=5",
+          "changed": {},
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.40768,
+              0.79015,
+              1.50357
+            ],
+            "tip_after": [
+              0.47346,
+              0.29228,
+              0.95602
+            ],
+            "finger_force_before": [
+              353.4877,
+              353.4663
+            ],
+            "finger_force_after": [
+              12.2642,
+              97.9464
+            ],
+            "contacts_before": 12,
+            "contacts_after": 13,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 137,
+          "action": [
+            "insert",
+            "o1",
+            "p2"
+          ],
+          "executed": true,
+          "stalled": true,
+          "notes": "depth=-0.053 lateral=1.027 retries=2",
+          "changed": {
+            "obj:o1.where": [
+              "held",
+              "free"
+            ]
+          },
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.34721,
+              0.25602,
+              0.1718
+            ],
+            "tip_after": [
+              0.48749,
+              -0.01347,
+              0.00246
+            ],
+            "finger_force_before": [
+              353.0017,
+              353.1685
+            ],
+            "finger_force_after": [
+              0.0,
+              0.0
+            ],
+            "contacts_before": 12,
+            "contacts_after": 10,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 144,
+          "action": [
+            "insert",
+            "o1",
+            "p4"
+          ],
+          "executed": true,
+          "stalled": true,
+          "notes": "depth=-0.109 lateral=1.149 retries=3",
+          "changed": {
+            "obj:o1.where": [
+              "held",
+              "free"
+            ]
+          },
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.46746,
+              0.37415,
+              1.10286
+            ],
+            "tip_after": [
+              0.38058,
+              0.37286,
+              0.11034
+            ],
+            "finger_force_before": [
+              341.0406,
+              338.7308
+            ],
+            "finger_force_after": [
+              153.4668,
+              0.0
+            ],
+            "contacts_before": 6,
+            "contacts_after": 16,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 147,
+          "action": [
+            "insert",
+            "o2",
+            "p4"
+          ],
+          "executed": true,
+          "stalled": true,
+          "notes": "depth=-0.191 lateral=1.258 retries=5",
+          "changed": {
+            "obj:o2.where": [
+              "held",
+              "free"
+            ]
+          },
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.30393,
+              0.49202,
+              0.1718
+            ],
+            "tip_after": [
+              0.29896,
+              0.41261,
+              0.00246
+            ],
+            "finger_force_before": [
+              353.0001,
+              353.1664
+            ],
+            "finger_force_after": [
+              0.0,
+              0.0
+            ],
+            "contacts_before": 12,
+            "contacts_after": 10,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 150,
+          "action": [
+            "insert",
+            "o2",
+            "p2"
+          ],
+          "executed": true,
+          "stalled": true,
+          "notes": "depth=-0.091 lateral=1.030 retries=2",
+          "changed": {
+            "obj:o2.where": [
+              "held",
+              "free"
+            ]
+          },
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.29908,
+              0.41261,
+              0.1718
+            ],
+            "tip_after": [
+              0.44933,
+              -0.07805,
+              0.00246
+            ],
+            "finger_force_before": [
+              352.9993,
+              353.1652
+            ],
+            "finger_force_after": [
+              0.0,
+              335.0846
+            ],
+            "contacts_before": 12,
+            "contacts_after": 11,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 153,
+          "action": [
+            "insert",
+            "o1",
+            "p5"
+          ],
+          "executed": false,
+          "stalled": true,
+          "notes": "depth=-0.072 lateral=0.008 retries=0",
+          "changed": {
+            "part:p5.open": [
+              "open",
+              "closed"
+            ]
+          },
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.36823,
+              0.37438,
+              0.2708
+            ],
+            "tip_after": [
+              0.03736,
+              0.78187,
+              0.79139
+            ],
+            "finger_force_before": [
+              353.1587,
+              353.0847
+            ],
+            "finger_force_after": [
+              346.3508,
+              348.1864
+            ],
+            "contacts_before": 12,
+            "contacts_after": 9,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 154,
+          "action": [
+            "insert",
+            "o1",
+            "p5"
+          ],
+          "executed": false,
+          "stalled": true,
+          "notes": "depth=-0.083 lateral=0.005 retries=0",
+          "changed": {},
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.03736,
+              0.78187,
+              0.79139
+            ],
+            "tip_after": [
+              0.02657,
+              0.79501,
+              0.7921
+            ],
+            "finger_force_before": [
+              346.3508,
+              348.1864
+            ],
+            "finger_force_after": [
+              345.9939,
+              346.9273
+            ],
+            "contacts_before": 9,
+            "contacts_after": 7,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 155,
+          "action": [
+            "insert",
+            "o1",
+            "p5"
+          ],
+          "executed": false,
+          "stalled": true,
+          "notes": "depth=-0.074 lateral=0.006 retries=0",
+          "changed": {},
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.02657,
+              0.79501,
+              0.7921
+            ],
+            "tip_after": [
+              0.03521,
+              0.78448,
+              0.79033
+            ],
+            "finger_force_before": [
+              345.9939,
+              346.9273
+            ],
+            "finger_force_after": [
+              358.9566,
+              363.2807
+            ],
+            "contacts_before": 7,
+            "contacts_after": 12,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 156,
+          "action": [
+            "insert",
+            "o1",
+            "p5"
+          ],
+          "executed": false,
+          "stalled": true,
+          "notes": "depth=-0.077 lateral=0.003 retries=0",
+          "changed": {},
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.03521,
+              0.78448,
+              0.79033
+            ],
+            "tip_after": [
+              0.03236,
+              0.78799,
+              0.79061
+            ],
+            "finger_force_before": [
+              358.9566,
+              363.2807
+            ],
+            "finger_force_after": [
+              341.6746,
+              342.7349
+            ],
+            "contacts_before": 12,
+            "contacts_after": 10,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 157,
+          "action": [
+            "insert",
+            "o1",
+            "p3"
+          ],
+          "executed": false,
+          "stalled": true,
+          "notes": "depth=-0.065 lateral=0.009 retries=0",
+          "changed": {},
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.03236,
+              0.78799,
+              0.79061
+            ],
+            "tip_after": [
+              0.46528,
+              0.37502,
+              1.09283
+            ],
+            "finger_force_before": [
+              341.6746,
+              342.7349
+            ],
+            "finger_force_after": [
+              346.4959,
+              345.8585
+            ],
+            "contacts_before": 10,
+            "contacts_after": 9,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 158,
+          "action": [
+            "insert",
+            "o1",
+            "p3"
+          ],
+          "executed": false,
+          "stalled": true,
+          "notes": "depth=-0.072 lateral=0.003 retries=0",
+          "changed": {},
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.46528,
+              0.37502,
+              1.09283
+            ],
+            "tip_after": [
+              0.45833,
+              0.3735,
+              1.09977
+            ],
+            "finger_force_before": [
+              346.4959,
+              345.8585
+            ],
+            "finger_force_after": [
+              360.0542,
+              356.9412
+            ],
+            "contacts_before": 9,
+            "contacts_after": 9,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 159,
+          "action": [
+            "insert",
+            "o1",
+            "p3"
+          ],
+          "executed": false,
+          "stalled": true,
+          "notes": "depth=-0.075 lateral=0.003 retries=0",
+          "changed": {},
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.45833,
+              0.3735,
+              1.09977
+            ],
+            "tip_after": [
+              0.45521,
+              0.37383,
+              1.09992
+            ],
+            "finger_force_before": [
+              360.0542,
+              356.9412
+            ],
+            "finger_force_after": [
+              346.7412,
+              344.8955
+            ],
+            "contacts_before": 9,
+            "contacts_after": 10,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 160,
+          "action": [
+            "insert",
+            "o1",
+            "p3"
+          ],
+          "executed": false,
+          "stalled": true,
+          "notes": "depth=-0.083 lateral=0.005 retries=0",
+          "changed": {},
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.45521,
+              0.37383,
+              1.09992
+            ],
+            "tip_after": [
+              0.44716,
+              0.37487,
+              1.10562
+            ],
+            "finger_force_before": [
+              346.7412,
+              344.8955
+            ],
+            "finger_force_after": [
+              357.7153,
+              357.8297
+            ],
+            "contacts_before": 10,
+            "contacts_after": 11,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 171,
+          "action": [
+            "insert",
+            "o2",
+            "p4"
+          ],
+          "executed": true,
+          "stalled": true,
+          "notes": "depth=-0.051 lateral=0.483 retries=4",
+          "changed": {
+            "obj:o2.where": [
+              "held",
+              "free"
+            ]
+          },
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.4497,
+              -0.07863,
+              0.1732
+            ],
+            "tip_after": [
+              0.43881,
+              0.53938,
+              0.80675
+            ],
+            "finger_force_before": [
+              353.2438,
+              352.9429
+            ],
+            "finger_force_after": [
+              0.0,
+              0.0
+            ],
+            "contacts_before": 12,
+            "contacts_after": 4,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 191,
+          "action": [
+            "insert",
+            "o1",
+            "p3"
+          ],
+          "executed": true,
+          "stalled": true,
+          "notes": "depth=-0.119 lateral=1.154 retries=4",
+          "changed": {
+            "obj:o1.where": [
+              "held",
+              "free"
+            ]
+          },
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.09232,
+              0.53891,
+              0.1718
+            ],
+            "tip_after": [
+              0.4111,
+              0.01958,
+              0.00246
+            ],
+            "finger_force_before": [
+              353.0047,
+              353.1726
+            ],
+            "finger_force_after": [
+              368.4099,
+              0.0
+            ],
+            "contacts_before": 8,
+            "contacts_after": 12,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 196,
+          "action": [
+            "insert",
+            "o1",
+            "p4"
+          ],
+          "executed": true,
+          "stalled": true,
+          "notes": "depth=-0.282 lateral=1.259 retries=5",
+          "changed": {
+            "obj:o1.where": [
+              "held",
+              "free"
+            ]
+          },
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.41015,
+              0.01828,
+              0.16454
+            ],
+            "tip_after": [
+              0.20769,
+              0.30435,
+              0.00246
+            ],
+            "finger_force_before": [
+              399.4344,
+              351.4292
+            ],
+            "finger_force_after": [
+              0.0,
+              0.0
+            ],
+            "contacts_before": 14,
+            "contacts_after": 6,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 199,
+          "action": [
+            "insert",
+            "o1",
+            "p4"
+          ],
+          "executed": true,
+          "stalled": true,
+          "notes": "depth=-0.174 lateral=1.268 retries=1",
+          "changed": {
+            "obj:o1.where": [
+              "held",
+              "free"
+            ]
+          },
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.2073,
+              0.30378,
+              0.1732
+            ],
+            "tip_after": [
+              0.31561,
+              0.20649,
+              0.00246
+            ],
+            "finger_force_before": [
+              353.2547,
+              352.9493
+            ],
+            "finger_force_after": [
+              0.0,
+              0.0
+            ],
+            "contacts_before": 8,
+            "contacts_after": 6,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 202,
+          "action": [
+            "insert",
+            "o1",
+            "p4"
+          ],
+          "executed": true,
+          "stalled": true,
+          "notes": "depth=-0.345 lateral=1.261 retries=1",
+          "changed": {
+            "part:p4.angle": [
+              "rest",
+              "pos"
+            ],
+            "obj:o1.where": [
+              "held",
+              "free"
+            ]
+          },
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.31564,
+              0.2065,
+              0.17213
+            ],
+            "tip_after": [
+              0.14451,
+              0.26562,
+              0.00246
+            ],
+            "finger_force_before": [
+              352.9993,
+              353.1522
+            ],
+            "finger_force_after": [
+              0.0,
+              0.0
+            ],
+            "contacts_before": 8,
+            "contacts_after": 6,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 206,
+          "action": [
+            "insert",
+            "o1",
+            "p3"
+          ],
+          "executed": true,
+          "stalled": true,
+          "notes": "depth=0.013 lateral=0.009 retries=2",
+          "changed": {
+            "part:p1.angle": [
+              "rest",
+              "pos"
+            ],
+            "obj:o1.where": [
+              "held",
+              "free"
+            ]
+          },
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.14401,
+              0.26533,
+              0.17339
+            ],
+            "tip_after": [
+              0.54348,
+              0.37055,
+              1.09256
+            ],
+            "finger_force_before": [
+              353.2766,
+              352.923
+            ],
+            "finger_force_after": [
+              0.0,
+              0.0
+            ],
+            "contacts_before": 8,
+            "contacts_after": 8,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 212,
+          "action": [
+            "insert",
+            "o1",
+            "p3"
+          ],
+          "executed": true,
+          "stalled": true,
+          "notes": "depth=0.005 lateral=0.004 retries=5",
+          "changed": {},
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.42827,
+              0.37321,
+              1.25131
+            ],
+            "tip_after": [
+              0.53525,
+              0.37499,
+              1.10118
+            ],
+            "finger_force_before": [
+              351.9581,
+              352.9356
+            ],
+            "finger_force_after": [
+              385.2895,
+              323.6784
+            ],
+            "contacts_before": 6,
+            "contacts_after": 10,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 215,
+          "action": [
+            "insert",
+            "o1",
+            "p3"
+          ],
+          "executed": true,
+          "stalled": true,
+          "notes": "depth=0.004 lateral=0.009 retries=5",
+          "changed": {},
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.44037,
+              0.32493,
+              0.17213
+            ],
+            "tip_after": [
+              0.53424,
+              0.38006,
+              1.09905
+            ],
+            "finger_force_before": [
+              353.003,
+              353.1573
+            ],
+            "finger_force_after": [
+              407.8081,
+              283.4294
+            ],
+            "contacts_before": 8,
+            "contacts_after": 10,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 252,
+          "action": [
+            "insert",
+            "o2",
+            "p3"
+          ],
+          "executed": false,
+          "stalled": true,
+          "notes": "depth=-0.072 lateral=0.005 retries=0",
+          "changed": {},
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.44739,
+              0.44434,
+              0.27107
+            ],
+            "tip_after": [
+              0.45762,
+              0.37284,
+              1.09618
+            ],
+            "finger_force_before": [
+              353.1597,
+              353.0856
+            ],
+            "finger_force_after": [
+              353.6876,
+              353.598
+            ],
+            "contacts_before": 12,
+            "contacts_after": 20,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 253,
+          "action": [
+            "insert",
+            "o2",
+            "p3"
+          ],
+          "executed": false,
+          "stalled": true,
+          "notes": "depth=-0.077 lateral=0.003 retries=0",
+          "changed": {},
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.45762,
+              0.37284,
+              1.09618
+            ],
+            "tip_after": [
+              0.45324,
+              0.37231,
+              1.09836
+            ],
+            "finger_force_before": [
+              353.6876,
+              353.598
+            ],
+            "finger_force_after": [
+              354.529,
+              354.4623
+            ],
+            "contacts_before": 20,
+            "contacts_after": 16,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 254,
+          "action": [
+            "insert",
+            "o2",
+            "p3"
+          ],
+          "executed": false,
+          "stalled": true,
+          "notes": "depth=-0.080 lateral=0.003 retries=0",
+          "changed": {},
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.45324,
+              0.37231,
+              1.09836
+            ],
+            "tip_after": [
+              0.45025,
+              0.37247,
+              1.09854
+            ],
+            "finger_force_before": [
+              354.529,
+              354.4623
+            ],
+            "finger_force_after": [
+              355.6873,
+              355.6133
+            ],
+            "contacts_before": 16,
+            "contacts_after": 16,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 255,
+          "action": [
+            "insert",
+            "o2",
+            "p3"
+          ],
+          "executed": false,
+          "stalled": true,
+          "notes": "depth=-0.083 lateral=0.003 retries=0",
+          "changed": {},
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.45025,
+              0.37247,
+              1.09854
+            ],
+            "tip_after": [
+              0.4469,
+              0.37208,
+              1.09897
+            ],
+            "finger_force_before": [
+              355.6873,
+              355.6133
+            ],
+            "finger_force_after": [
+              357.2279,
+              357.3002
+            ],
+            "contacts_before": 16,
+            "contacts_after": 16,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 258,
+          "action": [
+            "insert",
+            "o2",
+            "p3"
+          ],
+          "executed": false,
+          "stalled": true,
+          "notes": "depth=-0.069 lateral=0.008 retries=0",
+          "changed": {},
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.0795,
+              0.31035,
+              0.17889
+            ],
+            "tip_after": [
+              0.46153,
+              0.37205,
+              1.09304
+            ],
+            "finger_force_before": [
+              372.6607,
+              368.6414
+            ],
+            "finger_force_after": [
+              348.1008,
+              351.0633
+            ],
+            "contacts_before": 10,
+            "contacts_after": 12,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 259,
+          "action": [
+            "insert",
+            "o2",
+            "p3"
+          ],
+          "executed": false,
+          "stalled": true,
+          "notes": "depth=-0.066 lateral=0.004 retries=0",
+          "changed": {},
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.46153,
+              0.37205,
+              1.09304
+            ],
+            "tip_after": [
+              0.46416,
+              0.37208,
+              1.09709
+            ],
+            "finger_force_before": [
+              348.1008,
+              351.0633
+            ],
+            "finger_force_after": [
+              334.7396,
+              334.6667
+            ],
+            "contacts_before": 12,
+            "contacts_after": 12,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 260,
+          "action": [
+            "insert",
+            "o2",
+            "p3"
+          ],
+          "executed": false,
+          "stalled": true,
+          "notes": "depth=-0.066 lateral=0.005 retries=0",
+          "changed": {},
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.46416,
+              0.37208,
+              1.09709
+            ],
+            "tip_after": [
+              0.46361,
+              0.37206,
+              1.09646
+            ],
+            "finger_force_before": [
+              334.7396,
+              334.6667
+            ],
+            "finger_force_after": [
+              350.7109,
+              349.2911
+            ],
+            "contacts_before": 12,
+            "contacts_after": 10,
+            "verification": "unverified"
+          }
+        }
+      ],
+      "physical_state": {
+        "key_locked": true,
+        "deadbolt_locked": false,
+        "opened": false
+      }
+    },
+    {
+      "seed": 3,
+      "task": "door",
+      "success": true,
+      "actions": 88,
+      "reason": "goal",
+      "recorded_outcomes": 88,
+      "stalled_skills": 57,
+      "failed_inserts": [
+        {
+          "type": "action_trace",
+          "step": 68,
+          "action": [
+            "insert",
+            "o1",
+            "p5"
+          ],
+          "executed": false,
+          "stalled": true,
+          "notes": "depth=0.157 lateral=0.094 retries=0",
+          "changed": {},
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.1184,
+              0.76443,
+              0.96962
+            ],
+            "tip_after": [
+              0.00905,
+              0.76475,
+              0.88675
+            ],
+            "finger_force_before": [
+              353.516,
+              353.4943
+            ],
+            "finger_force_after": [
+              698.7698,
+              206.9337
+            ],
+            "contacts_before": 20,
+            "contacts_after": 32,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 69,
+          "action": [
+            "insert",
+            "o1",
+            "p5"
+          ],
+          "executed": false,
+          "stalled": true,
+          "notes": "depth=0.158 lateral=0.093 retries=0",
+          "changed": {},
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.00905,
+              0.76475,
+              0.88675
+            ],
+            "tip_after": [
+              0.00938,
+              0.76473,
+              0.88568
+            ],
+            "finger_force_before": [
+              698.7698,
+              206.9337
+            ],
+            "finger_force_after": [
+              700.6743,
+              210.3923
+            ],
+            "contacts_before": 32,
+            "contacts_after": 32,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 70,
+          "action": [
+            "insert",
+            "o1",
+            "p5"
+          ],
+          "executed": false,
+          "stalled": true,
+          "notes": "depth=0.158 lateral=0.093 retries=0",
+          "changed": {},
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.00938,
+              0.76473,
+              0.88568
+            ],
+            "tip_after": [
+              0.00946,
+              0.76473,
+              0.88542
+            ],
+            "finger_force_before": [
+              700.6743,
+              210.3923
+            ],
+            "finger_force_after": [
+              701.1402,
+              211.2314
+            ],
+            "contacts_before": 32,
+            "contacts_after": 32,
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 71,
+          "action": [
+            "insert",
+            "o1",
+            "p2"
+          ],
+          "executed": true,
+          "stalled": true,
+          "notes": "depth=-0.001 lateral=0.002 retries=5",
+          "changed": {},
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.00946,
+              0.76473,
+              0.88542
+            ],
+            "tip_after": [
+              0.47375,
+              0.27102,
+              0.977
+            ],
+            "finger_force_before": [
+              701.1402,
+              211.2314
+            ],
+            "finger_force_after": [
+              301.9328,
+              402.5369
+            ],
+            "contacts_before": 32,
+            "contacts_after": 21,
+            "verification": "unverified"
+          }
+        }
+      ],
+      "physical_state": {
+        "key_locked": false,
+        "deadbolt_locked": false,
+        "opened": true
+      }
+    }
+  ]
+}

@@ -466,7 +466,7 @@ def hand_ok(a: Action, state: dict) -> bool:
 def score_actions(belief: Belief, model: ActionModel, state: dict, actions: list[Action], cost_fn,
                   kappa_reveal: float = 2.0, rho_bias: float = 0.0, gamma: float = 0.9,
                   base_novel: float = 0.05, release_cost: float = 1.5, depth: int = 1,
-                  restore_cost: float = 8.0) -> list[dict]:
+                  restore_cost: float = 8.0, sweep: bool = False, informative: float = 0.01) -> list[dict]:
     """Rate (bits / s) of every available action: probe EIG + lookahead EIG + action-model + reveal value.
 
     Lookahead: the EIG of the best probe in the state after the action (after letting go of a held
@@ -476,7 +476,13 @@ def score_actions(belief: Belief, model: ActionModel, state: dict, actions: list
     enables: the best rate of the actions that become possible after it (one level deeper). A probe that
     also changes the state (turning a part that stays turned) spends the state the other probes still
     need: it is charged the time to restore it, times the chance it changes something, while other
-    probes are still informative here; so is any other action that may change the state."""
+    probes are still informative here; so is any other action that may change the state.
+
+    sweep=True: score_actions_sweep instead (every action rated by the sweep of probes it leads to)."""
+    if sweep:
+        return score_actions_sweep(belief, model, state, actions, cost_fn, kappa_reveal=kappa_reveal,
+                                   rho_bias=rho_bias, gamma=gamma, base_novel=base_novel,
+                                   release_cost=release_cost, depth=depth, informative=informative)
     w, wu = belief.weights()
     pcost = np.array([cost_fn(p) for p in belief.probes])
     rho = min(0.95, model.reveal_rate() + rho_bias)
@@ -541,6 +547,134 @@ def score_actions(belief: Belief, model: ActionModel, state: dict, actions: list
                     r_enable = k * gamma * sub["rate"] * sub["cost"] / (c + sub["cost"])
             out.append({"action": a, "rate": r_probe + r_look + r_model + r_enable, "probe": r_probe,
                         "look": r_look, "model": r_model, "enable": r_enable, "cost": c})
+        return out
+
+    return rates(state, actions, depth)
+
+
+def _own_change(model: ActionModel, a: Action, st: dict) -> dict:
+    """The change a probe makes to its own part (a turn that stays turned), from the probe itself or from
+    turning that part the same way alone; {} if none is known."""
+    for b in (a, ("turn", a[1], a[2]) if a[0] in ("turn_pull", "turn_push") else None):
+        if b is None:
+            continue
+        pred, _ = model.predict(b, st)
+        if pred:
+            ch = {f: v for f, v in pred.items() if entity_of(f) == a[1]}
+            if ch:
+                return ch
+    return {}
+
+
+def score_actions_sweep(belief: Belief, model: ActionModel, state: dict, actions: list[Action], cost_fn,
+                        kappa_reveal: float = 0.3, rho_bias: float = 0.0, gamma: float = 0.9,
+                        base_novel: float = 0.01, release_cost: float = 1.5, depth: int = 1,
+                        informative: float = 0.01) -> list[dict]:
+    """Rate (bits / s) of every available action as a schedule: the action, then a sweep of every probe
+    still informative in the state it leaves (with the hand freed first if it holds something).
+
+    rate(a) = (EIG of a itself if it is a probe + EIG of the sweep after it) / (its time + the sweep's time)
+
+    A probe in a state whose probes are all still to be tried rates that state's sweep; a change of the
+    state rates the sweep it makes possible, so a cheap change that makes more rules testable at once
+    comes before the sweep, and several of them pile up into one test state (group testing), while a
+    change that makes rules untestable (turning back what the rules need) rates lower than probing here.
+    Unknown effects are mixed by their probability (the action's learned change rate over the changes it
+    could make; a probe's side effect on its own part by that part's record). A pick is also worth the
+    best schedule it makes possible (insert, turn the held object). Curiosity about the action model and
+    the value of opening containers (UNKNOWN mass) are added as in score_actions."""
+    w, wu = belief.weights()
+    pcost = np.array([cost_fn(p) for p in belief.probes])
+    rho = min(0.95, model.reveal_rate() + rho_bias)
+    p_change = model.change_rate()
+    cache: dict[frozenset, tuple] = {}
+
+    def sweep_of(st: dict) -> tuple:
+        """(sum EIG, sum time, EIG per probe, informative mask, time to free the hand) of a sweep in st."""
+        s2, rel = _free_hand(st)
+        key = frozenset(s2.items())
+        if key not in cache:
+            e = belief.eig_probes(s2, w) if len(pcost) else np.zeros(0)
+            m = e > informative
+            cache[key] = (float(e[m].sum()), float(pcost[m].sum()), e, m, release_cost * rel)
+        return cache[key]
+
+    def mix(afters: list, skip: int | None = None) -> tuple:
+        """Expected (EIG, time) of the sweep after the action, over its possible outcomes."""
+        num = den = 0.0
+        for pw, s2 in afters:
+            E, C, e, m, r = sweep_of(s2)
+            if skip is not None and m[skip]:
+                E, C = E - e[skip], C - pcost[skip]
+            num += pw * E
+            den += pw * (C + r)
+        return num, den
+
+    def rates(st: dict, acts: list[Action], d: int) -> list[dict]:
+        _, _, e0, _, _ = sweep_of(st)
+        empty = st.get("body:hand", "empty") == "empty"
+        out = []
+        for a in acts:
+            c = cost_fn(a)
+            extra = 0.0
+            if a in belief.pidx and empty:
+                i = belief.pidx[a]
+                side = _own_change(model, a, st)
+                known = model.side_effect(a, st)
+                own = []
+                if side and known is not False:
+                    afters = [(1.0, apply(st, side))]
+                elif known is None:
+                    own = [ch for ch in candidate_changes(("turn", a[1]), st, belief.vocab)
+                           if entity_of(next(iter(ch))) == a[1]]
+                if own:
+                    p = model.entity_change_rate(a[1])
+                    afters = [(1.0 - p, st)] + [(p / len(own), apply(st, ch)) for ch in own]
+                elif not (side and known is not False):
+                    afters = [(1.0, st)]
+                num, den = mix(afters, skip=i)
+                num, den = num + float(e0[i]), den + c
+                kind = "probe"
+            elif model.untested(a, st):
+                cands = candidate_changes(a, st, belief.vocab)
+                p = model.action_change_rate(a, p_change) if cands else 0.0
+                afters = [(1.0 - p, st)] + ([(p / len(cands), apply(st, ch)) for ch in cands] if cands else [])
+                num, den = mix(afters)
+                den += c
+                extra = base_novel * wu / c
+                if a[0] in PROBE_KINDS and any(st.get(f"part:{e}.open") == "closed" for e in action_entities(a)):
+                    extra += kappa_reveal * rho * wu / c
+                kind = "model"
+            else:
+                pred, exact = model.predict(a, st)
+                num, den = mix([(1.0, apply(st, pred or {}))])
+                num, den = num * (1.0 if exact else gamma), den + c
+                kind = "look"
+            if d > 0 and a[0] == "pick" and st.get("body:hand", "empty") != a[1]:
+                pred = model.predict(a, st)[0] if not model.untested(a, st) else None
+                if pred != {}:        # (a pick known to change nothing enables nothing)
+                    s2 = apply(st, pred if pred is not None else {f"obj:{a[1]}.where": "held"})
+                    s2["body:hand"] = a[1]
+                    new = [b for b in model.known if hand_ok(b, s2) and not hand_ok(b, st) and b[0] != "release"]
+                    if new:
+                        sub = max(rates(s2, new, d - 1), key=lambda r: r["rate"])
+                        mine = num / den if den > 0 else 0.0
+                        if sub["den"] > 0 and gamma * sub["num"] / (c + sub["den"]) > mine:
+                            num, den, kind = gamma * sub["num"], c + sub["den"], "enable"
+                        extra = max(extra, gamma * sub["extra"] * sub["cost"] / (c + sub["cost"]))
+            rate = (num / den if den > 0 else 0.0) + extra
+            out.append({"action": a, "rate": rate, "num": num, "den": den, "extra": extra, "cost": c, "kind": kind,
+                        "probe": rate if kind == "probe" else 0.0, "own": float(e0[belief.pidx[a]]) / c
+                        if kind == "probe" else 0.0})
+        # within the sweep, the probe most likely to tell the most per second first: every probe keeps its
+        # schedule rate (what probing here is worth against changing the state), scaled by its own EIG rate
+        # relative to the best probe's, so the best probe competes with the moves at full value
+        b = max((r["own"] for r in out if r["kind"] == "probe"), default=0.0)
+        if b > 0:
+            for r in out:
+                if r["kind"] == "probe":
+                    r["rate"] = r["rate"] * (0.5 + 0.5 * r["own"] / b)
+                    r["probe"] = r["rate"]
         return out
 
     return rates(state, actions, depth)

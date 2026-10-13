@@ -338,6 +338,27 @@ class Embodiment:
         return best
 
 
+def body_penetration(emb: "Embodiment", margin: float = 0.0) -> float:
+    """Summed penetration (within `margin`, m) of the body's geoms into the rest of the scene, at the current
+    positions of emb.data (runs kinematics and collision on it; the model's margins are restored)."""
+    m, d = emb.model, emb.data
+    own = emb.own_body[m.geom_bodyid]
+    geoms = np.flatnonzero(own)
+    saved = m.geom_margin[geoms].copy()
+    m.geom_margin[geoms] = margin
+    try:
+        mujoco.mj_kinematics(m, d)
+        mujoco.mj_collision(m, d)
+    finally:
+        m.geom_margin[geoms] = saved
+    pen = 0.0
+    for i in range(d.ncon):
+        c = d.contact[i]
+        if own[c.geom1] != own[c.geom2]:
+            pen += max(0.0, margin - c.dist)
+    return pen
+
+
 def _is_descendant(m: mujoco.MjModel, bid: int, root: int) -> bool:
     while True:
         if bid == root:
@@ -401,6 +422,31 @@ class FloatingHand(Embodiment):
         j = m.joint(self.p("wrist"))
         self.free_qadr, self.free_vadr = j.qposadr[0], j.dofadr[0]
         self.ws_low, self.ws_high = self.home_pos - self.reach, self.home_pos + self.reach
+        self._clear_home()
+
+    home_clearance = 0.03   # m the body keeps from the (static) scene at its home pose
+
+    def _clear_home(self) -> None:
+        """If the body at its home pose reaches into the scene (a long forearm through a cabinet beside the
+        door), roll the home orientation about the approach axis to the pose that clears it best (the default
+        orientation when it already clears)."""
+        d = self.data
+        saved = d.qpos.copy()
+        z = self.home_rot[:, 2]
+        best, best_pen = self.home_rot, np.inf
+        for k in range(8):
+            R = rotvec_to_mat(z * k * np.pi / 4) @ self.home_rot
+            d.qpos[self.free_qadr:self.free_qadr + 3] = self.home_pos
+            d.qpos[self.free_qadr + 3:self.free_qadr + 7] = quat_from_mat(R)
+            self._preset_fingers(0.0)
+            pen = body_penetration(self, self.home_clearance)
+            if pen < best_pen - 1e-4:
+                best, best_pen = R, pen
+            if pen == 0.0:
+                break
+        d.qpos[:] = saved
+        mujoco.mj_kinematics(self.model, d)
+        self.home_rot = best
 
     def reset(self, palm_offset=None):
         pos = self.home_pos + (0 if palm_offset is None else np.asarray(palm_offset, float))

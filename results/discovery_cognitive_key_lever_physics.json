@@ -1,0 +1,28 @@
+{
+  "config": {
+    "physics": true,
+    "type_name": "hd_lever_pull_right",
+    "embodiment": "robotiq_2f85",
+    "lock_state": "key",
+    "key_place": "table",
+    "tasks": [
+      "door"
+    ]
+  },
+  "summary": {
+    "door": {
+      "n": 1,
+      "success_rate": 1.0
+    }
+  },
+  "episodes": [
+    {
+      "seed": 0,
+      "task": "door",
+      "success": true,
+      "actions": 111,
+      "reason": "goal",
+      "recorded_outcomes": 111
+    }
+  ]
+}

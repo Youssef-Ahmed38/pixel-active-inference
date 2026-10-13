@@ -1,0 +1,2181 @@
+{
+  "config": {
+    "seed_ids": [
+      20,
+      21,
+      22,
+      23
+    ],
+    "size": 21,
+    "move_budget": 1200,
+    "fixture_budget": 180,
+    "test_types": [
+      "hd_lever_push_left",
+      "hd_ball_push_right",
+      "hd_knob_pull_right"
+    ],
+    "forced_wrong_key_first": true,
+    "train_type": "hd_lever_pull_right",
+    "train_seed": 0
+  },
+  "summary": {
+    "n": 12,
+    "cold_passed": 12,
+    "warm_passed": 12,
+    "wrong_key_explanation_accuracy": 1.0,
+    "wrong_key_reports": 12,
+    "cold_mean_fixture_actions": 34.916666666666664,
+    "warm_mean_fixture_actions": 29.666666666666668,
+    "warm_faster": 11
+  },
+  "episodes": [
+    {
+      "type": "hd_lever_push_left",
+      "seed": 20,
+      "cold": {
+        "success": true,
+        "stage": "complete",
+        "moves": 27,
+        "fixture_actions": 37,
+        "wrong_key_reports": 1,
+        "correct_wrong_key_reports": 1,
+        "events": [
+          {
+            "stage": "open_drawer",
+            "success": true,
+            "actions": 2
+          },
+          {
+            "stage": "carry_object",
+            "object": "o1",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o1",
+              "p8"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              -1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "diagnose",
+            "cause": "incompatible_key",
+            "object": "o1",
+            "evidence": "both inserted turns stalled"
+          },
+          {
+            "stage": "carry_object",
+            "object": "o2",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o2",
+              "p8"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              1
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "open_door",
+            "success": true,
+            "actions": 24
+          }
+        ]
+      },
+      "warm": {
+        "success": true,
+        "stage": "complete",
+        "moves": 27,
+        "fixture_actions": 30,
+        "wrong_key_reports": 1,
+        "correct_wrong_key_reports": 1,
+        "events": [
+          {
+            "stage": "open_drawer",
+            "success": true,
+            "actions": 2
+          },
+          {
+            "stage": "carry_object",
+            "object": "o1",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o1",
+              "p8"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              -1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "diagnose",
+            "cause": "incompatible_key",
+            "object": "o1",
+            "evidence": "both inserted turns stalled"
+          },
+          {
+            "stage": "carry_object",
+            "object": "o2",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o2",
+              "p8"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              1
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "open_door",
+            "success": true,
+            "actions": 17
+          }
+        ]
+      }
+    },
+    {
+      "type": "hd_lever_push_left",
+      "seed": 21,
+      "cold": {
+        "success": true,
+        "stage": "complete",
+        "moves": 173,
+        "fixture_actions": 33,
+        "wrong_key_reports": 1,
+        "correct_wrong_key_reports": 1,
+        "events": [
+          {
+            "stage": "open_drawer",
+            "success": true,
+            "actions": 1
+          },
+          {
+            "stage": "carry_object",
+            "object": "o1",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o1",
+              "p3"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              -1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "diagnose",
+            "cause": "incompatible_key",
+            "object": "o1",
+            "evidence": "both inserted turns stalled"
+          },
+          {
+            "stage": "carry_object",
+            "object": "o2",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o2",
+              "p3"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              -1
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "open_door",
+            "success": true,
+            "actions": 20
+          }
+        ]
+      },
+      "warm": {
+        "success": true,
+        "stage": "complete",
+        "moves": 173,
+        "fixture_actions": 30,
+        "wrong_key_reports": 1,
+        "correct_wrong_key_reports": 1,
+        "events": [
+          {
+            "stage": "open_drawer",
+            "success": true,
+            "actions": 1
+          },
+          {
+            "stage": "carry_object",
+            "object": "o1",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o1",
+              "p3"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              -1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "diagnose",
+            "cause": "incompatible_key",
+            "object": "o1",
+            "evidence": "both inserted turns stalled"
+          },
+          {
+            "stage": "carry_object",
+            "object": "o2",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o2",
+              "p3"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              -1
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "open_door",
+            "success": true,
+            "actions": 17
+          }
+        ]
+      }
+    },
+    {
+      "type": "hd_lever_push_left",
+      "seed": 22,
+      "cold": {
+        "success": true,
+        "stage": "complete",
+        "moves": 162,
+        "fixture_actions": 36,
+        "wrong_key_reports": 1,
+        "correct_wrong_key_reports": 1,
+        "events": [
+          {
+            "stage": "open_drawer",
+            "success": true,
+            "actions": 2
+          },
+          {
+            "stage": "carry_object",
+            "object": "o1",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o1",
+              "p4"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              -1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "diagnose",
+            "cause": "incompatible_key",
+            "object": "o1",
+            "evidence": "both inserted turns stalled"
+          },
+          {
+            "stage": "carry_object",
+            "object": "o2",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o2",
+              "p4"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              1
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "open_door",
+            "success": true,
+            "actions": 23
+          }
+        ]
+      },
+      "warm": {
+        "success": true,
+        "stage": "complete",
+        "moves": 162,
+        "fixture_actions": 30,
+        "wrong_key_reports": 1,
+        "correct_wrong_key_reports": 1,
+        "events": [
+          {
+            "stage": "open_drawer",
+            "success": true,
+            "actions": 2
+          },
+          {
+            "stage": "carry_object",
+            "object": "o1",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o1",
+              "p4"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              -1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "diagnose",
+            "cause": "incompatible_key",
+            "object": "o1",
+            "evidence": "both inserted turns stalled"
+          },
+          {
+            "stage": "carry_object",
+            "object": "o2",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o2",
+              "p4"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              1
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "open_door",
+            "success": true,
+            "actions": 17
+          }
+        ]
+      }
+    },
+    {
+      "type": "hd_lever_push_left",
+      "seed": 23,
+      "cold": {
+        "success": true,
+        "stage": "complete",
+        "moves": 300,
+        "fixture_actions": 35,
+        "wrong_key_reports": 1,
+        "correct_wrong_key_reports": 1,
+        "events": [
+          {
+            "stage": "open_drawer",
+            "success": true,
+            "actions": 1
+          },
+          {
+            "stage": "carry_object",
+            "object": "o1",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o1",
+              "p3"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              -1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "diagnose",
+            "cause": "incompatible_key",
+            "object": "o1",
+            "evidence": "both inserted turns stalled"
+          },
+          {
+            "stage": "carry_object",
+            "object": "o2",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o2",
+              "p3"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              -1
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "open_door",
+            "success": true,
+            "actions": 22
+          }
+        ]
+      },
+      "warm": {
+        "success": true,
+        "stage": "complete",
+        "moves": 300,
+        "fixture_actions": 28,
+        "wrong_key_reports": 1,
+        "correct_wrong_key_reports": 1,
+        "events": [
+          {
+            "stage": "open_drawer",
+            "success": true,
+            "actions": 1
+          },
+          {
+            "stage": "carry_object",
+            "object": "o1",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o1",
+              "p3"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              -1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "diagnose",
+            "cause": "incompatible_key",
+            "object": "o1",
+            "evidence": "both inserted turns stalled"
+          },
+          {
+            "stage": "carry_object",
+            "object": "o2",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o2",
+              "p3"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              -1
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "open_door",
+            "success": true,
+            "actions": 15
+          }
+        ]
+      }
+    },
+    {
+      "type": "hd_ball_push_right",
+      "seed": 20,
+      "cold": {
+        "success": true,
+        "stage": "complete",
+        "moves": 27,
+        "fixture_actions": 35,
+        "wrong_key_reports": 1,
+        "correct_wrong_key_reports": 1,
+        "events": [
+          {
+            "stage": "open_drawer",
+            "success": true,
+            "actions": 2
+          },
+          {
+            "stage": "carry_object",
+            "object": "o1",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o1",
+              "p8"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              -1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "diagnose",
+            "cause": "incompatible_key",
+            "object": "o1",
+            "evidence": "both inserted turns stalled"
+          },
+          {
+            "stage": "carry_object",
+            "object": "o2",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o2",
+              "p8"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              1
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "open_door",
+            "success": true,
+            "actions": 22
+          }
+        ]
+      },
+      "warm": {
+        "success": true,
+        "stage": "complete",
+        "moves": 27,
+        "fixture_actions": 30,
+        "wrong_key_reports": 1,
+        "correct_wrong_key_reports": 1,
+        "events": [
+          {
+            "stage": "open_drawer",
+            "success": true,
+            "actions": 2
+          },
+          {
+            "stage": "carry_object",
+            "object": "o1",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o1",
+              "p8"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              -1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "diagnose",
+            "cause": "incompatible_key",
+            "object": "o1",
+            "evidence": "both inserted turns stalled"
+          },
+          {
+            "stage": "carry_object",
+            "object": "o2",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o2",
+              "p8"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              1
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "open_door",
+            "success": true,
+            "actions": 17
+          }
+        ]
+      }
+    },
+    {
+      "type": "hd_ball_push_right",
+      "seed": 21,
+      "cold": {
+        "success": true,
+        "stage": "complete",
+        "moves": 173,
+        "fixture_actions": 31,
+        "wrong_key_reports": 1,
+        "correct_wrong_key_reports": 1,
+        "events": [
+          {
+            "stage": "open_drawer",
+            "success": true,
+            "actions": 1
+          },
+          {
+            "stage": "carry_object",
+            "object": "o1",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o1",
+              "p3"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              -1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "diagnose",
+            "cause": "incompatible_key",
+            "object": "o1",
+            "evidence": "both inserted turns stalled"
+          },
+          {
+            "stage": "carry_object",
+            "object": "o2",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o2",
+              "p3"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              -1
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "open_door",
+            "success": true,
+            "actions": 18
+          }
+        ]
+      },
+      "warm": {
+        "success": true,
+        "stage": "complete",
+        "moves": 173,
+        "fixture_actions": 31,
+        "wrong_key_reports": 1,
+        "correct_wrong_key_reports": 1,
+        "events": [
+          {
+            "stage": "open_drawer",
+            "success": true,
+            "actions": 1
+          },
+          {
+            "stage": "carry_object",
+            "object": "o1",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o1",
+              "p3"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              -1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "diagnose",
+            "cause": "incompatible_key",
+            "object": "o1",
+            "evidence": "both inserted turns stalled"
+          },
+          {
+            "stage": "carry_object",
+            "object": "o2",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o2",
+              "p3"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              -1
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "open_door",
+            "success": true,
+            "actions": 18
+          }
+        ]
+      }
+    },
+    {
+      "type": "hd_ball_push_right",
+      "seed": 22,
+      "cold": {
+        "success": true,
+        "stage": "complete",
+        "moves": 162,
+        "fixture_actions": 37,
+        "wrong_key_reports": 1,
+        "correct_wrong_key_reports": 1,
+        "events": [
+          {
+            "stage": "open_drawer",
+            "success": true,
+            "actions": 2
+          },
+          {
+            "stage": "carry_object",
+            "object": "o1",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o1",
+              "p4"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              -1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "diagnose",
+            "cause": "incompatible_key",
+            "object": "o1",
+            "evidence": "both inserted turns stalled"
+          },
+          {
+            "stage": "carry_object",
+            "object": "o2",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o2",
+              "p4"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              1
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "open_door",
+            "success": true,
+            "actions": 24
+          }
+        ]
+      },
+      "warm": {
+        "success": true,
+        "stage": "complete",
+        "moves": 162,
+        "fixture_actions": 31,
+        "wrong_key_reports": 1,
+        "correct_wrong_key_reports": 1,
+        "events": [
+          {
+            "stage": "open_drawer",
+            "success": true,
+            "actions": 2
+          },
+          {
+            "stage": "carry_object",
+            "object": "o1",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o1",
+              "p4"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              -1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "diagnose",
+            "cause": "incompatible_key",
+            "object": "o1",
+            "evidence": "both inserted turns stalled"
+          },
+          {
+            "stage": "carry_object",
+            "object": "o2",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o2",
+              "p4"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              1
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "open_door",
+            "success": true,
+            "actions": 18
+          }
+        ]
+      }
+    },
+    {
+      "type": "hd_ball_push_right",
+      "seed": 23,
+      "cold": {
+        "success": true,
+        "stage": "complete",
+        "moves": 300,
+        "fixture_actions": 34,
+        "wrong_key_reports": 1,
+        "correct_wrong_key_reports": 1,
+        "events": [
+          {
+            "stage": "open_drawer",
+            "success": true,
+            "actions": 1
+          },
+          {
+            "stage": "carry_object",
+            "object": "o1",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o1",
+              "p3"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              -1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "diagnose",
+            "cause": "incompatible_key",
+            "object": "o1",
+            "evidence": "both inserted turns stalled"
+          },
+          {
+            "stage": "carry_object",
+            "object": "o2",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o2",
+              "p3"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              -1
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "open_door",
+            "success": true,
+            "actions": 21
+          }
+        ]
+      },
+      "warm": {
+        "success": true,
+        "stage": "complete",
+        "moves": 300,
+        "fixture_actions": 31,
+        "wrong_key_reports": 1,
+        "correct_wrong_key_reports": 1,
+        "events": [
+          {
+            "stage": "open_drawer",
+            "success": true,
+            "actions": 1
+          },
+          {
+            "stage": "carry_object",
+            "object": "o1",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o1",
+              "p3"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              -1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "diagnose",
+            "cause": "incompatible_key",
+            "object": "o1",
+            "evidence": "both inserted turns stalled"
+          },
+          {
+            "stage": "carry_object",
+            "object": "o2",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o2",
+              "p3"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              -1
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "open_door",
+            "success": true,
+            "actions": 18
+          }
+        ]
+      }
+    },
+    {
+      "type": "hd_knob_pull_right",
+      "seed": 20,
+      "cold": {
+        "success": true,
+        "stage": "complete",
+        "moves": 27,
+        "fixture_actions": 36,
+        "wrong_key_reports": 1,
+        "correct_wrong_key_reports": 1,
+        "events": [
+          {
+            "stage": "open_drawer",
+            "success": true,
+            "actions": 2
+          },
+          {
+            "stage": "carry_object",
+            "object": "o1",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o1",
+              "p8"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              -1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "diagnose",
+            "cause": "incompatible_key",
+            "object": "o1",
+            "evidence": "both inserted turns stalled"
+          },
+          {
+            "stage": "carry_object",
+            "object": "o2",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o2",
+              "p8"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              1
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "open_door",
+            "success": true,
+            "actions": 23
+          }
+        ]
+      },
+      "warm": {
+        "success": true,
+        "stage": "complete",
+        "moves": 27,
+        "fixture_actions": 28,
+        "wrong_key_reports": 1,
+        "correct_wrong_key_reports": 1,
+        "events": [
+          {
+            "stage": "open_drawer",
+            "success": true,
+            "actions": 2
+          },
+          {
+            "stage": "carry_object",
+            "object": "o1",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o1",
+              "p8"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              -1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "diagnose",
+            "cause": "incompatible_key",
+            "object": "o1",
+            "evidence": "both inserted turns stalled"
+          },
+          {
+            "stage": "carry_object",
+            "object": "o2",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o2",
+              "p8"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              1
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "open_door",
+            "success": true,
+            "actions": 15
+          }
+        ]
+      }
+    },
+    {
+      "type": "hd_knob_pull_right",
+      "seed": 21,
+      "cold": {
+        "success": true,
+        "stage": "complete",
+        "moves": 173,
+        "fixture_actions": 34,
+        "wrong_key_reports": 1,
+        "correct_wrong_key_reports": 1,
+        "events": [
+          {
+            "stage": "open_drawer",
+            "success": true,
+            "actions": 1
+          },
+          {
+            "stage": "carry_object",
+            "object": "o1",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o1",
+              "p3"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              -1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "diagnose",
+            "cause": "incompatible_key",
+            "object": "o1",
+            "evidence": "both inserted turns stalled"
+          },
+          {
+            "stage": "carry_object",
+            "object": "o2",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o2",
+              "p3"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              -1
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "open_door",
+            "success": true,
+            "actions": 21
+          }
+        ]
+      },
+      "warm": {
+        "success": true,
+        "stage": "complete",
+        "moves": 173,
+        "fixture_actions": 29,
+        "wrong_key_reports": 1,
+        "correct_wrong_key_reports": 1,
+        "events": [
+          {
+            "stage": "open_drawer",
+            "success": true,
+            "actions": 1
+          },
+          {
+            "stage": "carry_object",
+            "object": "o1",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o1",
+              "p3"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              -1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "diagnose",
+            "cause": "incompatible_key",
+            "object": "o1",
+            "evidence": "both inserted turns stalled"
+          },
+          {
+            "stage": "carry_object",
+            "object": "o2",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o2",
+              "p3"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              -1
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "open_door",
+            "success": true,
+            "actions": 16
+          }
+        ]
+      }
+    },
+    {
+      "type": "hd_knob_pull_right",
+      "seed": 22,
+      "cold": {
+        "success": true,
+        "stage": "complete",
+        "moves": 162,
+        "fixture_actions": 35,
+        "wrong_key_reports": 1,
+        "correct_wrong_key_reports": 1,
+        "events": [
+          {
+            "stage": "open_drawer",
+            "success": true,
+            "actions": 2
+          },
+          {
+            "stage": "carry_object",
+            "object": "o1",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o1",
+              "p4"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              -1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "diagnose",
+            "cause": "incompatible_key",
+            "object": "o1",
+            "evidence": "both inserted turns stalled"
+          },
+          {
+            "stage": "carry_object",
+            "object": "o2",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o2",
+              "p4"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              1
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "open_door",
+            "success": true,
+            "actions": 22
+          }
+        ]
+      },
+      "warm": {
+        "success": true,
+        "stage": "complete",
+        "moves": 162,
+        "fixture_actions": 29,
+        "wrong_key_reports": 1,
+        "correct_wrong_key_reports": 1,
+        "events": [
+          {
+            "stage": "open_drawer",
+            "success": true,
+            "actions": 2
+          },
+          {
+            "stage": "carry_object",
+            "object": "o1",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o1",
+              "p4"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              -1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "diagnose",
+            "cause": "incompatible_key",
+            "object": "o1",
+            "evidence": "both inserted turns stalled"
+          },
+          {
+            "stage": "carry_object",
+            "object": "o2",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o2",
+              "p4"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              1
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "open_door",
+            "success": true,
+            "actions": 16
+          }
+        ]
+      }
+    },
+    {
+      "type": "hd_knob_pull_right",
+      "seed": 23,
+      "cold": {
+        "success": true,
+        "stage": "complete",
+        "moves": 300,
+        "fixture_actions": 36,
+        "wrong_key_reports": 1,
+        "correct_wrong_key_reports": 1,
+        "events": [
+          {
+            "stage": "open_drawer",
+            "success": true,
+            "actions": 1
+          },
+          {
+            "stage": "carry_object",
+            "object": "o1",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o1",
+              "p3"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              -1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "diagnose",
+            "cause": "incompatible_key",
+            "object": "o1",
+            "evidence": "both inserted turns stalled"
+          },
+          {
+            "stage": "carry_object",
+            "object": "o2",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o2",
+              "p3"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              -1
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "open_door",
+            "success": true,
+            "actions": 23
+          }
+        ]
+      },
+      "warm": {
+        "success": true,
+        "stage": "complete",
+        "moves": 300,
+        "fixture_actions": 29,
+        "wrong_key_reports": 1,
+        "correct_wrong_key_reports": 1,
+        "events": [
+          {
+            "stage": "open_drawer",
+            "success": true,
+            "actions": 1
+          },
+          {
+            "stage": "carry_object",
+            "object": "o1",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o1",
+              "p3"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o1",
+              -1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "diagnose",
+            "cause": "incompatible_key",
+            "object": "o1",
+            "evidence": "both inserted turns stalled"
+          },
+          {
+            "stage": "carry_object",
+            "object": "o2",
+            "executed": true,
+            "stalled": false
+          },
+          {
+            "stage": "try_fixture",
+            "action": [
+              "insert",
+              "o2",
+              "p3"
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              1
+            ],
+            "stalled": true
+          },
+          {
+            "stage": "try_turn",
+            "action": [
+              "turn_held",
+              "o2",
+              -1
+            ],
+            "stalled": false
+          },
+          {
+            "stage": "open_door",
+            "success": true,
+            "actions": 16
+          }
+        ]
+      }
+    }
+  ]
+}

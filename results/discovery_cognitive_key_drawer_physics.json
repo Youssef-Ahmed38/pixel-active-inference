@@ -1,0 +1,48 @@
+{
+  "config": {
+    "physics": true,
+    "type_name": "hd_lever_pull_right",
+    "embodiment": "robotiq_2f85",
+    "lock_state": "key",
+    "key_place": "drawer",
+    "tasks": [
+      "door"
+    ]
+  },
+  "summary": {
+    "door": {
+      "n": 2,
+      "success_rate": 0.5
+    }
+  },
+  "episodes": [
+    {
+      "seed": 0,
+      "task": "door",
+      "success": false,
+      "actions": 300,
+      "reason": "budget",
+      "recorded_outcomes": 300,
+      "stalled_skills": 130,
+      "physical_state": {
+        "key_locked": true,
+        "deadbolt_locked": false,
+        "opened": false
+      }
+    },
+    {
+      "seed": 1,
+      "task": "door",
+      "success": true,
+      "actions": 155,
+      "reason": "goal",
+      "recorded_outcomes": 155,
+      "stalled_skills": 96,
+      "physical_state": {
+        "key_locked": false,
+        "deadbolt_locked": false,
+        "opened": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "config": {
+    "seeds": [
+      40005
+    ],
+    "budget": 700,
+    "checkpoint": "C:\\projects\\pixel-active-inference\\runs\\cross_domain_thinker\\maze_transfer.pt",
+    "appearance_jitter": 12.0,
+    "odometry_noise": 0.35
+  },
+  "summary": {
+    "baseline": {
+      "n": 1,
+      "goal_rate": 0.0,
+      "full_coverage_rate": 0.0,
+      "mean_coverage": 0.19704433497536947,
+      "mean_steps": 69.0
+    },
+    "online_thinker": {
+      "n": 1,
+      "goal_rate": 0.0,
+      "full_coverage_rate": 0.0,
+      "mean_coverage": 0.19704433497536947,
+      "mean_steps": 69.0
+    }
+  },
+  "episodes": [
+    {
+      "seed": 40005,
+      "condition": "baseline",
+      "size": 21,
+      "goal_found": false,
+      "full_coverage": false,
+      "coverage": 0.19704433497536947,
+      "steps": 69,
+      "truth_causes": [
+        "passage_blocked",
+        "camera_shift"
+      ],
+      "thinker_recall": {
+        "passage_blocked": false,
+        "camera_shift": false
+      },
+      "thinker_actions": []
+    },
+    {
+      "seed": 40005,
+      "condition": "online_thinker",
+      "size": 21,
+      "goal_found": false,
+      "full_coverage": false,
+      "coverage": 0.19704433497536947,
+      "steps": 69,
+      "truth_causes": [
+        "passage_blocked",
+        "camera_shift"
+      ],
+      "thinker_recall": {
+        "passage_blocked": true,
+        "camera_shift": false
+      },
+      "thinker_actions": [
+        {
+          "step": 25,
+          "cause": "passage_blocked",
+          "action": "invalidate blocked route"
+        },
+        {
+          "step": 45,
+          "cause": "passage_blocked",
+          "action": "invalidate blocked route"
+        },
+        {
+          "step": 46,
+          "cause": "passage_blocked",
+          "action": "invalidate blocked route"
+        },
+        {
+          "step": 58,
+          "cause": "passage_blocked",
+          "action": "invalidate blocked route"
+        }
+      ]
+    }
+  ]
+}

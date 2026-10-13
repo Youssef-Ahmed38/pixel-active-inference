@@ -1,0 +1,73 @@
+{
+  "config": {
+    "physics": false,
+    "type_name": "hd_knob_pull_left",
+    "embodiment": "robotiq_2f85",
+    "lock_state": "key",
+    "key_place": "drawer",
+    "tasks": [
+      "door",
+      "drawer"
+    ]
+  },
+  "summary": {
+    "door": {
+      "n": 3,
+      "success_rate": 1.0
+    },
+    "drawer": {
+      "n": 3,
+      "success_rate": 1.0
+    }
+  },
+  "episodes": [
+    {
+      "seed": 0,
+      "task": "door",
+      "success": true,
+      "actions": 178,
+      "reason": "goal",
+      "recorded_outcomes": 178
+    },
+    {
+      "seed": 0,
+      "task": "drawer",
+      "success": true,
+      "actions": 14,
+      "reason": "goal",
+      "recorded_outcomes": 14
+    },
+    {
+      "seed": 1,
+      "task": "door",
+      "success": true,
+      "actions": 258,
+      "reason": "goal",
+      "recorded_outcomes": 258
+    },
+    {
+      "seed": 1,
+      "task": "drawer",
+      "success": true,
+      "actions": 7,
+      "reason": "goal",
+      "recorded_outcomes": 7
+    },
+    {
+      "seed": 2,
+      "task": "door",
+      "success": true,
+      "actions": 80,
+      "reason": "goal",
+      "recorded_outcomes": 80
+    },
+    {
+      "seed": 2,
+      "task": "drawer",
+      "success": true,
+      "actions": 8,
+      "reason": "goal",
+      "recorded_outcomes": 8
+    }
+  ]
+}

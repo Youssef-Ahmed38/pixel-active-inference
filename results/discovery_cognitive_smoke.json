@@ -1,0 +1,46 @@
+{
+  "summary": {
+    "door": {
+      "n": 2,
+      "success_rate": 1.0
+    },
+    "drawer": {
+      "n": 2,
+      "success_rate": 1.0
+    }
+  },
+  "episodes": [
+    {
+      "seed": 0,
+      "task": "door",
+      "success": true,
+      "actions": 5,
+      "reason": "goal",
+      "recorded_outcomes": 5
+    },
+    {
+      "seed": 0,
+      "task": "drawer",
+      "success": true,
+      "actions": 7,
+      "reason": "goal",
+      "recorded_outcomes": 7
+    },
+    {
+      "seed": 1,
+      "task": "door",
+      "success": true,
+      "actions": 3,
+      "reason": "goal",
+      "recorded_outcomes": 3
+    },
+    {
+      "seed": 1,
+      "task": "drawer",
+      "success": true,
+      "actions": 23,
+      "reason": "goal",
+      "recorded_outcomes": 23
+    }
+  ]
+}

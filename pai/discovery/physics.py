@@ -526,6 +526,18 @@ class PhysicsWorld:
         if m.jnt_limited[j]:     # up to near the joint's limit, but always try (a pull against a stop stalls)
             goal = max(min(goal, (hi - q0 if sgn > 0 else q0 - lo) - 0.02), 2 * moved_thr)
         P0, R0 = pose
+        # A round head can unwind in the fingers while the arm follows the
+        # door hinge. Keep the observed handle angle near its post-turn value
+        # during a push so the spring latch stays released long enough for the
+        # leaf to move. This uses joint feedback, not lock or goal truth.
+        hold_turn = (direction == "push" and p.carrier is not None and p.joint is not None
+                     and _shape(m, p.geom)[0] == "ball")
+        held_angle = self._joint_q(p.joint) if hold_turn else 0.0
+        if hold_turn:
+            # Regrasping interrupts the push and lets the closer swing the
+            # partly opened door shut. Keep following through once the latch
+            # has been released, even if the fingers slide on the round head.
+            regrasp = False
         s_ref = 0.0              # where the joint was when the held pose was taken
         best, best_k, lost, regrasps = 0.0, 0, 0, 0
         for k in range(2500):
@@ -547,10 +559,17 @@ class PhysicsWorld:
                 continue
             delta = sgn * (min(max(s, 0.0) + lead, goal + lead) - s_ref)
             if slide:
-                self._step(self._cmd(P0 + axis * delta, R0, grip))
+                target_pos, target_rot = P0 + axis * delta, R0
             else:
                 Rr = rotvec_to_mat(axis * delta)
-                self._step(self._cmd(c + Rr @ (P0 - c), Rr @ R0, grip))
+                target_pos, target_rot = c + Rr @ (P0 - c), Rr @ R0
+            if hold_turn:
+                turn_error = float(np.clip(held_angle - self._joint_q(p.joint), -0.5, 0.5))
+                turn_axis, turn_center = d.xaxis[p.joint].copy(), d.xanchor[p.joint].copy()
+                correction = rotvec_to_mat(turn_axis * turn_error)
+                target_pos = turn_center + correction @ (target_pos - turn_center)
+                target_rot = correction @ target_rot
+            self._step(self._cmd(target_pos, target_rot, grip))
         return max(0.0, sgn * (self._joint_q(j) - q0))
 
     def _press(self, p: _Part):

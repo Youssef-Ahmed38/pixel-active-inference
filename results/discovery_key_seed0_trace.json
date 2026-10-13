@@ -1,0 +1,7235 @@
+{
+  "config": {
+    "physics": true,
+    "type_name": "hd_lever_pull_right",
+    "embodiment": "robotiq_2f85",
+    "lock_state": "key",
+    "key_place": "drawer",
+    "tasks": [
+      "door"
+    ],
+    "contact_repair": true
+  },
+  "summary": {
+    "door": {
+      "n": 1,
+      "success_rate": 0.0
+    }
+  },
+  "episodes": [
+    {
+      "seed": 0,
+      "task": "door",
+      "success": false,
+      "actions": 300,
+      "reason": "budget",
+      "recorded_outcomes": 300,
+      "stalled_skills": 124,
+      "action_history": [
+        {
+          "step": 1,
+          "action": [
+            "push",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 2,
+          "action": [
+            "pull",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 3,
+          "action": [
+            "press_push",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 4,
+          "action": [
+            "turn_push",
+            "p5",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.001 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 5,
+          "action": [
+            "turn_pull",
+            "p5",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 6,
+          "action": [
+            "turn_pull",
+            "p5",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 7,
+          "action": [
+            "turn_push",
+            "p5",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 8,
+          "action": [
+            "push",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 9,
+          "action": [
+            "pull",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 10,
+          "action": [
+            "push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 11,
+          "action": [
+            "press_push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 12,
+          "action": [
+            "turn_pull",
+            "p3",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {
+            "part:p3.angle": [
+              "rest",
+              "pos"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 13,
+          "action": [
+            "turn_pull",
+            "p3",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {
+            "part:p3.angle": [
+              "pos",
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 14,
+          "action": [
+            "turn_push",
+            "p3",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {
+            "part:p3.angle": [
+              "rest",
+              "pos"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 15,
+          "action": [
+            "turn_push",
+            "p3",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {
+            "part:p3.angle": [
+              "pos",
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 16,
+          "action": [
+            "push",
+            "p2"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 17,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 18,
+          "action": [
+            "push",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 19,
+          "action": [
+            "pull",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 20,
+          "action": [
+            "push",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 21,
+          "action": [
+            "push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 22,
+          "action": [
+            "pull",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 23,
+          "action": [
+            "press_push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 24,
+          "action": [
+            "turn_push",
+            "p3",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.12",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 25,
+          "action": [
+            "turn_pull",
+            "p3",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.06",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 26,
+          "action": [
+            "push",
+            "p2"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 27,
+          "action": [
+            "press_push",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 28,
+          "action": [
+            "turn_push",
+            "p5",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.001 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 29,
+          "action": [
+            "turn_pull",
+            "p5",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 30,
+          "action": [
+            "turn_push",
+            "p5",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 31,
+          "action": [
+            "turn_pull",
+            "p5",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 32,
+          "action": [
+            "turn_push",
+            "p3",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {
+            "part:p3.angle": [
+              "rest",
+              "pos"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 33,
+          "action": [
+            "turn_pull",
+            "p3",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 34,
+          "action": [
+            "push",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 35,
+          "action": [
+            "push",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 36,
+          "action": [
+            "pull",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 37,
+          "action": [
+            "push",
+            "p2"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 38,
+          "action": [
+            "push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 39,
+          "action": [
+            "pull",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 40,
+          "action": [
+            "press_push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 41,
+          "action": [
+            "turn_push",
+            "p3",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.31",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 42,
+          "action": [
+            "press_push",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 43,
+          "action": [
+            "turn_push",
+            "p5",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.001 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 44,
+          "action": [
+            "turn_push",
+            "p5",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 45,
+          "action": [
+            "turn_pull",
+            "p5",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 46,
+          "action": [
+            "turn",
+            "p5",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "turned=0.47",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 47,
+          "action": [
+            "turn",
+            "p5",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "turned=1.10",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 48,
+          "action": [
+            "turn_pull",
+            "p5",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 49,
+          "action": [
+            "turn",
+            "p3",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "turned=1.60",
+          "changed": {
+            "part:p3.angle": [
+              "pos",
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 50,
+          "action": [
+            "turn",
+            "p3",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "turned=0.06",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 51,
+          "action": [
+            "turn",
+            "p3",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "turned=1.60",
+          "changed": {
+            "part:p3.angle": [
+              "rest",
+              "pos"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 52,
+          "action": [
+            "turn",
+            "p3",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "turned=0.07",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 53,
+          "action": [
+            "pick",
+            "o1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "lifted",
+          "changed": {
+            "obj:o1.where": [
+              "free",
+              "held"
+            ],
+            "body:hand": [
+              "empty",
+              "o1"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 54,
+          "action": [
+            "release",
+            "o1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "put down",
+          "changed": {
+            "obj:o1.where": [
+              "held",
+              "free"
+            ],
+            "body:hand": [
+              "o1",
+              "empty"
+            ]
+          },
+          "hand_before": "o1"
+        },
+        {
+          "step": 55,
+          "action": [
+            "turn",
+            "p1",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "turned=0.00",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 56,
+          "action": [
+            "turn",
+            "p1",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "turned=-0.00",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 57,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.017",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 58,
+          "action": [
+            "pick",
+            "o2"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "lifted",
+          "changed": {
+            "obj:o2.where": [
+              "free",
+              "held"
+            ],
+            "body:hand": [
+              "empty",
+              "o2"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 59,
+          "action": [
+            "release",
+            "o2"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "put down",
+          "changed": {
+            "obj:o2.where": [
+              "held",
+              "free"
+            ],
+            "body:hand": [
+              "o2",
+              "empty"
+            ]
+          },
+          "hand_before": "o2"
+        },
+        {
+          "step": 60,
+          "action": [
+            "push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": false,
+          "stalled": false,
+          "notes": "grasp failed",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "ajar"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 61,
+          "action": [
+            "pull",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 62,
+          "action": [
+            "push",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 63,
+          "action": [
+            "push",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 64,
+          "action": [
+            "push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 65,
+          "action": [
+            "pull",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 66,
+          "action": [
+            "press_push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 67,
+          "action": [
+            "push",
+            "p2"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 68,
+          "action": [
+            "press_push",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 69,
+          "action": [
+            "turn_push",
+            "p5",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.001 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 70,
+          "action": [
+            "turn_pull",
+            "p5",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 71,
+          "action": [
+            "turn_push",
+            "p5",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 72,
+          "action": [
+            "turn_pull",
+            "p5",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 73,
+          "action": [
+            "turn_pull",
+            "p3",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.09",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 74,
+          "action": [
+            "turn_push",
+            "p3",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.07",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 75,
+          "action": [
+            "turn_push",
+            "p3",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 76,
+          "action": [
+            "turn_pull",
+            "p3",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {
+            "part:p3.angle": [
+              "pos",
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 77,
+          "action": [
+            "turn",
+            "p1",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "turned=-0.00",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 78,
+          "action": [
+            "turn",
+            "p1",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "turned=0.00",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 79,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.172",
+          "changed": {
+            "part:p1.open": [
+              "ajar",
+              "open"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 80,
+          "action": [
+            "push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.210",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "ajar"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 81,
+          "action": [
+            "push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.018",
+          "changed": {
+            "part:p1.open": [
+              "ajar",
+              "closed"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 82,
+          "action": [
+            "push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.002",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 83,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 84,
+          "action": [
+            "turn_pull",
+            "p1",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.212 turned=0.00",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 85,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.161",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 86,
+          "action": [
+            "turn_pull",
+            "p1",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211 turned=-0.00",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 87,
+          "action": [
+            "turn_pull",
+            "p1",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.050 turned=-0.00",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 88,
+          "action": [
+            "turn_pull",
+            "p1",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.018 turned=0.00",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 89,
+          "action": [
+            "turn_push",
+            "p1",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.212 turned=0.00",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "ajar"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 90,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {
+            "part:p1.open": [
+              "ajar",
+              "closed"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 91,
+          "action": [
+            "turn_push",
+            "p1",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.002 turned=0.00",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 92,
+          "action": [
+            "turn_push",
+            "p1",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.002 turned=-0.00",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 93,
+          "action": [
+            "turn",
+            "p1",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "turned=-0.00",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 94,
+          "action": [
+            "turn",
+            "p1",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "turned=0.00",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 95,
+          "action": [
+            "pick",
+            "o1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "lifted",
+          "changed": {
+            "obj:o1.where": [
+              "free",
+              "held"
+            ],
+            "body:hand": [
+              "empty",
+              "o1"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 96,
+          "action": [
+            "turn_held",
+            "o1",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "turned in the hand",
+          "changed": {},
+          "hand_before": "o1"
+        },
+        {
+          "step": 97,
+          "action": [
+            "turn_held",
+            "o1",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "turned in the hand",
+          "changed": {},
+          "hand_before": "o1"
+        },
+        {
+          "step": 98,
+          "action": [
+            "insert",
+            "o1",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "depth=0.029 lateral=0.000 retries=0",
+          "changed": {
+            "obj:o1.where": [
+              "held",
+              "in:p4"
+            ]
+          },
+          "hand_before": "o1"
+        },
+        {
+          "step": 99,
+          "action": [
+            "pick",
+            "o1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "withdrawn",
+          "changed": {
+            "obj:o1.where": [
+              "in:p4",
+              "held"
+            ]
+          },
+          "hand_before": "o1"
+        },
+        {
+          "step": 100,
+          "action": [
+            "insert",
+            "o1",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "depth=-0.220 lateral=0.994 retries=2",
+          "changed": {
+            "obj:o1.where": [
+              "held",
+              "free"
+            ]
+          },
+          "hand_before": "o1"
+        },
+        {
+          "step": 101,
+          "action": [
+            "release",
+            "o1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "put down",
+          "changed": {
+            "body:hand": [
+              "o1",
+              "empty"
+            ]
+          },
+          "hand_before": "o1"
+        },
+        {
+          "step": 102,
+          "action": [
+            "pick",
+            "o1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "lifted",
+          "changed": {
+            "obj:o1.where": [
+              "free",
+              "held"
+            ],
+            "body:hand": [
+              "empty",
+              "o1"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 103,
+          "action": [
+            "insert",
+            "o1",
+            "p2"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "depth=-0.114 lateral=1.043 retries=3",
+          "changed": {
+            "obj:o1.where": [
+              "held",
+              "free"
+            ]
+          },
+          "hand_before": "o1"
+        },
+        {
+          "step": 104,
+          "action": [
+            "insert",
+            "o1",
+            "p2"
+          ],
+          "mode": "explore",
+          "executed": false,
+          "stalled": false,
+          "notes": "dropped it",
+          "changed": {
+            "body:hand": [
+              "o1",
+              "empty"
+            ]
+          },
+          "hand_before": "o1"
+        },
+        {
+          "step": 105,
+          "action": [
+            "pick",
+            "o1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "lifted",
+          "changed": {
+            "obj:o1.where": [
+              "free",
+              "held"
+            ],
+            "body:hand": [
+              "empty",
+              "o1"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 106,
+          "action": [
+            "insert",
+            "o1",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "depth=-0.004 lateral=0.035 retries=1",
+          "changed": {
+            "obj:o1.where": [
+              "held",
+              "free"
+            ]
+          },
+          "hand_before": "o1"
+        },
+        {
+          "step": 107,
+          "action": [
+            "turn_held",
+            "o1",
+            1
+          ],
+          "mode": "explore",
+          "executed": false,
+          "stalled": false,
+          "notes": "dropped it",
+          "changed": {
+            "body:hand": [
+              "o1",
+              "empty"
+            ]
+          },
+          "hand_before": "o1"
+        },
+        {
+          "step": 108,
+          "action": [
+            "pick",
+            "o1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "lifted",
+          "changed": {
+            "obj:o1.where": [
+              "free",
+              "held"
+            ],
+            "body:hand": [
+              "empty",
+              "o1"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 109,
+          "action": [
+            "insert",
+            "o1",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "depth=0.164 lateral=0.798 retries=1",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ],
+            "obj:o1.where": [
+              "held",
+              "free"
+            ]
+          },
+          "hand_before": "o1"
+        },
+        {
+          "step": 110,
+          "action": [
+            "turn_held",
+            "o1",
+            1
+          ],
+          "mode": "explore",
+          "executed": false,
+          "stalled": false,
+          "notes": "dropped it",
+          "changed": {
+            "body:hand": [
+              "o1",
+              "empty"
+            ]
+          },
+          "hand_before": "o1"
+        },
+        {
+          "step": 111,
+          "action": [
+            "turn_push",
+            "p1",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.001 turned=-0.00",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 112,
+          "action": [
+            "pick",
+            "o2"
+          ],
+          "mode": "explore",
+          "executed": false,
+          "stalled": false,
+          "notes": "could not lift it",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 113,
+          "action": [
+            "pick",
+            "o2"
+          ],
+          "mode": "explore",
+          "executed": false,
+          "stalled": false,
+          "notes": "could not lift it",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 114,
+          "action": [
+            "pick",
+            "o2"
+          ],
+          "mode": "explore",
+          "executed": false,
+          "stalled": false,
+          "notes": "could not lift it",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 115,
+          "action": [
+            "pick",
+            "o2"
+          ],
+          "mode": "explore",
+          "executed": false,
+          "stalled": false,
+          "notes": "could not lift it",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 116,
+          "action": [
+            "pick",
+            "o1"
+          ],
+          "mode": "explore",
+          "executed": false,
+          "stalled": false,
+          "notes": "could not lift it",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 117,
+          "action": [
+            "pick",
+            "o1"
+          ],
+          "mode": "explore",
+          "executed": false,
+          "stalled": false,
+          "notes": "could not lift it",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 118,
+          "action": [
+            "pick",
+            "o1"
+          ],
+          "mode": "explore",
+          "executed": false,
+          "stalled": false,
+          "notes": "could not lift it",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 119,
+          "action": [
+            "pick",
+            "o1"
+          ],
+          "mode": "explore",
+          "executed": false,
+          "stalled": false,
+          "notes": "could not lift it",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 120,
+          "action": [
+            "pick",
+            "o1"
+          ],
+          "mode": "explore",
+          "executed": false,
+          "stalled": false,
+          "notes": "could not lift it",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 121,
+          "action": [
+            "pick",
+            "o1"
+          ],
+          "mode": "explore",
+          "executed": false,
+          "stalled": false,
+          "notes": "could not lift it",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 122,
+          "action": [
+            "pick",
+            "o1"
+          ],
+          "mode": "explore",
+          "executed": false,
+          "stalled": false,
+          "notes": "could not lift it",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 123,
+          "action": [
+            "pick",
+            "o1"
+          ],
+          "mode": "explore",
+          "executed": false,
+          "stalled": false,
+          "notes": "could not lift it",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 124,
+          "action": [
+            "turn_pull",
+            "p3",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {
+            "part:p3.angle": [
+              "rest",
+              "pos"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 125,
+          "action": [
+            "turn_pull",
+            "p3",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {
+            "part:p3.angle": [
+              "pos",
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 126,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.167",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 127,
+          "action": [
+            "turn_push",
+            "p3",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.14",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 128,
+          "action": [
+            "turn_pull",
+            "p3",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.06",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 129,
+          "action": [
+            "turn_pull",
+            "p3",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {
+            "part:p3.angle": [
+              "rest",
+              "pos"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 130,
+          "action": [
+            "pull",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 131,
+          "action": [
+            "push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 132,
+          "action": [
+            "push",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 133,
+          "action": [
+            "pull",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 134,
+          "action": [
+            "push",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 135,
+          "action": [
+            "push",
+            "p2"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 136,
+          "action": [
+            "press_push",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 137,
+          "action": [
+            "press_push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 138,
+          "action": [
+            "turn_push",
+            "p3",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 139,
+          "action": [
+            "turn_pull",
+            "p5",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 140,
+          "action": [
+            "turn_pull",
+            "p5",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 141,
+          "action": [
+            "turn_push",
+            "p5",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 142,
+          "action": [
+            "turn_push",
+            "p5",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.001 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 143,
+          "action": [
+            "turn_pull",
+            "p3",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.23",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 144,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 145,
+          "action": [
+            "turn_push",
+            "p3",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 146,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.170",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 147,
+          "action": [
+            "turn_pull",
+            "p3",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {
+            "part:p3.angle": [
+              "pos",
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 148,
+          "action": [
+            "turn_push",
+            "p3",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {
+            "part:p3.angle": [
+              "rest",
+              "pos"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 149,
+          "action": [
+            "push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 150,
+          "action": [
+            "pull",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 151,
+          "action": [
+            "push",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 152,
+          "action": [
+            "push",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 153,
+          "action": [
+            "pull",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 154,
+          "action": [
+            "push",
+            "p2"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 155,
+          "action": [
+            "press_push",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 156,
+          "action": [
+            "press_push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 157,
+          "action": [
+            "turn_push",
+            "p3",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {
+            "part:p3.angle": [
+              "pos",
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 158,
+          "action": [
+            "pull",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 159,
+          "action": [
+            "push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 160,
+          "action": [
+            "turn_push",
+            "p5",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.001 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 161,
+          "action": [
+            "turn_push",
+            "p5",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 162,
+          "action": [
+            "turn_pull",
+            "p5",
+            1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.68",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 163,
+          "action": [
+            "turn_pull",
+            "p5",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.42",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 164,
+          "action": [
+            "pull",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 165,
+          "action": [
+            "push",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 166,
+          "action": [
+            "push",
+            "p4"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 167,
+          "action": [
+            "push",
+            "p2"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 168,
+          "action": [
+            "press_push",
+            "p5"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 169,
+          "action": [
+            "press_push",
+            "p3"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 170,
+          "action": [
+            "turn_push",
+            "p3",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.26",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 171,
+          "action": [
+            "turn_pull",
+            "p3",
+            -1
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": true,
+          "notes": "moved=0.000 turned=0.06",
+          "changed": {},
+          "hand_before": "empty"
+        },
+        {
+          "step": 172,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 173,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.166",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 174,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 175,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.170",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 176,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 177,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.168",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 178,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 179,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.167",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 180,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 181,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.167",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 182,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 183,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.167",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 184,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 185,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.167",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 186,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 187,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.167",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 188,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 189,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.168",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 190,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 191,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.167",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 192,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 193,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.166",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 194,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 195,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.167",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 196,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 197,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.166",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 198,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 199,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.167",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 200,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 201,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.167",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 202,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 203,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.166",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 204,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 205,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.167",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 206,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 207,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.167",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 208,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 209,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.166",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 210,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 211,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.166",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 212,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.212",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 213,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.169",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 214,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.212",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 215,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.168",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 216,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 217,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.165",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 218,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 219,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.166",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 220,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 221,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.165",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 222,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 223,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.166",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 224,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 225,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.169",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 226,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 227,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.169",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 228,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 229,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.168",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 230,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 231,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.165",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 232,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 233,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.166",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 234,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 235,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.165",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 236,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 237,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.166",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 238,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 239,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.165",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 240,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 241,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.166",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 242,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 243,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.165",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 244,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 245,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.166",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 246,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 247,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.165",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 248,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 249,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.166",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 250,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 251,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.165",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 252,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 253,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.167",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 254,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 255,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.166",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 256,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 257,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.165",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 258,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 259,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.166",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 260,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 261,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.165",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 262,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 263,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.166",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 264,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 265,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.165",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 266,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 267,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.166",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 268,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 269,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.165",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 270,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 271,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.167",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 272,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 273,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.166",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 274,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 275,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.165",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 276,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 277,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.167",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 278,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 279,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.166",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 280,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 281,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.165",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 282,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 283,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.166",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 284,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 285,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.165",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 286,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 287,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.166",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 288,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 289,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.165",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 290,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 291,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.166",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 292,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 293,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.165",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 294,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 295,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.166",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 296,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 297,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.165",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 298,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 299,
+          "action": [
+            "press_push",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.166",
+          "changed": {
+            "part:p1.open": [
+              "open",
+              "closed"
+            ],
+            "obj:o2.where": [
+              "free",
+              null
+            ],
+            "obj:o2.angle": [
+              "rest",
+              null
+            ]
+          },
+          "hand_before": "empty"
+        },
+        {
+          "step": 300,
+          "action": [
+            "pull",
+            "p1"
+          ],
+          "mode": "explore",
+          "executed": true,
+          "stalled": false,
+          "notes": "moved=0.211",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "hand_before": "empty"
+        }
+      ],
+      "failed_inserts": [
+        {
+          "type": "action_trace",
+          "step": 100,
+          "action": [
+            "insert",
+            "o1",
+            "p5"
+          ],
+          "executed": true,
+          "stalled": true,
+          "notes": "depth=-0.220 lateral=0.994 retries=2",
+          "changed": {
+            "obj:o1.where": [
+              "held",
+              "free"
+            ]
+          },
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.46765,
+              0.37566,
+              1.13853
+            ],
+            "tip_after": [
+              0.25474,
+              0.19643,
+              0.00246
+            ],
+            "finger_force_before": [
+              353.8141,
+              353.93
+            ],
+            "finger_force_after": [
+              269.1129,
+              0.0
+            ],
+            "contacts_before": 12,
+            "contacts_after": 11,
+            "contact_events": [
+              {
+                "t": 37308,
+                "started": [
+                  [
+                    "home_key1",
+                    "home_lever"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 37378,
+                "started": [],
+                "ended": [
+                  [
+                    "home_key1",
+                    "home_lever"
+                  ]
+                ]
+              },
+              {
+                "t": 37379,
+                "started": [
+                  [
+                    "home_key1",
+                    "home_lever"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 37380,
+                "started": [],
+                "ended": [
+                  [
+                    "home_key1",
+                    "home_lever"
+                  ]
+                ]
+              },
+              {
+                "t": 37466,
+                "started": [
+                  [
+                    "home_key1",
+                    "home_lever"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 37507,
+                "started": [],
+                "ended": [
+                  [
+                    "home_key1",
+                    "home_lever"
+                  ]
+                ]
+              },
+              {
+                "t": 37519,
+                "started": [],
+                "ended": [
+                  [
+                    "home_key1",
+                    "robotiq_2f85/left_pad"
+                  ],
+                  [
+                    "home_key1",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 37523,
+                "started": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 37526,
+                "started": [],
+                "ended": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 37527,
+                "started": [
+                  [
+                    "home_base",
+                    "home_key1"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 37528,
+                "started": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 37530,
+                "started": [],
+                "ended": [
+                  [
+                    "home_base",
+                    "home_key1"
+                  ]
+                ]
+              },
+              {
+                "t": 37546,
+                "started": [
+                  [
+                    "home_key1",
+                    "world"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 37572,
+                "started": [
+                  [
+                    "home_base",
+                    "robotiq_2f85/right_spring_link"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 37573,
+                "started": [],
+                "ended": [
+                  [
+                    "home_base",
+                    "robotiq_2f85/right_spring_link"
+                  ]
+                ]
+              },
+              {
+                "t": 37576,
+                "started": [
+                  [
+                    "home_base",
+                    "robotiq_2f85/right_spring_link"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 37579,
+                "started": [],
+                "ended": [
+                  [
+                    "home_base",
+                    "robotiq_2f85/right_spring_link"
+                  ]
+                ]
+              },
+              {
+                "t": 37583,
+                "started": [
+                  [
+                    "home_base",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 37584,
+                "started": [],
+                "ended": [
+                  [
+                    "home_base",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 37585,
+                "started": [
+                  [
+                    "home_base",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 37609,
+                "started": [],
+                "ended": [
+                  [
+                    "home_base",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 37610,
+                "started": [
+                  [
+                    "home_base",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 37611,
+                "started": [],
+                "ended": [
+                  [
+                    "home_base",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 37612,
+                "started": [
+                  [
+                    "home_base",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 37613,
+                "started": [
+                  [
+                    "home_base",
+                    "robotiq_2f85/left_pad"
+                  ]
+                ],
+                "ended": [
+                  [
+                    "home_base",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 37614,
+                "started": [],
+                "ended": [
+                  [
+                    "home_base",
+                    "robotiq_2f85/left_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 37615,
+                "started": [
+                  [
+                    "home_base",
+                    "robotiq_2f85/left_pad"
+                  ],
+                  [
+                    "home_base",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 37616,
+                "started": [],
+                "ended": [
+                  [
+                    "home_base",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              }
+            ],
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 103,
+          "action": [
+            "insert",
+            "o1",
+            "p2"
+          ],
+          "executed": true,
+          "stalled": true,
+          "notes": "depth=-0.114 lateral=1.043 retries=3",
+          "changed": {
+            "obj:o1.where": [
+              "held",
+              "free"
+            ]
+          },
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.25485,
+              0.1964,
+              0.17172
+            ],
+            "tip_after": [
+              0.42564,
+              0.1329,
+              0.00246
+            ],
+            "finger_force_before": [
+              353.0085,
+              353.1704
+            ],
+            "finger_force_after": [
+              0.0,
+              0.0
+            ],
+            "contacts_before": 12,
+            "contacts_after": 8,
+            "contact_events": [
+              {
+                "t": 38402,
+                "started": [
+                  [
+                    "home_door",
+                    "home_key1"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 38474,
+                "started": [],
+                "ended": [
+                  [
+                    "home_door",
+                    "home_key1"
+                  ]
+                ]
+              },
+              {
+                "t": 38572,
+                "started": [
+                  [
+                    "home_door",
+                    "home_key1"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 38612,
+                "started": [],
+                "ended": [
+                  [
+                    "home_door",
+                    "home_key1"
+                  ]
+                ]
+              },
+              {
+                "t": 38718,
+                "started": [
+                  [
+                    "home_door",
+                    "home_key1"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 38758,
+                "started": [],
+                "ended": [
+                  [
+                    "home_door",
+                    "home_key1"
+                  ]
+                ]
+              },
+              {
+                "t": 38768,
+                "started": [],
+                "ended": [
+                  [
+                    "home_key1",
+                    "robotiq_2f85/left_pad"
+                  ],
+                  [
+                    "home_key1",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 38785,
+                "started": [
+                  [
+                    "home_key1",
+                    "world"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 38787,
+                "started": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 38788,
+                "started": [],
+                "ended": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 38790,
+                "started": [],
+                "ended": [
+                  [
+                    "home_key1",
+                    "world"
+                  ]
+                ]
+              },
+              {
+                "t": 38791,
+                "started": [
+                  [
+                    "home_key1",
+                    "world"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 38795,
+                "started": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 38796,
+                "started": [],
+                "ended": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 38800,
+                "started": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 38801,
+                "started": [],
+                "ended": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 38859,
+                "started": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 38860,
+                "started": [],
+                "ended": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              }
+            ],
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 106,
+          "action": [
+            "insert",
+            "o1",
+            "p3"
+          ],
+          "executed": true,
+          "stalled": true,
+          "notes": "depth=-0.004 lateral=0.035 retries=1",
+          "changed": {
+            "obj:o1.where": [
+              "held",
+              "free"
+            ]
+          },
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.42571,
+              0.13289,
+              0.17201
+            ],
+            "tip_after": [
+              0.48569,
+              0.34398,
+              1.28423
+            ],
+            "finger_force_before": [
+              353.0085,
+              353.1928
+            ],
+            "finger_force_after": [
+              0.0,
+              0.0
+            ],
+            "contacts_before": 12,
+            "contacts_after": 4,
+            "contact_events": [
+              {
+                "t": 40263,
+                "started": [
+                  [
+                    "home_key1",
+                    "home_thumb"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 40347,
+                "started": [],
+                "ended": [
+                  [
+                    "home_key1",
+                    "home_thumb"
+                  ]
+                ]
+              },
+              {
+                "t": 40436,
+                "started": [
+                  [
+                    "home_key1",
+                    "home_thumb"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 40476,
+                "started": [
+                  [
+                    "home_key1",
+                    "robotiq_2f85/left_spring_link"
+                  ],
+                  [
+                    "home_key1",
+                    "robotiq_2f85/right_spring_link"
+                  ]
+                ],
+                "ended": [
+                  [
+                    "home_key1",
+                    "home_thumb"
+                  ],
+                  [
+                    "home_key1",
+                    "robotiq_2f85/left_pad"
+                  ],
+                  [
+                    "home_key1",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 40478,
+                "started": [],
+                "ended": [
+                  [
+                    "home_key1",
+                    "robotiq_2f85/left_spring_link"
+                  ],
+                  [
+                    "home_key1",
+                    "robotiq_2f85/right_spring_link"
+                  ]
+                ]
+              },
+              {
+                "t": 40479,
+                "started": [
+                  [
+                    "home_key1",
+                    "home_thumb"
+                  ],
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 40480,
+                "started": [],
+                "ended": [
+                  [
+                    "home_key1",
+                    "home_thumb"
+                  ]
+                ]
+              },
+              {
+                "t": 40482,
+                "started": [],
+                "ended": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              }
+            ],
+            "verification": "unverified"
+          }
+        },
+        {
+          "type": "action_trace",
+          "step": 109,
+          "action": [
+            "insert",
+            "o1",
+            "p1"
+          ],
+          "executed": true,
+          "stalled": true,
+          "notes": "depth=0.164 lateral=0.798 retries=1",
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o2.where": [
+              null,
+              "free"
+            ],
+            "obj:o2.angle": [
+              null,
+              "rest"
+            ],
+            "obj:o1.where": [
+              "held",
+              "free"
+            ]
+          },
+          "cause": "insertion_stalled",
+          "contact": {
+            "tip_before": [
+              0.29628,
+              0.43502,
+              0.17201
+            ],
+            "tip_after": [
+              0.01914,
+              0.69004,
+              0.00246
+            ],
+            "finger_force_before": [
+              353.0086,
+              353.1928
+            ],
+            "finger_force_after": [
+              0.0,
+              0.0
+            ],
+            "contacts_before": 12,
+            "contacts_after": 10,
+            "contact_events": [
+              {
+                "t": 41153,
+                "started": [
+                  [
+                    "home_base",
+                    "home_key1"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 41162,
+                "started": [
+                  [
+                    "home_base",
+                    "robotiq_2f85/right_coupler"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 41169,
+                "started": [
+                  [
+                    "home_base",
+                    "robotiq_2f85/right_driver"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 41184,
+                "started": [],
+                "ended": [
+                  [
+                    "home_base",
+                    "home_key1"
+                  ]
+                ]
+              },
+              {
+                "t": 41186,
+                "started": [],
+                "ended": [
+                  [
+                    "home_base",
+                    "robotiq_2f85/right_driver"
+                  ]
+                ]
+              },
+              {
+                "t": 41211,
+                "started": [],
+                "ended": [
+                  [
+                    "home_base",
+                    "robotiq_2f85/right_coupler"
+                  ]
+                ]
+              },
+              {
+                "t": 41329,
+                "started": [
+                  [
+                    "cab_drawer",
+                    "home_key1"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 41363,
+                "started": [],
+                "ended": [
+                  [
+                    "cab_drawer",
+                    "home_key1"
+                  ]
+                ]
+              },
+              {
+                "t": 41364,
+                "started": [
+                  [
+                    "cab_drawer",
+                    "home_key1"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 41453,
+                "started": [],
+                "ended": [
+                  [
+                    "cab_drawer",
+                    "home_key1"
+                  ],
+                  [
+                    "home_key1",
+                    "robotiq_2f85/left_pad"
+                  ],
+                  [
+                    "home_key1",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 41455,
+                "started": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 41456,
+                "started": [],
+                "ended": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 41467,
+                "started": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 41468,
+                "started": [],
+                "ended": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 41469,
+                "started": [
+                  [
+                    "home_key1",
+                    "world"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 41472,
+                "started": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 41474,
+                "started": [],
+                "ended": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 41476,
+                "started": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 41477,
+                "started": [],
+                "ended": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 41480,
+                "started": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 41481,
+                "started": [],
+                "ended": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 41482,
+                "started": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 41483,
+                "started": [],
+                "ended": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 41485,
+                "started": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 41486,
+                "started": [],
+                "ended": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 41488,
+                "started": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 41489,
+                "started": [],
+                "ended": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 41490,
+                "started": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 41492,
+                "started": [],
+                "ended": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 41493,
+                "started": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 41494,
+                "started": [],
+                "ended": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 41496,
+                "started": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 41497,
+                "started": [],
+                "ended": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 41502,
+                "started": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 41503,
+                "started": [],
+                "ended": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 41506,
+                "started": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 41509,
+                "started": [],
+                "ended": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 41510,
+                "started": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 41511,
+                "started": [],
+                "ended": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 41517,
+                "started": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              },
+              {
+                "t": 41518,
+                "started": [],
+                "ended": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ]
+              },
+              {
+                "t": 41520,
+                "started": [
+                  [
+                    "robotiq_2f85/left_pad",
+                    "robotiq_2f85/right_pad"
+                  ]
+                ],
+                "ended": []
+              }
+            ],
+            "verification": "unverified"
+          }
+        }
+      ],
+      "physical_state": {
+        "key_locked": true,
+        "deadbolt_locked": false,
+        "opened": false
+      }
+    }
+  ]
+}

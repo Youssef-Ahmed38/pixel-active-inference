@@ -17,6 +17,8 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
+chess = ["python-chess>=1.999,<2", "scikit-learn>=1.5,<2"]
+bike-video = ["imageio-ffmpeg>=0.5,<1"]
 
 [tool.setuptools.packages.find]
 include = ["pai*"]

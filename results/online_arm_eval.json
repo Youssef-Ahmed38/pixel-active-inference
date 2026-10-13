@@ -1,0 +1,235 @@
+{
+  "config": {
+    "seeds": [
+      123,
+      124,
+      125
+    ],
+    "checkpoint": "C:\\projects\\pixel-active-inference\\runs\\cross_domain_thinker\\arm_pretrained.pt"
+  },
+  "summary": {
+    "bayesian": {
+      "n": 3,
+      "success_rate": 1.0
+    },
+    "online_thinker": {
+      "n": 3,
+      "success_rate": 1.0
+    }
+  },
+  "episodes": [
+    {
+      "seed": 123,
+      "condition": "bayesian",
+      "success": true,
+      "steps": 78,
+      "inferred_cause": "camera_shift",
+      "adaptations": [
+        {
+          "t": 30,
+          "cause": "camera_shift",
+          "action": "recalibrated the camera",
+          "correction_mm": [
+            40.0,
+            0.10000000149011612,
+            0.0
+          ]
+        }
+      ],
+      "thinker_reports": []
+    },
+    {
+      "seed": 123,
+      "condition": "online_thinker",
+      "success": true,
+      "steps": 78,
+      "inferred_cause": "camera_shift",
+      "adaptations": [
+        {
+          "t": 30,
+          "cause": "camera_shift",
+          "action": "recalibrated the camera",
+          "correction_mm": [
+            40.0,
+            0.10000000149011612,
+            0.0
+          ]
+        }
+      ],
+      "thinker_reports": [
+        {
+          "step": 30,
+          "cause": "camera_shift",
+          "confidence": 0.9729905724525452,
+          "posterior": {
+            "none": 0.0007350581581704319,
+            "push": 0.0024580731987953186,
+            "heavier_object": 0.010940278880298138,
+            "slippery_object": 0.005200117360800505,
+            "camera_shift": 0.9729905724525452,
+            "passage_blocked": 0.0032812056597322226,
+            "unknown": 0.004394764546304941
+          },
+          "actionable": true
+        },
+        {
+          "step": 33,
+          "cause": "camera_shift",
+          "confidence": 0.9730098843574524,
+          "posterior": {
+            "none": 0.0009362498531118035,
+            "push": 0.0022168010473251343,
+            "heavier_object": 0.010837274603545666,
+            "slippery_object": 0.005745668429881334,
+            "camera_shift": 0.9730098843574524,
+            "passage_blocked": 0.0028873928822577,
+            "unknown": 0.004366720095276833
+          },
+          "actionable": true
+        }
+      ]
+    },
+    {
+      "seed": 124,
+      "condition": "bayesian",
+      "success": true,
+      "steps": 120,
+      "inferred_cause": "camera_shift",
+      "adaptations": [
+        {
+          "t": 30,
+          "cause": "camera_shift",
+          "action": "recalibrated the camera",
+          "correction_mm": [
+            39.900001525878906,
+            -0.0,
+            0.0
+          ]
+        }
+      ],
+      "thinker_reports": []
+    },
+    {
+      "seed": 124,
+      "condition": "online_thinker",
+      "success": true,
+      "steps": 120,
+      "inferred_cause": "camera_shift",
+      "adaptations": [
+        {
+          "t": 30,
+          "cause": "camera_shift",
+          "action": "recalibrated the camera",
+          "correction_mm": [
+            39.900001525878906,
+            -0.0,
+            0.0
+          ]
+        }
+      ],
+      "thinker_reports": [
+        {
+          "step": 30,
+          "cause": "camera_shift",
+          "confidence": 0.9793974757194519,
+          "posterior": {
+            "none": 0.003494614502415061,
+            "push": 0.00203541642986238,
+            "heavier_object": 0.005682121496647596,
+            "slippery_object": 0.0029325878713279963,
+            "camera_shift": 0.9793974757194519,
+            "passage_blocked": 0.0030700841452926397,
+            "unknown": 0.0033877247478812933
+          },
+          "actionable": true
+        },
+        {
+          "step": 33,
+          "cause": "camera_shift",
+          "confidence": 0.975521981716156,
+          "posterior": {
+            "none": 0.0014206658815965056,
+            "push": 0.0022593792527914047,
+            "heavier_object": 0.009733505547046661,
+            "slippery_object": 0.004515344742685556,
+            "camera_shift": 0.975521981716156,
+            "passage_blocked": 0.0022896777372807264,
+            "unknown": 0.004259541630744934
+          },
+          "actionable": true
+        }
+      ]
+    },
+    {
+      "seed": 125,
+      "condition": "bayesian",
+      "success": true,
+      "steps": 72,
+      "inferred_cause": "camera_shift",
+      "adaptations": [
+        {
+          "t": 30,
+          "cause": "camera_shift",
+          "action": "recalibrated the camera",
+          "correction_mm": [
+            40.0,
+            0.10000000149011612,
+            0.20000000298023224
+          ]
+        }
+      ],
+      "thinker_reports": []
+    },
+    {
+      "seed": 125,
+      "condition": "online_thinker",
+      "success": true,
+      "steps": 72,
+      "inferred_cause": "camera_shift",
+      "adaptations": [
+        {
+          "t": 30,
+          "cause": "camera_shift",
+          "action": "recalibrated the camera",
+          "correction_mm": [
+            40.0,
+            0.10000000149011612,
+            0.20000000298023224
+          ]
+        }
+      ],
+      "thinker_reports": [
+        {
+          "step": 30,
+          "cause": "camera_shift",
+          "confidence": 0.974741518497467,
+          "posterior": {
+            "none": 0.0009169388213194907,
+            "push": 0.0031825858168303967,
+            "heavier_object": 0.011651123873889446,
+            "slippery_object": 0.003049238119274378,
+            "camera_shift": 0.974741518497467,
+            "passage_blocked": 0.0028961875941604376,
+            "unknown": 0.003562378231436014
+          },
+          "actionable": true
+        },
+        {
+          "step": 33,
+          "cause": "camera_shift",
+          "confidence": 0.9666063189506531,
+          "posterior": {
+            "none": 0.0009795185178518295,
+            "push": 0.003967348951846361,
+            "heavier_object": 0.018655216321349144,
+            "slippery_object": 0.003290660446509719,
+            "camera_shift": 0.9666063189506531,
+            "passage_blocked": 0.003010432468727231,
+            "unknown": 0.003490464761853218
+          },
+          "actionable": true
+        }
+      ]
+    }
+  ]
+}

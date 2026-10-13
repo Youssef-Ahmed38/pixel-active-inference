@@ -1,0 +1,403 @@
+{
+  "config": {
+    "seeds": [
+      40000,
+      40001,
+      40002,
+      40003,
+      40004,
+      40005,
+      40006,
+      40007,
+      40008,
+      40009,
+      40010,
+      40011,
+      40012,
+      40013,
+      40014,
+      40015,
+      40016,
+      40017,
+      40018,
+      40019
+    ],
+    "budget": 700
+  },
+  "summary": {
+    "without_probes": {
+      "n": 20,
+      "goal_rate": 0.95,
+      "full_coverage_rate": 0.95,
+      "mean_coverage": 0.9598522167487685
+    },
+    "with_probes": {
+      "n": 20,
+      "goal_rate": 1.0,
+      "full_coverage_rate": 1.0,
+      "mean_coverage": 1.0
+    }
+  },
+  "episodes": [
+    {
+      "seed": 40000,
+      "probes": false,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 0,
+      "steps": 175
+    },
+    {
+      "seed": 40000,
+      "probes": true,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 195,
+      "steps": 524
+    },
+    {
+      "seed": 40001,
+      "probes": false,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 0,
+      "steps": 309
+    },
+    {
+      "seed": 40001,
+      "probes": true,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 229,
+      "steps": 700
+    },
+    {
+      "seed": 40002,
+      "probes": false,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 0,
+      "steps": 187
+    },
+    {
+      "seed": 40002,
+      "probes": true,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 195,
+      "steps": 558
+    },
+    {
+      "seed": 40003,
+      "probes": false,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 0,
+      "steps": 391
+    },
+    {
+      "seed": 40003,
+      "probes": true,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 188,
+      "steps": 700
+    },
+    {
+      "seed": 40004,
+      "probes": false,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 0,
+      "steps": 137
+    },
+    {
+      "seed": 40004,
+      "probes": true,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 192,
+      "steps": 512
+    },
+    {
+      "seed": 40005,
+      "probes": false,
+      "goal": false,
+      "full_coverage": false,
+      "coverage": 0.19704433497536947,
+      "causal_probes": 0,
+      "steps": 46
+    },
+    {
+      "seed": 40005,
+      "probes": true,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 408,
+      "steps": 700
+    },
+    {
+      "seed": 40006,
+      "probes": false,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 0,
+      "steps": 153
+    },
+    {
+      "seed": 40006,
+      "probes": true,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 194,
+      "steps": 517
+    },
+    {
+      "seed": 40007,
+      "probes": false,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 0,
+      "steps": 367
+    },
+    {
+      "seed": 40007,
+      "probes": true,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 201,
+      "steps": 700
+    },
+    {
+      "seed": 40008,
+      "probes": false,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 0,
+      "steps": 173
+    },
+    {
+      "seed": 40008,
+      "probes": true,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 194,
+      "steps": 560
+    },
+    {
+      "seed": 40009,
+      "probes": false,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 0,
+      "steps": 363
+    },
+    {
+      "seed": 40009,
+      "probes": true,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 196,
+      "steps": 700
+    },
+    {
+      "seed": 40010,
+      "probes": false,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 0,
+      "steps": 179
+    },
+    {
+      "seed": 40010,
+      "probes": true,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 195,
+      "steps": 563
+    },
+    {
+      "seed": 40011,
+      "probes": false,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 0,
+      "steps": 367
+    },
+    {
+      "seed": 40011,
+      "probes": true,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 199,
+      "steps": 700
+    },
+    {
+      "seed": 40012,
+      "probes": false,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 0,
+      "steps": 157
+    },
+    {
+      "seed": 40012,
+      "probes": true,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 193,
+      "steps": 528
+    },
+    {
+      "seed": 40013,
+      "probes": false,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 0,
+      "steps": 363
+    },
+    {
+      "seed": 40013,
+      "probes": true,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 203,
+      "steps": 700
+    },
+    {
+      "seed": 40014,
+      "probes": false,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 0,
+      "steps": 144
+    },
+    {
+      "seed": 40014,
+      "probes": true,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 195,
+      "steps": 530
+    },
+    {
+      "seed": 40015,
+      "probes": false,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 0,
+      "steps": 330
+    },
+    {
+      "seed": 40015,
+      "probes": true,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 188,
+      "steps": 700
+    },
+    {
+      "seed": 40016,
+      "probes": false,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 0,
+      "steps": 171
+    },
+    {
+      "seed": 40016,
+      "probes": true,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 195,
+      "steps": 536
+    },
+    {
+      "seed": 40017,
+      "probes": false,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 0,
+      "steps": 391
+    },
+    {
+      "seed": 40017,
+      "probes": true,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 189,
+      "steps": 700
+    },
+    {
+      "seed": 40018,
+      "probes": false,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 0,
+      "steps": 171
+    },
+    {
+      "seed": 40018,
+      "probes": true,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 194,
+      "steps": 528
+    },
+    {
+      "seed": 40019,
+      "probes": false,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 0,
+      "steps": 339
+    },
+    {
+      "seed": 40019,
+      "probes": true,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "causal_probes": 214,
+      "steps": 700
+    }
+  ]
+}

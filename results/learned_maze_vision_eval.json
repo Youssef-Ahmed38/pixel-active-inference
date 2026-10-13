@@ -1,0 +1,156 @@
+{
+  "config": {
+    "train_seeds": [
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139
+    ],
+    "test_seeds": [
+      40000,
+      40001,
+      40002,
+      40003,
+      40004,
+      40005,
+      40006,
+      40007,
+      40008,
+      40009
+    ],
+    "appearance_jitter": 22.0,
+    "appearance_bias": [
+      30.0,
+      -20.0,
+      15.0
+    ]
+  },
+  "pixel_accuracy": {
+    "fixed_palette": 0.9961344537815126,
+    "learned": 0.9978151260504202
+  },
+  "summary": {
+    "n": 10,
+    "goal_rate": 1.0,
+    "full_coverage_rate": 1.0,
+    "mean_map_occupancy_accuracy": 0.9986666666666666
+  },
+  "episodes": [
+    {
+      "seed": 40000,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 516,
+      "map_occupancy_accuracy": 1.0
+    },
+    {
+      "seed": 40001,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 700,
+      "map_occupancy_accuracy": 1.0
+    },
+    {
+      "seed": 40002,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 560,
+      "map_occupancy_accuracy": 0.9866666666666667
+    },
+    {
+      "seed": 40003,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 700,
+      "map_occupancy_accuracy": 1.0
+    },
+    {
+      "seed": 40004,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 547,
+      "map_occupancy_accuracy": 1.0
+    },
+    {
+      "seed": 40005,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 700,
+      "map_occupancy_accuracy": 1.0
+    },
+    {
+      "seed": 40006,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 517,
+      "map_occupancy_accuracy": 1.0
+    },
+    {
+      "seed": 40007,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 700,
+      "map_occupancy_accuracy": 1.0
+    },
+    {
+      "seed": 40008,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 565,
+      "map_occupancy_accuracy": 1.0
+    },
+    {
+      "seed": 40009,
+      "goal": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 700,
+      "map_occupancy_accuracy": 1.0
+    }
+  ]
+}

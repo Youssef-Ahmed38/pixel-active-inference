@@ -1,0 +1,85 @@
+{
+  "device": "cuda",
+  "episodes": [
+    {
+      "domain": "arm",
+      "seed": 123,
+      "success": true,
+      "steps": 108,
+      "commands": 108
+    },
+    {
+      "domain": "arm",
+      "seed": 124,
+      "success": true,
+      "steps": 77,
+      "commands": 77
+    },
+    {
+      "domain": "arm",
+      "seed": 125,
+      "success": true,
+      "steps": 74,
+      "commands": 74
+    },
+    {
+      "domain": "arm",
+      "seed": 126,
+      "success": true,
+      "steps": 61,
+      "commands": 61
+    },
+    {
+      "domain": "arm",
+      "seed": 127,
+      "success": true,
+      "steps": 84,
+      "commands": 84
+    },
+    {
+      "domain": "maze",
+      "seed": 7,
+      "success": true,
+      "steps": 15,
+      "commands": 15
+    },
+    {
+      "domain": "maze",
+      "seed": 8,
+      "success": true,
+      "steps": 19,
+      "commands": 19
+    },
+    {
+      "domain": "maze",
+      "seed": 9,
+      "success": true,
+      "steps": 12,
+      "commands": 12
+    },
+    {
+      "domain": "maze",
+      "seed": 10,
+      "success": true,
+      "steps": 32,
+      "commands": 32
+    },
+    {
+      "domain": "maze",
+      "seed": 11,
+      "success": true,
+      "steps": 1,
+      "commands": 1
+    }
+  ],
+  "summary": {
+    "arm": {
+      "n": 5,
+      "success_rate": 1.0
+    },
+    "maze": {
+      "n": 5,
+      "success_rate": 1.0
+    }
+  }
+}

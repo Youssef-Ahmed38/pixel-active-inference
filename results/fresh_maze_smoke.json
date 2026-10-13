@@ -1,0 +1,119 @@
+{
+  "config": {
+    "seeds": [
+      40000,
+      40001
+    ],
+    "budget": 700,
+    "checkpoint": "C:\\projects\\pixel-active-inference\\runs\\cross_domain_thinker\\maze_transfer.pt",
+    "appearance_jitter": 12.0,
+    "odometry_noise": 0.35
+  },
+  "summary": {
+    "baseline": {
+      "n": 2,
+      "goal_rate": 1.0,
+      "full_coverage_rate": 1.0,
+      "mean_coverage": 1.0,
+      "mean_steps": 242.0
+    },
+    "online_thinker": {
+      "n": 2,
+      "goal_rate": 1.0,
+      "full_coverage_rate": 1.0,
+      "mean_coverage": 1.0,
+      "mean_steps": 242.0
+    }
+  },
+  "episodes": [
+    {
+      "seed": 40000,
+      "condition": "baseline",
+      "size": 15,
+      "goal_found": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 175,
+      "truth_causes": [
+        "camera_shift",
+        "passage_blocked"
+      ],
+      "thinker_recall": {
+        "camera_shift": false,
+        "passage_blocked": false
+      },
+      "thinker_actions": []
+    },
+    {
+      "seed": 40000,
+      "condition": "online_thinker",
+      "size": 15,
+      "goal_found": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 175,
+      "truth_causes": [
+        "camera_shift",
+        "passage_blocked"
+      ],
+      "thinker_recall": {
+        "camera_shift": true,
+        "passage_blocked": false
+      },
+      "thinker_actions": [
+        {
+          "step": 55,
+          "cause": "camera_shift",
+          "action": "accept visual frame recalibration"
+        }
+      ]
+    },
+    {
+      "seed": 40001,
+      "condition": "baseline",
+      "size": 21,
+      "goal_found": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 309,
+      "truth_causes": [
+        "passage_blocked",
+        "camera_shift"
+      ],
+      "thinker_recall": {
+        "passage_blocked": false,
+        "camera_shift": false
+      },
+      "thinker_actions": []
+    },
+    {
+      "seed": 40001,
+      "condition": "online_thinker",
+      "size": 21,
+      "goal_found": true,
+      "full_coverage": true,
+      "coverage": 1.0,
+      "steps": 309,
+      "truth_causes": [
+        "passage_blocked",
+        "camera_shift"
+      ],
+      "thinker_recall": {
+        "passage_blocked": true,
+        "camera_shift": true
+      },
+      "thinker_actions": [
+        {
+          "step": 21,
+          "cause": "passage_blocked",
+          "action": "invalidate blocked route"
+        },
+        {
+          "step": 39,
+          "cause": "camera_shift",
+          "action": "accept visual frame recalibration"
+        }
+      ]
+    }
+  ]
+}

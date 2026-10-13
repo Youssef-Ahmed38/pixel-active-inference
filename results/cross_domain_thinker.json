@@ -1,0 +1,98 @@
+{
+  "config": {
+    "arm_file": "C:\\projects\\pixel-active-inference\\results\\slice_v7\\slice_evidence.npz",
+    "maze_per_cause": 16,
+    "arm_steps": 120,
+    "maze_steps": 80,
+    "seed": 0,
+    "maze_train_per_cause": 3
+  },
+  "causes": [
+    "none",
+    "push",
+    "heavier_object",
+    "slippery_object",
+    "camera_shift",
+    "passage_blocked",
+    "unknown"
+  ],
+  "features": [
+    "body_motion",
+    "contact",
+    "focal_entity",
+    "scene",
+    "vertical_body",
+    "vertical_force",
+    "vertical_entity",
+    "holding",
+    "maze_domain"
+  ],
+  "splits": {
+    "arm_train": 60,
+    "arm_test": 40,
+    "maze_train": 9,
+    "maze_test": 39
+  },
+  "arm_pretrained": {
+    "n": 40,
+    "accuracy": 0.775,
+    "by_cause": {
+      "none": {
+        "n": 8,
+        "correct": 4
+      },
+      "push": {
+        "n": 8,
+        "correct": 8
+      },
+      "heavier_object": {
+        "n": 8,
+        "correct": 7
+      },
+      "slippery_object": {
+        "n": 8,
+        "correct": 4
+      },
+      "camera_shift": {
+        "n": 8,
+        "correct": 8
+      }
+    }
+  },
+  "maze_transfer": {
+    "n": 39,
+    "accuracy": 1.0,
+    "by_cause": {
+      "none": {
+        "n": 13,
+        "correct": 13
+      },
+      "camera_shift": {
+        "n": 13,
+        "correct": 13
+      },
+      "passage_blocked": {
+        "n": 13,
+        "correct": 13
+      }
+    }
+  },
+  "maze_scratch": {
+    "n": 39,
+    "accuracy": 1.0,
+    "by_cause": {
+      "none": {
+        "n": 13,
+        "correct": 13
+      },
+      "camera_shift": {
+        "n": 13,
+        "correct": 13
+      },
+      "passage_blocked": {
+        "n": 13,
+        "correct": 13
+      }
+    }
+  }
+}

@@ -18,6 +18,8 @@ from __future__ import annotations
 
 import torch
 
+from pai.planning.objective import expected_free_energy
+
 
 class MPPIPlanner:
     def __init__(self, world_model, horizon: int = 10, samples: int = 256, iterations: int = 2,
@@ -57,7 +59,8 @@ class MPPIPlanner:
         effort = (actions[..., :3] ** 2).sum((-1, -2))
         prev = torch.cat([self.last_action.expand(actions.shape[0], 1, -1), actions[:, :-1]], 1)
         jerk = ((actions - prev) ** 2).sum((-1, -2))
-        total = pragmatic - self.epi_w * epistemic + self.effort_w * effort + self.smooth_w * jerk
+        total = expected_free_energy(pragmatic, epistemic, effort, jerk,
+                                     self.epi_w, self.effort_w, self.smooth_w)
         return total, pragmatic, epistemic
 
     @torch.no_grad()

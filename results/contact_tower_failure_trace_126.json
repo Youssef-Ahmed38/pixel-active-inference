@@ -1,0 +1,5108 @@
+{
+  "config": {
+    "seeds": [
+      126
+    ],
+    "budget_per_goal": 180,
+    "sequence": "tower",
+    "goals": [
+      "on(blue,plate)",
+      "on(red,blue)",
+      "on(green,red)"
+    ],
+    "repair": true,
+    "contact_repair": false
+  },
+  "summary": {
+    "n": 1,
+    "success_rate": 0.0
+  },
+  "episodes": [
+    {
+      "seed": 126,
+      "success": false,
+      "goals": [
+        {
+          "goal": "on(blue, plate)",
+          "success": true,
+          "steps": 116,
+          "last_stage": "opened",
+          "failure_cause": null,
+          "contact_transitions": 8,
+          "failure_trace": null,
+          "relation_loss_events": [],
+          "positions": {
+            "gripper": [
+              0.3653731048107147,
+              -0.008129728026688099,
+              0.06073308736085892
+            ],
+            "red": [
+              0.35185280442237854,
+              0.22087916731834412,
+              0.019927598536014557
+            ],
+            "green": [
+              0.6437131762504578,
+              -0.18847820162773132,
+              0.019927598536014557
+            ],
+            "blue": [
+              0.37130576372146606,
+              -0.009965308010578156,
+              0.03792770579457283
+            ],
+            "yellow": [
+              0.38763076066970825,
+              0.13985787332057953,
+              0.019927598536014557
+            ],
+            "plate": [
+              0.38119152188301086,
+              -0.009683632291853428,
+              0.008967162109911442
+            ],
+            "bowl": [
+              0.4823145866394043,
+              0.20051638782024384,
+              -7.2867173912527505e-06
+            ]
+          },
+          "relations": [
+            [
+              "on",
+              "blue",
+              "plate"
+            ]
+          ]
+        },
+        {
+          "goal": "on(red, blue)",
+          "success": false,
+          "steps": 180,
+          "last_stage": "lowered",
+          "failure_cause": "unstable_placement",
+          "contact_transitions": 15,
+          "failure_trace": {
+            "type": "failure_trace",
+            "cause": "unstable_placement",
+            "goal": [
+              "on",
+              "red",
+              "blue"
+            ],
+            "last_actions": [
+              {
+                "stage": "lowered",
+                "step": 1450,
+                "before": {
+                  "red": {
+                    "position": [
+                      0.36254,
+                      -0.0269,
+                      0.06025
+                    ],
+                    "speed": 0.03372
+                  },
+                  "green": {
+                    "position": [
+                      0.64371,
+                      -0.18848,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.40701,
+                      -0.02809,
+                      0.04017
+                    ],
+                    "speed": 0.02413
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.38812,
+                      -0.01133,
+                      0.00897
+                    ],
+                    "speed": 0.00062
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48231,
+                      0.20052,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "after": {
+                  "red": {
+                    "position": [
+                      0.36484,
+                      -0.02721,
+                      0.06228
+                    ],
+                    "speed": 0.02878
+                  },
+                  "green": {
+                    "position": [
+                      0.64371,
+                      -0.18848,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.40889,
+                      -0.02821,
+                      0.04097
+                    ],
+                    "speed": 0.01776
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.38817,
+                      -0.01134,
+                      0.00897
+                    ],
+                    "speed": 0.00044
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48231,
+                      0.20052,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "relations_gained": [],
+                "relations_lost": [],
+                "contact_events": [],
+                "wrist_force": [
+                  0.3034,
+                  -0.0631,
+                  8.2555
+                ]
+              },
+              {
+                "stage": "lowered",
+                "step": 1455,
+                "before": {
+                  "red": {
+                    "position": [
+                      0.36484,
+                      -0.02721,
+                      0.06228
+                    ],
+                    "speed": 0.02878
+                  },
+                  "green": {
+                    "position": [
+                      0.64371,
+                      -0.18848,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.40889,
+                      -0.02821,
+                      0.04097
+                    ],
+                    "speed": 0.01776
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.38817,
+                      -0.01134,
+                      0.00897
+                    ],
+                    "speed": 0.00044
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48231,
+                      0.20052,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "after": {
+                  "red": {
+                    "position": [
+                      0.36582,
+                      -0.02684,
+                      0.06389
+                    ],
+                    "speed": 0.01588
+                  },
+                  "green": {
+                    "position": [
+                      0.64371,
+                      -0.18848,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.40963,
+                      -0.02814,
+                      0.04118
+                    ],
+                    "speed": 0.00347
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.3882,
+                      -0.01134,
+                      0.00897
+                    ],
+                    "speed": 0.00034
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48231,
+                      0.20052,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "relations_gained": [],
+                "relations_lost": [],
+                "contact_events": [],
+                "wrist_force": [
+                  0.2055,
+                  0.1178,
+                  8.2559
+                ]
+              },
+              {
+                "stage": "lowered",
+                "step": 1460,
+                "before": {
+                  "red": {
+                    "position": [
+                      0.36582,
+                      -0.02684,
+                      0.06389
+                    ],
+                    "speed": 0.01588
+                  },
+                  "green": {
+                    "position": [
+                      0.64371,
+                      -0.18848,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.40963,
+                      -0.02814,
+                      0.04118
+                    ],
+                    "speed": 0.00347
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.3882,
+                      -0.01134,
+                      0.00897
+                    ],
+                    "speed": 0.00034
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48231,
+                      0.20052,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "after": {
+                  "red": {
+                    "position": [
+                      0.36573,
+                      -0.02648,
+                      0.06402
+                    ],
+                    "speed": 0.00869
+                  },
+                  "green": {
+                    "position": [
+                      0.64371,
+                      -0.18848,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.40949,
+                      -0.02806,
+                      0.04081
+                    ],
+                    "speed": 0.00641
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.38824,
+                      -0.01134,
+                      0.00897
+                    ],
+                    "speed": 0.0004
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48231,
+                      0.20052,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "relations_gained": [
+                  [
+                    "upright",
+                    "red"
+                  ]
+                ],
+                "relations_lost": [],
+                "contact_events": [],
+                "wrist_force": [
+                  0.2286,
+                  -0.0713,
+                  8.2569
+                ]
+              },
+              {
+                "stage": "lowered",
+                "step": 1465,
+                "before": {
+                  "red": {
+                    "position": [
+                      0.36573,
+                      -0.02648,
+                      0.06402
+                    ],
+                    "speed": 0.00869
+                  },
+                  "green": {
+                    "position": [
+                      0.64371,
+                      -0.18848,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.40949,
+                      -0.02806,
+                      0.04081
+                    ],
+                    "speed": 0.00641
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.38824,
+                      -0.01134,
+                      0.00897
+                    ],
+                    "speed": 0.0004
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48231,
+                      0.20052,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "after": {
+                  "red": {
+                    "position": [
+                      0.36504,
+                      -0.02707,
+                      0.06391
+                    ],
+                    "speed": 0.01086
+                  },
+                  "green": {
+                    "position": [
+                      0.64371,
+                      -0.18848,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.40899,
+                      -0.02822,
+                      0.04015
+                    ],
+                    "speed": 0.00833
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.38827,
+                      -0.01134,
+                      0.00897
+                    ],
+                    "speed": 0.00033
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48231,
+                      0.20052,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "relations_gained": [],
+                "relations_lost": [],
+                "contact_events": [
+                  {
+                    "t": 1462,
+                    "type": "relation_true",
+                    "relation": [
+                      "upright",
+                      "red"
+                    ]
+                  }
+                ],
+                "wrist_force": [
+                  0.3496,
+                  -0.0654,
+                  8.414
+                ]
+              },
+              {
+                "stage": "lowered",
+                "step": 1470,
+                "before": {
+                  "red": {
+                    "position": [
+                      0.36504,
+                      -0.02707,
+                      0.06391
+                    ],
+                    "speed": 0.01086
+                  },
+                  "green": {
+                    "position": [
+                      0.64371,
+                      -0.18848,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.40899,
+                      -0.02822,
+                      0.04015
+                    ],
+                    "speed": 0.00833
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.38827,
+                      -0.01134,
+                      0.00897
+                    ],
+                    "speed": 0.00033
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48231,
+                      0.20052,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "after": {
+                  "red": {
+                    "position": [
+                      0.36448,
+                      -0.02849,
+                      0.06376
+                    ],
+                    "speed": 0.02177
+                  },
+                  "green": {
+                    "position": [
+                      0.64371,
+                      -0.18848,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.40865,
+                      -0.02853,
+                      0.03947
+                    ],
+                    "speed": 0.01
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.38831,
+                      -0.01136,
+                      0.00897
+                    ],
+                    "speed": 0.0005
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48231,
+                      0.20052,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "relations_gained": [],
+                "relations_lost": [],
+                "contact_events": [],
+                "wrist_force": [
+                  0.2966,
+                  -0.1611,
+                  8.2885
+                ]
+              },
+              {
+                "stage": "lowered",
+                "step": 1475,
+                "before": {
+                  "red": {
+                    "position": [
+                      0.36448,
+                      -0.02849,
+                      0.06376
+                    ],
+                    "speed": 0.02177
+                  },
+                  "green": {
+                    "position": [
+                      0.64371,
+                      -0.18848,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.40865,
+                      -0.02853,
+                      0.03947
+                    ],
+                    "speed": 0.01
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.38831,
+                      -0.01136,
+                      0.00897
+                    ],
+                    "speed": 0.0005
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48231,
+                      0.20052,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "after": {
+                  "red": {
+                    "position": [
+                      0.36378,
+                      -0.02993,
+                      0.06259
+                    ],
+                    "speed": 0.01952
+                  },
+                  "green": {
+                    "position": [
+                      0.64371,
+                      -0.18848,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.40835,
+                      -0.0289,
+                      0.03856
+                    ],
+                    "speed": 0.01033
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.38836,
+                      -0.01138,
+                      0.00897
+                    ],
+                    "speed": 0.00057
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48231,
+                      0.20052,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "relations_gained": [],
+                "relations_lost": [],
+                "contact_events": [],
+                "wrist_force": [
+                  0.3645,
+                  -0.0809,
+                  8.2984
+                ]
+              },
+              {
+                "stage": "lowered",
+                "step": 1480,
+                "before": {
+                  "red": {
+                    "position": [
+                      0.36378,
+                      -0.02993,
+                      0.06259
+                    ],
+                    "speed": 0.01952
+                  },
+                  "green": {
+                    "position": [
+                      0.64371,
+                      -0.18848,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.40835,
+                      -0.0289,
+                      0.03856
+                    ],
+                    "speed": 0.01033
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.38836,
+                      -0.01138,
+                      0.00897
+                    ],
+                    "speed": 0.00057
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48231,
+                      0.20052,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "after": {
+                  "red": {
+                    "position": [
+                      0.36446,
+                      -0.03089,
+                      0.06144
+                    ],
+                    "speed": 0.022
+                  },
+                  "green": {
+                    "position": [
+                      0.64371,
+                      -0.18848,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.40912,
+                      -0.02925,
+                      0.03807
+                    ],
+                    "speed": 0.01826
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.38844,
+                      -0.01141,
+                      0.00898
+                    ],
+                    "speed": 0.00107
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48231,
+                      0.20052,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "relations_gained": [],
+                "relations_lost": [],
+                "contact_events": [],
+                "wrist_force": [
+                  0.8191,
+                  -0.138,
+                  8.1055
+                ]
+              },
+              {
+                "stage": "lowered",
+                "step": 1485,
+                "before": {
+                  "red": {
+                    "position": [
+                      0.36446,
+                      -0.03089,
+                      0.06144
+                    ],
+                    "speed": 0.022
+                  },
+                  "green": {
+                    "position": [
+                      0.64371,
+                      -0.18848,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.40912,
+                      -0.02925,
+                      0.03807
+                    ],
+                    "speed": 0.01826
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.38844,
+                      -0.01141,
+                      0.00898
+                    ],
+                    "speed": 0.00107
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48231,
+                      0.20052,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "after": {
+                  "red": {
+                    "position": [
+                      0.36652,
+                      -0.03076,
+                      0.06158
+                    ],
+                    "speed": 0.0265
+                  },
+                  "green": {
+                    "position": [
+                      0.64371,
+                      -0.18848,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.41101,
+                      -0.02919,
+                      0.03831
+                    ],
+                    "speed": 0.02177
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.38854,
+                      -0.01141,
+                      0.00898
+                    ],
+                    "speed": 0.00088
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48231,
+                      0.20052,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "relations_gained": [],
+                "relations_lost": [],
+                "contact_events": [],
+                "wrist_force": [
+                  0.6758,
+                  0.1869,
+                  8.1439
+                ]
+              },
+              {
+                "stage": "lowered",
+                "step": 1490,
+                "before": {
+                  "red": {
+                    "position": [
+                      0.36652,
+                      -0.03076,
+                      0.06158
+                    ],
+                    "speed": 0.0265
+                  },
+                  "green": {
+                    "position": [
+                      0.64371,
+                      -0.18848,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.41101,
+                      -0.02919,
+                      0.03831
+                    ],
+                    "speed": 0.02177
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.38854,
+                      -0.01141,
+                      0.00898
+                    ],
+                    "speed": 0.00088
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48231,
+                      0.20052,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "after": {
+                  "red": {
+                    "position": [
+                      0.36786,
+                      -0.02944,
+                      0.06264
+                    ],
+                    "speed": 0.01986
+                  },
+                  "green": {
+                    "position": [
+                      0.64371,
+                      -0.18848,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.41231,
+                      -0.02874,
+                      0.03861
+                    ],
+                    "speed": 0.00893
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.38859,
+                      -0.0114,
+                      0.00898
+                    ],
+                    "speed": 0.00045
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48231,
+                      0.20052,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "relations_gained": [],
+                "relations_lost": [],
+                "contact_events": [],
+                "wrist_force": [
+                  0.3042,
+                  0.1278,
+                  8.2976
+                ]
+              },
+              {
+                "stage": "lowered",
+                "step": 1495,
+                "before": {
+                  "red": {
+                    "position": [
+                      0.36786,
+                      -0.02944,
+                      0.06264
+                    ],
+                    "speed": 0.01986
+                  },
+                  "green": {
+                    "position": [
+                      0.64371,
+                      -0.18848,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.41231,
+                      -0.02874,
+                      0.03861
+                    ],
+                    "speed": 0.00893
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.38859,
+                      -0.0114,
+                      0.00898
+                    ],
+                    "speed": 0.00045
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48231,
+                      0.20052,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "after": {
+                  "red": {
+                    "position": [
+                      0.36934,
+                      -0.02826,
+                      0.0619
+                    ],
+                    "speed": 0.02789
+                  },
+                  "green": {
+                    "position": [
+                      0.64371,
+                      -0.18848,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.41372,
+                      -0.02833,
+                      0.03841
+                    ],
+                    "speed": 0.01806
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.38868,
+                      -0.01138,
+                      0.00898
+                    ],
+                    "speed": 0.00129
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48231,
+                      0.20052,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "relations_gained": [],
+                "relations_lost": [],
+                "contact_events": [],
+                "wrist_force": [
+                  0.7263,
+                  0.11,
+                  7.8386
+                ]
+              },
+              {
+                "stage": "lowered",
+                "step": 1500,
+                "before": {
+                  "red": {
+                    "position": [
+                      0.36934,
+                      -0.02826,
+                      0.0619
+                    ],
+                    "speed": 0.02789
+                  },
+                  "green": {
+                    "position": [
+                      0.64371,
+                      -0.18848,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.41372,
+                      -0.02833,
+                      0.03841
+                    ],
+                    "speed": 0.01806
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.38868,
+                      -0.01138,
+                      0.00898
+                    ],
+                    "speed": 0.00129
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48231,
+                      0.20052,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "after": {
+                  "red": {
+                    "position": [
+                      0.37078,
+                      -0.02709,
+                      0.06022
+                    ],
+                    "speed": 0.02399
+                  },
+                  "green": {
+                    "position": [
+                      0.64371,
+                      -0.18848,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.41541,
+                      -0.02778,
+                      0.03798
+                    ],
+                    "speed": 0.01795
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.3888,
+                      -0.01136,
+                      0.00899
+                    ],
+                    "speed": 0.00109
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48231,
+                      0.20052,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "relations_gained": [],
+                "relations_lost": [],
+                "contact_events": [],
+                "wrist_force": [
+                  0.7494,
+                  0.1901,
+                  8.07
+                ]
+              },
+              {
+                "stage": "lowered",
+                "step": 1505,
+                "before": {
+                  "red": {
+                    "position": [
+                      0.37078,
+                      -0.02709,
+                      0.06022
+                    ],
+                    "speed": 0.02399
+                  },
+                  "green": {
+                    "position": [
+                      0.64371,
+                      -0.18848,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.41541,
+                      -0.02778,
+                      0.03798
+                    ],
+                    "speed": 0.01795
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.3888,
+                      -0.01136,
+                      0.00899
+                    ],
+                    "speed": 0.00109
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48231,
+                      0.20052,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "after": {
+                  "red": {
+                    "position": [
+                      0.37229,
+                      -0.02684,
+                      0.0594
+                    ],
+                    "speed": 0.01664
+                  },
+                  "green": {
+                    "position": [
+                      0.64371,
+                      -0.18848,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.41688,
+                      -0.02769,
+                      0.03801
+                    ],
+                    "speed": 0.01395
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.38889,
+                      -0.01136,
+                      0.00899
+                    ],
+                    "speed": 0.00095
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48231,
+                      0.20052,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "relations_gained": [],
+                "relations_lost": [],
+                "contact_events": [],
+                "wrist_force": [
+                  0.7038,
+                  -0.1284,
+                  8.0269
+                ]
+              }
+            ]
+          },
+          "relation_loss_events": [
+            {
+              "type": "action_transition",
+              "stage": "lowered",
+              "step": 1340,
+              "before": {
+                "red": {
+                  "position": [
+                    0.35072,
+                    -0.01752,
+                    0.07356
+                  ],
+                  "speed": 0.02472
+                },
+                "green": {
+                  "position": [
+                    0.64371,
+                    -0.18848,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "blue": {
+                  "position": [
+                    0.37086,
+                    -0.01726,
+                    0.0362
+                  ],
+                  "speed": 0.00916
+                },
+                "yellow": {
+                  "position": [
+                    0.38763,
+                    0.13986,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "plate": {
+                  "position": [
+                    0.3836,
+                    -0.00941,
+                    0.00868
+                  ],
+                  "speed": 0.00332
+                },
+                "bowl": {
+                  "position": [
+                    0.48231,
+                    0.20052,
+                    -1e-05
+                  ],
+                  "speed": 0.0
+                }
+              },
+              "after": {
+                "red": {
+                  "position": [
+                    0.34982,
+                    -0.01825,
+                    0.07249
+                  ],
+                  "speed": 0.01563
+                },
+                "green": {
+                  "position": [
+                    0.64371,
+                    -0.18848,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "blue": {
+                  "position": [
+                    0.37074,
+                    -0.01794,
+                    0.03583
+                  ],
+                  "speed": 0.00891
+                },
+                "yellow": {
+                  "position": [
+                    0.38763,
+                    0.13986,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "plate": {
+                  "position": [
+                    0.3836,
+                    -0.00957,
+                    0.00859
+                  ],
+                  "speed": 0.00311
+                },
+                "bowl": {
+                  "position": [
+                    0.48231,
+                    0.20052,
+                    -1e-05
+                  ],
+                  "speed": 0.0
+                }
+              },
+              "relations_gained": [
+                [
+                  "grasped",
+                  "blue"
+                ]
+              ],
+              "relations_lost": [
+                [
+                  "on",
+                  "blue",
+                  "plate"
+                ]
+              ],
+              "contact_events": [
+                {
+                  "t": 1338,
+                  "type": "relation_true",
+                  "relation": [
+                    "grasped",
+                    "blue"
+                  ]
+                },
+                {
+                  "t": 1338,
+                  "type": "relation_false",
+                  "relation": [
+                    "on",
+                    "blue",
+                    "plate"
+                  ]
+                }
+              ],
+              "wrist_force": [
+                2.5085,
+                -2.7924,
+                -47.0687
+              ]
+            }
+          ],
+          "positions": {
+            "gripper": [
+              0.36476773023605347,
+              -0.028750412166118622,
+              0.045230671763420105
+            ],
+            "red": [
+              0.37316617369651794,
+              -0.027335135266184807,
+              0.04236311838030815
+            ],
+            "green": [
+              0.6437131762504578,
+              -0.18847820162773132,
+              0.019927598536014557
+            ],
+            "blue": [
+              0.41758790612220764,
+              -0.027716172859072685,
+              0.037912677973508835
+            ],
+            "yellow": [
+              0.38763076066970825,
+              0.13985787332057953,
+              0.019927598536014557
+            ],
+            "plate": [
+              0.3888966143131256,
+              -0.01135745644569397,
+              0.008958917111158371
+            ],
+            "bowl": [
+              0.4823145866394043,
+              0.20051638782024384,
+              -7.286660093086539e-06
+            ]
+          },
+          "relations": [
+            [
+              "on",
+              "blue",
+              "plate"
+            ],
+            [
+              "on",
+              "red",
+              "plate"
+            ]
+          ]
+        },
+        {
+          "goal": "on(green, red)",
+          "success": true,
+          "steps": 180,
+          "last_stage": "lowered",
+          "failure_cause": null,
+          "contact_transitions": 42,
+          "failure_trace": null,
+          "relation_loss_events": [],
+          "positions": {
+            "gripper": [
+              0.3873564302921295,
+              -0.003396938554942608,
+              0.059899475425481796
+            ],
+            "red": [
+              0.3932001292705536,
+              -0.03294961899518967,
+              0.03311479091644287
+            ],
+            "green": [
+              0.3936956226825714,
+              -0.020701279863715172,
+              0.07319258153438568
+            ],
+            "blue": [
+              0.43410035967826843,
+              -0.02150769531726837,
+              0.037433870136737823
+            ],
+            "yellow": [
+              0.38763076066970825,
+              0.13985787332057953,
+              0.019927598536014557
+            ],
+            "plate": [
+              0.3943212032318115,
+              -0.010146662592887878,
+              0.00850009173154831
+            ],
+            "bowl": [
+              0.4823145866394043,
+              0.20051638782024384,
+              -7.286868367373245e-06
+            ]
+          },
+          "relations": [
+            [
+              "on",
+              "blue",
+              "plate"
+            ],
+            [
+              "on",
+              "green",
+              "red"
+            ],
+            [
+              "on",
+              "red",
+              "plate"
+            ]
+          ]
+        },
+        {
+          "goal": "in(green, bowl)",
+          "success": true,
+          "steps": 91,
+          "last_stage": "lowered",
+          "failure_cause": null,
+          "contact_transitions": 35,
+          "failure_trace": null,
+          "relation_loss_events": [
+            {
+              "type": "action_transition",
+              "stage": "at_object",
+              "step": 2610,
+              "before": {
+                "red": {
+                  "position": [
+                    0.38876,
+                    -0.04267,
+                    0.0387
+                  ],
+                  "speed": 0.10046
+                },
+                "green": {
+                  "position": [
+                    0.38456,
+                    -0.02405,
+                    0.08
+                  ],
+                  "speed": 0.03423
+                },
+                "blue": {
+                  "position": [
+                    0.43397,
+                    -0.02287,
+                    0.03792
+                  ],
+                  "speed": 0.00042
+                },
+                "yellow": {
+                  "position": [
+                    0.38763,
+                    0.13986,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "plate": {
+                  "position": [
+                    0.39407,
+                    -0.01137,
+                    0.00895
+                  ],
+                  "speed": 0.00037
+                },
+                "bowl": {
+                  "position": [
+                    0.48231,
+                    0.20052,
+                    -1e-05
+                  ],
+                  "speed": 0.0
+                }
+              },
+              "after": {
+                "red": {
+                  "position": [
+                    0.3888,
+                    -0.04381,
+                    0.03778
+                  ],
+                  "speed": 0.00486
+                },
+                "green": {
+                  "position": [
+                    0.38465,
+                    -0.02405,
+                    0.07957
+                  ],
+                  "speed": 0.00436
+                },
+                "blue": {
+                  "position": [
+                    0.43397,
+                    -0.02288,
+                    0.03792
+                  ],
+                  "speed": 7e-05
+                },
+                "yellow": {
+                  "position": [
+                    0.38763,
+                    0.13986,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "plate": {
+                  "position": [
+                    0.39407,
+                    -0.01138,
+                    0.00895
+                  ],
+                  "speed": 5e-05
+                },
+                "bowl": {
+                  "position": [
+                    0.48231,
+                    0.20052,
+                    -1e-05
+                  ],
+                  "speed": 0.0
+                }
+              },
+              "relations_gained": [],
+              "relations_lost": [
+                [
+                  "on",
+                  "green",
+                  "red"
+                ]
+              ],
+              "contact_events": [
+                {
+                  "t": 2607,
+                  "type": "relation_false",
+                  "relation": [
+                    "upright",
+                    "green"
+                  ]
+                },
+                {
+                  "t": 2610,
+                  "type": "relation_false",
+                  "relation": [
+                    "on",
+                    "green",
+                    "red"
+                  ]
+                }
+              ],
+              "wrist_force": [
+                0.3105,
+                -0.0685,
+                7.2491
+              ]
+            },
+            {
+              "type": "action_transition",
+              "stage": "at_object",
+              "step": 2695,
+              "before": {
+                "red": {
+                  "position": [
+                    0.41024,
+                    0.02896,
+                    0.0267
+                  ],
+                  "speed": 0.0333
+                },
+                "green": {
+                  "position": [
+                    0.36063,
+                    0.04015,
+                    0.03883
+                  ],
+                  "speed": 0.05115
+                },
+                "blue": {
+                  "position": [
+                    0.45443,
+                    -0.00767,
+                    0.03736
+                  ],
+                  "speed": 0.00287
+                },
+                "yellow": {
+                  "position": [
+                    0.38763,
+                    0.13986,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "plate": {
+                  "position": [
+                    0.39916,
+                    -0.0009,
+                    0.00838
+                  ],
+                  "speed": 0.00324
+                },
+                "bowl": {
+                  "position": [
+                    0.48231,
+                    0.20052,
+                    -1e-05
+                  ],
+                  "speed": 0.0
+                }
+              },
+              "after": {
+                "red": {
+                  "position": [
+                    0.41233,
+                    0.02952,
+                    0.03777
+                  ],
+                  "speed": 0.0089
+                },
+                "green": {
+                  "position": [
+                    0.34333,
+                    0.0493,
+                    0.03795
+                  ],
+                  "speed": 0.17321
+                },
+                "blue": {
+                  "position": [
+                    0.4544,
+                    -0.0076,
+                    0.03795
+                  ],
+                  "speed": 0.00071
+                },
+                "yellow": {
+                  "position": [
+                    0.38763,
+                    0.13986,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "plate": {
+                  "position": [
+                    0.39913,
+                    -0.00081,
+                    0.00898
+                  ],
+                  "speed": 0.00089
+                },
+                "bowl": {
+                  "position": [
+                    0.48231,
+                    0.20052,
+                    -1e-05
+                  ],
+                  "speed": 0.0
+                }
+              },
+              "relations_gained": [
+                [
+                  "left_of",
+                  "red",
+                  "plate"
+                ]
+              ],
+              "relations_lost": [
+                [
+                  "on",
+                  "green",
+                  "plate"
+                ]
+              ],
+              "contact_events": [
+                {
+                  "t": 2691,
+                  "type": "contact_end",
+                  "bodies": [
+                    "left_finger",
+                    "red"
+                  ]
+                },
+                {
+                  "t": 2691,
+                  "type": "contact_end",
+                  "bodies": [
+                    "green",
+                    "plate"
+                  ]
+                },
+                {
+                  "t": 2692,
+                  "type": "contact_start",
+                  "bodies": [
+                    "green",
+                    "plate"
+                  ]
+                },
+                {
+                  "t": 2692,
+                  "type": "contact_end",
+                  "bodies": [
+                    "green",
+                    "left_finger"
+                  ]
+                },
+                {
+                  "t": 2693,
+                  "type": "contact_end",
+                  "bodies": [
+                    "green",
+                    "plate"
+                  ]
+                },
+                {
+                  "t": 2694,
+                  "type": "contact_start",
+                  "bodies": [
+                    "green",
+                    "plate"
+                  ]
+                },
+                {
+                  "t": 2695,
+                  "type": "contact_start",
+                  "bodies": [
+                    "green",
+                    "left_finger"
+                  ]
+                }
+              ],
+              "wrist_force": [
+                0.5678,
+                0.6303,
+                6.6306
+              ]
+            }
+          ],
+          "positions": {
+            "gripper": [
+              0.47806432843208313,
+              0.19998285174369812,
+              0.07097644358873367
+            ],
+            "red": [
+              0.41446107625961304,
+              0.02753078006207943,
+              0.03793999180197716
+            ],
+            "green": [
+              0.47942426800727844,
+              0.20015500485897064,
+              0.029899396002292633
+            ],
+            "blue": [
+              0.4554331600666046,
+              -0.009920312091708183,
+              0.0379306934773922
+            ],
+            "yellow": [
+              0.38763076066970825,
+              0.13985787332057953,
+              0.019927598536014557
+            ],
+            "plate": [
+              0.4008132815361023,
+              -0.002572444500401616,
+              0.008970573544502258
+            ],
+            "bowl": [
+              0.48231446743011475,
+              0.20051634311676025,
+              -9.22962135518901e-06
+            ]
+          },
+          "relations": [
+            [
+              "in",
+              "green",
+              "bowl"
+            ],
+            [
+              "on",
+              "blue",
+              "plate"
+            ],
+            [
+              "on",
+              "red",
+              "plate"
+            ]
+          ]
+        },
+        {
+          "goal": "on(red, blue)",
+          "success": true,
+          "steps": 90,
+          "last_stage": "opened",
+          "failure_cause": null,
+          "contact_transitions": 9,
+          "failure_trace": null,
+          "relation_loss_events": [
+            {
+              "type": "action_transition",
+              "stage": "lifted",
+              "step": 3140,
+              "before": {
+                "red": {
+                  "position": [
+                    0.4143,
+                    0.02831,
+                    0.03759
+                  ],
+                  "speed": 0.02005
+                },
+                "green": {
+                  "position": [
+                    0.47942,
+                    0.20015,
+                    0.0299
+                  ],
+                  "speed": 0.0
+                },
+                "blue": {
+                  "position": [
+                    0.45544,
+                    -0.00983,
+                    0.03789
+                  ],
+                  "speed": 0.00304
+                },
+                "yellow": {
+                  "position": [
+                    0.38763,
+                    0.13986,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "plate": {
+                  "position": [
+                    0.4008,
+                    -0.00254,
+                    0.00893
+                  ],
+                  "speed": 0.00253
+                },
+                "bowl": {
+                  "position": [
+                    0.48231,
+                    0.20052,
+                    -1e-05
+                  ],
+                  "speed": 0.0
+                }
+              },
+              "after": {
+                "red": {
+                  "position": [
+                    0.41349,
+                    0.02845,
+                    0.03768
+                  ],
+                  "speed": 0.01712
+                },
+                "green": {
+                  "position": [
+                    0.47942,
+                    0.20015,
+                    0.0299
+                  ],
+                  "speed": 0.0
+                },
+                "blue": {
+                  "position": [
+                    0.45543,
+                    -0.00971,
+                    0.03791
+                  ],
+                  "speed": 0.00203
+                },
+                "yellow": {
+                  "position": [
+                    0.38763,
+                    0.13986,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "plate": {
+                  "position": [
+                    0.40077,
+                    -0.0026,
+                    0.00895
+                  ],
+                  "speed": 0.00115
+                },
+                "bowl": {
+                  "position": [
+                    0.48231,
+                    0.20052,
+                    -1e-05
+                  ],
+                  "speed": 0.0
+                }
+              },
+              "relations_gained": [
+                [
+                  "grasped",
+                  "red"
+                ]
+              ],
+              "relations_lost": [
+                [
+                  "on",
+                  "red",
+                  "plate"
+                ]
+              ],
+              "contact_events": [
+                {
+                  "t": 3136,
+                  "type": "grasp",
+                  "object": "red"
+                },
+                {
+                  "t": 3139,
+                  "type": "relation_true",
+                  "relation": [
+                    "grasped",
+                    "red"
+                  ]
+                },
+                {
+                  "t": 3139,
+                  "type": "relation_false",
+                  "relation": [
+                    "on",
+                    "red",
+                    "plate"
+                  ]
+                }
+              ],
+              "wrist_force": [
+                -0.7934,
+                1.0048,
+                3.5937
+              ]
+            },
+            {
+              "type": "action_transition",
+              "stage": "lowered",
+              "step": 3370,
+              "before": {
+                "red": {
+                  "position": [
+                    0.4697,
+                    -0.00979,
+                    0.07655
+                  ],
+                  "speed": 0.03714
+                },
+                "green": {
+                  "position": [
+                    0.47942,
+                    0.20015,
+                    0.0299
+                  ],
+                  "speed": 0.0
+                },
+                "blue": {
+                  "position": [
+                    0.46282,
+                    -0.00968,
+                    0.03752
+                  ],
+                  "speed": 0.01154
+                },
+                "yellow": {
+                  "position": [
+                    0.38763,
+                    0.13986,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "plate": {
+                  "position": [
+                    0.40225,
+                    -0.0025,
+                    0.00891
+                  ],
+                  "speed": 0.00326
+                },
+                "bowl": {
+                  "position": [
+                    0.48231,
+                    0.20052,
+                    -1e-05
+                  ],
+                  "speed": 0.0
+                }
+              },
+              "after": {
+                "red": {
+                  "position": [
+                    0.46731,
+                    -0.00996,
+                    0.07632
+                  ],
+                  "speed": 0.01484
+                },
+                "green": {
+                  "position": [
+                    0.47942,
+                    0.20015,
+                    0.0299
+                  ],
+                  "speed": 0.0
+                },
+                "blue": {
+                  "position": [
+                    0.46192,
+                    -0.00983,
+                    0.03718
+                  ],
+                  "speed": 0.00562
+                },
+                "yellow": {
+                  "position": [
+                    0.38763,
+                    0.13986,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "plate": {
+                  "position": [
+                    0.4022,
+                    -0.00258,
+                    0.00888
+                  ],
+                  "speed": 0.00112
+                },
+                "bowl": {
+                  "position": [
+                    0.48231,
+                    0.20052,
+                    -1e-05
+                  ],
+                  "speed": 0.0
+                }
+              },
+              "relations_gained": [
+                [
+                  "grasped",
+                  "blue"
+                ]
+              ],
+              "relations_lost": [
+                [
+                  "on",
+                  "blue",
+                  "plate"
+                ]
+              ],
+              "contact_events": [
+                {
+                  "t": 3366,
+                  "type": "contact_start",
+                  "bodies": [
+                    "left_finger",
+                    "red"
+                  ]
+                },
+                {
+                  "t": 3367,
+                  "type": "grasp",
+                  "object": "blue"
+                },
+                {
+                  "t": 3369,
+                  "type": "contact_start",
+                  "bodies": [
+                    "hand",
+                    "red"
+                  ]
+                },
+                {
+                  "t": 3370,
+                  "type": "relation_true",
+                  "relation": [
+                    "grasped",
+                    "blue"
+                  ]
+                },
+                {
+                  "t": 3370,
+                  "type": "relation_false",
+                  "relation": [
+                    "on",
+                    "blue",
+                    "plate"
+                  ]
+                }
+              ],
+              "wrist_force": [
+                -0.3668,
+                0.6935,
+                -15.4664
+              ]
+            }
+          ],
+          "positions": {
+            "gripper": [
+              0.4806624948978424,
+              -0.010788689367473125,
+              0.05421772599220276
+            ],
+            "red": [
+              0.4796850085258484,
+              -0.010887267999351025,
+              0.07385812699794769
+            ],
+            "green": [
+              0.4794241189956665,
+              0.20015493035316467,
+              0.02989940159022808
+            ],
+            "blue": [
+              0.46862903237342834,
+              -0.010646576061844826,
+              0.03675815463066101
+            ],
+            "yellow": [
+              0.38763076066970825,
+              0.13985787332057953,
+              0.019927598536014557
+            ],
+            "plate": [
+              0.40389886498451233,
+              -0.0028878559824079275,
+              0.008828790858387947
+            ],
+            "bowl": [
+              0.48231446743011475,
+              0.20051634311676025,
+              -9.23000061447965e-06
+            ]
+          },
+          "relations": [
+            [
+              "in",
+              "green",
+              "bowl"
+            ],
+            [
+              "on",
+              "blue",
+              "plate"
+            ],
+            [
+              "on",
+              "red",
+              "blue"
+            ]
+          ]
+        },
+        {
+          "goal": "on(green, red)",
+          "success": true,
+          "steps": 81,
+          "last_stage": "opened",
+          "failure_cause": null,
+          "contact_transitions": 10,
+          "failure_trace": null,
+          "relation_loss_events": [
+            {
+              "type": "action_transition",
+              "stage": "above_object",
+              "step": 3435,
+              "before": {
+                "red": {
+                  "position": [
+                    0.48637,
+                    -0.01501,
+                    0.07624
+                  ],
+                  "speed": 0.16327
+                },
+                "green": {
+                  "position": [
+                    0.47942,
+                    0.20015,
+                    0.0299
+                  ],
+                  "speed": 0.0
+                },
+                "blue": {
+                  "position": [
+                    0.46987,
+                    -0.01241,
+                    0.03928
+                  ],
+                  "speed": 0.06124
+                },
+                "yellow": {
+                  "position": [
+                    0.38763,
+                    0.13986,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "plate": {
+                  "position": [
+                    0.40312,
+                    -0.00298,
+                    0.00904
+                  ],
+                  "speed": 0.00018
+                },
+                "bowl": {
+                  "position": [
+                    0.48231,
+                    0.20052,
+                    -1e-05
+                  ],
+                  "speed": 0.0
+                }
+              },
+              "after": {
+                "red": {
+                  "position": [
+                    0.51189,
+                    -0.018,
+                    0.0637
+                  ],
+                  "speed": 0.47854
+                },
+                "green": {
+                  "position": [
+                    0.47942,
+                    0.20015,
+                    0.0299
+                  ],
+                  "speed": 0.0
+                },
+                "blue": {
+                  "position": [
+                    0.4805,
+                    -0.01369,
+                    0.03824
+                  ],
+                  "speed": 0.1842
+                },
+                "yellow": {
+                  "position": [
+                    0.38763,
+                    0.13986,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "plate": {
+                  "position": [
+                    0.40308,
+                    -0.00298,
+                    0.00904
+                  ],
+                  "speed": 0.00054
+                },
+                "bowl": {
+                  "position": [
+                    0.48231,
+                    0.20052,
+                    -1e-05
+                  ],
+                  "speed": 0.0
+                }
+              },
+              "relations_gained": [],
+              "relations_lost": [
+                [
+                  "near",
+                  "plate",
+                  "red"
+                ],
+                [
+                  "near",
+                  "red",
+                  "plate"
+                ],
+                [
+                  "on",
+                  "blue",
+                  "plate"
+                ],
+                [
+                  "on",
+                  "red",
+                  "blue"
+                ],
+                [
+                  "upright",
+                  "blue"
+                ],
+                [
+                  "upright",
+                  "red"
+                ]
+              ],
+              "contact_events": [
+                {
+                  "t": 3434,
+                  "type": "relation_false",
+                  "relation": [
+                    "on",
+                    "blue",
+                    "plate"
+                  ]
+                },
+                {
+                  "t": 3434,
+                  "type": "relation_false",
+                  "relation": [
+                    "on",
+                    "red",
+                    "blue"
+                  ]
+                },
+                {
+                  "t": 3434,
+                  "type": "relation_false",
+                  "relation": [
+                    "upright",
+                    "blue"
+                  ]
+                },
+                {
+                  "t": 3434,
+                  "type": "relation_false",
+                  "relation": [
+                    "upright",
+                    "red"
+                  ]
+                }
+              ],
+              "wrist_force": [
+                0.4708,
+                0.1919,
+                7.2874
+              ]
+            },
+            {
+              "type": "action_transition",
+              "stage": "lifted",
+              "step": 3605,
+              "before": {
+                "red": {
+                  "position": [
+                    0.54605,
+                    -0.01942,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "green": {
+                  "position": [
+                    0.47759,
+                    0.19987,
+                    0.05979
+                  ],
+                  "speed": 0.169
+                },
+                "blue": {
+                  "position": [
+                    0.49907,
+                    -0.01404,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "yellow": {
+                  "position": [
+                    0.38763,
+                    0.13986,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "plate": {
+                  "position": [
+                    0.40306,
+                    -0.00298,
+                    0.00898
+                  ],
+                  "speed": 1e-05
+                },
+                "bowl": {
+                  "position": [
+                    0.48226,
+                    0.20026,
+                    -1e-05
+                  ],
+                  "speed": 0.0
+                }
+              },
+              "after": {
+                "red": {
+                  "position": [
+                    0.54605,
+                    -0.01942,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "green": {
+                  "position": [
+                    0.48351,
+                    0.20419,
+                    0.07668
+                  ],
+                  "speed": 0.19819
+                },
+                "blue": {
+                  "position": [
+                    0.49907,
+                    -0.01404,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "yellow": {
+                  "position": [
+                    0.38763,
+                    0.13986,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "plate": {
+                  "position": [
+                    0.40306,
+                    -0.00298,
+                    0.00898
+                  ],
+                  "speed": 1e-05
+                },
+                "bowl": {
+                  "position": [
+                    0.48226,
+                    0.20026,
+                    -1e-05
+                  ],
+                  "speed": 0.0
+                }
+              },
+              "relations_gained": [],
+              "relations_lost": [
+                [
+                  "in",
+                  "green",
+                  "bowl"
+                ]
+              ],
+              "contact_events": [],
+              "wrist_force": [
+                0.1216,
+                0.0492,
+                8.1296
+              ]
+            }
+          ],
+          "positions": {
+            "gripper": [
+              0.5399145483970642,
+              -0.017873095348477364,
+              0.08170934021472931
+            ],
+            "red": [
+              0.5460555553436279,
+              -0.019429665058851242,
+              0.019874604418873787
+            ],
+            "green": [
+              0.5394142270088196,
+              -0.020394163206219673,
+              0.05982312932610512
+            ],
+            "blue": [
+              0.49907317757606506,
+              -0.01405064295977354,
+              0.019910214468836784
+            ],
+            "yellow": [
+              0.38763076066970825,
+              0.13985785841941833,
+              0.019927598536014557
+            ],
+            "plate": [
+              0.4030620753765106,
+              -0.0029769043903797865,
+              0.008976324461400509
+            ],
+            "bowl": [
+              0.48226413130760193,
+              0.20025666058063507,
+              -7.286696018127259e-06
+            ]
+          },
+          "relations": [
+            [
+              "on",
+              "green",
+              "red"
+            ]
+          ]
+        },
+        {
+          "goal": "on(blue, plate)",
+          "success": true,
+          "steps": 47,
+          "last_stage": "opened",
+          "failure_cause": null,
+          "contact_transitions": 7,
+          "failure_trace": null,
+          "relation_loss_events": [
+            {
+              "type": "action_transition",
+              "stage": "lifted",
+              "step": 3920,
+              "before": {
+                "red": {
+                  "position": [
+                    0.56855,
+                    -0.02114,
+                    0.01956
+                  ],
+                  "speed": 0.12284
+                },
+                "green": {
+                  "position": [
+                    0.55675,
+                    -0.02299,
+                    0.064
+                  ],
+                  "speed": 0.07021
+                },
+                "blue": {
+                  "position": [
+                    0.51169,
+                    -0.02371,
+                    0.02608
+                  ],
+                  "speed": 0.02159
+                },
+                "yellow": {
+                  "position": [
+                    0.38763,
+                    0.13986,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "plate": {
+                  "position": [
+                    0.40306,
+                    -0.00298,
+                    0.00898
+                  ],
+                  "speed": 1e-05
+                },
+                "bowl": {
+                  "position": [
+                    0.48226,
+                    0.20026,
+                    -1e-05
+                  ],
+                  "speed": 0.0
+                }
+              },
+              "after": {
+                "red": {
+                  "position": [
+                    0.58084,
+                    -0.02187,
+                    0.02085
+                  ],
+                  "speed": 0.04341
+                },
+                "green": {
+                  "position": [
+                    0.55853,
+                    -0.02297,
+                    0.06961
+                  ],
+                  "speed": 0.01315
+                },
+                "blue": {
+                  "position": [
+                    0.51184,
+                    -0.02369,
+                    0.02695
+                  ],
+                  "speed": 0.0215
+                },
+                "yellow": {
+                  "position": [
+                    0.38763,
+                    0.13986,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "plate": {
+                  "position": [
+                    0.40306,
+                    -0.00298,
+                    0.00898
+                  ],
+                  "speed": 1e-05
+                },
+                "bowl": {
+                  "position": [
+                    0.48226,
+                    0.20026,
+                    -1e-05
+                  ],
+                  "speed": 0.0
+                }
+              },
+              "relations_gained": [],
+              "relations_lost": [
+                [
+                  "on",
+                  "green",
+                  "red"
+                ]
+              ],
+              "contact_events": [],
+              "wrist_force": [
+                1.8748,
+                -0.0245,
+                7.3782
+              ]
+            }
+          ],
+          "positions": {
+            "gripper": [
+              0.398922860622406,
+              -0.002624130342155695,
+              0.061504337936639786
+            ],
+            "red": [
+              0.5812448263168335,
+              -0.02196122147142887,
+              0.019858360290527344
+            ],
+            "green": [
+              0.5717530846595764,
+              -0.022178983315825462,
+              0.05975974723696709
+            ],
+            "blue": [
+              0.3851536512374878,
+              -0.0014251116663217545,
+              0.03793235495686531
+            ],
+            "yellow": [
+              0.38763076066970825,
+              0.13985785841941833,
+              0.019927598536014557
+            ],
+            "plate": [
+              0.4030568301677704,
+              -0.002977479714900255,
+              0.008967394940555096
+            ],
+            "bowl": [
+              0.48226413130760193,
+              0.20025666058063507,
+              -7.286748314072611e-06
+            ]
+          },
+          "relations": [
+            [
+              "on",
+              "blue",
+              "plate"
+            ],
+            [
+              "on",
+              "green",
+              "red"
+            ]
+          ]
+        },
+        {
+          "goal": "in(green, bowl)",
+          "success": true,
+          "steps": 103,
+          "last_stage": "lowered",
+          "failure_cause": null,
+          "contact_transitions": 12,
+          "failure_trace": null,
+          "relation_loss_events": [
+            {
+              "type": "action_transition",
+              "stage": "lifted",
+              "step": 4470,
+              "before": {
+                "red": {
+                  "position": [
+                    0.58892,
+                    -0.02479,
+                    0.01964
+                  ],
+                  "speed": 0.10087
+                },
+                "green": {
+                  "position": [
+                    0.58788,
+                    -0.02056,
+                    0.06362
+                  ],
+                  "speed": 0.11839
+                },
+                "blue": {
+                  "position": [
+                    0.38515,
+                    -0.00143,
+                    0.03793
+                  ],
+                  "speed": 0.00014
+                },
+                "yellow": {
+                  "position": [
+                    0.38763,
+                    0.13986,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "plate": {
+                  "position": [
+                    0.40306,
+                    -0.00298,
+                    0.00897
+                  ],
+                  "speed": 1e-05
+                },
+                "bowl": {
+                  "position": [
+                    0.48226,
+                    0.20026,
+                    -1e-05
+                  ],
+                  "speed": 0.0
+                }
+              },
+              "after": {
+                "red": {
+                  "position": [
+                    0.58893,
+                    -0.0246,
+                    0.01988
+                  ],
+                  "speed": 0.00241
+                },
+                "green": {
+                  "position": [
+                    0.59499,
+                    -0.01501,
+                    0.07213
+                  ],
+                  "speed": 0.12925
+                },
+                "blue": {
+                  "position": [
+                    0.38515,
+                    -0.00143,
+                    0.03793
+                  ],
+                  "speed": 0.00016
+                },
+                "yellow": {
+                  "position": [
+                    0.38763,
+                    0.13986,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "plate": {
+                  "position": [
+                    0.40306,
+                    -0.00298,
+                    0.00897
+                  ],
+                  "speed": 1e-05
+                },
+                "bowl": {
+                  "position": [
+                    0.48226,
+                    0.20026,
+                    -1e-05
+                  ],
+                  "speed": 0.0
+                }
+              },
+              "relations_gained": [
+                [
+                  "grasped",
+                  "green"
+                ]
+              ],
+              "relations_lost": [
+                [
+                  "on",
+                  "green",
+                  "red"
+                ]
+              ],
+              "contact_events": [
+                {
+                  "t": 4468,
+                  "type": "relation_true",
+                  "relation": [
+                    "grasped",
+                    "green"
+                  ]
+                },
+                {
+                  "t": 4468,
+                  "type": "relation_false",
+                  "relation": [
+                    "on",
+                    "green",
+                    "red"
+                  ]
+                }
+              ],
+              "wrist_force": [
+                -0.0148,
+                -0.217,
+                8.2784
+              ]
+            }
+          ],
+          "positions": {
+            "gripper": [
+              0.47833046317100525,
+              0.19475989043712616,
+              0.07132520526647568
+            ],
+            "red": [
+              0.588932991027832,
+              -0.02455279976129532,
+              0.019927598536014557
+            ],
+            "green": [
+              0.48114269971847534,
+              0.19674555957317352,
+              0.029899390414357185
+            ],
+            "blue": [
+              0.3851475119590759,
+              -0.0014259257586672902,
+              0.037932153791189194
+            ],
+            "yellow": [
+              0.38763076066970825,
+              0.13985785841941833,
+              0.019927598536014557
+            ],
+            "plate": [
+              0.40305691957473755,
+              -0.002978117438033223,
+              0.008967396803200245
+            ],
+            "bowl": [
+              0.4822640120983124,
+              0.20025649666786194,
+              -9.229844181390945e-06
+            ]
+          },
+          "relations": [
+            [
+              "in",
+              "green",
+              "bowl"
+            ],
+            [
+              "on",
+              "blue",
+              "plate"
+            ]
+          ]
+        },
+        {
+          "goal": "on(red, blue)",
+          "success": false,
+          "steps": 180,
+          "last_stage": "lowered",
+          "failure_cause": "unstable_placement",
+          "contact_transitions": 12,
+          "failure_trace": {
+            "type": "failure_trace",
+            "cause": "unstable_placement",
+            "goal": [
+              "on",
+              "red",
+              "blue"
+            ],
+            "last_actions": [
+              {
+                "stage": "lowered",
+                "step": 5485,
+                "before": {
+                  "red": {
+                    "position": [
+                      0.34906,
+                      -0.01478,
+                      0.07199
+                    ],
+                    "speed": 0.0091
+                  },
+                  "green": {
+                    "position": [
+                      0.48114,
+                      0.19675,
+                      0.0299
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.37397,
+                      -0.01444,
+                      0.03589
+                    ],
+                    "speed": 0.01327
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.40346,
+                      -0.00474,
+                      0.00864
+                    ],
+                    "speed": 0.00419
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48226,
+                      0.20026,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "after": {
+                  "red": {
+                    "position": [
+                      0.34967,
+                      -0.01559,
+                      0.07175
+                    ],
+                    "speed": 0.01122
+                  },
+                  "green": {
+                    "position": [
+                      0.48114,
+                      0.19675,
+                      0.0299
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.37509,
+                      -0.01522,
+                      0.0358
+                    ],
+                    "speed": 0.01441
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.40373,
+                      -0.00492,
+                      0.00864
+                    ],
+                    "speed": 0.00332
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48226,
+                      0.20026,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "relations_gained": [],
+                "relations_lost": [],
+                "contact_events": [],
+                "wrist_force": [
+                  -1.0367,
+                  -2.164,
+                  -43.4723
+                ]
+              },
+              {
+                "stage": "lowered",
+                "step": 5490,
+                "before": {
+                  "red": {
+                    "position": [
+                      0.34967,
+                      -0.01559,
+                      0.07175
+                    ],
+                    "speed": 0.01122
+                  },
+                  "green": {
+                    "position": [
+                      0.48114,
+                      0.19675,
+                      0.0299
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.37509,
+                      -0.01522,
+                      0.0358
+                    ],
+                    "speed": 0.01441
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.40373,
+                      -0.00492,
+                      0.00864
+                    ],
+                    "speed": 0.00332
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48226,
+                      0.20026,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "after": {
+                  "red": {
+                    "position": [
+                      0.35025,
+                      -0.0164,
+                      0.07155
+                    ],
+                    "speed": 0.0088
+                  },
+                  "green": {
+                    "position": [
+                      0.48114,
+                      0.19675,
+                      0.0299
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.37637,
+                      -0.01596,
+                      0.03595
+                    ],
+                    "speed": 0.01645
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.40404,
+                      -0.00508,
+                      0.00862
+                    ],
+                    "speed": 0.00481
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48226,
+                      0.20026,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "relations_gained": [],
+                "relations_lost": [],
+                "contact_events": [],
+                "wrist_force": [
+                  4.1403,
+                  -0.7691,
+                  -45.0513
+                ]
+              },
+              {
+                "stage": "lowered",
+                "step": 5495,
+                "before": {
+                  "red": {
+                    "position": [
+                      0.35025,
+                      -0.0164,
+                      0.07155
+                    ],
+                    "speed": 0.0088
+                  },
+                  "green": {
+                    "position": [
+                      0.48114,
+                      0.19675,
+                      0.0299
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.37637,
+                      -0.01596,
+                      0.03595
+                    ],
+                    "speed": 0.01645
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.40404,
+                      -0.00508,
+                      0.00862
+                    ],
+                    "speed": 0.00481
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48226,
+                      0.20026,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "after": {
+                  "red": {
+                    "position": [
+                      0.35055,
+                      -0.01718,
+                      0.07099
+                    ],
+                    "speed": 0.01259
+                  },
+                  "green": {
+                    "position": [
+                      0.48114,
+                      0.19675,
+                      0.0299
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.37778,
+                      -0.01678,
+                      0.03586
+                    ],
+                    "speed": 0.01977
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.40436,
+                      -0.00527,
+                      0.00863
+                    ],
+                    "speed": 0.00505
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48226,
+                      0.20026,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "relations_gained": [],
+                "relations_lost": [],
+                "contact_events": [
+                  {
+                    "t": 5495,
+                    "type": "contact_end",
+                    "bodies": [
+                      "blue",
+                      "left_finger"
+                    ]
+                  }
+                ],
+                "wrist_force": [
+                  4.6839,
+                  -0.8757,
+                  -45.0567
+                ]
+              },
+              {
+                "stage": "lowered",
+                "step": 5500,
+                "before": {
+                  "red": {
+                    "position": [
+                      0.35055,
+                      -0.01718,
+                      0.07099
+                    ],
+                    "speed": 0.01259
+                  },
+                  "green": {
+                    "position": [
+                      0.48114,
+                      0.19675,
+                      0.0299
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.37778,
+                      -0.01678,
+                      0.03586
+                    ],
+                    "speed": 0.01977
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.40436,
+                      -0.00527,
+                      0.00863
+                    ],
+                    "speed": 0.00505
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48226,
+                      0.20026,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "after": {
+                  "red": {
+                    "position": [
+                      0.34945,
+                      -0.01792,
+                      0.07074
+                    ],
+                    "speed": 0.03067
+                  },
+                  "green": {
+                    "position": [
+                      0.48114,
+                      0.19675,
+                      0.0299
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.37927,
+                      -0.01743,
+                      0.03642
+                    ],
+                    "speed": 0.00945
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.4047,
+                      -0.00543,
+                      0.00874
+                    ],
+                    "speed": 0.0026
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48226,
+                      0.20026,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "relations_gained": [
+                  [
+                    "on",
+                    "blue",
+                    "plate"
+                  ]
+                ],
+                "relations_lost": [
+                  [
+                    "grasped",
+                    "blue"
+                  ]
+                ],
+                "contact_events": [
+                  {
+                    "t": 5497,
+                    "type": "release",
+                    "object": "blue"
+                  },
+                  {
+                    "t": 5499,
+                    "type": "contact_end",
+                    "bodies": [
+                      "blue",
+                      "right_finger"
+                    ]
+                  },
+                  {
+                    "t": 5500,
+                    "type": "relation_true",
+                    "relation": [
+                      "on",
+                      "blue",
+                      "plate"
+                    ]
+                  },
+                  {
+                    "t": 5500,
+                    "type": "relation_false",
+                    "relation": [
+                      "grasped",
+                      "blue"
+                    ]
+                  }
+                ],
+                "wrist_force": [
+                  2.4798,
+                  2.1269,
+                  -25.8538
+                ]
+              },
+              {
+                "stage": "lowered",
+                "step": 5505,
+                "before": {
+                  "red": {
+                    "position": [
+                      0.34945,
+                      -0.01792,
+                      0.07074
+                    ],
+                    "speed": 0.03067
+                  },
+                  "green": {
+                    "position": [
+                      0.48114,
+                      0.19675,
+                      0.0299
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.37927,
+                      -0.01743,
+                      0.03642
+                    ],
+                    "speed": 0.00945
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.4047,
+                      -0.00543,
+                      0.00874
+                    ],
+                    "speed": 0.0026
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48226,
+                      0.20026,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "after": {
+                  "red": {
+                    "position": [
+                      0.34774,
+                      -0.01873,
+                      0.07069
+                    ],
+                    "speed": 0.00764
+                  },
+                  "green": {
+                    "position": [
+                      0.48114,
+                      0.19675,
+                      0.0299
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.38054,
+                      -0.01786,
+                      0.03639
+                    ],
+                    "speed": 0.01769
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.40502,
+                      -0.00553,
+                      0.00874
+                    ],
+                    "speed": 0.00476
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48226,
+                      0.20026,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "relations_gained": [],
+                "relations_lost": [],
+                "contact_events": [],
+                "wrist_force": [
+                  4.0167,
+                  -4.7049,
+                  -30.632
+                ]
+              },
+              {
+                "stage": "lowered",
+                "step": 5510,
+                "before": {
+                  "red": {
+                    "position": [
+                      0.34774,
+                      -0.01873,
+                      0.07069
+                    ],
+                    "speed": 0.00764
+                  },
+                  "green": {
+                    "position": [
+                      0.48114,
+                      0.19675,
+                      0.0299
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.38054,
+                      -0.01786,
+                      0.03639
+                    ],
+                    "speed": 0.01769
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.40502,
+                      -0.00553,
+                      0.00874
+                    ],
+                    "speed": 0.00476
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48226,
+                      0.20026,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "after": {
+                  "red": {
+                    "position": [
+                      0.3464,
+                      -0.01959,
+                      0.06878
+                    ],
+                    "speed": 0.02905
+                  },
+                  "green": {
+                    "position": [
+                      0.48114,
+                      0.19675,
+                      0.0299
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.38243,
+                      -0.01822,
+                      0.03651
+                    ],
+                    "speed": 0.0252
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.40546,
+                      -0.0056,
+                      0.00875
+                    ],
+                    "speed": 0.00552
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48226,
+                      0.20026,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "relations_gained": [],
+                "relations_lost": [],
+                "contact_events": [],
+                "wrist_force": [
+                  5.3234,
+                  -3.8491,
+                  -25.4064
+                ]
+              },
+              {
+                "stage": "lowered",
+                "step": 5515,
+                "before": {
+                  "red": {
+                    "position": [
+                      0.3464,
+                      -0.01959,
+                      0.06878
+                    ],
+                    "speed": 0.02905
+                  },
+                  "green": {
+                    "position": [
+                      0.48114,
+                      0.19675,
+                      0.0299
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.38243,
+                      -0.01822,
+                      0.03651
+                    ],
+                    "speed": 0.0252
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.40546,
+                      -0.0056,
+                      0.00875
+                    ],
+                    "speed": 0.00552
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48226,
+                      0.20026,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "after": {
+                  "red": {
+                    "position": [
+                      0.3481,
+                      -0.02046,
+                      0.06466
+                    ],
+                    "speed": 0.06014
+                  },
+                  "green": {
+                    "position": [
+                      0.48114,
+                      0.19675,
+                      0.0299
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.38718,
+                      -0.01869,
+                      0.03522
+                    ],
+                    "speed": 0.07358
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.4065,
+                      -0.0057,
+                      0.00857
+                    ],
+                    "speed": 0.00948
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48226,
+                      0.20026,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "relations_gained": [],
+                "relations_lost": [],
+                "contact_events": [],
+                "wrist_force": [
+                  1.4995,
+                  -0.4996,
+                  -37.0006
+                ]
+              },
+              {
+                "stage": "lowered",
+                "step": 5520,
+                "before": {
+                  "red": {
+                    "position": [
+                      0.3481,
+                      -0.02046,
+                      0.06466
+                    ],
+                    "speed": 0.06014
+                  },
+                  "green": {
+                    "position": [
+                      0.48114,
+                      0.19675,
+                      0.0299
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.38718,
+                      -0.01869,
+                      0.03522
+                    ],
+                    "speed": 0.07358
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.4065,
+                      -0.0057,
+                      0.00857
+                    ],
+                    "speed": 0.00948
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48226,
+                      0.20026,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "after": {
+                  "red": {
+                    "position": [
+                      0.34715,
+                      -0.02111,
+                      0.06021
+                    ],
+                    "speed": 0.05942
+                  },
+                  "green": {
+                    "position": [
+                      0.48114,
+                      0.19675,
+                      0.0299
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.3931,
+                      -0.01847,
+                      0.03782
+                    ],
+                    "speed": 0.0064
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.40755,
+                      -0.00571,
+                      0.00895
+                    ],
+                    "speed": 0.00131
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48226,
+                      0.20026,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "relations_gained": [],
+                "relations_lost": [],
+                "contact_events": [
+                  {
+                    "t": 5520,
+                    "type": "contact_end",
+                    "bodies": [
+                      "blue",
+                      "red"
+                    ]
+                  }
+                ],
+                "wrist_force": [
+                  0.2313,
+                  0.015,
+                  8.4504
+                ]
+              },
+              {
+                "stage": "lowered",
+                "step": 5525,
+                "before": {
+                  "red": {
+                    "position": [
+                      0.34715,
+                      -0.02111,
+                      0.06021
+                    ],
+                    "speed": 0.05942
+                  },
+                  "green": {
+                    "position": [
+                      0.48114,
+                      0.19675,
+                      0.0299
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.3931,
+                      -0.01847,
+                      0.03782
+                    ],
+                    "speed": 0.0064
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.40755,
+                      -0.00571,
+                      0.00895
+                    ],
+                    "speed": 0.00131
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48226,
+                      0.20026,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "after": {
+                  "red": {
+                    "position": [
+                      0.346,
+                      -0.02098,
+                      0.05734
+                    ],
+                    "speed": 0.02311
+                  },
+                  "green": {
+                    "position": [
+                      0.48114,
+                      0.19675,
+                      0.0299
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.3931,
+                      -0.01849,
+                      0.03793
+                    ],
+                    "speed": 9e-05
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.40755,
+                      -0.00571,
+                      0.00897
+                    ],
+                    "speed": 1e-05
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48226,
+                      0.20026,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "relations_gained": [],
+                "relations_lost": [],
+                "contact_events": [],
+                "wrist_force": [
+                  0.1191,
+                  0.0047,
+                  8.4048
+                ]
+              },
+              {
+                "stage": "lowered",
+                "step": 5530,
+                "before": {
+                  "red": {
+                    "position": [
+                      0.346,
+                      -0.02098,
+                      0.05734
+                    ],
+                    "speed": 0.02311
+                  },
+                  "green": {
+                    "position": [
+                      0.48114,
+                      0.19675,
+                      0.0299
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.3931,
+                      -0.01849,
+                      0.03793
+                    ],
+                    "speed": 9e-05
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.40755,
+                      -0.00571,
+                      0.00897
+                    ],
+                    "speed": 1e-05
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48226,
+                      0.20026,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "after": {
+                  "red": {
+                    "position": [
+                      0.34718,
+                      -0.02027,
+                      0.05658
+                    ],
+                    "speed": 0.01627
+                  },
+                  "green": {
+                    "position": [
+                      0.48114,
+                      0.19675,
+                      0.0299
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.3931,
+                      -0.01849,
+                      0.03793
+                    ],
+                    "speed": 6e-05
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.40755,
+                      -0.00571,
+                      0.00897
+                    ],
+                    "speed": 0.0
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48226,
+                      0.20026,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "relations_gained": [],
+                "relations_lost": [],
+                "contact_events": [],
+                "wrist_force": [
+                  0.0367,
+                  -0.0076,
+                  8.3124
+                ]
+              },
+              {
+                "stage": "lowered",
+                "step": 5535,
+                "before": {
+                  "red": {
+                    "position": [
+                      0.34718,
+                      -0.02027,
+                      0.05658
+                    ],
+                    "speed": 0.01627
+                  },
+                  "green": {
+                    "position": [
+                      0.48114,
+                      0.19675,
+                      0.0299
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.3931,
+                      -0.01849,
+                      0.03793
+                    ],
+                    "speed": 6e-05
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.40755,
+                      -0.00571,
+                      0.00897
+                    ],
+                    "speed": 0.0
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48226,
+                      0.20026,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "after": {
+                  "red": {
+                    "position": [
+                      0.34831,
+                      -0.01917,
+                      0.05637
+                    ],
+                    "speed": 0.01544
+                  },
+                  "green": {
+                    "position": [
+                      0.48114,
+                      0.19675,
+                      0.0299
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.3931,
+                      -0.01849,
+                      0.03793
+                    ],
+                    "speed": 8e-05
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.40755,
+                      -0.00571,
+                      0.00897
+                    ],
+                    "speed": 1e-05
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48226,
+                      0.20026,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "relations_gained": [],
+                "relations_lost": [],
+                "contact_events": [
+                  {
+                    "t": 5535,
+                    "type": "contact_end",
+                    "bodies": [
+                      "hand",
+                      "red"
+                    ]
+                  }
+                ],
+                "wrist_force": [
+                  -0.0769,
+                  -0.0146,
+                  8.23
+                ]
+              },
+              {
+                "stage": "lowered",
+                "step": 5540,
+                "before": {
+                  "red": {
+                    "position": [
+                      0.34831,
+                      -0.01917,
+                      0.05637
+                    ],
+                    "speed": 0.01544
+                  },
+                  "green": {
+                    "position": [
+                      0.48114,
+                      0.19675,
+                      0.0299
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.3931,
+                      -0.01849,
+                      0.03793
+                    ],
+                    "speed": 8e-05
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.40755,
+                      -0.00571,
+                      0.00897
+                    ],
+                    "speed": 1e-05
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48226,
+                      0.20026,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "after": {
+                  "red": {
+                    "position": [
+                      0.34973,
+                      -0.01667,
+                      0.05731
+                    ],
+                    "speed": 0.05092
+                  },
+                  "green": {
+                    "position": [
+                      0.48114,
+                      0.19675,
+                      0.0299
+                    ],
+                    "speed": 0.0
+                  },
+                  "blue": {
+                    "position": [
+                      0.39375,
+                      -0.01791,
+                      0.03801
+                    ],
+                    "speed": 0.01312
+                  },
+                  "yellow": {
+                    "position": [
+                      0.38763,
+                      0.13986,
+                      0.01993
+                    ],
+                    "speed": 0.0
+                  },
+                  "plate": {
+                    "position": [
+                      0.40758,
+                      -0.0057,
+                      0.00897
+                    ],
+                    "speed": 0.0003
+                  },
+                  "bowl": {
+                    "position": [
+                      0.48226,
+                      0.20026,
+                      -1e-05
+                    ],
+                    "speed": 0.0
+                  }
+                },
+                "relations_gained": [],
+                "relations_lost": [],
+                "contact_events": [
+                  {
+                    "t": 5536,
+                    "type": "contact_start",
+                    "bodies": [
+                      "blue",
+                      "red"
+                    ]
+                  },
+                  {
+                    "t": 5540,
+                    "type": "contact_end",
+                    "bodies": [
+                      "blue",
+                      "red"
+                    ]
+                  }
+                ],
+                "wrist_force": [
+                  0.2319,
+                  0.0036,
+                  8.3717
+                ]
+              }
+            ]
+          },
+          "relation_loss_events": [
+            {
+              "type": "action_transition",
+              "stage": "lowered",
+              "step": 5400,
+              "before": {
+                "red": {
+                  "position": [
+                    0.34299,
+                    -0.00636,
+                    0.07542
+                  ],
+                  "speed": 0.03355
+                },
+                "green": {
+                  "position": [
+                    0.48114,
+                    0.19675,
+                    0.0299
+                  ],
+                  "speed": 0.0
+                },
+                "blue": {
+                  "position": [
+                    0.3624,
+                    -0.0068,
+                    0.03711
+                  ],
+                  "speed": 0.01802
+                },
+                "yellow": {
+                  "position": [
+                    0.38763,
+                    0.13986,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "plate": {
+                  "position": [
+                    0.40052,
+                    -0.00304,
+                    0.00891
+                  ],
+                  "speed": 0.00193
+                },
+                "bowl": {
+                  "position": [
+                    0.48226,
+                    0.20026,
+                    -1e-05
+                  ],
+                  "speed": 0.0
+                }
+              },
+              "after": {
+                "red": {
+                  "position": [
+                    0.34038,
+                    -0.00668,
+                    0.07567
+                  ],
+                  "speed": 0.01427
+                },
+                "green": {
+                  "position": [
+                    0.48114,
+                    0.19675,
+                    0.0299
+                  ],
+                  "speed": 0.0
+                },
+                "blue": {
+                  "position": [
+                    0.36148,
+                    -0.00693,
+                    0.03732
+                  ],
+                  "speed": 0.00759
+                },
+                "yellow": {
+                  "position": [
+                    0.38763,
+                    0.13986,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "plate": {
+                  "position": [
+                    0.40038,
+                    -0.00306,
+                    0.0089
+                  ],
+                  "speed": 0.00386
+                },
+                "bowl": {
+                  "position": [
+                    0.48226,
+                    0.20026,
+                    -1e-05
+                  ],
+                  "speed": 0.0
+                }
+              },
+              "relations_gained": [
+                [
+                  "grasped",
+                  "blue"
+                ]
+              ],
+              "relations_lost": [
+                [
+                  "on",
+                  "blue",
+                  "plate"
+                ]
+              ],
+              "contact_events": [
+                {
+                  "t": 5397,
+                  "type": "grasp",
+                  "object": "blue"
+                },
+                {
+                  "t": 5399,
+                  "type": "contact_start",
+                  "bodies": [
+                    "hand",
+                    "red"
+                  ]
+                },
+                {
+                  "t": 5400,
+                  "type": "relation_true",
+                  "relation": [
+                    "grasped",
+                    "blue"
+                  ]
+                },
+                {
+                  "t": 5400,
+                  "type": "relation_false",
+                  "relation": [
+                    "on",
+                    "blue",
+                    "plate"
+                  ]
+                }
+              ],
+              "wrist_force": [
+                -0.87,
+                -0.4868,
+                -9.054
+              ]
+            }
+          ],
+          "positions": {
+            "gripper": [
+              0.34866708517074585,
+              -0.00871061347424984,
+              0.04778076708316803
+            ],
+            "red": [
+              0.3532896637916565,
+              -0.01478005200624466,
+              0.03792986646294594
+            ],
+            "green": [
+              0.4811425507068634,
+              0.1967451572418213,
+              0.029899397864937782
+            ],
+            "blue": [
+              0.39403074979782104,
+              -0.017551342025399208,
+              0.037932559847831726
+            ],
+            "yellow": [
+              0.38763076066970825,
+              0.13985785841941833,
+              0.019927598536014557
+            ],
+            "plate": [
+              0.407574325799942,
+              -0.005693710874766111,
+              0.008970254100859165
+            ],
+            "bowl": [
+              0.4822640120983124,
+              0.20025649666786194,
+              -9.230075193045195e-06
+            ]
+          },
+          "relations": [
+            [
+              "in",
+              "green",
+              "bowl"
+            ],
+            [
+              "on",
+              "blue",
+              "plate"
+            ],
+            [
+              "on",
+              "red",
+              "plate"
+            ]
+          ]
+        },
+        {
+          "goal": "on(green, red)",
+          "success": true,
+          "steps": 180,
+          "last_stage": "lowered",
+          "failure_cause": null,
+          "contact_transitions": 28,
+          "failure_trace": null,
+          "relation_loss_events": [
+            {
+              "type": "action_transition",
+              "stage": "lifted",
+              "step": 5825,
+              "before": {
+                "red": {
+                  "position": [
+                    0.35328,
+                    -0.01478,
+                    0.03793
+                  ],
+                  "speed": 9e-05
+                },
+                "green": {
+                  "position": [
+                    0.47826,
+                    0.22784,
+                    0.05788
+                  ],
+                  "speed": 0.1654
+                },
+                "blue": {
+                  "position": [
+                    0.39403,
+                    -0.01755,
+                    0.03793
+                  ],
+                  "speed": 0.00018
+                },
+                "yellow": {
+                  "position": [
+                    0.38763,
+                    0.13986,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "plate": {
+                  "position": [
+                    0.40757,
+                    -0.00569,
+                    0.00897
+                  ],
+                  "speed": 0.0
+                },
+                "bowl": {
+                  "position": [
+                    0.48692,
+                    0.22456,
+                    -1e-05
+                  ],
+                  "speed": 0.0
+                }
+              },
+              "after": {
+                "red": {
+                  "position": [
+                    0.35328,
+                    -0.01478,
+                    0.03793
+                  ],
+                  "speed": 0.00011
+                },
+                "green": {
+                  "position": [
+                    0.47963,
+                    0.22422,
+                    0.07487
+                  ],
+                  "speed": 0.17837
+                },
+                "blue": {
+                  "position": [
+                    0.39403,
+                    -0.01755,
+                    0.03793
+                  ],
+                  "speed": 0.00017
+                },
+                "yellow": {
+                  "position": [
+                    0.38763,
+                    0.13986,
+                    0.01993
+                  ],
+                  "speed": 0.0
+                },
+                "plate": {
+                  "position": [
+                    0.40757,
+                    -0.00569,
+                    0.00897
+                  ],
+                  "speed": 0.0
+                },
+                "bowl": {
+                  "position": [
+                    0.48692,
+                    0.22456,
+                    -1e-05
+                  ],
+                  "speed": 0.0
+                }
+              },
+              "relations_gained": [],
+              "relations_lost": [
+                [
+                  "in",
+                  "green",
+                  "bowl"
+                ]
+              ],
+              "contact_events": [],
+              "wrist_force": [
+                0.3605,
+                0.1995,
+                8.0298
+              ]
+            }
+          ],
+          "positions": {
+            "gripper": [
+              0.38457146286964417,
+              -0.018486574292182922,
+              0.06482168287038803
+            ],
+            "red": [
+              0.36743080615997314,
+              -0.017761217430233955,
+              0.037876106798648834
+            ],
+            "green": [
+              0.3802008628845215,
+              -0.019841238856315613,
+              0.07770595699548721
+            ],
+            "blue": [
+              0.4217784106731415,
+              -0.021122105419635773,
+              0.0379183366894722
+            ],
+            "yellow": [
+              0.38763076066970825,
+              0.13985785841941833,
+              0.019927598536014557
+            ],
+            "plate": [
+              0.41129326820373535,
+              -0.006461754906922579,
+              0.008951399475336075
+            ],
+            "bowl": [
+              0.48691701889038086,
+              0.2245551496744156,
+              -7.286691925401101e-06
+            ]
+          },
+          "relations": [
+            [
+              "on",
+              "blue",
+              "plate"
+            ],
+            [
+              "on",
+              "green",
+              "red"
+            ],
+            [
+              "on",
+              "red",
+              "plate"
+            ]
+          ]
+        }
+      ],
+      "final_positions": {
+        "gripper": [
+          0.38457146286964417,
+          -0.018486574292182922,
+          0.06482168287038803
+        ],
+        "red": [
+          0.36743080615997314,
+          -0.017761217430233955,
+          0.037876106798648834
+        ],
+        "green": [
+          0.3802008628845215,
+          -0.019841238856315613,
+          0.07770595699548721
+        ],
+        "blue": [
+          0.4217784106731415,
+          -0.021122105419635773,
+          0.0379183366894722
+        ],
+        "yellow": [
+          0.38763076066970825,
+          0.13985785841941833,
+          0.019927598536014557
+        ],
+        "plate": [
+          0.41129326820373535,
+          -0.006461754906922579,
+          0.008951399475336075
+        ],
+        "bowl": [
+          0.48691701889038086,
+          0.2245551496744156,
+          -7.286691925401101e-06
+        ]
+      },
+      "final_relations": [
+        [
+          "on",
+          "blue",
+          "plate"
+        ],
+        [
+          "on",
+          "green",
+          "red"
+        ],
+        [
+          "on",
+          "red",
+          "plate"
+        ]
+      ],
+      "unmet_goals": [
+        "on(red,blue)"
+      ]
+    }
+  ]
+}

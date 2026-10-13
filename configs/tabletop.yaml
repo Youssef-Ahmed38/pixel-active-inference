@@ -64,6 +64,11 @@ slice:
   temperature: 0.1           # relative to the spread of sampled costs
   epistemic_weight: 0.0       # curiosity off for the slice task; Phase 2 turns it on
   episodes: 20
+  # v8 (diagnosis of results/slice_v7 on development seeds):
+  seed_planner: true          # seed the planner's sampling with the episode seed: episodes can be replayed
+  slippery_carry: low         # a slipping object: carry it low, grasped at its centre (was: gentle, 50% speed)
+  slippery_carry_speed: 1.0   # speed factor for that carry: holding it longer only lets it creep out further
+  watch_settle: true          # keep monitoring surprise while waiting for the object to come to rest
 
 slots:
   frames_dir: data/slice_frames

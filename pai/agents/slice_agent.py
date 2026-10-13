@@ -29,22 +29,29 @@ from pai.memory.recipes import proposal
 from pai.perception.camera_frame import CameraFramePerception
 from pai.planning.mppi import MPPIPlanner
 from pai.world.entities import FORCE, POS, entity_names
+from pai.cognition.causes import select_arm_cause
 
 HOLDING_SUBGOALS = range(3, 6)  # lifted, over_target, lowered: the object should be in the hand
 ADAPT_CONFIDENCE = 0.9          # posterior needed before an explanation changes behaviour
 GENTLE_CARRY = 0.5              # speed factor while carrying an object believed to be slippery
+SETTLE_STEP = "settle"          # task step name while the agent waits, hand open, after finishing the task
 
 
 def run_episode(env, wm, cfg, episode: int, seed: int, disturbances: list[dict] | None = None,
                 relation: str = "on", obj: str = "red", target: str = "plate", device="cpu",
                 frames: list | None = None, calibration: Calibration | None = None,
                 raw: list | None = None, perceive=None, adapt: bool = True,
-                evidence: list | None = None, recipe=None) -> EpisodeRecord:
+                evidence: list | None = None, recipe=None, cognitive_memory=None,
+                online_thinker=None) -> EpisodeRecord:
     """raw, if given, collects (residual, model_sigma, step name) per step, used to calibrate
     surprise. evidence, if given, collects (z, holding, subgoal index) per step for the thinker.
     adapt: act on confident explanations (off for the ablation).
     recipe: a recalled pai.memory.recipes.Recipe; its waypoints become an extra planner candidate."""
     sc = cfg.slice
+    if sc.get("seed_planner", False):
+        # The planner samples with torch's global generator: seeding it with the episode seed makes
+        # an episode replayable (the same seed gives the same episode), so failures can be diagnosed.
+        torch.manual_seed(seed)
     env.disturbances = build_disturbances(disturbances or [])
     obs = env.reset(seed=seed)
     names = entity_names(env)
@@ -68,6 +75,7 @@ def run_episode(env, wm, cfg, episode: int, seed: int, disturbances: list[dict] 
     plan_dt = env.control_dt * sc.action_repeat
     subgoal_times, surprise = {}, []
     traj_tokens, traj_actions, phases = [tokens.copy()], [], {}
+    thinker_events = []
     k = 0
     for k in range(sc.max_plan_steps):
         x = torch.as_tensor(tokens, device=device)
@@ -117,8 +125,14 @@ def run_episode(env, wm, cfg, episode: int, seed: int, disturbances: list[dict] 
         surprise.append(round(ev.surprise, 3))
         if evidence is not None:
             evidence.append((residual / ev.sigma, holding, goal.index))
-        if adapt and report is not None and report.posterior[report.best] > ADAPT_CONFIDENCE:
-            cause, prm = report.best, report.params[report.best]
+        thinker_report = (online_thinker.observe(k, residual / ev.sigma, holding,
+                                                trigger=report is not None)
+                          if online_thinker is not None else None)
+        if thinker_report is not None:
+            thinker_events.append({"type": "thinker_cause", **thinker_report})
+        cause, confident = select_arm_cause(report, thinker_report, ADAPT_CONFIDENCE)
+        if adapt and confident:
+            prm = report.params[cause]
             if (cause == "camera_shift" and hasattr(sense, "correction") and getattr(sense, "allow_recalibration", True)
                     and prm["onset"] not in camera_fixed):
                 camera_fixed.add(prm["onset"])  # one jump, one correction, however often it is re-explained
@@ -133,7 +147,14 @@ def run_episode(env, wm, cfg, episode: int, seed: int, disturbances: list[dict] 
                 hold_bias[[2, 8]] = -prm["sag_mm"] / 1000
                 adaptations.append({"t": k, "cause": cause, "action": "expect the extra weight",
                                     "extra_mass_kg": prm["extra_mass_kg"]})
-            elif cause == "slippery_object" and carry_speed == 1.0:
+            elif cause == "slippery_object" and sc.get("slippery_carry", "gentle") == "low" and goal.lift_z is not None:
+                # A slipping object creeps out of the fingers the longer it is held: carry it low and
+                # directly, grasped at its centre (RelationalGoal.carry_low), rather than slowly.
+                goal.carry_low()
+                carry_speed = float(sc.get("slippery_carry_speed", 1.0))
+                adaptations.append({"t": k, "cause": cause, "action": "carry it low, grasped at its centre"
+                                    + (f", at {carry_speed:.0%} speed" if carry_speed != 1.0 else "")})
+            elif cause == "slippery_object" and sc.get("slippery_carry", "gentle") != "low" and carry_speed == 1.0:
                 carry_speed = GENTLE_CARRY
                 adaptations.append({"t": k, "cause": cause, "action": f"carry at {GENTLE_CARRY:.0%} speed"})
         tokens = new_tokens
@@ -141,13 +162,48 @@ def run_episode(env, wm, cfg, episode: int, seed: int, disturbances: list[dict] 
         traj_actions.append(a_np.copy())
     for i in range(goal.index):
         subgoal_times.setdefault(goal.subgoals[i].name, k)
-    for _ in range(sc.settle_steps):  # let the object come to rest before judging success
+    settle = int(sc.settle_steps)
+    if sc.get("watch_settle", False) and goal.current is None:
+        # The agent keeps feeling and seeing while it waits, hand open and still, for the object to
+        # come to rest: a disturbance in these last moments (a push of the arm after the placement)
+        # is still something that happened to it and needs an explanation.
+        a = torch.tensor([0.0, 0.0, 0.0, 1.0], device=device)
+        while settle >= sc.action_repeat:
+            x = torch.as_tensor(tokens, device=device)
+            with torch.no_grad():
+                pred = wm.predict(x[None], a[None])
+            for _ in range(sc.action_repeat):
+                prev_ee = obs["ee_pos"].copy()
+                obs = env.step(np.array([0, 0, 0, 0, 1.0]))
+                if frames is not None and env.t % 4 == 0:
+                    belief = monitor.reports[-1].posterior if monitor.reports else None
+                    level = monitor.history[-1].surprise if monitor.history else 0.0
+                    frames.append(annotate(obs["image"], goal_text, SETTLE_STEP, level, belief, env.t * env.control_dt))
+            settle -= sc.action_repeat
+            k_s = len(surprise)
+            new_tokens = sense(obs, prev_ee)
+            err = new_tokens[:, POS] - (tokens[:, POS] + pred.delta[0, :, :3].cpu().numpy())
+            var = (pred.aleatoric + pred.epistemic)[0, :, :3].cpu().numpy()
+            residual = np.r_[err[0], new_tokens[0, FORCE] - pred.force[0].cpu().numpy(),
+                             err[goal.i_o], err[others].mean(0)]
+            model_sigma = np.sqrt(np.r_[var[0], pred.force_var[0].cpu().numpy(),
+                                        var[goal.i_o], var[others].sum(0) / len(others) ** 2])
+            if raw is not None:
+                raw.append((residual, model_sigma, SETTLE_STEP))
+            ev = StepEvidence(k_s, residual, combined_sigma(model_sigma, calibration, SETTLE_STEP), a.cpu().numpy(),
+                              holding=False, step=SETTLE_STEP)
+            monitor.add(ev, ev)
+            surprise.append(round(ev.surprise, 3))
+            if evidence is not None:
+                evidence.append((residual / ev.sigma, False, goal.index))
+            tokens = new_tokens
+    for _ in range(settle):  # let the object come to rest before judging success
         obs = env.step(np.array([0, 0, 0, 0, 1.0]))
     success = (relation, obj, target) in obs["predicates"]
 
     verdict = monitor.episode_verdict()
     truth = [e for e in env.events.events if e["type"] == "disturbance_start"]
-    return EpisodeRecord(
+    record = EpisodeRecord(
         episode=episode, goal=f"{relation}({obj}, {target})", success=bool(success), steps=k,
         subgoal_times=subgoal_times, surprise=surprise,
         inferred_cause=verdict.best if verdict else "none",
@@ -162,5 +218,9 @@ def run_episode(env, wm, cfg, episode: int, seed: int, disturbances: list[dict] 
         phases=phases,
         events=[e for e in env.events.events if e["type"] in ("grasp", "release", "slip", "relation_true",
                                                                  "relation_false", "disturbance_start",
-                                                                 "disturbance_end")],
+                                                                 "disturbance_end")] + thinker_events,
     )
+    if cognitive_memory is not None:
+        from pai.cognition.adapters import from_arm_record
+        cognitive_memory.add(from_arm_record(record, names))
+    return record

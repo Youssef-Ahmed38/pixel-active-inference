@@ -1,0 +1,66 @@
+{
+  "config": {
+    "seeds": [
+      123,
+      125
+    ],
+    "budget_per_goal": 250
+  },
+  "summary": {
+    "n": 2,
+    "success_rate": 0.5
+  },
+  "episodes": [
+    {
+      "seed": 123,
+      "success": true,
+      "goals": [
+        {
+          "goal": "on(blue, plate)",
+          "success": true,
+          "steps": 59
+        },
+        {
+          "goal": "on(red, blue)",
+          "success": true,
+          "steps": 70
+        }
+      ],
+      "final_relations": [
+        [
+          "on",
+          "blue",
+          "plate"
+        ],
+        [
+          "on",
+          "red",
+          "blue"
+        ]
+      ]
+    },
+    {
+      "seed": 125,
+      "success": false,
+      "goals": [
+        {
+          "goal": "on(blue, plate)",
+          "success": true,
+          "steps": 106
+        },
+        {
+          "goal": "on(red, blue)",
+          "success": true,
+          "steps": 125
+        }
+      ],
+      "final_relations": [
+        [
+          "on",
+          "red",
+          "blue"
+        ]
+      ]
+    }
+  ]
+}

@@ -193,7 +193,8 @@ class DiscoveryAgent:
                  no_solution: float = 0.05, radius: float = 0.7, proximity: float = 0.5, seed: int = 0,
                  snapshot_every: int = 10, n_plan: int = 6, lit_locality: float = 1.0, sweep: int | None = None,
                  kappa_reveal: float = 0.3, base_novel: float = 0.01, init_bonus: float = 0.0,
-                 extent: bool = True, locality: Locality | None = None):
+                 extent: bool = True, locality: Locality | None = None,
+                 object_trials: bool = False, sweep_rate: bool = False):
         self.max_lits, self.eps, self.p_unknown = max_lits, eps, p_unknown
         # no_solution: kept for compatibility; giving up no longer thresholds a mass (see the docstring)
         self.exploit_p, self.no_solution_p = exploit, no_solution
@@ -205,6 +206,8 @@ class DiscoveryAgent:
         self.snapshot_every, self.n_plan, self.lit_locality = snapshot_every, n_plan, loc.lit_prior
         self.sweep, self.kappa_reveal, self.base_novel, self.init_bonus = sweep, kappa_reveal, base_novel, init_bonus
         self.extent = extent      # locality measured from the goal part's extent (else from its centre)
+        self.object_trials = object_trials
+        self.sweep_rate = sweep_rate  # rate moves by the whole sweep of probes they make possible (group testing)
         self.belief: Belief | None = None
         self.model: ActionModel | None = None
 
@@ -247,6 +250,11 @@ class DiscoveryAgent:
         self._plans: dict = {}
         self._commit: dict | None = None
         self._failed: dict = {}          # C -> (model version when its plan last failed, failures)
+        if self.object_trials:
+            from pai.discovery.object_trials import ObjectTrialController
+            trial = ObjectTrialController(ep.state)
+        else:
+            trial = None
         reason = "budget"
         sweeps = self.sweep if self.sweep is not None else budget_actions
         while ep.log.n_actions < budget_actions:
@@ -257,8 +265,9 @@ class DiscoveryAgent:
             model.observe_available(acts, ep.state)
             if ep.log.n_actions % self.snapshot_every == 0:
                 ep.log.snapshots.append({"n": ep.log.n_actions, **bel.snapshot()})
-            a, mode = None, ""
-            if model.exhausted():
+            a = trial.choose(ep, acts, bel.probes) if trial is not None else None
+            mode = "object_trial" if a is not None else ""
+            if a is None and model.exhausted():
                 # nothing left to learn about what my actions do: test the consistent rules I can still
                 # make true, most probable first; give up when none is left
                 poss = model.possible(bel.lits, ep.state, bel.achieved)
@@ -273,11 +282,13 @@ class DiscoveryAgent:
                 a, mode = self._exploit(ep, acts)
             if a is None:
                 scores = score_actions(bel, model, ep.state, acts, ep.cost, kappa_reveal=self.kappa_reveal,
-                                       rho_bias=rho_bias, base_novel=self.base_novel)
+                                       rho_bias=rho_bias, base_novel=self.base_novel, sweep=self.sweep_rate)
                 best = max(s["rate"] for s in scores)
                 cands = [s["action"] for s in scores if s["rate"] >= best - 1e-12]
                 a, mode = cands[int(self.rng.integers(len(cands)))], "explore"
             before, out = ep.step(a, mode)
+            if trial is not None:
+                trial.observe(ep, a, out, bel.probes)
             model.record(a, before, ep.state, out.executed, out.stalled, len(out.revealed))
             sweeps -= mode == "sweep"
             if mode == "sweep" and self._commit and out.executed:

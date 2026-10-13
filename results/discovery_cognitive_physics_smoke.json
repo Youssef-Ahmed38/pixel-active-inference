@@ -1,0 +1,35 @@
+{
+  "config": {
+    "physics": true,
+    "type_name": "hd_knob_pull_left",
+    "embodiment": "robotiq_2f85"
+  },
+  "summary": {
+    "door": {
+      "n": 1,
+      "success_rate": 1.0
+    },
+    "drawer": {
+      "n": 1,
+      "success_rate": 1.0
+    }
+  },
+  "episodes": [
+    {
+      "seed": 0,
+      "task": "door",
+      "success": true,
+      "actions": 5,
+      "reason": "goal",
+      "recorded_outcomes": 5
+    },
+    {
+      "seed": 0,
+      "task": "drawer",
+      "success": true,
+      "actions": 4,
+      "reason": "goal",
+      "recorded_outcomes": 4
+    }
+  ]
+}

@@ -39,6 +39,16 @@ def goal_holds(w) -> bool:
     return all(f.get(k) == v for k, v in w.goal().items())
 
 
+def test_ball_knob_push_follows_through_after_grip_slips():
+    from pai.discovery.physics import PhysicsWorld
+
+    w = PhysicsWorld("hd_ball_push_right", "robotiq_2f85", seed=20,
+                     lock_state="unlocked", key_place="drawer", n_keys=2)
+    outcome = w.execute(("turn_push", w.pid["handle"], 1))
+    assert outcome.executed and not outcome.stalled, outcome.notes
+    assert w.goal_reached()
+
+
 def _strings(x):
     if isinstance(x, dict):
         for k, v in x.items():
