@@ -1,0 +1,38 @@
+{
+  "scope": "template-generated text and symbolic entity observations",
+  "evaluation": {
+    "english": {
+      "training": {
+        "examples": 1848,
+        "learned_words": 20,
+        "templates": 14
+      },
+      "heldout_examples": 456,
+      "parsed_exact": 456,
+      "realization_roundtrips": 456,
+      "instructions": 84,
+      "resolved_goals": 84,
+      "strict_suite_passed": true,
+      "failures": []
+    },
+    "arabic": {
+      "training": {
+        "examples": 1848,
+        "learned_words": 20,
+        "templates": 12
+      },
+      "heldout_examples": 456,
+      "parsed_exact": 456,
+      "realization_roundtrips": 456,
+      "instructions": 84,
+      "resolved_goals": 84,
+      "strict_suite_passed": true,
+      "failures": []
+    }
+  },
+  "limitations": [
+    "not fluent conversation or speech recognition",
+    "teacher-generated grammar and vocabulary",
+    "physical instruction execution and event-log grounding require their own checks"
+  ]
+}

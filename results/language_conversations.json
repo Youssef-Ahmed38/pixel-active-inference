@@ -1,0 +1,37 @@
+{
+  "scope": "templates driven by recorded MuJoCo arm observations and intended goals",
+  "train_layouts": [
+    130,
+    131
+  ],
+  "eval_layouts": [
+    132,
+    133
+  ],
+  "languages": {
+    "english": {
+      "scene_teaching_rows": 94,
+      "scene_evaluation_rows": 118,
+      "parsed_exact": 118,
+      "verified_evidence": 118,
+      "realization_roundtrips": 118,
+      "strict_gate_passed": true,
+      "failures": []
+    },
+    "arabic": {
+      "scene_teaching_rows": 94,
+      "scene_evaluation_rows": 118,
+      "parsed_exact": 118,
+      "verified_evidence": 118,
+      "realization_roundtrips": 118,
+      "strict_gate_passed": true,
+      "failures": []
+    }
+  },
+  "limitations": [
+    "shared templates/vocabulary across layouts; not a novel-grammar test",
+    "observations use privileged tokens",
+    "no unobserved negative or inferred causal claims",
+    "language also receives the separate compositional teaching curriculum"
+  ]
+}

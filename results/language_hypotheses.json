@@ -1,0 +1,32 @@
+{
+  "scope": "uncertain cause language tied to observed stalls",
+  "languages": {
+    "english": {
+      "heldout_examples": 483,
+      "parsed_exact": 483,
+      "realization_roundtrips": 483,
+      "heldout_hypotheses": 27,
+      "hypotheses_parsed_exact": 27,
+      "grammar_gate_passed": true,
+      "recorded_episode_count": 8,
+      "recorded_hypotheses": 0,
+      "verified_causes": 0
+    },
+    "arabic": {
+      "heldout_examples": 483,
+      "parsed_exact": 483,
+      "realization_roundtrips": 483,
+      "heldout_hypotheses": 27,
+      "hypotheses_parsed_exact": 27,
+      "grammar_gate_passed": true,
+      "recorded_episode_count": 8,
+      "recorded_hypotheses": 0,
+      "verified_causes": 0
+    }
+  },
+  "limitations": [
+    "an episode posterior is not verified causal evidence or a calibrated probability",
+    "no hypothesis is generated without a normalized posterior and corresponding stall observation",
+    "heldout grammar is teacher generated; physical causal verification remains unfinished"
+  ]
+}

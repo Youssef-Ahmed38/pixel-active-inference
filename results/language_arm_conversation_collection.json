@@ -1,0 +1,818 @@
+{
+  "scope": "MuJoCo arm, CPU MPPI, privileged entity-token perception, controlled palette",
+  "episodes": [
+    {
+      "language": "english",
+      "seed": 130,
+      "instructions": [
+        "put the red block on the blue plate",
+        "put the yellow block inside the green bowl"
+      ],
+      "goals": [
+        {
+          "predicate": "on",
+          "subject": "red",
+          "object": "plate",
+          "preference": 1.0
+        },
+        {
+          "predicate": "in",
+          "subject": "yellow",
+          "object": "bowl",
+          "preference": 1.0
+        }
+      ],
+      "success": true,
+      "steps": 142,
+      "goal_observed": [
+        true,
+        true
+      ],
+      "success_narrated_from_observation": [
+        true,
+        true
+      ],
+      "answers": [
+        "yes the red block is on the blue plate",
+        "yes the yellow block is inside the green bowl"
+      ],
+      "narration": [
+        {
+          "text": "the green bowl is near the red block",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "green",
+            "subject_kind": "bowl",
+            "target_color": "red",
+            "target_kind": "block",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 43,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the red block is near the green bowl",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "red",
+            "subject_kind": "block",
+            "target_color": "green",
+            "target_kind": "bowl",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 43,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the blue plate is near the red block",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "blue",
+            "subject_kind": "plate",
+            "target_color": "red",
+            "target_kind": "block",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 48,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the red block is near the blue plate",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "red",
+            "subject_kind": "block",
+            "target_color": "blue",
+            "target_kind": "plate",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 48,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the red block is on the blue plate",
+          "frame": {
+            "intent": "description",
+            "predicate": "on",
+            "subject_color": "red",
+            "subject_kind": "block",
+            "target_color": "blue",
+            "target_kind": "plate",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 65,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the blue plate is near the yellow block",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "blue",
+            "subject_kind": "plate",
+            "target_color": "yellow",
+            "target_kind": "block",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 48,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the yellow block is near the blue plate",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "yellow",
+            "subject_kind": "block",
+            "target_color": "blue",
+            "target_kind": "plate",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 48,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the red block is near the yellow block",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "red",
+            "subject_kind": "block",
+            "target_color": "yellow",
+            "target_kind": "block",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 49,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the yellow block is near the red block",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "yellow",
+            "subject_kind": "block",
+            "target_color": "red",
+            "target_kind": "block",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 49,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the green bowl is near the yellow block",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "green",
+            "subject_kind": "bowl",
+            "target_color": "yellow",
+            "target_kind": "block",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 58,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the yellow block is near the green bowl",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "yellow",
+            "subject_kind": "block",
+            "target_color": "green",
+            "target_kind": "bowl",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 58,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the yellow block is inside the green bowl",
+          "frame": {
+            "intent": "description",
+            "predicate": "in",
+            "subject_color": "yellow",
+            "subject_kind": "block",
+            "target_color": "green",
+            "target_kind": "bowl",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 77,
+          "evidence": "observed_relation_gain"
+        }
+      ]
+    },
+    {
+      "language": "english",
+      "seed": 131,
+      "instructions": [
+        "put the red block on the blue plate",
+        "put the yellow block inside the green bowl"
+      ],
+      "goals": [
+        {
+          "predicate": "on",
+          "subject": "red",
+          "object": "plate",
+          "preference": 1.0
+        },
+        {
+          "predicate": "in",
+          "subject": "yellow",
+          "object": "bowl",
+          "preference": 1.0
+        }
+      ],
+      "success": true,
+      "steps": 129,
+      "goal_observed": [
+        true,
+        true
+      ],
+      "success_narrated_from_observation": [
+        true,
+        true
+      ],
+      "answers": [
+        "yes the red block is on the blue plate",
+        "yes the yellow block is inside the green bowl"
+      ],
+      "narration": [
+        {
+          "text": "the red block is near the yellow block",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "red",
+            "subject_kind": "block",
+            "target_color": "yellow",
+            "target_kind": "block",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 31,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the yellow block is near the red block",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "yellow",
+            "subject_kind": "block",
+            "target_color": "red",
+            "target_kind": "block",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 31,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the blue plate is near the red block",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "blue",
+            "subject_kind": "plate",
+            "target_color": "red",
+            "target_kind": "block",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 42,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the red block is near the blue plate",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "red",
+            "subject_kind": "block",
+            "target_color": "blue",
+            "target_kind": "plate",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 42,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the red block is on the blue plate",
+          "frame": {
+            "intent": "description",
+            "predicate": "on",
+            "subject_color": "red",
+            "subject_kind": "block",
+            "target_color": "blue",
+            "target_kind": "plate",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 62,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the blue block is near the yellow block",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "blue",
+            "subject_kind": "block",
+            "target_color": "yellow",
+            "target_kind": "block",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 41,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the yellow block is near the blue block",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "yellow",
+            "subject_kind": "block",
+            "target_color": "blue",
+            "target_kind": "block",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 41,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the green bowl is near the yellow block",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "green",
+            "subject_kind": "bowl",
+            "target_color": "yellow",
+            "target_kind": "block",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 48,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the yellow block is near the green bowl",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "yellow",
+            "subject_kind": "block",
+            "target_color": "green",
+            "target_kind": "bowl",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 48,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the yellow block is inside the green bowl",
+          "frame": {
+            "intent": "description",
+            "predicate": "in",
+            "subject_color": "yellow",
+            "subject_kind": "block",
+            "target_color": "green",
+            "target_kind": "bowl",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 67,
+          "evidence": "observed_relation_gain"
+        }
+      ]
+    },
+    {
+      "language": "english",
+      "seed": 132,
+      "instructions": [
+        "put the red block on the blue plate",
+        "put the yellow block inside the green bowl"
+      ],
+      "goals": [
+        {
+          "predicate": "on",
+          "subject": "red",
+          "object": "plate",
+          "preference": 1.0
+        },
+        {
+          "predicate": "in",
+          "subject": "yellow",
+          "object": "bowl",
+          "preference": 1.0
+        }
+      ],
+      "success": true,
+      "steps": 218,
+      "goal_observed": [
+        true,
+        true
+      ],
+      "success_narrated_from_observation": [
+        true,
+        true
+      ],
+      "answers": [
+        "yes the red block is on the blue plate",
+        "yes the yellow block is inside the green bowl"
+      ],
+      "narration": [
+        {
+          "text": "the blue plate is near the red block",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "blue",
+            "subject_kind": "plate",
+            "target_color": "red",
+            "target_kind": "block",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 125,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the red block is near the blue plate",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "red",
+            "subject_kind": "block",
+            "target_color": "blue",
+            "target_kind": "plate",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 125,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the red block is on the blue plate",
+          "frame": {
+            "intent": "description",
+            "predicate": "on",
+            "subject_color": "red",
+            "subject_kind": "block",
+            "target_color": "blue",
+            "target_kind": "plate",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 147,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the green bowl is near the yellow block",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "green",
+            "subject_kind": "bowl",
+            "target_color": "yellow",
+            "target_kind": "block",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 55,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the green block is near the yellow block",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "green",
+            "subject_kind": "block",
+            "target_color": "yellow",
+            "target_kind": "block",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 55,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the yellow block is near the green bowl",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "yellow",
+            "subject_kind": "block",
+            "target_color": "green",
+            "target_kind": "bowl",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 55,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the yellow block is near the green block",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "yellow",
+            "subject_kind": "block",
+            "target_color": "green",
+            "target_kind": "block",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 55,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the yellow block is inside the green bowl",
+          "frame": {
+            "intent": "description",
+            "predicate": "in",
+            "subject_color": "yellow",
+            "subject_kind": "block",
+            "target_color": "green",
+            "target_kind": "bowl",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 71,
+          "evidence": "observed_relation_gain"
+        }
+      ]
+    },
+    {
+      "language": "english",
+      "seed": 133,
+      "instructions": [
+        "put the red block on the blue plate",
+        "put the yellow block inside the green bowl"
+      ],
+      "goals": [
+        {
+          "predicate": "on",
+          "subject": "red",
+          "object": "plate",
+          "preference": 1.0
+        },
+        {
+          "predicate": "in",
+          "subject": "yellow",
+          "object": "bowl",
+          "preference": 1.0
+        }
+      ],
+      "success": true,
+      "steps": 208,
+      "goal_observed": [
+        true,
+        true
+      ],
+      "success_narrated_from_observation": [
+        true,
+        true
+      ],
+      "answers": [
+        "yes the red block is on the blue plate",
+        "yes the yellow block is inside the green bowl"
+      ],
+      "narration": [
+        {
+          "text": "the green block is near the red block",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "green",
+            "subject_kind": "block",
+            "target_color": "red",
+            "target_kind": "block",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 34,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the red block is near the green block",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "red",
+            "subject_kind": "block",
+            "target_color": "green",
+            "target_kind": "block",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 34,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the blue plate is near the red block",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "blue",
+            "subject_kind": "plate",
+            "target_color": "red",
+            "target_kind": "block",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 39,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the red block is near the blue plate",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "red",
+            "subject_kind": "block",
+            "target_color": "blue",
+            "target_kind": "plate",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 39,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the red block is on the blue plate",
+          "frame": {
+            "intent": "description",
+            "predicate": "on",
+            "subject_color": "red",
+            "subject_kind": "block",
+            "target_color": "blue",
+            "target_kind": "plate",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 58,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the green block is near the blue plate",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "green",
+            "subject_kind": "block",
+            "target_color": "blue",
+            "target_kind": "plate",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 28,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the green block is near the red block",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "green",
+            "subject_kind": "block",
+            "target_color": "red",
+            "target_kind": "block",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 28,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the blue plate is near the green block",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "blue",
+            "subject_kind": "plate",
+            "target_color": "green",
+            "target_kind": "block",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 28,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the red block is near the green block",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "red",
+            "subject_kind": "block",
+            "target_color": "green",
+            "target_kind": "block",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 28,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the blue block is near the yellow block",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "blue",
+            "subject_kind": "block",
+            "target_color": "yellow",
+            "target_kind": "block",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 122,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the yellow block is near the blue block",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "yellow",
+            "subject_kind": "block",
+            "target_color": "blue",
+            "target_kind": "block",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 122,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the green bowl is near the yellow block",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "green",
+            "subject_kind": "bowl",
+            "target_color": "yellow",
+            "target_kind": "block",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 139,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the yellow block is near the green bowl",
+          "frame": {
+            "intent": "description",
+            "predicate": "near",
+            "subject_color": "yellow",
+            "subject_kind": "block",
+            "target_color": "green",
+            "target_kind": "bowl",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 139,
+          "evidence": "observed_relation_gain"
+        },
+        {
+          "text": "the yellow block is inside the green bowl",
+          "frame": {
+            "intent": "description",
+            "predicate": "in",
+            "subject_color": "yellow",
+            "subject_kind": "block",
+            "target_color": "green",
+            "target_kind": "bowl",
+            "cause": null,
+            "truth": null
+          },
+          "belief_index": 151,
+          "evidence": "observed_relation_gain"
+        }
+      ]
+    }
+  ],
+  "complete": true
+}
