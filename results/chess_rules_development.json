@@ -1,0 +1,138 @@
+{
+  "scope": "teacher-induced standard chess legality and piece effects",
+  "eval_seed": 100,
+  "training": {
+    "seed": 0,
+    "positions": 2148,
+    "attack": {
+      "examples": 106496,
+      "tree_nodes": 271,
+      "fit_accuracy": 1.0
+    },
+    "proposal_examples": 581883,
+    "effect_examples": 59421,
+    "edit_patterns": 7,
+    "correction_errors": [
+      99,
+      14,
+      17,
+      0
+    ],
+    "tree_nodes": {
+      "proposal": 187,
+      "moved_token": 39,
+      "extra_edits": 33,
+      "safety": 11
+    }
+  },
+  "evaluation": {
+    "positions": 433,
+    "excluded_training_positions": 35,
+    "position_overlap": 0,
+    "actions_scored": 8729280,
+    "accuracy": 0.9999995417720591,
+    "legal_precision": 1.0,
+    "legal_recall": 0.9996055615816981,
+    "illegal_recall": 1.0,
+    "balanced_accuracy": 0.999802780790849,
+    "confusion": {
+      "tp": 10137,
+      "tn": 8719139,
+      "fp": 0,
+      "fn": 4
+    },
+    "exact_legal_sets": 430,
+    "exact_legal_set_rate": 0.9930715935334873,
+    "unmasked_policy": {
+      "legal_choices": 413,
+      "playable_positions": 413,
+      "terminal_positions": 20,
+      "correct_abstentions": 20
+    },
+    "piece_effects": {
+      "exact": 10140,
+      "total": 10141,
+      "accuracy": 0.9999013903954245
+    },
+    "rule_gate_passed": true,
+    "strict_suite_passed": false,
+    "topics": {
+      "game": {
+        "positions": 152,
+        "exact_legal_sets": 151,
+        "false_positives": 0,
+        "missed_legal_moves": 1
+      },
+      "sparse": {
+        "positions": 80,
+        "exact_legal_sets": 80,
+        "false_positives": 0,
+        "missed_legal_moves": 0
+      },
+      "checkmate": {
+        "positions": 10,
+        "exact_legal_sets": 10,
+        "false_positives": 0,
+        "missed_legal_moves": 0
+      },
+      "stalemate": {
+        "positions": 10,
+        "exact_legal_sets": 10,
+        "false_positives": 0,
+        "missed_legal_moves": 0
+      },
+      "promotion": {
+        "positions": 62,
+        "exact_legal_sets": 62,
+        "false_positives": 0,
+        "missed_legal_moves": 0
+      },
+      "castling": {
+        "positions": 65,
+        "exact_legal_sets": 63,
+        "false_positives": 0,
+        "missed_legal_moves": 3
+      },
+      "en_passant": {
+        "positions": 54,
+        "exact_legal_sets": 54,
+        "false_positives": 0,
+        "missed_legal_moves": 0
+      }
+    },
+    "failures": [
+      {
+        "topic": "game",
+        "fen": "2b1n1r1/3kp1b1/p2pN3/Pp3pp1/1n4PP/2BP1N2/1PP1B3/1R1QK2R w K - 2 21",
+        "extra": [],
+        "missing": [
+          "e1g1"
+        ]
+      },
+      {
+        "topic": "castling",
+        "fen": "r3k2r/8/8/2n5/8/1Q6/5B2/R3K2R w KQq - 0 1",
+        "extra": [],
+        "missing": [
+          "e1c1",
+          "e1g1"
+        ]
+      },
+      {
+        "topic": "castling",
+        "fen": "r3k2r/8/8/6N1/b7/7Q/5Q2/R3K2R w KQkq - 0 1",
+        "extra": [],
+        "missing": [
+          "e1g1"
+        ]
+      }
+    ]
+  },
+  "limitations": [
+    "finite tests do not prove correctness on every board",
+    "symbolic public board input",
+    "no Chess960 or variant support",
+    "no learned value, strategic search, Elo, or draw-history adjudication",
+    "effect prediction covers pieces; next metadata is not predicted"
+  ]
+}

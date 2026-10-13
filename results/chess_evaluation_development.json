@@ -1,0 +1,307 @@
+{
+  "eval_seed": 300,
+  "limitations": [
+    "finite evaluation is not all-position proof",
+    "standard chess symbolic public state",
+    "FEN omits prior repetition history",
+    "value is a small engine-distilled baseline, not measured playing strength",
+    "deep search, self-play, and Elo remain unfinished"
+  ],
+  "endings_training": {
+    "seed": 0,
+    "boards": 22410,
+    "outcome_examples": 44820,
+    "material_patterns": 1381,
+    "ep_examples": 15476,
+    "tree_nodes": {
+      "material": 65,
+      "ep_move": 9,
+      "outcome": 23,
+      "winner": 7,
+      "lookahead": 5
+    }
+  },
+  "endings": {
+    "examples": 12852,
+    "correct": 12350,
+    "excluded_training_states": 1584,
+    "position_overlap": 0,
+    "by_outcome": {
+      "ONGOING": {
+        "total": 4008,
+        "correct": 3984
+      },
+      "FIFTY_MOVES": {
+        "total": 2124,
+        "correct": 2112
+      },
+      "SEVENTYFIVE_MOVES": {
+        "total": 3864,
+        "correct": 3846
+      },
+      "CHECKMATE": {
+        "total": 108,
+        "correct": 108
+      },
+      "INSUFFICIENT_MATERIAL": {
+        "total": 1080,
+        "correct": 1080
+      },
+      "STALEMATE": {
+        "total": 72,
+        "correct": 72
+      },
+      "THREEFOLD_REPETITION": {
+        "total": 252,
+        "correct": 252
+      },
+      "FIVEFOLD_REPETITION": {
+        "total": 1344,
+        "correct": 896
+      }
+    },
+    "failures": [
+      {
+        "fen": "8/6k1/3n4/5K2/8/P7/8/8 w - - 0 1",
+        "topic": "sparse",
+        "claim_draw": false,
+        "expected": "ONGOING",
+        "actual": "INSUFFICIENT_MATERIAL",
+        "features": [
+          [
+            5,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "fen": "8/6k1/3n4/5K2/8/P7/8/8 w - - 0 1",
+        "topic": "sparse",
+        "claim_draw": true,
+        "expected": "ONGOING",
+        "actual": "INSUFFICIENT_MATERIAL",
+        "features": [
+          [
+            5,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            1
+          ]
+        ]
+      },
+      {
+        "fen": "8/6k1/3n4/5K2/8/P7/8/8 w - - 98 1",
+        "topic": "sparse",
+        "claim_draw": false,
+        "expected": "ONGOING",
+        "actual": "INSUFFICIENT_MATERIAL",
+        "features": [
+          [
+            5,
+            0,
+            1,
+            98,
+            1,
+            0,
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "fen": "8/6k1/3n4/5K2/8/P7/8/8 w - - 98 1",
+        "topic": "sparse",
+        "claim_draw": true,
+        "expected": "ONGOING",
+        "actual": "INSUFFICIENT_MATERIAL",
+        "features": [
+          [
+            5,
+            0,
+            1,
+            98,
+            1,
+            0,
+            0,
+            1,
+            1
+          ]
+        ]
+      },
+      {
+        "fen": "8/6k1/3n4/5K2/8/P7/8/8 w - - 99 1",
+        "topic": "sparse",
+        "claim_draw": false,
+        "expected": "ONGOING",
+        "actual": "INSUFFICIENT_MATERIAL",
+        "features": [
+          [
+            5,
+            0,
+            1,
+            99,
+            1,
+            0,
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "fen": "8/6k1/3n4/5K2/8/P7/8/8 w - - 99 1",
+        "topic": "sparse",
+        "claim_draw": true,
+        "expected": "FIFTY_MOVES",
+        "actual": "INSUFFICIENT_MATERIAL",
+        "features": [
+          [
+            5,
+            0,
+            1,
+            99,
+            1,
+            1,
+            100,
+            1,
+            1
+          ]
+        ]
+      },
+      {
+        "fen": "8/6k1/3n4/5K2/8/P7/8/8 w - - 100 1",
+        "topic": "sparse",
+        "claim_draw": false,
+        "expected": "ONGOING",
+        "actual": "INSUFFICIENT_MATERIAL",
+        "features": [
+          [
+            5,
+            0,
+            1,
+            100,
+            1,
+            0,
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "fen": "8/6k1/3n4/5K2/8/P7/8/8 w - - 100 1",
+        "topic": "sparse",
+        "claim_draw": true,
+        "expected": "FIFTY_MOVES",
+        "actual": "INSUFFICIENT_MATERIAL",
+        "features": [
+          [
+            5,
+            0,
+            1,
+            100,
+            1,
+            1,
+            101,
+            1,
+            1
+          ]
+        ]
+      },
+      {
+        "fen": "8/6k1/3n4/5K2/8/P7/8/8 w - - 101 1",
+        "topic": "sparse",
+        "claim_draw": false,
+        "expected": "ONGOING",
+        "actual": "INSUFFICIENT_MATERIAL",
+        "features": [
+          [
+            5,
+            0,
+            1,
+            101,
+            1,
+            0,
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "fen": "8/6k1/3n4/5K2/8/P7/8/8 w - - 101 1",
+        "topic": "sparse",
+        "claim_draw": true,
+        "expected": "FIFTY_MOVES",
+        "actual": "INSUFFICIENT_MATERIAL",
+        "features": [
+          [
+            5,
+            0,
+            1,
+            101,
+            1,
+            1,
+            102,
+            1,
+            1
+          ]
+        ]
+      },
+      {
+        "fen": "8/6k1/3n4/5K2/8/P7/8/8 w - - 149 1",
+        "topic": "sparse",
+        "claim_draw": false,
+        "expected": "ONGOING",
+        "actual": "INSUFFICIENT_MATERIAL",
+        "features": [
+          [
+            5,
+            0,
+            1,
+            149,
+            1,
+            0,
+            0,
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "fen": "8/6k1/3n4/5K2/8/P7/8/8 w - - 149 1",
+        "topic": "sparse",
+        "claim_draw": true,
+        "expected": "FIFTY_MOVES",
+        "actual": "INSUFFICIENT_MATERIAL",
+        "features": [
+          [
+            5,
+            0,
+            1,
+            149,
+            1,
+            1,
+            150,
+            1,
+            1
+          ]
+        ]
+      }
+    ],
+    "strict_suite_passed": false
+  }
+}

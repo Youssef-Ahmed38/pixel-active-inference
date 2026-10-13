@@ -1,0 +1,124 @@
+{
+  "seed": 700,
+  "eval_seed": 701,
+  "teacher": {
+    "engine": "Stockfish 19",
+    "nodes_per_position": 2000,
+    "threads": 1,
+    "score_clip_cp": 2000
+  },
+  "training": {
+    "architecture": "existing pai.thinker.hrm.HRM, scalar chess residual",
+    "training_examples": 772,
+    "validation_examples": 196,
+    "selected_epoch": 11,
+    "validation_mae_cp": 387.00821321168723,
+    "fixed_segments": 2,
+    "learned_halting": false
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "training_loss": 0.41599117034148675,
+      "validation_mae_cp": 398.9602013242488
+    },
+    {
+      "epoch": 2,
+      "training_loss": 0.4150354591212742,
+      "validation_mae_cp": 398.84366807706505
+    },
+    {
+      "epoch": 3,
+      "training_loss": 0.4153122413961381,
+      "validation_mae_cp": 398.9214089085557
+    },
+    {
+      "epoch": 4,
+      "training_loss": 0.41310723025564083,
+      "validation_mae_cp": 400.05064986904665
+    },
+    {
+      "epoch": 5,
+      "training_loss": 0.41242678270438793,
+      "validation_mae_cp": 397.57423592579306
+    },
+    {
+      "epoch": 6,
+      "training_loss": 0.40776539003293133,
+      "validation_mae_cp": 397.05209593626915
+    },
+    {
+      "epoch": 7,
+      "training_loss": 0.4087220648873038,
+      "validation_mae_cp": 394.62571310753725
+    },
+    {
+      "epoch": 8,
+      "training_loss": 0.3998396770324114,
+      "validation_mae_cp": 397.2321907595104
+    },
+    {
+      "epoch": 9,
+      "training_loss": 0.38361275813740153,
+      "validation_mae_cp": 397.20549395057014
+    },
+    {
+      "epoch": 10,
+      "training_loss": 0.3632055094822701,
+      "validation_mae_cp": 395.6462449717278
+    },
+    {
+      "epoch": 11,
+      "training_loss": 0.3527674356890466,
+      "validation_mae_cp": 387.00821321168723
+    },
+    {
+      "epoch": 12,
+      "training_loss": 0.34396324349190904,
+      "validation_mae_cp": 405.3167720473543
+    },
+    {
+      "epoch": 13,
+      "training_loss": 0.3288443195850738,
+      "validation_mae_cp": 402.97157176295104
+    },
+    {
+      "epoch": 14,
+      "training_loss": 0.30621166519550463,
+      "validation_mae_cp": 388.83261290739995
+    },
+    {
+      "epoch": 15,
+      "training_loss": 0.3079694280970282,
+      "validation_mae_cp": 393.4352468008898
+    },
+    {
+      "epoch": 16,
+      "training_loss": 0.28551262717481724,
+      "validation_mae_cp": 389.1463971046769
+    }
+  ],
+  "baseline": {
+    "positions": 240,
+    "mae_cp": 379.9163183848063,
+    "rmse_cp": 463.691463775585
+  },
+  "hrm_by_segments": {
+    "1": {
+      "positions": 240,
+      "mae_cp": 382.47759445110955,
+      "rmse_cp": 468.2661990164579
+    },
+    "2": {
+      "positions": 240,
+      "mae_cp": 385.7713380694389,
+      "rmse_cp": 473.13701548992464
+    }
+  },
+  "candidate_accepted_for_trial": false,
+  "limitations": [
+    "finite symbolic chess value distillation; not self-play improvement",
+    "fixed computation; no trained chess halting",
+    "value error is not match strength"
+  ]
+}

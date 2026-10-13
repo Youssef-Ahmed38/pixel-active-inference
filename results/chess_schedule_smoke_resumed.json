@@ -1,0 +1,151 @@
+{
+  "seed": 715,
+  "model_manifest": {
+    "rules.json": "92f93d445f4b0f4ae111368c5d0f7d73902aeccab5a778ad641587cfc2a61874",
+    "state.json": "84e32613d8899907132c95f5206c2227a50b72a0f406bdfe358693aa436bba48",
+    "endings.json": "86241b595f941790929a90b452c0b82621897f7d4652c1c23a3bbe602d89af19",
+    "value.json": "001a9ae670cbe51f26a400a42b59a11a698e7dab91364baa714f24e815a58fc1"
+  },
+  "search_config": {
+    "quiescence": 0,
+    "reuse_pv": true
+  },
+  "limitations": [
+    "small samples cannot establish playing strength or improvement",
+    "UCI_Elo settings are not calibrated to these node-limited games",
+    "truncations are not counted as draws",
+    "self-play targets are bootstrapped search estimates"
+  ],
+  "match_schedule": {
+    "levels": [
+      1320
+    ],
+    "budgets": [
+      1
+    ],
+    "pairs": 1,
+    "engine_nodes": 1,
+    "seed": 815
+  },
+  "matches": [
+    {
+      "engine": "Stockfish 19",
+      "configured_uci_elo": 1320,
+      "agent_nodes": 1,
+      "opponent_nodes": 1,
+      "scheduled_games": 2,
+      "schedule_complete": true,
+      "games": [
+        {
+          "status": "truncated",
+          "result": "*",
+          "agent_score": null,
+          "agent_color": "white",
+          "termination": null,
+          "moves": 2,
+          "resumed_plies": 1,
+          "commands": [
+            {
+              "name": "move_piece",
+              "target": null,
+              "parameters": [],
+              "arguments": [
+                "b1c3"
+              ]
+            },
+            {
+              "name": "move_piece",
+              "target": null,
+              "parameters": [],
+              "arguments": [
+                "b5b4"
+              ]
+            }
+          ],
+          "failure": null,
+          "samples": [],
+          "searches": [
+            {
+              "claim_draw": false,
+              "score_cp": null,
+              "completed_depth": 0,
+              "nodes": 1,
+              "budget_exhausted": true,
+              "elapsed_seconds": 0.030999999959021807
+            }
+          ],
+          "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n[FEN \"rnbqkbnr/p2pp1pp/2p2p2/1p6/5N2/7P/PPPPPPP1/RNBQKB1R w KQkq - 0 4\"]\n[SetUp \"1\"]\n[Termination \"truncated\"]\n\n4. Nc3 b4 *",
+          "pair_id": 0,
+          "resume_segments": [
+            {
+              "start_plies": 1,
+              "additional_budget": 1
+            }
+          ]
+        },
+        {
+          "status": "truncated",
+          "result": "*",
+          "agent_score": null,
+          "agent_color": "black",
+          "termination": null,
+          "moves": 2,
+          "resumed_plies": 1,
+          "commands": [
+            {
+              "name": "move_piece",
+              "target": null,
+              "parameters": [],
+              "arguments": [
+                "e2e4"
+              ]
+            },
+            {
+              "name": "move_piece",
+              "target": null,
+              "parameters": [],
+              "arguments": [
+                "g8h6"
+              ]
+            }
+          ],
+          "failure": null,
+          "samples": [],
+          "searches": [
+            {
+              "claim_draw": false,
+              "score_cp": null,
+              "completed_depth": 0,
+              "nodes": 1,
+              "budget_exhausted": true,
+              "elapsed_seconds": 0.015999999828636646
+            }
+          ],
+          "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"*\"]\n[FEN \"rnbqkbnr/p2pp1pp/2p2p2/1p6/5N2/7P/PPPPPPP1/RNBQKB1R w KQkq - 0 4\"]\n[SetUp \"1\"]\n[Termination \"truncated\"]\n\n4. e4 Nh6 *",
+          "pair_id": 0,
+          "resume_segments": [
+            {
+              "start_plies": 1,
+              "additional_budget": 1
+            }
+          ]
+        }
+      ],
+      "statistics": {
+        "completed_games": 0,
+        "score_rate": null,
+        "relative_elo": null,
+        "score_interval_95": null
+      },
+      "truncated_games": 2,
+      "execution_failures": []
+    }
+  ],
+  "resume_model_manifest": {
+    "rules.json": "92f93d445f4b0f4ae111368c5d0f7d73902aeccab5a778ad641587cfc2a61874",
+    "state.json": "84e32613d8899907132c95f5206c2227a50b72a0f406bdfe358693aa436bba48",
+    "endings.json": "86241b595f941790929a90b452c0b82621897f7d4652c1c23a3bbe602d89af19",
+    "value.json": "001a9ae670cbe51f26a400a42b59a11a698e7dab91364baa714f24e815a58fc1"
+  },
+  "resumed_from": "results\\chess_schedule_smoke.json"
+}

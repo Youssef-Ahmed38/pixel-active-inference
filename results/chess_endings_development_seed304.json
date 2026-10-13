@@ -1,0 +1,68 @@
+{
+  "eval_seed": 304,
+  "limitations": [
+    "finite evaluation is not all-position proof",
+    "standard chess symbolic public state",
+    "FEN omits prior repetition history",
+    "value is a small engine-distilled baseline, not measured playing strength",
+    "deep search, self-play, and Elo remain unfinished"
+  ],
+  "endings_training": {
+    "seed": 0,
+    "boards": 22410,
+    "outcome_examples": 44820,
+    "material_patterns": 1381,
+    "ep_examples": 15476,
+    "tree_nodes": {
+      "material": 21,
+      "ep_move": 9,
+      "outcome": 25,
+      "winner": 7,
+      "lookahead": 5
+    }
+  },
+  "endings": {
+    "examples": 13194,
+    "correct": 13194,
+    "excluded_training_states": 1575,
+    "position_overlap": 0,
+    "by_outcome": {
+      "ONGOING": {
+        "total": 4264,
+        "correct": 4264
+      },
+      "FIFTY_MOVES": {
+        "total": 2252,
+        "correct": 2252
+      },
+      "SEVENTYFIVE_MOVES": {
+        "total": 4056,
+        "correct": 4056
+      },
+      "INSUFFICIENT_MATERIAL": {
+        "total": 864,
+        "correct": 864
+      },
+      "CHECKMATE": {
+        "total": 108,
+        "correct": 108
+      },
+      "STALEMATE": {
+        "total": 54,
+        "correct": 54
+      },
+      "THREEFOLD_REPETITION": {
+        "total": 252,
+        "correct": 252
+      },
+      "FIVEFOLD_REPETITION": {
+        "total": 1344,
+        "correct": 1344
+      }
+    },
+    "failures": [],
+    "canonical_positions": 509,
+    "canonical_correct": 509,
+    "strict_suite_passed": true
+  }
+}

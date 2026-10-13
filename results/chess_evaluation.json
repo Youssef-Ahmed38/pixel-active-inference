@@ -1,0 +1,99 @@
+{
+  "eval_seed": 310,
+  "limitations": [
+    "finite evaluation is not all-position proof",
+    "standard chess symbolic public state",
+    "FEN omits prior repetition history",
+    "value is a small engine-distilled baseline, not measured playing strength",
+    "deep search, self-play, and Elo remain unfinished"
+  ],
+  "endings_training": {
+    "seed": 0,
+    "boards": 22410,
+    "outcome_examples": 44820,
+    "material_patterns": 1381,
+    "ep_examples": 15476,
+    "tree_nodes": {
+      "material": 21,
+      "ep_move": 9,
+      "outcome": 25,
+      "winner": 7,
+      "lookahead": 5
+    }
+  },
+  "endings": {
+    "examples": 13572,
+    "correct": 13572,
+    "excluded_training_states": 1161,
+    "position_overlap": 0,
+    "by_outcome": {
+      "ONGOING": {
+        "total": 4224,
+        "correct": 4224
+      },
+      "FIFTY_MOVES": {
+        "total": 2256,
+        "correct": 2256
+      },
+      "SEVENTYFIVE_MOVES": {
+        "total": 4152,
+        "correct": 4152
+      },
+      "CHECKMATE": {
+        "total": 108,
+        "correct": 108
+      },
+      "INSUFFICIENT_MATERIAL": {
+        "total": 936,
+        "correct": 936
+      },
+      "STALEMATE": {
+        "total": 72,
+        "correct": 72
+      },
+      "THREEFOLD_REPETITION": {
+        "total": 288,
+        "correct": 288
+      },
+      "FIVEFOLD_REPETITION": {
+        "total": 1536,
+        "correct": 1536
+      }
+    },
+    "failures": [],
+    "canonical_positions": 489,
+    "canonical_correct": 489,
+    "strict_suite_passed": true
+  },
+  "value_training": {
+    "engine": "Stockfish 19",
+    "nodes_per_position": 2000,
+    "threads": 1,
+    "score_clip_cp": 2000,
+    "examples": 2789,
+    "features": 391,
+    "ridge_alpha": 20
+  },
+  "value": {
+    "positions": 328,
+    "excluded_training_positions": 0,
+    "mae_cp": 360.4976723368575,
+    "zero_baseline_mae_cp": 640.140243902439,
+    "rmse_cp": 446.20776612276234,
+    "advantage_sign_accuracy": 0.8419117647058824,
+    "advantage_sign_examples": 272,
+    "beats_zero_baseline": true
+  },
+  "value_policy": {
+    "positions": 24,
+    "legal_choices": 24,
+    "failures": [],
+    "comparison": "one-ply value policy versus first learned legal action",
+    "teacher_nodes": 2000,
+    "improved": 18,
+    "tied": 0,
+    "worse": 6,
+    "mean_teacher_score_gain_cp": 1363.4583333333333,
+    "legal_choice_gate_passed": true
+  }
+}

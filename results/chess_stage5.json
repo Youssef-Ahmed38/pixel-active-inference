@@ -1,0 +1,225 @@
+{
+  "stage": 5,
+  "scope": "teacher and learned rule/effect baseline",
+  "seed": 0,
+  "games": 40,
+  "plies": 48,
+  "checkpoint": "runs\\chess_stage5\\model.pt",
+  "training_positions": 1541,
+  "test_positions": 326,
+  "position_overlap": 0,
+  "training": [
+    {
+      "epoch": 1,
+      "loss": 1.341596120939137
+    },
+    {
+      "epoch": 2,
+      "loss": 0.7724540203908771
+    },
+    {
+      "epoch": 3,
+      "loss": 0.5800729940297615
+    },
+    {
+      "epoch": 4,
+      "loss": 0.4535000388714628
+    },
+    {
+      "epoch": 5,
+      "loss": 0.3794499604398859
+    },
+    {
+      "epoch": 6,
+      "loss": 0.33087138303641744
+    },
+    {
+      "epoch": 7,
+      "loss": 0.29708958217253084
+    },
+    {
+      "epoch": 8,
+      "loss": 0.26679298847876404
+    },
+    {
+      "epoch": 9,
+      "loss": 0.2426881293650578
+    },
+    {
+      "epoch": 10,
+      "loss": 0.22805345965514953
+    },
+    {
+      "epoch": 11,
+      "loss": 0.20911493042494378
+    },
+    {
+      "epoch": 12,
+      "loss": 0.1949572612876829
+    },
+    {
+      "epoch": 13,
+      "loss": 0.18574767014348714
+    },
+    {
+      "epoch": 14,
+      "loss": 0.17344065570763761
+    },
+    {
+      "epoch": 15,
+      "loss": 0.1641426446953195
+    },
+    {
+      "epoch": 16,
+      "loss": 0.1546681751387048
+    },
+    {
+      "epoch": 17,
+      "loss": 0.14829832987502983
+    },
+    {
+      "epoch": 18,
+      "loss": 0.14193444066530947
+    },
+    {
+      "epoch": 19,
+      "loss": 0.13349484617919738
+    },
+    {
+      "epoch": 20,
+      "loss": 0.12794969116329025
+    },
+    {
+      "epoch": 21,
+      "loss": 0.12236818772028712
+    },
+    {
+      "epoch": 22,
+      "loss": 0.11686868421741903
+    },
+    {
+      "epoch": 23,
+      "loss": 0.11517250196063689
+    },
+    {
+      "epoch": 24,
+      "loss": 0.10952044608989832
+    },
+    {
+      "epoch": 25,
+      "loss": 0.10279856835577543
+    }
+  ],
+  "held_out": {
+    "examples": 19918,
+    "legal_examples": 9946,
+    "accuracy": 0.9589818254844864,
+    "balanced_accuracy": 0.9590062006717542,
+    "legal_recall": 0.9776794691333199,
+    "illegal_recall": 0.9403329322101885,
+    "legal_precision": 0.942339373970346,
+    "confusion": {
+      "tp": 9724,
+      "tn": 9377,
+      "fp": 595,
+      "fn": 222
+    },
+    "exact_board_effect_accuracy": 0.4494269052885582,
+    "changed_square_accuracy": 0.9911166875784191,
+    "topics": {
+      "castling": {
+        "correct": 42,
+        "total": 52
+      },
+      "game": {
+        "correct": 19059,
+        "total": 19866
+      }
+    },
+    "rule_gate_passed": false
+  },
+  "remaining": [
+    "99% learned-rule gate",
+    "learned search and self-play",
+    "Stockfish matches and measured Elo",
+    "optional physical chess"
+  ],
+  "unmasked_policy": {
+    "positions": 12,
+    "legal_moves": 3,
+    "trials": [
+      {
+        "position": "597a5905078125163cb2711663cda0817ec5e558ac421cebf4db3108b5e3a64b",
+        "move": "b3d5",
+        "confidence": 0.9999799728393555,
+        "legal": false
+      },
+      {
+        "position": "566d2f7bb86f962d76b01db15c86b21a9101ff5920344c80af9fd564573b75f9",
+        "move": "a5e6",
+        "confidence": 0.9999879598617554,
+        "legal": false
+      },
+      {
+        "position": "f8009111afb1d5420f211c8f4db624b926ea5ee2f7e3a1feb95654292041b7bc",
+        "move": "a4f4",
+        "confidence": 0.9998565912246704,
+        "legal": false
+      },
+      {
+        "position": "99234f124a753d16cd78915b158764fafbcf7d7a69c2b5ae814eda9697ddd8ff",
+        "move": "b5g7",
+        "confidence": 0.9999982118606567,
+        "legal": false
+      },
+      {
+        "position": "b813699da356a16fa440044efb7a91a2719b19900a0530903f4a61dcef7869a8",
+        "move": "g5d6",
+        "confidence": 0.9998047947883606,
+        "legal": false
+      },
+      {
+        "position": "1d34eea6f02bab21f47b91b5d9ffd56655e744b6f52f98791095d129b473e131",
+        "move": "c2f3",
+        "confidence": 0.9993953704833984,
+        "legal": false
+      },
+      {
+        "position": "1c7eed865464cf8e0142ba83fdc1a88836743d859c998d4bd417ff318651656b",
+        "move": "d8d7",
+        "confidence": 0.999997615814209,
+        "legal": true
+      },
+      {
+        "position": "c4a6839d0eace117e6e5c9197dd7964dced183d76f5eee9fdd53615af9ae1656",
+        "move": "c3d4",
+        "confidence": 0.9998134970664978,
+        "legal": false
+      },
+      {
+        "position": "ccbb4415dbe86c84cd81764a4c81f069bad7feebf29161d7ce5e3dafe2ccd18b",
+        "move": "a6g7",
+        "confidence": 0.9999998807907104,
+        "legal": false
+      },
+      {
+        "position": "9f485798dc620e05fac9a8089e1754fee6b3e9ba6385ab2c201f1aae8995938e",
+        "move": "e7f5",
+        "confidence": 0.999143123626709,
+        "legal": false
+      },
+      {
+        "position": "c56aa8a4fd451a2642669678ec61f9ea26cc2e76c67a3736c80d0db5528c1810",
+        "move": "d8e7",
+        "confidence": 0.9999583959579468,
+        "legal": true
+      },
+      {
+        "position": "17f98c85619efbd45de9e691aea271b955aec5bd314cd4b00e7f7a4937dfc961",
+        "move": "e7f6",
+        "confidence": 0.9999985694885254,
+        "legal": true
+      }
+    ]
+  }
+}

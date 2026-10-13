@@ -1,0 +1,29 @@
+{
+  "eval_seed": 311,
+  "limitations": [
+    "finite evaluation is not all-position proof",
+    "standard chess symbolic public state",
+    "FEN omits prior repetition history",
+    "value is a small engine-distilled baseline, not measured playing strength",
+    "deep search, self-play, and Elo remain unfinished"
+  ],
+  "value_training": {
+    "engine": "Stockfish 19",
+    "nodes_per_position": 2000,
+    "threads": 1,
+    "score_clip_cp": 2000,
+    "examples": 2789,
+    "features": 391,
+    "ridge_alpha": 20
+  },
+  "value": {
+    "positions": 342,
+    "excluded_training_positions": 0,
+    "mae_cp": 368.72193529452494,
+    "zero_baseline_mae_cp": 662.125730994152,
+    "rmse_cp": 482.25268891967454,
+    "advantage_sign_accuracy": 0.8771929824561403,
+    "advantage_sign_examples": 285,
+    "beats_zero_baseline": true
+  }
+}

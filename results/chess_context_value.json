@@ -1,0 +1,38 @@
+{
+  "eval_seed": 703,
+  "teaching_seed": 700,
+  "validation_choices": [
+    {
+      "alpha": 1,
+      "mae_cp": 350.45863752085637
+    },
+    {
+      "alpha": 10,
+      "mae_cp": 349.3508093961471
+    },
+    {
+      "alpha": 100,
+      "mae_cp": 364.1910751984913
+    },
+    {
+      "alpha": 1000,
+      "mae_cp": 393.67036114183844
+    }
+  ],
+  "baseline": {
+    "positions": 240,
+    "mae_cp": 337.54234199523927,
+    "rmse_cp": 463.4072653759315
+  },
+  "candidate": {
+    "positions": 240,
+    "mae_cp": 315.38731765388667,
+    "rmse_cp": 434.02426873258776
+  },
+  "candidate_accepted_for_trial": true,
+  "limitations": [
+    "24 learned attack-context weights; no match-strength conclusion",
+    "internal validation shares generated game trajectories",
+    "final seed is separate"
+  ]
+}

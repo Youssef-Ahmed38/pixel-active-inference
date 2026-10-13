@@ -1,0 +1,124 @@
+{
+  "stage": 5,
+  "scope": "teacher and learned rule/effect baseline",
+  "seed": 1,
+  "games": 12,
+  "plies": 48,
+  "checkpoint": "runs\\chess_stage5\\model.pt",
+  "training_positions": 1541,
+  "test_positions": 108,
+  "position_overlap": 0,
+  "training": [],
+  "held_out": {
+    "examples": 6753,
+    "legal_examples": 3367,
+    "accuracy": 0.9453576188360728,
+    "balanced_accuracy": 0.9453951007406411,
+    "legal_recall": 0.9587169587169587,
+    "illegal_recall": 0.9320732427643237,
+    "legal_precision": 0.9334875650665124,
+    "confusion": {
+      "tp": 3228,
+      "tn": 3156,
+      "fp": 230,
+      "fn": 139
+    },
+    "exact_board_effect_accuracy": 0.04841104841104841,
+    "changed_square_accuracy": 0.9499036608863198,
+    "topics": {
+      "castling": {
+        "correct": 42,
+        "total": 52
+      },
+      "game": {
+        "correct": 6342,
+        "total": 6701
+      }
+    },
+    "rule_gate_passed": false
+  },
+  "remaining": [
+    "99% learned-rule gate",
+    "learned search and self-play",
+    "Stockfish matches and measured Elo",
+    "optional physical chess"
+  ],
+  "unmasked_policy": {
+    "positions": 12,
+    "legal_moves": 3,
+    "trials": [
+      {
+        "position": "c459179831b758395259a385435ecf7c9f6734fc6f9b670492c92c9f283762ae",
+        "move": "d5c3",
+        "confidence": 0.9999922513961792,
+        "legal": false
+      },
+      {
+        "position": "b7f16c8025c5cf3d49ab4aef7bf78fb7fd99ee7d78e7d10595fa53054944757e",
+        "move": "e8g8",
+        "confidence": 0.9999960660934448,
+        "legal": false
+      },
+      {
+        "position": "80b284d98bf841df7e4f8c9dd1aa1f8c542f4f013fd6108dedbde437b3ba0a74",
+        "move": "d1b2",
+        "confidence": 0.9999840259552002,
+        "legal": false
+      },
+      {
+        "position": "9b3410e8434d2e182c739ddef981377ea360ef0ccd389bc1fcaf7b048e2d1b73",
+        "move": "c3b3",
+        "confidence": 0.99998939037323,
+        "legal": false
+      },
+      {
+        "position": "3ea255298fcf8a4da792fbe1936fa209c9ac7dac9812ff246082426ebd635790",
+        "move": "b1a3",
+        "confidence": 0.9992805123329163,
+        "legal": false
+      },
+      {
+        "position": "0762655456aa14d92b85134b64c21576300e85482e64ba09427df3e1d31fa4c5",
+        "move": "f3a3",
+        "confidence": 0.9998776912689209,
+        "legal": false
+      },
+      {
+        "position": "9bb7869e720cdfc28c224f1d93ebf0d83961c50dfb89ef7ea56cb50c3d6fdaa5",
+        "move": "a4a2",
+        "confidence": 0.9998667240142822,
+        "legal": true
+      },
+      {
+        "position": "f3cc768c34383055fd604f8ff51a7292d1da6f1bfcd905680af9128dd0cd3092",
+        "move": "b8g8",
+        "confidence": 0.9999955892562866,
+        "legal": false
+      },
+      {
+        "position": "2da958c6e976ce629d06f38f1f0286cee3f5ef16ead51f4aac42b2bedeba423d",
+        "move": "b2e2",
+        "confidence": 0.9999464750289917,
+        "legal": false
+      },
+      {
+        "position": "633ebfb240349281daf04a93c78259069991405d338998ec843751845645ef59",
+        "move": "c1a3",
+        "confidence": 0.9999655485153198,
+        "legal": true
+      },
+      {
+        "position": "95ba4b0089bc2df981d3e3b4d04f3d5f7e6dbed6e4c2cb5432d6327f741f4cf0",
+        "move": "b4h3",
+        "confidence": 0.9999338388442993,
+        "legal": false
+      },
+      {
+        "position": "f61168f33dd33d4fe3f9720974b5a8a7a45c11654b8d1e69f1146c6a9cf946ba",
+        "move": "e8d7",
+        "confidence": 0.999984860420227,
+        "legal": true
+      }
+    ]
+  }
+}

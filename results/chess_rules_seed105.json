@@ -1,0 +1,124 @@
+{
+  "scope": "teacher-induced standard chess legality and piece effects",
+  "eval_seed": 105,
+  "evaluation_generator": {
+    "games": 12,
+    "plies": 80,
+    "sparse": 100,
+    "special": 120
+  },
+  "training": {
+    "seed": 0,
+    "positions": 3174,
+    "attack": {
+      "examples": 106496,
+      "tree_nodes": 271,
+      "fit_accuracy": 1.0
+    },
+    "proposal_examples": 860783,
+    "effect_examples": 88161,
+    "edit_patterns": 7,
+    "correction_errors": [
+      52,
+      53,
+      0
+    ],
+    "tree_nodes": {
+      "proposal": 233,
+      "moved_token": 39,
+      "extra_edits": 39,
+      "safety": 11
+    },
+    "generator": {
+      "games": 60,
+      "plies": 80,
+      "sparse": 400,
+      "special": 800
+    }
+  },
+  "evaluation": {
+    "positions": 563,
+    "excluded_training_positions": 52,
+    "position_overlap": 0,
+    "actions_scored": 11350080,
+    "accuracy": 1.0,
+    "legal_precision": 1.0,
+    "legal_recall": 1.0,
+    "illegal_recall": 1.0,
+    "balanced_accuracy": 1.0,
+    "confusion": {
+      "tp": 14687,
+      "tn": 11335393,
+      "fp": 0,
+      "fn": 0
+    },
+    "exact_legal_sets": 563,
+    "exact_legal_set_rate": 1.0,
+    "unmasked_policy": {
+      "legal_choices": 542,
+      "playable_positions": 542,
+      "terminal_positions": 21,
+      "correct_abstentions": 21
+    },
+    "piece_effects": {
+      "exact": 14687,
+      "total": 14687,
+      "accuracy": 1.0
+    },
+    "rule_gate_passed": true,
+    "strict_suite_passed": true,
+    "topics": {
+      "game": {
+        "positions": 228,
+        "exact_legal_sets": 228,
+        "false_positives": 0,
+        "missed_legal_moves": 0
+      },
+      "sparse": {
+        "positions": 100,
+        "exact_legal_sets": 100,
+        "false_positives": 0,
+        "missed_legal_moves": 0
+      },
+      "stalemate": {
+        "positions": 11,
+        "exact_legal_sets": 11,
+        "false_positives": 0,
+        "missed_legal_moves": 0
+      },
+      "en_passant": {
+        "positions": 59,
+        "exact_legal_sets": 59,
+        "false_positives": 0,
+        "missed_legal_moves": 0
+      },
+      "promotion": {
+        "positions": 84,
+        "exact_legal_sets": 84,
+        "false_positives": 0,
+        "missed_legal_moves": 0
+      },
+      "castling": {
+        "positions": 73,
+        "exact_legal_sets": 73,
+        "false_positives": 0,
+        "missed_legal_moves": 0
+      },
+      "checkmate": {
+        "positions": 8,
+        "exact_legal_sets": 8,
+        "false_positives": 0,
+        "missed_legal_moves": 0
+      }
+    },
+    "failures": [],
+    "effect_failures": []
+  },
+  "limitations": [
+    "finite tests do not prove correctness on every board",
+    "symbolic public board input",
+    "no Chess960 or variant support",
+    "no learned value, strategic search, Elo, or draw-history adjudication",
+    "effect prediction covers pieces; next metadata is not predicted"
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  "scope": "teacher-induced standard chess legality and piece effects",
+  "eval_seed": 103,
+  "evaluation_generator": {
+    "games": 12,
+    "plies": 80,
+    "sparse": 100,
+    "special": 120
+  },
+  "training": {
+    "seed": 0,
+    "positions": 3174,
+    "attack": {
+      "examples": 106496,
+      "tree_nodes": 271,
+      "fit_accuracy": 1.0
+    },
+    "proposal_examples": 860972,
+    "effect_examples": 88161,
+    "edit_patterns": 7,
+    "correction_errors": [
+      146,
+      143,
+      5,
+      0
+    ],
+    "tree_nodes": {
+      "proposal": 273,
+      "moved_token": 39,
+      "extra_edits": 39,
+      "safety": 11
+    },
+    "generator": {
+      "games": 60,
+      "plies": 80,
+      "sparse": 400,
+      "special": 800
+    }
+  },
+  "evaluation": {
+    "positions": 562,
+    "excluded_training_positions": 44,
+    "position_overlap": 0,
+    "actions_scored": 11329920,
+    "accuracy": 0.9999995586906174,
+    "legal_precision": 0.9996176200672988,
+    "legal_recall": 1.0,
+    "illegal_recall": 0.9999995581809036,
+    "balanced_accuracy": 0.9999997790904518,
+    "confusion": {
+      "tp": 13071,
+      "tn": 11316844,
+      "fp": 5,
+      "fn": 0
+    },
+    "exact_legal_sets": 557,
+    "exact_legal_set_rate": 0.9911032028469751,
+    "unmasked_policy": {
+      "legal_choices": 537,
+      "playable_positions": 537,
+      "terminal_positions": 25,
+      "correct_abstentions": 25
+    },
+    "piece_effects": {
+      "exact": 13071,
+      "total": 13071,
+      "accuracy": 1.0
+    },
+    "rule_gate_passed": true,
+    "strict_suite_passed": false,
+    "topics": {
+      "game": {
+        "positions": 228,
+        "exact_legal_sets": 224,
+        "false_positives": 4,
+        "missed_legal_moves": 0
+      },
+      "sparse": {
+        "positions": 100,
+        "exact_legal_sets": 99,
+        "false_positives": 1,
+        "missed_legal_moves": 0
+      },
+      "checkmate": {
+        "positions": 11,
+        "exact_legal_sets": 11,
+        "false_positives": 0,
+        "missed_legal_moves": 0
+      },
+      "castling": {
+        "positions": 78,
+        "exact_legal_sets": 78,
+        "false_positives": 0,
+        "missed_legal_moves": 0
+      },
+      "promotion": {
+        "positions": 78,
+        "exact_legal_sets": 78,
+        "false_positives": 0,
+        "missed_legal_moves": 0
+      },
+      "en_passant": {
+        "positions": 57,
+        "exact_legal_sets": 57,
+        "false_positives": 0,
+        "missed_legal_moves": 0
+      },
+      "stalemate": {
+        "positions": 10,
+        "exact_legal_sets": 10,
+        "false_positives": 0,
+        "missed_legal_moves": 0
+      }
+    },
+    "failures": [
+      {
+        "topic": "game",
+        "fen": "r1q1kb2/3n1r2/pp5p/2p1p1pn/4Pp1N/BP1P4/P4PB1/R2NK1R1 w Qq - 0 25",
+        "extra": [
+          "e1c1"
+        ],
+        "missing": []
+      },
+      {
+        "topic": "game",
+        "fen": "r1q1kb2/3n1r2/pp4Np/2p1p1p1/4np2/BP1P4/P4P2/R2NK1RB w Qq - 0 27",
+        "extra": [
+          "e1c1"
+        ],
+        "missing": []
+      },
+      {
+        "topic": "game",
+        "fen": "1rb2bnr/p2kp1pp/nq1p4/1pp2p2/PP6/2P2NPP/1B1PPPB1/RN1QK1R1 w Q - 1 11",
+        "extra": [
+          "e1c1"
+        ],
+        "missing": []
+      },
+      {
+        "topic": "game",
+        "fen": "1rb2bnr/p2k2pp/n2pp3/qpp5/PP6/2P1PNpP/1B1PQPB1/RN2K1R1 w Q - 0 15",
+        "extra": [
+          "e1c1"
+        ],
+        "missing": []
+      },
+      {
+        "topic": "sparse",
+        "fen": "1N6/3p3R/3B4/8/8/4k3/1R4R1/5K2 b - - 0 1",
+        "extra": [
+          "d7d5"
+        ],
+        "missing": []
+      }
+    ],
+    "effect_failures": []
+  },
+  "limitations": [
+    "finite tests do not prove correctness on every board",
+    "symbolic public board input",
+    "no Chess960 or variant support",
+    "no learned value, strategic search, Elo, or draw-history adjudication",
+    "effect prediction covers pieces; next metadata is not predicted"
+  ]
+}

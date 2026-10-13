@@ -1,0 +1,260 @@
+{
+  "planner": "alpha-beta",
+  "evaluation": {
+    "seed": 706,
+    "generated_positions": 8,
+    "excluded_teaching_boards": 0,
+    "budgets": [
+      {
+        "node_budget": 32,
+        "positions": 8,
+        "legal_choices": 8,
+        "exact_root_legal_sets": 8,
+        "valid_predicted_variations": 8,
+        "within_node_budget": 8,
+        "mate_in_one_solved": 4,
+        "poisoned_rook_avoided": 0,
+        "mean_completed_depth": 1.0,
+        "correctness_gate_passed": true,
+        "failures": [],
+        "cases": [
+          {
+            "fen": "4q1k1/8/8/8/8/8/4R3/4Q1K1 b - - 0 1",
+            "topic": "poisoned_rook",
+            "tactical_success": false,
+            "action": "e8e2",
+            "claim_draw": false,
+            "score_cp": -381.458984375,
+            "completed_depth": 1,
+            "nodes": 32,
+            "budget_exhausted": true,
+            "elapsed_seconds": 0.546000000089407
+          },
+          {
+            "fen": "1q3k2/8/8/8/8/8/1R6/1Q3K2 b - - 0 1",
+            "topic": "poisoned_rook",
+            "tactical_success": false,
+            "action": "b8b2",
+            "claim_draw": false,
+            "score_cp": -377.991455078125,
+            "completed_depth": 1,
+            "nodes": 32,
+            "budget_exhausted": true,
+            "elapsed_seconds": 0.5630000000819564
+          },
+          {
+            "fen": "q2k4/8/8/8/8/8/R7/Q2K4 b - - 0 1",
+            "topic": "poisoned_rook",
+            "tactical_success": false,
+            "action": "a8a2",
+            "claim_draw": false,
+            "score_cp": -395.9980773925781,
+            "completed_depth": 1,
+            "nodes": 32,
+            "budget_exhausted": true,
+            "elapsed_seconds": 0.5310000001918525
+          },
+          {
+            "fen": "1k1q4/3r4/8/8/8/8/8/1K1Q4 w - - 0 1",
+            "topic": "poisoned_rook",
+            "tactical_success": false,
+            "action": "d1d7",
+            "claim_draw": false,
+            "score_cp": -366.25238037109375,
+            "completed_depth": 1,
+            "nodes": 32,
+            "budget_exhausted": true,
+            "elapsed_seconds": 0.5619999999180436
+          },
+          {
+            "fen": "r5k1/5ppp/8/8/8/8/5PPP/6K1 b - - 0 1",
+            "topic": "mate_in_one",
+            "tactical_success": true,
+            "action": "a8a1",
+            "claim_draw": false,
+            "score_cp": 99999.0,
+            "completed_depth": 1,
+            "nodes": 32,
+            "budget_exhausted": true,
+            "elapsed_seconds": 0.43700000015087426
+          },
+          {
+            "fen": "6k1/5ppp/8/8/8/8/5PPP/R6K w - - 0 1",
+            "topic": "mate_in_one",
+            "tactical_success": true,
+            "action": "a1a8",
+            "claim_draw": false,
+            "score_cp": 99999.0,
+            "completed_depth": 1,
+            "nodes": 32,
+            "budget_exhausted": true,
+            "elapsed_seconds": 0.43700000015087426
+          },
+          {
+            "fen": "4r1k1/5ppp/8/8/8/8/5PPP/6K1 b - - 0 1",
+            "topic": "mate_in_one",
+            "tactical_success": true,
+            "action": "e8e1",
+            "claim_draw": false,
+            "score_cp": 99999.0,
+            "completed_depth": 1,
+            "nodes": 32,
+            "budget_exhausted": true,
+            "elapsed_seconds": 0.3910000000614673
+          },
+          {
+            "fen": "6k1/5ppp/8/8/8/8/5PPP/1R5K w - - 0 1",
+            "topic": "mate_in_one",
+            "tactical_success": true,
+            "action": "b1b8",
+            "claim_draw": false,
+            "score_cp": 99999.0,
+            "completed_depth": 1,
+            "nodes": 32,
+            "budget_exhausted": true,
+            "elapsed_seconds": 0.375
+          }
+        ]
+      },
+      {
+        "node_budget": 128,
+        "positions": 8,
+        "legal_choices": 8,
+        "exact_root_legal_sets": 8,
+        "valid_predicted_variations": 8,
+        "within_node_budget": 8,
+        "mate_in_one_solved": 4,
+        "poisoned_rook_avoided": 4,
+        "mean_completed_depth": 2.0,
+        "correctness_gate_passed": true,
+        "failures": [],
+        "cases": [
+          {
+            "fen": "4q1k1/8/8/8/8/8/4R3/4Q1K1 b - - 0 1",
+            "topic": "poisoned_rook",
+            "tactical_success": true,
+            "action": "e8b8",
+            "claim_draw": false,
+            "score_cp": -156.77633666992188,
+            "completed_depth": 2,
+            "nodes": 128,
+            "budget_exhausted": true,
+            "elapsed_seconds": 1.5159999998286366
+          },
+          {
+            "fen": "1q3k2/8/8/8/8/8/1R6/1Q3K2 b - - 0 1",
+            "topic": "poisoned_rook",
+            "tactical_success": true,
+            "action": "b8e8",
+            "claim_draw": false,
+            "score_cp": -251.06967163085938,
+            "completed_depth": 2,
+            "nodes": 128,
+            "budget_exhausted": true,
+            "elapsed_seconds": 1.4840000001713634
+          },
+          {
+            "fen": "q2k4/8/8/8/8/8/R7/Q2K4 b - - 0 1",
+            "topic": "poisoned_rook",
+            "tactical_success": true,
+            "action": "a8h1",
+            "claim_draw": false,
+            "score_cp": -19.419342041015625,
+            "completed_depth": 2,
+            "nodes": 128,
+            "budget_exhausted": true,
+            "elapsed_seconds": 1.452999999979511
+          },
+          {
+            "fen": "1k1q4/3r4/8/8/8/8/8/1K1Q4 w - - 0 1",
+            "topic": "poisoned_rook",
+            "tactical_success": true,
+            "action": "d1f3",
+            "claim_draw": false,
+            "score_cp": -105.02291870117188,
+            "completed_depth": 2,
+            "nodes": 128,
+            "budget_exhausted": true,
+            "elapsed_seconds": 1.547000000020489
+          },
+          {
+            "fen": "r5k1/5ppp/8/8/8/8/5PPP/6K1 b - - 0 1",
+            "topic": "mate_in_one",
+            "tactical_success": true,
+            "action": "a8a1",
+            "claim_draw": false,
+            "score_cp": 99999.0,
+            "completed_depth": 2,
+            "nodes": 128,
+            "budget_exhausted": true,
+            "elapsed_seconds": 1.218000000109896
+          },
+          {
+            "fen": "6k1/5ppp/8/8/8/8/5PPP/R6K w - - 0 1",
+            "topic": "mate_in_one",
+            "tactical_success": true,
+            "action": "a1a8",
+            "claim_draw": false,
+            "score_cp": 99999.0,
+            "completed_depth": 2,
+            "nodes": 128,
+            "budget_exhausted": true,
+            "elapsed_seconds": 1.2190000000409782
+          },
+          {
+            "fen": "4r1k1/5ppp/8/8/8/8/5PPP/6K1 b - - 0 1",
+            "topic": "mate_in_one",
+            "tactical_success": true,
+            "action": "e8e1",
+            "claim_draw": false,
+            "score_cp": 99999.0,
+            "completed_depth": 2,
+            "nodes": 128,
+            "budget_exhausted": true,
+            "elapsed_seconds": 1.093000000109896
+          },
+          {
+            "fen": "6k1/5ppp/8/8/8/8/5PPP/1R5K w - - 0 1",
+            "topic": "mate_in_one",
+            "tactical_success": true,
+            "action": "b1b8",
+            "claim_draw": false,
+            "score_cp": 99999.0,
+            "completed_depth": 2,
+            "nodes": 128,
+            "budget_exhausted": true,
+            "elapsed_seconds": 0.9849999998696148
+          }
+        ]
+      }
+    ]
+  },
+  "claim_execution": {
+    "cases": [
+      {
+        "case": "fifty_clock_99",
+        "passed": true,
+        "witness": "d1b1"
+      },
+      {
+        "case": "fifty_clock_100",
+        "passed": true,
+        "witness": null
+      },
+      {
+        "case": "threefold_before_move",
+        "passed": true,
+        "witness": "f6g8"
+      }
+    ],
+    "all_passed": true
+  },
+  "limitations": [
+    "finite synthetic tactical families",
+    "no measured Elo or self-play improvement",
+    "node budget counts inspected states, not every model operation",
+    "time limit is checked between search nodes, not a hard-real-time bound",
+    "alpha-beta and MCTS are baselines; chess HRM integration remains unfinished",
+    "MCTS completed_depth is zero: sampled depth is recorded separately as deepest_ply"
+  ]
+}

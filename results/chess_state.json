@@ -1,0 +1,91 @@
+{
+  "scope": "learned full public state transitions and available history",
+  "eval_seed": 210,
+  "training": {
+    "seed": 0,
+    "positions": 3815,
+    "transitions": 81916,
+    "fit_errors": {
+      "turn": 0,
+      "ep_offset": 0,
+      "reset_clock": 0,
+      "fullmove_delta": 0,
+      "castle_0": 0,
+      "castle_1": 0,
+      "castle_2": 0,
+      "castle_3": 0
+    },
+    "tree_nodes": {
+      "turn": 3,
+      "ep_offset": 11,
+      "reset_clock": 7,
+      "fullmove_delta": 3,
+      "castle_0": 9,
+      "castle_1": 9,
+      "castle_2": 9,
+      "castle_3": 9
+    }
+  },
+  "evaluation": {
+    "positions": 561,
+    "excluded_training_positions": 50,
+    "position_overlap": 0,
+    "transitions": 13652,
+    "exact_transitions": 13652,
+    "field_errors": {
+      "pieces": 0,
+      "turn": 0,
+      "castling": 0,
+      "ep_square": 0,
+      "halfmove_clock": 0,
+      "fullmove_number": 0,
+      "history": 0
+    },
+    "strict_suite_passed": true,
+    "topics": {
+      "game": {
+        "transitions": 7634,
+        "exact": 7634
+      },
+      "sparse": {
+        "transitions": 1579,
+        "exact": 1579
+      },
+      "checkmate": {
+        "transitions": 0,
+        "exact": 0
+      },
+      "castling": {
+        "transitions": 1839,
+        "exact": 1839
+      },
+      "promotion": {
+        "transitions": 1146,
+        "exact": 1146
+      },
+      "en_passant": {
+        "transitions": 1454,
+        "exact": 1454
+      },
+      "stalemate": {
+        "transitions": 0,
+        "exact": 0
+      }
+    },
+    "failures": []
+  },
+  "rollouts": {
+    "rollouts": 10,
+    "completed": 10,
+    "steps": 400,
+    "exact_states": 400,
+    "exact_legal_sets": 400,
+    "failures": [],
+    "strict_suite_passed": true
+  },
+  "limitations": [
+    "finite suites do not prove all-position correctness",
+    "history begins at supplied root; FEN cannot recover earlier repetitions",
+    "draw adjudication, learned value, strategic search and Elo remain unfinished"
+  ]
+}

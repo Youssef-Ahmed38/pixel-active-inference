@@ -1,0 +1,42 @@
+{
+  "seed": 500,
+  "limitations": [
+    "small samples cannot establish playing strength or improvement",
+    "UCI_Elo settings are not calibrated to these node-limited games",
+    "truncations are not counted as draws",
+    "self-play targets are bootstrapped search estimates"
+  ],
+  "selfplay": {
+    "games": 4,
+    "complete": 0,
+    "truncated": 4,
+    "failures": [],
+    "fit": {
+      "examples": 192,
+      "baseline_target_mae_cp": 382.55303021954995,
+      "candidate_target_mae_cp": 340.9803251524766,
+      "weight_change_l2": 55.867862701416016
+    },
+    "baseline_validation": {
+      "positions": 246,
+      "excluded_training_positions": 25,
+      "mae_cp": 392.9228833206301,
+      "zero_baseline_mae_cp": 820.520325203252,
+      "rmse_cp": 557.0172689916292,
+      "advantage_sign_accuracy": 0.8773584905660378,
+      "advantage_sign_examples": 212,
+      "beats_zero_baseline": true
+    },
+    "candidate_validation": {
+      "positions": 246,
+      "excluded_training_positions": 25,
+      "mae_cp": 397.4899135062365,
+      "zero_baseline_mae_cp": 820.520325203252,
+      "rmse_cp": 564.5200745160847,
+      "advantage_sign_accuracy": 0.8773584905660378,
+      "advantage_sign_examples": 212,
+      "beats_zero_baseline": true
+    },
+    "candidate_accepted_for_trial": false
+  }
+}
