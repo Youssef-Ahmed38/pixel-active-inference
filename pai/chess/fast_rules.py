@@ -82,3 +82,62 @@ def safety_batch(boards, turn, paths, table):
                 x[row, 2 * code - 1] = max(x[row, 2 * code - 1], white[square])
                 x[row, 2 * code] = max(x[row, 2 * code], black[square])
     return x
+
+@njit(cache=True)
+def categorical(x, column, relation, starts, feature, threshold, left, right, values, guard_cols, guard_vals):
+    result = np.zeros(len(x), dtype=np.bool_)
+    for row in range(len(x)):
+        code = int(x[row,column])
+        if relation >= 0: code = code * 2 + int(x[row,relation])
+        if code < 0 or code >= len(starts) or starts[code] < 0: continue
+        node = starts[code]
+        while left[node] >= 0:
+            node = left[node] if x[row,feature[node]] <= threshold[node] else right[node]
+        result[row] = values[node]
+        if result[row]:
+            for j in range(guard_cols.shape[1]):
+                col = guard_cols[code,j]
+                if col < 0: break
+                if x[row,col] != guard_vals[code,j]:
+                    result[row] = False
+                    break
+    return result
+
+@njit(cache=True)
+def prefilter(board, turn, actions, relation, enabled, guard_cols, guard_vals, paths, table):
+    blockers, attack, _, _ = fields(board,paths,table)
+    keep = np.zeros(len(actions),dtype=np.bool_)
+    for row in range(len(actions)):
+        src,dst,promo = actions[row]
+        a,b = board[src],board[dst]
+        own = int(a > 0 and (a <= 6) == bool(turn))
+        target_own = int(b > 0 and (b <= 6) == bool(turn))
+        code = int(a)
+        if relation == 39: code = code * 2 + attack[src,dst]
+        elif relation == 40: code = code * 2 + own
+        if code < 0 or code >= len(enabled) or not enabled[code]: continue
+        keep[row] = True
+        for j in range(guard_cols.shape[1]):
+            col = guard_cols[code,j]
+            if col < 0: break
+            if col == 0: val = a
+            elif col == 3: val = promo
+            elif col == 12: val = blockers[src,dst]
+            elif col == 39: val = attack[src,dst]
+            elif col == 40: val = own
+            elif col == 41: val = target_own
+            elif col == 46: val = int(b != 0)
+            elif col == 45:
+                sx,sy,tx,ty = src % 8,src // 8,dst % 8,dst // 8
+                dx,dy = tx-sx,ty-sy
+                signx,signy = int(np.sign(dx)),int(np.sign(dy))
+                disx = 7-sx if signx > 0 else sx if signx < 0 else 8
+                disy = 7-sy if signy > 0 else sy if signy < 0 else 8
+                distance = min(disx,disy)
+                edge = min(63,max(0,sx+signx*distance+8*(sy+signy*distance)))
+                val = blockers[src,edge] if dx == 0 or dy == 0 or abs(dx) == abs(dy) else 0
+            else: continue
+            if val != guard_vals[code,j]:
+                keep[row] = False
+                break
+    return keep

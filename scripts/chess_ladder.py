@@ -38,6 +38,7 @@ def main():
     p.add_argument("--directory", type=Path, default=Path("runs/chess_rules"))
     p.add_argument("--agent-value", type=Path, default=Path("runs/chess_rules/value.json"))
     p.add_argument("--incumbent-value", type=Path, default=Path("runs/chess_rules/value.json"))
+    p.add_argument("--policy", type=Path)
     p.add_argument("--times", type=float, nargs="+", default=[.1, .3])
     p.add_argument("--rungs", type=int, nargs="+", default=[1320, 1500, 1700])
     p.add_argument("--opponent-depth", type=int)
@@ -63,15 +64,18 @@ def main():
     else:
         hashes = {str(path): file_hash(path) for path in (args.agent_value, args.incumbent_value,
                    *(args.directory / n for n in ("rules.json", "state.json", "endings.json")))}
+        if args.policy: hashes[str(args.policy)] = file_hash(args.policy)
         provenance = metadata([args.opening_seed], {"both_sides_movetime_seconds": args.times,
                               "opponent_extra_depth_cap": args.opponent_depth, "agent_node_safety_cap": args.nodes})
         groups = {}
         for seconds in args.times:
             candidate = {"kind": "agent", "directory": str(args.directory), "value": str(args.agent_value),
                          "time": seconds, "nodes": args.nodes, "quiescence": args.quiescence, "reuse_pv": args.reuse_pv}
+            if args.policy: candidate["policy"] = str(args.policy)
             if args.mode == "promote":
-                opponents = [("incumbent", {**candidate, "value": str(args.incumbent_value),
-                                           "quiescence": args.incumbent_quiescence})]
+                incumbent = {**candidate,"value":str(args.incumbent_value),"quiescence":args.incumbent_quiescence}
+                incumbent.pop("policy",None)
+                opponents = [("incumbent",incumbent)]
             else:
                 opponents = [(f"elo{elo}", {"kind": "engine", "uci_elo": elo, "movetime": seconds,
                                            "engine_path": str(args.engine.resolve()),

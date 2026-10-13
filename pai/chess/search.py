@@ -1,6 +1,7 @@
 """Bounded lookahead over learned states, legality, endings and position value."""
 from dataclasses import dataclass
 import time
+import numpy as np
 
 from pai.chess.representation import BoardAction
 from pai.chess.state import GameState
@@ -34,7 +35,7 @@ class LearnedChessSearch:
     An optional draw claim is an additional zero-valued action. It never removes
     playable moves. Only complete iterations replace the previously chosen move.
     """
-    def __init__(self, state_model, evaluator, value, ordering_value=None):
+    def __init__(self, state_model, evaluator, value, ordering_value=None, policy_prior=None):
         if evaluator.state_model is not state_model:
             raise ValueError("search and evaluator must share one state model")
         self.state_model = state_model
@@ -44,6 +45,7 @@ class LearnedChessSearch:
         # traversal order and therefore the depth completed under a node cap.
         self.ordering_value = value if ordering_value is None else ordering_value
         self._prediction_cache = {}
+        self.policy_prior = policy_prior
 
     def _predictions(self, model, observations):
         missing = [o for o in observations if (id(model), o) not in self._prediction_cache]
@@ -66,8 +68,9 @@ class LearnedChessSearch:
                               history + (template.board,))
             children.append((action, child))
         observations = [child.board for _, child in children]
-        scores = self._predictions(self.ordering_value, observations)
-        children = [(score * (1 if state.board.turn else -1), action, child)
+        scores = (self.policy_prior.predict_actions(state.board,actions) if self.policy_prior is not None else
+                  np.asarray(self._predictions(self.ordering_value, observations)) * (1 if state.board.turn else -1))
+        children = [(score, action, child)
                     for score, (action, child) in zip(scores, children)]
         return sorted(children, key=lambda row: (-row[0], row[1].uci()))
 

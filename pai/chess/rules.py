@@ -88,7 +88,35 @@ class CategoricalTrees:
     def feature(self):
         return np.concatenate([tree.feature for tree in self.groups.values()])
 
+    def packed(self):
+        signature = tuple((code,id(tree),tuple(map(tuple,(self.guards or {}).get(code,())))) for code,tree in self.groups.items())
+        if getattr(self,"_packed_signature",None) != signature:
+            size = max(self.groups,default=0) + 1
+            starts = np.full(size,-1,dtype=np.int64)
+            enabled = np.zeros(size,dtype=bool)
+            width = max([len(g) for g in (self.guards or {}).values()] + [1])
+            cols = np.full((size,width),-1,dtype=np.int64)
+            vals = np.zeros((size,width),dtype=np.float64)
+            parts = {k: [] for k in ("feature","threshold","left","right","value")}
+            offset = 0
+            for code,tree in self.groups.items():
+                starts[code], enabled[code] = offset, np.any(tree.value)
+                for k in parts:
+                    data = getattr(tree,k)
+                    parts[k].append(np.where(data >= 0,data + offset,data) if k in ("left","right") else data)
+                for j,(col,val) in enumerate((self.guards or {}).get(code,())):
+                    cols[code,j],vals[code,j] = col,val
+                offset += len(tree.feature)
+            arrays = [np.concatenate(parts[k]) for k in parts]
+            arrays[-1] = arrays[-1].astype(bool)
+            self._packed_signature = signature
+            self._packed_data = (starts,*arrays,cols,vals,enabled)
+        return self._packed_data
+
     def predict(self, x):
+        if _compiled is not None and self.groups:
+            packed = self.packed()
+            return _compiled.categorical(x,self.column,-1 if self.relation_column is None else self.relation_column,*packed[:-1])
         result = np.zeros(len(x), dtype=bool)
         categories = x[:, self.column].astype(int)
         if self.relation_column is not None:
@@ -169,6 +197,8 @@ def spatial_features(obs, actions, attack_table):
 def safety_features(pieces, turn, attack_table):
     """Attack counts for every token type; the tree learns which must be safe."""
     board = np.asarray(pieces, dtype=np.int16)
+    if _compiled is not None:
+        return _compiled.safety_batch(board[None],turn,PATHS,attack_table)[0].tolist()
     blockers = np.tensordot(BETWEEN, (board != 0).astype(np.int16), axes=([2], [0]))
     attack = attack_table[board[:, None], np.arange(64)[:, None], np.arange(64)[None, :], (blockers > 0).astype(int)]
     white = ((board > 0) & (board <= 6)).astype(np.int16) @ attack
@@ -244,7 +274,13 @@ class LearnedChessRules:
     def classify(self, obs, actions=ACTION_ARRAY):
         actions = np.asarray(actions, dtype=np.int16).reshape(-1, 3)
         selected = np.arange(len(actions))
-        if isinstance(self.proposal, CategoricalTrees) and self.proposal.column == 0 and self.proposal.relation_column in (None, 39, 40):
+        categorical = isinstance(self.proposal, CategoricalTrees) and self.proposal.column == 0 and self.proposal.relation_column in (None,39,40)
+        if categorical and _compiled is not None and self.proposal.groups:
+            packed = self.proposal.packed()
+            selected = np.flatnonzero(_compiled.prefilter(np.asarray(obs.pieces,dtype=np.int16),obs.turn,actions,
+                                     -1 if self.proposal.relation_column is None else self.proposal.relation_column,
+                                     packed[-1],packed[-3],packed[-2],PATHS,self.attack_table))
+        elif categorical:
             # Algebraic pruning of fitted categorical regions whose leaves are
             # all false (including missing groups). No movement predicate.
             tokens = np.asarray(obs.pieces)[actions[:, 0]]

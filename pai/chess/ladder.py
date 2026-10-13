@@ -49,7 +49,11 @@ class AgentPlayer:
         endings = LearnedChessEvaluator.load(directory / "endings.json", state)
         value = load_value(config.get("value", directory / "value.json"))
         ordering = load_value(config["ordering"]) if config.get("ordering") else None
-        self.planner = LearnedChessSearch(state, endings, value, ordering)
+        prior = None
+        if config.get("policy"):
+            from pai.chess.policy import LearnedPolicyPrior
+            prior = LearnedPolicyPrior.load(config["policy"])
+        self.planner = LearnedChessSearch(state, endings, value, ordering, prior)
         self.config = dict(config)
         self.warmed = False
 

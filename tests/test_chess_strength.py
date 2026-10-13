@@ -198,3 +198,18 @@ def test_scalar_and_batched_linear_values_are_identical():
     boards = [observation(random_board(random.Random(i), 30)) for i in range(12)]
     np.testing.assert_allclose(value.predict_many(boards), [value.predict(o) for o in boards], atol=2e-5)
     assert value.predict_many([]).shape == (0,)
+
+def test_policy_roundtrip_and_colour_symmetry(tmp_path):
+    from pai.chess.policy import DIM,LearnedPolicyPrior
+    from pai.chess.representation import BoardAction
+    board = chess.Board()
+    actions = [BoardAction.from_uci(m.uci()) for m in list(board.legal_moves)]
+    rng = np.random.default_rng(7)
+    prior = LearnedPolicyPrior([(rng.normal(size=(DIM,8)),np.zeros(8)),(rng.normal(size=(8,1)),np.zeros(1))],
+                               np.zeros(DIM),np.ones(DIM),np.zeros((13,64,64,2),dtype=np.int8))
+    mirrored = [BoardAction(a.source ^ 56,a.destination ^ 56,a.promotion) for a in actions]
+    np.testing.assert_allclose(prior.predict_actions(observation(board),actions),
+                               prior.predict_actions(observation(board.mirror()),mirrored),atol=1e-5)
+    prior.save(tmp_path / "policy.npz")
+    loaded = LearnedPolicyPrior.load(tmp_path / "policy.npz")
+    np.testing.assert_array_equal(loaded.predict_actions(observation(board),actions),prior.predict_actions(observation(board),actions))

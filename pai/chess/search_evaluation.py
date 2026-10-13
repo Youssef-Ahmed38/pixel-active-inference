@@ -47,6 +47,8 @@ def evaluate_search(planner, seed=410, budgets=(32, 128), per_topic=4, excluded_
     teaching |= set(planner.value.summary.get("training_positions", ()))
     ordering = getattr(planner, "ordering_value", planner.value)
     teaching |= set(ordering.summary.get("training_positions", ()))
+    if getattr(planner,"policy_prior",None) is not None:
+        teaching |= set(planner.policy_prior.summary.get("training_positions",()))
     teaching |= set(excluded_positions)
     generated = tactical_positions(seed, per_topic)
     positions = [(b, t) for b, t in generated if position_key(observation(b)) not in teaching]
