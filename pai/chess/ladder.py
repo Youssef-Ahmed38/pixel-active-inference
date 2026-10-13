@@ -30,7 +30,7 @@ ENGINE = "runs/chess_teacher/stockfish/stockfish-windows-x86-64-universal.exe"
 # --------------------------------------------------------------------------- players
 
 def file_hash(path):
-    return hashlib.sha256(Path(path).read_bytes()).hexdigest()[:16]
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
 class AgentPlayer:
@@ -112,10 +112,12 @@ def make_player(config):
 
 # --------------------------------------------------------------------------- openings
 
-def balanced_openings(count, seed, plies=(4, 8), max_cp=80, depth=12, engine_path=ENGINE):
+def balanced_openings(count, seed, plies=(4, 8), max_cp=80, depth=12, engine_path=ENGINE, excluded_keys=()):
     """Random legal openings kept only if the teacher judges them balanced."""
     rng = random.Random(seed)
-    roots = []
+    roots,seen = [],set()
+    excluded_keys = set(excluded_keys)
+    from pai.chess.teacher import observation,position_key
     with chess.engine.SimpleEngine.popen_uci(str(Path(engine_path).resolve())) as engine:
         engine.configure({"Threads": 1, "Hash": 16})
         while len(roots) < count:
@@ -124,9 +126,14 @@ def balanced_openings(count, seed, plies=(4, 8), max_cp=80, depth=12, engine_pat
                 board.push(rng.choice(list(board.legal_moves)))
             if board.is_game_over():
                 continue
+            fen = board.fen()
+            declared = chess.Board(fen)
+            if (fen in seen or position_key(observation(declared)) in excluded_keys or
+                    position_key(observation(declared.mirror())) in excluded_keys): continue
             score = engine.analyse(board, chess.engine.Limit(depth=depth))["score"].white().score(mate_score=100000)
             if abs(score) <= max_cp:
-                roots.append(board.fen())
+                roots.append(fen)
+                seen.add(fen)
     return roots
 
 
@@ -296,8 +303,8 @@ def anchored_elo(groups, bootstrap=5000, seed=0):
         for g in games:
             s = candidate_score(g)
             if s is not None:
-                by_pair.setdefault(g["pair"], []).append(s)
-        rows.append((anchor, list(by_pair.values())))
+                by_pair.setdefault(g.get("root",g["pair"]), []).append(s)
+        rows.append((anchor, by_pair))
     if not rows or not any(p for _, p in rows):
         return None
 
@@ -317,18 +324,21 @@ def anchored_elo(groups, bootstrap=5000, seed=0):
             lo, hi = (mid, hi) if expected < scores.sum() else (lo, mid)
         return (lo + hi) / 2
 
-    flat = lambda r: [(a, [x for pair in pairs for x in pair]) for a, pairs in r]
+    flat = lambda r: [(a, [x for pair in pairs.values() for x in pair]) for a, pairs in r]
     point = fit(flat(rows))
     if point is None or not math.isfinite(point):
         return {"estimate": None, "reason": "all anchored scores are zero or all are one"}
     rng = np.random.default_rng(seed)
+    cluster_keys = list(dict.fromkeys(key for _,pairs in rows for key in pairs))
     boots = []
     for _ in range(bootstrap):
+        # The same opening appears at several levels. Resample it once across
+        # all levels, retaining those cross-level dependencies.
+        picked = [cluster_keys[i] for i in rng.integers(0,len(cluster_keys),len(cluster_keys))]
         sample = []
         for a, pairs in rows:
             if pairs:
-                pick = rng.integers(0, len(pairs), len(pairs))
-                sample.append((a, [x for i in pick for x in pairs[i]]))
+                sample.append((a, [x for key in picked for x in pairs.get(key,())]))
         b = fit(sample)
         if b is not None:
             boots.append(b)
@@ -337,4 +347,5 @@ def anchored_elo(groups, bootstrap=5000, seed=0):
     return {"estimate": point, "ci95": [finite(low), finite(high)],
             "bootstrap_degenerate_fraction": float(np.mean(~np.isfinite(boots))),
             "bootstrap_draws": bootstrap,
+            "opening_clusters":len(cluster_keys),
             "note": "relative to configured UCI_Elo under these short limits; not a calibrated human rating"}

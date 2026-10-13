@@ -90,7 +90,14 @@ def main():
                     or meta["provenance"]["source_sha256"] != provenance["source_sha256"]):
                 p.error("existing run differs in code, players, checkpoints or opening schedule")
         else:
-            roots = balanced_openings(args.pairs, args.opening_seed, depth=8, engine_path=args.engine)
+            from pai.chess.hrm_value import load_value
+            keys = set()
+            for path in (args.agent_value,args.incumbent_value):
+                keys.update(load_value(path).summary.get("training_positions",()))
+            if args.policy:
+                from pai.chess.policy import LearnedPolicyPrior
+                keys.update(LearnedPolicyPrior.load(args.policy).summary.get("training_positions",()))
+            roots = balanced_openings(args.pairs,args.opening_seed,depth=8,engine_path=args.engine,excluded_keys=keys)
             if len(set(roots)) != len(roots):
                 p.error("opening generator produced duplicate roots")
             meta = {"provenance": provenance, "opening_seed": args.opening_seed, "pairs": args.pairs,
