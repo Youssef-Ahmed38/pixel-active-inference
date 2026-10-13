@@ -102,7 +102,9 @@ class MazeDomainAdapter:
 
 
 class ArmDomainAdapter:
-    """Privileged arm observation and end-effector skill adapter for the common loop."""
+    """Arm adapter for the common loop: perceived entity tokens and relations derived from them
+    (objects seen through the calibrated camera pose), end-effector skill. Simulator predicates are
+    used only in `last_diagnostic`, as ground truth for scoring."""
 
     domain = "arm"
 
@@ -123,7 +125,11 @@ class ArmDomainAdapter:
 
     def observe(self) -> StateBelief:
         self.last_tokens = self.sense(self.last_observation, self.prev_ee)
-        return arm_state(self.last_tokens, self.names, self.env.t, self.last_observation["predicates"])
+        # relations from the agent's own perception, never the simulator's predicates (those stay
+        # in the diagnostics below, as ground truth for scoring)
+        from pai.envs.predicates import perceived_predicates
+        rel = perceived_predicates(self.env.objects, self.last_tokens, self.names)
+        return arm_state(self.last_tokens, self.names, self.env.t, rel)
 
     def available_skills(self) -> tuple[SkillCommand, ...]:
         return (SkillCommand("move_end_effector"),)

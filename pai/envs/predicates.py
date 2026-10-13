@@ -33,24 +33,49 @@ def _up_cos(quat: np.ndarray) -> float:
 
 
 def compute_predicates(env, state: dict[str, dict]) -> set[tuple]:
-    """Returns the set of true relations, e.g. {("on", "red", "plate"), ("grasped", "red")}."""
-    objs = env.objects
-    preds: set[tuple] = set()
+    """Returns the set of true relations, e.g. {("on", "red", "plate"), ("grasped", "red")}.
+    Ground truth from simulator state: for goals' scoring and the event log, never the agent's belief
+    (the agent's own relations come from `perceived_predicates`)."""
     grasped = env.events.grasped_objects() if hasattr(env, "events") else set()
+    positions = {n: np.asarray(st["pos"]) for n, st in state.items()}
+    upright = {n: _up_cos(st["quat"]) > UPRIGHT_COS for n, st in state.items()}
+    return relations(env.objects, positions, grasped, upright)
 
-    for name, st in state.items():
-        spec, pos = objs[name], st["pos"]
+
+HOLD_RADIUS = 0.04     # object centre this close to the hand, with the fingers closed on it: held
+GRIP_CLOSED = 0.05     # finger opening below this (and above ~0, i.e. blocked by something): closed on it
+
+
+def perceived_predicates(objects: dict, tokens: np.ndarray, names: list[str]) -> set[tuple]:
+    """The agent's own relations, from its perceived entity tokens (gripper first). Same geometry
+    as the ground truth, but from perceived positions; "grasped" from the body itself (fingers
+    closed on something at the object); "upright" is not perceivable from the tokens (they carry
+    the yaw only) and is left out."""
+    from pai.world.entities import GRIP, POS
+
+    positions = {n: np.asarray(tokens[i, POS], float) for i, n in enumerate(names) if i > 0}
+    hand, opening = np.asarray(tokens[0, POS], float), float(tokens[0, GRIP][0])
+    closed = 0.005 < opening < GRIP_CLOSED
+    grasped = {n for n, p in positions.items() if closed and np.linalg.norm(p - hand) < HOLD_RADIUS}
+    return relations(objects, positions, grasped, upright=None)
+
+
+def relations(objs: dict, positions: dict[str, np.ndarray], grasped: set, upright: dict | None) -> set[tuple]:
+    """Relations from object positions (shared by ground truth and perception)."""
+    preds: set[tuple] = set()
+    for name, pos in positions.items():
+        spec = objs[name]
         bottom = pos[2] - (spec.height / 2 if spec.kind != "bowl" else 0.0)
-        if spec.kind == "block" and _up_cos(st["quat"]) > UPRIGHT_COS:
+        if upright is not None and spec.kind == "block" and upright[name]:
             preds.add(("upright", name))
         if bottom > LIFTED_Z:
             preds.add(("lifted", name))
         if name in grasped:
             preds.add(("grasped", name))
 
-    for a, b in permutations(state, 2):
+    for a, b in permutations(positions, 2):
         sa, sb = objs[a], objs[b]
-        pa, pb = state[a]["pos"], state[b]["pos"]
+        pa, pb = positions[a], positions[b]
         dxy = float(np.linalg.norm(pa[:2] - pb[:2]))
         if dxy < NEAR_DIST:
             preds.add(("near", a, b))

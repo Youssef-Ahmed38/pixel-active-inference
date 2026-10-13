@@ -109,3 +109,27 @@ def test_compliant_arm_yields_more_to_pushes():
         return worst
 
     assert deflection(0.15) > 3 * deflection(1.0)
+
+
+def test_perceived_relations_match_truth_when_perception_is_exact():
+    """The agent's relations come from its own tokens, not the simulator's predicates. With exact
+    perception they agree with the ground truth (except 'upright', which tokens cannot show)."""
+    import numpy as np
+    from pai.config import load_config
+    from pai.envs import TabletopEnv
+    from pai.envs.predicates import perceived_predicates
+    from pai.world.entities import encode, entity_names
+
+    cfg = load_config("configs/tabletop.yaml", [])
+    env = TabletopEnv(type(cfg.env)({**cfg.env, "render_images": False}), disturbances=[])
+    names = entity_names(env)
+    for seed in range(4):
+        obs = env.reset(seed=seed)
+        truth = {p for p in obs["predicates"] if p[0] != "upright"}
+        assert perceived_predicates(env.objects, encode(env, obs), names) == truth
+    # holding: fingers closed on the object at the hand -> grasped, from the body itself
+    tokens = encode(env, obs)
+    tokens[0, :3] = tokens[1, :3] + np.array([0.0, 0.0, 0.01])
+    tokens[0, 8] = 0.04  # finger opening (GRIP slot): closed on a 4 cm block
+    assert ("grasped", names[1]) in perceived_predicates(env.objects, tokens, names)
+    env.close()
