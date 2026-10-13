@@ -170,13 +170,14 @@ opening clusters limit precision. No game is adjudicated from the agent's score.
 
 ## Verification
 
-All **143** `tests/test_chess_*.py` tests passed at the frozen candidate revision.
+All **146** `tests/test_chess_*.py` tests passed in the final full regression run
+(330.51 s). The earlier candidate freeze also passed all 143 then-collected tests.
 The original rule/state/endings gate tests were not edited. New tests cover
 compiled/reference features, value I/O and colour symmetry, policy I/O,
 scalar/batch equality, incomplete/duplicate pairs, endpoint statistics, and an
 agent move selected while chess-library access and engine startup are blocked.
-The later player-file separation preserves the decision method and passed the
-focused 21-test set; an additional distillation schema/orbit test was added next.
+The final run includes the pure player interface, promotion-manifest integrity,
+degenerate-bootstrap uncertainty and distillation trajectory/orbit checks.
 
 ## Reproduce
 
