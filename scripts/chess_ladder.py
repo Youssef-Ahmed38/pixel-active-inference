@@ -43,6 +43,7 @@ def main():
     p.add_argument("--opponent-depth", type=int)
     p.add_argument("--nodes", type=int, default=1000000)
     p.add_argument("--quiescence", type=int, default=0)
+    p.add_argument("--incumbent-quiescence", type=int, default=0)
     p.add_argument("--reuse-pv", action="store_true")
     p.add_argument("--pairs", type=int, default=10)
     p.add_argument("--opening-seed", type=int, required=True)
@@ -69,7 +70,8 @@ def main():
             candidate = {"kind": "agent", "directory": str(args.directory), "value": str(args.agent_value),
                          "time": seconds, "nodes": args.nodes, "quiescence": args.quiescence, "reuse_pv": args.reuse_pv}
             if args.mode == "promote":
-                opponents = [("incumbent", {**candidate, "value": str(args.incumbent_value)})]
+                opponents = [("incumbent", {**candidate, "value": str(args.incumbent_value),
+                                           "quiescence": args.incumbent_quiescence})]
             else:
                 opponents = [(f"elo{elo}", {"kind": "engine", "uci_elo": elo, "movetime": seconds,
                                            "engine_path": str(args.engine.resolve()),

@@ -97,6 +97,7 @@ def test(args):
     value = DistilledValue.load(args.output_model)
     rows = load_rows(args.directory / "test.jsonl.gz")
     train_keys = {position_hash(row[0]) for split in ("train", "val") for row in load_rows(args.directory / f"{split}.jsonl.gz")}
+    train_keys |= set(value.summary.get("training_position_hashes", ()))
     fresh = [r for r in rows if position_hash(r[0]) not in train_keys]
     report = {"fresh_test_seed_base": SPLIT_SEEDS["test"], "positions_total": len(rows),
               "excluded_training_overlap": len(rows) - len(fresh),

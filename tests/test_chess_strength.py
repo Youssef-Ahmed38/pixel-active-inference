@@ -190,3 +190,11 @@ def test_extreme_bootstrap_rating_endpoints_are_json_safe():
     assert estimate["estimate"] == pytest.approx(1500)
     assert estimate["ci95"] == [None, None]
     json.dumps(estimate, allow_nan=False)
+
+def test_scalar_and_batched_linear_values_are_identical():
+    from pai.chess.evaluation import LearnedPositionValue
+    rng = np.random.default_rng(23)
+    value = LearnedPositionValue(rng.normal(size=391))
+    boards = [observation(random_board(random.Random(i), 30)) for i in range(12)]
+    np.testing.assert_allclose(value.predict_many(boards), [value.predict(o) for o in boards], atol=2e-5)
+    assert value.predict_many([]).shape == (0,)

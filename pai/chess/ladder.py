@@ -133,7 +133,7 @@ def play_game(white, black, root_fen, max_plies=400, seed=0):
     rng = random.Random(seed)
     for p in (white, black):
         if hasattr(p, "prepare"):
-            p.prepare(teacher.observe())
+            p.prepare(ChessTeacher().observe())
         if hasattr(p, "new_game"):
             p.new_game()
     failure, agent_stats = None, []
