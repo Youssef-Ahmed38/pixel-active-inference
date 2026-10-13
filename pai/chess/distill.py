@@ -73,8 +73,15 @@ class DistilledValue:
         self.layers = [(np.asarray(w, dtype=np.float32), np.asarray(b, dtype=np.float32)) for w, b in layers]
         self.attack_table = np.asarray(attack_table, dtype=np.int8)
         self.summary = summary or {}
-        if self.layers[0][0].shape[0] != FEATURES or self.layers[-1][0].shape[1] != 1:
+        if not self.layers or self.layers[0][0].shape[0] != FEATURES or self.layers[-1][0].shape[1] != 1:
             raise ValueError("unexpected distilled value shape")
+        for i, (w, b) in enumerate(self.layers):
+            if w.ndim != 2 or b.shape != (w.shape[1],) or not np.all(np.isfinite(w)) or not np.all(np.isfinite(b)):
+                raise ValueError("finite matching distilled layers required")
+            if i and self.layers[i - 1][0].shape[1] != w.shape[0]:
+                raise ValueError("incompatible distilled layers")
+        if self.attack_table.shape != (13, 64, 64, 2):
+            raise ValueError("learned attack field required")
 
     def stm_logits(self, x):
         h = x
@@ -89,7 +96,7 @@ class DistilledValue:
         if not observations:
             return []
         x = features(observations, self.attack_table)
-        cp = prob_to_cp(1.0 / (1.0 + np.exp(-self.stm_logits(x))))
+        cp = np.clip(self.stm_logits(x) * (400 / np.log(10)), -CP_CLIP, CP_CLIP)
         sign = np.array([1.0 if o.turn else -1.0 for o in observations])
         return (cp * sign).tolist()
 
@@ -118,8 +125,22 @@ class DistilledValue:
 # --------------------------------------------------------------------------- teacher data
 
 def position_hash(fen):
-    """Placement + side + castling + ep; move counters excluded."""
-    return hashlib.sha256(" ".join(fen.split()[:4]).encode()).hexdigest()[:16]
+    """Mirror-orbit identity of public positions, excluding move counters."""
+    import chess
+    from pai.chess.teacher import observation, position_key
+    board = chess.Board(fen)
+    return min(position_key(observation(board)), position_key(observation(board.mirror())))
+
+def register_rows(value, rows):
+    import chess
+    from pai.chess.teacher import observation, position_key
+    keys, orbits = set(), set()
+    for row in rows:
+        board = chess.Board(row[0])
+        keys.update((position_key(observation(board)), position_key(observation(board.mirror()))))
+        orbits.add(position_hash(row[0]))
+    value.summary.update(training_positions=sorted(keys), training_position_hashes=sorted(orbits))
+    return value
 
 
 def generate_teacher_positions(args):
@@ -133,9 +154,11 @@ def generate_teacher_positions(args):
     engine_path, seed, count, depth = args
     rng = random.Random(seed)
     rows = []
+    game_id = 0
     with chess.engine.SimpleEngine.popen_uci(str(engine_path)) as engine:
         engine.configure({"Threads": 1, "Hash": 16})
         while len(rows) < count:
+            game_id += 1
             board = chess.Board()
             for _ in range(rng.randrange(0, 9)):
                 moves = list(board.legal_moves)
@@ -152,7 +175,7 @@ def generate_teacher_positions(args):
                 score = infos[0]["score"].pov(board.turn)
                 cp = float(np.clip(score.score(mate_score=100000), -CP_CLIP, CP_CLIP))
                 best = infos[0].get("pv", [None])[0]
-                rows.append((board.fen(), cp, None if best is None else best.uci()))
+                rows.append((board.fen(), cp, None if best is None else best.uci(), f"{seed}:{game_id}"))
                 moves = list(board.legal_moves)
                 draw = rng.random()
                 if best is None or draw < epsilon * 0.4:
@@ -171,9 +194,9 @@ def rows_to_arrays(rows, attack_table, batch=4096):
     xs, ys = [], []
     for start in range(0, len(rows), batch):
         chunk = rows[start:start + batch]
-        obs = [observation(chess.Board(fen)) for fen, _, _ in chunk]
+        obs = [observation(chess.Board(row[0])) for row in chunk]
         xs.append(features(obs, attack_table).astype(np.uint8))
-        ys.append(np.array([cp for _, cp, _ in chunk], dtype=np.float32))
+        ys.append(np.array([row[1] for row in chunk], dtype=np.float32))
     return np.concatenate(xs), np.concatenate(ys)
 
 
@@ -207,7 +230,7 @@ def train_value(x, y_cp, x_val, y_val_cp, hidden=(256, 64), epochs=30, seed=0, l
             opt.zero_grad()
             loss.backward()
             opt.step()
-            total += float(loss) * len(idx)
+            total += float(loss.detach()) * len(idx)
         sched.step()
         net.eval()
         with torch.no_grad():
@@ -226,8 +249,10 @@ def evaluate_rows(value, rows, attack_table=None):
     """MAE (cp, side-to-move frame, clipped) and win-probability error on rows."""
     import chess
     from pai.chess.teacher import observation
-    obs = [observation(chess.Board(fen)) for fen, _, _ in rows]
-    actual = np.array([cp for _, cp, _ in rows])
+    if not rows:
+        raise ValueError("nonempty value evaluation required")
+    obs = [observation(chess.Board(row[0])) for row in rows]
+    actual = np.array([row[1] for row in rows])
     raw = value.predict_many(obs) if hasattr(value, "predict_many") else [value.predict(o) for o in obs]
     predicted = np.array(raw) * np.array([1 if o.turn else -1 for o in obs])
     predicted = np.clip(predicted, -CP_CLIP, CP_CLIP)
@@ -236,7 +261,7 @@ def evaluate_rows(value, rows, attack_table=None):
             "rmse_cp": float(np.sqrt(np.mean((predicted - actual) ** 2))),
             "win_prob_mae": float(np.mean(np.abs(cp_to_prob(predicted) - cp_to_prob(actual)))),
             "zero_baseline_mae_cp": float(np.mean(np.abs(actual))),
-            "advantage_sign_accuracy": float(np.mean((predicted[mask] > 0) == (actual[mask] > 0))),
+            "advantage_sign_accuracy": float(np.mean((predicted[mask] > 0) == (actual[mask] > 0))) if mask.any() else None,
             "advantage_sign_examples": int(mask.sum())}
 
 

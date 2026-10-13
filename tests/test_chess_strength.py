@@ -9,6 +9,7 @@ import pytest
 from pai.chess.distill import DistilledValue, FEATURES, canonical, features, prob_to_cp, cp_to_prob
 from pai.chess.ladder import anchored_elo, candidate_score, elo_from_score, pair_statistics, play_game
 from pai.chess.rules import LearnedChessRules, safety_features, safety_features_batch
+from pai.chess.rules import ACTION_ARRAY, spatial_features, spatial_features_reference
 from pai.chess.teacher import observation
 
 RULES = Path("runs/chess_rules/rules.json")
@@ -138,3 +139,54 @@ def test_illegal_command_is_an_execution_failure_not_a_result():
     white, black = Scripted(["e2e5"]), Scripted([])
     result = play_game(white, black, chess.STARTING_FEN, max_plies=4)
     assert result["status"] == "execution_failure" and result["result"] == "*"
+
+@needs_rules
+def test_compiled_features_equal_frozen_reference_for_all_actions():
+    rules = LearnedChessRules.load(RULES)
+    for fen in (chess.STARTING_FEN, "r3k2r/8/8/3pP3/8/8/8/R3K2R w KQkq d6 0 1"):
+        obs = observation(chess.Board(fen))
+        np.testing.assert_array_equal(spatial_features(obs, ACTION_ARRAY, rules.attack_table),
+                                      spatial_features_reference(obs, ACTION_ARRAY, rules.attack_table))
+
+@needs_rules
+def test_agent_decision_path_cannot_access_chess_library_or_engine(monkeypatch):
+    import builtins
+    from pai.chess.ladder import AgentPlayer
+    from pai.chess.teacher import ChessTeacher
+    teacher = ChessTeacher()
+    belief = teacher.observe()
+    player = AgentPlayer({"value": "runs/chess_rules/value.json", "time": .1})
+    player.prepare(belief)
+    original = builtins.__import__
+    def reject_import(name, *args, **kwargs):
+        if name == "chess" or name.startswith("chess."):
+            raise AssertionError("agent consulted chess oracle")
+        return original(name, *args, **kwargs)
+    def reject(*args, **kwargs):
+        raise AssertionError("agent consulted chess oracle")
+    monkeypatch.setattr(builtins, "__import__", reject_import)
+    monkeypatch.setattr(chess.engine.SimpleEngine, "popen_uci", reject)
+    monkeypatch.setattr(chess.Board, "legal_moves", property(reject))
+    command, stats = player.command_from_belief(belief)
+    assert command.name == "move_piece" and stats["nodes"] > 0
+
+def test_incomplete_pairs_and_duplicates_cannot_promote():
+    partial = [game(i, "white", "1-0") for i in range(10)]
+    assert not pair_statistics(partial)["promotion_gate_passed"]
+    with pytest.raises(ValueError): pair_statistics(partial + [partial[0]])
+    all_wins = [game(i, c, "1-0" if c == "white" else "0-1") for i in range(10) for c in ("white", "black")]
+    assert pair_statistics(all_wins)["paired_sign_test_p_one_sided"] == pytest.approx(1 / 1024)
+    assert pair_statistics(all_wins)["promotion_gate_passed"]
+
+def test_invalid_completed_results_and_layers_rejected():
+    with pytest.raises(ValueError): candidate_score(game(0, "white", "*"))
+    with pytest.raises(ValueError): DistilledValue([], np.zeros((13, 64, 64, 2)))
+
+def test_extreme_bootstrap_rating_endpoints_are_json_safe():
+    import json
+    rows = [game(0, "white", "1-0"), game(0, "black", "0-1"),
+            game(1, "white", "0-1"), game(1, "black", "1-0")]
+    estimate = anchored_elo([(1500, rows)], bootstrap=200)
+    assert estimate["estimate"] == pytest.approx(1500)
+    assert estimate["ci95"] == [None, None]
+    json.dumps(estimate, allow_nan=False)

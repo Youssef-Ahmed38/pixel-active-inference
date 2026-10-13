@@ -37,6 +37,10 @@ class AgentPlayer:
     """The learned agent: learned rules/state/endings + a value + bounded search."""
 
     def __init__(self, config):
+        from threadpoolctl import threadpool_limits
+        self.thread_limit = threadpool_limits(limits=1)
+        import torch
+        torch.set_num_threads(1)
         from pai.chess import LearnedChessRules, LearnedChessStateModel, LearnedChessEvaluator, LearnedChessSearch
         from pai.chess.hrm_value import load_value
         directory = Path(config.get("directory", "runs/chess_rules"))
@@ -47,15 +51,24 @@ class AgentPlayer:
         ordering = load_value(config["ordering"]) if config.get("ordering") else None
         self.planner = LearnedChessSearch(state, endings, value, ordering)
         self.config = dict(config)
+        self.warmed = False
+
+    def prepare(self, belief):
+        if not self.warmed:
+            self.planner.search(GameState.from_belief(belief), max_depth=1, max_nodes=32)
+            self.warmed = True
 
     def command(self, teacher, rng):
-        state = GameState.from_belief(teacher.observe())
+        return self.command_from_belief(teacher.observe())
+
+    def command_from_belief(self, belief):
+        state = GameState.from_belief(belief)
         c = self.config
         result = self.planner.search(state, max_depth=c.get("max_depth", 32), max_nodes=c.get("nodes", 10 ** 9),
                                      time_limit=c.get("time"), max_quiescence=c.get("quiescence", 0),
                                      reuse_pv=c.get("reuse_pv", False))
         return result.command(), {"depth": result.completed_depth, "nodes": result.nodes,
-                                  "seconds": round(result.elapsed_seconds, 3)}
+                                  "seconds": result.elapsed_seconds, "budget_exhausted": result.budget_exhausted}
 
     def close(self):
         pass
@@ -65,6 +78,7 @@ class EnginePlayer:
     """Stockfish with limited skill / UCI_Elo and a depth, node or time limit."""
 
     def __init__(self, config, engine_path=ENGINE):
+        engine_path = config.get("engine_path", engine_path)
         self.engine = chess.engine.SimpleEngine.popen_uci(str(Path(engine_path).resolve()))
         options = {"Threads": 1, "Hash": 16}
         if "uci_elo" in config:
@@ -118,6 +132,8 @@ def play_game(white, black, root_fen, max_plies=400, seed=0):
     teacher = ChessTeacher(root_fen, episode=seed)
     rng = random.Random(seed)
     for p in (white, black):
+        if hasattr(p, "prepare"):
+            p.prepare(teacher.observe())
         if hasattr(p, "new_game"):
             p.new_game()
     failure, agent_stats = None, []
@@ -125,9 +141,11 @@ def play_game(white, black, root_fen, max_plies=400, seed=0):
         if teacher.game_outcome() is not None:
             break
         player = white if teacher.board.turn else black
+        start = time.perf_counter()
         command, stats = player.command(teacher, rng)
+        measured = time.perf_counter() - start
         if stats is not None:
-            agent_stats.append(stats)
+            agent_stats.append({**stats, "side": "white" if teacher.board.turn else "black", "wall_seconds": measured})
         if command is None or not teacher.execute(command).executed:
             failure = {"ply": ply, "side": "white" if teacher.board.turn else "black",
                        "fen": teacher.board.fen(), "command": None if command is None else asdict(command)}
@@ -143,6 +161,8 @@ def play_game(white, black, root_fen, max_plies=400, seed=0):
     status = "execution_failure" if failure else ("complete" if outcome is not None else "truncated")
     return {"status": status, "result": result, "termination": None if outcome is None else outcome.termination.name,
             "plies": len(teacher.board.move_stack), "failure": failure, "pgn": str(game),
+            "search_records": agent_stats,
+            "commands": [asdict(c) for c in teacher.record.commands],
             "agent_depth_mean": float(np.mean([s["depth"] for s in agent_stats])) if agent_stats else None,
             "agent_seconds_mean": float(np.mean([s["seconds"] for s in agent_stats])) if agent_stats else None}
 
@@ -162,6 +182,7 @@ def run_job(job):
     start = time.time()
     result = play_game(_player(job["white"]), _player(job["black"]), job["root"], job["max_plies"], job["seed"])
     result.update({k: job[k] for k in ("id", "group", "pair", "candidate_color", "root")})
+    result.update({k: job[k] for k in ("seed", "white", "black", "provenance") if k in job})
     result["wall_seconds"] = time.time() - start
     return result
 
@@ -170,6 +191,8 @@ def candidate_score(game):
     """Score of the named candidate side (agent or challenger), None if unresolved."""
     if game["status"] != "complete":
         return None
+    if game["result"] not in ("1-0", "0-1", "1/2-1/2") or game["candidate_color"] not in ("white", "black"):
+        raise ValueError("valid completed result and candidate colour required")
     if game["result"] == "1/2-1/2":
         return 0.5
     white_won = game["result"] == "1-0"
@@ -208,9 +231,16 @@ def elo_from_score(p):
 
 def pair_statistics(games, bootstrap=20000, seed=0):
     """Score with a pair-cluster bootstrap interval and its Elo-difference mapping."""
+    if bootstrap < 1:
+        raise ValueError("positive bootstrap count required")
     by_pair = {}
+    slots = set()
     unresolved = 0
     for g in games:
+        slot = (g["pair"], g["candidate_color"])
+        if slot in slots:
+            raise ValueError("duplicate pair/colour game")
+        slots.add(slot)
         s = candidate_score(g)
         if s is None:
             unresolved += 1
@@ -232,13 +262,21 @@ def pair_statistics(games, bootstrap=20000, seed=0):
     z = 1.959964
     centre = (rate + z * z / (2 * n)) / (1 + z * z / n)
     half = z * math.sqrt(rate * (1 - rate) / n + z * z / (4 * n * n)) / (1 + z * z / n)
+    complete_pairs = all(len(v) == 2 for v in pairs) and unresolved == 0
+    advantages = [np.mean(v) - .5 for v in pairs if len(v) == 2]
+    positive, negative = sum(a > 0 for a in advantages), sum(a < 0 for a in advantages)
+    informative = positive + negative
+    sign_p = sum(math.comb(informative, k) for k in range(positive, informative + 1)) / 2 ** informative if informative else 1.0
     return {"games": n, "pairs": len(pairs), "unresolved_games": unresolved,
             "wins": scores.count(1.0), "draws": scores.count(0.5), "losses": scores.count(0.0),
             "score": rate, "score_ci95_pair_bootstrap": [low, high],
             "score_ci95_wilson_games": [centre - half, centre + half],
             "elo_difference": elo_from_score(rate),
             "elo_difference_ci95": [elo_from_score(low), elo_from_score(high)],
-            "lower_bound_above_half": low > 0.5}
+            "lower_bound_above_half": low > 0.5, "complete_colour_pairs": complete_pairs,
+            "paired_sign_test_p_one_sided": sign_p,
+            "promotion_gate_passed": complete_pairs and len(pairs) >= 10 and low > .5 and sign_p < .05,
+            "statistical_assumptions": "independent opening clusters; sign symmetry under equal-strength null"}
 
 
 def anchored_elo(groups, bootstrap=5000, seed=0):
@@ -290,7 +328,7 @@ def anchored_elo(groups, bootstrap=5000, seed=0):
         b = fit(sample)
         if b is not None:
             boots.append(b)
-    low, high = np.percentile(np.array(boots), [2.5, 97.5])
+    low, high = np.percentile(np.array(boots), [2.5, 97.5], method="nearest")
     finite = lambda v: float(v) if math.isfinite(v) else None  # None: unbounded at that end
     return {"estimate": point, "ci95": [finite(low), finite(high)],
             "bootstrap_degenerate_fraction": float(np.mean(~np.isfinite(boots))),
