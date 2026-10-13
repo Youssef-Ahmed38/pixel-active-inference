@@ -1,0 +1,92 @@
+{
+  "scope": "free MuJoCo bicycle, wheel drive, steering and simplified torso rider; privileged sensors",
+  "gate": {
+    "distance_m": 10,
+    "fall_roll_radians": 0.7,
+    "seeds": [
+      0,
+      1,
+      2
+    ]
+  },
+  "episodes": [
+    {
+      "seed": 0,
+      "condition": "uncontrolled",
+      "success": false,
+      "distance": 8.094562875167252,
+      "seconds": 2.039999999999997,
+      "fallen": true,
+      "final_roll": 0.7180501556714006,
+      "events": [
+        {
+          "type": "fall",
+          "step": 102,
+          "roll": 0.7180501556714006
+        }
+      ]
+    },
+    {
+      "seed": 0,
+      "condition": "classical",
+      "success": true,
+      "distance": 10.057248416698219,
+      "seconds": 2.539999999999942,
+      "fallen": false,
+      "final_roll": 0.04414312577939965,
+      "events": []
+    },
+    {
+      "seed": 1,
+      "condition": "uncontrolled",
+      "success": true,
+      "distance": 10.044780718205335,
+      "seconds": 2.539999999999942,
+      "fallen": false,
+      "final_roll": 0.13295893980458356,
+      "events": []
+    },
+    {
+      "seed": 1,
+      "condition": "classical",
+      "success": true,
+      "distance": 10.058174074614163,
+      "seconds": 2.539999999999942,
+      "fallen": false,
+      "final_roll": 0.0029134724557206833,
+      "events": []
+    },
+    {
+      "seed": 2,
+      "condition": "uncontrolled",
+      "success": false,
+      "distance": 7.229753765375022,
+      "seconds": 1.8200000000000014,
+      "fallen": true,
+      "final_roll": -0.7359513363333853,
+      "events": [
+        {
+          "type": "fall",
+          "step": 91,
+          "roll": -0.7359513363333853
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "condition": "classical",
+      "success": true,
+      "distance": 10.041417178178605,
+      "seconds": 2.539999999999942,
+      "fallen": false,
+      "final_roll": -0.06306881288906435,
+      "events": []
+    }
+  ],
+  "remaining": [
+    "video demonstrations",
+    "inverse dynamics observation learning",
+    "practice learning",
+    "Stage 2 transfer and no-observation comparisons"
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "scope": "single calibrated view RGB orientation regression, simulator-labelled static poses",
+  "model": {
+    "training_frames": 600,
+    "ridge": 0.001,
+    "channels": [
+      "roll",
+      "pitch",
+      "yaw"
+    ],
+    "train_seed": 810,
+    "validation_seed": 811,
+    "camera": {
+      "distance": 3,
+      "azimuth": 120,
+      "elevation": -15,
+      "lookat": [
+        0,
+        0,
+        0.69
+      ]
+    },
+    "angle_convention": "frame ZYX Euler roll, pitch, yaw"
+  },
+  "validation": {
+    "frames": 160,
+    "mae_radians": [
+      0.017703062454020292,
+      0.0064516231625045325,
+      0.012953931984926148
+    ],
+    "rmse_radians": [
+      0.023766777828974028,
+      0.008343688075574665,
+      0.01708507991983459
+    ],
+    "zero_predictor_mae_radians": [
+      0.17281302772765483,
+      0.07119236295553087,
+      0.1969792853784173
+    ]
+  },
+  "evaluation": {
+    "frames": 200,
+    "mae_radians": [
+      0.016163319501797342,
+      0.006172078086017642,
+      0.012121492365617088
+    ],
+    "rmse_radians": [
+      0.022668824904464712,
+      0.008038524687111475,
+      0.0160393518912664
+    ],
+    "zero_predictor_mae_radians": [
+      0.1750108612955972,
+      0.06624487832830038,
+      0.18243617414567015
+    ]
+  },
+  "improves_zero_baseline_all_channels": true,
+  "limitations": [
+    "fixed camera, geometry, lighting and colours",
+    "synthetic static poses, not independent video episodes",
+    "no translation, wheel phase, joint pose or velocity extraction",
+    "not yet connected to the inverse-dynamics student or closed-loop riding"
+  ]
+}

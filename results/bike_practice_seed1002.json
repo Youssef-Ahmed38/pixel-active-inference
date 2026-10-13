@@ -1,0 +1,5792 @@
+{
+  "scope": "random-search CPU practice; diverse moving starts; known model and motion observations",
+  "updates_per_condition": 24,
+  "mutation_seed": 1002,
+  "conditions": {
+    "observed_motion": {
+      "practice": [
+        {
+          "attempt": 0,
+          "accepted": true,
+          "score": [
+            8,
+            8.0
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": true,
+              "distance": 10.036547327716319,
+              "fallen": false,
+              "seconds": 2.4599999999999507
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": true,
+              "distance": 10.041464367654743,
+              "fallen": false,
+              "seconds": 2.3599999999999617
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": -6.506371332766975,
+              "fallen": false,
+              "seconds": 10.000000000000009
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": -9.4885085164608,
+              "fallen": false,
+              "seconds": 10.000000000000009
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": true,
+              "distance": 10.05084665702894,
+              "fallen": false,
+              "seconds": 2.4999999999999463
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": true,
+              "distance": 10.019717010840145,
+              "fallen": false,
+              "seconds": 3.0599999999998846
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": true,
+              "distance": 10.031359710492936,
+              "fallen": false,
+              "seconds": 2.3799999999999595
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": true,
+              "distance": 10.010446203555848,
+              "fallen": false,
+              "seconds": 2.639999999999931
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": true,
+              "distance": 10.064660067850616,
+              "fallen": false,
+              "seconds": 2.4599999999999507
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": true,
+              "distance": 10.002184635075448,
+              "fallen": false,
+              "seconds": 3.199999999999869
+            }
+          ]
+        },
+        {
+          "attempt": 1,
+          "accepted": false,
+          "score": [
+            0,
+            2.7962932061497563
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 2.791326224323817,
+              "fallen": true,
+              "seconds": 0.6600000000000005
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 2.6631709121914553,
+              "fallen": true,
+              "seconds": 0.6000000000000004
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 2.860108249205277,
+              "fallen": true,
+              "seconds": 0.9600000000000007
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 2.666727820198491,
+              "fallen": true,
+              "seconds": 0.8200000000000006
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 2.8805053721687903,
+              "fallen": true,
+              "seconds": 0.6800000000000005
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 3.0027081487739085,
+              "fallen": true,
+              "seconds": 0.7800000000000006
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 2.5315695477283446,
+              "fallen": true,
+              "seconds": 0.5600000000000004
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 2.801877442183227,
+              "fallen": true,
+              "seconds": 0.7200000000000005
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 2.8166023790972345,
+              "fallen": true,
+              "seconds": 0.6600000000000005
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 2.94833596562702,
+              "fallen": true,
+              "seconds": 0.8000000000000006
+            }
+          ]
+        },
+        {
+          "attempt": 2,
+          "accepted": false,
+          "score": [
+            0,
+            3.330848686571303
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 3.5104246497241376,
+              "fallen": true,
+              "seconds": 2.999999999999891
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 4.153593043245978,
+              "fallen": true,
+              "seconds": 3.1599999999998736
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 2.499464784544272,
+              "fallen": true,
+              "seconds": 2.339999999999964
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 3.1298321407996736,
+              "fallen": true,
+              "seconds": 2.6599999999999286
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 3.4157208854619774,
+              "fallen": true,
+              "seconds": 2.9599999999998956
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 2.507403670250077,
+              "fallen": true,
+              "seconds": 2.6599999999999286
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 4.748140811851818,
+              "fallen": true,
+              "seconds": 3.299999999999858
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 3.28286807005968,
+              "fallen": true,
+              "seconds": 2.8799999999999044
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 3.528668214377534,
+              "fallen": true,
+              "seconds": 2.999999999999891
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 2.532370595397882,
+              "fallen": true,
+              "seconds": 2.639999999999931
+            }
+          ]
+        },
+        {
+          "attempt": 3,
+          "accepted": false,
+          "score": [
+            6,
+            8.531650325615828
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": true,
+              "distance": 10.059944025452433,
+              "fallen": false,
+              "seconds": 2.4999999999999463
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": true,
+              "distance": 10.013056344638821,
+              "fallen": false,
+              "seconds": 2.319999999999966
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 4.8936487300089375,
+              "fallen": true,
+              "seconds": 3.019999999999889
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 7.88449468323948,
+              "fallen": true,
+              "seconds": 4.159999999999764
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": true,
+              "distance": 10.038414352281887,
+              "fallen": false,
+              "seconds": 2.519999999999944
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 6.303266177493913,
+              "fallen": true,
+              "seconds": 3.999999999999781
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": true,
+              "distance": 10.008422426869453,
+              "fallen": false,
+              "seconds": 2.2799999999999705
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": true,
+              "distance": 10.021001686298954,
+              "fallen": false,
+              "seconds": 2.7599999999999176
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": true,
+              "distance": 10.05795303095361,
+              "fallen": false,
+              "seconds": 2.4799999999999485
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 6.235093665415954,
+              "fallen": true,
+              "seconds": 3.8599999999997965
+            }
+          ]
+        },
+        {
+          "attempt": 4,
+          "accepted": false,
+          "score": [
+            2,
+            4.8275515184222835
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 3.890426236132628,
+              "fallen": true,
+              "seconds": 4.719999999999702
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": true,
+              "distance": 10.014413802154623,
+              "fallen": false,
+              "seconds": 2.619999999999933
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 2.9286344202837298,
+              "fallen": true,
+              "seconds": 3.019999999999889
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 5.495120981021573,
+              "fallen": true,
+              "seconds": 4.2999999999997485
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 3.622581077987165,
+              "fallen": true,
+              "seconds": 4.679999999999707
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 2.247002668183969,
+              "fallen": true,
+              "seconds": 4.0999999999997705
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": true,
+              "distance": 10.065276935422707,
+              "fallen": false,
+              "seconds": 2.3799999999999595
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 3.914398836542014,
+              "fallen": true,
+              "seconds": 4.479999999999729
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 3.8440656716852972,
+              "fallen": true,
+              "seconds": 4.7399999999997
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 2.3332852923864573,
+              "fallen": true,
+              "seconds": 3.9399999999997877
+            }
+          ]
+        },
+        {
+          "attempt": 5,
+          "accepted": false,
+          "score": [
+            0,
+            6.455202204243482
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 7.142928093985962,
+              "fallen": true,
+              "seconds": 1.9400000000000015
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 7.129901488567652,
+              "fallen": true,
+              "seconds": 1.8600000000000014
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 4.648052835753138,
+              "fallen": true,
+              "seconds": 1.8200000000000014
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 4.5019070235403165,
+              "fallen": true,
+              "seconds": 1.6800000000000013
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 7.337063577311163,
+              "fallen": true,
+              "seconds": 1.9800000000000015
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 7.0617767315603075,
+              "fallen": true,
+              "seconds": 2.0599999999999947
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 6.7339724204816775,
+              "fallen": true,
+              "seconds": 1.7600000000000013
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 6.218197549327451,
+              "fallen": true,
+              "seconds": 1.8600000000000014
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 7.292926991145598,
+              "fallen": true,
+              "seconds": 1.9600000000000015
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 6.485295330761555,
+              "fallen": true,
+              "seconds": 2.0000000000000013
+            }
+          ]
+        },
+        {
+          "attempt": 6,
+          "accepted": false,
+          "score": [
+            0,
+            2.2780928607846516
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 2.2170781359172613,
+              "fallen": true,
+              "seconds": 0.5400000000000004
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 2.312079304400475,
+              "fallen": true,
+              "seconds": 0.5400000000000004
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 2.3138662987083976,
+              "fallen": true,
+              "seconds": 0.8000000000000006
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 2.453288218428703,
+              "fallen": true,
+              "seconds": 0.7800000000000006
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 2.225401103235185,
+              "fallen": true,
+              "seconds": 0.5400000000000004
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 2.112904726593376,
+              "fallen": true,
+              "seconds": 0.5600000000000004
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 2.4167750876010685,
+              "fallen": true,
+              "seconds": 0.5600000000000004
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 2.3335868507531923,
+              "fallen": true,
+              "seconds": 0.6200000000000004
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 2.23982347767668,
+              "fallen": true,
+              "seconds": 0.5400000000000004
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 2.1561254045321774,
+              "fallen": true,
+              "seconds": 0.6000000000000004
+            }
+          ]
+        },
+        {
+          "attempt": 7,
+          "accepted": false,
+          "score": [
+            0,
+            1.058157352264611
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 0.6756382592894338,
+              "fallen": true,
+              "seconds": 3.619999999999823
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 0.17922353884519193,
+              "fallen": true,
+              "seconds": 3.619999999999823
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 3.4290108335242286,
+              "fallen": true,
+              "seconds": 2.439999999999953
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 1.0721810076295033,
+              "fallen": true,
+              "seconds": 2.9599999999998956
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 0.853996905669215,
+              "fallen": true,
+              "seconds": 3.6599999999998185
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 1.5662517034784407,
+              "fallen": true,
+              "seconds": 3.719999999999812
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": -0.2791394445889887,
+              "fallen": true,
+              "seconds": 3.5799999999998273
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 0.6329237338531114,
+              "fallen": true,
+              "seconds": 3.4399999999998427
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 0.7053687874214725,
+              "fallen": true,
+              "seconds": 3.6599999999998185
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 1.4669787529355125,
+              "fallen": true,
+              "seconds": 3.5799999999998273
+            }
+          ]
+        },
+        {
+          "attempt": 8,
+          "accepted": false,
+          "score": [
+            0,
+            2.6606877842998333
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 2.7150471643939587,
+              "fallen": true,
+              "seconds": 0.6600000000000005
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 2.5969115062922015,
+              "fallen": true,
+              "seconds": 0.6000000000000004
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 2.6507914391654923,
+              "fallen": true,
+              "seconds": 0.9200000000000007
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 2.4046990502473604,
+              "fallen": true,
+              "seconds": 0.7600000000000006
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 2.7128349167543204,
+              "fallen": true,
+              "seconds": 0.6600000000000005
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 2.905365237413826,
+              "fallen": true,
+              "seconds": 0.7800000000000006
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 2.3832874896348035,
+              "fallen": true,
+              "seconds": 0.5400000000000004
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 2.644758980003211,
+              "fallen": true,
+              "seconds": 0.7000000000000005
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 2.7391553714153973,
+              "fallen": true,
+              "seconds": 0.6600000000000005
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 2.854026687677762,
+              "fallen": true,
+              "seconds": 0.8000000000000006
+            }
+          ]
+        },
+        {
+          "attempt": 9,
+          "accepted": false,
+          "score": [
+            1,
+            5.135549258531552
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 6.491346807389205,
+              "fallen": true,
+              "seconds": 6.399999999999517
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 7.967287869007894,
+              "fallen": true,
+              "seconds": 7.09999999999944
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 3.0511705206814264,
+              "fallen": true,
+              "seconds": 2.4799999999999485
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 3.864797618463324,
+              "fallen": true,
+              "seconds": 3.2799999999998604
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 6.197631034282163,
+              "fallen": true,
+              "seconds": 6.359999999999522
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 1.880833124932644,
+              "fallen": true,
+              "seconds": 3.5599999999998295
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": true,
+              "distance": 10.026715699636783,
+              "fallen": false,
+              "seconds": 2.519999999999944
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 3.2743484078903378,
+              "fallen": true,
+              "seconds": 3.91999999999979
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 6.477100573167001,
+              "fallen": true,
+              "seconds": 6.479999999999508
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 2.1509766295015247,
+              "fallen": true,
+              "seconds": 3.299999999999858
+            }
+          ]
+        },
+        {
+          "attempt": 10,
+          "accepted": false,
+          "score": [
+            0,
+            5.035645583467575
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 5.326648122381277,
+              "fallen": true,
+              "seconds": 1.360000000000001
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 5.112106659091409,
+              "fallen": true,
+              "seconds": 1.2400000000000009
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 4.426700855172334,
+              "fallen": true,
+              "seconds": 1.6800000000000013
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 4.006683660231589,
+              "fallen": true,
+              "seconds": 1.400000000000001
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 5.435330596393982,
+              "fallen": true,
+              "seconds": 1.380000000000001
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 5.675412244481159,
+              "fallen": true,
+              "seconds": 1.6000000000000012
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 4.69811247519603,
+              "fallen": true,
+              "seconds": 1.1200000000000008
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 4.952849604700992,
+              "fallen": true,
+              "seconds": 1.400000000000001
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 5.390425961904005,
+              "fallen": true,
+              "seconds": 1.360000000000001
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 5.3321856551229825,
+              "fallen": true,
+              "seconds": 1.5800000000000012
+            }
+          ]
+        },
+        {
+          "attempt": 11,
+          "accepted": false,
+          "score": [
+            0,
+            4.021163542399681
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 4.022623296202577,
+              "fallen": true,
+              "seconds": 1.0000000000000007
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 3.7405876022819027,
+              "fallen": true,
+              "seconds": 0.8800000000000007
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 4.2106331280199125,
+              "fallen": true,
+              "seconds": 1.6600000000000013
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 3.6658334723112307,
+              "fallen": true,
+              "seconds": 1.300000000000001
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 4.108092758996869,
+              "fallen": true,
+              "seconds": 1.0200000000000007
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 4.535617863812346,
+              "fallen": true,
+              "seconds": 1.260000000000001
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 3.3865731352594843,
+              "fallen": true,
+              "seconds": 0.7800000000000006
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 4.04663818869784,
+              "fallen": true,
+              "seconds": 1.1200000000000008
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 4.062230274944101,
+              "fallen": true,
+              "seconds": 1.0000000000000007
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 4.432805703470543,
+              "fallen": true,
+              "seconds": 1.300000000000001
+            }
+          ]
+        },
+        {
+          "attempt": 12,
+          "accepted": false,
+          "score": [
+            0,
+            2.0719768050344554
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 2.0954062893454064,
+              "fallen": true,
+              "seconds": 0.5000000000000003
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 2.1863181284545297,
+              "fallen": true,
+              "seconds": 0.5000000000000003
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 2.0823619409490575,
+              "fallen": true,
+              "seconds": 0.7000000000000005
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 2.1957787361201704,
+              "fallen": true,
+              "seconds": 0.6800000000000005
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 2.014665178451244,
+              "fallen": true,
+              "seconds": 0.48000000000000037
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 1.8427781669515482,
+              "fallen": true,
+              "seconds": 0.48000000000000037
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 2.294116915270852,
+              "fallen": true,
+              "seconds": 0.5200000000000004
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 2.0745170101884884,
+              "fallen": true,
+              "seconds": 0.5400000000000004
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 2.028287809464001,
+              "fallen": true,
+              "seconds": 0.48000000000000037
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 1.9055378751492589,
+              "fallen": true,
+              "seconds": 0.5200000000000004
+            }
+          ]
+        },
+        {
+          "attempt": 13,
+          "accepted": false,
+          "score": [
+            7,
+            9.04796182294272
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": true,
+              "distance": 10.026823341874755,
+              "fallen": false,
+              "seconds": 2.5999999999999353
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": true,
+              "distance": 10.059394386159733,
+              "fallen": false,
+              "seconds": 2.2999999999999683
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 6.677251176691736,
+              "fallen": true,
+              "seconds": 3.9799999999997833
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": true,
+              "distance": 10.0437696692027,
+              "fallen": false,
+              "seconds": 2.899999999999902
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": true,
+              "distance": 10.010313181514196,
+              "fallen": false,
+              "seconds": 2.7799999999999154
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 6.855595267608935,
+              "fallen": true,
+              "seconds": 3.419999999999845
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": true,
+              "distance": 10.008414271058967,
+              "fallen": false,
+              "seconds": 2.1799999999999815
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": true,
+              "distance": 10.034168008496401,
+              "fallen": false,
+              "seconds": 2.7599999999999176
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": true,
+              "distance": 10.01170973879908,
+              "fallen": false,
+              "seconds": 2.5999999999999353
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 6.946771785126514,
+              "fallen": true,
+              "seconds": 3.5599999999998295
+            }
+          ]
+        },
+        {
+          "attempt": 14,
+          "accepted": true,
+          "score": [
+            8,
+            9.19985946687766
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": true,
+              "distance": 10.022128115246376,
+              "fallen": false,
+              "seconds": 5.73999999999959
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": true,
+              "distance": 10.032022494320547,
+              "fallen": false,
+              "seconds": 5.999999999999561
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 6.193409478053719,
+              "fallen": true,
+              "seconds": 6.819999999999471
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 5.805185190722888,
+              "fallen": true,
+              "seconds": 6.819999999999471
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": true,
+              "distance": 10.03432671841992,
+              "fallen": false,
+              "seconds": 5.719999999999592
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": true,
+              "distance": 10.024236679322218,
+              "fallen": false,
+              "seconds": 5.539999999999612
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": true,
+              "distance": 10.01408301891702,
+              "fallen": false,
+              "seconds": 6.179999999999541
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": true,
+              "distance": 10.005206362950245,
+              "fallen": false,
+              "seconds": 5.639999999999601
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": true,
+              "distance": 10.03607151186815,
+              "fallen": false,
+              "seconds": 5.759999999999588
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": true,
+              "distance": 10.034350338176056,
+              "fallen": false,
+              "seconds": 5.5799999999996075
+            }
+          ]
+        },
+        {
+          "attempt": 15,
+          "accepted": true,
+          "score": [
+            10,
+            10.0
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": true,
+              "distance": 10.015665833672369,
+              "fallen": false,
+              "seconds": 2.6799999999999264
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": true,
+              "distance": 10.038238942244003,
+              "fallen": false,
+              "seconds": 2.5799999999999375
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": true,
+              "distance": 10.007383854543743,
+              "fallen": false,
+              "seconds": 5.259999999999643
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": true,
+              "distance": 10.002918037579063,
+              "fallen": false,
+              "seconds": 3.419999999999845
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": true,
+              "distance": 10.003444173678094,
+              "fallen": false,
+              "seconds": 2.6799999999999264
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": true,
+              "distance": 10.02410239192004,
+              "fallen": false,
+              "seconds": 3.0599999999998846
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": true,
+              "distance": 10.017744424510651,
+              "fallen": false,
+              "seconds": 2.5999999999999353
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": true,
+              "distance": 10.041408140798664,
+              "fallen": false,
+              "seconds": 2.9199999999999
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": true,
+              "distance": 10.027881657691372,
+              "fallen": false,
+              "seconds": 2.6599999999999286
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": true,
+              "distance": 10.030625616886494,
+              "fallen": false,
+              "seconds": 3.219999999999867
+            }
+          ]
+        },
+        {
+          "attempt": 16,
+          "accepted": false,
+          "score": [
+            0,
+            2.0673743725995886
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 2.0493159019247584,
+              "fallen": true,
+              "seconds": 0.5200000000000004
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 2.2207840603741724,
+              "fallen": true,
+              "seconds": 0.5400000000000004
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 1.9522410560085852,
+              "fallen": true,
+              "seconds": 0.7000000000000005
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 2.1015991707441914,
+              "fallen": true,
+              "seconds": 0.7000000000000005
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 2.05702544666912,
+              "fallen": true,
+              "seconds": 0.5200000000000004
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 1.8828023837082626,
+              "fallen": true,
+              "seconds": 0.5200000000000004
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 2.3186353840184624,
+              "fallen": true,
+              "seconds": 0.5600000000000004
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 2.090765526069213,
+              "fallen": true,
+              "seconds": 0.5800000000000004
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 2.0702490279619936,
+              "fallen": true,
+              "seconds": 0.5200000000000004
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 1.9303257685171284,
+              "fallen": true,
+              "seconds": 0.5600000000000004
+            }
+          ]
+        },
+        {
+          "attempt": 17,
+          "accepted": false,
+          "score": [
+            0,
+            3.6267554199905314
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 3.723190834464262,
+              "fallen": true,
+              "seconds": 0.9200000000000007
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 4.126040662731031,
+              "fallen": true,
+              "seconds": 0.9800000000000008
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 2.9627812584971323,
+              "fallen": true,
+              "seconds": 1.0600000000000007
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 3.471601703456036,
+              "fallen": true,
+              "seconds": 1.1400000000000008
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 3.6529957629524388,
+              "fallen": true,
+              "seconds": 0.9000000000000007
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 3.1192389956463686,
+              "fallen": true,
+              "seconds": 0.8400000000000006
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 4.562790159939854,
+              "fallen": true,
+              "seconds": 1.0800000000000007
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 3.6715235084454325,
+              "fallen": true,
+              "seconds": 1.0000000000000007
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 3.752950771331381,
+              "fallen": true,
+              "seconds": 0.9200000000000007
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 3.224440542441374,
+              "fallen": true,
+              "seconds": 0.9200000000000007
+            }
+          ]
+        },
+        {
+          "attempt": 18,
+          "accepted": false,
+          "score": [
+            1,
+            7.869973604271704
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 8.26936642190214,
+              "fallen": true,
+              "seconds": 3.399999999999847
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 7.929884462201265,
+              "fallen": true,
+              "seconds": 3.199999999999869
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 7.29840418829999,
+              "fallen": true,
+              "seconds": 3.9399999999997877
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 5.2971835990793945,
+              "fallen": true,
+              "seconds": 3.2799999999998604
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 8.532842966807324,
+              "fallen": true,
+              "seconds": 3.4399999999998427
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": true,
+              "distance": 10.007261993741684,
+              "fallen": false,
+              "seconds": 2.8599999999999066
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 7.240009847317859,
+              "fallen": true,
+              "seconds": 2.999999999999891
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 7.335499740902473,
+              "fallen": true,
+              "seconds": 3.419999999999845
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 8.447785937064745,
+              "fallen": true,
+              "seconds": 3.399999999999847
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 8.348758879141844,
+              "fallen": true,
+              "seconds": 3.7599999999998075
+            }
+          ]
+        },
+        {
+          "attempt": 19,
+          "accepted": false,
+          "score": [
+            8,
+            9.039533967458649
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": true,
+              "distance": 10.05174640015862,
+              "fallen": false,
+              "seconds": 3.2399999999998648
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": true,
+              "distance": 10.049365227040086,
+              "fallen": false,
+              "seconds": 3.019999999999889
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 3.7062223743919445,
+              "fallen": true,
+              "seconds": 2.7599999999999176
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 6.689117300194545,
+              "fallen": true,
+              "seconds": 3.3399999999998538
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": true,
+              "distance": 10.041237070947794,
+              "fallen": false,
+              "seconds": 3.2399999999998648
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": true,
+              "distance": 10.032734433987383,
+              "fallen": false,
+              "seconds": 3.6399999999998207
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": true,
+              "distance": 10.009281409760685,
+              "fallen": false,
+              "seconds": 2.9199999999999
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": true,
+              "distance": 10.021119041145651,
+              "fallen": false,
+              "seconds": 3.5799999999998273
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": true,
+              "distance": 10.034880356815492,
+              "fallen": false,
+              "seconds": 3.199999999999869
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": true,
+              "distance": 10.010726250421959,
+              "fallen": false,
+              "seconds": 3.8599999999997965
+            }
+          ]
+        },
+        {
+          "attempt": 20,
+          "accepted": false,
+          "score": [
+            2,
+            5.608030464100845
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 8.43054351784542,
+              "fallen": true,
+              "seconds": 8.299999999999441
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": true,
+              "distance": 10.006487887343935,
+              "fallen": false,
+              "seconds": 8.119999999999381
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 0.9822217376192738,
+              "fallen": true,
+              "seconds": 2.9199999999999
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 0.8859647496045903,
+              "fallen": true,
+              "seconds": 3.519999999999834
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 8.117758173342972,
+              "fallen": true,
+              "seconds": 8.339999999999455
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 4.203502605319252,
+              "fallen": true,
+              "seconds": 7.139999999999436
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": true,
+              "distance": 10.023740831142952,
+              "fallen": false,
+              "seconds": 7.879999999999354
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 5.187269204966134,
+              "fallen": true,
+              "seconds": 7.379999999999409
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 7.49468449013339,
+              "fallen": true,
+              "seconds": 8.659999999999561
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 0.7783601621774177,
+              "fallen": true,
+              "seconds": 5.599999999999605
+            }
+          ]
+        },
+        {
+          "attempt": 21,
+          "accepted": false,
+          "score": [
+            9,
+            9.713180419589694
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": true,
+              "distance": 10.000660713489017,
+              "fallen": false,
+              "seconds": 2.5599999999999397
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": true,
+              "distance": 10.020019040204604,
+              "fallen": false,
+              "seconds": 2.3999999999999573
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 7.131804195896941,
+              "fallen": true,
+              "seconds": 7.219999999999427
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": true,
+              "distance": 10.032600541745056,
+              "fallen": false,
+              "seconds": 5.059999999999665
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": true,
+              "distance": 10.058277087557746,
+              "fallen": false,
+              "seconds": 2.5799999999999375
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": true,
+              "distance": 10.031719594548328,
+              "fallen": false,
+              "seconds": 3.0799999999998824
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": true,
+              "distance": 10.071088310630993,
+              "fallen": false,
+              "seconds": 2.3799999999999595
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": true,
+              "distance": 10.001033747664458,
+              "fallen": false,
+              "seconds": 2.819999999999911
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": true,
+              "distance": 10.022492690051186,
+              "fallen": false,
+              "seconds": 2.539999999999942
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": true,
+              "distance": 10.006585416054053,
+              "fallen": false,
+              "seconds": 3.3399999999998538
+            }
+          ]
+        },
+        {
+          "attempt": 22,
+          "accepted": false,
+          "score": [
+            0,
+            5.493990002194724
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 5.586511916438766,
+              "fallen": true,
+              "seconds": 2.4599999999999507
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 6.420772455738324,
+              "fallen": true,
+              "seconds": 2.719999999999922
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 4.287289686037568,
+              "fallen": true,
+              "seconds": 1.9600000000000015
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 5.799777440787184,
+              "fallen": true,
+              "seconds": 2.439999999999953
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 5.368184433951748,
+              "fallen": true,
+              "seconds": 2.3999999999999573
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 4.36691121166605,
+              "fallen": true,
+              "seconds": 2.0599999999999947
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 7.472656855697168,
+              "fallen": true,
+              "seconds": 2.899999999999902
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 5.622188053991559,
+              "fallen": true,
+              "seconds": 2.3599999999999617
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 5.520993825705714,
+              "fallen": true,
+              "seconds": 2.4599999999999507
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 4.49461414193316,
+              "fallen": true,
+              "seconds": 2.039999999999997
+            }
+          ]
+        },
+        {
+          "attempt": 23,
+          "accepted": false,
+          "score": [
+            8,
+            8.913861893829932
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": true,
+              "distance": 10.003948753078634,
+              "fallen": false,
+              "seconds": 4.479999999999729
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": true,
+              "distance": 10.0003827300506,
+              "fallen": false,
+              "seconds": 3.9599999999997855
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 2.744390027028054,
+              "fallen": true,
+              "seconds": 3.9399999999997877
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 6.394228911271268,
+              "fallen": true,
+              "seconds": 6.779999999999475
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": true,
+              "distance": 10.05821191904216,
+              "fallen": false,
+              "seconds": 4.539999999999722
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": true,
+              "distance": 10.038622696200388,
+              "fallen": false,
+              "seconds": 5.139999999999656
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": true,
+              "distance": 10.008257659886572,
+              "fallen": false,
+              "seconds": 3.199999999999869
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": true,
+              "distance": 10.033990036416252,
+              "fallen": false,
+              "seconds": 4.859999999999687
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": true,
+              "distance": 10.031240975895322,
+              "fallen": false,
+              "seconds": 4.459999999999731
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": true,
+              "distance": 10.014016614168868,
+              "fallen": false,
+              "seconds": 5.619999999999603
+            }
+          ]
+        },
+        {
+          "attempt": 24,
+          "accepted": false,
+          "score": [
+            0,
+            1.6558759272066204
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 1.7075435677845292,
+              "fallen": true,
+              "seconds": 0.44000000000000034
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 1.6433278421962558,
+              "fallen": true,
+              "seconds": 0.4000000000000003
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 1.5704741069520716,
+              "fallen": true,
+              "seconds": 0.5800000000000004
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 1.440368734332817,
+              "fallen": true,
+              "seconds": 0.48000000000000037
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 1.7790113079596308,
+              "fallen": true,
+              "seconds": 0.46000000000000035
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 1.8086685529731183,
+              "fallen": true,
+              "seconds": 0.5200000000000004
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 1.5195269834436613,
+              "fallen": true,
+              "seconds": 0.36000000000000026
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 1.634490475135778,
+              "fallen": true,
+              "seconds": 0.46000000000000035
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 1.7242989929595107,
+              "fallen": true,
+              "seconds": 0.44000000000000034
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 1.731048708328833,
+              "fallen": true,
+              "seconds": 0.5200000000000004
+            }
+          ]
+        }
+      ],
+      "first_all_successful_practice_attempt": 15,
+      "attempt_definition": "one candidate evaluated on all practice seeds; attempt 0 is the initial policy",
+      "baseline_evaluation": [
+        {
+          "seed": 140,
+          "start_speed": 3.8352400998711467,
+          "start_roll": 0.02427036108928371,
+          "success": true,
+          "distance": 10.02190142372078,
+          "fallen": false,
+          "seconds": 2.6799999999999264
+        },
+        {
+          "seed": 141,
+          "start_speed": 3.9725930147761765,
+          "start_roll": 0.09947265078115922,
+          "success": true,
+          "distance": 10.01565606573002,
+          "fallen": false,
+          "seconds": 2.7799999999999154
+        },
+        {
+          "seed": 142,
+          "start_speed": 2.5445801313108474,
+          "start_roll": -0.07850177150554166,
+          "success": false,
+          "distance": 2.3169342619967104,
+          "fallen": false,
+          "seconds": 10.000000000000009
+        },
+        {
+          "seed": 143,
+          "start_speed": 3.3266403195094343,
+          "start_roll": 0.09535842010167062,
+          "success": false,
+          "distance": -10.417701584348192,
+          "fallen": false,
+          "seconds": 10.000000000000009
+        },
+        {
+          "seed": 144,
+          "start_speed": 4.0855236799984755,
+          "start_roll": -0.08806252669010242,
+          "success": true,
+          "distance": 10.033131877348048,
+          "fallen": false,
+          "seconds": 2.639999999999931
+        },
+        {
+          "seed": 145,
+          "start_speed": 3.7012611131762556,
+          "start_roll": -0.04627981465030229,
+          "success": true,
+          "distance": 10.044429704062981,
+          "fallen": false,
+          "seconds": 2.899999999999902
+        },
+        {
+          "seed": 146,
+          "start_speed": 4.101008085475776,
+          "start_roll": -0.02419087372373019,
+          "success": true,
+          "distance": 10.011290524215623,
+          "fallen": false,
+          "seconds": 2.4999999999999463
+        },
+        {
+          "seed": 147,
+          "start_speed": 4.4789733626214545,
+          "start_roll": 0.05642381461564522,
+          "success": true,
+          "distance": 10.035475421486963,
+          "fallen": false,
+          "seconds": 2.339999999999964
+        },
+        {
+          "seed": 148,
+          "start_speed": 3.7748984951040567,
+          "start_roll": 0.009993428338406801,
+          "success": true,
+          "distance": 10.009014776327753,
+          "fallen": false,
+          "seconds": 2.6599999999999286
+        },
+        {
+          "seed": 149,
+          "start_speed": 2.6640513997100665,
+          "start_roll": -0.047778234965050875,
+          "success": false,
+          "distance": -7.123129735283838,
+          "fallen": false,
+          "seconds": 10.000000000000009
+        },
+        {
+          "seed": 150,
+          "start_speed": 2.5096440881132223,
+          "start_roll": 0.08615740354065102,
+          "success": false,
+          "distance": 2.2259238781145245,
+          "fallen": false,
+          "seconds": 10.000000000000009
+        },
+        {
+          "seed": 151,
+          "start_speed": 3.483587684914259,
+          "start_roll": -0.027971699369318134,
+          "success": true,
+          "distance": 10.03514848965196,
+          "fallen": false,
+          "seconds": 3.0599999999998846
+        },
+        {
+          "seed": 152,
+          "start_speed": 2.9370654032964167,
+          "start_roll": -0.04788308905609924,
+          "success": false,
+          "distance": -9.587334434062967,
+          "fallen": false,
+          "seconds": 10.000000000000009
+        },
+        {
+          "seed": 153,
+          "start_speed": 4.370357549608635,
+          "start_roll": 0.00880969430414344,
+          "success": true,
+          "distance": 10.003704456018598,
+          "fallen": false,
+          "seconds": 2.339999999999964
+        },
+        {
+          "seed": 154,
+          "start_speed": 3.6676933096271185,
+          "start_roll": 0.03189398174020869,
+          "success": true,
+          "distance": 10.047883364545632,
+          "fallen": false,
+          "seconds": 2.8799999999999044
+        },
+        {
+          "seed": 155,
+          "start_speed": 3.122959655763302,
+          "start_roll": 0.06611740495888593,
+          "success": false,
+          "distance": -10.036100440606495,
+          "fallen": false,
+          "seconds": 10.000000000000009
+        },
+        {
+          "seed": 156,
+          "start_speed": 2.7774402084648218,
+          "start_roll": -0.09910774258594657,
+          "success": false,
+          "distance": -10.436138838228821,
+          "fallen": false,
+          "seconds": 10.000000000000009
+        },
+        {
+          "seed": 157,
+          "start_speed": 3.026183432917071,
+          "start_roll": 0.07239638449823813,
+          "success": false,
+          "distance": -10.744974536138184,
+          "fallen": false,
+          "seconds": 10.000000000000009
+        },
+        {
+          "seed": 158,
+          "start_speed": 4.4382629349914415,
+          "start_roll": 0.055763543120585846,
+          "success": true,
+          "distance": 10.029948349255713,
+          "fallen": false,
+          "seconds": 2.3599999999999617
+        },
+        {
+          "seed": 159,
+          "start_speed": 4.119882162138156,
+          "start_roll": 0.015280438653928183,
+          "success": true,
+          "distance": 10.037347817737809,
+          "fallen": false,
+          "seconds": 2.4799999999999485
+        }
+      ],
+      "practiced_evaluation": [
+        {
+          "seed": 140,
+          "start_speed": 3.8352400998711467,
+          "start_roll": 0.02427036108928371,
+          "success": true,
+          "distance": 10.0009247358612,
+          "fallen": false,
+          "seconds": 2.899999999999902
+        },
+        {
+          "seed": 141,
+          "start_speed": 3.9725930147761765,
+          "start_roll": 0.09947265078115922,
+          "success": true,
+          "distance": 10.026594644077107,
+          "fallen": false,
+          "seconds": 2.8799999999999044
+        },
+        {
+          "seed": 142,
+          "start_speed": 2.5445801313108474,
+          "start_roll": -0.07850177150554166,
+          "success": true,
+          "distance": 10.014141923628214,
+          "fallen": false,
+          "seconds": 4.179999999999762
+        },
+        {
+          "seed": 143,
+          "start_speed": 3.3266403195094343,
+          "start_roll": 0.09535842010167062,
+          "success": true,
+          "distance": 10.041524700471921,
+          "fallen": false,
+          "seconds": 3.819999999999801
+        },
+        {
+          "seed": 144,
+          "start_speed": 4.0855236799984755,
+          "start_roll": -0.08806252669010242,
+          "success": true,
+          "distance": 10.032865771963586,
+          "fallen": false,
+          "seconds": 2.819999999999911
+        },
+        {
+          "seed": 145,
+          "start_speed": 3.7012611131762556,
+          "start_roll": -0.04627981465030229,
+          "success": true,
+          "distance": 10.043418141346205,
+          "fallen": false,
+          "seconds": 2.999999999999891
+        },
+        {
+          "seed": 146,
+          "start_speed": 4.101008085475776,
+          "start_roll": -0.02419087372373019,
+          "success": true,
+          "distance": 10.049916244417691,
+          "fallen": false,
+          "seconds": 2.73999999999992
+        },
+        {
+          "seed": 147,
+          "start_speed": 4.4789733626214545,
+          "start_roll": 0.05642381461564522,
+          "success": true,
+          "distance": 10.03263455755951,
+          "fallen": false,
+          "seconds": 2.519999999999944
+        },
+        {
+          "seed": 148,
+          "start_speed": 3.7748984951040567,
+          "start_roll": 0.009993428338406801,
+          "success": true,
+          "distance": 10.040626975297796,
+          "fallen": false,
+          "seconds": 2.939999999999898
+        },
+        {
+          "seed": 149,
+          "start_speed": 2.6640513997100665,
+          "start_roll": -0.047778234965050875,
+          "success": true,
+          "distance": 10.010237962385752,
+          "fallen": false,
+          "seconds": 4.259999999999753
+        },
+        {
+          "seed": 150,
+          "start_speed": 2.5096440881132223,
+          "start_roll": 0.08615740354065102,
+          "success": false,
+          "distance": -1.747987883152167,
+          "fallen": true,
+          "seconds": 6.299999999999528
+        },
+        {
+          "seed": 151,
+          "start_speed": 3.483587684914259,
+          "start_roll": -0.027971699369318134,
+          "success": true,
+          "distance": 10.04040569881566,
+          "fallen": false,
+          "seconds": 3.139999999999876
+        },
+        {
+          "seed": 152,
+          "start_speed": 2.9370654032964167,
+          "start_roll": -0.04788308905609924,
+          "success": true,
+          "distance": 10.032204463342998,
+          "fallen": false,
+          "seconds": 3.6599999999998185
+        },
+        {
+          "seed": 153,
+          "start_speed": 4.370357549608635,
+          "start_roll": 0.00880969430414344,
+          "success": true,
+          "distance": 10.059238799016136,
+          "fallen": false,
+          "seconds": 2.5799999999999375
+        },
+        {
+          "seed": 154,
+          "start_speed": 3.6676933096271185,
+          "start_roll": 0.03189398174020869,
+          "success": true,
+          "distance": 10.020762562354149,
+          "fallen": false,
+          "seconds": 3.0799999999998824
+        },
+        {
+          "seed": 155,
+          "start_speed": 3.122959655763302,
+          "start_roll": 0.06611740495888593,
+          "success": true,
+          "distance": 10.005198581983196,
+          "fallen": false,
+          "seconds": 4.219999999999757
+        },
+        {
+          "seed": 156,
+          "start_speed": 2.7774402084648218,
+          "start_roll": -0.09910774258594657,
+          "success": true,
+          "distance": 10.034118689791075,
+          "fallen": false,
+          "seconds": 3.819999999999801
+        },
+        {
+          "seed": 157,
+          "start_speed": 3.026183432917071,
+          "start_roll": 0.07239638449823813,
+          "success": true,
+          "distance": 10.013178261484066,
+          "fallen": false,
+          "seconds": 5.159999999999654
+        },
+        {
+          "seed": 158,
+          "start_speed": 4.4382629349914415,
+          "start_roll": 0.055763543120585846,
+          "success": true,
+          "distance": 10.023113419004689,
+          "fallen": false,
+          "seconds": 2.539999999999942
+        },
+        {
+          "seed": 159,
+          "start_speed": 4.119882162138156,
+          "start_roll": 0.015280438653928183,
+          "success": true,
+          "distance": 10.050933694182811,
+          "fallen": false,
+          "seconds": 2.719999999999922
+        }
+      ],
+      "baseline_successes": 12,
+      "practiced_successes": 19
+    },
+    "scratch": {
+      "practice": [
+        {
+          "attempt": 0,
+          "accepted": true,
+          "score": [
+            0,
+            5.39608234504487
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 6.878972475733695,
+              "fallen": true,
+              "seconds": 1.6600000000000013
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 6.285031604213655,
+              "fallen": true,
+              "seconds": 1.440000000000001
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 5.044030797184016,
+              "fallen": true,
+              "seconds": 1.8000000000000014
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 3.671754051452456,
+              "fallen": true,
+              "seconds": 1.1800000000000008
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 5.487442510842917,
+              "fallen": true,
+              "seconds": 1.320000000000001
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 3.5360418114749446,
+              "fallen": true,
+              "seconds": 0.9400000000000007
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 4.357971280668782,
+              "fallen": true,
+              "seconds": 0.9800000000000008
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 8.652635651246488,
+              "fallen": true,
+              "seconds": 2.2999999999999683
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 6.117412544678354,
+              "fallen": true,
+              "seconds": 1.460000000000001
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 3.9295307229533956,
+              "fallen": true,
+              "seconds": 1.1000000000000008
+            }
+          ]
+        },
+        {
+          "attempt": 1,
+          "accepted": false,
+          "score": [
+            0,
+            2.02713787916725
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 2.0480377365834657,
+              "fallen": true,
+              "seconds": 0.5000000000000003
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 1.8982898782868902,
+              "fallen": true,
+              "seconds": 0.44000000000000034
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 2.104461742049508,
+              "fallen": true,
+              "seconds": 0.7400000000000005
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 1.8200613807180204,
+              "fallen": true,
+              "seconds": 0.5800000000000004
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 2.1281897774121115,
+              "fallen": true,
+              "seconds": 0.5200000000000004
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 2.2227702675243775,
+              "fallen": true,
+              "seconds": 0.6000000000000004
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 1.759990792866251,
+              "fallen": true,
+              "seconds": 0.4000000000000003
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 2.0278541858862793,
+              "fallen": true,
+              "seconds": 0.5400000000000004
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 2.0662481430120914,
+              "fallen": true,
+              "seconds": 0.5000000000000003
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 2.1954748873335044,
+              "fallen": true,
+              "seconds": 0.6200000000000004
+            }
+          ]
+        },
+        {
+          "attempt": 2,
+          "accepted": false,
+          "score": [
+            0,
+            3.769845343386251
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 3.8929258601775425,
+              "fallen": true,
+              "seconds": 0.9600000000000007
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 4.251338748742673,
+              "fallen": true,
+              "seconds": 1.0000000000000007
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 3.0704036152449854,
+              "fallen": true,
+              "seconds": 1.1200000000000008
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 3.8536356438606583,
+              "fallen": true,
+              "seconds": 1.280000000000001
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 3.823894865894532,
+              "fallen": true,
+              "seconds": 0.9400000000000007
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 3.1777084453792073,
+              "fallen": true,
+              "seconds": 0.8600000000000007
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 4.721210307115724,
+              "fallen": true,
+              "seconds": 1.1000000000000008
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 3.832625946576149,
+              "fallen": true,
+              "seconds": 1.0400000000000007
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 3.8516657700435935,
+              "fallen": true,
+              "seconds": 0.9400000000000007
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 3.2230442308274427,
+              "fallen": true,
+              "seconds": 0.9200000000000007
+            }
+          ]
+        },
+        {
+          "attempt": 3,
+          "accepted": false,
+          "score": [
+            0,
+            3.808153041785882
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 3.6716817086481726,
+              "fallen": true,
+              "seconds": 0.8800000000000007
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 4.6502986468415095,
+              "fallen": true,
+              "seconds": 1.0600000000000007
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 2.77254153974025,
+              "fallen": true,
+              "seconds": 0.9800000000000008
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 4.250418306406888,
+              "fallen": true,
+              "seconds": 1.360000000000001
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 3.4273456210778113,
+              "fallen": true,
+              "seconds": 0.8200000000000006
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 2.6455925248219563,
+              "fallen": true,
+              "seconds": 0.7000000000000005
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 6.585764996883618,
+              "fallen": true,
+              "seconds": 1.480000000000001
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 3.7237442635048565,
+              "fallen": true,
+              "seconds": 0.9800000000000008
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 3.624393431679977,
+              "fallen": true,
+              "seconds": 0.8600000000000007
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 2.72974937825378,
+              "fallen": true,
+              "seconds": 0.7600000000000006
+            }
+          ]
+        },
+        {
+          "attempt": 4,
+          "accepted": true,
+          "score": [
+            1,
+            5.179781829033695
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 4.535803850400156,
+              "fallen": true,
+              "seconds": 1.1000000000000008
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 5.697592439420209,
+              "fallen": true,
+              "seconds": 1.320000000000001
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 3.63414364946324,
+              "fallen": true,
+              "seconds": 1.300000000000001
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 7.7830106777492,
+              "fallen": true,
+              "seconds": 2.639999999999931
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 4.2182299461292905,
+              "fallen": true,
+              "seconds": 1.0200000000000007
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 3.2989931680967137,
+              "fallen": true,
+              "seconds": 0.8800000000000007
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": true,
+              "distance": 10.019623708917868,
+              "fallen": false,
+              "seconds": 2.339999999999964
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 4.79663210528099,
+              "fallen": true,
+              "seconds": 1.280000000000001
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 4.416910949638945,
+              "fallen": true,
+              "seconds": 1.0600000000000007
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 3.416501504158207,
+              "fallen": true,
+              "seconds": 0.9600000000000007
+            }
+          ]
+        },
+        {
+          "attempt": 5,
+          "accepted": false,
+          "score": [
+            0,
+            4.350682379107212
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 4.583451918723422,
+              "fallen": true,
+              "seconds": 1.0600000000000007
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 4.0675823389238035,
+              "fallen": true,
+              "seconds": 0.9000000000000007
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 3.624676478268185,
+              "fallen": true,
+              "seconds": 1.2200000000000009
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 2.9155597081370797,
+              "fallen": true,
+              "seconds": 0.9000000000000007
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 4.859465778698349,
+              "fallen": true,
+              "seconds": 1.1200000000000008
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 6.121304543679609,
+              "fallen": true,
+              "seconds": 1.5400000000000011
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 3.4771465995376767,
+              "fallen": true,
+              "seconds": 0.7600000000000006
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 3.9355061055370952,
+              "fallen": true,
+              "seconds": 1.0000000000000007
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 4.718938291369502,
+              "fallen": true,
+              "seconds": 1.0800000000000007
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 5.203192028197401,
+              "fallen": true,
+              "seconds": 1.380000000000001
+            }
+          ]
+        },
+        {
+          "attempt": 6,
+          "accepted": false,
+          "score": [
+            0,
+            1.9463628593319204
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 1.9327279516393086,
+              "fallen": true,
+              "seconds": 0.48000000000000037
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 2.024664056779675,
+              "fallen": true,
+              "seconds": 0.48000000000000037
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 1.8850243888908718,
+              "fallen": true,
+              "seconds": 0.6800000000000005
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 2.243803784224168,
+              "fallen": true,
+              "seconds": 0.7400000000000005
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 1.859532709289077,
+              "fallen": true,
+              "seconds": 0.46000000000000035
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 1.6947086211846993,
+              "fallen": true,
+              "seconds": 0.46000000000000035
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 2.2131553955789185,
+              "fallen": true,
+              "seconds": 0.5200000000000004
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 1.9848946615891974,
+              "fallen": true,
+              "seconds": 0.5400000000000004
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 1.8741313451371975,
+              "fallen": true,
+              "seconds": 0.46000000000000035
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 1.7509856790060891,
+              "fallen": true,
+              "seconds": 0.5000000000000003
+            }
+          ]
+        },
+        {
+          "attempt": 7,
+          "accepted": false,
+          "score": [
+            0,
+            4.673074933798503
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 4.691545880331793,
+              "fallen": true,
+              "seconds": 1.1400000000000008
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 4.16749095300468,
+              "fallen": true,
+              "seconds": 0.9600000000000007
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 4.302979386055865,
+              "fallen": true,
+              "seconds": 1.5400000000000011
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 3.232266963237167,
+              "fallen": true,
+              "seconds": 1.0400000000000007
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 5.022529152965238,
+              "fallen": true,
+              "seconds": 1.2200000000000009
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 6.816718254647504,
+              "fallen": true,
+              "seconds": 1.8600000000000014
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 3.631615763378273,
+              "fallen": true,
+              "seconds": 0.8200000000000006
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 4.207590315067722,
+              "fallen": true,
+              "seconds": 1.1200000000000008
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 4.819433471800828,
+              "fallen": true,
+              "seconds": 1.1600000000000008
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 5.838579197495964,
+              "fallen": true,
+              "seconds": 1.6600000000000013
+            }
+          ]
+        },
+        {
+          "attempt": 8,
+          "accepted": false,
+          "score": [
+            0,
+            2.622580569674526
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 2.6790286386449376,
+              "fallen": true,
+              "seconds": 0.6600000000000005
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 2.4823398001757275,
+              "fallen": true,
+              "seconds": 0.5800000000000004
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 2.6006488569101367,
+              "fallen": true,
+              "seconds": 0.9400000000000007
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 2.156051209281427,
+              "fallen": true,
+              "seconds": 0.7000000000000005
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 2.7606653983061484,
+              "fallen": true,
+              "seconds": 0.6800000000000005
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 3.1382252015986416,
+              "fallen": true,
+              "seconds": 0.8600000000000007
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 2.1858615554791143,
+              "fallen": true,
+              "seconds": 0.5000000000000003
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 2.5235477924937273,
+              "fallen": true,
+              "seconds": 0.6800000000000005
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 2.70416524923654,
+              "fallen": true,
+              "seconds": 0.6600000000000005
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 2.995271994618857,
+              "fallen": true,
+              "seconds": 0.8600000000000007
+            }
+          ]
+        },
+        {
+          "attempt": 9,
+          "accepted": false,
+          "score": [
+            0,
+            3.916288078824666
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 3.988750097737493,
+              "fallen": true,
+              "seconds": 0.9800000000000008
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 4.690325463157899,
+              "fallen": true,
+              "seconds": 1.1000000000000008
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 3.0109043897526737,
+              "fallen": true,
+              "seconds": 1.1000000000000008
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 4.137688591302888,
+              "fallen": true,
+              "seconds": 1.380000000000001
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 3.758018404944606,
+              "fallen": true,
+              "seconds": 0.9200000000000007
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 2.964686775391598,
+              "fallen": true,
+              "seconds": 0.8000000000000006
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 5.66729993969449,
+              "fallen": true,
+              "seconds": 1.320000000000001
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 3.987426144856995,
+              "fallen": true,
+              "seconds": 1.0800000000000007
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 3.8670775882143045,
+              "fallen": true,
+              "seconds": 0.9400000000000007
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 3.0907033931937122,
+              "fallen": true,
+              "seconds": 0.8800000000000007
+            }
+          ]
+        },
+        {
+          "attempt": 10,
+          "accepted": false,
+          "score": [
+            0,
+            4.084725938490744
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 4.173734854101609,
+              "fallen": true,
+              "seconds": 1.0200000000000007
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 3.7134912520861074,
+              "fallen": true,
+              "seconds": 0.8600000000000007
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 3.95012754656615,
+              "fallen": true,
+              "seconds": 1.440000000000001
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 2.999090564449586,
+              "fallen": true,
+              "seconds": 0.9800000000000008
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 4.421366162154796,
+              "fallen": true,
+              "seconds": 1.0800000000000007
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 5.423967517545167,
+              "fallen": true,
+              "seconds": 1.480000000000001
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 3.259062031155076,
+              "fallen": true,
+              "seconds": 0.7400000000000005
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 3.799895146037267,
+              "fallen": true,
+              "seconds": 1.0200000000000007
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 4.21478572052329,
+              "fallen": true,
+              "seconds": 1.0200000000000007
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 4.891738590288397,
+              "fallen": true,
+              "seconds": 1.400000000000001
+            }
+          ]
+        },
+        {
+          "attempt": 11,
+          "accepted": false,
+          "score": [
+            0,
+            3.5613928991374864
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 3.467965999880421,
+              "fallen": true,
+              "seconds": 0.8600000000000007
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 3.070863925708591,
+              "fallen": true,
+              "seconds": 0.7200000000000005
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 4.063297214500067,
+              "fallen": true,
+              "seconds": 1.5200000000000011
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 2.7851096268503004,
+              "fallen": true,
+              "seconds": 0.9200000000000007
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 3.627236932722048,
+              "fallen": true,
+              "seconds": 0.9000000000000007
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 4.796611583323003,
+              "fallen": true,
+              "seconds": 1.340000000000001
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 2.61702076182978,
+              "fallen": true,
+              "seconds": 0.6000000000000004
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 3.308345175300924,
+              "fallen": true,
+              "seconds": 0.9000000000000007
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 3.500901169545748,
+              "fallen": true,
+              "seconds": 0.8600000000000007
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 4.376576601713981,
+              "fallen": true,
+              "seconds": 1.280000000000001
+            }
+          ]
+        },
+        {
+          "attempt": 12,
+          "accepted": false,
+          "score": [
+            0,
+            1.9295052761284268
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 1.883254313900975,
+              "fallen": true,
+              "seconds": 0.46000000000000035
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 1.9753267426531909,
+              "fallen": true,
+              "seconds": 0.46000000000000035
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 1.9295042660397579,
+              "fallen": true,
+              "seconds": 0.6800000000000005
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 2.111005262994794,
+              "fallen": true,
+              "seconds": 0.6800000000000005
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 1.8863283318894004,
+              "fallen": true,
+              "seconds": 0.46000000000000035
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 1.716846203275227,
+              "fallen": true,
+              "seconds": 0.46000000000000035
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 2.1710949395280044,
+              "fallen": true,
+              "seconds": 0.5000000000000003
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 1.9440880129329154,
+              "fallen": true,
+              "seconds": 0.5200000000000004
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 1.9010524049601256,
+              "fallen": true,
+              "seconds": 0.46000000000000035
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 1.7765522831098757,
+              "fallen": true,
+              "seconds": 0.5000000000000003
+            }
+          ]
+        },
+        {
+          "attempt": 13,
+          "accepted": false,
+          "score": [
+            0,
+            3.5002564466716066
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 3.4103083721212006,
+              "fallen": true,
+              "seconds": 0.8000000000000006
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 3.8534233779585323,
+              "fallen": true,
+              "seconds": 0.8600000000000007
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 3.1154816320346375,
+              "fallen": true,
+              "seconds": 1.0600000000000007
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 4.306604797922121,
+              "fallen": true,
+              "seconds": 1.320000000000001
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 3.242750598657781,
+              "fallen": true,
+              "seconds": 0.7600000000000006
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 2.7854503231674093,
+              "fallen": true,
+              "seconds": 0.7200000000000005
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 4.469437990420775,
+              "fallen": true,
+              "seconds": 0.9800000000000008
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 3.5899436382107797,
+              "fallen": true,
+              "seconds": 0.9200000000000007
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 3.3563841774792,
+              "fallen": true,
+              "seconds": 0.7800000000000006
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 2.8727795587436296,
+              "fallen": true,
+              "seconds": 0.7800000000000006
+            }
+          ]
+        },
+        {
+          "attempt": 14,
+          "accepted": false,
+          "score": [
+            0,
+            5.217481305726006
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 4.610987001378825,
+              "fallen": true,
+              "seconds": 1.1600000000000008
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 3.9698152685748958,
+              "fallen": true,
+              "seconds": 0.9400000000000007
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 5.613740166743342,
+              "fallen": true,
+              "seconds": 2.1799999999999815
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 3.2875674654715876,
+              "fallen": true,
+              "seconds": 1.1000000000000008
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 4.993646273569141,
+              "fallen": true,
+              "seconds": 1.260000000000001
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 7.747304088065268,
+              "fallen": true,
+              "seconds": 2.4999999999999463
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 3.4603986042472648,
+              "fallen": true,
+              "seconds": 0.8000000000000006
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 4.203362108560918,
+              "fallen": true,
+              "seconds": 1.1600000000000008
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 4.7325140331904,
+              "fallen": true,
+              "seconds": 1.1800000000000008
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 9.555478047458413,
+              "fallen": true,
+              "seconds": 3.0599999999998846
+            }
+          ]
+        },
+        {
+          "attempt": 15,
+          "accepted": false,
+          "score": [
+            0,
+            3.507234923749035
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 3.5481958069034043,
+              "fallen": true,
+              "seconds": 0.8600000000000007
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 3.8931685200411046,
+              "fallen": true,
+              "seconds": 0.9000000000000007
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 3.088797229943481,
+              "fallen": true,
+              "seconds": 1.1000000000000008
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 3.823285929657783,
+              "fallen": true,
+              "seconds": 1.2400000000000009
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 3.3893313847986932,
+              "fallen": true,
+              "seconds": 0.8200000000000006
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 2.8501536412993294,
+              "fallen": true,
+              "seconds": 0.7600000000000006
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 4.375599963170916,
+              "fallen": true,
+              "seconds": 1.0000000000000007
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 3.6086926650032107,
+              "fallen": true,
+              "seconds": 0.9600000000000007
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 3.5003145238146667,
+              "fallen": true,
+              "seconds": 0.8400000000000006
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 2.994809572857764,
+              "fallen": true,
+              "seconds": 0.8400000000000006
+            }
+          ]
+        },
+        {
+          "attempt": 16,
+          "accepted": false,
+          "score": [
+            0,
+            1.7183963343779065
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 1.7239167181969013,
+              "fallen": true,
+              "seconds": 0.44000000000000034
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 1.884559183349553,
+              "fallen": true,
+              "seconds": 0.46000000000000035
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 1.6107456026252898,
+              "fallen": true,
+              "seconds": 0.6000000000000004
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 1.75261374217855,
+              "fallen": true,
+              "seconds": 0.6000000000000004
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 1.7261044431804136,
+              "fallen": true,
+              "seconds": 0.44000000000000034
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 1.498919785635798,
+              "fallen": true,
+              "seconds": 0.4200000000000003
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 1.9884008718205308,
+              "fallen": true,
+              "seconds": 0.48000000000000037
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 1.7042091363618947,
+              "fallen": true,
+              "seconds": 0.48000000000000037
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 1.7407016832386413,
+              "fallen": true,
+              "seconds": 0.44000000000000034
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 1.553792177191495,
+              "fallen": true,
+              "seconds": 0.46000000000000035
+            }
+          ]
+        },
+        {
+          "attempt": 17,
+          "accepted": false,
+          "score": [
+            0,
+            2.1895374633435596
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 2.1705602476555756,
+              "fallen": true,
+              "seconds": 0.5400000000000004
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 2.3554008564696383,
+              "fallen": true,
+              "seconds": 0.5600000000000004
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 2.0456631756117702,
+              "fallen": true,
+              "seconds": 0.7400000000000005
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 2.360247567062478,
+              "fallen": true,
+              "seconds": 0.7800000000000006
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 2.175958695440112,
+              "fallen": true,
+              "seconds": 0.5400000000000004
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 1.9072014580349548,
+              "fallen": true,
+              "seconds": 0.5200000000000004
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 2.4657526358971356,
+              "fallen": true,
+              "seconds": 0.5800000000000004
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 2.1990801540569356,
+              "fallen": true,
+              "seconds": 0.6000000000000004
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 2.1925147713456035,
+              "fallen": true,
+              "seconds": 0.5400000000000004
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 2.022995071861391,
+              "fallen": true,
+              "seconds": 0.5800000000000004
+            }
+          ]
+        },
+        {
+          "attempt": 18,
+          "accepted": true,
+          "score": [
+            1,
+            5.600221538441987
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 5.694421996909274,
+              "fallen": true,
+              "seconds": 1.300000000000001
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": true,
+              "distance": 10.055264414257524,
+              "fallen": false,
+              "seconds": 2.119999999999988
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 3.8044584479039965,
+              "fallen": true,
+              "seconds": 1.280000000000001
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 5.76931627972714,
+              "fallen": true,
+              "seconds": 1.7600000000000013
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 5.062524340469193,
+              "fallen": true,
+              "seconds": 1.1600000000000008
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 3.4393539773313324,
+              "fallen": true,
+              "seconds": 0.8800000000000007
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 6.986131461088771,
+              "fallen": true,
+              "seconds": 1.500000000000001
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 6.118567544585005,
+              "fallen": true,
+              "seconds": 1.5200000000000011
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 5.473091151057126,
+              "fallen": true,
+              "seconds": 1.2400000000000009
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 3.654350185348028,
+              "fallen": true,
+              "seconds": 0.9800000000000008
+            }
+          ]
+        },
+        {
+          "attempt": 19,
+          "accepted": false,
+          "score": [
+            0,
+            2.7679912702275766
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 2.8013412753560365,
+              "fallen": true,
+              "seconds": 0.6600000000000005
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 3.1195001788105277,
+              "fallen": true,
+              "seconds": 0.7000000000000005
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 2.3942543542280834,
+              "fallen": true,
+              "seconds": 0.8200000000000006
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 3.096297670748116,
+              "fallen": true,
+              "seconds": 0.9600000000000007
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 2.634996242345938,
+              "fallen": true,
+              "seconds": 0.6200000000000004
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 2.2337367393769307,
+              "fallen": true,
+              "seconds": 0.5800000000000004
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 3.4380669380654902,
+              "fallen": true,
+              "seconds": 0.7600000000000006
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 2.87128074124182,
+              "fallen": true,
+              "seconds": 0.7400000000000005
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 2.742479781591798,
+              "fallen": true,
+              "seconds": 0.6400000000000005
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 2.3479587805110254,
+              "fallen": true,
+              "seconds": 0.6400000000000005
+            }
+          ]
+        },
+        {
+          "attempt": 20,
+          "accepted": false,
+          "score": [
+            0,
+            2.94486100992655
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 2.925509115090559,
+              "fallen": true,
+              "seconds": 0.6800000000000005
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 3.256296591728786,
+              "fallen": true,
+              "seconds": 0.7200000000000005
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 2.600770030138455,
+              "fallen": true,
+              "seconds": 0.8800000000000007
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 3.342796154169028,
+              "fallen": true,
+              "seconds": 1.0200000000000007
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 2.843503783231502,
+              "fallen": true,
+              "seconds": 0.6600000000000005
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 2.4167157124940064,
+              "fallen": true,
+              "seconds": 0.6200000000000004
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 3.681030178784022,
+              "fallen": true,
+              "seconds": 0.8000000000000006
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 2.9901667848412434,
+              "fallen": true,
+              "seconds": 0.7600000000000006
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 2.8653451369373517,
+              "fallen": true,
+              "seconds": 0.6600000000000005
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 2.526476611850547,
+              "fallen": true,
+              "seconds": 0.6800000000000005
+            }
+          ]
+        },
+        {
+          "attempt": 21,
+          "accepted": false,
+          "score": [
+            0,
+            4.845688586578435
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 4.82367078846762,
+              "fallen": true,
+              "seconds": 1.0800000000000007
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 7.600563962042653,
+              "fallen": true,
+              "seconds": 1.5800000000000012
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 3.1564365589812593,
+              "fallen": true,
+              "seconds": 1.0400000000000007
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 5.933842196185668,
+              "fallen": true,
+              "seconds": 1.7000000000000013
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 4.357187370312623,
+              "fallen": true,
+              "seconds": 0.9800000000000008
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 3.1118297769913745,
+              "fallen": true,
+              "seconds": 0.7800000000000006
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 6.741875281465827,
+              "fallen": true,
+              "seconds": 1.400000000000001
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 4.854435340353111,
+              "fallen": true,
+              "seconds": 1.1800000000000008
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 4.67686825200501,
+              "fallen": true,
+              "seconds": 1.0400000000000007
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 3.200176338979206,
+              "fallen": true,
+              "seconds": 0.8400000000000006
+            }
+          ]
+        },
+        {
+          "attempt": 22,
+          "accepted": false,
+          "score": [
+            0,
+            3.2012027073529956
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 3.1501291158149582,
+              "fallen": true,
+              "seconds": 0.7400000000000005
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 3.6746209467695388,
+              "fallen": true,
+              "seconds": 0.8200000000000006
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 2.679469226045288,
+              "fallen": true,
+              "seconds": 0.9200000000000007
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 3.756059611034796,
+              "fallen": true,
+              "seconds": 1.1600000000000008
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 3.0694659585567843,
+              "fallen": true,
+              "seconds": 0.7200000000000005
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 2.464460054105255,
+              "fallen": true,
+              "seconds": 0.6400000000000005
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 4.288131393301637,
+              "fallen": true,
+              "seconds": 0.9400000000000007
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 3.2689892939764107,
+              "fallen": true,
+              "seconds": 0.8400000000000006
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 3.0938164621518056,
+              "fallen": true,
+              "seconds": 0.7200000000000005
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 2.566885011773481,
+              "fallen": true,
+              "seconds": 0.7000000000000005
+            }
+          ]
+        },
+        {
+          "attempt": 23,
+          "accepted": false,
+          "score": [
+            0,
+            3.520650324390883
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 3.4528455152944115,
+              "fallen": true,
+              "seconds": 0.8000000000000006
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 4.0013055969429265,
+              "fallen": true,
+              "seconds": 0.8800000000000007
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 3.0200694462076565,
+              "fallen": true,
+              "seconds": 1.0200000000000007
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 4.151910952954603,
+              "fallen": true,
+              "seconds": 1.260000000000001
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 3.281536395871943,
+              "fallen": true,
+              "seconds": 0.7600000000000006
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 2.7309665173866287,
+              "fallen": true,
+              "seconds": 0.7000000000000005
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 4.631737116435511,
+              "fallen": true,
+              "seconds": 1.0000000000000007
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 3.6363238354124983,
+              "fallen": true,
+              "seconds": 0.9200000000000007
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 3.3977077952478374,
+              "fallen": true,
+              "seconds": 0.7800000000000006
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 2.9021000721548083,
+              "fallen": true,
+              "seconds": 0.7800000000000006
+            }
+          ]
+        },
+        {
+          "attempt": 24,
+          "accepted": false,
+          "score": [
+            0,
+            1.6666908020551034
+          ],
+          "episodes": [
+            {
+              "seed": 100,
+              "start_speed": 4.169963261004018,
+              "start_roll": 0.019310805393577463,
+              "success": false,
+              "distance": 1.7673339722746018,
+              "fallen": true,
+              "seconds": 0.44000000000000034
+            },
+            {
+              "seed": 101,
+              "start_speed": 4.387065011221107,
+              "start_roll": -0.028115793331685374,
+              "success": false,
+              "distance": 1.7005778069899595,
+              "fallen": true,
+              "seconds": 0.4000000000000003
+            },
+            {
+              "seed": 102,
+              "start_speed": 2.8199822900086073,
+              "start_roll": 0.017188702968045463,
+              "success": false,
+              "distance": 1.4750674307481328,
+              "fallen": true,
+              "seconds": 0.5400000000000004
+            },
+            {
+              "seed": 103,
+              "start_speed": 3.125366465445895,
+              "start_roll": -0.05513635547479048,
+              "success": false,
+              "distance": 1.395590163463219,
+              "fallen": true,
+              "seconds": 0.46000000000000035
+            },
+            {
+              "seed": 104,
+              "start_speed": 4.177129624739071,
+              "start_roll": 0.03842962972546943,
+              "success": false,
+              "distance": 1.7703914062722033,
+              "fallen": true,
+              "seconds": 0.44000000000000034
+            },
+            {
+              "seed": 105,
+              "start_speed": 3.7763906672030894,
+              "start_roll": 0.09829195509625163,
+              "success": false,
+              "distance": 1.7993762194368832,
+              "fallen": true,
+              "seconds": 0.5000000000000003
+            },
+            {
+              "seed": 106,
+              "start_speed": 4.464815710926671,
+              "start_roll": -0.09191996942126857,
+              "success": false,
+              "distance": 1.6450196864384083,
+              "fallen": true,
+              "seconds": 0.3800000000000003
+            },
+            {
+              "seed": 107,
+              "start_speed": 3.7970718388005156,
+              "start_roll": -0.004462286135627186,
+              "success": false,
+              "distance": 1.6145340524845841,
+              "fallen": true,
+              "seconds": 0.44000000000000034
+            },
+            {
+              "seed": 108,
+              "start_speed": 4.21198763465719,
+              "start_roll": 0.026455031053913225,
+              "success": false,
+              "distance": 1.7845028987561893,
+              "fallen": true,
+              "seconds": 0.44000000000000034
+            },
+            {
+              "seed": 109,
+              "start_speed": 3.5874844978355585,
+              "start_roll": 0.0682817691159496,
+              "success": false,
+              "distance": 1.714514383686854,
+              "fallen": true,
+              "seconds": 0.5000000000000003
+            }
+          ]
+        }
+      ],
+      "first_all_successful_practice_attempt": null,
+      "attempt_definition": "one candidate evaluated on all practice seeds; attempt 0 is the initial policy",
+      "baseline_evaluation": [
+        {
+          "seed": 140,
+          "start_speed": 3.8352400998711467,
+          "start_roll": 0.02427036108928371,
+          "success": false,
+          "distance": 5.798595612283166,
+          "fallen": true,
+          "seconds": 1.5200000000000011
+        },
+        {
+          "seed": 141,
+          "start_speed": 3.9725930147761765,
+          "start_roll": 0.09947265078115922,
+          "success": false,
+          "distance": 3.7197659885781658,
+          "fallen": true,
+          "seconds": 0.9400000000000007
+        },
+        {
+          "seed": 142,
+          "start_speed": 2.5445801313108474,
+          "start_roll": -0.07850177150554166,
+          "success": false,
+          "distance": 2.635813009680079,
+          "fallen": true,
+          "seconds": 1.0400000000000007
+        },
+        {
+          "seed": 143,
+          "start_speed": 3.3266403195094343,
+          "start_roll": 0.09535842010167062,
+          "success": false,
+          "distance": 3.1811004393781706,
+          "fallen": true,
+          "seconds": 0.9600000000000007
+        },
+        {
+          "seed": 144,
+          "start_speed": 4.0855236799984755,
+          "start_roll": -0.08806252669010242,
+          "success": false,
+          "distance": 4.068983248589776,
+          "fallen": true,
+          "seconds": 1.0000000000000007
+        },
+        {
+          "seed": 145,
+          "start_speed": 3.7012611131762556,
+          "start_roll": -0.04627981465030229,
+          "success": false,
+          "distance": 4.568371525087142,
+          "fallen": true,
+          "seconds": 1.2400000000000009
+        },
+        {
+          "seed": 146,
+          "start_speed": 4.101008085475776,
+          "start_roll": -0.02419087372373019,
+          "success": false,
+          "distance": 6.118554009700534,
+          "fallen": true,
+          "seconds": 1.500000000000001
+        },
+        {
+          "seed": 147,
+          "start_speed": 4.4789733626214545,
+          "start_roll": 0.05642381461564522,
+          "success": false,
+          "distance": 5.172400848268794,
+          "fallen": true,
+          "seconds": 1.1600000000000008
+        },
+        {
+          "seed": 148,
+          "start_speed": 3.7748984951040567,
+          "start_roll": 0.009993428338406801,
+          "success": false,
+          "distance": 7.4173980522133345,
+          "fallen": true,
+          "seconds": 1.9800000000000015
+        },
+        {
+          "seed": 149,
+          "start_speed": 2.6640513997100665,
+          "start_roll": -0.047778234965050875,
+          "success": false,
+          "distance": 3.3418279323208813,
+          "fallen": true,
+          "seconds": 1.260000000000001
+        },
+        {
+          "seed": 150,
+          "start_speed": 2.5096440881132223,
+          "start_roll": 0.08615740354065102,
+          "success": false,
+          "distance": 2.4998641585724046,
+          "fallen": true,
+          "seconds": 1.0000000000000007
+        },
+        {
+          "seed": 151,
+          "start_speed": 3.483587684914259,
+          "start_roll": -0.027971699369318134,
+          "success": false,
+          "distance": 5.060272551480484,
+          "fallen": true,
+          "seconds": 1.460000000000001
+        },
+        {
+          "seed": 152,
+          "start_speed": 2.9370654032964167,
+          "start_roll": -0.04788308905609924,
+          "success": false,
+          "distance": 3.625575924775276,
+          "fallen": true,
+          "seconds": 1.2400000000000009
+        },
+        {
+          "seed": 153,
+          "start_speed": 4.370357549608635,
+          "start_roll": 0.00880969430414344,
+          "success": false,
+          "distance": 8.67186803185097,
+          "fallen": true,
+          "seconds": 2.0000000000000013
+        },
+        {
+          "seed": 154,
+          "start_speed": 3.6676933096271185,
+          "start_roll": 0.03189398174020869,
+          "success": false,
+          "distance": 5.109482077156834,
+          "fallen": true,
+          "seconds": 1.400000000000001
+        },
+        {
+          "seed": 155,
+          "start_speed": 3.122959655763302,
+          "start_roll": 0.06611740495888593,
+          "success": false,
+          "distance": 3.4207949793324013,
+          "fallen": true,
+          "seconds": 1.1000000000000008
+        },
+        {
+          "seed": 156,
+          "start_speed": 2.7774402084648218,
+          "start_roll": -0.09910774258594657,
+          "success": false,
+          "distance": 2.600773446631911,
+          "fallen": true,
+          "seconds": 0.9400000000000007
+        },
+        {
+          "seed": 157,
+          "start_speed": 3.026183432917071,
+          "start_roll": 0.07239638449823813,
+          "success": false,
+          "distance": 3.1945192139406533,
+          "fallen": true,
+          "seconds": 1.0600000000000007
+        },
+        {
+          "seed": 158,
+          "start_speed": 4.4382629349914415,
+          "start_roll": 0.055763543120585846,
+          "success": false,
+          "distance": 5.213730111629242,
+          "fallen": true,
+          "seconds": 1.1800000000000008
+        },
+        {
+          "seed": 159,
+          "start_speed": 4.119882162138156,
+          "start_roll": 0.015280438653928183,
+          "success": false,
+          "distance": 7.283575729295502,
+          "fallen": true,
+          "seconds": 1.7800000000000014
+        }
+      ],
+      "practiced_evaluation": [
+        {
+          "seed": 140,
+          "start_speed": 3.8352400998711467,
+          "start_roll": 0.02427036108928371,
+          "success": false,
+          "distance": 4.988749982474066,
+          "fallen": true,
+          "seconds": 1.2400000000000009
+        },
+        {
+          "seed": 141,
+          "start_speed": 3.9725930147761765,
+          "start_roll": 0.09947265078115922,
+          "success": false,
+          "distance": 3.7010852311835714,
+          "fallen": true,
+          "seconds": 0.9000000000000007
+        },
+        {
+          "seed": 142,
+          "start_speed": 2.5445801313108474,
+          "start_roll": -0.07850177150554166,
+          "success": false,
+          "distance": 3.69814671750468,
+          "fallen": true,
+          "seconds": 1.400000000000001
+        },
+        {
+          "seed": 143,
+          "start_speed": 3.3266403195094343,
+          "start_roll": 0.09535842010167062,
+          "success": false,
+          "distance": 3.033828353964538,
+          "fallen": true,
+          "seconds": 0.8800000000000007
+        },
+        {
+          "seed": 144,
+          "start_speed": 4.0855236799984755,
+          "start_roll": -0.08806252669010242,
+          "success": false,
+          "distance": 6.477015699553033,
+          "fallen": true,
+          "seconds": 1.5200000000000011
+        },
+        {
+          "seed": 145,
+          "start_speed": 3.7012611131762556,
+          "start_roll": -0.04627981465030229,
+          "success": false,
+          "distance": 8.219280895731572,
+          "fallen": true,
+          "seconds": 2.0999999999999903
+        },
+        {
+          "seed": 146,
+          "start_speed": 4.101008085475776,
+          "start_roll": -0.02419087372373019,
+          "success": false,
+          "distance": 8.745633985843877,
+          "fallen": true,
+          "seconds": 1.9800000000000015
+        },
+        {
+          "seed": 147,
+          "start_speed": 4.4789733626214545,
+          "start_roll": 0.05642381461564522,
+          "success": false,
+          "distance": 5.131272783581834,
+          "fallen": true,
+          "seconds": 1.1000000000000008
+        },
+        {
+          "seed": 148,
+          "start_speed": 3.7748984951040567,
+          "start_roll": 0.009993428338406801,
+          "success": false,
+          "distance": 5.410865245436281,
+          "fallen": true,
+          "seconds": 1.360000000000001
+        },
+        {
+          "seed": 149,
+          "start_speed": 2.6640513997100665,
+          "start_roll": -0.047778234965050875,
+          "success": false,
+          "distance": 5.028503250042337,
+          "fallen": true,
+          "seconds": 1.8000000000000014
+        },
+        {
+          "seed": 150,
+          "start_speed": 2.5096440881132223,
+          "start_roll": 0.08615740354065102,
+          "success": false,
+          "distance": 2.3500148856076457,
+          "fallen": true,
+          "seconds": 0.9000000000000007
+        },
+        {
+          "seed": 151,
+          "start_speed": 3.483587684914259,
+          "start_roll": -0.027971699369318134,
+          "success": false,
+          "distance": 8.402484930528143,
+          "fallen": true,
+          "seconds": 2.219999999999977
+        },
+        {
+          "seed": 152,
+          "start_speed": 2.9370654032964167,
+          "start_roll": -0.04788308905609924,
+          "success": false,
+          "distance": 5.737815901555799,
+          "fallen": true,
+          "seconds": 1.8600000000000014
+        },
+        {
+          "seed": 153,
+          "start_speed": 4.370357549608635,
+          "start_roll": 0.00880969430414344,
+          "success": false,
+          "distance": 6.448392300486755,
+          "fallen": true,
+          "seconds": 1.400000000000001
+        },
+        {
+          "seed": 154,
+          "start_speed": 3.6676933096271185,
+          "start_roll": 0.03189398174020869,
+          "success": false,
+          "distance": 4.531775904843814,
+          "fallen": true,
+          "seconds": 1.1800000000000008
+        },
+        {
+          "seed": 155,
+          "start_speed": 3.122959655763302,
+          "start_roll": 0.06611740495888593,
+          "success": false,
+          "distance": 3.185833176356321,
+          "fallen": true,
+          "seconds": 0.9800000000000008
+        },
+        {
+          "seed": 156,
+          "start_speed": 2.7774402084648218,
+          "start_roll": -0.09910774258594657,
+          "success": false,
+          "distance": 3.618663459356856,
+          "fallen": true,
+          "seconds": 1.260000000000001
+        },
+        {
+          "seed": 157,
+          "start_speed": 3.026183432917071,
+          "start_roll": 0.07239638449823813,
+          "success": false,
+          "distance": 3.0231042743879017,
+          "fallen": true,
+          "seconds": 0.9600000000000007
+        },
+        {
+          "seed": 158,
+          "start_speed": 4.4382629349914415,
+          "start_roll": 0.055763543120585846,
+          "success": false,
+          "distance": 5.085295779072597,
+          "fallen": true,
+          "seconds": 1.1000000000000008
+        },
+        {
+          "seed": 159,
+          "start_speed": 4.119882162138156,
+          "start_roll": 0.015280438653928183,
+          "success": false,
+          "distance": 5.717645998193967,
+          "fallen": true,
+          "seconds": 1.320000000000001
+        }
+      ],
+      "baseline_successes": 0,
+      "practiced_successes": 0
+    }
+  },
+  "source_checkpoint": "C:\\projects\\pixel-active-inference\\runs\\bike\\diverse\\observed_policy.json",
+  "source_sha256": "1bdd799cf6e9f9bd0c79e08f65b708f612e382b342ac04ca72bcf2f25b408c14",
+  "practice_seeds": [
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109
+  ],
+  "evaluation_seeds": [
+    140,
+    141,
+    142,
+    143,
+    144,
+    145,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151,
+    152,
+    153,
+    154,
+    155,
+    156,
+    157,
+    158,
+    159
+  ],
+  "limitations": [
+    "one optimizer seed is not a statistical transfer proof",
+    "no Stage 2 transfer comparison",
+    "student does not infer motion from video pixels"
+  ]
+}

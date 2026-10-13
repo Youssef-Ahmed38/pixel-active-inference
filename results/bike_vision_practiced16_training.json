@@ -1,0 +1,330 @@
+{
+  "scope": "RGB orientation regression trained on moving rides, whole-episode split",
+  "training": {
+    "training_frames": 3942,
+    "ridge": 0.0001,
+    "grid_size": 16,
+    "channels": [
+      "roll",
+      "pitch",
+      "yaw"
+    ],
+    "train_episode_seeds": [
+      960,
+      961,
+      962,
+      963,
+      964,
+      965,
+      966,
+      967,
+      968,
+      969,
+      970,
+      971,
+      972,
+      973,
+      974,
+      975,
+      976,
+      977,
+      978,
+      979,
+      980,
+      981,
+      982,
+      983,
+      984,
+      985,
+      986,
+      987,
+      988,
+      989,
+      990,
+      991,
+      992,
+      993,
+      994,
+      995,
+      996,
+      997,
+      998,
+      999
+    ],
+    "validation_episode_seeds": [
+      1000,
+      1001,
+      1002,
+      1003,
+      1004,
+      1005,
+      1006,
+      1007
+    ],
+    "teacher_policy_checkpoint": "runs\\bike\\practice_seed1000\\practiced_observed_motion.json",
+    "teacher_policy_sha256": "87d34018c32d08189efd95fc70e2baaa73edcf9956aad409ac63e08e8d4d3023",
+    "angle_convention": "frame ZYX Euler roll, pitch, yaw",
+    "camera": {
+      "distance": 3,
+      "azimuth": 120,
+      "elevation": -15,
+      "tracking": "supplied root position"
+    }
+  },
+  "validation": {
+    "episodes": [
+      {
+        "seed": 1000,
+        "frames": 96,
+        "success": true,
+        "distance": 10.012565934791501,
+        "fallen": false,
+        "mae_radians": [
+          0.0038351900657131455,
+          0.00022080261346273575,
+          0.004129198480234196
+        ],
+        "zero_predictor_mae_radians": [
+          0.10039989536912947,
+          0.0009546582323187201,
+          0.5144794736187124
+        ]
+      },
+      {
+        "seed": 1001,
+        "frames": 77,
+        "success": true,
+        "distance": 10.0146183927562,
+        "fallen": false,
+        "mae_radians": [
+          0.008609185549064067,
+          0.00033260807640767573,
+          0.006418554596754818
+        ],
+        "zero_predictor_mae_radians": [
+          0.10359109584965957,
+          0.0008138714869692329,
+          0.1962524891884415
+        ]
+      },
+      {
+        "seed": 1002,
+        "frames": 105,
+        "success": true,
+        "distance": 10.029585860631757,
+        "fallen": false,
+        "mae_radians": [
+          0.0031695482420568072,
+          0.0002480015169473683,
+          0.004633458137725483
+        ],
+        "zero_predictor_mae_radians": [
+          0.10828656948649061,
+          0.0014534906874584014,
+          0.5190275239386678
+        ]
+      },
+      {
+        "seed": 1003,
+        "frames": 119,
+        "success": true,
+        "distance": 10.041167600177202,
+        "fallen": false,
+        "mae_radians": [
+          0.005732716095260705,
+          0.0003212233721801371,
+          0.005611220849742034
+        ],
+        "zero_predictor_mae_radians": [
+          0.13882629944086924,
+          0.002961555155419824,
+          0.5717447705177997
+        ]
+      },
+      {
+        "seed": 1004,
+        "frames": 134,
+        "success": true,
+        "distance": 10.044491593419018,
+        "fallen": false,
+        "mae_radians": [
+          0.0076045684826099086,
+          0.0004961774718962889,
+          0.007384307986219812
+        ],
+        "zero_predictor_mae_radians": [
+          0.16588658042683693,
+          0.004343140628228329,
+          0.5983933210277969
+        ]
+      },
+      {
+        "seed": 1005,
+        "frames": 127,
+        "success": true,
+        "distance": 10.047892985275851,
+        "fallen": false,
+        "mae_radians": [
+          0.0062089936894228455,
+          0.00036603716550920844,
+          0.007911895422568947
+        ],
+        "zero_predictor_mae_radians": [
+          0.1675383203183364,
+          0.0044470255269898175,
+          0.5697365821530214
+        ]
+      },
+      {
+        "seed": 1006,
+        "frames": 108,
+        "success": true,
+        "distance": 10.032410080591577,
+        "fallen": false,
+        "mae_radians": [
+          0.004005836100441461,
+          0.0002558110244637282,
+          0.004665481861113896
+        ],
+        "zero_predictor_mae_radians": [
+          0.12779292567680017,
+          0.0020998922313734164,
+          0.5614131936331618
+        ]
+      },
+      {
+        "seed": 1007,
+        "frames": 127,
+        "success": true,
+        "distance": 10.002607068762813,
+        "fallen": false,
+        "mae_radians": [
+          0.006234348564611099,
+          0.0003935920322792728,
+          0.00883088197963547
+        ],
+        "zero_predictor_mae_radians": [
+          0.1667977617902529,
+          0.004492418395357694,
+          0.5770506621639607
+        ]
+      }
+    ],
+    "episode_mean_mae_radians": [
+      0.005675048348647505,
+      0.0003292816591433019,
+      0.006198124914249332
+    ],
+    "episode_mean_zero_mae_radians": [
+      0.1348899310447969,
+      0.002695756543014429,
+      0.5135122520301953
+    ]
+  },
+  "evaluation": {
+    "episodes": [
+      {
+        "seed": 1010,
+        "frames": 126,
+        "success": true,
+        "distance": 10.035358254339306,
+        "fallen": false,
+        "mae_radians": [
+          0.005138258012108362,
+          0.00036748075385657883,
+          0.006533818823908256
+        ],
+        "zero_predictor_mae_radians": [
+          0.15781265432782451,
+          0.004417557576004863,
+          0.5657133406657366
+        ]
+      },
+      {
+        "seed": 1011,
+        "frames": 112,
+        "success": true,
+        "distance": 10.050205690565187,
+        "fallen": false,
+        "mae_radians": [
+          0.0043493874190682425,
+          0.0003349280343953241,
+          0.005649689468956601
+        ],
+        "zero_predictor_mae_radians": [
+          0.1346233571151272,
+          0.0025853258147984642,
+          0.560663997676316
+        ]
+      },
+      {
+        "seed": 1012,
+        "frames": 110,
+        "success": true,
+        "distance": 10.00200586079527,
+        "fallen": false,
+        "mae_radians": [
+          0.004083970315821911,
+          0.0003193934711233385,
+          0.004888835691079351
+        ],
+        "zero_predictor_mae_radians": [
+          0.13297704863259674,
+          0.002127104289806849,
+          0.5779151074257958
+        ]
+      },
+      {
+        "seed": 1013,
+        "frames": 70,
+        "success": true,
+        "distance": 10.045431653592297,
+        "fallen": false,
+        "mae_radians": [
+          0.007338136480131625,
+          0.00033245146535917843,
+          0.0063838997789786535
+        ],
+        "zero_predictor_mae_radians": [
+          0.09854145437903909,
+          0.0006251759353975803,
+          0.1536141913595981
+        ]
+      },
+      {
+        "seed": 1014,
+        "frames": 102,
+        "success": true,
+        "distance": 10.010260535101313,
+        "fallen": false,
+        "mae_radians": [
+          0.0036639594465761463,
+          0.0002769291159928437,
+          0.003911595028745467
+        ],
+        "zero_predictor_mae_radians": [
+          0.11256689703992423,
+          0.0013985807753071687,
+          0.5408070216049138
+        ]
+      }
+    ],
+    "episode_mean_mae_radians": [
+      0.004914742334741257,
+      0.0003262365681454527,
+      0.005473567758333666
+    ],
+    "episode_mean_zero_mae_radians": [
+      0.12730428229890234,
+      0.002230748878262985,
+      0.4797427317464721
+    ]
+  },
+  "improves_zero_baseline_all_channels": true,
+  "limitations": [
+    "supervised simulator labels; not observation-only learning from arbitrary videos",
+    "fixed calibrated camera with root tracking supplied by simulator",
+    "expert controls the ride; no image-controlled bicycle or full joint dynamics extraction",
+    "same model, lighting, geometry and start distribution across episode splits"
+  ]
+}

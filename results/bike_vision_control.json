@@ -1,0 +1,102 @@
+{
+  "scope": "hybrid RGB orientation plus external speed, paired fresh starts",
+  "summary": {
+    "sensor_baseline": {
+      "episodes": 5,
+      "successes": 5
+    },
+    "hybrid_rgb": {
+      "episodes": 5,
+      "successes": 5
+    }
+  },
+  "episodes": [
+    {
+      "seed": 860,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.003329998589134,
+      "fallen": false,
+      "seconds": 2.4999999999999463
+    },
+    {
+      "seed": 860,
+      "condition": "hybrid_rgb",
+      "success": true,
+      "distance": 10.001226809530921,
+      "fallen": false,
+      "seconds": 2.4799999999999485
+    },
+    {
+      "seed": 861,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.050333846589481,
+      "fallen": false,
+      "seconds": 2.439999999999953
+    },
+    {
+      "seed": 861,
+      "condition": "hybrid_rgb",
+      "success": true,
+      "distance": 10.04365213051922,
+      "fallen": false,
+      "seconds": 2.419999999999955
+    },
+    {
+      "seed": 862,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.068744968453602,
+      "fallen": false,
+      "seconds": 2.5999999999999353
+    },
+    {
+      "seed": 862,
+      "condition": "hybrid_rgb",
+      "success": true,
+      "distance": 10.013223245825522,
+      "fallen": false,
+      "seconds": 2.5599999999999397
+    },
+    {
+      "seed": 863,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.03926956073635,
+      "fallen": false,
+      "seconds": 2.539999999999942
+    },
+    {
+      "seed": 863,
+      "condition": "hybrid_rgb",
+      "success": true,
+      "distance": 10.034208578595665,
+      "fallen": false,
+      "seconds": 2.519999999999944
+    },
+    {
+      "seed": 864,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.031020243982848,
+      "fallen": false,
+      "seconds": 3.2799999999998604
+    },
+    {
+      "seed": 864,
+      "condition": "hybrid_rgb",
+      "success": true,
+      "distance": 10.021643467264212,
+      "fallen": false,
+      "seconds": 3.139999999999876
+    }
+  ],
+  "checkpoint": "C:\\projects\\pixel-active-inference\\runs\\bike\\vision_motion\\orientation.json",
+  "limitations": [
+    "camera tracks simulator root; this is not image-based tracking",
+    "speed remains a supplied sensor channel; not fully pixel-controlled riding",
+    "fixed learned image model and engineering balance gains; no visual policy training",
+    "small paired sample; no Stage 2 transfer comparison"
+  ]
+}

@@ -1,0 +1,345 @@
+{
+  "scope": "hybrid RGB orientation plus external speed/joint encoders, paired fresh starts",
+  "summary": {
+    "sensor_baseline": {
+      "episodes": 20,
+      "successes": 20
+    },
+    "hybrid_rgb": {
+      "episodes": 20,
+      "successes": 20
+    }
+  },
+  "episodes": [
+    {
+      "seed": 1100,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.032977815974464,
+      "fallen": false,
+      "seconds": 4.7399999999997
+    },
+    {
+      "seed": 1100,
+      "condition": "hybrid_rgb",
+      "success": true,
+      "distance": 10.01334267980536,
+      "fallen": false,
+      "seconds": 4.599999999999715
+    },
+    {
+      "seed": 1101,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.022650589731581,
+      "fallen": false,
+      "seconds": 2.6599999999999286
+    },
+    {
+      "seed": 1101,
+      "condition": "hybrid_rgb",
+      "success": true,
+      "distance": 10.029714927024571,
+      "fallen": false,
+      "seconds": 2.6599999999999286
+    },
+    {
+      "seed": 1102,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.032402153544316,
+      "fallen": false,
+      "seconds": 3.2399999999998648
+    },
+    {
+      "seed": 1102,
+      "condition": "hybrid_rgb",
+      "success": true,
+      "distance": 10.015377530627969,
+      "fallen": false,
+      "seconds": 3.2399999999998648
+    },
+    {
+      "seed": 1103,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.028219837603752,
+      "fallen": false,
+      "seconds": 4.599999999999715
+    },
+    {
+      "seed": 1103,
+      "condition": "hybrid_rgb",
+      "success": true,
+      "distance": 10.019158172518331,
+      "fallen": false,
+      "seconds": 4.359999999999742
+    },
+    {
+      "seed": 1104,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.014156312947799,
+      "fallen": false,
+      "seconds": 4.819999999999691
+    },
+    {
+      "seed": 1104,
+      "condition": "hybrid_rgb",
+      "success": true,
+      "distance": 10.01318455798868,
+      "fallen": false,
+      "seconds": 4.91999999999968
+    },
+    {
+      "seed": 1105,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.028692830311952,
+      "fallen": false,
+      "seconds": 3.4399999999998427
+    },
+    {
+      "seed": 1105,
+      "condition": "hybrid_rgb",
+      "success": true,
+      "distance": 10.00313047322527,
+      "fallen": false,
+      "seconds": 3.2799999999998604
+    },
+    {
+      "seed": 1106,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.02478812667382,
+      "fallen": false,
+      "seconds": 3.2599999999998626
+    },
+    {
+      "seed": 1106,
+      "condition": "hybrid_rgb",
+      "success": true,
+      "distance": 10.021743634320071,
+      "fallen": false,
+      "seconds": 3.1799999999998714
+    },
+    {
+      "seed": 1107,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.020269181485055,
+      "fallen": false,
+      "seconds": 3.199999999999869
+    },
+    {
+      "seed": 1107,
+      "condition": "hybrid_rgb",
+      "success": true,
+      "distance": 10.00193661396692,
+      "fallen": false,
+      "seconds": 3.09999999999988
+    },
+    {
+      "seed": 1108,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.019944779333239,
+      "fallen": false,
+      "seconds": 4.079999999999773
+    },
+    {
+      "seed": 1108,
+      "condition": "hybrid_rgb",
+      "success": true,
+      "distance": 10.020307630659575,
+      "fallen": false,
+      "seconds": 3.899999999999792
+    },
+    {
+      "seed": 1109,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.014603329829901,
+      "fallen": false,
+      "seconds": 3.799999999999803
+    },
+    {
+      "seed": 1109,
+      "condition": "hybrid_rgb",
+      "success": true,
+      "distance": 10.025174249773327,
+      "fallen": false,
+      "seconds": 3.619999999999823
+    },
+    {
+      "seed": 1110,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.021171948066165,
+      "fallen": false,
+      "seconds": 3.91999999999979
+    },
+    {
+      "seed": 1110,
+      "condition": "hybrid_rgb",
+      "success": true,
+      "distance": 10.025545775833535,
+      "fallen": false,
+      "seconds": 3.7599999999998075
+    },
+    {
+      "seed": 1111,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.032820488232542,
+      "fallen": false,
+      "seconds": 2.9799999999998934
+    },
+    {
+      "seed": 1111,
+      "condition": "hybrid_rgb",
+      "success": true,
+      "distance": 10.030020642454602,
+      "fallen": false,
+      "seconds": 2.899999999999902
+    },
+    {
+      "seed": 1112,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.041915680293855,
+      "fallen": false,
+      "seconds": 3.6399999999998207
+    },
+    {
+      "seed": 1112,
+      "condition": "hybrid_rgb",
+      "success": true,
+      "distance": 10.045751599841747,
+      "fallen": false,
+      "seconds": 3.4799999999998383
+    },
+    {
+      "seed": 1113,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.052696699166686,
+      "fallen": false,
+      "seconds": 2.5599999999999397
+    },
+    {
+      "seed": 1113,
+      "condition": "hybrid_rgb",
+      "success": true,
+      "distance": 10.066914634761686,
+      "fallen": false,
+      "seconds": 2.5599999999999397
+    },
+    {
+      "seed": 1114,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.022180565712379,
+      "fallen": false,
+      "seconds": 4.779999999999696
+    },
+    {
+      "seed": 1114,
+      "condition": "hybrid_rgb",
+      "success": true,
+      "distance": 10.025963294215888,
+      "fallen": false,
+      "seconds": 4.579999999999718
+    },
+    {
+      "seed": 1115,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.001267028555134,
+      "fallen": false,
+      "seconds": 4.579999999999718
+    },
+    {
+      "seed": 1115,
+      "condition": "hybrid_rgb",
+      "success": true,
+      "distance": 10.019236670183615,
+      "fallen": false,
+      "seconds": 4.339999999999744
+    },
+    {
+      "seed": 1116,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.042112729206877,
+      "fallen": false,
+      "seconds": 2.7999999999999132
+    },
+    {
+      "seed": 1116,
+      "condition": "hybrid_rgb",
+      "success": true,
+      "distance": 10.016032162122233,
+      "fallen": false,
+      "seconds": 2.7599999999999176
+    },
+    {
+      "seed": 1117,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.004454305286465,
+      "fallen": false,
+      "seconds": 3.499999999999836
+    },
+    {
+      "seed": 1117,
+      "condition": "hybrid_rgb",
+      "success": true,
+      "distance": 10.026406669250882,
+      "fallen": false,
+      "seconds": 3.3799999999998493
+    },
+    {
+      "seed": 1118,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.042928840111623,
+      "fallen": false,
+      "seconds": 4.259999999999753
+    },
+    {
+      "seed": 1118,
+      "condition": "hybrid_rgb",
+      "success": true,
+      "distance": 10.022592498197767,
+      "fallen": false,
+      "seconds": 4.019999999999779
+    },
+    {
+      "seed": 1119,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.01053626346169,
+      "fallen": false,
+      "seconds": 3.3599999999998515
+    },
+    {
+      "seed": 1119,
+      "condition": "hybrid_rgb",
+      "success": true,
+      "distance": 10.034544909954207,
+      "fallen": false,
+      "seconds": 3.2599999999998626
+    }
+  ],
+  "checkpoint": "runs\\bike\\vision_practiced16\\orientation.json",
+  "policy_checkpoint": "runs\\bike\\practice_seed1000\\practiced_observed_motion.json",
+  "checkpoint_sha256": "3cee6c5b6fda1405fdf540a5c0202448850890770298bdf9abc25d4050898f47",
+  "policy_sha256": "87d34018c32d08189efd95fc70e2baaa73edcf9956aad409ac63e08e8d4d3023",
+  "limitations": [
+    "camera tracks simulator root; this is not image-based tracking",
+    "speed and steering/lean encoders are supplied sensor channels; not fully pixel-controlled riding",
+    "fixed image and control models; no visual policy training on these evaluation episodes",
+    "small paired sample; no Stage 2 transfer comparison"
+  ]
+}

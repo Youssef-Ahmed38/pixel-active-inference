@@ -1,0 +1,297 @@
+{
+  "scope": "free MuJoCo bicycle, wheel drive, steering and simplified torso rider; privileged sensors",
+  "gate": {
+    "distance_m": 10,
+    "fall_roll_radians": 0.7,
+    "seeds": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ]
+  },
+  "summary": {
+    "uncontrolled": {
+      "episodes": 10,
+      "successes": 0
+    },
+    "classical": {
+      "episodes": 10,
+      "successes": 10
+    }
+  },
+  "episodes": [
+    {
+      "seed": 10,
+      "condition": "uncontrolled",
+      "success": false,
+      "distance": 5.80992680668094,
+      "seconds": 1.460000000000001,
+      "fallen": true,
+      "final_roll": 0.7260890452779445,
+      "events": [
+        {
+          "type": "fall",
+          "step": 73,
+          "roll": 0.7260890452779445
+        }
+      ]
+    },
+    {
+      "seed": 10,
+      "condition": "classical",
+      "success": true,
+      "distance": 10.046638818230068,
+      "seconds": 2.5599999999999397,
+      "fallen": false,
+      "final_roll": 0.07743137809089669,
+      "events": []
+    },
+    {
+      "seed": 11,
+      "condition": "uncontrolled",
+      "success": false,
+      "distance": 6.28380576395608,
+      "seconds": 1.5800000000000012,
+      "fallen": true,
+      "final_roll": -0.7261683468993891,
+      "events": [
+        {
+          "type": "fall",
+          "step": 79,
+          "roll": -0.7261683468993891
+        }
+      ]
+    },
+    {
+      "seed": 11,
+      "condition": "classical",
+      "success": true,
+      "distance": 10.002726017524846,
+      "seconds": 2.539999999999942,
+      "fallen": false,
+      "final_roll": -0.07243524750945553,
+      "events": []
+    },
+    {
+      "seed": 12,
+      "condition": "uncontrolled",
+      "success": false,
+      "distance": 7.150950713448365,
+      "seconds": 1.8000000000000014,
+      "fallen": true,
+      "final_roll": -0.7336688537557324,
+      "events": [
+        {
+          "type": "fall",
+          "step": 90,
+          "roll": -0.7336688537557324
+        }
+      ]
+    },
+    {
+      "seed": 12,
+      "condition": "classical",
+      "success": true,
+      "distance": 10.03870835638103,
+      "seconds": 2.539999999999942,
+      "fallen": false,
+      "final_roll": -0.06396905715492865,
+      "events": []
+    },
+    {
+      "seed": 13,
+      "condition": "uncontrolled",
+      "success": false,
+      "distance": 6.283187554885826,
+      "seconds": 1.5800000000000012,
+      "fallen": true,
+      "final_roll": 0.7000205419530551,
+      "events": [
+        {
+          "type": "fall",
+          "step": 79,
+          "roll": 0.7000205419530551
+        }
+      ]
+    },
+    {
+      "seed": 13,
+      "condition": "classical",
+      "success": true,
+      "distance": 10.004859390401014,
+      "seconds": 2.539999999999942,
+      "fallen": false,
+      "final_roll": 0.0719140415840251,
+      "events": []
+    },
+    {
+      "seed": 14,
+      "condition": "uncontrolled",
+      "success": false,
+      "distance": 6.599479451952821,
+      "seconds": 1.6600000000000013,
+      "fallen": true,
+      "final_roll": 0.7392660981702818,
+      "events": [
+        {
+          "type": "fall",
+          "step": 83,
+          "roll": 0.7392660981702818
+        }
+      ]
+    },
+    {
+      "seed": 14,
+      "condition": "classical",
+      "success": true,
+      "distance": 10.015218485364336,
+      "seconds": 2.539999999999942,
+      "fallen": false,
+      "final_roll": 0.06995596122289172,
+      "events": []
+    },
+    {
+      "seed": 15,
+      "condition": "uncontrolled",
+      "success": false,
+      "distance": 7.544149140219069,
+      "seconds": 1.9000000000000015,
+      "fallen": true,
+      "final_roll": 0.7165864808070819,
+      "events": [
+        {
+          "type": "fall",
+          "step": 95,
+          "roll": 0.7165864808070819
+        }
+      ]
+    },
+    {
+      "seed": 15,
+      "condition": "classical",
+      "success": true,
+      "distance": 10.051119036538484,
+      "seconds": 2.539999999999942,
+      "fallen": false,
+      "final_roll": 0.057815124523983824,
+      "events": []
+    },
+    {
+      "seed": 16,
+      "condition": "uncontrolled",
+      "success": false,
+      "distance": 9.271918112772887,
+      "seconds": 2.339999999999964,
+      "fallen": true,
+      "final_roll": 0.737813724891542,
+      "events": [
+        {
+          "type": "fall",
+          "step": 117,
+          "roll": 0.737813724891542
+        }
+      ]
+    },
+    {
+      "seed": 16,
+      "condition": "classical",
+      "success": true,
+      "distance": 10.05823113294689,
+      "seconds": 2.539999999999942,
+      "fallen": false,
+      "final_roll": 0.01691012908400361,
+      "events": []
+    },
+    {
+      "seed": 17,
+      "condition": "uncontrolled",
+      "success": false,
+      "distance": 6.441102146043251,
+      "seconds": 1.6200000000000012,
+      "fallen": true,
+      "final_roll": 0.7088207616747846,
+      "events": [
+        {
+          "type": "fall",
+          "step": 81,
+          "roll": 0.7088207616747846
+        }
+      ]
+    },
+    {
+      "seed": 17,
+      "condition": "classical",
+      "success": true,
+      "distance": 10.010874388137065,
+      "seconds": 2.539999999999942,
+      "fallen": false,
+      "final_roll": 0.07090496144063693,
+      "events": []
+    },
+    {
+      "seed": 18,
+      "condition": "uncontrolled",
+      "success": false,
+      "distance": 8.56543182281359,
+      "seconds": 2.1599999999999837,
+      "fallen": true,
+      "final_roll": -0.7074067500697111,
+      "events": [
+        {
+          "type": "fall",
+          "step": 108,
+          "roll": -0.7074067500697111
+        }
+      ]
+    },
+    {
+      "seed": 18,
+      "condition": "classical",
+      "success": true,
+      "distance": 10.058169861900918,
+      "seconds": 2.539999999999942,
+      "fallen": false,
+      "final_roll": -0.02613649861923015,
+      "events": []
+    },
+    {
+      "seed": 19,
+      "condition": "uncontrolled",
+      "success": false,
+      "distance": 8.957905142641367,
+      "seconds": 2.2599999999999727,
+      "fallen": true,
+      "final_roll": -0.7170434759165799,
+      "events": [
+        {
+          "type": "fall",
+          "step": 113,
+          "roll": -0.7170434759165799
+        }
+      ]
+    },
+    {
+      "seed": 19,
+      "condition": "classical",
+      "success": true,
+      "distance": 10.058229164998487,
+      "seconds": 2.539999999999942,
+      "fallen": false,
+      "final_roll": -0.02037035221985862,
+      "events": []
+    }
+  ],
+  "remaining": [
+    "video demonstrations",
+    "inverse dynamics observation learning",
+    "practice learning",
+    "Stage 2 transfer and no-observation comparisons"
+  ]
+}

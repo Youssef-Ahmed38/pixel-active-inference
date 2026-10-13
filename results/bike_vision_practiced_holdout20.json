@@ -1,0 +1,345 @@
+{
+  "scope": "hybrid RGB orientation plus external speed/joint encoders, paired fresh starts",
+  "summary": {
+    "sensor_baseline": {
+      "episodes": 20,
+      "successes": 20
+    },
+    "hybrid_rgb": {
+      "episodes": 20,
+      "successes": 0
+    }
+  },
+  "episodes": [
+    {
+      "seed": 890,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.02929473386756,
+      "fallen": false,
+      "seconds": 4.1999999999997595
+    },
+    {
+      "seed": 890,
+      "condition": "hybrid_rgb",
+      "success": false,
+      "distance": 3.7835745978965165,
+      "fallen": true,
+      "seconds": 1.2000000000000008
+    },
+    {
+      "seed": 891,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.040643681476816,
+      "fallen": false,
+      "seconds": 2.73999999999992
+    },
+    {
+      "seed": 891,
+      "condition": "hybrid_rgb",
+      "success": false,
+      "distance": 5.175472293083947,
+      "fallen": true,
+      "seconds": 1.300000000000001
+    },
+    {
+      "seed": 892,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.020273155900673,
+      "fallen": false,
+      "seconds": 4.7399999999997
+    },
+    {
+      "seed": 892,
+      "condition": "hybrid_rgb",
+      "success": false,
+      "distance": 3.256000499724055,
+      "fallen": true,
+      "seconds": 1.1800000000000008
+    },
+    {
+      "seed": 893,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.033185428526913,
+      "fallen": false,
+      "seconds": 3.619999999999823
+    },
+    {
+      "seed": 893,
+      "condition": "hybrid_rgb",
+      "success": false,
+      "distance": 4.768137308743126,
+      "fallen": true,
+      "seconds": 1.360000000000001
+    },
+    {
+      "seed": 894,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.049401295088828,
+      "fallen": false,
+      "seconds": 5.119999999999658
+    },
+    {
+      "seed": 894,
+      "condition": "hybrid_rgb",
+      "success": false,
+      "distance": 3.9434950812509095,
+      "fallen": true,
+      "seconds": 1.500000000000001
+    },
+    {
+      "seed": 895,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.00531604407329,
+      "fallen": false,
+      "seconds": 3.399999999999847
+    },
+    {
+      "seed": 895,
+      "condition": "hybrid_rgb",
+      "success": false,
+      "distance": 4.781554756623692,
+      "fallen": true,
+      "seconds": 1.340000000000001
+    },
+    {
+      "seed": 896,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.040736155167217,
+      "fallen": false,
+      "seconds": 2.7599999999999176
+    },
+    {
+      "seed": 896,
+      "condition": "hybrid_rgb",
+      "success": false,
+      "distance": 5.067939084396234,
+      "fallen": true,
+      "seconds": 1.260000000000001
+    },
+    {
+      "seed": 897,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.020834709378809,
+      "fallen": false,
+      "seconds": 3.1799999999998714
+    },
+    {
+      "seed": 897,
+      "condition": "hybrid_rgb",
+      "success": false,
+      "distance": 4.864134591506195,
+      "fallen": true,
+      "seconds": 1.340000000000001
+    },
+    {
+      "seed": 898,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.063175732393931,
+      "fallen": false,
+      "seconds": 2.5599999999999397
+    },
+    {
+      "seed": 898,
+      "condition": "hybrid_rgb",
+      "success": false,
+      "distance": 5.459420992911139,
+      "fallen": true,
+      "seconds": 1.300000000000001
+    },
+    {
+      "seed": 899,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.016732258848576,
+      "fallen": false,
+      "seconds": 2.8799999999999044
+    },
+    {
+      "seed": 899,
+      "condition": "hybrid_rgb",
+      "success": false,
+      "distance": 5.006316812549942,
+      "fallen": true,
+      "seconds": 1.280000000000001
+    },
+    {
+      "seed": 900,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.042224974260261,
+      "fallen": false,
+      "seconds": 5.159999999999654
+    },
+    {
+      "seed": 900,
+      "condition": "hybrid_rgb",
+      "success": false,
+      "distance": 4.333364973926134,
+      "fallen": true,
+      "seconds": 1.7200000000000013
+    },
+    {
+      "seed": 901,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.009972972950987,
+      "fallen": false,
+      "seconds": 3.419999999999845
+    },
+    {
+      "seed": 901,
+      "condition": "hybrid_rgb",
+      "success": false,
+      "distance": 3.9771730339730995,
+      "fallen": true,
+      "seconds": 1.0600000000000007
+    },
+    {
+      "seed": 902,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.0172110236877,
+      "fallen": false,
+      "seconds": 4.679999999999707
+    },
+    {
+      "seed": 902,
+      "condition": "hybrid_rgb",
+      "success": false,
+      "distance": 3.2944037658690988,
+      "fallen": true,
+      "seconds": 1.1800000000000008
+    },
+    {
+      "seed": 903,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.033479346879206,
+      "fallen": false,
+      "seconds": 4.899999999999682
+    },
+    {
+      "seed": 903,
+      "condition": "hybrid_rgb",
+      "success": false,
+      "distance": 3.5483475281928682,
+      "fallen": true,
+      "seconds": 1.320000000000001
+    },
+    {
+      "seed": 904,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.027820405988349,
+      "fallen": false,
+      "seconds": 4.439999999999733
+    },
+    {
+      "seed": 904,
+      "condition": "hybrid_rgb",
+      "success": false,
+      "distance": 4.105089457399121,
+      "fallen": true,
+      "seconds": 1.380000000000001
+    },
+    {
+      "seed": 905,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.015679085438261,
+      "fallen": false,
+      "seconds": 2.7999999999999132
+    },
+    {
+      "seed": 905,
+      "condition": "hybrid_rgb",
+      "success": false,
+      "distance": 4.5987618636764935,
+      "fallen": true,
+      "seconds": 1.1000000000000008
+    },
+    {
+      "seed": 906,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.04805150539018,
+      "fallen": false,
+      "seconds": 2.5999999999999353
+    },
+    {
+      "seed": 906,
+      "condition": "hybrid_rgb",
+      "success": false,
+      "distance": 5.445683628273627,
+      "fallen": true,
+      "seconds": 1.320000000000001
+    },
+    {
+      "seed": 907,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.051122285344302,
+      "fallen": false,
+      "seconds": 2.999999999999891
+    },
+    {
+      "seed": 907,
+      "condition": "hybrid_rgb",
+      "success": false,
+      "distance": 4.900238541542518,
+      "fallen": true,
+      "seconds": 1.340000000000001
+    },
+    {
+      "seed": 908,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.042579257337758,
+      "fallen": false,
+      "seconds": 3.7399999999998097
+    },
+    {
+      "seed": 908,
+      "condition": "hybrid_rgb",
+      "success": false,
+      "distance": 4.504118148546917,
+      "fallen": true,
+      "seconds": 1.300000000000001
+    },
+    {
+      "seed": 909,
+      "condition": "sensor_baseline",
+      "success": true,
+      "distance": 10.019770238679865,
+      "fallen": false,
+      "seconds": 3.1599999999998736
+    },
+    {
+      "seed": 909,
+      "condition": "hybrid_rgb",
+      "success": false,
+      "distance": 4.759551923434379,
+      "fallen": true,
+      "seconds": 1.300000000000001
+    }
+  ],
+  "checkpoint": "C:\\projects\\pixel-active-inference\\runs\\bike\\vision_motion\\orientation.json",
+  "policy_checkpoint": "runs\\bike\\practice_seed1000\\practiced_observed_motion.json",
+  "checkpoint_sha256": "745ed99feabfc6a4f7628f5dae03efe5c340dd3d37147d4e0cd29cd54cd42804",
+  "policy_sha256": "87d34018c32d08189efd95fc70e2baaa73edcf9956aad409ac63e08e8d4d3023",
+  "limitations": [
+    "camera tracks simulator root; this is not image-based tracking",
+    "speed and steering/lean encoders are supplied sensor channels; not fully pixel-controlled riding",
+    "fixed image and control models; no visual policy training on these evaluation episodes",
+    "small paired sample; no Stage 2 transfer comparison"
+  ]
+}

@@ -1,0 +1,339 @@
+{
+  "scope": "motion-state observation with known MuJoCo inverse dynamics; not learned video perception",
+  "demonstrations": {
+    "episodes": [
+      {
+        "seed": 0,
+        "success": true,
+        "distance": 10.057248416698219,
+        "seconds": 2.539999999999942
+      },
+      {
+        "seed": 1,
+        "success": true,
+        "distance": 10.058174074614163,
+        "seconds": 2.539999999999942
+      },
+      {
+        "seed": 2,
+        "success": true,
+        "distance": 10.041417178178605,
+        "seconds": 2.539999999999942
+      },
+      {
+        "seed": 3,
+        "success": true,
+        "distance": 10.060942798958926,
+        "seconds": 2.5599999999999397
+      },
+      {
+        "seed": 4,
+        "success": true,
+        "distance": 10.051746076761406,
+        "seconds": 2.5599999999999397
+      },
+      {
+        "seed": 5,
+        "success": true,
+        "distance": 10.023005176312969,
+        "seconds": 2.539999999999942
+      },
+      {
+        "seed": 6,
+        "success": true,
+        "distance": 10.058201634510704,
+        "seconds": 2.539999999999942
+      },
+      {
+        "seed": 7,
+        "success": true,
+        "distance": 10.057682643296115,
+        "seconds": 2.539999999999942
+      },
+      {
+        "seed": 8,
+        "success": true,
+        "distance": 10.054178173570227,
+        "seconds": 2.539999999999942
+      },
+      {
+        "seed": 9,
+        "success": true,
+        "distance": 10.003100341494472,
+        "seconds": 2.539999999999942
+      }
+    ],
+    "samples": 12720,
+    "inverse_action_mae": [
+      0.00171532357196069,
+      0.003085799264991403,
+      0.0015169337831354916
+    ],
+    "channels": [
+      "rear_torque_Nm",
+      "steering_target_rad",
+      "lean_target_rad"
+    ]
+  },
+  "episodes": [
+    {
+      "seed": 20,
+      "condition": "uncontrolled",
+      "success": false,
+      "distance": 7.307778232738001,
+      "fallen": true,
+      "seconds": 1.8400000000000014
+    },
+    {
+      "seed": 20,
+      "condition": "classical",
+      "success": true,
+      "distance": 10.04571341229402,
+      "fallen": false,
+      "seconds": 2.539999999999942
+    },
+    {
+      "seed": 20,
+      "condition": "observed_student",
+      "success": true,
+      "distance": 10.05205668346367,
+      "fallen": false,
+      "seconds": 2.539999999999942
+    },
+    {
+      "seed": 21,
+      "condition": "uncontrolled",
+      "success": false,
+      "distance": 6.914375247036731,
+      "fallen": true,
+      "seconds": 1.7400000000000013
+    },
+    {
+      "seed": 21,
+      "condition": "classical",
+      "success": true,
+      "distance": 10.030016951035876,
+      "fallen": false,
+      "seconds": 2.539999999999942
+    },
+    {
+      "seed": 21,
+      "condition": "observed_student",
+      "success": true,
+      "distance": 10.039603216338095,
+      "fallen": false,
+      "seconds": 2.539999999999942
+    },
+    {
+      "seed": 22,
+      "condition": "uncontrolled",
+      "success": false,
+      "distance": 8.173684990117092,
+      "fallen": true,
+      "seconds": 2.0599999999999947
+    },
+    {
+      "seed": 22,
+      "condition": "classical",
+      "success": true,
+      "distance": 10.057387860157858,
+      "fallen": false,
+      "seconds": 2.539999999999942
+    },
+    {
+      "seed": 22,
+      "condition": "observed_student",
+      "success": true,
+      "distance": 10.058209106330144,
+      "fallen": false,
+      "seconds": 2.539999999999942
+    },
+    {
+      "seed": 23,
+      "condition": "uncontrolled",
+      "success": false,
+      "distance": 7.54430013585584,
+      "fallen": true,
+      "seconds": 1.9000000000000015
+    },
+    {
+      "seed": 23,
+      "condition": "classical",
+      "success": true,
+      "distance": 10.050913612434867,
+      "fallen": false,
+      "seconds": 2.539999999999942
+    },
+    {
+      "seed": 23,
+      "condition": "observed_student",
+      "success": true,
+      "distance": 10.054720311862598,
+      "fallen": false,
+      "seconds": 2.539999999999942
+    },
+    {
+      "seed": 24,
+      "condition": "uncontrolled",
+      "success": false,
+      "distance": 7.780555873754742,
+      "fallen": true,
+      "seconds": 1.9600000000000015
+    },
+    {
+      "seed": 24,
+      "condition": "classical",
+      "success": true,
+      "distance": 10.054580041205146,
+      "fallen": false,
+      "seconds": 2.539999999999942
+    },
+    {
+      "seed": 24,
+      "condition": "observed_student",
+      "success": true,
+      "distance": 10.056850423156115,
+      "fallen": false,
+      "seconds": 2.539999999999942
+    },
+    {
+      "seed": 25,
+      "condition": "uncontrolled",
+      "success": false,
+      "distance": 6.520433282592332,
+      "fallen": true,
+      "seconds": 1.6400000000000012
+    },
+    {
+      "seed": 25,
+      "condition": "classical",
+      "success": true,
+      "distance": 10.012675825415874,
+      "fallen": false,
+      "seconds": 2.539999999999942
+    },
+    {
+      "seed": 25,
+      "condition": "observed_student",
+      "success": true,
+      "distance": 10.025623736813744,
+      "fallen": false,
+      "seconds": 2.539999999999942
+    },
+    {
+      "seed": 26,
+      "condition": "uncontrolled",
+      "success": true,
+      "distance": 10.044907510899067,
+      "fallen": false,
+      "seconds": 2.539999999999942
+    },
+    {
+      "seed": 26,
+      "condition": "classical",
+      "success": true,
+      "distance": 10.058172616357114,
+      "fallen": false,
+      "seconds": 2.539999999999942
+    },
+    {
+      "seed": 26,
+      "condition": "observed_student",
+      "success": true,
+      "distance": 10.058159949102052,
+      "fallen": false,
+      "seconds": 2.539999999999942
+    },
+    {
+      "seed": 27,
+      "condition": "uncontrolled",
+      "success": false,
+      "distance": 7.544727592424329,
+      "fallen": true,
+      "seconds": 1.9000000000000015
+    },
+    {
+      "seed": 27,
+      "condition": "classical",
+      "success": true,
+      "distance": 10.050231854872695,
+      "fallen": false,
+      "seconds": 2.539999999999942
+    },
+    {
+      "seed": 27,
+      "condition": "observed_student",
+      "success": true,
+      "distance": 10.054329802134149,
+      "fallen": false,
+      "seconds": 2.539999999999942
+    },
+    {
+      "seed": 28,
+      "condition": "uncontrolled",
+      "success": false,
+      "distance": 6.44175044720305,
+      "fallen": true,
+      "seconds": 1.6200000000000012
+    },
+    {
+      "seed": 28,
+      "condition": "classical",
+      "success": true,
+      "distance": 10.008840448168353,
+      "fallen": false,
+      "seconds": 2.539999999999942
+    },
+    {
+      "seed": 28,
+      "condition": "observed_student",
+      "success": true,
+      "distance": 10.02128852755815,
+      "fallen": false,
+      "seconds": 2.539999999999942
+    },
+    {
+      "seed": 29,
+      "condition": "uncontrolled",
+      "success": false,
+      "distance": 5.809750767757533,
+      "fallen": true,
+      "seconds": 1.460000000000001
+    },
+    {
+      "seed": 29,
+      "condition": "classical",
+      "success": true,
+      "distance": 10.048779124009279,
+      "fallen": false,
+      "seconds": 2.5599999999999397
+    },
+    {
+      "seed": 29,
+      "condition": "observed_student",
+      "success": true,
+      "distance": 10.065511099382306,
+      "fallen": false,
+      "seconds": 2.5599999999999397
+    }
+  ],
+  "summary": {
+    "uncontrolled": {
+      "episodes": 10,
+      "successes": 1
+    },
+    "classical": {
+      "episodes": 10,
+      "successes": 10
+    },
+    "observed_student": {
+      "episodes": 10,
+      "successes": 10
+    }
+  },
+  "remaining": [
+    "motion extraction from videos",
+    "practice learning",
+    "Stage 2 transfer comparison"
+  ]
+}

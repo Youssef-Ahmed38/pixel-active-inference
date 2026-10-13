@@ -1,0 +1,58 @@
+{
+  "replicates": [
+    {
+      "seed": 1000,
+      "report": "C:\\projects\\pixel-active-inference\\results\\bike_practice_seed1000.json",
+      "conditions": {
+        "observed_motion": {
+          "first_all_successful_practice_attempt": 16,
+          "baseline_successes": 12,
+          "practiced_successes": 20
+        },
+        "scratch": {
+          "first_all_successful_practice_attempt": null,
+          "baseline_successes": 0,
+          "practiced_successes": 2
+        }
+      }
+    },
+    {
+      "seed": 1001,
+      "report": "C:\\projects\\pixel-active-inference\\results\\bike_practice_seed1001.json",
+      "conditions": {
+        "observed_motion": {
+          "first_all_successful_practice_attempt": 3,
+          "baseline_successes": 12,
+          "practiced_successes": 20
+        },
+        "scratch": {
+          "first_all_successful_practice_attempt": null,
+          "baseline_successes": 0,
+          "practiced_successes": 1
+        }
+      }
+    },
+    {
+      "seed": 1002,
+      "report": "C:\\projects\\pixel-active-inference\\results\\bike_practice_seed1002.json",
+      "conditions": {
+        "observed_motion": {
+          "first_all_successful_practice_attempt": 15,
+          "baseline_successes": 12,
+          "practiced_successes": 19
+        },
+        "scratch": {
+          "first_all_successful_practice_attempt": null,
+          "baseline_successes": 0,
+          "practiced_successes": 0
+        }
+      }
+    }
+  ],
+  "layouts_per_replicate": 20,
+  "limitations": [
+    "replicates share the same evaluation layouts and observed-motion initialization",
+    "not 60 independent physical layouts",
+    "no Stage 2 transfer comparison"
+  ]
+}
