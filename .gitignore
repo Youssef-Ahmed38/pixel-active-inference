@@ -22,3 +22,6 @@ results/**/partial/
 results/**/logs/
 results/**/*.err
 results/**/*.log
+
+# Codex delegation logs (tools/codex_delegate.py)
+.codex_task/

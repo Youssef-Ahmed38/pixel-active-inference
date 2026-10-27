@@ -75,6 +75,7 @@ def link(src: Path, dst: Path) -> None:
     """Junction (Windows) or symlink to large ignored folders the task may need to read."""
     if dst.exists() or not src.exists():
         return
+    dst.parent.mkdir(parents=True, exist_ok=True)
     if os.name == "nt":
         subprocess.run(["cmd", "/c", "mklink", "/J", str(dst), str(src)], check=True, capture_output=True)
     else:
