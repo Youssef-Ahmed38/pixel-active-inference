@@ -18,6 +18,8 @@ dependencies = [
 [project.optional-dependencies]
 dev = ["pytest>=8"]
 chess = ["python-chess>=1.999,<2", "scikit-learn>=1.5,<2"]
+# optional compiled chess inference (pai/chess/fast_rules.py); without it the NumPy reference runs
+chess-fast = ["numba>=0.60"]
 bike-video = ["imageio-ffmpeg>=0.5,<1"]
 
 [tool.setuptools.packages.find]

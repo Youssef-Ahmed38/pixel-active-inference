@@ -82,6 +82,9 @@ class HRMPositionValue:
 
 
 def load_value(path):
+    if Path(path).suffix == ".npz":
+        from pai.chess.distill import DistilledValue
+        return DistilledValue.load(path)
     if Path(path).suffix == ".pt":
         return HRMPositionValue.load(path)
     data = json.loads(Path(path).read_text(encoding="utf-8"))

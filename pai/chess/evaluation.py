@@ -118,9 +118,8 @@ class LearnedChessEvaluator:
 def value_features(obs):
     """Signed token-square and token-count evidence, canonical across colors."""
     pieces = np.array(obs.pieces).reshape(8, 8)
-    x = np.zeros((6, 64), dtype=np.float32)
-    for code in range(1, 7):
-        x[code - 1] = (pieces == code).reshape(-1) - (pieces[::-1] == code + 6).reshape(-1).astype(np.float32)
+    codes = np.arange(1, 7)[:, None, None]
+    x = ((pieces[None] == codes).astype(np.float32) - (pieces[None, ::-1] == codes + 6).astype(np.float32)).reshape(6,64)
     return np.concatenate((x.sum(1), x.reshape(-1), [2 * obs.turn - 1])).astype(np.float32)
 
 
@@ -134,6 +133,18 @@ class LearnedPositionValue:
 
     def predict(self, obs):
         return float(value_features(obs) @ self.weights)
+
+    def predict_many(self, observations):
+        observations = list(observations)
+        if not observations:
+            return np.empty(0, dtype=float)
+        boards = np.asarray([o.pieces for o in observations]).reshape(-1, 8, 8)
+        codes = np.arange(1, 7)[None, :, None, None]
+        signed = ((boards[:, None] == codes).astype(np.float32) -
+                  (boards[:, None, ::-1] == codes + 6).astype(np.float32)).reshape(-1, 6, 64)
+        x = np.concatenate((signed.sum(2), signed.reshape(-1, 384),
+                            np.asarray([[2 * o.turn - 1] for o in observations],dtype=np.float32)), axis=1)
+        return x @ self.weights
 
     def save(self, path):
         path = Path(path)

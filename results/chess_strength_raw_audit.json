@@ -1,0 +1,45 @@
+{
+  "git_commit": "6bd271d567f45d01069a0839bb767c00955160f7",
+  "source_sha256": "afb668976dc2e616a53d79a9cfd6dcee628c6ba1943216fe45a0abe76d797b45",
+  "seeds": [
+    64400,
+    64401,
+    64402,
+    64403,
+    64404,
+    64405,
+    64406,
+    64407,
+    64408,
+    64409,
+    74400,
+    74401,
+    74402,
+    74403,
+    74404,
+    74405,
+    74406,
+    74407,
+    74408,
+    74409
+  ],
+  "time_controls": {
+    "controls": "retained per-game white/black configs in audited files"
+  },
+  "command": "scripts/chess_strength_audit.py --games results/chess_strength_final_promotion.jsonl results/chess_strength_final_ladder.jsonl",
+  "files": {
+    "results\\chess_strength_final_promotion.jsonl": {
+      "games": 20,
+      "audited": 20,
+      "points": 18.0,
+      "unresolved": 0
+    },
+    "results\\chess_strength_final_ladder.jsonl": {
+      "games": 120,
+      "audited": 120,
+      "points": 7.5,
+      "unresolved": 0
+    }
+  },
+  "strict_audit_passed": true
+}

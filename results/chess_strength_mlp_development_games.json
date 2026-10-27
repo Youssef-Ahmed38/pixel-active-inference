@@ -1,0 +1,5358 @@
+{
+  "provenance": {
+    "git_commit": "7a55e67015f1d14143ac4032e261a8062a1e83d4",
+    "source_sha256": "a5096bb3071fcd6d36fcbe2221174aa3c0e1b580b84164fb6de08306516402dc",
+    "seeds": [
+      54400
+    ],
+    "time_controls": {
+      "both_sides_movetime_seconds": [
+        0.1
+      ],
+      "opponent_extra_depth_cap": null,
+      "agent_node_safety_cap": 1000000
+    },
+    "command": "scripts/chess_ladder.py promote --engine runs/chess_teacher/stockfish/stockfish-windows-x86-64-universal.exe --agent-value runs/chess_strength_data/value_mixed.npz --times 0.1 --pairs 2 --opening-seed 54400 --workers 2 --reuse-pv --output results/chess_strength_mlp_development_games.jsonl"
+  },
+  "opening_seed": 54400,
+  "roots": [
+    "rnbqkbnr/1ppppppp/8/8/p2P1P2/N7/PPPKP1PP/R1BQ1BNR w kq - 2 5",
+    "rnbqkbnr/1ppppp1p/p5p1/8/P7/6PP/1PPPPP2/RNBQKBNR b KQkq - 0 3"
+  ],
+  "checkpoint_hashes": {
+    "runs\\chess_strength_data\\value_mixed.npz": "b987a74f87ab93cf",
+    "runs\\chess_rules\\value.json": "001a9ae670cbe51f",
+    "runs\\chess_rules\\rules.json": "92f93d445f4b0f4a",
+    "runs\\chess_rules\\state.json": "84e32613d8899907",
+    "runs\\chess_rules\\endings.json": "86241b595f941790"
+  },
+  "groups": {
+    "t0.1_incumbent": {
+      "games": 4,
+      "pairs": 2,
+      "unresolved_games": 0,
+      "wins": 0,
+      "draws": 4,
+      "losses": 0,
+      "score": 0.5,
+      "score_ci95_pair_bootstrap": [
+        0.5,
+        0.5
+      ],
+      "score_ci95_wilson_games": [
+        0.15003898774401986,
+        0.8499610122559802
+      ],
+      "elo_difference": -0.0,
+      "elo_difference_ci95": [
+        -0.0,
+        -0.0
+      ],
+      "lower_bound_above_half": false,
+      "complete_colour_pairs": true,
+      "paired_sign_test_p_one_sided": 1.0,
+      "promotion_gate_passed": false,
+      "statistical_assumptions": "independent opening clusters; sign symmetry under equal-strength null",
+      "players": {
+        "kind": "promotion",
+        "candidate": {
+          "kind": "agent",
+          "directory": "runs\\chess_rules",
+          "value": "runs\\chess_strength_data\\value_mixed.npz",
+          "time": 0.1,
+          "nodes": 1000000,
+          "quiescence": 0,
+          "reuse_pv": true
+        },
+        "opponent": {
+          "kind": "agent",
+          "directory": "runs\\chess_rules",
+          "value": "runs\\chess_rules\\value.json",
+          "time": 0.1,
+          "nodes": 1000000,
+          "quiescence": 0,
+          "reuse_pv": true
+        }
+      },
+      "scheduled_games": 4,
+      "schedule_complete": true,
+      "failures": []
+    }
+  },
+  "conditional_elo_by_movetime": {},
+  "rating_scope": "conditional Elo relative to configured Stockfish anchors under stated limits; not calibrated human Elo",
+  "raw_games": [
+    {
+      "status": "complete",
+      "result": "1/2-1/2",
+      "termination": "THREEFOLD_REPETITION",
+      "plies": 81,
+      "failure": null,
+      "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"1/2-1/2\"]\n[FEN \"rnbqkbnr/1ppppppp/8/8/p2P1P2/N7/PPPKP1PP/R1BQ1BNR w kq - 2 5\"]\n[SetUp \"1\"]\n\n5. Nh3 e5 6. Nc4 Nc6 7. dxe5 a3 8. bxa3 Rxa3 9. Bxa3 Nb4 10. Bxb4 Bxb4+ 11. c3 Qf6 12. exf6 Nxf6 13. cxb4 d6 14. Qb1 Bxh3 15. gxh3 O-O 16. Bg2 Ne4+ 17. Bxe4 f6 18. Bg2 Ra8 19. Nxd6 cxd6 20. e3 Kh8 21. Ke1 f5 22. a4 Re8 23. b5 Re4 24. Bxe4 fxe4 25. Rf1 Kg8 26. Rf3 exf3 27. h4 f2+ 28. Kxf2 b6 29. Ke1 g6 30. Qxg6+ hxg6 31. h3 Kh8 32. h5 gxh5 33. h4 Kg8 34. Rb1 Kh8 35. Rb3 Kg8 36. a5 bxa5 37. Kf2 Kg7 38. Ke1 Kg6 39. Kf2 Kf5 40. Ke1 Ke4 41. Kf2 Kd5 42. Ke1 Kc5 43. Kf2 Kd5 44. Ke1 Kc5 45. Kf2 1/2-1/2",
+      "search_records": [
+        {
+          "depth": 1,
+          "nodes": 33,
+          "seconds": 0.11462459998438135,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11513459999696352
+        },
+        {
+          "depth": 0,
+          "nodes": 9,
+          "seconds": 0.1093473999935668,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10991260001901537
+        },
+        {
+          "depth": 0,
+          "nodes": 9,
+          "seconds": 0.11153739999281242,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11205359999439679
+        },
+        {
+          "depth": 0,
+          "nodes": 8,
+          "seconds": 0.10594559999299236,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.106430600018939
+        },
+        {
+          "depth": 0,
+          "nodes": 9,
+          "seconds": 0.10976130000199191,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11024169999291189
+        },
+        {
+          "depth": 0,
+          "nodes": 8,
+          "seconds": 0.10606950000510551,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10683489998336881
+        },
+        {
+          "depth": 0,
+          "nodes": 11,
+          "seconds": 0.1001570999796968,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10071950001292862
+        },
+        {
+          "depth": 0,
+          "nodes": 7,
+          "seconds": 0.10566890001064166,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10645730001851916
+        },
+        {
+          "depth": 0,
+          "nodes": 12,
+          "seconds": 0.1015225000155624,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10209870000835508
+        },
+        {
+          "depth": 0,
+          "nodes": 14,
+          "seconds": 0.1022238000005018,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10281640000175685
+        },
+        {
+          "depth": 0,
+          "nodes": 16,
+          "seconds": 0.10362109998823144,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10415440000360832
+        },
+        {
+          "depth": 0,
+          "nodes": 8,
+          "seconds": 0.10182589999749325,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.1026403000287246
+        },
+        {
+          "depth": 1,
+          "nodes": 11,
+          "seconds": 0.10609849999309517,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10685149999335408
+        },
+        {
+          "depth": 0,
+          "nodes": 9,
+          "seconds": 0.1079877000011038,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10898660001112148
+        },
+        {
+          "depth": 0,
+          "nodes": 10,
+          "seconds": 0.10678809997625649,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11097540002083406
+        },
+        {
+          "depth": 0,
+          "nodes": 8,
+          "seconds": 0.11089380001067184,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11219519999576733
+        },
+        {
+          "depth": 0,
+          "nodes": 10,
+          "seconds": 0.1043055999907665,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10686600001645274
+        },
+        {
+          "depth": 0,
+          "nodes": 9,
+          "seconds": 0.10854879999533296,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10952349999570288
+        },
+        {
+          "depth": 0,
+          "nodes": 10,
+          "seconds": 0.10473220000858419,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10563629999523982
+        },
+        {
+          "depth": 0,
+          "nodes": 8,
+          "seconds": 0.10055329999886453,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10347649999312125
+        },
+        {
+          "depth": 0,
+          "nodes": 9,
+          "seconds": 0.1133345999987796,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11428099998738617
+        },
+        {
+          "depth": 0,
+          "nodes": 7,
+          "seconds": 0.10219760000472888,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10572819999651983
+        },
+        {
+          "depth": 0,
+          "nodes": 10,
+          "seconds": 0.11516220000339672,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11616079998202622
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.10021139998571016,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10129309998592362
+        },
+        {
+          "depth": 0,
+          "nodes": 8,
+          "seconds": 0.10021050000796095,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10404040000867099
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.11875289998715743,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.12013320002006367
+        },
+        {
+          "depth": 0,
+          "nodes": 13,
+          "seconds": 0.10068999999202788,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10422939999261871
+        },
+        {
+          "depth": 0,
+          "nodes": 12,
+          "seconds": 0.101758200005861,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10311870000441559
+        },
+        {
+          "depth": 0,
+          "nodes": 12,
+          "seconds": 0.13389029999962077,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.13571960001718253
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.1004114999959711,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11855280000600033
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.11469330001273192,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11576570000033826
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.11759430001256987,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.12358670000685379
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.1141444000240881,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11923500002012588
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10963519997312687,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.1108496000233572
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10291960000176914,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10985709997476079
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.11559380000107922,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.13039090001257136
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.11204449998331256,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11336049999226816
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.1089166000019759,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.12256960000377148
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.1138957999937702,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11517090001143515
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.11170209999545477,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11417419998906553
+        },
+        {
+          "depth": 0,
+          "nodes": 7,
+          "seconds": 0.10398600000189617,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10528820002218708
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.116163200000301,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11749960001907311
+        },
+        {
+          "depth": 0,
+          "nodes": 7,
+          "seconds": 0.1055202999850735,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10726029999204911
+        },
+        {
+          "depth": 1,
+          "nodes": 11,
+          "seconds": 0.10839410001062788,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10995529999490827
+        },
+        {
+          "depth": 0,
+          "nodes": 14,
+          "seconds": 0.10346069998922758,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10476950000156648
+        },
+        {
+          "depth": 1,
+          "nodes": 12,
+          "seconds": 0.10290779999922961,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10415560001274571
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.11805230000754818,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.12924360000761226
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10518049998790957,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10727310000220314
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.10518890002276748,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11348219998762943
+        },
+        {
+          "depth": 0,
+          "nodes": 2,
+          "seconds": 0.11381320000509731,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11546969998744316
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.10379290001583286,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10930399998323992
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.13361680001253262,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.1377906999841798
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.10371690001920797,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11251439998159185
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.13519180001458153,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.13853409999865107
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.11109160000341944,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.13053140000556596
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.10097470000619069,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11608059998252429
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.1060750000178814,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10788330002105795
+        },
+        {
+          "depth": 1,
+          "nodes": 5,
+          "seconds": 0.10987310000928119,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11624890001257882
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.11426530001335777,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11614379999809898
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.1013702999916859,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11386990000028163
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.12515349997556768,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.12710329997935332
+        },
+        {
+          "depth": 1,
+          "nodes": 6,
+          "seconds": 0.1002466999925673,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.1175126000016462
+        },
+        {
+          "depth": 1,
+          "nodes": 15,
+          "seconds": 0.1028220999869518,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10497949999989942
+        },
+        {
+          "depth": 1,
+          "nodes": 14,
+          "seconds": 0.10045830000308342,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10247709997929633
+        },
+        {
+          "depth": 0,
+          "nodes": 11,
+          "seconds": 0.10632649998296984,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.108056500001112
+        },
+        {
+          "depth": 0,
+          "nodes": 7,
+          "seconds": 0.13043109999853186,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.1325189000053797
+        },
+        {
+          "depth": 0,
+          "nodes": 7,
+          "seconds": 0.12290109999594279,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.12950000001001172
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.10058660001959652,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10718419999466278
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.13188659999286756,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.13413299998501316
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.1011409999919124,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10384460000204854
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10782440000912175,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11087599999154918
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.10019139997893944,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10256299999309704
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.11466920000384562,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11779369998839684
+        },
+        {
+          "depth": 1,
+          "nodes": 5,
+          "seconds": 0.10421879999921657,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.12085770000703633
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.11116959998616949,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11325510000460781
+        },
+        {
+          "depth": 1,
+          "nodes": 6,
+          "seconds": 0.10992439999245107,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.12485890000243671
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.10176799999317154,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10825790002127178
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.1610355000011623,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.16336380000575446
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.14320829999633133,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.15070870000636205
+        },
+        {
+          "depth": 1,
+          "nodes": 8,
+          "seconds": 0.10445129999425262,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11153759999433532
+        },
+        {
+          "depth": 0,
+          "nodes": 11,
+          "seconds": 0.11003999999957159,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11264630002551712
+        },
+        {
+          "depth": 1,
+          "nodes": 12,
+          "seconds": 0.11524199999985285,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.1178207999910228
+        }
+      ],
+      "commands": [
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g1h3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e7e5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a3c4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b8c6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d4e5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a4a3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b2a3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a8a3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c1a3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c6b4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a3b4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f8b4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2c3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d8f6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e5f6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g8f6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c3b4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d7d6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d1b1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c8h3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g2h3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e8g8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f1g2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f6e4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g2e4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f7f6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e4g2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f8a8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c4d6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c7d6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e2e3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g8h8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d2e1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f6f5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a2a4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a8e8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b4b5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e8e4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g2e4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f5e4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h1f1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h8g8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f1f3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e4f3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h3h4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f3f2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e1f2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b7b6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f2e1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g7g6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b1g6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h7g6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h2h3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g8h8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h4h5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g6h5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h3h4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h8g8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a1b1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g8h8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b1b3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h8g8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a4a5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b6a5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e1f2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g8g7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f2e1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g7g6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e1f2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g6f5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f2e1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f5e4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e1f2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e4d5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f2e1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d5c5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e1f2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c5d5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f2e1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d5c5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e1f2"
+          ]
+        },
+        {
+          "name": "claim_draw",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c5d5"
+          ]
+        }
+      ],
+      "agent_depth_mean": 0.14634146341463414,
+      "agent_seconds_mean": 0.11022321585276187,
+      "id": "t0.1_incumbent|0|black",
+      "group": "t0.1_incumbent",
+      "pair": 0,
+      "candidate_color": "black",
+      "root": "rnbqkbnr/1ppppppp/8/8/p2P1P2/N7/PPPKP1PP/R1BQ1BNR w kq - 2 5",
+      "seed": 54400,
+      "white": {
+        "kind": "agent",
+        "directory": "runs\\chess_rules",
+        "value": "runs\\chess_rules\\value.json",
+        "time": 0.1,
+        "nodes": 1000000,
+        "quiescence": 0,
+        "reuse_pv": true
+      },
+      "black": {
+        "kind": "agent",
+        "directory": "runs\\chess_rules",
+        "value": "runs\\chess_strength_data\\value_mixed.npz",
+        "time": 0.1,
+        "nodes": 1000000,
+        "quiescence": 0,
+        "reuse_pv": true
+      },
+      "provenance": {
+        "git_commit": "7a55e67015f1d14143ac4032e261a8062a1e83d4",
+        "source_sha256": "a5096bb3071fcd6d36fcbe2221174aa3c0e1b580b84164fb6de08306516402dc",
+        "seeds": [
+          54400
+        ],
+        "time_controls": {
+          "both_sides_movetime_seconds": [
+            0.1
+          ],
+          "opponent_extra_depth_cap": null,
+          "agent_node_safety_cap": 1000000
+        },
+        "command": "scripts/chess_ladder.py promote --engine runs/chess_teacher/stockfish/stockfish-windows-x86-64-universal.exe --agent-value runs/chess_strength_data/value_mixed.npz --times 0.1 --pairs 2 --opening-seed 54400 --workers 2 --reuse-pv --output results/chess_strength_mlp_development_games.jsonl"
+      },
+      "wall_seconds": 22.592374086380005
+    },
+    {
+      "status": "complete",
+      "result": "1/2-1/2",
+      "termination": "THREEFOLD_REPETITION",
+      "plies": 86,
+      "failure": null,
+      "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"1/2-1/2\"]\n[FEN \"rnbqkbnr/1ppppppp/8/8/p2P1P2/N7/PPPKP1PP/R1BQ1BNR w kq - 2 5\"]\n[SetUp \"1\"]\n\n5. e3 Nh6 6. Nb5 Nc6 7. Nxc7+ Qxc7 8. h4 Qb8 9. Rh3 e6 10. e4 Be7 11. a3 Bxh4 12. Rg3 Bxg3 13. e5 Bxf4+ 14. Kc3 Bxc1 15. Qxc1 Nxe5 16. dxe5 Ra5 17. Qe3 Rf8 18. Kc4 Rxe5 19. Qxe5 Qxe5 20. Ne2 Qxe2+ 21. Bxe2 d5+ 22. Kb5 Bd7+ 23. Kc5 Bb5 24. Kxb5 g6 25. Rd1 d4 26. Rxd4 f5 27. Bf3 Rf6 28. Rd1 b6 29. c4 Kf7 30. b4 axb3 31. c5 bxc5 32. Be2 b2 33. Ka4 b1=Q 34. Rxb1 Ke8 35. Rb3 c4 36. Rb1 c3 37. Rb7 c2 38. Rb3 c1=Q 39. Rc3 Qxc3 40. Bd3 Qxd3 41. Ka5 Qb3 42. Ka6 Qb7+ 43. Kxb7 Kf7 44. a4 Ke8 45. Ka6 Kf7 46. Kb7 Ke8 47. Ka6 Kf7 1/2-1/2",
+      "search_records": [
+        {
+          "depth": 1,
+          "nodes": 29,
+          "seconds": 0.10928430000785738,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11110370000824332
+        },
+        {
+          "depth": 0,
+          "nodes": 9,
+          "seconds": 0.10631780000403523,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10677809998742305
+        },
+        {
+          "depth": 0,
+          "nodes": 7,
+          "seconds": 0.1041628000093624,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10524090001126751
+        },
+        {
+          "depth": 0,
+          "nodes": 9,
+          "seconds": 0.10335869999835268,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10393899999326095
+        },
+        {
+          "depth": 0,
+          "nodes": 9,
+          "seconds": 0.10045619998709299,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.1024489999981597
+        },
+        {
+          "depth": 1,
+          "nodes": 12,
+          "seconds": 0.10633260000031441,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10701229999540374
+        },
+        {
+          "depth": 0,
+          "nodes": 9,
+          "seconds": 0.1012965000118129,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10269570001401007
+        },
+        {
+          "depth": 0,
+          "nodes": 8,
+          "seconds": 0.10994439999922179,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11061190001782961
+        },
+        {
+          "depth": 0,
+          "nodes": 11,
+          "seconds": 0.10347360000014305,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10408320001442917
+        },
+        {
+          "depth": 0,
+          "nodes": 15,
+          "seconds": 0.10126950000994839,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10189469999750145
+        },
+        {
+          "depth": 0,
+          "nodes": 12,
+          "seconds": 0.10922990000108257,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10981930000707507
+        },
+        {
+          "depth": 0,
+          "nodes": 10,
+          "seconds": 0.11069609998958185,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11135980000835843
+        },
+        {
+          "depth": 0,
+          "nodes": 9,
+          "seconds": 0.1133999000012409,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11436219999450259
+        },
+        {
+          "depth": 0,
+          "nodes": 9,
+          "seconds": 0.10801460000220686,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10889940001652576
+        },
+        {
+          "depth": 0,
+          "nodes": 8,
+          "seconds": 0.11385130000417121,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11461049999343231
+        },
+        {
+          "depth": 0,
+          "nodes": 9,
+          "seconds": 0.1079240000108257,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11347839998779818
+        },
+        {
+          "depth": 0,
+          "nodes": 9,
+          "seconds": 0.10339969999040477,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10422020000987686
+        },
+        {
+          "depth": 0,
+          "nodes": 9,
+          "seconds": 0.1010633000114467,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10186259998590685
+        },
+        {
+          "depth": 1,
+          "nodes": 10,
+          "seconds": 0.10583149999729358,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10781950000091456
+        },
+        {
+          "depth": 0,
+          "nodes": 8,
+          "seconds": 0.10205750001478009,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10291759998654015
+        },
+        {
+          "depth": 0,
+          "nodes": 7,
+          "seconds": 0.1005822999868542,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10149219998857006
+        },
+        {
+          "depth": 0,
+          "nodes": 10,
+          "seconds": 0.105486699991161,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10659979999763891
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.10516609999467619,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.106108400010271
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.1037781999912113,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10476380001637153
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.11468470000545494,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11592720000771806
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.10019810000085272,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10128259999328293
+        },
+        {
+          "depth": 0,
+          "nodes": 11,
+          "seconds": 0.10510509999585338,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.1062079000112135
+        },
+        {
+          "depth": 0,
+          "nodes": 14,
+          "seconds": 0.10433099998044781,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10544829998980276
+        },
+        {
+          "depth": 0,
+          "nodes": 8,
+          "seconds": 0.13502749998588115,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.13608699999167584
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.10196250001899898,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10889030000544153
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10537110001314431,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11508020001929253
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.1141928999859374,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.12617699999827892
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.10630899999523535,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11126669999794103
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.11156879999907687,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11308029998326674
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10218489999533631,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10348790002171881
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.13034510001307353,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.13181289998465218
+        },
+        {
+          "depth": 1,
+          "nodes": 7,
+          "seconds": 0.13163010001881048,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.13293029999476857
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10650900000473484,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11784009999246337
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.11355259999982081,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.12629509999533184
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.10631420000572689,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11978599999565631
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.10585389999323525,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10722880001412705
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.10345939997932874,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10490060001029633
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.10817449999740347,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11098120000679046
+        },
+        {
+          "depth": 1,
+          "nodes": 14,
+          "seconds": 0.1072338999947533,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.1128096999891568
+        },
+        {
+          "depth": 0,
+          "nodes": 11,
+          "seconds": 0.1050923999864608,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10631390000344254
+        },
+        {
+          "depth": 0,
+          "nodes": 11,
+          "seconds": 0.12094099997193553,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.12227429999620654
+        },
+        {
+          "depth": 0,
+          "nodes": 2,
+          "seconds": 0.10048420002567582,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11335820000385866
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.10813899998902343,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.1149656000197865
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.12662930000806227,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.1323318999784533
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10511590001988225,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11295759998029098
+        },
+        {
+          "depth": 0,
+          "nodes": 2,
+          "seconds": 0.14222129998961464,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.14531990000978112
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.13320139999268577,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.13545459997840226
+        },
+        {
+          "depth": 0,
+          "nodes": 2,
+          "seconds": 0.10079719999339432,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.12149099999805912
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.13442469999426976,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.136053099995479
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.1079516000172589,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11315879999892786
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.1115867999906186,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.12030879998928867
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10529639999731444,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10701750000589527
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10642090000328608,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11445910000475124
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10971240000799298,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11268340001697652
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.11161550000542775,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.1155729999882169
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.11433659997419454,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.12299649999476969
+        },
+        {
+          "depth": 0,
+          "nodes": 10,
+          "seconds": 0.10332080000080168,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10524900001473725
+        },
+        {
+          "depth": 0,
+          "nodes": 12,
+          "seconds": 0.1067707999900449,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.1087104000034742
+        },
+        {
+          "depth": 1,
+          "nodes": 17,
+          "seconds": 0.11901019999640994,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.12096529998234473
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.10417390000657178,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11048719999962486
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.11526069999672472,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11789819999830797
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.10622519999742508,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11596110000391491
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.10544679997838102,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10785699999541976
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10599869998986833,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11198200000217184
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.11275040000327863,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11488360000657849
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.13722170001710765,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.14843239999026991
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.10470490000443533,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11841840000124648
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.11062949997722171,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11795069999061525
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.11453580000670627,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11843189998762682
+        },
+        {
+          "depth": 1,
+          "nodes": 5,
+          "seconds": 0.103563300013775,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11865989997750148
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.10306009999476373,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11693339998601004
+        },
+        {
+          "depth": 1,
+          "nodes": 4,
+          "seconds": 0.11462279999977909,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11702920001698658
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.10796240001218393,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.1341758999915328
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.1271063000021968,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.13196099997730926
+        },
+        {
+          "depth": 1,
+          "nodes": 16,
+          "seconds": 0.10503810000955127,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11110400001052767
+        },
+        {
+          "depth": 0,
+          "nodes": 11,
+          "seconds": 0.10306799999671057,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10532149998471141
+        },
+        {
+          "depth": 1,
+          "nodes": 14,
+          "seconds": 0.10260849999031052,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10502280000946485
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10826569999335334,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.13046819998999126
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.11084100001608022,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11539359999005683
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.13789920002454892,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.1517044999927748
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10740660000010394,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11050570002407767
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.1101034999883268,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.12432299999636598
+        }
+      ],
+      "commands": [
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e2e3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g8h6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a3b5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b8c6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b5c7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d8c7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h2h4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c7b8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h1h3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e7e6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e3e4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f8e7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a2a3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e7h4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h3g3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h4g3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e4e5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g3f4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d2c3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f4c1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d1c1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c6e5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d4e5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a8a5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c1e3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h8f8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c3c4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a5e5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e3e5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b8e5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g1e2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e5e2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f1e2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d7d5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c4b5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c8d7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b5c5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d7b5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c5b5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g7g6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a1d1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d5d4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d1d4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f7f5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e2f3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f8f6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d4d1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b7b6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2c4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e8f7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b2b4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a4b3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c4c5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b6c5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f3e2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b3b2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b5a4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b2b1q"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d1b1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f7e8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b1b3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c5c4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b3b1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c4c3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b1b7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c3c2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b7b3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2c1q"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b3c3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c1c3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e2d3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c3d3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a4a5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d3b3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a5a6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b3b7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a6b7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e8f7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a3a4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f7e8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b7a6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e8f7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a6b7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f7e8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b7a6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e8f7"
+          ]
+        },
+        {
+          "name": "claim_draw",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a6b7"
+          ]
+        }
+      ],
+      "agent_depth_mean": 0.11494252873563218,
+      "agent_seconds_mean": 0.11013732528703384,
+      "id": "t0.1_incumbent|0|white",
+      "group": "t0.1_incumbent",
+      "pair": 0,
+      "candidate_color": "white",
+      "root": "rnbqkbnr/1ppppppp/8/8/p2P1P2/N7/PPPKP1PP/R1BQ1BNR w kq - 2 5",
+      "seed": 54400,
+      "white": {
+        "kind": "agent",
+        "directory": "runs\\chess_rules",
+        "value": "runs\\chess_strength_data\\value_mixed.npz",
+        "time": 0.1,
+        "nodes": 1000000,
+        "quiescence": 0,
+        "reuse_pv": true
+      },
+      "black": {
+        "kind": "agent",
+        "directory": "runs\\chess_rules",
+        "value": "runs\\chess_rules\\value.json",
+        "time": 0.1,
+        "nodes": 1000000,
+        "quiescence": 0,
+        "reuse_pv": true
+      },
+      "provenance": {
+        "git_commit": "7a55e67015f1d14143ac4032e261a8062a1e83d4",
+        "source_sha256": "a5096bb3071fcd6d36fcbe2221174aa3c0e1b580b84164fb6de08306516402dc",
+        "seeds": [
+          54400
+        ],
+        "time_controls": {
+          "both_sides_movetime_seconds": [
+            0.1
+          ],
+          "opponent_extra_depth_cap": null,
+          "agent_node_safety_cap": 1000000
+        },
+        "command": "scripts/chess_ladder.py promote --engine runs/chess_teacher/stockfish/stockfish-windows-x86-64-universal.exe --agent-value runs/chess_strength_data/value_mixed.npz --times 0.1 --pairs 2 --opening-seed 54400 --workers 2 --reuse-pv --output results/chess_strength_mlp_development_games.jsonl"
+      },
+      "wall_seconds": 23.605815172195435
+    },
+    {
+      "status": "complete",
+      "result": "1/2-1/2",
+      "termination": "THREEFOLD_REPETITION",
+      "plies": 68,
+      "failure": null,
+      "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"1/2-1/2\"]\n[FEN \"rnbqkbnr/1ppppp1p/p5p1/8/P7/6PP/1PPPPP2/RNBQKBNR b KQkq - 0 3\"]\n[SetUp \"1\"]\n\n3... Nc6 4. Bg2 d5 5. Nf3 e5 6. Nc3 Nf6 7. e3 Qe7 8. Nxe5 Nxe5 9. Qf3 Nxf3+ 10. Bxf3 Bxh3 11. Rxh3 Qd7 12. Rxh7 Rxh7 13. Bxd5 Qxd5 14. Nxd5 Rh4 15. Nxf6+ Kd8 16. gxh4 a5 17. c3 Ra6 18. d4 Rxf6 19. Bd2 Re6 20. b4 Rxe3+ 21. fxe3 Kd7 22. bxa5 Bd6 23. a6 bxa6 24. d5 f5 25. h5 gxh5 26. Rb1 Kd8 27. Rb3 Bb4 28. Rxb4 f4 29. d6 fxe3 30. Bxe3 cxd6 31. Bf2 Kc7 32. Bh4 a5 33. Rg4 hxg4 34. Kf2 Kb7 35. Ke1 Kc7 36. Kf2 Kb7 37. Ke1 1/2-1/2",
+      "search_records": [
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.1089077000215184,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.12123109999811277
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.1435537000070326,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.14395470000454225
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.1028126000019256,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10348650001105852
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.10078769997926429,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10127169999759644
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.10640759998932481,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11361430000397377
+        },
+        {
+          "depth": 0,
+          "nodes": 2,
+          "seconds": 0.12457650000578724,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.13082330001634546
+        },
+        {
+          "depth": 0,
+          "nodes": 2,
+          "seconds": 0.125363400002243,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.12852199998451397
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.11675539999851026,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11739979998674244
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.10478540000622161,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10538100000121631
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.11769859999185428,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11826750001637265
+        },
+        {
+          "depth": 0,
+          "nodes": 10,
+          "seconds": 0.10596659997827373,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10661149999941699
+        },
+        {
+          "depth": 0,
+          "nodes": 14,
+          "seconds": 0.1004362000094261,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10104539999156259
+        },
+        {
+          "depth": 0,
+          "nodes": 9,
+          "seconds": 0.11968299999716692,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.12026959998183884
+        },
+        {
+          "depth": 1,
+          "nodes": 7,
+          "seconds": 0.13250919998972677,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.13312670000595972
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.10510570000042208,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10582550000981428
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.111451600008877,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11224220000440255
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.1063492999819573,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10759840000537224
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10078820001217537,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10168230000999756
+        },
+        {
+          "depth": 0,
+          "nodes": 1,
+          "seconds": 0.1239425000094343,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.12476020000758581
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.1217428999952972,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.12265350000234321
+        },
+        {
+          "depth": 0,
+          "nodes": 1,
+          "seconds": 0.11851380000007339,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11946310001076199
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.14781299998867325,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.14965390000725165
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.13837509998120368,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.13922519999323413
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.12118370001553558,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.13124129999778233
+        },
+        {
+          "depth": 1,
+          "nodes": 7,
+          "seconds": 0.12112209998304024,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.12210929999127984
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.10244129999773577,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10344079998321831
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.10325250000460073,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10426900000311434
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.11139890001504682,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11658569998689927
+        },
+        {
+          "depth": 0,
+          "nodes": 12,
+          "seconds": 0.10292299999855459,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10399059997871518
+        },
+        {
+          "depth": 0,
+          "nodes": 14,
+          "seconds": 0.10067049998906441,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10170150001067668
+        },
+        {
+          "depth": 0,
+          "nodes": 8,
+          "seconds": 0.10735320000094362,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10833839999395423
+        },
+        {
+          "depth": 0,
+          "nodes": 7,
+          "seconds": 0.11353890001191758,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.12067350000143051
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.11671239999122918,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.12669090001145378
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.12640020000981167,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.12767960000201128
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10444259998621419,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10572019999381155
+        },
+        {
+          "depth": 1,
+          "nodes": 5,
+          "seconds": 0.10434829999576323,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11011979999602772
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10104960002354346,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10271170001942664
+        },
+        {
+          "depth": 0,
+          "nodes": 7,
+          "seconds": 0.12824879999971017,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.1304424999980256
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.1074547000171151,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.12259740001172759
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.1086115000071004,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.12436600000364706
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.1135939999949187,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.12451749999308959
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.12499720000778325,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.13533099999767728
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.12769279998610727,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.1294346999784466
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.10422919999109581,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11670729998149909
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.11424139997689053,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11565769999288023
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10227780000423081,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11598800000501797
+        },
+        {
+          "depth": 0,
+          "nodes": 12,
+          "seconds": 0.10639629999059252,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10786620000726543
+        },
+        {
+          "depth": 0,
+          "nodes": 16,
+          "seconds": 0.10597610002150759,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10887490000459366
+        },
+        {
+          "depth": 0,
+          "nodes": 8,
+          "seconds": 0.11489929998060688,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11650130001362413
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.11796589998994023,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11974550000741147
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10062909999396652,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11026029998902231
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.12178940000012517,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.1238743000139948
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10858790000202134,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.1252593999961391
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.12552689999574795,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.1364208999730181
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.10437700001057237,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10612529999343678
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.11833820000174455,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.13803190001635812
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10308489997987635,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10611930000595748
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.11469759998726659,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11633859999710694
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.14398000002256595,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.152526099991519
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.15375259998836555,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.1670950000116136
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.1592833999893628,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.1616939000086859
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.15134939999552444,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.15434930002084002
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.10231220000423491,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10427710000658408
+        },
+        {
+          "depth": 0,
+          "nodes": 11,
+          "seconds": 0.10795919998781756,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11021499999333173
+        },
+        {
+          "depth": 1,
+          "nodes": 13,
+          "seconds": 0.10119439999107271,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10322950000409037
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.1060239999787882,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10804289998486638
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.14107559999683872,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.14423499998520128
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.49975310001173057,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.5037728000024799
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.12689729998237453,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.12897589997737668
+        }
+      ],
+      "commands": [
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b8c6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f1g2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d7d5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g1f3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e7e5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b1c3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g8f6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e2e3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d8e7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f3e5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c6e5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d1f3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e5f3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g2f3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c8h3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h1h3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e7d7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h3h7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h8h7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f3d5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d7d5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c3d5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h7h4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d5f6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e8d8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g3h4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a6a5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2c3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a8a6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d2d4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a6f6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c1d2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f6e6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b2b4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e6e3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f2e3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d8d7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b4a5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f8d6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a5a6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b7a6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d4d5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f7f5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h4h5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g6h5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a1b1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d7d8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b1b3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d6b4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b3b4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f5f4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d5d6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f4e3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d2e3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c7d6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e3f2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d8c7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f2h4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a6a5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b4g4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h5g4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e1f2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c7b7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f2e1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b7c7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e1f2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c7b7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f2e1"
+          ]
+        },
+        {
+          "name": "claim_draw",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b7c7"
+          ]
+        }
+      ],
+      "agent_depth_mean": 0.057971014492753624,
+      "agent_seconds_mean": 0.12157043622995632,
+      "id": "t0.1_incumbent|1|black",
+      "group": "t0.1_incumbent",
+      "pair": 1,
+      "candidate_color": "black",
+      "root": "rnbqkbnr/1ppppp1p/p5p1/8/P7/6PP/1PPPPP2/RNBQKBNR b KQkq - 0 3",
+      "seed": 54401,
+      "white": {
+        "kind": "agent",
+        "directory": "runs\\chess_rules",
+        "value": "runs\\chess_rules\\value.json",
+        "time": 0.1,
+        "nodes": 1000000,
+        "quiescence": 0,
+        "reuse_pv": true
+      },
+      "black": {
+        "kind": "agent",
+        "directory": "runs\\chess_rules",
+        "value": "runs\\chess_strength_data\\value_mixed.npz",
+        "time": 0.1,
+        "nodes": 1000000,
+        "quiescence": 0,
+        "reuse_pv": true
+      },
+      "provenance": {
+        "git_commit": "7a55e67015f1d14143ac4032e261a8062a1e83d4",
+        "source_sha256": "a5096bb3071fcd6d36fcbe2221174aa3c0e1b580b84164fb6de08306516402dc",
+        "seeds": [
+          54400
+        ],
+        "time_controls": {
+          "both_sides_movetime_seconds": [
+            0.1
+          ],
+          "opponent_extra_depth_cap": null,
+          "agent_node_safety_cap": 1000000
+        },
+        "command": "scripts/chess_ladder.py promote --engine runs/chess_teacher/stockfish/stockfish-windows-x86-64-universal.exe --agent-value runs/chess_strength_data/value_mixed.npz --times 0.1 --pairs 2 --opening-seed 54400 --workers 2 --reuse-pv --output results/chess_strength_mlp_development_games.jsonl"
+      },
+      "wall_seconds": 8.981196641921997
+    },
+    {
+      "status": "complete",
+      "result": "1/2-1/2",
+      "termination": "THREEFOLD_REPETITION",
+      "plies": 77,
+      "failure": null,
+      "pgn": "[Event \"?\"]\n[Site \"?\"]\n[Date \"????.??.??\"]\n[Round \"?\"]\n[White \"?\"]\n[Black \"?\"]\n[Result \"1/2-1/2\"]\n[FEN \"rnbqkbnr/1ppppp1p/p5p1/8/P7/6PP/1PPPPP2/RNBQKBNR b KQkq - 0 3\"]\n[SetUp \"1\"]\n\n3... Nh6 4. d4 Bg7 5. e4 Nc6 6. Bxh6 Bxh6 7. Qd2 Bxd2+ 8. Nxd2 e6 9. Ngf3 Qf6 10. Kd1 Qxf3+ 11. Nxf3 h5 12. Ne1 Rf8 13. Ra3 a5 14. Be2 d5 15. exd5 exd5 16. Rb3 Bxh3 17. Rxh3 b5 18. Rxh5 gxh5 19. Ra3 bxa4 20. Rb3 axb3 21. cxb3 Nb4 22. Kd2 c6 23. Ke3 Nd3 24. Nxd3 f5 25. Bxh5+ Rf7 26. Bxf7+ Kxf7 27. f3 Rf8 28. Ke2 Ke8 29. g4 fxg4 30. Kd1 Rf6 31. Kc2 gxf3 32. b4 f2 33. bxa5 f1=Q 34. a6 Qxd3+ 35. Kxd3 Rf2 36. a7 Rf6 37. a8=Q+ Kf7 38. Kc2 Rf2+ 39. Kd1 Rf6 40. Kc2 Rf2+ 41. Kd1 Rf6 1/2-1/2",
+      "search_records": [
+        {
+          "depth": 0,
+          "nodes": 8,
+          "seconds": 0.10885469999630004,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10922099999152124
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10898189997533336,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11103669999283738
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.11250760001712479,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11325160000706092
+        },
+        {
+          "depth": 0,
+          "nodes": 2,
+          "seconds": 0.11827459998312406,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.12788019998697564
+        },
+        {
+          "depth": 0,
+          "nodes": 2,
+          "seconds": 0.1115179999906104,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11198869999498129
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10243239998817444,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10295279999263585
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.12002680002478883,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.12055730001884513
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.12192579999100417,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.12244390000705607
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.10625169999548234,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.106833199999528
+        },
+        {
+          "depth": 1,
+          "nodes": 5,
+          "seconds": 0.1413376000127755,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.14208950000465848
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.10529950002091937,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10593639998114668
+        },
+        {
+          "depth": 0,
+          "nodes": 2,
+          "seconds": 0.12012710000271909,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.12313180000637658
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.13088469998911023,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.1326153000118211
+        },
+        {
+          "depth": 0,
+          "nodes": 1,
+          "seconds": 0.1069015999964904,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11608649999834597
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.10263799998210743,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10340439999708906
+        },
+        {
+          "depth": 1,
+          "nodes": 7,
+          "seconds": 0.11337010000715964,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11431539998739026
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.10823129999334924,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10895699998945929
+        },
+        {
+          "depth": 0,
+          "nodes": 11,
+          "seconds": 0.10354959999676794,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10454079997725785
+        },
+        {
+          "depth": 0,
+          "nodes": 15,
+          "seconds": 0.10426589997950941,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10500819998560473
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.10163119999924675,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10251090000383556
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.12403959999210201,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.12488780001876876
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.10325539999757893,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10428269999101758
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10676840000087395,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.1132631000073161
+        },
+        {
+          "depth": 0,
+          "nodes": 2,
+          "seconds": 0.1006045000103768,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10161059998790734
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.1008647000126075,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10193740000249818
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.15280789998359978,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.1538734000059776
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.10896149999462068,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11216749998857267
+        },
+        {
+          "depth": 0,
+          "nodes": 2,
+          "seconds": 0.11970519999158569,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.12071170000126585
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.13088039998547174,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.13250979999429546
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.13232619999325834,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.13342379999812692
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10192389998701401,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10724489999120124
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.1282284000189975,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.13726600000518374
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.10308359999908134,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.1041935000102967
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10964439998497255,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11087629999383353
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.11318960000062361,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11813600000459701
+        },
+        {
+          "depth": 0,
+          "nodes": 12,
+          "seconds": 0.10519999999087304,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10654920001979917
+        },
+        {
+          "depth": 0,
+          "nodes": 15,
+          "seconds": 0.10468849999597296,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10585520000313409
+        },
+        {
+          "depth": 0,
+          "nodes": 7,
+          "seconds": 0.10407830000622198,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.1053511000063736
+        },
+        {
+          "depth": 0,
+          "nodes": 7,
+          "seconds": 0.1266726000176277,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.12803530000383034
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.1051588999980595,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10810250000213273
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.11696800001664087,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11853560002055019
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10388549999333918,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.1096055000089109
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.1159901000210084,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11744989998987876
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10346109999227338,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10586780001176521
+        },
+        {
+          "depth": 1,
+          "nodes": 8,
+          "seconds": 0.12840489999507554,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.12993009999627247
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10182139999233186,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11304500000551343
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10334649999276735,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11914329999126494
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10023010001168586,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10453700000653043
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.12223310000263155,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.12623480000183918
+        },
+        {
+          "depth": 0,
+          "nodes": 2,
+          "seconds": 0.10529379997751676,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.1069456999830436
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.10380269997403957,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10676049999892712
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.11038369999732822,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.12519560000509955
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.10204589998465963,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11796960001811385
+        },
+        {
+          "depth": 0,
+          "nodes": 7,
+          "seconds": 0.10547529999166727,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.1076615999918431
+        },
+        {
+          "depth": 0,
+          "nodes": 15,
+          "seconds": 0.10311940000974573,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10485550001612864
+        },
+        {
+          "depth": 0,
+          "nodes": 14,
+          "seconds": 0.10587999998824671,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10772010000073351
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.12309469998581335,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.1251988000003621
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.1479434999928344,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.15972080000210553
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.11023000002023764,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11259269999573007
+        },
+        {
+          "depth": 0,
+          "nodes": 2,
+          "seconds": 0.10651789998519234,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.12934759998461232
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10449960001278669,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.10663939997903071
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.11431679999805056,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.13141289999475703
+        },
+        {
+          "depth": 0,
+          "nodes": 6,
+          "seconds": 0.14124830000218935,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.14486339999712072
+        },
+        {
+          "depth": 1,
+          "nodes": 5,
+          "seconds": 0.10623150001629256,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.12233389998436905
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.11281960000633262,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.1151794999896083
+        },
+        {
+          "depth": 0,
+          "nodes": 5,
+          "seconds": 0.11616509998566471,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.12285439998959191
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.10281440001563169,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.12623559997882694
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.15227410002262332,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.15513020000071265
+        },
+        {
+          "depth": 1,
+          "nodes": 4,
+          "seconds": 0.15471070000785403,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.15706070000305772
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.11859399999957532,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.12106410000706092
+        },
+        {
+          "depth": 0,
+          "nodes": 10,
+          "seconds": 0.10478280001552776,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11474609997821972
+        },
+        {
+          "depth": 1,
+          "nodes": 13,
+          "seconds": 0.10562640000716783,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.10873710000305437
+        },
+        {
+          "depth": 0,
+          "nodes": 11,
+          "seconds": 0.11001750000286847,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11380989997996949
+        },
+        {
+          "depth": 0,
+          "nodes": 2,
+          "seconds": 0.10145399998873472,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.12415029999101534
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.4650336999911815,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.48194040000089444
+        },
+        {
+          "depth": 0,
+          "nodes": 4,
+          "seconds": 0.10716359998332337,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.11159960000077263
+        },
+        {
+          "depth": 0,
+          "nodes": 2,
+          "seconds": 0.10930999999982305,
+          "budget_exhausted": true,
+          "side": "black",
+          "wall_seconds": 0.11194080000859685
+        },
+        {
+          "depth": 0,
+          "nodes": 3,
+          "seconds": 0.10788789999787696,
+          "budget_exhausted": true,
+          "side": "white",
+          "wall_seconds": 0.1183055000146851
+        }
+      ],
+      "commands": [
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g8h6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d2d4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f8g7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e2e4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b8c6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c1h6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g7h6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d1d2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h6d2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b1d2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e7e6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g1f3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d8f6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e1d1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f6f3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d2f3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h7h5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f3e1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h8f8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a1a3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a6a5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f1e2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d7d5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e4d5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e6d5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a3b3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c8h3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h1h3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b7b5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h3h5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g6h5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b3a3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b5a4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a3b3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a4b3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2b3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c6b4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d1d2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c7c6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d2e3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b4d3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e1d3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f7f5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e2h5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f8f7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "h5f7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e8f7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f2f3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a8f8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e3e2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f7e8"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g3g4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f5g4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e2d1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f8f6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d1c2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "g4f3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b3b4"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f3f2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "b4a5"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f2f1q"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a5a6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f1d3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2d3"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f6f2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a6a7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f2f6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "a7a8q"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "e8f7"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d3c2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f6f2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2d1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f2f6"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d1c2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f6f2"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "c2d1"
+          ]
+        },
+        {
+          "name": "move_piece",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "f2f6"
+          ]
+        },
+        {
+          "name": "claim_draw",
+          "target": null,
+          "parameters": [],
+          "arguments": [
+            "d1c2"
+          ]
+        }
+      ],
+      "agent_depth_mean": 0.07692307692307693,
+      "agent_seconds_mean": 0.1177714064087456,
+      "id": "t0.1_incumbent|1|white",
+      "group": "t0.1_incumbent",
+      "pair": 1,
+      "candidate_color": "white",
+      "root": "rnbqkbnr/1ppppp1p/p5p1/8/P7/6PP/1PPPPP2/RNBQKBNR b KQkq - 0 3",
+      "seed": 54401,
+      "white": {
+        "kind": "agent",
+        "directory": "runs\\chess_rules",
+        "value": "runs\\chess_strength_data\\value_mixed.npz",
+        "time": 0.1,
+        "nodes": 1000000,
+        "quiescence": 0,
+        "reuse_pv": true
+      },
+      "black": {
+        "kind": "agent",
+        "directory": "runs\\chess_rules",
+        "value": "runs\\chess_rules\\value.json",
+        "time": 0.1,
+        "nodes": 1000000,
+        "quiescence": 0,
+        "reuse_pv": true
+      },
+      "provenance": {
+        "git_commit": "7a55e67015f1d14143ac4032e261a8062a1e83d4",
+        "source_sha256": "a5096bb3071fcd6d36fcbe2221174aa3c0e1b580b84164fb6de08306516402dc",
+        "seeds": [
+          54400
+        ],
+        "time_controls": {
+          "both_sides_movetime_seconds": [
+            0.1
+          ],
+          "opponent_extra_depth_cap": null,
+          "agent_node_safety_cap": 1000000
+        },
+        "command": "scripts/chess_ladder.py promote --engine runs/chess_teacher/stockfish/stockfish-windows-x86-64-universal.exe --agent-value runs/chess_strength_data/value_mixed.npz --times 0.1 --pairs 2 --opening-seed 54400 --workers 2 --reuse-pv --output results/chess_strength_mlp_development_games.jsonl"
+      },
+      "wall_seconds": 9.911465644836426
+    }
+  ]
+}

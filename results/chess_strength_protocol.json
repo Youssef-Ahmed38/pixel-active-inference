@@ -1,0 +1,43 @@
+{
+  "git_commit": "50aff59725ce62c825f8c7535b1651992701e69a",
+  "source_sha256": "0c406ee75b6ddf8c836687d4e0d7b8758a5834efa48d277428068aa215348cf3",
+  "seeds": [
+    74400
+  ],
+  "time_controls": {
+    "both_sides_movetime_seconds": [
+      0.2,
+      1.0
+    ]
+  },
+  "command": "scripts/chess_strength_protocol.py --engine runs/chess_teacher/stockfish/stockfish-windows-x86-64-universal.exe",
+  "engine_id": {
+    "name": "Stockfish 19",
+    "author": "the Stockfish developers (see AUTHORS file)"
+  },
+  "supported_uci_elo": [
+    1320,
+    3190
+  ],
+  "thinking_time_curve": {
+    "0.2": {
+      "moves": 2100,
+      "mean_completed_depth": 0.4561904761904762,
+      "mean_inspected_nodes": 33.84047619047619,
+      "mean_search_seconds": 0.20583596942847915,
+      "max_search_seconds": 0.5983864000008907
+    },
+    "1.0": {
+      "moves": 2187,
+      "mean_completed_depth": 1.5541838134430728,
+      "mean_inspected_nodes": 247.86236854138087,
+      "mean_search_seconds": 1.0074356760402166,
+      "max_search_seconds": 2.529593199986266
+    }
+  },
+  "limitations": [
+    "soft deadlines checked between model operations; recorded overruns are retained",
+    "curve also changes opponent time budget",
+    "confidence intervals overlap; monotonic strength gain is not established"
+  ]
+}
