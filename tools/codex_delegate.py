@@ -82,7 +82,45 @@ def link(src: Path, dst: Path) -> None:
         dst.symlink_to(src, target_is_directory=True)
 
 
+THREAD_RULES = """
+- You are continuing your existing conversation about this project, working directly in the main
+  checkout `{repo}` on branch `main` (not in a separate worktree, whatever the rules above say).
+  Stay on `main`: never switch branches, stash, reset or commit; the supervisor works in the same
+  folder and commits only reviewed paths.
+- Touch only the files your brief allows; other uncommitted files in the folder belong to other work.
+"""
+
+
+def start_in_thread(args) -> None:
+    """Continue the user's existing Codex thread in the main checkout: it keeps its context, and the
+    user watches it live in the Codex app (codex exec resume writes into the same conversation).
+    Codex cannot combine resume with a worktree, so the brief's rules keep it on main."""
+    meta = REPO / "data" / "codex_tasks" / args.task
+    meta.mkdir(parents=True, exist_ok=True)
+    brief = Path(args.brief).read_text(encoding="utf-8")
+    python = REPO / ".venv" / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
+    prompt = brief + RULES.format(python=python) + THREAD_RULES.format(repo=REPO)
+    (meta / "prompt.md").write_text(prompt, encoding="utf-8")
+    (meta / "thread").write_text(args.thread)
+    if git("branch", "--show-current").strip() != "main":
+        sys.exit("the main checkout is not on main; refusing to start")
+    codex = find_codex(args.codex)
+    cmd = [str(codex), "exec", "resume", args.thread, "--json",
+           "-c", 'sandbox_mode="workspace-write"', "-o", str(meta / "report.md"), "-"]
+    with open(meta / "prompt.md", "rb") as stdin, open(meta / "events.jsonl", "ab") as out:
+        flags = subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.DETACHED_PROCESS if os.name == "nt" else 0
+        proc = subprocess.Popen(cmd, cwd=REPO, stdin=stdin, stdout=out, stderr=subprocess.STDOUT,
+                                creationflags=flags, start_new_session=os.name != "nt")
+    (meta / "pid").write_text(str(proc.pid))
+    (meta / "worktree").write_text(str(REPO))
+    print(f"Codex continues thread {args.thread} (pid {proc.pid}) in {REPO}; watch it in the Codex app\n"
+          f"log: {meta / 'events.jsonl'}", flush=True)
+    wait(proc, meta, args.wait)
+
+
 def start(args) -> None:
+    if args.thread:
+        return start_in_thread(args)
     wt = worktree(args.task)
     if not wt.exists():
         git("worktree", "add", "-b", f"codex/{args.task}", str(wt), args.base)
@@ -145,9 +183,18 @@ def running(meta: Path) -> bool:
         return False
 
 
+def locate(task: str) -> tuple[Path, Path]:
+    """(worktree, meta folder) of a task: a thread task keeps its logs in data/codex_tasks/<task>."""
+    meta = REPO / "data" / "codex_tasks" / task
+    if meta.exists():
+        wt = Path((meta / "worktree").read_text().strip()) if (meta / "worktree").exists() else REPO
+        return wt, meta
+    wt = worktree(task)
+    return wt, wt / ".codex_task"
+
+
 def status(args) -> None:
-    wt = worktree(args.task)
-    meta = wt / ".codex_task"
+    wt, meta = locate(args.task)
     if not meta.exists():
         sys.exit(f"no task {args.task}")
     print(f"worktree: {wt}\nrunning: {running(meta)}\nsession: {session_id(meta)}")
@@ -156,9 +203,8 @@ def status(args) -> None:
 
 
 def resume(args) -> None:
-    wt = worktree(args.task)
-    meta = wt / ".codex_task"
-    sid = session_id(meta)
+    wt, meta = locate(args.task)
+    sid = (meta / "thread").read_text().strip() if (meta / "thread").exists() else session_id(meta)
     if not sid:
         sys.exit("no session id in the log; cannot resume")
     if running(meta):
@@ -193,6 +239,8 @@ def main() -> None:
     ap.add_argument("--link", nargs="*", default=["third_party"], help="ignored folders to link read-only")
     ap.add_argument("--codex", help="path to codex.exe")
     ap.add_argument("--wait", action="store_true", help="stay attached until Codex ends (see wait())")
+    ap.add_argument("--thread", help="start: continue this existing Codex thread in the main checkout "
+                                     "(keeps its context; visible live in the Codex app)")
     args = ap.parse_args()
     {"start": start, "status": status, "resume": resume, "finish": finish}[args.action](args)
 
