@@ -105,7 +105,7 @@ def start_in_thread(args) -> None:
     if git("branch", "--show-current").strip() != "main":
         sys.exit("the main checkout is not on main; refusing to start")
     codex = find_codex(args.codex)
-    cmd = [str(codex), "exec", "resume", args.thread, "--json", "-m", args.model,
+    cmd = [str(codex), "exec", "resume", args.thread, "--json", "-m", args.model, "--enable", "code_mode_host",
            "-c", 'sandbox_mode="workspace-write"', "-o", str(meta / "report.md"), "-"]
     with open(meta / "prompt.md", "rb") as stdin, open(meta / "events.jsonl", "ab") as out:
         flags = subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.DETACHED_PROCESS if os.name == "nt" else 0
@@ -133,7 +133,7 @@ def start(args) -> None:
     prompt = brief + RULES.format(python=python)
     (meta / "prompt.md").write_text(prompt, encoding="utf-8")
     codex = find_codex(args.codex)
-    cmd = [str(codex), "exec", "-C", str(wt), "-s", "workspace-write", "--json", "-m", args.model,
+    cmd = [str(codex), "exec", "-C", str(wt), "-s", "workspace-write", "--json", "-m", args.model, "--enable", "code_mode_host",
            "-o", str(meta / "report.md"), "--add-dir", str(REPO / ".venv"), "-"]
     with open(meta / "prompt.md", "rb") as stdin, open(meta / "events.jsonl", "ab") as out:
         flags = subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.DETACHED_PROCESS if os.name == "nt" else 0
@@ -212,7 +212,7 @@ def resume(args) -> None:
     feedback = Path(args.feedback).read_text(encoding="utf-8")
     (meta / "report.md").unlink(missing_ok=True)
     codex = find_codex(args.codex)
-    cmd = [str(codex), "exec", "resume", sid, "--json", "-m", args.model, "-o", str(meta / "report.md"), "-"]
+    cmd = [str(codex), "exec", "resume", sid, "--json", "-m", args.model, "--enable", "code_mode_host", "-o", str(meta / "report.md"), "-"]
     with open(args.feedback, "rb") as stdin, open(meta / "events.jsonl", "ab") as out:
         flags = subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.DETACHED_PROCESS if os.name == "nt" else 0
         proc = subprocess.Popen(cmd, cwd=wt, stdin=stdin, stdout=out, stderr=subprocess.STDOUT,
