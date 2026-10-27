@@ -102,7 +102,21 @@ def start(args) -> None:
         proc = subprocess.Popen(cmd, stdin=stdin, stdout=out, stderr=subprocess.STDOUT, creationflags=flags,
                                 start_new_session=os.name != "nt")
     (meta / "pid").write_text(str(proc.pid))
-    print(f"Codex started (pid {proc.pid}) in {wt} on branch codex/{args.task}\nlog: {meta / 'events.jsonl'}")
+    print(f"Codex started (pid {proc.pid}) in {wt} on branch codex/{args.task}\nlog: {meta / 'events.jsonl'}",
+          flush=True)
+    wait(proc, meta, args.wait)
+
+
+def wait(proc, meta: Path, enabled: bool) -> None:
+    """--wait: stay attached until Codex ends. Without it, a caller whose shell ends (e.g. a
+    supervisor's tool call) takes the child process with it; run the whole command as a tracked
+    background job with --wait instead."""
+    if not enabled:
+        return
+    code = proc.wait()
+    report = meta / "report.md"
+    ready = report.exists() and report.stat().st_size > 0
+    print(f"Codex exited with code {code}; report {'ready' if ready else 'MISSING'} ({report})", flush=True)
 
 
 def session_id(meta: Path) -> str | None:
@@ -158,7 +172,8 @@ def resume(args) -> None:
         proc = subprocess.Popen(cmd, cwd=wt, stdin=stdin, stdout=out, stderr=subprocess.STDOUT,
                                 creationflags=flags, start_new_session=os.name != "nt")
     (meta / "pid").write_text(str(proc.pid))
-    print(f"Codex resumed session {sid} (pid {proc.pid}) with {len(feedback)} characters of feedback")
+    print(f"Codex resumed session {sid} (pid {proc.pid}) with {len(feedback)} characters of feedback", flush=True)
+    wait(proc, meta, args.wait)
 
 
 def finish(args) -> None:
@@ -177,6 +192,7 @@ def main() -> None:
     ap.add_argument("--base", default="main")
     ap.add_argument("--link", nargs="*", default=["third_party"], help="ignored folders to link read-only")
     ap.add_argument("--codex", help="path to codex.exe")
+    ap.add_argument("--wait", action="store_true", help="stay attached until Codex ends (see wait())")
     args = ap.parse_args()
     {"start": start, "status": status, "resume": resume, "finish": finish}[args.action](args)
 
