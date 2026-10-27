@@ -1,0 +1,30 @@
+{
+  "config": {
+    "num_envs": 512,
+    "steps": 600,
+    "theta": 0.15,
+    "sigma": 0.35,
+    "candidates": 8,
+    "warmup_frac": 0.2,
+    "retrain_every": 25,
+    "train_steps": 40,
+    "batch": 2048
+  },
+  "seeds": {
+    "random": 100,
+    "curious": 101
+  },
+  "random_transitions": 307200,
+  "random_falls": 5007,
+  "random_state_spread": 0.8551000356674194,
+  "curious_transitions": 307200,
+  "curious_falls": 6054,
+  "curious_state_spread": 1.0968148708343506,
+  "error_random_on_random": 0.19972191751003265,
+  "error_random_on_curious": 0.32407885789871216,
+  "error_curious_on_random": 0.13865701854228973,
+  "error_curious_on_curious": 0.18306997418403625,
+  "error_combined_on_random": 0.15194500982761383,
+  "error_combined_on_curious": 0.20771294832229614,
+  "seconds": 123.9
+}

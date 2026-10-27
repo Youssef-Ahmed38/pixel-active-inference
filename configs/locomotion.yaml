@@ -1,0 +1,44 @@
+# Stage 2: G1 humanoid locomotion learned from its own exploration (see docs/LOCOMOTION_STAGE2.md).
+# Every field mirrors a dataclass in pai/locomotion (EnvConfig, TrainConfig, BabbleConfig);
+# missing fields use the dataclass defaults. CLI overrides: train.num_envs=1024 etc.
+env:
+  ctrl_dt: 0.02            # 50 Hz control, 5 physics steps of 4 ms
+  action_scale: 0.3        # rad of servo-target change per unit action
+  episode_s: 20.0
+  obs_noise: 0.01
+  randomize: true          # friction, masses, torso payload, servo stiffness
+  n_variants: 32
+  nthread: 14              # simulator worker threads (laptop: 20 CPUs)
+  swing_height: 0.08
+  # Curriculum (pai/locomotion/env.py DEFAULT_STAGES). Continued training (2026-10-14): the first run
+  # recovered from pushes up to 0.5 m/s but only 13% at 1.25 m/s (results/locomotion/dev_check3.json),
+  # having practised pushes up to 0.6 m/s; the run stage now practises up to 1.25 m/s.
+  stages:
+    - {name: stand}
+    - {name: balance, push_dv: 0.5}
+    - {name: walk, vx: [-0.3, 1.0], vy: [-0.3, 0.3], yaw: [-0.3, 0.3], push_dv: 0.5}
+    - {name: turn, vx: [-0.3, 1.0], vy: [-0.3, 0.3], yaw: [-1.0, 1.0], heading_prob: 0.3, push_dv: 0.6}
+    - {name: run, vx: [-0.5, 2.2], vy: [-0.3, 0.3], yaw: [-1.0, 1.0], heading_prob: 0.3, push_dv: 1.25}
+train:
+  num_envs: 2048
+  horizon: 24
+  iterations: 6000
+  max_hours: 3.1          # first run stopped at 1.55 h; +1.5 h of push practice
+  lr: 0.001
+  entropy: 0.005
+  curiosity: 0.02          # epistemic weight (normalised ensemble disagreement), annealed to 0
+  curiosity_anneal: 0.4    # share of iterations over which it decays
+  min_iters_per_stage: 60
+  advance_survival: 0.85
+  advance_lin: 0.6
+  advance_yaw: 0.42       # stochastic practice jitters the yaw rate: even the stand stage scored only ~0.3
+  ckpt_every: 50
+  seed: 0
+babble:
+  num_envs: 512
+  steps: 600
+  candidates: 8
+eval:
+  # fresh evaluation seeds, never used during development or training
+  seeds_start: 50000
+  starts: 20

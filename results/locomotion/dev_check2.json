@@ -1,0 +1,60 @@
+{
+  "policy": "runs/locomotion/policy/policy.pt",
+  "policy_iteration": 2500,
+  "policy_stage": 4,
+  "policy_steps": 122880000,
+  "commit": "5b8eafa",
+  "seeds_start": 52000,
+  "stand": {
+    "seed": 52000,
+    "starts": 20,
+    "seconds": 30.0,
+    "stood_rate": 1.0,
+    "median_drift_m": 0.08938869300535945,
+    "max_drift_m": 0.26640989915898167,
+    "seconds_wall": 11.3
+  },
+  "headings": {
+    "seed": 52002,
+    "starts": 20,
+    "speed_mps": 0.5,
+    "seconds": 8.0,
+    "turns_deg": [
+      90.0,
+      -90.0,
+      180.0,
+      45.0,
+      -45.0,
+      135.0,
+      -135.0,
+      60.0,
+      -60.0,
+      120.0,
+      90.0,
+      -90.0,
+      180.0,
+      45.0,
+      -45.0,
+      135.0,
+      -135.0,
+      60.0,
+      -60.0,
+      120.0
+    ],
+    "success_rate": 1.0,
+    "tolerance_deg": 15.0,
+    "median_error_deg": 3.6904235498792217,
+    "falls": 0,
+    "seconds_wall": 3.4
+  },
+  "run": {
+    "seed": 52003,
+    "starts": 20,
+    "command_mps": 2.0,
+    "need_mps": 1.5,
+    "success_rate": 1.0,
+    "falls": 0,
+    "median_speed_mps": 1.9969974525065752,
+    "seconds_wall": 3.9
+  }
+}

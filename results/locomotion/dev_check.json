@@ -1,0 +1,78 @@
+{
+  "policy": "runs/locomotion/policy/policy.pt",
+  "policy_iteration": 1800,
+  "policy_stage": 3,
+  "policy_steps": 88473600,
+  "commit": "5b8eafa",
+  "seeds_start": 51000,
+  "fall_causes": {
+    "seed": 51006,
+    "calibration_seed": 61000,
+    "calibration": {
+      "mu_log": [
+        -0.17799503572197678,
+        -0.8217726300256688
+      ],
+      "sd_log": [
+        0.32032406416169623,
+        0.6876569139607639
+      ],
+      "n": 90,
+      "median_U": 0.8369465783139606,
+      "median_S": 0.43965162368824334
+    },
+    "calibration_falls": 90,
+    "injected": {
+      "gait": 60,
+      "push": 60,
+      "slip": 60
+    },
+    "surprise_walking_median": 0.11072941648463408,
+    "falls_scored": 180,
+    "accuracy": 0.5888888888888889,
+    "balanced_accuracy": 0.5888888888888889,
+    "per_class_recall": {
+      "gait": 0.9666666666666667,
+      "push": 0.4166666666666667,
+      "slip": 0.38333333333333336
+    },
+    "confusion_true_by_pred": {
+      "gait": {
+        "gait": 58,
+        "push": 0,
+        "slip": 2
+      },
+      "push": {
+        "gait": 34,
+        "push": 25,
+        "slip": 1
+      },
+      "slip": {
+        "gait": 35,
+        "push": 2,
+        "slip": 23
+      }
+    },
+    "falls_by_cause": {
+      "gait": 60,
+      "push": 60,
+      "slip": 60
+    },
+    "surprise_last_0.2s_before_fall_median": 1.712627223134041,
+    "median_features": {
+      "gait": [
+        0.779,
+        0.342
+      ],
+      "push": [
+        1.238,
+        0.24
+      ],
+      "slip": [
+        0.912,
+        1.557
+      ]
+    },
+    "seconds_wall": 41.6
+  }
+}

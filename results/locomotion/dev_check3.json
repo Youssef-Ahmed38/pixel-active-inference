@@ -1,0 +1,92 @@
+{
+  "policy": "runs/locomotion/policy/policy.pt",
+  "policy_iteration": 2500,
+  "policy_stage": 4,
+  "policy_steps": 122880000,
+  "commit": "5b8eafa",
+  "seeds_start": 52000,
+  "walk_10m": {
+    "seed": 52001,
+    "starts": 20,
+    "command_mps": 0.8,
+    "distance_m": 10.0,
+    "time_limit_s": 20.0,
+    "success_rate": 1.0,
+    "falls": 0,
+    "mean_speed_to_10m_mps": 0.7717951924690201,
+    "forward_distance_m": [
+      15.88,
+      15.57,
+      15.26,
+      15.32,
+      15.38,
+      15.77,
+      15.4,
+      15.58,
+      15.31,
+      15.4,
+      15.59,
+      15.59,
+      15.16,
+      15.7,
+      15.28,
+      15.82,
+      15.81,
+      15.72,
+      15.53,
+      15.81
+    ],
+    "seconds_wall": 9.9
+  },
+  "pushes": {
+    "seed": 52005,
+    "walk_mps": 0.5,
+    "push_s": 0.2,
+    "after_s": 4.0,
+    "rows": [
+      {
+        "push_dv_mps": 0.25,
+        "push_force_N": 41.7,
+        "bodies": 30,
+        "recovered_rate": 1.0
+      },
+      {
+        "push_dv_mps": 0.5,
+        "push_force_N": 83.4,
+        "bodies": 30,
+        "recovered_rate": 1.0
+      },
+      {
+        "push_dv_mps": 0.75,
+        "push_force_N": 125.0,
+        "bodies": 30,
+        "recovered_rate": 0.6666666666666666
+      },
+      {
+        "push_dv_mps": 1.0,
+        "push_force_N": 166.7,
+        "bodies": 30,
+        "recovered_rate": 0.6333333333333333
+      },
+      {
+        "push_dv_mps": 1.25,
+        "push_force_N": 208.4,
+        "bodies": 30,
+        "recovered_rate": 0.13333333333333333
+      },
+      {
+        "push_dv_mps": 1.5,
+        "push_force_N": 250.1,
+        "bodies": 30,
+        "recovered_rate": 0.03333333333333333
+      },
+      {
+        "push_dv_mps": 2.0,
+        "push_force_N": 333.4,
+        "bodies": 30,
+        "recovered_rate": 0.0
+      }
+    ],
+    "seconds_wall": 15.6
+  }
+}
