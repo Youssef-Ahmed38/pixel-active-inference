@@ -11,7 +11,7 @@
 | 2 walking (G1) | v1 released | stand, walk 10 m, headings, run: 20/20 each; pushes 93% at 0.5 m/s, 53% at 1.0 m/s; fall causes 59% (dev) | `docs/LOCOMOTION_STAGE2.md` |
 | 3 maze | EFE explorer (reviewed) | ties nearest frontier (64.6% vs 64.0%); epistemic term adds nothing yet | `docs/MAZE.md` |
 | 4 doors/keys | discovery agent | mock 99.9% solved (111.6 actions) vs novelty 80.9%; physics 12/25 with decoys | `docs/DISCOVERY.md` |
-| 5 chess | **PR #1 open, reviewed, waiting for the user to merge** | 1037 conditional engine-anchor Elo [863, 1134] at 1 s/move; beats old player 17-2-1 | `docs/CHESS_STRENGTH.md` (on the PR branch) |
+| 5 chess | done (PR #1 reviewed and merged, 2026-10-28) | 1037 conditional engine-anchor Elo [863, 1134] at 1 s/move; beats old player 17-2-1 | `docs/CHESS_STRENGTH.md` |
 | 6 language | earlier build only; causal explanations in progress (below) | 456/456 held-out parses per language | `docs/LANGUAGE_STAGE6.md` |
 | 7 bicycle | earlier build | practised policy 20/20 fresh starts; learns from simulator states, not video | `docs/BIKE_STAGE7.md` |
 
@@ -39,8 +39,7 @@ are open (see the queue).
 
 ## Waiting for the user
 
-- Merge PR #1 (chess): https://github.com/Youssef-Ahmed38/pixel-active-inference/pull/1
-  After the merge: `git pull` on main; delete `C:\projects\pai-chess-review` (`git worktree remove`).
+Nothing at the moment.
 
 ## Next steps (queue, in order)
 
