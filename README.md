@@ -3,61 +3,44 @@
 Hierarchical, pixel-based active inference for a simulated Franka Panda, building on
 PixelAI (Sancaktar et al., 2020). Everything runs in simulation (MuJoCo).
 
-**Status: sprint work in progress.** Vertical slice with cause inference, adaptation and recipes;
-doors and drawers; a simple mobile maze exploration demo; perception from pixels training on Kaggle.
-The full plan is in [docs/ROADMAP.md](docs/ROADMAP.md) (main target, Stage 1 phases, Stages 2–7), the 8-week
-application sprint in [docs/SPRINT.md](docs/SPRINT.md), verified literature in [docs/LITERATURE.md](docs/LITERATURE.md), and time and compute estimates in
-[docs/TIME_AND_COMPUTE.md](docs/TIME_AND_COMPUTE.md).
-The phase table below predates the roadmap.
+**One agent, many skills, the same principles:** active inference (world models, expected free
+energy, surprise and Bayesian hidden-cause inference, curiosity), episodic memory and recipes, and an
+HRM "thinker", learned rather than scripted and evaluated on fresh seeds. Plan:
+[docs/ROADMAP.md](docs/ROADMAP.md); current state and next steps: [docs/STATUS.md](docs/STATUS.md);
+an independent audit of what is learned vs scripted: [docs/AUDIT_OUTSIDE_BUILDS.md](docs/AUDIT_OUTSIDE_BUILDS.md).
 
-Stage 5 chess includes teacher-generated lessons, shared cognitive episode records,
-and a [learned relational rule model](docs/CHESS_RULES.md) with correction training over
-complete action spaces and fresh-board evaluation. The [original neural baseline](docs/CHESS_STAGE5.md)
-is preserved for comparison. Two fresh suites matched all 1,128 complete legal-move sets
-and all 26,745 legal piece transitions. The [complete state model](docs/CHESS_STATE.md)
-adds learned turn, castling/en passant updates, counters and history: two fresh suites
-passed all 27,161 complete transitions and 798 rollout steps. The
-[learned evaluator and value baseline](docs/CHESS_EVALUATION.md) passed all 27,306
-fresh ending checks and distills Stockfish position scores into agent weights.
-[Bounded multi-move search and draw-claim execution](docs/CHESS_SEARCH.md) now run
-through shared cognitive skills; larger search budgets solved the tested queen traps.
-[Self-play updates and Stockfish matches](docs/CHESS_PLAY.md) now run with saved
-replay, candidate validation and resumable PGNs. The first candidate was rejected
-on fresh validation; the learner lost all 12 completed matches. A separate
-[learned-state MCTS baseline](docs/CHESS_MCTS.md) passed correctness checks but
-solved fewer queen traps than alpha-beta. [Chess HRM and contextual value candidates](docs/CHESS_VALUE_UPDATES.md)
-are trained and integrated. The HRM candidate did not improve fresh value error;
-the contextual candidate improved value error but regressed on some tactical tests.
-A demonstrated playing-strength improvement remains pending.
-Search now supports separate ordering checkpoints and prior-PV ordering, while
-match reports save each game and resume unplayed schedule slots. The Windows
-short-deadline clock issue is fixed for both planners.
+## Stages at a glance
 
-[Stage 6 grounded text](docs/LANGUAGE_STAGE6.md) learns English/Arabic word meanings
-and templates, connects instructions to shared goals, and narrates observations.
-Four physical two-instruction sequences passed on two arm layouts in both languages.
-Recorded-scene teaching now passes all 118 held-out conversation rows per language
-on two additional layouts, with each meaning audited against the episode log.
-Separate uncertain-cause models pass 483/483 held-out meanings per language;
-causal hypotheses retain observation indices and are never labelled verified facts.
-[Stage 7 bicycle](docs/BIKE_STAGE7.md) now has a free MuJoCo bicycle and simplified
-rider: a student trained on actions inferred from observed motion rode 10 metres
-on 10/10 fresh seeds. Practice improved a harder paired holdout from 7/10 to 10/10.
-RGB frame-orientation models and a hybrid visual balance interface are now built.
-The finer-grid visual hybrid passed 20/20 fresh starts, matching the practiced
-sensor policy. Speed/joint sensors and camera tracking are still supplied.
-Full video motion extraction and Stage 2 locomotion transfer remain pending.
-Three repeated practice runs passed 20/20, 20/20 and 19/20 on twenty shared fresh
-layouts; paired scratch runs passed 2/20, 1/20 and 0/20. Stage 2 transfer remains untested.
+| Stage | What the agent does | Latest result (fresh seeds) | Still open | Report |
+|---|---|---|---|---|
+| 1 arm | puts objects where asked, explains surprises (push, heavier, slippery, moved camera), adapts | exact state: task **91%**, cause **88%**; from camera images: task **75%**, cause **66%** | slippery block from pixels (35%) | below |
+| 2 walking | Unitree G1 learns to stand, walk, turn and run from its own exploration | stand, walk 10 m, headings, run: **20/20 each**; pushes 93% at 0.5 m/s | push robustness without forgetting (v3 training), fall causes 59% | [LOCOMOTION_STAGE2](docs/LOCOMOTION_STAGE2.md) |
+| 3 maze | explores with a Bayesian map and expected free energy | 64.6% coverage, a **tie** with nearest frontier (64.0%) | make curiosity matter; use the learned walker | [MAZE](docs/MAZE.md) |
+| 4 doors, keys | discovers how to open locked doors by experiment | mock: 99.9% solved in 111.6 actions (novelty 80.9%); physics 12/25 with decoys | key handling in physics; recipes instead of a scripted key chain | [DISCOVERY](docs/DISCOVERY.md) |
+| 5 chess | learned rules, learned value, search; Stockfish only as a teacher | **1037** conditional engine-anchor Elo [863, 1134] at 1 s/move; beats its old self 17-2-1 | still weaker than Stockfish 1320-1700; HRM in search | [CHESS_STRENGTH](docs/CHESS_STRENGTH.md) |
+| 6 language | English and Arabic: instructions, questions, narration | 456/456 held-out parses per language | causal explanations (in progress) | [LANGUAGE_STAGE6](docs/LANGUAGE_STAGE6.md) |
+| 7 bicycle | balances and rides, learned from observed motion and practice | 20/20 fresh starts after practice | learning from video; transfer from walking | [BIKE_STAGE7](docs/BIKE_STAGE7.md) |
 
-| Phase | Content | State |
-|---|---|---|
-| 0 | MuJoCo Panda env, disturbance suite, PixelAI baseline, benchmarks, Kaggle templates | done (Kaggle notebook untested) |
-| 1 | Latent world model (DINOv2 latents + action-conditioned transformer ensemble), 256px diffusion decoder, learned precision fusion, new L0 | – |
-| 2 | L1 expected-free-energy planning (MPPI in latent space) with epistemic term, surprise escalation | – |
-| 3 | L2 goals: image / language / abstract task goals, subgoal generation | – |
-| 4 | Continual learning, online body-parameter inference, full robustness suite | – |
-| 5 | Baselines (IBVS+IK, ACT, Diffusion Policy, DreamerV3/TD-MPC2, OpenVLA), evaluation, write-up | – |
+### Stage 2: a humanoid that learns to walk
+
+<img src="docs/media/locomotion/g1_locomotion.gif" width="400">
+
+The G1 learns a body model by curious motor babbling, then practises stand → balance → walk → turn →
+run with PPO and a curiosity bonus, on the laptop GPU. Goals are speed and heading commands, so the
+maze and bike stages can reuse it. The released controller passes every gate on fresh seeds; a
+push-trained variant became far more robust (93% at 1.25 m/s) but forgot part of its turning and
+running, which v3 training addresses. Details: [docs/LOCOMOTION_STAGE2.md](docs/LOCOMOTION_STAGE2.md).
+
+### Stage 5: chess strength
+
+Stockfish teaches (shallow labels for a learned value and a move prior); the agent's own moves use
+only its learned rules, value and search. On fresh openings it beats its previous version 17-2-1 at
+equal time, and a 120-game ladder against Stockfish limited to 1320-1700 gives **1037**
+[863, 1134] conditional engine-anchor Elo at 1 s/move (904 at 0.2 s): a first finite rating, still
+weaker than those opponents. Details: [docs/CHESS_STRENGTH.md](docs/CHESS_STRENGTH.md); earlier chess
+work: [rules](docs/CHESS_RULES.md), [state](docs/CHESS_STATE.md), [search](docs/CHESS_SEARCH.md).
+
+The sections below give the details of the arm (Stage 1) and the earlier builds.
 
 ## Phase 1a: tabletop scene (in progress)
 
