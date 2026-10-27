@@ -1,0 +1,134 @@
+{
+  "development_seeds": [
+    20000,
+    20029
+  ],
+  "num_mazes": 30,
+  "total_observation_pairs": 36126,
+  "observation_matrix": [
+    [
+      0.9997809539455671,
+      0.00011215791834903544,
+      0.0392156862745098
+    ],
+    [
+      0.00010952302721647227,
+      0.999775684163302,
+      0.0392156862745098
+    ],
+    [
+      0.00010952302721647227,
+      0.00011215791834903544,
+      0.9215686274509803
+    ]
+  ],
+  "total_disturbance_events": 182,
+  "cause_feature_counts": {
+    "collided_free": {
+      "none": {
+        "0": 165.0
+      },
+      "passage_blocked": {
+        "1": 6.0
+      },
+      "odometry_slip": {
+        "0": 6.0
+      },
+      "camera_shift": {
+        "0": 5.0
+      }
+    },
+    "odom_drift": {
+      "none": {
+        "low": 165.0
+      },
+      "passage_blocked": {
+        "low": 6.0
+      },
+      "odometry_slip": {
+        "high": 6.0
+      },
+      "camera_shift": {
+        "low": 5.0
+      }
+    },
+    "visual_mismatch": {
+      "none": {
+        "low": 165.0
+      },
+      "passage_blocked": {
+        "low": 6.0
+      },
+      "odometry_slip": {
+        "high": 6.0
+      },
+      "camera_shift": {
+        "high": 5.0
+      }
+    },
+    "camera_offset_changed": {
+      "none": {
+        "0": 165.0
+      },
+      "passage_blocked": {
+        "0": 6.0
+      },
+      "odometry_slip": {
+        "0": 6.0
+      },
+      "camera_shift": {
+        "1": 5.0
+      }
+    }
+  },
+  "tuning": {
+    "best_params": {
+      "epistemic_weight": 1.0,
+      "effort_weight": 0.5,
+      "goal_weight": 5.0,
+      "risk_weight": 1.0
+    },
+    "grid_scores": {
+      "epi_0.5_eff_0.5": 0.49488394994657514,
+      "epi_1.0_eff_0.5": 0.505530031165853,
+      "epi_2.0_eff_0.5": 0.4812578086325537,
+      "epi_1.0_eff_0.2": 0.48179584344161785,
+      "epi_1.0_eff_1.0": 0.49250299756562277
+    }
+  },
+  "provenance": {
+    "size": 21,
+    "seeds": [
+      20000,
+      20001,
+      20002,
+      20003,
+      20004,
+      20005,
+      20006,
+      20007,
+      20008,
+      20009,
+      20010,
+      20011,
+      20012,
+      20013,
+      20014,
+      20015,
+      20016,
+      20017,
+      20018,
+      20019,
+      20020,
+      20021,
+      20022,
+      20023,
+      20024,
+      20025,
+      20026,
+      20027,
+      20028,
+      20029
+    ]
+  }
+}
