@@ -19,6 +19,22 @@ from pai.maze.map_model import ObservationModel, ProbabilisticMap, SpatialPrior
 from pai.planning.objective import expected_free_energy
 
 
+def relook_move(belief_map: ProbabilisticMap, p: Cell, floor: float = 0.05) -> Cell | None:
+    """No route to any candidate: step toward the neighbour most likely to be open.
+
+    Under noisy sensing a single misread wall can cut every route; moving (or bumping) gives a new
+    look. Returns None only when every neighbour is almost surely a wall.
+    """
+    best, best_p = None, floor
+    for d in DIRECTIONS:
+        q = p[0] + d[0], p[1] + d[1]
+        if 0 <= q[0] < belief_map.size and 0 <= q[1] < belief_map.size:
+            b = belief_map.beliefs[q[0], q[1]]
+            if float(b[1] + b[2]) > best_p:
+                best, best_p = d, float(b[1] + b[2])
+    return best
+
+
 class ActiveInferenceExplorer:
     """Active inference explorer using a probabilistic generative map and EFE planning."""
 
@@ -123,7 +139,7 @@ class ActiveInferenceExplorer:
             candidates = [c for c in self.map.edges if c != p and (c not in self.map.visits or self.map.cell_entropy(c) > 0.05)]
 
         if not candidates:
-            return None
+            return relook_move(self.map, p)
 
         best_choice: tuple[float, int, Cell, list[Cell], float, float, float] | None = None
         for q in candidates:
@@ -138,11 +154,105 @@ class ActiveInferenceExplorer:
                 best_choice = item
 
         if best_choice is None:
-            return None
+            return relook_move(self.map, p)
 
         self.last_efe_score, _, self.target, best_route, self.last_epistemic, self.last_pragmatic, self.last_effort = best_choice
         next_step = best_route[0]
         return next_step[0] - p[0], next_step[1] - p[1]
+
+
+class RouteEFEExplorer(ActiveInferenceExplorer):
+    """EFE scored over whole routes instead of at the destination only.
+
+    One breadth-first tree over believed-passable cells gives the route to every candidate (the
+    same routes as ``ProbabilisticMap.route``). Along a route:
+
+    - epistemic: expected information gain of the cells that come newly into view at each route
+      cell (visible from it but not from its predecessor), summed; cells already counted further
+      back on the route can be counted again, so this slightly favours winding routes;
+    - pragmatic: ``-goal_weight * P(goal lies on the route)`` plus collision risk (sum of P(wall));
+    - effort: route length.
+
+    The previous target is kept unless another candidate is better by ``switch_margin``, so the
+    agent does not dither between frontiers whose scores change a little at every step.
+    """
+
+    def __init__(self, *args, switch_margin: float = 1.0, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.switch_margin = switch_margin
+
+    def _tree(self, start: Cell) -> tuple[dict[Cell, Cell], list[Cell]]:
+        parent: dict[Cell, Cell] = {start: start}
+        order: list[Cell] = []
+        queue = [start]
+        for p in queue:
+            for q in sorted(self.map.edges.get(p, ())):
+                if q not in parent:
+                    parent[q] = p
+                    order.append(q)
+                    queue.append(q)
+        return parent, order
+
+    def act(self, obs: Observation) -> Cell | None:
+        self.map.update(obs)
+        p = obs.position
+
+        goal_cell = self._locate_goal_candidate()
+        if goal_cell is not None:
+            route = self.map.route(p, goal_cell)
+            if route:
+                self.target = goal_cell
+                return route[0][0] - p[0], route[0][1] - p[1]
+
+        parent, order = self._tree(p)
+        beliefs = self.map.beliefs
+        views: dict[Cell, frozenset[Cell]] = {}
+        cell_gain: dict[Cell, float] = {}
+
+        def view(v: Cell) -> frozenset[Cell]:
+            if v not in views:
+                views[v] = frozenset(self.map.visible_cells_from(v))
+            return views[v]
+
+        def gain_of(c: Cell) -> float:
+            if c not in cell_gain:
+                cell_gain[c] = self.map.expected_cell_information_gain(c)
+            return cell_gain[c]
+
+        gain, goal_mass, risk, depth = {p: 0.0}, {p: 0.0}, {p: 0.0}, {p: 0}
+        for v in order:
+            u = parent[v]
+            gain[v] = gain[u] + sum(gain_of(c) for c in view(v) - view(u))
+            goal_mass[v] = goal_mass[u] + float(beliefs[v[0], v[1], 2])
+            risk[v] = risk[u] + float(beliefs[v[0], v[1], 0])
+            depth[v] = depth[u] + 1
+
+        candidates = [q for q in self.map.frontiers(p) if q in parent]
+        if not candidates:
+            candidates = [q for q in order if q not in self.map.visits or self.map.cell_entropy(q) > 0.05]
+        if not candidates:
+            return relook_move(self.map, p)
+
+        def score(q: Cell) -> tuple[float, float, float]:
+            pragmatic = -self.goal_weight * min(1.0, goal_mass[q]) + self.risk_weight * risk[q]
+            efe = float(expected_free_energy(
+                pragmatic=pragmatic, epistemic=gain[q], effort=float(depth[q]), smoothness=0.0,
+                epistemic_weight=self.epistemic_weight, effort_weight=self.effort_weight,
+            ))
+            return efe, gain[q], pragmatic
+
+        best = min(candidates, key=lambda q: (score(q)[0], depth[q], q))
+        if self.target in candidates and self.target != best:
+            if score(self.target)[0] <= score(best)[0] + self.switch_margin:
+                best = self.target
+
+        self.target = best
+        self.last_efe_score, self.last_epistemic, self.last_pragmatic = score(best)
+        self.last_effort = float(depth[best])
+        step = best
+        while parent[step] != p:
+            step = parent[step]
+        return step[0] - p[0], step[1] - p[1]
 
 
 class NearestFrontierExplorer:
@@ -152,11 +262,12 @@ class NearestFrontierExplorer:
     No epistemic gain calculation, no active inference.
     """
 
-    def __init__(self, sensor_range: int = 3, size: int = 21, seed: int = 0):
+    def __init__(self, sensor_range: int = 3, size: int = 21, seed: int = 0,
+                 obs_model: ObservationModel | None = None):
         self.sensor_range = sensor_range
         self.size = size
         self.rng = np.random.default_rng(seed)
-        self.map = ProbabilisticMap(size=size, sensor_range=sensor_range)
+        self.map = ProbabilisticMap(size=size, sensor_range=sensor_range, obs_model=obs_model)
         self.target: Cell | None = None
 
     @property
@@ -179,7 +290,7 @@ class NearestFrontierExplorer:
         if not candidates:
             candidates = [c for c in self.map.edges if c != p and c not in self.map.visits]
         if not candidates:
-            return None
+            return relook_move(self.map, p)
 
         best: tuple[int, Cell, list[Cell]] | None = None
         for q in candidates:
@@ -192,7 +303,7 @@ class NearestFrontierExplorer:
                 best = choice
 
         if best is None:
-            return None
+            return relook_move(self.map, p)
 
         self.target = best[1]
         next_c = best[2][0]
@@ -206,11 +317,11 @@ class InfoGainFrontierExplorer:
     """
 
     def __init__(self, sensor_range: int = 3, size: int = 21, seed: int = 0,
-                 gain_weight: float = 0.03):
+                 gain_weight: float = 0.03, obs_model: ObservationModel | None = None):
         self.sensor_range = sensor_range
         self.size = size
         self.rng = np.random.default_rng(seed)
-        self.map = ProbabilisticMap(size=size, sensor_range=sensor_range)
+        self.map = ProbabilisticMap(size=size, sensor_range=sensor_range, obs_model=obs_model)
         self.gain_weight = gain_weight
         self.target: Cell | None = None
 
@@ -233,7 +344,7 @@ class InfoGainFrontierExplorer:
         if not candidates:
             candidates = [c for c in self.map.edges if c != p and c not in self.map.visits]
         if not candidates:
-            return None
+            return relook_move(self.map, p)
 
         best: tuple[float, int, Cell, list[Cell]] | None = None
         for q in candidates:
@@ -243,13 +354,15 @@ class InfoGainFrontierExplorer:
             # Information rate = (1.0 + weight * expected_info_gain) / route_len
             gain = self.map.expected_information_gain(q)
             rate = (1.0 + self.gain_weight * gain) / len(route)
-            # Maximize rate
+            # Maximize rate (store the negated rate so that smaller is better throughout; the first
+            # version stored +rate but compared -rate against it, which picked frontiers almost
+            # arbitrarily and made this baseline weaker than nearest frontier)
             choice = (-rate, len(route), q, route)
             if best is None or choice[:2] < best[:2]:
-                best = (rate, len(route), q, route)
+                best = choice
 
         if best is None:
-            return None
+            return relook_move(self.map, p)
 
         self.target = best[2]
         next_c = best[3][0]

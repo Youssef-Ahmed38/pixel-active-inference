@@ -2,6 +2,23 @@
 
 This document details the Active Inference implementation of Stage 3 in **Pixel Active Inference** (a research project for PhD application). 
 
+> **v3 (2026-10-28): route-level EFE and noisy sensing.** Final test on 100 fresh mazes (seeds
+> 70000-70099, settings frozen on development seeds 20000-20029). Goal found within 160 steps:
+>
+> | Agent | Exact sensor | Noisy sensor |
+> |---|---|---|
+> | nearest frontier | 60.0% [50.2, 69.1] | 50.0% [40.4, 59.6] |
+> | information-gain frontier (bug fixed) | 78.0% [68.9, 85.0] | 48.0% [38.5, 57.7] |
+> | EFE v2 (destination only) | 78.0% [68.9, 85.0] | 47.0% [37.5, 56.7] |
+> | **EFE over routes (v3)** | **79.0%** [70.0, 85.8] | **58.0%** [48.2, 67.2] |
+> | v3 without the epistemic term | 70.0% [60.4, 78.1] | 55.0% [45.2, 64.4] |
+>
+> What holds: valuing information beats pure distance with exact sensing (v3 vs nearest frontier,
+> 28 vs 9 discordant mazes, sign test p = 0.003). What does not (yet): v3 ties the information-gain
+> baseline with exact sensing, and under noise its +8 to +10 point lead over the baselines and
+> +3 over its own no-epistemic ablation are not significant (p = 0.17 to 0.74). The goal-belief term
+> adds nothing. Details in section 10 below; the v2 review that follows is kept unchanged.
+
 > **Honest summary (review, 2026-10-28).** On 30 fresh mazes the EFE explorer covers 64.6%
 > [62.6, 66.6] against 64.0% [62.4, 65.8] for the nearest-frontier baseline: **a tie, not a gain**.
 > Removing the epistemic term changes coverage by less than the interval (63.9%) and *raises* the
@@ -197,6 +214,64 @@ All results can be reproduced using `.venv\Scripts\python.exe` on Windows 11:
 3. **No Ground Truth Access:** The agent policy never reads the grid, truth(), or goal position; all planning occurs within the probabilistic belief map.
 
 ---
+
+## 10. v3: route-level EFE, noisy sensing, and a baseline bug
+
+**Why v3.** With the exact sensor one look settles a cell, so map uncertainty is tiny and the v2
+epistemic term had nothing to resolve. Three changes:
+
+1. **Baseline bug fixed.** `InfoGainFrontierExplorer` stored `+rate` but compared `-rate` against
+   it, so it picked frontiers almost arbitrarily. Fixed, it is a strong baseline (78% goal rate with
+   exact sensing on the final mazes). The v2 numbers above were measured with the buggy baseline.
+2. **`RouteEFEExplorer`** (`pai/maze/efe_agent.py`): one breadth-first tree gives every candidate's
+   route; epistemic value is the expected information gain of the cells that come newly into view
+   along the route (not only at the destination); pragmatic value is `-goal_weight * P(goal on the
+   route)` plus collision risk; effort is route length; the target is kept unless another is better
+   by `switch_margin`. All terms go through `pai/planning/objective.py:expected_free_energy`.
+3. **Noisy sensing** (`pai/maze/noisy.py`): every look draws each label from a confusion matrix
+   (wall/floor confused about 9%, the goal looks like floor 38% of the time, 2% false goal
+   sightings); bumping reports the blocked cell as a wall. The agents never see the matrix: the
+   sensor model is fitted from random walks in training mazes 1000-1019 (labels used only for
+   fitting) and **all map-based agents share it**, so differences come from the decision rule. All
+   map agents also gained a "look again" move when a misread wall cuts every route (before, they
+   stopped; with exact sensing this only fires after exploration is complete).
+
+**Protocol.** Development seeds 20000-20029: a 3x2 grid over effort weight {0.5, 1, 2} and
+switch margin {0, 1}; the rule fixed in advance was "best mean goal rate over both regimes", which
+chose effort 2.0, margin 0 (`data/maze_dev/`, not committed). Final: seeds 70000-70099, never used
+before, 160-step budget, Wilson 95% intervals, paired sign tests on mazes where exactly one agent
+found the goal. Result file: `results/maze_v3_final.json` (per-episode records, fitted sensor model).
+
+| Agent (final, 100 mazes) | Exact: goal | Exact: cells seen | Noisy: goal | Noisy: cells seen |
+|---|---|---|---|---|
+| random walk | 5.0% | 13.5% | 8.0% | 13.6% |
+| nearest frontier | 60.0% | 71.1% | 50.0% | 57.5% |
+| information-gain frontier | 78.0% | 75.6% | 48.0% | 59.2% |
+| EFE v2 | 78.0% | 75.5% | 47.0% | 58.7% |
+| **EFE over routes (v3)** | **79.0%** | 74.6% | **58.0%** | 59.3% |
+| v3, no epistemic term | 70.0% | 64.0% | 55.0% | 56.3% |
+| v3, no goal belief | 78.0% | 77.7% | 61.0% | 61.9% |
+
+| Paired comparison (v3 vs ...) | Exact: v3 only / other only, p | Noisy: v3 only / other only, p |
+|---|---|---|
+| nearest frontier | 28 / 9, **p = 0.003** | 26 / 18, p = 0.29 |
+| information-gain frontier | 12 / 11, p = 1.0 | 27 / 17, p = 0.17 |
+| v3 without epistemic term | 21 / 12, p = 0.16 | 19 / 16, p = 0.74 |
+
+**Reading.** Information-seeking exploration finds the goal far more often than distance-only
+frontier exploration when sensing is exact; the information-gain baseline and EFE v2 do the same.
+Measuring information along the route does not add to that. With noisy sensing every agent drops by
+about 20 points and the route-EFE agent is ahead numerically, but 100 mazes do not establish it. The
+goal-belief term does not help (61% without it). Next: a learned, persistent sensor error (the same
+cell misread repeatedly), where re-looking should matter more, and a sensor model and spatial prior
+learned from the agent's own exploration instead of labelled training mazes.
+
+Reproduce:
+
+```bash
+.venv/Scripts/python scripts/maze_v3_eval.py --test-start 20000 --num-test-mazes 30 --effort-weight 2.0 --switch-margin 0 --output data/maze_dev/v3_dev.json
+.venv/Scripts/python scripts/maze_v3_eval.py --test-start 70000 --num-test-mazes 100 --effort-weight 2.0 --switch-margin 0 --output results/maze_v3_final.json
+```
 
 # First build (v1), before the active-inference rewrite
 

@@ -244,3 +244,42 @@ def test_baselines_run_on_mazes():
     for ag in agents:
         move = ag.act(obs)
         assert move in ((-1, 0), (0, 1), (1, 0), (0, -1), None)
+
+
+def test_noisy_sensor_confuses_labels_and_reports_bumps():
+    """Noisy looks disagree with the truth sometimes; a bump always reports the blocked cell as wall."""
+    from pai.maze.noisy import NoisySensorMaze
+
+    world = MazeWorld(seed=3, size=11)
+    noisy = NoisySensorMaze(world, seed=3)
+    wrong = total = 0
+    for _ in range(40):
+        obs = noisy.observe()
+        for cell, kind in obs.visible.items():
+            true = "wall" if world.grid[cell] else "goal" if cell == world.goal else "floor"
+            wrong += kind != true
+            total += 1
+    assert 0.03 < wrong / total < 0.3
+    p = world.position
+    for d in ((-1, 0), (0, 1), (1, 0), (0, -1)):
+        q = p[0] + d[0], p[1] + d[1]
+        if world.grid[q]:
+            obs = noisy.step(d)
+            assert obs.collided and obs.visible[q] == "wall"
+            break
+
+
+def test_route_efe_explorer_finds_goal_without_grid_access():
+    """The route-EFE explorer reaches the goal of a small maze and never reads world.grid."""
+    from pai.maze.efe_agent import RouteEFEExplorer
+
+    world = MazeWorld(seed=7, size=11)
+    agent = RouteEFEExplorer(size=11, sensor_range=world.sensor_range, seed=7,
+                             effort_weight=2.0, switch_margin=0.0)
+    obs = world.observe()
+    for _ in range(200):
+        move = agent.act(obs)
+        if move is None or obs.reached_goal:
+            break
+        obs = world.step(move)
+    assert obs.reached_goal
