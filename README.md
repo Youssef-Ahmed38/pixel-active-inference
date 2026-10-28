@@ -1,7 +1,30 @@
-# Pixel Active Inference (PAI)
+# Pixel Active Inference: an agent that thinks through perception
 
-Hierarchical, pixel-based active inference for a simulated Franka Panda, building on
-PixelAI (Sancaktar et al., 2020). Everything runs in simulation (MuJoCo).
+An embodied agent organised like the brain's predictive hierarchy: a **fast sensory level** predicts
+what each body will sense, a **slower cause level** infers the hidden causes of surprise (a push, a
+heavier or slippery object, a moved camera, a blocked street, a misread wall, the reason for a fall),
+and a **slow goal level** plans by expected free energy, including actions taken only to find out:
+looking, touching, checking a street. One design, carried across a robot arm, a Unitree G1 humanoid
+that walks, explores mazes through its own head camera and rides a bicycle through towns, and
+mechanism, chess and English/Arabic language worlds. Everything runs in simulation (MuJoCo); every
+result is measured on seeds never used in development, with failures and negative results kept.
+It extends pixel-based deep active inference (PixelAI; Sancaktar et al., 2020).
+
+Vision and design: [docs/ROADMAP.md](docs/ROADMAP.md) · current state: [docs/STATUS.md](docs/STATUS.md) ·
+an independent audit of what is learned vs scripted: [docs/AUDIT_OUTSIDE_BUILDS.md](docs/AUDIT_OUTSIDE_BUILDS.md).
+
+**What the evidence says so far**
+
+- **The cause level makes behaviour repairable and explainable:** the arm names hidden causes in 88%
+  of new episodes (97/100 with learned likelihoods) and recalibrates after a camera shift (90% vs 20%);
+  the G1 names the causes of its own falls (92.6%); explanations in two languages come only from the
+  agent's own beliefs.
+- **Curiosity matters where the world is ambiguous:** 84 vs 67 of 100 branchy mazes; 49% vs 6-13%
+  under persistent sensor errors; parcel deliveries in new towns 37/40 vs 23/40 riding blind.
+- **Perception is audited:** blindfolded, the rider does exactly as badly as a blind rider; shown
+  different obstacles from the hidden truth, it follows what it sees; its code cannot read the truth.
+- **Open problem:** discovering the cause structure from perception without labels; a registered test
+  found a three-level hierarchy no better than a flat model (48.7% vs 44.5%; explicit causes 90.5%).
 
 **Showreel (94 s):** [docs/media/showreel.mp4](docs/media/showreel.mp4): every stage's milestone clip
 with its fresh-seed numbers, and an explanation the agent gives in English and Arabic from its own
@@ -9,41 +32,31 @@ beliefs (`scripts/make_showreel.py`).
 
 <img src="docs/media/showreel.png" width="640">
 
-**The G1 rides a bicycle:** [docs/BIKE_G1.md](docs/BIKE_G1.md): the walking humanoid seated on a realistic
-24-inch bicycle (hands on the grips, feet pedalling), balance learned by practice: 23/40 fresh 30 m rides
-(the untuned rule 0/40), with a comparison to published robot cycling work.
-
-<img src="docs/media/bike/g1_riding.gif" width="400">
-
-**The G1 delivers parcels by bicycle in towns it has never seen:** [docs/BIKE_TOWN.md](docs/BIKE_TOWN.md):
-a street grid with barriers and parked cars it does not know about; it looks down each street with
-its head camera, keeps a belief over blocked streets, replans, changes lane around cars, and corners
-and U-turns with steering learned by practice. On 20 new towns: **36/40 deliveries, 0 collisions**,
-against 21/40 and 19 collisions for the same rider riding blind (paired p = 0.0001); the camera read
-178/178 streets right. The video shows its head camera, its map and its decisions. **v2:** U-turn and
-dead-end fixes (37/40 delivered on new towns), and a learned riding policy (PPO correcting the
-practised rule) that rides random corner and U-turn shapes 40/40 where the rule manages 31/40
-(paired p = 0.004); PPO from scratch failed (0/40) at this training scale.
+**The G1 delivers parcels by bicycle in towns it has never seen** ([docs/BIKE_TOWN.md](docs/BIKE_TOWN.md)):
+it plans on the street map, looks down each street with its head camera, keeps a belief over blocked
+streets, replans, changes lane around parked cars, and corners and U-turns with steering it learned by
+practice (three training seeds: 120/120 new routes). On new towns: **37/40 deliveries** against 23/40
+riding blind. The video shows its head camera, its own map and its decisions.
 
 <img src="docs/media/bike/delivery.gif" width="640">
 
-**One agent, many skills, the same principles:** active inference (world models, expected free
-energy, surprise and Bayesian hidden-cause inference, curiosity), episodic memory and recipes, and an
-HRM "thinker", learned rather than scripted and evaluated on fresh seeds. Plan:
-[docs/ROADMAP.md](docs/ROADMAP.md); current state and next steps: [docs/STATUS.md](docs/STATUS.md);
-an independent audit of what is learned vs scripted: [docs/AUDIT_OUTSIDE_BUILDS.md](docs/AUDIT_OUTSIDE_BUILDS.md).
+**The G1 rides a realistic bicycle** ([docs/BIKE_G1.md](docs/BIKE_G1.md)): seated on a 24-inch bicycle
+of standard geometry, hands on the grips, feet pedalling; balance learned by practice.
+
+<img src="docs/media/bike/g1_riding.gif" width="400">
 
 ## Stages at a glance
 
 | Stage | What the agent does | Latest result (fresh seeds) | Still open | Report |
 |---|---|---|---|---|
 | 1 arm | puts objects where asked, explains surprises (push, heavier, slippery, moved camera), adapts | exact state: task **91%**, cause **88%**; from camera images: task **75%**, cause **66%**; **learned cause likelihoods** (new seeds, same episodes): 97/100 vs 87 exact, 78/100 vs 66 from camera, slippery 20/20 and 13/20 (was 9/20) | camera-shift and slip timing; camera-offset estimates | below, [ARM_CAUSES](docs/ARM_CAUSES.md) |
-| 2 walking | Unitree G1 learns to stand, walk, turn and run from its own exploration | v4: stand, walk 10 m, headings, run: **20/20 each**; walks into a wall and falls **2/40** (v3: 14/40); pushes 97% at 1.0 m/s (v1: 53%) | fall causes from own senses, four causes incl. **wall**: 92.6% vs 41.7% on 3 new seeds (544 falls); 17 own stumbles still called push | [LOCOMOTION_STAGE2](docs/LOCOMOTION_STAGE2.md) |
+| 2 walking | Unitree G1 learns to stand, walk, turn and run from its own exploration | v4: every gate on new seeds (headings and run 18-20/20 across three training seeds); wall practice lowers wall falls for every training seed (4, 9, 4 vs 10 of 40 for v3); pushes 93-100% at 1.0 m/s | fall causes from own senses, four causes incl. **wall**: 92.6% vs 41.7% (544 falls); 17 own stumbles still called push | [LOCOMOTION_STAGE2](docs/LOCOMOTION_STAGE2.md) |
 | 3 maze | explores with a Bayesian map and expected free energy over routes; the learned G1 walker walks its plans | branchy mazes: route EFE 84 vs nearest frontier 67 of 100 (p = 0.006); **seeing through the walker's own head camera with its own odometry: 26/30 goals vs 27/30 with the grid sensor, 5 cm drift, 0 falls** (vs nearest frontier 17/30, p = 0.004); persistent misreads: learned repeat weight + touch 49% vs 6-13% | walker falls in noisy mazes **fixed by walking at 0.4 m/s**: 2.60 -> 0.46 falls per 1000 moves on new mazes (p = 0.0003), 0 falls in 60 explorations, same goals; cells, wall height and goal colour still given | [MAZE](docs/MAZE.md) |
 | 4 doors, keys | discovers how to open locked doors by experiment | mock: 99.9% solved in 111.6 actions (novelty 80.9%); physics 12/25 with decoys; **key chain without a script** (no role IDs or shape rules): 38/40 unseen scenes vs 35/40 for the old scripted chain | recipe replay gives no reliable gain over prior-only transfer; key handling in physics | [DISCOVERY](docs/DISCOVERY.md) |
 | 5 chess | learned rules, learned value, search; Stockfish only as a teacher | **1037** conditional engine-anchor Elo [863, 1134] at 1 s/move; beats its old self 17-2-1 | still weaker than Stockfish 1320-1700; the HRM thinker inside search with learned halting thinks longer on hard positions but does not play stronger (paired match 1-8-11, ladder 904 vs 904 at 0.2 s) | [CHESS_STRENGTH](docs/CHESS_STRENGTH.md) |
-| 6 language | English and Arabic: instructions, questions, narration, and **why** things happened, from the agent's own beliefs | 456/456 held-out parses; causes named correctly **37/50** per language (37/40 when it commits), cause words grounded in the agent's beliefs from 25 teaching episodes; instructions 41/50 = the arm's own rate | clean episodes abstain instead of saying "nothing unusual"; slip causes | [LANGUAGE_STAGE6](docs/LANGUAGE_STAGE6.md) |
-| 7 bicycle | balances and rides, learned from observed motion and practice | 20/20 fresh starts after practice | learned from (calibrated, marked) video: rides 20/20 fresh starts from an on-board camera and proprioception; natural unmarked video and walking transfer open | [BIKE_STAGE7](docs/BIKE_STAGE7.md) |
+| 6 language | English and Arabic: instructions, questions, narration, and **why** things happened, from the agent's own beliefs | 456/456 held-out parses; causes named correctly **41/50** per language; **83/100** on a larger set with absence claims hedged by their probability; correct Arabic composition (all 29 sentences checked); instructions 41/50 = the arm's own rate | calibration of absence claims did not improve | [LANGUAGE_STAGE6](docs/LANGUAGE_STAGE6.md) |
+| 7 bicycle | the G1 rides a realistic bicycle and delivers parcels in new towns, discovering obstacles with its own camera | deliveries **37/40** vs 23/40 blind; perception audit passed; cornering rule 120/120 routes over three training seeds; a learned correction (residual PPO) rides unseen corner shapes 40/40 vs 31/40 (p = 0.004); from video: 20/20 rides from an on-board camera | the arms do not produce the steering; no other traffic; PPO from scratch 0/40 | [BIKE_TOWN](docs/BIKE_TOWN.md), [BIKE_G1](docs/BIKE_G1.md), [BIKE_STAGE7](docs/BIKE_STAGE7.md) |
+| cause level, learned | can the cause level be discovered from perception without labels? (registered test) | a three-level hierarchy **48.7%** vs a flat model **44.5%** (no advantage; paired CI [-28.8, +37.1] pp); the explicit cause level **90.5%** on the same episodes | learning the cause structure: the central open problem | [THINKER_HIERARCHY](docs/THINKER_HIERARCHY.md) |
 
 ### Stage 2: a humanoid that learns to walk
 
