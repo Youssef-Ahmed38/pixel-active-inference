@@ -11,17 +11,21 @@ import torch
 from pai.locomotion.env import PROPRIO
 from pai.locomotion.falls import SurpriseMonitor
 
-CAUSES=('gait','push','slip','unknown')
+CAUSES=('gait','push','slip','unknown')          # the three-cause models (PR #3) and their reports
+ALL_CAUSES=('gait','push','slip','wall')          # a model learns the causes present in its training falls
 CHANNELS=('res_vx','res_vy','res_vz','res_angular','res_gravity','res_joint_pos',
           'res_joint_vel','surprise','loaded_slide','shear_ratio','load_sum',
           'load_imbalance','loaded_feet','foot_speed','torque_ratio','upright')
 
 
-def instrumented_body():
-    """Add read-only ankle load-cell sensors; change no physical parameter."""
+def instrumented_body(walls=0):
+    """Add read-only ankle load-cell sensors; change no physical parameter. ``walls`` adds that many
+    parked solid training walls (pai/locomotion/body.py), moved into place by the wall condition."""
     import mujoco
-    from pai.locomotion.body import build_spec,G1Body,FEET
+    from pai.locomotion.body import build_spec,G1Body,FEET,add_training_walls
     spec=build_spec()
+    if walls:
+        add_training_walls(spec,walls)
     for foot in FEET:
         for kind in ('force','torque'):
             spec.add_sensor(name=f'{foot}_fall_{kind}',type=getattr(mujoco.mjtSensor,'mjSENS_'+kind.upper()),
@@ -129,7 +133,8 @@ def extract_features(trace,dt=.02):
         feature[name+'_loaded_slip_fraction']=float(np.mean(part[:,8]>.3))
     # Unknown-onset searches: strongest before/after contrast, not event time.
     onsets={}
-    for j,label in ((0,'horizontal_residual'),(8,'loaded_sliding'),(9,'shear_ratio'),(10,'load')):
+    for j,label in ((0,'horizontal_residual'),(8,'loaded_sliding'),(9,'shear_ratio'),(10,'load'),
+                    (5,'joint_position_residual'),(6,'joint_velocity_residual')):
         signal=np.linalg.norm(prefix[:,:2],axis=1) if j==0 else prefix[:,j]/(reference if j==10 else 1.)
         contrasts=[abs(float(signal[t:t+5].mean()-signal[t-10:t].mean())) for t in range(10,len(signal)-5)]
         if contrasts:
@@ -140,6 +145,10 @@ def extract_features(trace,dt=.02):
         else:
             feature[label+'_change']=0.
             feature[label+'_onset_age']=0.
+    # Who went first: an own stumble disturbs the joints before the pelvis, a push the pelvis
+    # before the joints (positive: the joints changed earlier). Shifted to stay positive for log1p.
+    for label in ('joint_position_residual','joint_velocity_residual'):
+        feature[label+'_lead_over_pelvis']=float(feature[label+'_onset_age']-feature['horizontal_residual_onset_age'])+10.
     return feature,onsets
 
 
@@ -154,7 +163,9 @@ def unpack_trace(record):
 
 
 class LearnedFallLikelihood:
-    def __init__(self,names,center,scale,means,covariances,unknown_scale=4.,unknown_prior=.03):
+    def __init__(self,names,center,scale,means,covariances,unknown_scale=4.,unknown_prior=.03,
+                 causes=('gait','push','slip')):
+        self.causes=tuple(causes)
         self.names=list(names)
         self.center=np.asarray(center)
         self.scale=np.asarray(scale)
@@ -171,7 +182,8 @@ class LearnedFallLikelihood:
         z=(x-center)/scale
         means=[]
         cov=[]
-        for cause in CAUSES[:3]:
+        causes=[c for c in ALL_CAUSES if c in set(labels)]
+        for cause in causes:
             part=z[np.asarray(labels)==cause]
             if len(part)<3:
                 raise ValueError('At least three development falls per cause')
@@ -179,7 +191,12 @@ class LearnedFallLikelihood:
             c=np.atleast_2d(np.cov(part,rowvar=False))
             c=(1-shrinkage)*c+shrinkage*np.diag(np.maximum(np.diag(c),.1))+.03*np.eye(len(names))
             cov.append(c)
-        return cls(names,center,scale,means,cov,unknown_scale,unknown_prior)
+        return cls(names,center,scale,means,cov,unknown_scale,unknown_prior,causes)
+
+    @property
+    def labels(self):
+        """Column names of ``posterior``: the learned causes, then the catch-all."""
+        return self.causes+('unknown',)
 
     def posterior(self,features):
         x=np.log1p(np.asarray([[f[k] for k in self.names] for f in features]))
@@ -191,7 +208,8 @@ class LearnedFallLikelihood:
         for mean,cov in zip(self.means,self.covariances):
             diff=z-mean
             mahal=np.sum(diff*np.linalg.solve(cov,diff.T).T,axis=1)
-            likelihood.append(-.5*(mahal+np.linalg.slogdet(cov)[1]+d*np.log(2*np.pi))+np.log((1-self.unknown_prior)/3))
+            likelihood.append(-.5*(mahal+np.linalg.slogdet(cov)[1]+d*np.log(2*np.pi))
+                              +np.log((1-self.unknown_prior)/len(self.causes)))
         # Broad Student-t catch-all. Form/prior given; center/scale learned from
         # pooled development evidence, with no labelled unknown examples.
         nu=3.
@@ -206,4 +224,4 @@ class LearnedFallLikelihood:
     def to_dict(self):
         return dict(names=self.names,center=self.center.tolist(),scale=self.scale.tolist(),
                     means=self.means.tolist(),covariances=self.covariances.tolist(),
-                    unknown_scale=self.unknown_scale,unknown_prior=self.unknown_prior)
+                    unknown_scale=self.unknown_scale,unknown_prior=self.unknown_prior,causes=list(self.causes))
