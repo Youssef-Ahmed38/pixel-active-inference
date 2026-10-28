@@ -1,0 +1,316 @@
+{
+  "policy": "runs/locomotion/policy_v4/policy.pt",
+  "policy_iteration": 7944,
+  "policy_stage": 4,
+  "policy_steps": 390463488,
+  "commit": "2d5dfa6",
+  "seeds_start": 57000,
+  "stand": {
+    "seed": 57000,
+    "starts": 20,
+    "seconds": 30.0,
+    "stood_rate": 1.0,
+    "median_drift_m": 0.8109659404494562,
+    "max_drift_m": 1.4249292419701454,
+    "seconds_wall": 3.7
+  },
+  "walk_10m": {
+    "seed": 57001,
+    "starts": 20,
+    "command_mps": 0.8,
+    "distance_m": 10.0,
+    "time_limit_s": 20.0,
+    "success_rate": 1.0,
+    "falls": 0,
+    "mean_speed_to_10m_mps": 0.8094913095686614,
+    "forward_distance_m": [
+      16.22,
+      16.4,
+      15.83,
+      16.7,
+      15.98,
+      16.04,
+      15.99,
+      16.25,
+      16.55,
+      16.3,
+      16.07,
+      16.48,
+      16.69,
+      16.37,
+      15.96,
+      16.19,
+      16.33,
+      16.3,
+      16.33,
+      16.69
+    ],
+    "seconds_wall": 3.1
+  },
+  "headings": {
+    "seed": 57002,
+    "starts": 20,
+    "speed_mps": 0.5,
+    "seconds": 8.0,
+    "turns_deg": [
+      90.0,
+      -90.0,
+      180.0,
+      45.0,
+      -45.0,
+      135.0,
+      -135.0,
+      60.0,
+      -60.0,
+      120.0,
+      90.0,
+      -90.0,
+      180.0,
+      45.0,
+      -45.0,
+      135.0,
+      -135.0,
+      60.0,
+      -60.0,
+      120.0
+    ],
+    "success_rate": 1.0,
+    "tolerance_deg": 15.0,
+    "median_error_deg": 2.1074935064451483,
+    "falls": 0,
+    "seconds_wall": 1.9
+  },
+  "run": {
+    "seed": 57003,
+    "starts": 20,
+    "command_mps": 2.0,
+    "need_mps": 1.5,
+    "success_rate": 1.0,
+    "falls": 0,
+    "median_speed_mps": 1.927783495784528,
+    "seconds_wall": 6.3
+  },
+  "speeds": {
+    "seed": 57004,
+    "seconds": 10.0,
+    "measured_last_s": 6.0,
+    "rows": [
+      {
+        "command_mps": 0.0,
+        "bodies": 10,
+        "falls": 0,
+        "mean_forward_mps": 0.030001593489509683,
+        "sd_forward_mps": 0.016583329280672025
+      },
+      {
+        "command_mps": 0.25,
+        "bodies": 10,
+        "falls": 0,
+        "mean_forward_mps": 0.2881173239590409,
+        "sd_forward_mps": 0.016955174843971445
+      },
+      {
+        "command_mps": 0.5,
+        "bodies": 10,
+        "falls": 0,
+        "mean_forward_mps": 0.5391325160605175,
+        "sd_forward_mps": 0.015029341778560985
+      },
+      {
+        "command_mps": 0.75,
+        "bodies": 10,
+        "falls": 0,
+        "mean_forward_mps": 0.7764830093626898,
+        "sd_forward_mps": 0.011952686266527693
+      },
+      {
+        "command_mps": 1.0,
+        "bodies": 10,
+        "falls": 0,
+        "mean_forward_mps": 1.0107632166745333,
+        "sd_forward_mps": 0.010597476354452337
+      },
+      {
+        "command_mps": 1.25,
+        "bodies": 10,
+        "falls": 0,
+        "mean_forward_mps": 1.2484547893430347,
+        "sd_forward_mps": 0.009915627118887955
+      },
+      {
+        "command_mps": 1.5,
+        "bodies": 10,
+        "falls": 0,
+        "mean_forward_mps": 1.4914641399600064,
+        "sd_forward_mps": 0.017136527690261815
+      },
+      {
+        "command_mps": 1.75,
+        "bodies": 10,
+        "falls": 0,
+        "mean_forward_mps": 1.6983045558466698,
+        "sd_forward_mps": 0.024669189992158252
+      },
+      {
+        "command_mps": 2.0,
+        "bodies": 10,
+        "falls": 0,
+        "mean_forward_mps": 1.9347606967449942,
+        "sd_forward_mps": 0.02123710158716494
+      }
+    ],
+    "seconds_wall": 8.7
+  },
+  "pushes": {
+    "seed": 57005,
+    "walk_mps": 0.5,
+    "push_s": 0.2,
+    "after_s": 4.0,
+    "rows": [
+      {
+        "push_dv_mps": 0.25,
+        "push_force_N": 41.7,
+        "bodies": 30,
+        "recovered_rate": 1.0
+      },
+      {
+        "push_dv_mps": 0.5,
+        "push_force_N": 83.4,
+        "bodies": 30,
+        "recovered_rate": 1.0
+      },
+      {
+        "push_dv_mps": 0.75,
+        "push_force_N": 125.0,
+        "bodies": 30,
+        "recovered_rate": 1.0
+      },
+      {
+        "push_dv_mps": 1.0,
+        "push_force_N": 166.7,
+        "bodies": 30,
+        "recovered_rate": 0.9666666666666667
+      },
+      {
+        "push_dv_mps": 1.25,
+        "push_force_N": 208.4,
+        "bodies": 30,
+        "recovered_rate": 0.8
+      },
+      {
+        "push_dv_mps": 1.5,
+        "push_force_N": 250.1,
+        "bodies": 30,
+        "recovered_rate": 0.5
+      },
+      {
+        "push_dv_mps": 2.0,
+        "push_force_N": 333.4,
+        "bodies": 30,
+        "recovered_rate": 0.03333333333333333
+      }
+    ],
+    "seconds_wall": 9.5
+  },
+  "walls": {
+    "seed": 57007,
+    "bodies": 40,
+    "speed_mps": 0.6,
+    "push_s": 6.0,
+    "back_s": 3.0,
+    "gap_m": [
+      0.8,
+      1.5
+    ],
+    "touched_rate": 1.0,
+    "fell_while_pushing": 1,
+    "fell_backing_off": 1,
+    "survived_rate": 0.95,
+    "survived_rate_touched": 0.95,
+    "max_forward_m": [
+      1.33,
+      1.57,
+      1.19,
+      1.24,
+      1.85,
+      1.35,
+      0.97,
+      1.46,
+      1.68,
+      1.44,
+      1.57,
+      0.83,
+      1.24,
+      0.92,
+      1.77,
+      0.97,
+      1.01,
+      1.27,
+      1.35,
+      1.17,
+      1.15,
+      1.09,
+      1.24,
+      1.07,
+      1.06,
+      1.98,
+      1.08,
+      1.27,
+      1.54,
+      1.74,
+      1.61,
+      1.55,
+      2.08,
+      2.33,
+      0.93,
+      1.6,
+      1.12,
+      1.19,
+      1.07,
+      1.33
+    ],
+    "gap_per_body_m": [
+      1.21,
+      1.26,
+      0.84,
+      1.44,
+      1.36,
+      1.45,
+      0.81,
+      1.34,
+      1.49,
+      1.45,
+      1.23,
+      0.9,
+      1.0,
+      1.06,
+      1.5,
+      0.81,
+      0.96,
+      1.17,
+      1.15,
+      1.29,
+      1.22,
+      1.23,
+      0.92,
+      1.1,
+      1.25,
+      1.02,
+      1.2,
+      1.42,
+      1.48,
+      1.45,
+      1.22,
+      1.0,
+      1.16,
+      1.37,
+      0.95,
+      1.31,
+      1.28,
+      1.31,
+      1.3,
+      1.23
+    ],
+    "seconds_wall": 4.8
+  }
+}

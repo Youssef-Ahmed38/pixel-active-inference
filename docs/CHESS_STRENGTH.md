@@ -226,3 +226,111 @@ different hashes, rerun the gates and publish a new manifest rather than reusing
 this acceptance record. The first final-promotion summary hit a NumPy-boolean
 serialization error after all twenty games were saved; the serializer was fixed
 and the same raw games were summarized, without replaying or replacing them.
+
+## Adaptive HRM in search with learned halting (2026-10-28)
+
+This is a separate opt-in candidate. The previous promoted configuration and checkpoints remain intact. The paired match tests playing strength; lower teacher error alone is not a promotion gate. This study uses **0.2 seconds per move**, equally for both sides. Its ratings are conditional on that protocol and must not be substituted for the historical 1-second 1037 Elo estimate.
+
+### Design: learned versus given
+
+`pai/chess/adaptive_hrm.py` reuses the existing HRM encoder, coupled recurrent L/H modules, readout and two-logit halt head. Rank patches of eight board squares reduce the sequence to eight evidence tokens plus the readout. A 32-dimensional residual head refines the promoted linear value. Colour-mirrored views are evaluated independently and antisymmetrized, preserving colour symmetry. Alpha-beta calls this value at nonterminal search nodes through the existing batched, cached value interface; the same learned move prior orders moves for both players. The halting histogram in each move record counts actual executed recurrent segments, excluding cached values and fixed initial-board warm-up.
+
+Given: public symbolic board tokens/context, rank patching, architecture, six-segment safety cap, 500-cp residual scale, search algorithm and budgets, a 2-cp cost per additional segment, and Stockfish labels. Learned: residual encoder/recurrent/readout weights and the halt classifier. The latter is supervised from when **future teacher-error reduction exceeds added recurrence cost**. Labels are detached; the backbone is frozen while fitting the halt head. No teacher error, legal oracle or engine output enters inference. This is supervised stopping, not a claim of chess reinforcement Q-learning. Existing cause HRM behavior is unchanged.
+
+Backbone selection uses validation full-depth error; halt-head selection uses validation error plus 2 cp × mean segments. Training samples come only from the old depth-8 training corpus; train/validation board/mirror orbits are disjoint. Validation is development data previously used in chess work. Final data were not used for fitting or selection.
+
+The fit retained 3981 unique teaching orbits and 800 development validation positions, with eight value epochs and 25 halt-head epochs.
+
+### Fresh halting analysis
+
+Seed 93400 generated 400 depth-8 teacher-labelled positions; 395 survived teaching-orbit/duplicate exclusion. This positional test is separate from the opening books.
+
+| Measure | Frozen candidate |
+|---|---:|
+| Mean segments (cap six) | 4.297 |
+| Recurrent segments saved versus fixed six | 28.4% |
+| Easiest baseline-error quartile | 3.990 |
+| Hardest baseline-error quartile | 4.672 |
+| Baseline error / steps Pearson correlation | 0.341 |
+| Baseline / adaptive / fixed-six MAE | 210.49 / 206.71 / 206.98 cp |
+
+Executed-view segment histogram: `{'1': 0, '2': 2, '3': 182, '4': 186, '5': 419, '6': 1}`. Each position contributes two views. The hardest quartile is defined by baseline absolute teacher error, only for scoring. These are descriptive position statistics: trajectories are correlated, and the segment saving is not an end-to-end search speedup.
+
+During the actual matches/ladder, 329750 uncached HRM views used mean 4.140 segments; histogram `{'1': 20, '2': 6591, '3': 78003, '4': 108195, '5': 136507, '6': 434}`.
+
+### Equal-time paired match
+
+Opening seed **97400**, ten roots, both colours, 20 completed games. Adaptive candidate W/D/L: **1/8/11**.
+
+Score 25.0%, reported opening-pair 95% interval [12.5, 37.5]%; one-sided paired sign test p=1.
+
+The candidate fails the paired promotion gate and is **not promoted**. This negative strength result is retained despite positive halting and positional-error results.
+
+### Enlarged Stockfish ladder
+
+Opening seed **98400**, twenty new roots reused across both players and all three anchors. Each player has **40 games per rung**, twice the previous twenty at this move target. The engine has Threads 1 / Hash 16 MB / UCI_LimitStrength; no extra engine node/depth cap. Both agents retain quiescence two, PV reuse, the same prior, and the million-node safety cap.
+
+| Player | UCI anchor | Games | W/D/L | Score / reported pair 95% interval | Conditional anchor Elo / 95% interval |
+|---|---:|---:|---|---|---|
+| baseline | 1320 | 40 | 4/0/36 | 10.0% / [0.0, 22.5]% | 938 [-∞, 1105] |
+| baseline | 1500 | 40 | 1/0/39 | 2.5% / [0.0, 7.5]% | 864 [-∞, 1064] |
+| baseline | 1700 | 40 | 0/0/40 | 0.0% / [0.0, 30.4]% | no finite point [-∞, 1556] |
+| adaptive | 1320 | 40 | 2/1/37 | 6.2% / [0.0, 13.8]% | 850 [-∞, 1001] |
+| adaptive | 1500 | 40 | 0/1/39 | 1.2% / [0.0, 3.8]% | 741 [-∞, 936] |
+| adaptive | 1700 | 40 | 1/2/37 | 5.0% / [0.0, 11.2]% | 1188 [-∞, 1341] |
+
+| Player | Overall conditional engine-anchor Elo / 95% interval |
+|---|---|
+| baseline | 904 [615, 1037] |
+| adaptive | 904 [738, 1005] |
+
+Both point estimates are equal because the players earned the same total ladder points under the same anchor exposures. The distribution over openings differs, producing different bootstrap intervals. This noisy ladder result does not overturn the negative direct paired match.
+
+These use the existing anchored-score equation and opening-cluster bootstrap, preserving both colours and cross-rung dependencies. Degenerate per-rung bootstraps use the existing conservative pair Hoeffding bounds; null Elo endpoints mean unbounded. Configured anchors are not human-calibrated ratings.
+
+| Player / anchor | Mean nodes | Mean main depth | Mean search seconds | Maximum search seconds |
+|---|---:|---:|---:|---:|
+| baseline / 1320 | 89.3 | 1.033 | 0.203 | 0.675 |
+| baseline / 1500 | 95.4 | 0.993 | 0.203 | 0.521 |
+| baseline / 1700 | 93.3 | 0.954 | 0.204 | 0.547 |
+| adaptive / 1320 | 32.2 | 0.436 | 0.205 | 0.486 |
+| adaptive / 1500 | 32.0 | 0.330 | 0.206 | 0.599 |
+| adaptive / 1700 | 33.7 | 0.350 | 0.204 | 0.400 |
+
+### Failures, scope, and verification
+
+All 260 scheduled PGNs were replayed independently for legal moves, results, and draw-claim witnesses. Unresolved games by group: `{'paired': 0, 'baseline_elo1320': 0, 'baseline_elo1500': 0, 'baseline_elo1700': 0, 'adaptive_elo1320': 0, 'adaptive_elo1500': 0, 'adaptive_elo1700': 0}`.
+
+The models are frozen; a time-based game cannot be replayed bit-for-bit. Soft deadlines can overrun during model operations. CPU contention and limited independent opening clusters remain limitations. A 1024-ply cap is an execution ceiling, never draw adjudication. No failure or unfinished game is silently converted to a score. Positive halt/error results do not establish a playing-strength gain. No promoted manifest was changed, regardless of this candidate’s result.
+
+Main depth excludes quiescence. Halt targets optimize positional teacher error plus recurrent cost, not search win rate. Selective reasoning or a learned move-ordering head would need a new development study; this completed final set must not become its tuning set. No 1-second HRM ladder was run.
+
+Restricted Windows named pipes prevented python-chess asynchronous UCI and multiprocessing queues. The new scripts explicitly opt into `uci_sync.py` (ordinary pipes, bounded UCI limits, history preserved) and four separate worker processes with atomic gzip file checkpoints. The learned player never imports that transport. Per-worker locks prevent duplicate concurrent writers. Restarting adopts completed games; frozen code/checkpoint mismatches are rejected. No user/cache absolute paths are written to results.
+
+Regression: 173 tests passed in the full required cohort; six focused adaptive tests also passed (the latter include one new UCI protocol test added after full collection). Tests exercise true halting compute, mirror symmetry, save/load, benefit labels, and an actual agent move with teacher imports and engine startup blocked.
+
+The test wrapper uses a fresh directory under `data` and inherited Windows permissions instead of inaccessible `mkdir(mode=0700)` directories. Existing temporary directories are never removed; use a new basename for repeat checks. Result and training commands are intended for clean artifact paths: existing plans/models are deliberately protected. `results/chess_hrm_final_tests.json.gz` retains the final six-test focused run.
+
+### Seeds and exact commands
+
+Training/optimizer 91400; source teacher data 10400–10403 and development validation 20400–20401. Capped smoke 95400. Final halting positions 93400; paired openings 97400; ladder openings 98400. Old published opening books and teaching orbits are excluded during book construction.
+
+```powershell
+$env:PYTHONPATH='.'
+$env:PYTHONHASHSEED='0'
+$env:OMP_NUM_THREADS='1'
+$env:OPENBLAS_NUM_THREADS='1'
+.venv/Scripts/python.exe scripts/chess_hrm_train.py
+.venv/Scripts/python.exe scripts/chess_hrm_evaluate.py tests
+.venv/Scripts/python.exe scripts/chess_hrm_evaluate.py smoke
+.venv/Scripts/python.exe scripts/chess_hrm_evaluate.py halting
+.venv/Scripts/python.exe scripts/chess_hrm_study.py register --seconds .2 --pairs 20
+.venv/Scripts/python.exe scripts/chess_hrm_study.py run --workers 4
+.venv/Scripts/python.exe scripts/chess_hrm_study.py analyse
+.venv/Scripts/python.exe scripts/chess_hrm_evaluate.py audit
+.venv/Scripts/python.exe scripts/chess_hrm_report.py
+```
+
+Results: `results/chess_hrm_training.json.gz`, `chess_hrm_final_halting.json.gz`, `chess_hrm_search_plan.json.gz`, `chess_hrm_search_games.json.gz`, `chess_hrm_search_summary.json.gz`, `chess_hrm_final_audit.json.gz`, `chess_hrm_report.json.gz`. The model is `results/chess_hrm_adaptive_model.pt`. All per-game PGNs, player configs, move timings and executed halting histograms are retained in the compressed game archive.
+
+`results/chess_hrm_completion_audit.json.gz` checks frozen identities, all game slots, teaching overlap, path privacy, file-size policy and the 174 distinct passing tests across the full and final focused runs.

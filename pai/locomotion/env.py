@@ -28,7 +28,7 @@ import mujoco
 import numpy as np
 from mujoco import rollout
 
-from pai.locomotion.body import CONTROL_SPEC, G1Body, Randomization, load_body, randomized_models
+from pai.locomotion.body import CONTROL_SPEC, G1Body, Randomization, load_body, place_walls, randomized_models
 
 OBS_DIM = 50
 ACT_DIM = 12
@@ -97,6 +97,15 @@ class EnvConfig:
     randomize: bool = True
     n_variants: int = 32
     nthread: int = 6
+    # wall-contact practice: ``walls`` solid 1 m blocks placed in a fraction ``wall_frac`` of the
+    # dynamics variants, ``wall_radius`` metres from the start (0 = no walls, as before)
+    walls: int = 0
+    wall_frac: float = 0.5
+    # maze-goal practice: this share of the bodies get the maze walker's goal pattern (turn on the
+    # spot to a new heading, walk about one cell, stop, repeat) instead of random goals; half of them
+    # with the abrupt steering (walk at full speed below 25 deg), half with the smooth one
+    maze_goal_frac: float = 0.0
+    wall_radius: tuple[float, float] = (1.0, 3.0)
     reward: RewardWeights = field(default_factory=RewardWeights)
     stages: tuple[Stage, ...] = DEFAULT_STAGES
 
@@ -106,7 +115,7 @@ class EnvConfig:
         rw = RewardWeights(**d.pop("reward", {}))
         stages = d.pop("stages", None)
         st = tuple(Stage(**s) for s in stages) if stages else DEFAULT_STAGES
-        for k in ("push_interval_s", "resample_s"):
+        for k in ("push_interval_s", "resample_s", "wall_radius"):
             if k in d:
                 d[k] = tuple(d[k])
         return cls(reward=rw, stages=st, **d)
@@ -148,12 +157,14 @@ class LocomotionEnv:
                  stage: int = 0, body: G1Body | None = None):
         self.cfg = cfg or EnvConfig()
         self.n = num_envs
-        self.body = body or load_body()
+        self.body = body or load_body(walls=self.cfg.walls)
         self.rng = np.random.default_rng(seed)
         m = self.body.model
         self.substeps = int(round(self.cfg.ctrl_dt / m.opt.timestep))
         if self.cfg.randomize:
             variants = randomized_models(self.body, self.cfg.n_variants, self.rng, Randomization())
+            self.wall_layout = (place_walls(variants, self.rng, self.cfg.walls, self.cfg.wall_frac,
+                                            self.cfg.wall_radius) if self.cfg.walls else [])
             self.models = [variants[i % len(variants)] for i in range(num_envs)]
         else:
             self.models = [m] * num_envs
@@ -179,6 +190,12 @@ class LocomotionEnv:
         self.push_left = np.zeros(num_envs, int)
         self.next_push = np.zeros(num_envs, int)
         self.next_resample = np.zeros(num_envs, int)
+        self.maze_mode = self.rng.random(num_envs) < self.cfg.maze_goal_frac
+        self.maze_smooth = self.rng.random(num_envs) < 0.5
+        self.maze_walking = np.zeros(num_envs, bool)
+        self.maze_v = np.zeros(num_envs)
+        self.maze_from = np.zeros((num_envs, 2))
+        self.maze_pause = np.zeros(num_envs, int)
         self.pushes_enabled = True
         self.reset(np.arange(num_envs))
 
@@ -199,6 +216,43 @@ class LocomotionEnv:
         self.heading_target[ids] = wrap(yaw + r.uniform(-np.pi, np.pi, k))
         lo, hi = self.cfg.resample_s
         self.next_resample[ids] = self.steps[ids] + (r.uniform(lo, hi, k) / self.cfg.ctrl_dt).astype(int)
+
+    def _maze_goals(self):
+        """The maze walker's goal pattern for the bodies in maze mode (vectorized state machine)."""
+        ids = np.nonzero(self.maze_mode)[0]
+        dt = self.cfg.ctrl_dt
+        yaw = self.yaw()[ids]
+        xy = self.qpos()[ids, :2]
+        err = np.abs(wrap(self.heading_target[ids] - yaw))
+        walking = self.maze_walking[ids]
+        smooth = self.maze_smooth[ids]
+        # finished a cell: stop briefly, then pick the next heading (straight, left, right, back)
+        done = walking & (np.linalg.norm(xy - self.maze_from[ids], axis=1) >= 1.0)
+        if done.any():
+            d = ids[done]
+            turn = self.rng.choice([0.0, np.pi / 2, -np.pi / 2, np.pi], len(d), p=[0.4, 0.25, 0.25, 0.1])
+            self.heading_target[d] = wrap(self.heading_target[d] + turn)
+            self.maze_walking[d] = False
+            self.maze_v[d] = 0.0
+            self.maze_pause[d] = int(round(0.3 / dt))
+            walking = self.maze_walking[ids]
+        start = ~walking & (self.maze_pause[ids] <= 0) & np.where(smooth, err < np.radians(10), err < np.radians(25))
+        if start.any():
+            s_ids = ids[start]
+            self.maze_walking[s_ids] = True
+            self.maze_from[s_ids] = self.qpos()[s_ids, :2]
+        stop = self.maze_walking[ids] & smooth & (err > np.radians(40))
+        self.maze_walking[ids[stop]] = False
+        walking = self.maze_walking[ids]
+        target_v = np.where(walking, 0.6, 0.0)
+        v = np.where(smooth, np.clip(target_v, self.maze_v[ids] - dt, self.maze_v[ids] + dt), target_v)
+        if not smooth.all():
+            # abrupt steering: full speed only while the heading error is below 25 deg
+            v = np.where(~smooth & (err > np.radians(25)), 0.0, v)
+        self.maze_v[ids] = v
+        self.maze_pause[ids] = np.maximum(self.maze_pause[ids] - 1, 0)
+        self.command[ids] = np.stack([v, np.zeros(len(ids)), np.zeros(len(ids))], 1)
+        self.heading_mode[ids] = True
 
     def set_command(self, ids, vx=0.0, vy=0.0, yaw_rate=0.0, heading=None):
         """External goal (used by evaluation and the skill API); disables random resampling."""
@@ -326,6 +380,12 @@ class LocomotionEnv:
         self._schedule_push(ids)
         if self.auto_commands:
             self._sample_commands(ids)
+            m = ids[self.maze_mode[ids]]
+            if len(m):
+                self.maze_walking[m] = False
+                self.maze_v[m] = 0.0
+                self.maze_pause[m] = 0
+                self.heading_target[m] = wrap(self.yaw()[m] + self.rng.choice([0.0, np.pi / 2, -np.pi / 2], len(m)))
         else:
             self.heading_target[ids] = wrap(self.heading_target[ids])
         # sensors are refreshed by the first step; seed them with the default posture
@@ -347,9 +407,11 @@ class LocomotionEnv:
         a = np.clip(np.asarray(action, float), -cfg.action_clip, cfg.action_clip)
         # goals and disturbances
         if self.auto_commands:
-            due = np.nonzero(self.steps >= self.next_resample)[0]
+            due = np.nonzero((self.steps >= self.next_resample) & ~self.maze_mode)[0]
             if len(due):
                 self._sample_commands(due)
+            if self.maze_mode.any():
+                self._maze_goals()
         self._random_pushes()
         # controls: leg servo targets from the action, everything else held at the default
         target = np.tile(b.default_ctrl, (self.n, 1))
