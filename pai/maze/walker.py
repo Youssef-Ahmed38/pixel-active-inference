@@ -90,6 +90,7 @@ class WalkerMaze:
                  speed: float = 0.6, step_timeout_s: float = 8.0, device: str = "cpu",
                  wall_height: float = 0.5, solid: bool = True, stall_s: float = 1.0,
                  odometry: bool = False, odo_seed: int | None = None, smooth: bool = False,
+                 caution: float | None = None, body_model: Path | None = None,
                  odo_speed_noise: float = 0.05, odo_scale_sd: float = 0.03, odo_gyro_bias_sd: float = 0.001):
         self.world = world
         self.cell = cell
@@ -121,6 +122,21 @@ class WalkerMaze:
         self.smooth = smooth
         self._walking = False
         self._v_cmd = 0.0
+        # caution (None: off): when the body model's surprise (its own prediction error for the
+        # body's next state) exceeds this, stop forward motion for 0.5 s and keep the heading
+        self.caution = caution
+        self._calm = 0
+        self.cautions = 0
+        self.last_surprise = 0.0
+        self._wm = None
+        if caution is not None:
+            import torch
+            from pai.locomotion.world_model import EnsembleBodyModel
+            ck = torch.load(body_model or Path(policy).with_name("ckpt_last.pt"), map_location="cpu",
+                            weights_only=False)
+            self._wm = EnsembleBodyModel(ck["train_cfg"]["wm_members"])
+            self._wm.load_state_dict(ck["model"])
+            self._wm.eval()
         rng = np.random.default_rng(seed + 920000 if odo_seed is None else odo_seed)
         self._odo_rng = rng
         self._odo_noise = odo_speed_noise
@@ -150,7 +166,19 @@ class WalkerMaze:
 
     def _tick(self) -> bool:
         a = self.ctrl.act(self.obs)
+        prev = self.obs
         self.obs, _, _, info = self.env.step(a)
+        if self._wm is not None:
+            import torch
+            from pai.locomotion.env import PROPRIO
+            with torch.no_grad():
+                t = lambda x: torch.as_tensor(np.asarray(x, np.float32))
+                sur, _ = self._wm.surprise_and_disagreement(t(prev[:, PROPRIO]), t(a), t(self.obs[:, PROPRIO]))
+            self.last_surprise = float(sur[0])
+            if self.last_surprise > self.caution and self._calm == 0:
+                self._calm = int(round(0.5 / self.env.cfg.ctrl_dt))
+                self.cautions += 1
+            self._calm = max(self._calm - 1, 0)
         self.t += self.env.cfg.ctrl_dt
         if self.odometry:
             dt = self.env.cfg.ctrl_dt
@@ -197,6 +225,9 @@ class WalkerMaze:
                 v = self._v_cmd
             else:
                 v = 0.0 if err > np.radians(25) else min(self.speed, 1.5 * dist)
+            if self._calm > 0:
+                v = 0.0                    # caution: surprised body steadies itself first
+                self._v_cmd = 0.0
             self._command(v, 0.0, heading)
             if self._tick():
                 return StepReport(self.t - t0, True, False, False)

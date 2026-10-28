@@ -140,8 +140,19 @@ degrees), but the wall test regressed (**6/40 falls vs 1/40 for v4**), and devel
 fell only a little with abrupt steering (8 -> 5 of 60) and not at all with smooth steering (2 -> 2;
 `results/maze_walker_dev_persistent_20100_v6{,_smooth}.json`). Not taken to a final; v4 stays
 released, and v4 with smooth steering is the best maze configuration found. Three practice
-variants (v5, v6 and smooth steering as an interface fix) did not remove the maze falls; they
-remain an open problem.
+variants (v5, v6 and smooth steering as an interface fix) did not remove the maze falls.
+
+**Caution from surprise (no effect).** A fourth attempt needs no training: when the walking body
+model's surprise (its own prediction error for the body's next state) exceeds 125 (normal walking in a
+development maze: median 65, 99.9th percentile 109), the walker stops forward motion for 0.5 s and
+keeps its heading (`WalkerMaze(caution=125)`). Development mazes 20100-20129, v4, 60 walked episodes:
+falls 8 -> 9 with the abrupt steering (46 cautions), 2 -> 1 with smooth steering (12 cautions)
+(`results/maze_walker_dev_persistent_20100_v4_caution_{old,smooth}.json`). No reliable effect: the
+falls come too suddenly for the surprise to warn, so this was not taken to a final run.
+
+Four attempts (v5, v6, smooth steering, caution) did not remove the maze falls; the best
+configuration is v4 with smooth steering (3 of 60 on new mazes), and the falls remain an open
+problem.
 
 `media/locomotion/g1_wall_contact.mp4`: the same body walks into the same wall with v3 (left, falls)
 and v4 (right, stays up and backs off). Seed 57100, chosen from five as an example where they
