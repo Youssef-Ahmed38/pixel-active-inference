@@ -31,7 +31,7 @@ an independent audit of what is learned vs scripted: [docs/AUDIT_OUTSIDE_BUILDS.
 | 4 doors, keys | discovers how to open locked doors by experiment | mock: 99.9% solved in 111.6 actions (novelty 80.9%); physics 12/25 with decoys | key handling in physics; recipes instead of a scripted key chain | [DISCOVERY](docs/DISCOVERY.md) |
 | 5 chess | learned rules, learned value, search; Stockfish only as a teacher | **1037** conditional engine-anchor Elo [863, 1134] at 1 s/move; beats its old self 17-2-1 | still weaker than Stockfish 1320-1700; the HRM thinker inside search with learned halting thinks longer on hard positions but does not play stronger (paired match 1-8-11, ladder 904 vs 904 at 0.2 s) | [CHESS_STRENGTH](docs/CHESS_STRENGTH.md) |
 | 6 language | English and Arabic: instructions, questions, narration, and **why** things happened, from the agent's own beliefs | 456/456 held-out parses; causes named correctly **37/50** per language (37/40 when it commits), cause words grounded in the agent's beliefs from 25 teaching episodes; instructions 41/50 = the arm's own rate | clean episodes abstain instead of saying "nothing unusual"; slip causes | [LANGUAGE_STAGE6](docs/LANGUAGE_STAGE6.md) |
-| 7 bicycle | balances and rides, learned from observed motion and practice | 20/20 fresh starts after practice | learning from video; transfer from walking | [BIKE_STAGE7](docs/BIKE_STAGE7.md) |
+| 7 bicycle | balances and rides, learned from observed motion and practice | 20/20 fresh starts after practice | learned from (calibrated, marked) video: rides 20/20 fresh starts from an on-board camera and proprioception; natural unmarked video and walking transfer open | [BIKE_STAGE7](docs/BIKE_STAGE7.md) |
 
 ### Stage 2: a humanoid that learns to walk
 
