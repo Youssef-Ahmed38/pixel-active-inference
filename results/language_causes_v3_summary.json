@@ -1,0 +1,1380 @@
+{
+  "physical_trials": 150,
+  "layout_count": 10,
+  "bundles_replayed": 300,
+  "conditions": {
+    "none": {
+      "baseline": {
+        "k": 9,
+        "n": 10,
+        "rate": 0.9,
+        "wilson95": [
+          0.5958499732047615,
+          0.9821237869049271
+        ]
+      },
+      "english": {
+        "k": 9,
+        "n": 10,
+        "rate": 0.9,
+        "wilson95": [
+          0.5958499732047615,
+          0.9821237869049271
+        ]
+      },
+      "arabic": {
+        "k": 9,
+        "n": 10,
+        "rate": 0.9,
+        "wilson95": [
+          0.5958499732047615,
+          0.9821237869049271
+        ]
+      }
+    },
+    "push": {
+      "baseline": {
+        "k": 9,
+        "n": 10,
+        "rate": 0.9,
+        "wilson95": [
+          0.5958499732047615,
+          0.9821237869049271
+        ]
+      },
+      "english": {
+        "k": 9,
+        "n": 10,
+        "rate": 0.9,
+        "wilson95": [
+          0.5958499732047615,
+          0.9821237869049271
+        ]
+      },
+      "arabic": {
+        "k": 9,
+        "n": 10,
+        "rate": 0.9,
+        "wilson95": [
+          0.5958499732047615,
+          0.9821237869049271
+        ]
+      }
+    },
+    "heavier_object": {
+      "baseline": {
+        "k": 9,
+        "n": 10,
+        "rate": 0.9,
+        "wilson95": [
+          0.5958499732047615,
+          0.9821237869049271
+        ]
+      },
+      "english": {
+        "k": 9,
+        "n": 10,
+        "rate": 0.9,
+        "wilson95": [
+          0.5958499732047615,
+          0.9821237869049271
+        ]
+      },
+      "arabic": {
+        "k": 9,
+        "n": 10,
+        "rate": 0.9,
+        "wilson95": [
+          0.5958499732047615,
+          0.9821237869049271
+        ]
+      }
+    },
+    "slippery_object": {
+      "baseline": {
+        "k": 6,
+        "n": 10,
+        "rate": 0.6,
+        "wilson95": [
+          0.31267376973365824,
+          0.8318196702937638
+        ]
+      },
+      "english": {
+        "k": 6,
+        "n": 10,
+        "rate": 0.6,
+        "wilson95": [
+          0.31267376973365824,
+          0.8318196702937638
+        ]
+      },
+      "arabic": {
+        "k": 6,
+        "n": 10,
+        "rate": 0.6,
+        "wilson95": [
+          0.31267376973365824,
+          0.8318196702937638
+        ]
+      }
+    },
+    "camera_shift": {
+      "baseline": {
+        "k": 10,
+        "n": 10,
+        "rate": 1.0,
+        "wilson95": [
+          0.7224672001371107,
+          0.9999999999999999
+        ]
+      },
+      "english": {
+        "k": 10,
+        "n": 10,
+        "rate": 1.0,
+        "wilson95": [
+          0.7224672001371107,
+          0.9999999999999999
+        ]
+      },
+      "arabic": {
+        "k": 10,
+        "n": 10,
+        "rate": 1.0,
+        "wilson95": [
+          0.7224672001371107,
+          0.9999999999999999
+        ]
+      }
+    }
+  },
+  "languages": {
+    "english": {
+      "n": 50,
+      "success": {
+        "k": 43,
+        "n": 50,
+        "rate": 0.86,
+        "wilson95": [
+          0.7381380628941446,
+          0.9304916657298371
+        ]
+      },
+      "baseline_success": {
+        "k": 43,
+        "n": 50,
+        "rate": 0.86,
+        "wilson95": [
+          0.7381380628941446,
+          0.9304916657298371
+        ]
+      },
+      "paired_disagreements": 0,
+      "cause_accuracy": {
+        "k": 41,
+        "n": 50,
+        "rate": 0.82,
+        "wilson95": [
+          0.6920394632569922,
+          0.9022980732976582
+        ]
+      },
+      "coverage": {
+        "k": 50,
+        "n": 50,
+        "rate": 1.0,
+        "wilson95": [
+          0.9286524008666414,
+          1.0
+        ]
+      },
+      "precision": {
+        "k": 41,
+        "n": 50,
+        "rate": 0.82,
+        "wilson95": [
+          0.6920394632569922,
+          0.9022980732976582
+        ]
+      },
+      "goal_accuracy": {
+        "k": 50,
+        "n": 50,
+        "rate": 1.0,
+        "wilson95": [
+          0.9286524008666414,
+          1.0
+        ]
+      },
+      "abstentions": 0,
+      "parameters": {
+        "onset_s": {
+          "issued": 26,
+          "unmatched_events": 6,
+          "accuracy": {
+            "k": 20,
+            "n": 20,
+            "rate": 1.0,
+            "wilson95": [
+              0.8388748419471806,
+              1.0
+            ]
+          },
+          "mean_error": 0.03800000000000001
+        },
+        "mass_kg": {
+          "issued": 7,
+          "unmatched_events": 0,
+          "accuracy": {
+            "k": 7,
+            "n": 7,
+            "rate": 1.0,
+            "wilson95": [
+              0.6456695649333126,
+              1.0
+            ]
+          },
+          "mean_error": 0.0025576597777097515
+        },
+        "offset_mm": {
+          "issued": 10,
+          "unmatched_events": 0,
+          "accuracy": {
+            "k": 10,
+            "n": 10,
+            "rate": 1.0,
+            "wilson95": [
+              0.7224672001371107,
+              0.9999999999999999
+            ]
+          },
+          "mean_error": 0.2183684813889181
+        }
+      },
+      "wording_accuracy": {
+        "k": 9,
+        "n": 12,
+        "rate": 0.75,
+        "wilson95": [
+          0.46769466506643426,
+          0.9110583316059453
+        ]
+      },
+      "wording_by_intent": {
+        "why": {
+          "k": 2,
+          "n": 2,
+          "rate": 1.0,
+          "wilson95": [
+            0.34238022750665303,
+            1.0
+          ]
+        },
+        "drop": {
+          "k": 0,
+          "n": 2,
+          "rate": 0.0,
+          "wilson95": [
+            0.0,
+            0.6576197724933469
+          ]
+        },
+        "cf:remove_push": {
+          "k": 2,
+          "n": 2,
+          "rate": 1.0,
+          "wilson95": [
+            0.34238022750665303,
+            1.0
+          ]
+        },
+        "cf:open_early": {
+          "k": 2,
+          "n": 2,
+          "rate": 1.0,
+          "wilson95": [
+            0.34238022750665303,
+            1.0
+          ]
+        },
+        "None": {
+          "k": 3,
+          "n": 4,
+          "rate": 0.75,
+          "wilson95": [
+            0.30064184258240184,
+            0.9544127391902995
+          ]
+        }
+      },
+      "wording": [
+        {
+          "text": "Can you explain the cause of what happened?",
+          "expected": "why",
+          "predicted": "why"
+        },
+        {
+          "text": "What caused this episode's problem?",
+          "expected": "why",
+          "predicted": "why"
+        },
+        {
+          "text": "What caused the block to drop?",
+          "expected": "drop",
+          "predicted": null
+        },
+        {
+          "text": "Why did your grip on the object fail?",
+          "expected": "drop",
+          "predicted": null
+        },
+        {
+          "text": "Imagine this episode without an external push.",
+          "expected": "cf:remove_push",
+          "predicted": "cf:remove_push"
+        },
+        {
+          "text": "Would this goal change if the push were absent?",
+          "expected": "cf:remove_push",
+          "predicted": "cf:remove_push"
+        },
+        {
+          "text": "Would opening the gripper before lifting prevent the goal?",
+          "expected": "cf:open_early",
+          "predicted": "cf:open_early"
+        },
+        {
+          "text": "Imagine your fingers opening early during the carry.",
+          "expected": "cf:open_early",
+          "predicted": "cf:open_early"
+        },
+        {
+          "text": "Explain the push and the dropped object together.",
+          "expected": null,
+          "predicted": "drop"
+        },
+        {
+          "text": "Was it early opening or a push?",
+          "expected": null,
+          "predicted": null
+        },
+        {
+          "text": "How many stars are in the sky?",
+          "expected": null,
+          "predicted": null
+        },
+        {
+          "text": "Please sing a song.",
+          "expected": null,
+          "predicted": null
+        }
+      ],
+      "end_to_end_why": {
+        "k": 82,
+        "n": 100,
+        "rate": 0.82,
+        "wilson95": [
+          0.7333264161369926,
+          0.8829977450105364
+        ]
+      },
+      "cause_by_condition": {
+        "none": {
+          "k": 9,
+          "n": 10,
+          "rate": 0.9,
+          "wilson95": [
+            0.5958499732047615,
+            0.9821237869049271
+          ]
+        },
+        "push": {
+          "k": 10,
+          "n": 10,
+          "rate": 1.0,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "heavier_object": {
+          "k": 7,
+          "n": 10,
+          "rate": 0.7,
+          "wilson95": [
+            0.39677814746114537,
+            0.8922087325936989
+          ]
+        },
+        "slippery_object": {
+          "k": 5,
+          "n": 10,
+          "rate": 0.5,
+          "wilson95": [
+            0.236593090512564,
+            0.7634069094874361
+          ]
+        },
+        "camera_shift": {
+          "k": 10,
+          "n": 10,
+          "rate": 1.0,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        }
+      }
+    },
+    "arabic": {
+      "n": 50,
+      "success": {
+        "k": 43,
+        "n": 50,
+        "rate": 0.86,
+        "wilson95": [
+          0.7381380628941446,
+          0.9304916657298371
+        ]
+      },
+      "baseline_success": {
+        "k": 43,
+        "n": 50,
+        "rate": 0.86,
+        "wilson95": [
+          0.7381380628941446,
+          0.9304916657298371
+        ]
+      },
+      "paired_disagreements": 0,
+      "cause_accuracy": {
+        "k": 41,
+        "n": 50,
+        "rate": 0.82,
+        "wilson95": [
+          0.6920394632569922,
+          0.9022980732976582
+        ]
+      },
+      "coverage": {
+        "k": 50,
+        "n": 50,
+        "rate": 1.0,
+        "wilson95": [
+          0.9286524008666414,
+          1.0
+        ]
+      },
+      "precision": {
+        "k": 41,
+        "n": 50,
+        "rate": 0.82,
+        "wilson95": [
+          0.6920394632569922,
+          0.9022980732976582
+        ]
+      },
+      "goal_accuracy": {
+        "k": 50,
+        "n": 50,
+        "rate": 1.0,
+        "wilson95": [
+          0.9286524008666414,
+          1.0
+        ]
+      },
+      "abstentions": 0,
+      "parameters": {
+        "onset_s": {
+          "issued": 26,
+          "unmatched_events": 6,
+          "accuracy": {
+            "k": 20,
+            "n": 20,
+            "rate": 1.0,
+            "wilson95": [
+              0.8388748419471806,
+              1.0
+            ]
+          },
+          "mean_error": 0.03800000000000001
+        },
+        "mass_kg": {
+          "issued": 7,
+          "unmatched_events": 0,
+          "accuracy": {
+            "k": 7,
+            "n": 7,
+            "rate": 1.0,
+            "wilson95": [
+              0.6456695649333126,
+              1.0
+            ]
+          },
+          "mean_error": 0.0025576597777097515
+        },
+        "offset_mm": {
+          "issued": 10,
+          "unmatched_events": 0,
+          "accuracy": {
+            "k": 10,
+            "n": 10,
+            "rate": 1.0,
+            "wilson95": [
+              0.7224672001371107,
+              0.9999999999999999
+            ]
+          },
+          "mean_error": 0.2183684813889181
+        }
+      },
+      "wording_accuracy": {
+        "k": 9,
+        "n": 12,
+        "rate": 0.75,
+        "wilson95": [
+          0.46769466506643426,
+          0.9110583316059453
+        ]
+      },
+      "wording_by_intent": {
+        "why": {
+          "k": 2,
+          "n": 2,
+          "rate": 1.0,
+          "wilson95": [
+            0.34238022750665303,
+            1.0
+          ]
+        },
+        "drop": {
+          "k": 1,
+          "n": 2,
+          "rate": 0.5,
+          "wilson95": [
+            0.09453120573423074,
+            0.9054687942657693
+          ]
+        },
+        "cf:remove_push": {
+          "k": 1,
+          "n": 2,
+          "rate": 0.5,
+          "wilson95": [
+            0.09453120573423074,
+            0.9054687942657693
+          ]
+        },
+        "cf:open_early": {
+          "k": 2,
+          "n": 2,
+          "rate": 1.0,
+          "wilson95": [
+            0.34238022750665303,
+            1.0
+          ]
+        },
+        "None": {
+          "k": 3,
+          "n": 4,
+          "rate": 0.75,
+          "wilson95": [
+            0.30064184258240184,
+            0.9544127391902995
+          ]
+        }
+      },
+      "wording": [
+        {
+          "text": "هل تشرح سبب ما حدث؟",
+          "expected": "why",
+          "predicted": "why"
+        },
+        {
+          "text": "ما الذي سبب مشكلة هذه الحلقة؟",
+          "expected": "why",
+          "predicted": "why"
+        },
+        {
+          "text": "ما سبب سقوط المكعب؟",
+          "expected": "drop",
+          "predicted": "why"
+        },
+        {
+          "text": "لماذا فشل إمساكك بالجسم؟",
+          "expected": "drop",
+          "predicted": "drop"
+        },
+        {
+          "text": "تخيل هذه الحلقة دون دفعة خارجية.",
+          "expected": "cf:remove_push",
+          "predicted": null
+        },
+        {
+          "text": "هل يتغير هذا الهدف لو غابت الدفعة؟",
+          "expected": "cf:remove_push",
+          "predicted": "cf:remove_push"
+        },
+        {
+          "text": "هل يمنع فتح الممسك قبل الرفع تحقق الهدف؟",
+          "expected": "cf:open_early",
+          "predicted": "cf:open_early"
+        },
+        {
+          "text": "تخيل فتح أصابعك مبكرا أثناء الحمل.",
+          "expected": "cf:open_early",
+          "predicted": "cf:open_early"
+        },
+        {
+          "text": "اشرح الدفعة وسقوط الجسم معا.",
+          "expected": null,
+          "predicted": "drop"
+        },
+        {
+          "text": "هل حدث فتح مبكر أم دفعة؟",
+          "expected": null,
+          "predicted": null
+        },
+        {
+          "text": "كم نجمة في السماء؟",
+          "expected": null,
+          "predicted": null
+        },
+        {
+          "text": "من فضلك غن أغنية.",
+          "expected": null,
+          "predicted": null
+        }
+      ],
+      "end_to_end_why": {
+        "k": 82,
+        "n": 100,
+        "rate": 0.82,
+        "wilson95": [
+          0.7333264161369926,
+          0.8829977450105364
+        ]
+      },
+      "cause_by_condition": {
+        "none": {
+          "k": 9,
+          "n": 10,
+          "rate": 0.9,
+          "wilson95": [
+            0.5958499732047615,
+            0.9821237869049271
+          ]
+        },
+        "push": {
+          "k": 10,
+          "n": 10,
+          "rate": 1.0,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        },
+        "heavier_object": {
+          "k": 7,
+          "n": 10,
+          "rate": 0.7,
+          "wilson95": [
+            0.39677814746114537,
+            0.8922087325936989
+          ]
+        },
+        "slippery_object": {
+          "k": 5,
+          "n": 10,
+          "rate": 0.5,
+          "wilson95": [
+            0.236593090512564,
+            0.7634069094874361
+          ]
+        },
+        "camera_shift": {
+          "k": 10,
+          "n": 10,
+          "rate": 1.0,
+          "wilson95": [
+            0.7224672001371107,
+            0.9999999999999999
+          ]
+        }
+      }
+    }
+  },
+  "goals": {
+    "('in', 'red', 'bowl')": {
+      "baseline": {
+        "k": 8,
+        "n": 10,
+        "rate": 0.8,
+        "wilson95": [
+          0.49016247153664183,
+          0.9433178485456247
+        ]
+      },
+      "english": {
+        "k": 8,
+        "n": 10,
+        "rate": 0.8,
+        "wilson95": [
+          0.49016247153664183,
+          0.9433178485456247
+        ]
+      },
+      "arabic": {
+        "k": 8,
+        "n": 10,
+        "rate": 0.8,
+        "wilson95": [
+          0.49016247153664183,
+          0.9433178485456247
+        ]
+      }
+    },
+    "('in', 'yellow', 'bowl')": {
+      "baseline": {
+        "k": 11,
+        "n": 15,
+        "rate": 0.7333333333333333,
+        "wilson95": [
+          0.4804956594401943,
+          0.8910254667430761
+        ]
+      },
+      "english": {
+        "k": 11,
+        "n": 15,
+        "rate": 0.7333333333333333,
+        "wilson95": [
+          0.4804956594401943,
+          0.8910254667430761
+        ]
+      },
+      "arabic": {
+        "k": 11,
+        "n": 15,
+        "rate": 0.7333333333333333,
+        "wilson95": [
+          0.4804956594401943,
+          0.8910254667430761
+        ]
+      }
+    },
+    "('on', 'blue', 'plate')": {
+      "baseline": {
+        "k": 9,
+        "n": 10,
+        "rate": 0.9,
+        "wilson95": [
+          0.5958499732047615,
+          0.9821237869049271
+        ]
+      },
+      "english": {
+        "k": 9,
+        "n": 10,
+        "rate": 0.9,
+        "wilson95": [
+          0.5958499732047615,
+          0.9821237869049271
+        ]
+      },
+      "arabic": {
+        "k": 9,
+        "n": 10,
+        "rate": 0.9,
+        "wilson95": [
+          0.5958499732047615,
+          0.9821237869049271
+        ]
+      }
+    },
+    "('on', 'red', 'plate')": {
+      "baseline": {
+        "k": 15,
+        "n": 15,
+        "rate": 1.0,
+        "wilson95": [
+          0.7961166989641515,
+          1.0
+        ]
+      },
+      "english": {
+        "k": 15,
+        "n": 15,
+        "rate": 1.0,
+        "wilson95": [
+          0.7961166989641515,
+          1.0
+        ]
+      },
+      "arabic": {
+        "k": 15,
+        "n": 15,
+        "rate": 1.0,
+        "wilson95": [
+          0.7961166989641515,
+          1.0
+        ]
+      }
+    }
+  },
+  "failures": [
+    {
+      "seed": 68001,
+      "condition": "none",
+      "goal": [
+        "in",
+        "yellow",
+        "bowl"
+      ],
+      "mode": "english",
+      "success": true,
+      "agent_cause": "push",
+      "spoken_cause": "push",
+      "abstained": false
+    },
+    {
+      "seed": 68009,
+      "condition": "none",
+      "goal": [
+        "in",
+        "yellow",
+        "bowl"
+      ],
+      "mode": "english",
+      "success": false,
+      "agent_cause": "none",
+      "spoken_cause": "none",
+      "abstained": false
+    },
+    {
+      "seed": 68007,
+      "condition": "push",
+      "goal": [
+        "in",
+        "red",
+        "bowl"
+      ],
+      "mode": "english",
+      "success": false,
+      "agent_cause": "push",
+      "spoken_cause": "push",
+      "abstained": false
+    },
+    {
+      "seed": 68002,
+      "condition": "heavier_object",
+      "goal": [
+        "on",
+        "blue",
+        "plate"
+      ],
+      "mode": "english",
+      "success": true,
+      "agent_cause": "push",
+      "spoken_cause": "push",
+      "abstained": false
+    },
+    {
+      "seed": 68003,
+      "condition": "heavier_object",
+      "goal": [
+        "in",
+        "red",
+        "bowl"
+      ],
+      "mode": "english",
+      "success": true,
+      "agent_cause": "push",
+      "spoken_cause": "push",
+      "abstained": false
+    },
+    {
+      "seed": 68009,
+      "condition": "heavier_object",
+      "goal": [
+        "in",
+        "yellow",
+        "bowl"
+      ],
+      "mode": "english",
+      "success": false,
+      "agent_cause": "none",
+      "spoken_cause": "none",
+      "abstained": false
+    },
+    {
+      "seed": 68001,
+      "condition": "slippery_object",
+      "goal": [
+        "in",
+        "yellow",
+        "bowl"
+      ],
+      "mode": "english",
+      "success": false,
+      "agent_cause": "slippery_object",
+      "spoken_cause": "slippery_object",
+      "abstained": false
+    },
+    {
+      "seed": 68002,
+      "condition": "slippery_object",
+      "goal": [
+        "on",
+        "blue",
+        "plate"
+      ],
+      "mode": "english",
+      "success": false,
+      "agent_cause": "slippery_object",
+      "spoken_cause": "slippery_object",
+      "abstained": false
+    },
+    {
+      "seed": 68003,
+      "condition": "slippery_object",
+      "goal": [
+        "in",
+        "red",
+        "bowl"
+      ],
+      "mode": "english",
+      "success": true,
+      "agent_cause": "push",
+      "spoken_cause": "push",
+      "abstained": false
+    },
+    {
+      "seed": 68004,
+      "condition": "slippery_object",
+      "goal": [
+        "on",
+        "red",
+        "plate"
+      ],
+      "mode": "english",
+      "success": true,
+      "agent_cause": "none",
+      "spoken_cause": "none",
+      "abstained": false
+    },
+    {
+      "seed": 68005,
+      "condition": "slippery_object",
+      "goal": [
+        "in",
+        "yellow",
+        "bowl"
+      ],
+      "mode": "english",
+      "success": true,
+      "agent_cause": "none",
+      "spoken_cause": "none",
+      "abstained": false
+    },
+    {
+      "seed": 68006,
+      "condition": "slippery_object",
+      "goal": [
+        "on",
+        "blue",
+        "plate"
+      ],
+      "mode": "english",
+      "success": true,
+      "agent_cause": "push",
+      "spoken_cause": "push",
+      "abstained": false
+    },
+    {
+      "seed": 68007,
+      "condition": "slippery_object",
+      "goal": [
+        "in",
+        "red",
+        "bowl"
+      ],
+      "mode": "english",
+      "success": false,
+      "agent_cause": "slippery_object",
+      "spoken_cause": "slippery_object",
+      "abstained": false
+    },
+    {
+      "seed": 68009,
+      "condition": "slippery_object",
+      "goal": [
+        "in",
+        "yellow",
+        "bowl"
+      ],
+      "mode": "english",
+      "success": false,
+      "agent_cause": "push",
+      "spoken_cause": "push",
+      "abstained": false
+    },
+    {
+      "seed": 68001,
+      "condition": "none",
+      "goal": [
+        "in",
+        "yellow",
+        "bowl"
+      ],
+      "mode": "arabic",
+      "success": true,
+      "agent_cause": "push",
+      "spoken_cause": "push",
+      "abstained": false
+    },
+    {
+      "seed": 68009,
+      "condition": "none",
+      "goal": [
+        "in",
+        "yellow",
+        "bowl"
+      ],
+      "mode": "arabic",
+      "success": false,
+      "agent_cause": "none",
+      "spoken_cause": "none",
+      "abstained": false
+    },
+    {
+      "seed": 68007,
+      "condition": "push",
+      "goal": [
+        "in",
+        "red",
+        "bowl"
+      ],
+      "mode": "arabic",
+      "success": false,
+      "agent_cause": "push",
+      "spoken_cause": "push",
+      "abstained": false
+    },
+    {
+      "seed": 68002,
+      "condition": "heavier_object",
+      "goal": [
+        "on",
+        "blue",
+        "plate"
+      ],
+      "mode": "arabic",
+      "success": true,
+      "agent_cause": "push",
+      "spoken_cause": "push",
+      "abstained": false
+    },
+    {
+      "seed": 68003,
+      "condition": "heavier_object",
+      "goal": [
+        "in",
+        "red",
+        "bowl"
+      ],
+      "mode": "arabic",
+      "success": true,
+      "agent_cause": "push",
+      "spoken_cause": "push",
+      "abstained": false
+    },
+    {
+      "seed": 68009,
+      "condition": "heavier_object",
+      "goal": [
+        "in",
+        "yellow",
+        "bowl"
+      ],
+      "mode": "arabic",
+      "success": false,
+      "agent_cause": "none",
+      "spoken_cause": "none",
+      "abstained": false
+    },
+    {
+      "seed": 68001,
+      "condition": "slippery_object",
+      "goal": [
+        "in",
+        "yellow",
+        "bowl"
+      ],
+      "mode": "arabic",
+      "success": false,
+      "agent_cause": "slippery_object",
+      "spoken_cause": "slippery_object",
+      "abstained": false
+    },
+    {
+      "seed": 68002,
+      "condition": "slippery_object",
+      "goal": [
+        "on",
+        "blue",
+        "plate"
+      ],
+      "mode": "arabic",
+      "success": false,
+      "agent_cause": "slippery_object",
+      "spoken_cause": "slippery_object",
+      "abstained": false
+    },
+    {
+      "seed": 68003,
+      "condition": "slippery_object",
+      "goal": [
+        "in",
+        "red",
+        "bowl"
+      ],
+      "mode": "arabic",
+      "success": true,
+      "agent_cause": "push",
+      "spoken_cause": "push",
+      "abstained": false
+    },
+    {
+      "seed": 68004,
+      "condition": "slippery_object",
+      "goal": [
+        "on",
+        "red",
+        "plate"
+      ],
+      "mode": "arabic",
+      "success": true,
+      "agent_cause": "none",
+      "spoken_cause": "none",
+      "abstained": false
+    },
+    {
+      "seed": 68005,
+      "condition": "slippery_object",
+      "goal": [
+        "in",
+        "yellow",
+        "bowl"
+      ],
+      "mode": "arabic",
+      "success": true,
+      "agent_cause": "none",
+      "spoken_cause": "none",
+      "abstained": false
+    },
+    {
+      "seed": 68006,
+      "condition": "slippery_object",
+      "goal": [
+        "on",
+        "blue",
+        "plate"
+      ],
+      "mode": "arabic",
+      "success": true,
+      "agent_cause": "push",
+      "spoken_cause": "push",
+      "abstained": false
+    },
+    {
+      "seed": 68007,
+      "condition": "slippery_object",
+      "goal": [
+        "in",
+        "red",
+        "bowl"
+      ],
+      "mode": "arabic",
+      "success": false,
+      "agent_cause": "slippery_object",
+      "spoken_cause": "slippery_object",
+      "abstained": false
+    },
+    {
+      "seed": 68009,
+      "condition": "slippery_object",
+      "goal": [
+        "in",
+        "yellow",
+        "bowl"
+      ],
+      "mode": "arabic",
+      "success": false,
+      "agent_cause": "push",
+      "spoken_cause": "push",
+      "abstained": false
+    }
+  ],
+  "legacy_wording_baseline": {
+    "english": {
+      "accuracy": {
+        "k": 4,
+        "n": 12,
+        "rate": 0.3333333333333333,
+        "wilson95": [
+          0.13812009109121315,
+          0.6093779111272004
+        ]
+      },
+      "questions": [
+        {
+          "text": "Can you explain the cause of what happened?",
+          "expected": "why",
+          "predicted": null
+        },
+        {
+          "text": "What caused this episode's problem?",
+          "expected": "why",
+          "predicted": null
+        },
+        {
+          "text": "What caused the block to drop?",
+          "expected": "drop",
+          "predicted": null
+        },
+        {
+          "text": "Why did your grip on the object fail?",
+          "expected": "drop",
+          "predicted": null
+        },
+        {
+          "text": "Imagine this episode without an external push.",
+          "expected": "cf:remove_push",
+          "predicted": null
+        },
+        {
+          "text": "Would this goal change if the push were absent?",
+          "expected": "cf:remove_push",
+          "predicted": null
+        },
+        {
+          "text": "Would opening the gripper before lifting prevent the goal?",
+          "expected": "cf:open_early",
+          "predicted": null
+        },
+        {
+          "text": "Imagine your fingers opening early during the carry.",
+          "expected": "cf:open_early",
+          "predicted": null
+        },
+        {
+          "text": "Explain the push and the dropped object together.",
+          "expected": null,
+          "predicted": null
+        },
+        {
+          "text": "Was it early opening or a push?",
+          "expected": null,
+          "predicted": null
+        },
+        {
+          "text": "How many stars are in the sky?",
+          "expected": null,
+          "predicted": null
+        },
+        {
+          "text": "Please sing a song.",
+          "expected": null,
+          "predicted": null
+        }
+      ]
+    },
+    "arabic": {
+      "accuracy": {
+        "k": 4,
+        "n": 12,
+        "rate": 0.3333333333333333,
+        "wilson95": [
+          0.13812009109121315,
+          0.6093779111272004
+        ]
+      },
+      "questions": [
+        {
+          "text": "هل تشرح سبب ما حدث؟",
+          "expected": "why",
+          "predicted": null
+        },
+        {
+          "text": "ما الذي سبب مشكلة هذه الحلقة؟",
+          "expected": "why",
+          "predicted": null
+        },
+        {
+          "text": "ما سبب سقوط المكعب؟",
+          "expected": "drop",
+          "predicted": null
+        },
+        {
+          "text": "لماذا فشل إمساكك بالجسم؟",
+          "expected": "drop",
+          "predicted": null
+        },
+        {
+          "text": "تخيل هذه الحلقة دون دفعة خارجية.",
+          "expected": "cf:remove_push",
+          "predicted": null
+        },
+        {
+          "text": "هل يتغير هذا الهدف لو غابت الدفعة؟",
+          "expected": "cf:remove_push",
+          "predicted": null
+        },
+        {
+          "text": "هل يمنع فتح الممسك قبل الرفع تحقق الهدف؟",
+          "expected": "cf:open_early",
+          "predicted": null
+        },
+        {
+          "text": "تخيل فتح أصابعك مبكرا أثناء الحمل.",
+          "expected": "cf:open_early",
+          "predicted": null
+        },
+        {
+          "text": "اشرح الدفعة وسقوط الجسم معا.",
+          "expected": null,
+          "predicted": null
+        },
+        {
+          "text": "هل حدث فتح مبكر أم دفعة؟",
+          "expected": null,
+          "predicted": null
+        },
+        {
+          "text": "كم نجمة في السماء؟",
+          "expected": null,
+          "predicted": null
+        },
+        {
+          "text": "من فضلك غن أغنية.",
+          "expected": null,
+          "predicted": null
+        }
+      ]
+    }
+  },
+  "legacy_source_sha256": "3d638b7faeecb7f69a375479a4c02d8e8782966e9d502ad91189fc9aae7ffccc",
+  "source": "results\\language_causes_v3_final.json",
+  "source_sha256": "d6f3d325c92ae94267a63d6286e71c79d2fd3c445f66f9088b221015e7acd167",
+  "script_sha256": "40df5a7bbc375cc8e086e297e0d181f6c7fe567abe8186b3cc7e9fb816a49c51",
+  "command": [
+    "C:\\projects\\pixel-active-inference\\.venv\\Scripts\\python.exe",
+    "scripts/language_causes_v2_summary.py",
+    "--input",
+    "results/language_causes_v3_final.json",
+    "--output",
+    "results/language_causes_v3_summary.json"
+  ]
+}

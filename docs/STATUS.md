@@ -1,4 +1,4 @@
-# Status: where we stopped (updated 2026-10-28, 06:00)
+# Status: where we stopped (updated 2026-10-28, 06:45)
 
 ## Results
 
@@ -8,40 +8,46 @@
 | 1 arm, from camera | done (gate > 50%) | task 75%, cause 66% (slippery block 35% is the weak spot) | `results/pixel_v3` |
 | Perception (slots) | done | object IoU 0.68, position 7.8 mm mean | `results/slots/joba_log.jsonl` |
 | Thinker (HRM) gate | passed | 96.0% agreement with the Bayesian teacher (transformer 95.8%) | `results/thinker/real_c1000.md` |
-| 2 walking (G1) | v3 released; fall causes in PR #3 | stand, walk 10 m, headings, run: 20/20 each; pushes 100% at 1.0 m/s, 93% at 1.25 m/s; fall causes learned from own senses 92.5% vs 40.6% (gait recall down to 81%) | `docs/LOCOMOTION_STAGE2.md` |
-| 3 maze | v3 + learned walker in the maze (PR #4) | exact sensing: info-seeking not significantly better than nearest frontier (corrected after a bug fix); persistent misreads: learned repeat weight + touch 49% vs 6-13%; walker = grid outcome 30/30 mazes, 0 falls; branchy mazes (100 fresh): route EFE 84 vs nearest frontier 67 (p = 0.006), and with persistent misreads the learned repeat weight beats counting repeats under every prior; the walker matches the grid body (30/30); solid walls: 0 falls, same outcomes as visual walls on 60 paired mazes; with noisy sensing the persistent-misread result holds with the G1 walking (14 vs 5, p = 0.004) but it falls in 24/240 episodes; five-panel perception video | `docs/MAZE.md` §10-11 |
+| 2 walking (G1) | v3 released; learned fall causes (PR #3, merged) | stand, walk 10 m, headings, run: 20/20 each; pushes 100% at 1.0 m/s, 93% at 1.25 m/s; fall causes learned from own senses 92.5% vs 40.6% (gait recall down to 81%) | `docs/LOCOMOTION_STAGE2.md` |
+| 3 maze | v3 + learned G1 walker in the maze, solid walls (PR #4, merged) | exact sensing: info-seeking not significantly better than nearest frontier (corrected after a bug fix); persistent misreads: learned repeat weight + touch 49% vs 6-13%; walker = grid outcome 30/30 mazes, 0 falls; branchy mazes (100 fresh): route EFE 84 vs nearest frontier 67 (p = 0.006), and with persistent misreads the learned repeat weight beats counting repeats under every prior; the walker matches the grid body (30/30); solid walls: 0 falls, same outcomes as visual walls on 60 paired mazes; with noisy sensing the persistent-misread result holds with the G1 walking (14 vs 5, p = 0.004) but it falls in 24/240 episodes; five-panel perception video | `docs/MAZE.md` §10-11 |
 | 4 doors/keys | discovery agent | mock 99.9% solved (111.6 actions) vs novelty 80.9%; physics 12/25 with decoys | `docs/DISCOVERY.md` |
-| 5 chess | done (PR #1 merged) | 1037 conditional engine-anchor Elo [863, 1134] at 1 s/move; beats old player 17-2-1 | `docs/CHESS_STRENGTH.md` |
-| 6 language | causal explanations in PR #2 (v3) | cause correct 41/50 per language (clean 9/10; v2 explainer on the same episodes 33/50, p = 0.008); 456/456 held-out parses | `docs/LANGUAGE_STAGE6.md` |
+| 5 chess | done (PR #1, merged) | 1037 conditional engine-anchor Elo [863, 1134] at 1 s/move; beats old player 17-2-1 | `docs/CHESS_STRENGTH.md` |
+| 6 language | causal explanations v3 (PR #2, merged) | cause correct 41/50 per language (clean 9/10; v2 explainer on the same episodes 33/50, p = 0.008); 456/456 held-out parses | `docs/LANGUAGE_STAGE6.md` |
 | 7 bicycle | earlier build | practised policy 20/20 fresh starts; learns from simulator states, not video | `docs/BIKE_STAGE7.md` |
 
 Audit fix #1 is done (arm relations come from perception, commit aa8d259); audit #4 is done for
 walking (PR #3); the other audit items are open (see the queue).
 
-## Nothing is running. Waiting for the user: three PRs to merge
+Everything is merged into `main` (PRs #1-#4). Nothing is running; no PR is open.
 
-- **PR #2** `language-causes` (Stage 6 v3, silent monitor as evidence; also repairs 69 v2 intervals
-  that an earlier dash fix had corrupted). Ready.
-- **PR #3** `fall-causes` (Codex task reviewed: numbers recomputed from the per-fall records, no
-  leakage, model frozen before the final falls). Matched-speed control done (seeds 56006/56007):
-  speed is not what separates push from slip, but slip recall varies by seed (160/180 pooled).
-- **PR #4** `maze-walker` (spatial-prior comparison, cache-fix correction, G1 walker in the maze,
-  branchy-maze evaluations (walker; noisy sensing and priors) and the five-panel perception
-  video, solid walls and noisy sensing for the walker, this status file).
+## Session log, 2026-10-28 (a second Claude session, in a worktree, while the main session's account was switched)
 
-**After merging, clean the main checkout before `git pull`:** it still holds the same files as
-uncommitted copies (the maze files staged, Codex's fall-cause files and the language files
-untracked), and git refuses to overwrite untracked files. From the main checkout:
-`git restore --staged .` then delete the copies listed by `git status` that the PRs add, then pull.
-Then remove the language worktree (see the local hand-off file).
+1. Language v3 (PR #2): silent surprise monitor as learned evidence. Fresh seeds 68000-68009: cause
+   correct 41/50 per language, clean 9/10; the frozen v2 explainer on the same episodes 33/50
+   (paired 8/0, p = 0.008). Repaired 69 v2 Wilson intervals an earlier dash fix had corrupted.
+2. Fall causes (Codex task, PR #3): reviewed and recomputed, 92.5% vs 40.6% on fresh falls (seed
+   55006). Matched-speed control (56006/56007): speed does not separate push from slip, but slip
+   recall varies by seed (58/60 vs 47/60; 160/180 pooled).
+3. Maze (PR #4): spatial-prior comparison and the cache-fix correction (route EFE vs nearest
+   frontier on corridor mazes is not significant); branchy mazes (100 fresh: 84 vs 67, p = 0.006);
+   the G1 walker on branchy mazes; the five-panel perception video; solid walls (60 paired mazes:
+   0 falls, outcomes unchanged); noisy sensing with the walker (persistent misreads 14 vs 5,
+   p = 0.004, but 24 falls in 240 walked episodes). Details in `docs/MAZE.md` section 11.
+4. Merged PRs #2, #3, #4 (the user asked). Cleaned the main checkout's leftover copies of the merged
+   files and pulled; removed the merged language worktree and the stale `pai-ceiling` worktree (its
+   uncommitted diff is kept in `data/archive/`).
+
+Running the walker or the G1 tests from another worktree needs `third_party/` and `runs/` from the
+main checkout (directory junctions: `cmd //c mklink /J third_party <main>	hird_party`, same for `runs`;
+remove them with `cmd //c rmdir` when done).
 
 Copilot's automatic PR review comes from the user's personal Copilot setting (cannot be removed by
 us). PR descriptions must not mention Claude.
 
 The paper draft (`paper/`, IEEEtran in the user's format) is **local only** by the user's choice:
 `paper/` is in `.git/info/exclude`; numbers live in `paper/numbers.tex`; compile on Overleaf from
-`data/paper_overleaf.zip`. Not yet updated with today's numbers (fall causes 92.5%, language v3,
-maze correction).
+`data/paper_overleaf.zip`. Not yet updated with today's numbers (fall causes 92.5% and the speed
+control, language v3, maze correction, branchy mazes, walker with solid walls and noise).
 
 ## Next steps (queue, in order)
 
@@ -57,7 +63,5 @@ maze correction).
 
 ## Housekeeping
 
-- Stale worktree `C:\projects\pai-ceiling` (branch `ceiling`, an aborted run from 2026-09-26) can be
-  removed; its partial edits are superseded.
 - Archived drafts (not in git): `data/archive/` (old chess drafts, a Kaggle job text, partial language
-  files).
+  files, the abandoned `pai-ceiling` diff).

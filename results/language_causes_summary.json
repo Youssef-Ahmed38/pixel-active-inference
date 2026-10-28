@@ -1,0 +1,281 @@
+{
+  "physical_trials": 60,
+  "independent_layouts": 4,
+  "matched_layout_condition_pairs": 20,
+  "replayed_bilingual_outputs": 120,
+  "languages": {
+    "english": {
+      "n": 20,
+      "accepted": 17,
+      "cause_correct": 15,
+      "correct_accepted": 15,
+      "abstentions": 3,
+      "clean_abstentions": 2,
+      "disturbed_abstentions": 1,
+      "goal_correct": 20,
+      "parameters": {
+        "onset": {
+          "n": 10,
+          "passed": 8,
+          "errors": [
+            0.0,
+            0.03999999999999959,
+            0.040000000000000036,
+            0.019999999999999574,
+            13.38,
+            13.080000000000002,
+            0.07999999999999985,
+            0.020000000000000462,
+            0.07999999999999918,
+            4.440892098500626e-16
+          ],
+          "mean_error": 2.6740000000000004
+        },
+        "extra_mass_kg": {
+          "n": 4,
+          "passed": 4,
+          "errors": [
+            0.0015742940810770656,
+            0.002262304444423824,
+            0.0019990649130320337,
+            0.00045566761517734644
+          ],
+          "mean_error": 0.0015728327634275674
+        },
+        "camera_offset_mm": {
+          "n": 4,
+          "passed": 4,
+          "errors": [
+            0.5772078871017318,
+            0.04869058800846531,
+            0.23307710776141352,
+            0.35950245366912453
+          ],
+          "mean_error": 0.30461950913518376
+        }
+      },
+      "qa": {
+        "drop_correct_abstention": 20,
+        "remove_push_correct_abstention": 20,
+        "open_early_evidence_policy_correct": 20
+      },
+      "supported_counterfactual_answers": 17,
+      "why_cause_correct": 15,
+      "by_condition": {
+        "none": {
+          "n": 4,
+          "cause_correct": 2,
+          "accepted": 2
+        },
+        "push": {
+          "n": 4,
+          "cause_correct": 4,
+          "accepted": 4
+        },
+        "heavier_object": {
+          "n": 4,
+          "cause_correct": 4,
+          "accepted": 4
+        },
+        "slippery_object": {
+          "n": 4,
+          "cause_correct": 1,
+          "accepted": 3
+        },
+        "camera_shift": {
+          "n": 4,
+          "cause_correct": 4,
+          "accepted": 4
+        }
+      },
+      "baseline_success": 19,
+      "instruction_success": 19,
+      "paired_success_disagreements": 0
+    },
+    "arabic": {
+      "n": 20,
+      "accepted": 17,
+      "cause_correct": 15,
+      "correct_accepted": 15,
+      "abstentions": 3,
+      "clean_abstentions": 2,
+      "disturbed_abstentions": 1,
+      "goal_correct": 20,
+      "parameters": {
+        "onset": {
+          "n": 10,
+          "passed": 8,
+          "errors": [
+            0.0,
+            0.03999999999999959,
+            0.040000000000000036,
+            0.019999999999999574,
+            13.38,
+            13.080000000000002,
+            0.07999999999999985,
+            0.020000000000000462,
+            0.07999999999999918,
+            4.440892098500626e-16
+          ],
+          "mean_error": 2.6740000000000004
+        },
+        "extra_mass_kg": {
+          "n": 4,
+          "passed": 4,
+          "errors": [
+            0.0015742940810770656,
+            0.002262304444423824,
+            0.0019990649130320337,
+            0.00045566761517734644
+          ],
+          "mean_error": 0.0015728327634275674
+        },
+        "camera_offset_mm": {
+          "n": 4,
+          "passed": 4,
+          "errors": [
+            0.5772078871017318,
+            0.04869058800846531,
+            0.23307710776141352,
+            0.35950245366912453
+          ],
+          "mean_error": 0.30461950913518376
+        }
+      },
+      "qa": {
+        "drop_correct_abstention": 20,
+        "remove_push_correct_abstention": 20,
+        "open_early_evidence_policy_correct": 20
+      },
+      "supported_counterfactual_answers": 17,
+      "why_cause_correct": 15,
+      "by_condition": {
+        "none": {
+          "n": 4,
+          "cause_correct": 2,
+          "accepted": 2
+        },
+        "push": {
+          "n": 4,
+          "cause_correct": 4,
+          "accepted": 4
+        },
+        "heavier_object": {
+          "n": 4,
+          "cause_correct": 4,
+          "accepted": 4
+        },
+        "slippery_object": {
+          "n": 4,
+          "cause_correct": 1,
+          "accepted": 3
+        },
+        "camera_shift": {
+          "n": 4,
+          "cause_correct": 4,
+          "accepted": 4
+        }
+      },
+      "baseline_success": 19,
+      "instruction_success": 19,
+      "paired_success_disagreements": 0
+    }
+  },
+  "conditions": {
+    "none": {
+      "baseline": {
+        "n": 4,
+        "success": 4,
+        "goal_observation_correct": 4
+      },
+      "english": {
+        "n": 4,
+        "success": 4,
+        "goal_observation_correct": 4
+      },
+      "arabic": {
+        "n": 4,
+        "success": 4,
+        "goal_observation_correct": 4
+      }
+    },
+    "push": {
+      "baseline": {
+        "n": 4,
+        "success": 4,
+        "goal_observation_correct": 4
+      },
+      "english": {
+        "n": 4,
+        "success": 4,
+        "goal_observation_correct": 4
+      },
+      "arabic": {
+        "n": 4,
+        "success": 4,
+        "goal_observation_correct": 4
+      }
+    },
+    "heavier_object": {
+      "baseline": {
+        "n": 4,
+        "success": 4,
+        "goal_observation_correct": 4
+      },
+      "english": {
+        "n": 4,
+        "success": 4,
+        "goal_observation_correct": 4
+      },
+      "arabic": {
+        "n": 4,
+        "success": 4,
+        "goal_observation_correct": 4
+      }
+    },
+    "slippery_object": {
+      "baseline": {
+        "n": 4,
+        "success": 3,
+        "goal_observation_correct": 4
+      },
+      "english": {
+        "n": 4,
+        "success": 3,
+        "goal_observation_correct": 4
+      },
+      "arabic": {
+        "n": 4,
+        "success": 3,
+        "goal_observation_correct": 4
+      }
+    },
+    "camera_shift": {
+      "baseline": {
+        "n": 4,
+        "success": 4,
+        "goal_observation_correct": 4
+      },
+      "english": {
+        "n": 4,
+        "success": 4,
+        "goal_observation_correct": 4
+      },
+      "arabic": {
+        "n": 4,
+        "success": 4,
+        "goal_observation_correct": 4
+      }
+    }
+  },
+  "qa_scope": "Held-out episodes and episode-number slots in taught question grammar; no novel paraphrase claim",
+  "source": "results\\language_causes_final.json",
+  "source_sha256": "3d638b7faeecb7f69a375479a4c02d8e8782966e9d502ad91189fc9aae7ffccc",
+  "command": [
+    "C:\\projects\\pixel-active-inference\\.venv\\Scripts\\python.exe",
+    "scripts/language_causes_summary.py",
+    "results/language_causes_final.json",
+    "--output",
+    "results/language_causes_summary.json"
+  ]
+}

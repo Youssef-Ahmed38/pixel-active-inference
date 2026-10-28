@@ -14,11 +14,11 @@ an independent audit of what is learned vs scripted: [docs/AUDIT_OUTSIDE_BUILDS.
 | Stage | What the agent does | Latest result (fresh seeds) | Still open | Report |
 |---|---|---|---|---|
 | 1 arm | puts objects where asked, explains surprises (push, heavier, slippery, moved camera), adapts | exact state: task **91%**, cause **88%**; from camera images: task **75%**, cause **66%** | slippery block from pixels (35%) | below |
-| 2 walking | Unitree G1 learns to stand, walk, turn and run from its own exploration | v3: stand, walk 10 m, headings, run: **20/20 each**; pushes **100%** at 1.0 m/s, 93% at 1.25 m/s (v1: 53%, 17%) | fall causes 40% (push and slip taken for own gait error) | [LOCOMOTION_STAGE2](docs/LOCOMOTION_STAGE2.md) |
+| 2 walking | Unitree G1 learns to stand, walk, turn and run from its own exploration | v3: stand, walk 10 m, headings, run: **20/20 each**; pushes **100%** at 1.0 m/s, 93% at 1.25 m/s (v1: 53%, 17%) | fall causes: learned sensor likelihoods 92.5% vs 40.6% (fresh seed; gait recall dropped to 81%; speed confound untested) | [LOCOMOTION_STAGE2](docs/LOCOMOTION_STAGE2.md) |
 | 3 maze | explores with a Bayesian map and expected free energy over routes | exact sensing: information-seeking at best a few points above nearest frontier, not significant (corrected after a bug fix); with persistent misreads, learning that repeat looks are useless + touching doubtful walls: **49%** vs 6-13% (p < 1e-6); sensor model and map prior learned from own experience; **the learned G1 walker walks the agent's plans: same outcome as the grid body in 30/30 mazes, 0 falls**; on many-junction mazes information-seeking wins: **84 vs 67** of 100 (p = 0.006), and 28/30 vs 19/30 walked by the G1 with 0 falls; walls are now solid for the body; with persistent misreads it still wins when the G1 walks (14 vs 5 of 30, p = 0.004), but bumping into walls makes it fall in 24/240 noisy episodes | train walking with wall contact; the robot's own camera for the walker | [MAZE](docs/MAZE.md) |
 | 4 doors, keys | discovers how to open locked doors by experiment | mock: 99.9% solved in 111.6 actions (novelty 80.9%); physics 12/25 with decoys | key handling in physics; recipes instead of a scripted key chain | [DISCOVERY](docs/DISCOVERY.md) |
 | 5 chess | learned rules, learned value, search; Stockfish only as a teacher | **1037** conditional engine-anchor Elo [863, 1134] at 1 s/move; beats its old self 17-2-1 | still weaker than Stockfish 1320-1700; HRM in search | [CHESS_STRENGTH](docs/CHESS_STRENGTH.md) |
-| 6 language | English and Arabic: instructions, questions, narration | 456/456 held-out parses per language | causal explanations (in progress) | [LANGUAGE_STAGE6](docs/LANGUAGE_STAGE6.md) |
+| 6 language | English and Arabic: instructions, questions, narration, and **why** things happened, from the agent's own beliefs | 456/456 held-out parses; causes named correctly **37/50** per language (37/40 when it commits), cause words grounded in the agent's beliefs from 25 teaching episodes; instructions 41/50 = the arm's own rate | clean episodes abstain instead of saying "nothing unusual"; slip causes | [LANGUAGE_STAGE6](docs/LANGUAGE_STAGE6.md) |
 | 7 bicycle | balances and rides, learned from observed motion and practice | 20/20 fresh starts after practice | learning from video; transfer from walking | [BIKE_STAGE7](docs/BIKE_STAGE7.md) |
 
 ### Stage 2: a humanoid that learns to walk
@@ -30,7 +30,9 @@ run with PPO and a curiosity bonus, on the laptop GPU. Goals are speed and headi
 maze and bike stages can reuse it. The released controller (v3) passes every gate on fresh seeds
 and recovers from 100% of 1.0 m/s pushes and 93% of 1.25 m/s pushes (v1: 53% and 17%); an earlier
 push-only training run forgot how to turn and run, so v3 kept practising headings while pushes grew.
-Naming the cause of a fall is still weak (40%). Details: [docs/LOCOMOTION_STAGE2.md](docs/LOCOMOTION_STAGE2.md).
+The robot now names why it fell from its own senses (body-model error, foot loads and sliding):
+likelihoods learned from development falls give **92.5%** on fresh falls vs 40.6% for the old
+authored rule, though own-gait errors are now sometimes called pushes (81% recall). Details: [docs/LOCOMOTION_STAGE2.md](docs/LOCOMOTION_STAGE2.md).
 
 ### Stage 5: chess strength
 

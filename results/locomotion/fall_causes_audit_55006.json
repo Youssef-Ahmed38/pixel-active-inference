@@ -1,0 +1,54 @@
+{
+  "rows_verified": 160,
+  "legacy_U_S_max_reconstruction_error": 1.5615187987094714e-07,
+  "new_only_correct": 93,
+  "old_only_correct": 10,
+  "accuracy_gain": 0.51875,
+  "paired_variant_bootstrap95": [
+    0.4490863727091272,
+    0.5853698652118099
+  ],
+  "bootstrap": {
+    "seed": 80501,
+    "replicates": 5000,
+    "unit": "shared randomized dynamics variant"
+  },
+  "late_push_falls": 0,
+  "late_push_new_correct": 0,
+  "late_push_old_correct": 0,
+  "delay_seconds": {
+    "gait": {
+      "minimum": 0.3200000000000003,
+      "median": 1.04,
+      "maximum": 3.8600000000000003
+    },
+    "push": {
+      "minimum": 0.20000000000000018,
+      "median": 0.28000000000000025,
+      "maximum": 0.7600000000000002
+    },
+    "slip": {
+      "minimum": 0.3200000000000003,
+      "median": 0.56,
+      "maximum": 1.1600000000000001
+    }
+  },
+  "model_hashes_unchanged": {
+    "policy_sha256": true,
+    "body_model_checkpoint_sha256": true
+  },
+  "source_sha256": {
+    "data": "238afe7bc49c83432ab215b0367f802c8603fb813b2a63879496c55b942b94bd",
+    "gate": "ec3633cfd89e7d1c7bb6da3a74951047a48aa88bfe57dac5f17ec2503b82740b"
+  },
+  "command": [
+    "C:\\projects\\pixel-active-inference\\.venv\\Scripts\\python.exe",
+    "scripts/locomotion_fall_causes_audit.py",
+    "--data",
+    "results/locomotion/fall_causes_final_55006.json",
+    "--gate",
+    "results/locomotion/fall_causes_gate_55006.json",
+    "--output",
+    "results/locomotion/fall_causes_audit_55006.json"
+  ]
+}
