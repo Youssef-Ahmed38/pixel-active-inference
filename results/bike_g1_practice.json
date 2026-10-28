@@ -1,0 +1,1208 @@
+{
+ "practice_seeds": [
+  3000,
+  3011
+ ],
+ "dev_seeds": [
+  3100,
+  3119
+ ],
+ "final_seeds": [
+  3200,
+  3239
+ ],
+ "distance_m": 30.0,
+ "practised_gains": [
+  3.2108,
+  0.7535,
+  0.0543,
+  0.0,
+  6.847
+ ],
+ "untuned_gains": [
+  2.0,
+  0.8,
+  0.15,
+  0.0,
+  3.0
+ ],
+ "history": [
+  {
+   "iteration": 0,
+   "best_practice_m": 7.208333333333333,
+   "gains": [
+    2.0,
+    0.8,
+    0.15,
+    0.0,
+    3.0
+   ]
+  },
+  {
+   "iteration": 1,
+   "best_practice_m": 16.785833333333333,
+   "gains": [
+    3.547,
+    0.897,
+    0.033,
+    0.0,
+    0.898
+   ]
+  },
+  {
+   "iteration": 2,
+   "best_practice_m": 17.765,
+   "gains": [
+    2.975,
+    0.767,
+    0.04,
+    0.0,
+    9.114
+   ]
+  },
+  {
+   "iteration": 3,
+   "best_practice_m": 17.843333333333334,
+   "gains": [
+    3.211,
+    0.754,
+    0.054,
+    0.0,
+    6.847
+   ]
+  },
+  {
+   "iteration": 4,
+   "best_practice_m": 17.843333333333334,
+   "gains": [
+    3.211,
+    0.754,
+    0.054,
+    0.0,
+    6.847
+   ]
+  },
+  {
+   "iteration": 5,
+   "best_practice_m": 17.843333333333334,
+   "gains": [
+    3.211,
+    0.754,
+    0.054,
+    0.0,
+    6.847
+   ]
+  },
+  {
+   "iteration": 6,
+   "best_practice_m": 17.843333333333334,
+   "gains": [
+    3.211,
+    0.754,
+    0.054,
+    0.0,
+    6.847
+   ]
+  },
+  {
+   "iteration": 7,
+   "best_practice_m": 17.843333333333334,
+   "gains": [
+    3.211,
+    0.754,
+    0.054,
+    0.0,
+    6.847
+   ]
+  },
+  {
+   "iteration": 8,
+   "best_practice_m": 17.843333333333334,
+   "gains": [
+    3.211,
+    0.754,
+    0.054,
+    0.0,
+    6.847
+   ]
+  },
+  {
+   "iteration": 9,
+   "best_practice_m": 17.843333333333334,
+   "gains": [
+    3.211,
+    0.754,
+    0.054,
+    0.0,
+    6.847
+   ]
+  },
+  {
+   "iteration": 10,
+   "best_practice_m": 17.843333333333334,
+   "gains": [
+    3.211,
+    0.754,
+    0.054,
+    0.0,
+    6.847
+   ]
+  },
+  {
+   "iteration": 11,
+   "best_practice_m": 17.843333333333334,
+   "gains": [
+    3.211,
+    0.754,
+    0.054,
+    0.0,
+    6.847
+   ]
+  },
+  {
+   "iteration": 12,
+   "best_practice_m": 17.843333333333334,
+   "gains": [
+    3.211,
+    0.754,
+    0.054,
+    0.0,
+    6.847
+   ]
+  },
+  {
+   "iteration": 13,
+   "best_practice_m": 17.843333333333334,
+   "gains": [
+    3.211,
+    0.754,
+    0.054,
+    0.0,
+    6.847
+   ]
+  },
+  {
+   "iteration": 14,
+   "best_practice_m": 17.843333333333334,
+   "gains": [
+    3.211,
+    0.754,
+    0.054,
+    0.0,
+    6.847
+   ]
+  },
+  {
+   "iteration": 15,
+   "best_practice_m": 17.843333333333334,
+   "gains": [
+    3.211,
+    0.754,
+    0.054,
+    0.0,
+    6.847
+   ]
+  }
+ ],
+ "dev": {
+  "success": 9,
+  "starts": 20
+ },
+ "summary": {
+  "practised": {
+   "success": 23,
+   "starts": 40,
+   "wilson95": [
+    0.422,
+    0.715
+   ],
+   "mean_distance_m": 19.86
+  },
+  "untuned": {
+   "success": 0,
+   "starts": 40,
+   "wilson95": [
+    -0.0,
+    0.088
+   ],
+   "mean_distance_m": 8.17
+  },
+  "no_steering": {
+   "success": 0,
+   "starts": 40,
+   "wilson95": [
+    -0.0,
+    0.088
+   ],
+   "mean_distance_m": 3.88
+  }
+ },
+ "final": {
+  "practised": [
+   {
+    "seed": 3200,
+    "start_roll": 0.0607140293667969,
+    "start_speed": 3.16809327470791,
+    "distance": 30.01,
+    "fell": false,
+    "success": true
+   },
+   {
+    "seed": 3201,
+    "start_roll": -0.09287891406698008,
+    "start_speed": 2.940844698682435,
+    "distance": 30.0,
+    "fell": false,
+    "success": true
+   },
+   {
+    "seed": 3202,
+    "start_roll": -0.04866382564127874,
+    "start_speed": 3.433850491903075,
+    "distance": 30.04,
+    "fell": false,
+    "success": true
+   },
+   {
+    "seed": 3203,
+    "start_roll": 0.025398992461597852,
+    "start_speed": 3.306215768990544,
+    "distance": 30.02,
+    "fell": false,
+    "success": true
+   },
+   {
+    "seed": 3204,
+    "start_roll": -0.05403792655564735,
+    "start_speed": 2.7907876639378935,
+    "distance": 30.01,
+    "fell": false,
+    "success": true
+   },
+   {
+    "seed": 3205,
+    "start_roll": -0.005189034834772552,
+    "start_speed": 3.9256033518866555,
+    "distance": 5.36,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3206,
+    "start_roll": -0.07836756195271251,
+    "start_speed": 3.3557624502280055,
+    "distance": 30.03,
+    "fell": false,
+    "success": true
+   },
+   {
+    "seed": 3207,
+    "start_roll": -0.0813806356690299,
+    "start_speed": 3.7607527195736976,
+    "distance": 5.36,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3208,
+    "start_roll": 0.008998179266385131,
+    "start_speed": 2.7095036597165114,
+    "distance": 30.05,
+    "fell": false,
+    "success": true
+   },
+   {
+    "seed": 3209,
+    "start_roll": -0.01604394984633413,
+    "start_speed": 3.7686655266240368,
+    "distance": 5.16,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3210,
+    "start_roll": 0.04052476766995047,
+    "start_speed": 3.7789435050349187,
+    "distance": 5.39,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3211,
+    "start_roll": 0.034993226376059006,
+    "start_speed": 2.8627282381754946,
+    "distance": 30.03,
+    "fell": false,
+    "success": true
+   },
+   {
+    "seed": 3212,
+    "start_roll": 0.059833042779067896,
+    "start_speed": 2.869172168793885,
+    "distance": 30.03,
+    "fell": false,
+    "success": true
+   },
+   {
+    "seed": 3213,
+    "start_roll": 0.03423911710163041,
+    "start_speed": 3.8561041297731733,
+    "distance": 5.47,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3214,
+    "start_roll": 0.015361330524803124,
+    "start_speed": 2.6642907457384424,
+    "distance": 30.05,
+    "fell": false,
+    "success": true
+   },
+   {
+    "seed": 3215,
+    "start_roll": -0.005521697752927615,
+    "start_speed": 3.8334817939376595,
+    "distance": 5.21,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3216,
+    "start_roll": -0.057212436785282254,
+    "start_speed": 3.978226734983264,
+    "distance": 5.65,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3217,
+    "start_roll": -0.04282946525871226,
+    "start_speed": 3.6990557275353138,
+    "distance": 5.22,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3218,
+    "start_roll": 0.021180491069055646,
+    "start_speed": 3.5917766296303624,
+    "distance": 5.13,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3219,
+    "start_roll": 0.05779164653341487,
+    "start_speed": 2.7985132326592552,
+    "distance": 30.0,
+    "fell": false,
+    "success": true
+   },
+   {
+    "seed": 3220,
+    "start_roll": -0.05709337415960312,
+    "start_speed": 2.5168547037635953,
+    "distance": 8.17,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3221,
+    "start_roll": -0.013911064587386002,
+    "start_speed": 3.1333473582617453,
+    "distance": 30.04,
+    "fell": false,
+    "success": true
+   },
+   {
+    "seed": 3222,
+    "start_roll": 0.054899082607163086,
+    "start_speed": 2.9619814761360184,
+    "distance": 30.01,
+    "fell": false,
+    "success": true
+   },
+   {
+    "seed": 3223,
+    "start_roll": 0.06468537405528882,
+    "start_speed": 2.910783114041672,
+    "distance": 30.01,
+    "fell": false,
+    "success": true
+   },
+   {
+    "seed": 3224,
+    "start_roll": -0.07269617284287795,
+    "start_speed": 2.7132077441116826,
+    "distance": 14.83,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3225,
+    "start_roll": 0.08108089224020837,
+    "start_speed": 3.93864898107796,
+    "distance": 5.61,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3226,
+    "start_roll": -0.03630580606249105,
+    "start_speed": 3.484486103348366,
+    "distance": 30.0,
+    "fell": false,
+    "success": true
+   },
+   {
+    "seed": 3227,
+    "start_roll": -0.03980914831970948,
+    "start_speed": 3.98988314822922,
+    "distance": 5.57,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3228,
+    "start_roll": -0.048757247608199196,
+    "start_speed": 2.804871370015948,
+    "distance": 30.02,
+    "fell": false,
+    "success": true
+   },
+   {
+    "seed": 3229,
+    "start_roll": 0.025848089519486583,
+    "start_speed": 2.7271712828105033,
+    "distance": 30.02,
+    "fell": false,
+    "success": true
+   },
+   {
+    "seed": 3230,
+    "start_roll": -0.018403463235200257,
+    "start_speed": 3.9833376891335375,
+    "distance": 5.37,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3231,
+    "start_roll": -0.07102735869133253,
+    "start_speed": 3.877896328209995,
+    "distance": 5.54,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3232,
+    "start_roll": -0.05686281223350945,
+    "start_speed": 2.7594797736511913,
+    "distance": 30.03,
+    "fell": false,
+    "success": true
+   },
+   {
+    "seed": 3233,
+    "start_roll": -0.037989406856534715,
+    "start_speed": 3.2508675287377784,
+    "distance": 30.05,
+    "fell": false,
+    "success": true
+   },
+   {
+    "seed": 3234,
+    "start_roll": 0.03752697847191938,
+    "start_speed": 2.9848351315558093,
+    "distance": 30.03,
+    "fell": false,
+    "success": true
+   },
+   {
+    "seed": 3235,
+    "start_roll": -0.048436828111373,
+    "start_speed": 3.495675192543411,
+    "distance": 30.06,
+    "fell": false,
+    "success": true
+   },
+   {
+    "seed": 3236,
+    "start_roll": -0.05908217831106473,
+    "start_speed": 3.9364792764617578,
+    "distance": 5.6,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3237,
+    "start_roll": 0.004515397203644508,
+    "start_speed": 3.0395687782552683,
+    "distance": 30.0,
+    "fell": false,
+    "success": true
+   },
+   {
+    "seed": 3238,
+    "start_roll": -0.0824627988290966,
+    "start_speed": 2.8788962002846152,
+    "distance": 30.04,
+    "fell": false,
+    "success": true
+   },
+   {
+    "seed": 3239,
+    "start_roll": 0.06311199406738408,
+    "start_speed": 3.584344440351383,
+    "distance": 5.13,
+    "fell": true,
+    "success": false
+   }
+  ],
+  "untuned": [
+   {
+    "seed": 3200,
+    "start_roll": 0.0607140293667969,
+    "start_speed": 3.16809327470791,
+    "distance": 7.68,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3201,
+    "start_roll": -0.09287891406698008,
+    "start_speed": 2.940844698682435,
+    "distance": 4.89,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3202,
+    "start_roll": -0.04866382564127874,
+    "start_speed": 3.433850491903075,
+    "distance": 12.08,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3203,
+    "start_roll": 0.025398992461597852,
+    "start_speed": 3.306215768990544,
+    "distance": 18.58,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3204,
+    "start_roll": -0.05403792655564735,
+    "start_speed": 2.7907876639378935,
+    "distance": 5.57,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3205,
+    "start_roll": -0.005189034834772552,
+    "start_speed": 3.9256033518866555,
+    "distance": 5.38,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3206,
+    "start_roll": -0.07836756195271251,
+    "start_speed": 3.3557624502280055,
+    "distance": 7.81,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3207,
+    "start_roll": -0.0813806356690299,
+    "start_speed": 3.7607527195736976,
+    "distance": 5.64,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3208,
+    "start_roll": 0.008998179266385131,
+    "start_speed": 2.7095036597165114,
+    "distance": 13.58,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3209,
+    "start_roll": -0.01604394984633413,
+    "start_speed": 3.7686655266240368,
+    "distance": 5.13,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3210,
+    "start_roll": 0.04052476766995047,
+    "start_speed": 3.7789435050349187,
+    "distance": 5.39,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3211,
+    "start_roll": 0.034993226376059006,
+    "start_speed": 2.8627282381754946,
+    "distance": 8.34,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3212,
+    "start_roll": 0.059833042779067896,
+    "start_speed": 2.869172168793885,
+    "distance": 5.82,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3213,
+    "start_roll": 0.03423911710163041,
+    "start_speed": 3.8561041297731733,
+    "distance": 5.46,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3214,
+    "start_roll": 0.015361330524803124,
+    "start_speed": 2.6642907457384424,
+    "distance": 10.47,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3215,
+    "start_roll": -0.005521697752927615,
+    "start_speed": 3.8334817939376595,
+    "distance": 5.22,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3216,
+    "start_roll": -0.057212436785282254,
+    "start_speed": 3.978226734983264,
+    "distance": 5.69,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3217,
+    "start_roll": -0.04282946525871226,
+    "start_speed": 3.6990557275353138,
+    "distance": 5.26,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3218,
+    "start_roll": 0.021180491069055646,
+    "start_speed": 3.5917766296303624,
+    "distance": 5.04,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3219,
+    "start_roll": 0.05779164653341487,
+    "start_speed": 2.7985132326592552,
+    "distance": 5.57,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3220,
+    "start_roll": -0.05709337415960312,
+    "start_speed": 2.5168547037635953,
+    "distance": 4.26,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3221,
+    "start_roll": -0.013911064587386002,
+    "start_speed": 3.1333473582617453,
+    "distance": 23.47,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3222,
+    "start_roll": 0.054899082607163086,
+    "start_speed": 2.9619814761360184,
+    "distance": 6.67,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3223,
+    "start_roll": 0.06468537405528882,
+    "start_speed": 2.910783114041672,
+    "distance": 5.79,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3224,
+    "start_roll": -0.07269617284287795,
+    "start_speed": 2.7132077441116826,
+    "distance": 4.54,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3225,
+    "start_roll": 0.08108089224020837,
+    "start_speed": 3.93864898107796,
+    "distance": 5.81,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3226,
+    "start_roll": -0.03630580606249105,
+    "start_speed": 3.484486103348366,
+    "distance": 17.98,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3227,
+    "start_roll": -0.03980914831970948,
+    "start_speed": 3.98988314822922,
+    "distance": 5.59,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3228,
+    "start_roll": -0.048757247608199196,
+    "start_speed": 2.804871370015948,
+    "distance": 5.97,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3229,
+    "start_roll": 0.025848089519486583,
+    "start_speed": 2.7271712828105033,
+    "distance": 8.75,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3230,
+    "start_roll": -0.018403463235200257,
+    "start_speed": 3.9833376891335375,
+    "distance": 5.4,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3231,
+    "start_roll": -0.07102735869133253,
+    "start_speed": 3.877896328209995,
+    "distance": 5.69,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3232,
+    "start_roll": -0.05686281223350945,
+    "start_speed": 2.7594797736511913,
+    "distance": 5.28,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3233,
+    "start_roll": -0.037989406856534715,
+    "start_speed": 3.2508675287377784,
+    "distance": 13.1,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3234,
+    "start_roll": 0.03752697847191938,
+    "start_speed": 2.9848351315558093,
+    "distance": 9.13,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3235,
+    "start_roll": -0.048436828111373,
+    "start_speed": 3.495675192543411,
+    "distance": 12.7,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3236,
+    "start_roll": -0.05908217831106473,
+    "start_speed": 3.9364792764617578,
+    "distance": 5.67,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3237,
+    "start_roll": 0.004515397203644508,
+    "start_speed": 3.0395687782552683,
+    "distance": 21.97,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3238,
+    "start_roll": -0.0824627988290966,
+    "start_speed": 2.8788962002846152,
+    "distance": 4.93,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3239,
+    "start_roll": 0.06311199406738408,
+    "start_speed": 3.584344440351383,
+    "distance": 5.38,
+    "fell": true,
+    "success": false
+   }
+  ],
+  "no_steering": [
+   {
+    "seed": 3200,
+    "start_roll": 0.0607140293667969,
+    "start_speed": 3.16809327470791,
+    "distance": 3.15,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3201,
+    "start_roll": -0.09287891406698008,
+    "start_speed": 2.940844698682435,
+    "distance": 2.35,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3202,
+    "start_roll": -0.04866382564127874,
+    "start_speed": 3.433850491903075,
+    "distance": 3.5,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3203,
+    "start_roll": 0.025398992461597852,
+    "start_speed": 3.306215768990544,
+    "distance": 4.67,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3204,
+    "start_roll": -0.05403792655564735,
+    "start_speed": 2.7907876639378935,
+    "distance": 2.68,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3205,
+    "start_roll": -0.005189034834772552,
+    "start_speed": 3.9256033518866555,
+    "distance": 5.94,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3206,
+    "start_roll": -0.07836756195271251,
+    "start_speed": 3.3557624502280055,
+    "distance": 2.91,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3207,
+    "start_roll": -0.0813806356690299,
+    "start_speed": 3.7607527195736976,
+    "distance": 3.21,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3208,
+    "start_roll": 0.008998179266385131,
+    "start_speed": 2.7095036597165114,
+    "distance": 5.43,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3209,
+    "start_roll": -0.01604394984633413,
+    "start_speed": 3.7686655266240368,
+    "distance": 5.22,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3210,
+    "start_roll": 0.04052476766995047,
+    "start_speed": 3.7789435050349187,
+    "distance": 4.43,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3211,
+    "start_roll": 0.034993226376059006,
+    "start_speed": 2.8627282381754946,
+    "distance": 3.52,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3212,
+    "start_roll": 0.059833042779067896,
+    "start_speed": 2.869172168793885,
+    "distance": 2.82,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3213,
+    "start_roll": 0.03423911710163041,
+    "start_speed": 3.8561041297731733,
+    "distance": 4.84,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3214,
+    "start_roll": 0.015361330524803124,
+    "start_speed": 2.6642907457384424,
+    "distance": 4.5,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3215,
+    "start_roll": -0.005521697752927615,
+    "start_speed": 3.8334817939376595,
+    "distance": 5.83,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3216,
+    "start_roll": -0.057212436785282254,
+    "start_speed": 3.978226734983264,
+    "distance": 3.86,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3217,
+    "start_roll": -0.04282946525871226,
+    "start_speed": 3.6990557275353138,
+    "distance": 4.0,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3218,
+    "start_roll": 0.021180491069055646,
+    "start_speed": 3.5917766296303624,
+    "distance": 5.17,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3219,
+    "start_roll": 0.05779164653341487,
+    "start_speed": 2.7985132326592552,
+    "distance": 2.8,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3220,
+    "start_roll": -0.05709337415960312,
+    "start_speed": 2.5168547037635953,
+    "distance": 2.34,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3221,
+    "start_roll": -0.013911064587386002,
+    "start_speed": 3.1333473582617453,
+    "distance": 4.6,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3222,
+    "start_roll": 0.054899082607163086,
+    "start_speed": 2.9619814761360184,
+    "distance": 3.04,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3223,
+    "start_roll": 0.06468537405528882,
+    "start_speed": 2.910783114041672,
+    "distance": 2.76,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3224,
+    "start_roll": -0.07269617284287795,
+    "start_speed": 2.7132077441116826,
+    "distance": 2.35,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3225,
+    "start_roll": 0.08108089224020837,
+    "start_speed": 3.93864898107796,
+    "distance": 3.53,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3226,
+    "start_roll": -0.03630580606249105,
+    "start_speed": 3.484486103348366,
+    "distance": 3.95,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3227,
+    "start_roll": -0.03980914831970948,
+    "start_speed": 3.98988314822922,
+    "distance": 4.39,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3228,
+    "start_roll": -0.048757247608199196,
+    "start_speed": 2.804871370015948,
+    "distance": 2.8,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3229,
+    "start_roll": 0.025848089519486583,
+    "start_speed": 2.7271712828105033,
+    "distance": 3.84,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3230,
+    "start_roll": -0.018403463235200257,
+    "start_speed": 3.9833376891335375,
+    "distance": 5.31,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3231,
+    "start_roll": -0.07102735869133253,
+    "start_speed": 3.877896328209995,
+    "distance": 3.47,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3232,
+    "start_roll": -0.05686281223350945,
+    "start_speed": 2.7594797736511913,
+    "distance": 2.6,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3233,
+    "start_roll": -0.037989406856534715,
+    "start_speed": 3.2508675287377784,
+    "distance": 3.61,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3234,
+    "start_roll": 0.03752697847191938,
+    "start_speed": 2.9848351315558093,
+    "distance": 3.57,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3235,
+    "start_roll": -0.048436828111373,
+    "start_speed": 3.495675192543411,
+    "distance": 3.57,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3236,
+    "start_roll": -0.05908217831106473,
+    "start_speed": 3.9364792764617578,
+    "distance": 3.82,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3237,
+    "start_roll": 0.004515397203644508,
+    "start_speed": 3.0395687782552683,
+    "distance": 8.86,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3238,
+    "start_roll": -0.0824627988290966,
+    "start_speed": 2.8788962002846152,
+    "distance": 2.4,
+    "fell": true,
+    "success": false
+   },
+   {
+    "seed": 3239,
+    "start_roll": 0.06311199406738408,
+    "start_speed": 3.584344440351383,
+    "distance": 3.53,
+    "fell": true,
+    "success": false
+   }
+  ]
+ }
+}
