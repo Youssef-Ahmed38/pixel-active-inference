@@ -150,9 +150,31 @@ falls 8 -> 9 with the abrupt steering (46 cautions), 2 -> 1 with smooth steering
 (`results/maze_walker_dev_persistent_20100_v4_caution_{old,smooth}.json`). No reliable effect: the
 falls come too suddenly for the surprise to warn, so this was not taken to a final run.
 
-Four attempts (v5, v6, smooth steering, caution) did not remove the maze falls; the best
-configuration is v4 with smooth steering (3 of 60 on new mazes), and the falls remain an open
-problem.
+**Measuring the falls: a stress test, and a steadying reflex (no effect).** A replay of the same
+maze does not reproduce its fall (the falls are rare and partly random), so 60 exploration episodes
+with 2-8 falls cannot tell fixes apart. `scripts/maze_walker_stress.py` makes the walker do many maze
+moves of the kinds the explorers make (turn and walk to an open neighbour 70%, walk into a wall to
+touch it and back off 30%) and counts falls per 1000 moves. In a fall-free run, normal maze walking
+already tilts the body a lot (tilt from vertical: median 10 degrees, 99th percentile 32, 99.9th 35);
+before a fall the tilt diverges past 40 degrees over about 0.5-1 s, mostly while walking forward.
+A steadying reflex (`WalkerMaze(steady=deg)`: past that tilt, stop walking and turning and hold the
+heading until steady for 0.4 s) was tested on development mazes 21000-21039, v4, smooth steering,
+150 moves per maze:
+
+| Walker | Falls / moves | Per 1000 moves | Reflex triggered |
+|---|---:|---:|---:|
+| smooth steering (baseline) | 9 / 5169 | 1.74 | - |
+| + reflex at 30 degrees | 14 / 4892 | 2.86 | 2097 |
+| + reflex at 34 degrees | 12 / 5410 | 2.22 | 914 |
+
+Worse, not better (the differences are within chance). Stopping when tilted does not help a body
+whose own walking produces these tilts. Not taken to a final run
+(`results/maze_walker_stress_dev_smooth{,_steady30,_steady34}.json`).
+
+Five attempts (v5, v6, smooth steering, caution, a steadying reflex) did not remove the maze falls;
+the best configuration is v4 with smooth steering (3 of 60 on new mazes; 1.74 falls per 1000 stress
+moves), and the falls remain an open problem. The fix this points to is practice of exactly these
+moves: training the walking policy on the stress test's turn, walk and touch pattern.
 
 `media/locomotion/g1_wall_contact.mp4`: the same body walks into the same wall with v3 (left, falls)
 and v4 (right, stays up and backs off). Seed 57100, chosen from five as an example where they

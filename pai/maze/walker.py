@@ -91,7 +91,7 @@ class WalkerMaze:
                  wall_height: float = 0.5, solid: bool = True, stall_s: float = 1.0,
                  odometry: bool = False, odo_seed: int | None = None, smooth: bool = False,
                  caution: float | None = None, body_model: Path | None = None,
-                 odo_speed_noise: float = 0.05, odo_scale_sd: float = 0.03, odo_gyro_bias_sd: float = 0.001):
+                 odo_speed_noise: float = 0.05, odo_scale_sd: float = 0.03, odo_gyro_bias_sd: float = 0.001, steady=None):
         self.world = world
         self.cell = cell
         self.speed = speed
@@ -125,6 +125,13 @@ class WalkerMaze:
         # caution (None: off): when the body model's surprise (its own prediction error for the
         # body's next state) exceeds this, stop forward motion for 0.5 s and keep the heading
         self.caution = caution
+        # steadying reflex (None: off): when the body tilts more than ``steady`` degrees (roll or
+        # pitch, from its own IMU), stop walking and turning (hold the current heading) until it has
+        # been below half that tilt for 0.4 s (at most 2 s)
+        self.steady = steady
+        self._steady_left = 0
+        self._steady_calm = 0
+        self.steadies = 0
         self._calm = 0
         self.cautions = 0
         self.last_surprise = 0.0
@@ -192,9 +199,31 @@ class WalkerMaze:
             self.est_xy += dt * np.array([c * v[0] - s_ * v[1], s_ * v[0] + c * v[1]])
         if self.on_frame is not None:
             self.on_frame(self.env)
+        if self.steady is not None:
+            g = self.env.kinematics()["grav"][0]
+            tilt = float(np.degrees(np.arccos(np.clip(-g[2], -1.0, 1.0))))
+            dt = self.env.cfg.ctrl_dt
+            if self._steady_left == 0 and tilt > self.steady:
+                self._steady_left = int(round(2.0 / dt))
+                self._steady_calm = 0
+                self._steady_yaw = self.yaw()
+                self.steadies += 1
+            elif self._steady_left > 0:
+                self._steady_calm = self._steady_calm + 1 if tilt < self.steady / 2 else 0
+                self._steady_left -= 1
+                if self._steady_calm * dt >= 0.4:
+                    self._steady_left = 0
         if bool(info["fell"][0]):
             self.fell = True
         return self.fell
+
+    def _steadying(self) -> bool:
+        """The reflex is active: command standing still at the held heading."""
+        if self._steady_left > 0:
+            self._command(0.0, 0.0, self._steady_yaw)
+            self._v_cmd = 0.0
+            return True
+        return False
 
     def _cell_of(self, xy: np.ndarray) -> Cell:
         s = self.world.start
@@ -228,7 +257,10 @@ class WalkerMaze:
             if self._calm > 0:
                 v = 0.0                    # caution: surprised body steadies itself first
                 self._v_cmd = 0.0
-            self._command(v, 0.0, heading)
+            if self._steadying():
+                v = 0.0                    # no stall detection while the body steadies itself
+            else:
+                self._command(v, 0.0, heading)
             if self._tick():
                 return StepReport(self.t - t0, True, False, False)
             here = self._cell_of(self.true_xy())      # physics: the body cannot be inside a wall
@@ -257,7 +289,8 @@ class WalkerMaze:
                 return StepReport(self.t - t0, False, False, True)
             c, s = np.cos(yaw), np.sin(yaw)
             fwd, left = c * d[0] + s * d[1], -s * d[0] + c * d[1]      # target in the heading frame
-            self._command(float(np.clip(1.5 * fwd, -0.3, 0.3)), float(np.clip(1.5 * left, -0.3, 0.3)), yaw)
+            if not self._steadying():
+                self._command(float(np.clip(1.5 * fwd, -0.3, 0.3)), float(np.clip(1.5 * left, -0.3, 0.3)), yaw)
             if self._tick():
                 return StepReport(self.t - t0, True, False, False)
         return StepReport(self.t - t0, False, False, False)
