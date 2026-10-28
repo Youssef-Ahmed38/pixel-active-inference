@@ -132,7 +132,8 @@ def _scenery(spec, rng):
                         size=[1.1, 1.1, 1.3], rgba=green, contype=0, conaffinity=0)
 
 
-def build_spec(scenery: bool = True, seed: int = 0) -> mujoco.MjSpec:
+def build_spec(scenery=True, seed: int = 0) -> mujoco.MjSpec:
+    """``scenery``: True (the straight road), False (bare ground) or a callable(spec, rng) building a scene."""
     spec = mujoco.MjSpec()
     spec.compiler.degree = False
     spec.option.timestep = 0.002
@@ -142,7 +143,9 @@ def build_spec(scenery: bool = True, seed: int = 0) -> mujoco.MjSpec:
     spec.visual.global_.offwidth, spec.visual.global_.offheight = 1920, 1080
     _torus(spec, "tyre", R_TYRE - TYRE_TUBE, TYRE_TUBE)
     _torus(spec, "rim", R_RIM, 0.012, n_minor=6)
-    if scenery:
+    if callable(scenery):
+        scenery(spec, np.random.default_rng(seed))      # e.g. pai/bike/town.py
+    elif scenery:
         _scenery(spec, np.random.default_rng(seed))
     else:
         spec.worldbody.add_geom(name="ground", type=mujoco.mjtGeom.mjGEOM_PLANE, size=[200, 200, 0.1],

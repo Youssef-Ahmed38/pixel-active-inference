@@ -15,6 +15,15 @@ beliefs (`scripts/make_showreel.py`).
 
 <img src="docs/media/bike/g1_riding.gif" width="400">
 
+**The G1 delivers parcels by bicycle in towns it has never seen:** [docs/BIKE_TOWN.md](docs/BIKE_TOWN.md):
+a street grid with barriers and parked cars it does not know about; it looks down each street with
+its head camera, keeps a belief over blocked streets, replans, changes lane around cars, and corners
+and U-turns with steering learned by practice. On 20 new towns: **36/40 deliveries, 0 collisions**,
+against 21/40 and 19 collisions for the same rider riding blind (paired p = 0.0001); the camera read
+178/178 streets right. The video shows its head camera, its map and its decisions.
+
+<img src="docs/media/bike/delivery.gif" width="640">
+
 **One agent, many skills, the same principles:** active inference (world models, expected free
 energy, surprise and Bayesian hidden-cause inference, curiosity), episodic memory and recipes, and an
 HRM "thinker", learned rather than scripted and evaluated on fresh seeds. Plan:
