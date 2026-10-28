@@ -100,8 +100,16 @@ def decision_panel(agent, move, step, width: int, height: int) -> np.ndarray:
         lines.append((f"   info {c['gain']:.1f} bits  goal/risk {c['pragmatic']:+.2f}  walk {c['effort']}", col))
     if cands and agent.target == cands[0]["cell"]:
         c = cands[0]
-        why = ("goal belief pulls it there" if c["pragmatic"] < -1 else
-               "most new information for the walk")
+        if len(cands) > 1:
+            # name the EFE term that gives the chosen target its lead over the runner-up
+            a = cands[1]
+            ew, fw = getattr(agent, "epistemic_weight", 1.0), getattr(agent, "effort_weight", 2.0)
+            lead = {"goal belief pulls it there": c["pragmatic"] - a["pragmatic"],
+                    "more new information there": -ew * (c["gain"] - a["gain"]),
+                    "shorter walk": fw * (c["effort"] - a["effort"])}
+            why = min(lead, key=lead.get)
+        else:
+            why = "the only candidate"
         lines.append((f"why: {why}", (240, 200, 90)))
     elif cands:
         lines.append(("why: keeps its current target", (240, 200, 90)))

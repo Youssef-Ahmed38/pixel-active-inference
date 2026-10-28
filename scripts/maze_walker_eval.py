@@ -4,6 +4,7 @@ Same fresh mazes for the grid body (instant, exact moves) and the walker (``pai/
 for the route-EFE explorer and nearest-frontier exploration, exact sensing, 160 grid steps.
 
     python scripts/maze_walker_eval.py --test-start 75000 --num 30 --output results/maze_walker.json
+    python scripts/maze_walker_eval.py --maze-style branchy --test-start 77000 --num 30 --output results/maze_walker_branchy.json
 """
 
 from __future__ import annotations
@@ -25,6 +26,7 @@ from pai.maze.env import MazeWorld
 
 AGENTS = ("efe_route", "nearest_frontier")
 BODIES = ("grid", "walker")
+MAZE_STYLES = {"dfs": {}, "branchy": dict(generator="prim", loop_probability=0.25, rooms=3)}
 
 
 def wilson(k: int, n: int, z: float = 1.96) -> list[float]:
@@ -35,10 +37,10 @@ def wilson(k: int, n: int, z: float = 1.96) -> list[float]:
 
 
 def run(job: tuple) -> dict:
-    seed, agent_name, body, budget = job
+    seed, agent_name, body, budget, style = job
     import torch
     torch.set_num_threads(1)
-    world = MazeWorld(seed)
+    world = MazeWorld(seed, **MAZE_STYLES[style])
     if agent_name == "efe_route":
         agent = RouteEFEExplorer(size=world.size, sensor_range=world.sensor_range, seed=seed,
                                  effort_weight=2.0, switch_margin=0.0)
@@ -75,10 +77,11 @@ def main():
     ap.add_argument("--num", type=int, default=30)
     ap.add_argument("--budget", type=int, default=160)
     ap.add_argument("--workers", type=int, default=3)
+    ap.add_argument("--maze-style", choices=sorted(MAZE_STYLES), default="dfs")
     ap.add_argument("--output", type=Path, required=True)
     args = ap.parse_args()
     seeds = list(range(args.test_start, args.test_start + args.num))
-    jobs = [(s, a, b, args.budget) for s in seeds for a in AGENTS for b in BODIES]
+    jobs = [(s, a, b, args.budget, args.maze_style) for s in seeds for a in AGENTS for b in BODIES]
     with Pool(args.workers) as pool:
         episodes = pool.map(run, jobs, chunksize=1)
     summary = {}
@@ -98,7 +101,7 @@ def main():
                    for s in seeds) for a in AGENTS}
     commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True,
                             cwd=ROOT).stdout.strip()
-    report = {"git_commit": commit, "seeds": [seeds[0], seeds[-1]], "budget": args.budget,
+    report = {"git_commit": commit, "seeds": [seeds[0], seeds[-1]], "budget": args.budget, "maze_style": args.maze_style,
               "policy": "runs/locomotion/policy_v3/policy.pt", "summary": summary,
               "same_outcome_grid_vs_walker": same, "episodes": episodes}
     args.output.parent.mkdir(parents=True, exist_ok=True)

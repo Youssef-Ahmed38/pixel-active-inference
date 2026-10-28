@@ -401,7 +401,33 @@ receives, and its decision: chosen target and the top alternatives with their EF
 
 **Branchy mazes** (`MazeWorld(generator="prim", loop_probability=0.25, rooms=3)`; the default DFS
 mazes are unchanged): about 104 junctions per maze vs 31, twice as many dead ends, three open rooms
-(`media/maze/maze_styles.png`). `scripts/maze_v3_eval.py --maze-style branchy`. Not evaluated yet.
+(`media/maze/maze_styles.png`). `scripts/maze_v3_eval.py --maze-style branchy`.
+
+**The walker on branchy mazes: 30 fresh mazes (77000-77029), exact sensing, 160 grid steps,
+nothing tuned on branchy mazes.** Route EFE finds the goal in **28/30** [78.7-98.2%], nearest
+frontier in **19/30** [45.5-78.1%]; paired, route EFE alone solves 10 mazes and nearest frontier
+alone 1 (sign test **p = 0.012**). The walker gives the same outcome as the instant grid body in
+**30/30** mazes for both agents, with **0 falls and 0 bumps** in about 15,100 s of walking; failed
+walks (a move that timed out and was retried) 1 for route EFE, 6 for nearest frontier. On the
+long-corridor mazes the two agents were not significantly different (section 10 correction); with
+many junctions and dead ends, choosing where to look pays off. One set of 30 mazes, so the size of
+the gap is uncertain. `results/maze_walker_branchy.json`:
+
+    python scripts/maze_walker_eval.py --maze-style branchy --test-start 77000 --num 30 --workers 6 --output results/maze_walker_branchy.json
+
+**Video with everything the agent perceives and why it moves** (`media/maze/walker_branchy_multiperception.mp4`,
+maze 77104, chosen from 30 screened mazes because its search is long enough to show branching; 67
+grid steps, goal found, 194 s walked, 0 falls). Five panels: the G1 from above; the robot's eye
+view; its belief map (dark unknown, grey wall, light open, blue visited, green target); the raw
+sensor patch it receives this step; and its decision, the top three candidate targets with their
+information gain, goal/risk and walking cost, and which of those terms gives the chosen target its
+lead over the runner-up (the earlier video's "why" line only distinguished goal from information,
+so short-walk choices were mislabelled). The decisions still come from the grid sensor, not from
+the eye-view image.
+
+<img src="media/maze/walker_branchy_multiperception.gif" width="480">
+
+    python scripts/maze_walker_demo.py --seed 77104 --branchy --pov --every 18
 
 # First build (v1), before the active-inference rewrite
 
