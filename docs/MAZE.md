@@ -415,6 +415,43 @@ the gap is uncertain. `results/maze_walker_branchy.json`:
 
     python scripts/maze_walker_eval.py --maze-style branchy --test-start 77000 --num 30 --workers 6 --output results/maze_walker_branchy.json
 
+**Branchy mazes with noisy sensing and the learned priors: 100 fresh mazes (78000-78099), grid
+body, nothing tuned.** The sensor model and the spatial priors are learned from practice mazes
+(1000-1019) of the same branchy style (before this change the practice mazes were always the
+long-corridor kind). Development check on 20000-20029 (self prior) only confirmed the pipeline;
+no parameter was changed after it. Goal found out of 100; in brackets route EFE only / baseline
+only, paired sign test:
+
+| Regime, prior | Route EFE | Nearest frontier | Info-gain frontier | Route EFE, no epistemic term | Route EFE, counting repeat looks |
+|---|---:|---:|---:|---:|---:|
+| exact, default | **84** | 67 (26/9, p = 0.006) | 81 (n.s.) | 65 (25/6, p = 0.001) | 84 |
+| exact, true layouts | **84** | 67 (23/6, p = 0.002) | 83 (n.s.) | 69 (p = 0.008) | 84 |
+| exact, self-learned | **81** | 66 (24/9, p = 0.014) | 85 (n.s.) | 67 (p = 0.016) | 81 |
+| iid noise, default | 78 | 65 (29/16, p = 0.07) | 70 (n.s.) | 71 (n.s.) | 78 |
+| iid noise, true layouts | 76 | 59 (30/13, p = 0.014) | 65 (p = 0.05) | 72 (n.s.) | 76 |
+| iid noise, self-learned | 69 | 62 (n.s.) | 68 (n.s.) | 67 (n.s.) | 69 |
+| persistent misreads, default | 64 | 54 (n.s.) | 61 (n.s.) | 67 (n.s.) | 51 (21/8, p = 0.024) |
+| persistent, true layouts | **80** | 64 (24/8, p = 0.007) | 76 (n.s.) | 78 (n.s.) | 58 (28/6, p < 0.001) |
+| persistent, self-learned | 72 | 60 (p = 0.09) | 73 (n.s.) | 70 (n.s.) | 59 (19/6, p = 0.015) |
+
+What holds on branchy mazes: (1) with exact sensing, route EFE beats nearest frontier under every
+prior (84 vs 67), replicating the 30-maze walker result, and the epistemic term is what does it
+(without it, 65); it ties the information-gain frontier, which also seeks information. (2) With
+persistent misreads, learning that repeated looks at the same cell carry no new information
+(repeat weight 0, learned from the agent's own looks) beats counting them, under every prior
+(64 vs 51, 80 vs 58, 72 vs 59). What does not: under noise the advantage over nearest frontier
+is significant only with the true-layout prior, and the baselines do not collapse under persistent
+misreads as they did in corridor mazes (54-64% here vs 6-13%), probably because loops let them
+walk round a wall they wrongly believe in. The true-layout prior helps route EFE under persistent
+misreads (80 vs 64 with the default prior, paired 24/8, p = 0.007); the self-learned prior does
+not significantly (72, p = 0.24) and is nominally worse under iid noise (69 vs 78, p = 0.15). Many
+comparisons are made here; single p-values near 0.05 should not be read as findings.
+`results/maze_v3_branchy_prior_{default,truth,self}.json`:
+
+    python scripts/maze_v3_eval.py --test-start 78000 --num-test-mazes 100 --effort-weight 2.0 --switch-margin 0.0 --sensor-source self --regimes exact noisy persistent --maze-style branchy --prior default --workers 10 --output results/maze_v3_branchy_prior_default.json
+
+(same with `--prior truth` and `--prior self`).
+
 **Video with everything the agent perceives and why it moves** (`media/maze/walker_branchy_multiperception.mp4`,
 maze 77104, chosen from 30 screened mazes because its search is long enough to show branching; 67
 grid steps, goal found, 194 s walked, 0 falls). Five panels: the G1 from above; the robot's eye

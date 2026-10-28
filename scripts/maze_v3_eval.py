@@ -89,13 +89,15 @@ def learn_prior(source: str, regime: str, train: list[int], size: int, sensor: t
                 params: dict) -> SpatialPrior:
     """Spatial prior from true training layouts, or from the agent's own end-of-practice maps."""
     if source == "truth":
-        worlds = [MazeWorld(s, size=size) for s in train]
+        style = MAZE_STYLES[params.get("maze_style", "dfs")]
+        worlds = [MazeWorld(s, size=size, **style) for s in train]
         return SpatialPrior.fit_from_mazes([w.grid for w in worlds], [w.goal for w in worlds],
                                            size=size, alpha=2.0)
     matrix, repeat_weight, _ = sensor
     maps, seen = [], []
     for s in train:
-        world = MazeWorld(s, size=size)
+        # practice mazes are the same style as the test mazes
+        world = MazeWorld(s, size=size, **MAZE_STYLES[params.get("maze_style", "dfs")])
         env = NoisySensorMaze(world, seed=s, persistent=regime == "persistent") if regime != "exact" else world
         agent = RouteEFEExplorer(size=size, sensor_range=3, seed=s, effort_weight=params["effort_weight"],
                                  switch_margin=params["switch_margin"],
@@ -218,7 +220,7 @@ def main():
             continue
         sensor, info = self_calibrated_sensor(
             train, args.size,
-            make_env=lambda s, r=regime: NoisySensorMaze(MazeWorld(s, size=args.size), seed=s,
+            make_env=lambda s, r=regime: NoisySensorMaze(MazeWorld(s, size=args.size, **MAZE_STYLES[args.maze_style]), seed=s,
                                                          persistent=r == "persistent"),
             make_agent=lambda s: RouteEFEExplorer(size=args.size, sensor_range=3, seed=s,
                                                   epistemic_weight=args.epistemic_weight,
