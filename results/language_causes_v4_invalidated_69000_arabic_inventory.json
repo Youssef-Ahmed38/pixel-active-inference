@@ -1,0 +1,179 @@
+{
+  "checkpoint_sha256": "fe3c28a8e2073b95595f23ffd67e6be2cdb83900e4f0c9fe326a3966b37413dd",
+  "entries": [
+    {
+      "key": "hypothesis:لم أكتشف سببًا غير معتاد",
+      "text": "تشير أدلتي إلى أنني لم أكتشف سببًا غير معتاد.",
+      "note": "learned first-person verb frame; accusative spelling corrected",
+      "runtime": true
+    },
+    {
+      "key": "hypothesis:لم ألاحظ شيئًا غير معتاد، لكن اضطرابًا صغيرًا قد يمر دون أن ألاحظه",
+      "text": "تشير أدلتي إلى أنني لم ألاحظ شيئًا غير معتاد، لكن اضطرابًا صغيرًا قد يمر دون أن ألاحظه.",
+      "note": "learned first-person verb frame; accusative spelling corrected",
+      "runtime": true
+    },
+    {
+      "key": "hypothesis:قوةً خارجيةً دفعت ذراعي",
+      "text": "تشير أدلتي إلى أنّ قوةً خارجيةً دفعت ذراعي.",
+      "note": "given gender/number agreement; learned noun/pronoun complement frame",
+      "runtime": true
+    },
+    {
+      "key": "hypothesis:الجسم كان أثقل مما توقعت",
+      "text": "تشير أدلتي إلى أنّ الجسم كان أثقل مما توقعت.",
+      "note": "given gender/number agreement; learned noun/pronoun complement frame",
+      "runtime": true
+    },
+    {
+      "key": "hypothesis:الجسم انزلق بالنسبة إلى أصابعي",
+      "text": "تشير أدلتي إلى أنّ الجسم انزلق بالنسبة إلى أصابعي.",
+      "note": "given gender/number agreement; learned noun/pronoun complement frame",
+      "runtime": true
+    },
+    {
+      "key": "hypothesis:الكاميرا تحركت",
+      "text": "تشير أدلتي إلى أنّ الكاميرا تحركت.",
+      "note": "given gender/number agreement; learned noun/pronoun complement frame",
+      "runtime": true
+    },
+    {
+      "key": "hypothesis:تحركت",
+      "text": "تشير أدلتي إلى أنها تحركت.",
+      "note": "given gender/number agreement; learned noun/pronoun complement frame",
+      "runtime": false
+    },
+    {
+      "key": "hypothesis:تحرك",
+      "text": "تشير أدلتي إلى أنه تحرك.",
+      "note": "given gender/number agreement; learned noun/pronoun complement frame",
+      "runtime": false
+    },
+    {
+      "key": "hypothesis:الكتلة الإضافية جعلت الجسم أثقل",
+      "text": "تشير أدلتي إلى أنّ الكتلة الإضافية جعلت الجسم أثقل.",
+      "note": "given gender/number agreement; learned noun/pronoun complement frame",
+      "runtime": false
+    },
+    {
+      "key": "hypothesis:الهدف تحقق",
+      "text": "تشير أدلتي إلى أنّ الهدف تحقق.",
+      "note": "given gender/number agreement; learned noun/pronoun complement frame",
+      "runtime": false
+    },
+    {
+      "key": "hypothesis:المهمة تحققت",
+      "text": "تشير أدلتي إلى أنّ المهمة تحققت.",
+      "note": "given gender/number agreement; learned noun/pronoun complement frame",
+      "runtime": false
+    },
+    {
+      "key": "hypothesis:الأجسام الأثقل تحركت",
+      "text": "تشير أدلتي إلى أنّ الأجسام الأثقل تحركت.",
+      "note": "given gender/number agreement; learned noun/pronoun complement frame",
+      "runtime": false
+    },
+    {
+      "key": "uncertain",
+      "text": "??? ??? ???? ???? ?????? ?????.",
+      "runtime": true,
+      "note": "corrected teacher wording/count construction"
+    },
+    {
+      "key": "action:recalibrated the camera",
+      "text": "أعدت معايرة الكاميرا.",
+      "runtime": true,
+      "note": "unchanged grammatical sentence"
+    },
+    {
+      "key": "action:expect the extra weight",
+      "text": "حدّثت توقعاتي بشأن الوزن.",
+      "runtime": true,
+      "note": "corrected teacher wording/count construction"
+    },
+    {
+      "key": "action:carry it low, grasped at its centre",
+      "text": "حملت الجسم على ارتفاع منخفض وأمسكته من مركزه.",
+      "runtime": true,
+      "note": "corrected teacher wording/count construction"
+    },
+    {
+      "key": "action:carry at 50% speed",
+      "text": "خفضت سرعة الحمل إلى النصف.",
+      "runtime": true,
+      "note": "unchanged grammatical sentence"
+    },
+    {
+      "key": "fallback",
+      "text": "فقدت الإمساك بالجسم. عدد مرات إعادة محاولة الإمساك: {value}.",
+      "runtime": true,
+      "note": "corrected teacher wording/count construction"
+    },
+    {
+      "key": "goal:yes",
+      "text": "تشير ملاحظتي الأخيرة إلى تحقق الهدف.",
+      "runtime": true,
+      "note": "unchanged grammatical sentence"
+    },
+    {
+      "key": "goal:no",
+      "text": "لا تظهر ملاحظتي الأخيرة تحقق الهدف.",
+      "runtime": true,
+      "note": "unchanged grammatical sentence"
+    },
+    {
+      "key": "goal:unknown",
+      "text": "ليس لدي رصد نهائي للهدف.",
+      "runtime": true,
+      "note": "unchanged grammatical sentence"
+    },
+    {
+      "key": "cf:unknown",
+      "text": "?? ?????? ??????? ?? ??? ?????? ????????? ??????? ??????? ?? ??????.",
+      "runtime": true,
+      "note": "corrected teacher wording/count construction"
+    },
+    {
+      "key": "drop:unknown",
+      "text": "?? ?????? ????? ??? ???? ????? ???????? ??? ????? ??? ???????? ?? ?????? ???????.",
+      "runtime": true,
+      "note": "corrected teacher wording/count construction"
+    },
+    {
+      "key": "cf:necessary",
+      "text": "في إعادة المحاكاة المحلية بنموذجي، منع هذا التغيير تحقق الهدف الفرعي المختبَر. هذا تنبؤ وليس نتيجة مرصودة.",
+      "runtime": true,
+      "note": "corrected teacher wording/count construction"
+    },
+    {
+      "key": "cf:unnecessary",
+      "text": "في إعادة المحاكاة المحلية بنموذجي، ظل تحقق الهدف الفرعي المختبَر ممكنًا مع هذا التغيير. هذا تنبؤ وليس نتيجة مرصودة.",
+      "runtime": true,
+      "note": "corrected teacher wording/count construction"
+    },
+    {
+      "key": "numeric",
+      "text": "قدرت الكتلة الإضافية بحوالي {value} كغ.",
+      "runtime": true,
+      "note": "unchanged; {value} is an agent estimate"
+    },
+    {
+      "key": "numeric",
+      "text": "قدرت إزاحة الكاميرا (س، ص، ع) بحوالي {value} مم.",
+      "runtime": true,
+      "note": "unchanged; {value} is an agent estimate"
+    },
+    {
+      "key": "numeric",
+      "text": "قدرت البداية عند خطوة التخطيط {value}.",
+      "runtime": true,
+      "note": "unchanged; {value} is an agent estimate"
+    },
+    {
+      "key": "probability",
+      "text": "????? ?????? ??? ???? ?????? ???? {value}?.",
+      "runtime": true,
+      "note": "new taught probability sentence; {value} is calibrated probability"
+    }
+  ]
+}

@@ -728,3 +728,172 @@ selection passes **80 tests** (one new `SilenceModel` test).
 
 Artifacts: `results/language_causes_v3_checkpoint.json`, `results/language_causes_v3_final.json`,
 `results/language_causes_v3_summary.json`, `results/language_causes_v3_paired.json`.
+
+## V4: learned Arabic composition and calibrated absence claims
+
+V4 retains the frozen v3 anonymous-coordinate cause and quantity associations, question classifier, arm controller, and surprise monitor. It adds independently taught English/Arabic surface composition and new calibration of monitor silence and explicit `none` decisions. Event logs are supplied only to the teacher and scorer. V4 scoring decodes the actually rendered `surface_phrase`, including the hedge, rather than trusting a latent cause key or an old phrase spelling. Runtime explanations take `EpisodeEvidence` and frozen learned parameters, never truth or disturbance parameters. Original v1–v3 artifacts and documentation are unchanged.
+
+### Design: learned versus given
+
+Given: the teacher’s grammatical complete sentences and corrected phrases, semantic evidence schema, balanced five-condition deployment prior, independent Jeffreys Beta(0.5,0.5) likelihood priors, minimum claim probability 0.5 and confident threshold 0.95. Arabic morphology, vocabulary corrections, and the count-label construction are teacher supervision, not independently discovered grammar. The teacher supplies both noun complements and first/third-person verb complements. The learner removes the paired phrase from each sentence, induces distinct frames, and learns each phrase’s frame index without receiving a clause-type label, cause name, or hand-written complementizer-selection rule. Untaught compositions are rejected rather than guessed. This is controlled phrase/frame learning; it does not generalize inflection to arbitrary Arabic. The existing cause-coordinate links remain those learned cross-situationally in v3, independently per language.
+
+Learned anew: phrase-to-frame choices (including `أنني` for both first-person `none` and hedge clauses, `أنّ` before noun complements, and teacher examples with `أنه`/`أنها`), a probability sentence template induced from two numeric teacher examples, and per-condition frequencies of silence and explicit `none`. The surface phrase corrections and hedge wording are given by the teacher. Numeric probability slots come from the learned calibration model. English disturbed reports remain byte-identical to v3; English absence claims gain matched hedging and a numeric probability. Arabic count reporting uses a grammatical count label for every cardinal rather than an incorrectly invariant `مرة` after arbitrary numerals.
+
+For condition c and event e, the learned posterior-predictive likelihood is `(count(e,c)+0.5)/(n(c)+1)`. Bayes’ rule normalizes these five likelihoods with an explicitly balanced prior. Pooling four unseen disturbance types into one near-zero pooled likelihood is avoided. Silence and an explicit monitor `none` are calibrated separately. Credible intervals propagate Beta likelihood uncertainty (20,000 fixed diagnostic draws, seed 70420); reported probabilities are ratios of posterior-predictive likelihoods, not lower confidence bounds. Claims below 0.5 abstain, 0.5–0.95 hedge, and at least 0.95 use the confident phrase. Neither thresholds nor priors were selected using final episodes. The probability depends on the balanced task mixture and is not a deployment-invariant safety guarantee.
+
+### Teaching, freeze, seeds, and reproducibility
+
+The teaching collection used the unchanged v3 explainer while v4 files were being developed; its saved v3 outputs and question answers were all replayed before fitting, so development-file hash changes are not claimed to be a frozen v4 run. New teaching/calibration: layouts **70000–70019**, disturbance base **81000**, 20 episodes per condition / 100 physical trials, four goals balanced across layouts. Existing monitor residual calibration remains seeds 67400–67407 and attribute teaching seed 67420, matching v3; these are development-only. An initial frozen attempt on 69000–69019 / base 80000 was stopped and invalidated when printed inventory review found question-mark corruption from Windows shell encoding in several new Arabic strings. Its checkpoint, partial workers, logs, tests, and inventory are retained under `language_causes_v4_invalidated_69000_*`; they are excluded from all final scores. Statistical parameters were not tuned after this discovery. Explicit UTF-8 source writing and an independent ASCII-escaped Unicode regression test repair and guard the text. V4 was then frozen again before any replacement final simulation. Fresh final: **69020–69039**, disturbance base **82000**, 100 physical episodes collected by two disjoint modest GPU workers (64 planning samples each); worker files are merged only after complete nonduplicate key checks and matching calibration/source hashes. Seed ranges were checked against prior language result seed fields. Each saved direct-goal episode produces both languages; v3 and v4 replay the identical evidence. These are 100 shared physical trials, not 200 independent samples. Instruction parsing, control, and language-instruction execution were not changed or separately re-evaluated here.
+
+Run from the repository root using the project Python:
+
+```powershell
+$env:PYTHONPATH='.;scripts'
+$env:PYTHONIOENCODING='utf-8'
+$env:OMP_NUM_THREADS='1'
+.venv/Scripts/python.exe scripts/language_causes_v4_eval.py --teaching --checkpoint results/language_causes_v3_checkpoint.json --seed 70000 --count 20 --disturbance-base 81000 --output results/language_causes_v4_teaching.json
+.venv/Scripts/python.exe scripts/language_causes_v4_train.py
+.venv/Scripts/python.exe scripts/language_causes_v4_final.py
+.venv/Scripts/python.exe scripts/language_causes_v4_report.py --docs
+.venv/Scripts/python.exe scripts/language_causes_v4_tests.py --basetemp data/pytest_language_v4_utf8_inherited_20261028 --output results/language_causes_v4_tests_frozen.json
+```
+
+Use a new output name to collect new experiments; `--resume` continues only incomplete matching frozen runs. Do not rerun final seeds for model selection. The report also checks source/model hashes and exactly replays all 200 bilingual explanations and all saved question answers. Tests include exhaustive controlled Arabic clause inventory matching over all causes, goal states, action frames, and representative cardinalities, plus every `none`/hedge complementizer. On this Windows installation pytest’s mode-0700 temporary directories are inaccessible; the test wrapper changes only new project test-directory creation to inherited permissions, restores `os.mkdir` afterward, and never deletes an existing directory.
+
+### Learned absence likelihoods
+
+| Condition | Teaching n | Silent count | P(silent given condition) | Explicit-none count | P(explicit none given condition) |
+|---|---:|---:|---:|---:|---:|
+| none | 20 | 10 | 0.5000 | 8 | 0.4048 |
+| push | 20 | 0 | 0.0238 | 0 | 0.0238 |
+| heavier_object | 20 | 0 | 0.0238 | 0 | 0.0238 |
+| slippery_object | 20 | 0 | 0.0238 | 1 | 0.0714 |
+| camera_shift | 20 | 0 | 0.0238 | 0 | 0.0238 |
+
+`silent`: P(no disturbance given evidence) = **0.8400**, posterior credible 95% [0.6348, 0.9770].
+
+`explicit_none`: P(no disturbance given evidence) = **0.7391**, posterior credible 95% [0.5000, 0.9314].
+
+### Frozen final paired results
+
+Each language has the same counts below because the evidence and semantic mappings agree. Wilson 95% intervals describe these sampled cases. Hedged reports count as issued `none` hypotheses and can still be wrong; the hedge never erases an error.
+
+| Metric, each language | V3 | V4 |
+|---|---:|---:|
+| Correct cause / all episodes | 83/100 [74.5–89.1%] | 83/100 [74.5–89.1%] |
+| Issued cause reports / all episodes | 95/100 [88.8–97.8%] | 95/100 [88.8–97.8%] |
+| Correct / issued reports | 83/95 [79.2–92.6%] | 83/95 [79.2–92.6%] |
+| Correct / confident none reports | 17/18 [74.2–99.0%] | 0/0 (not estimable) |
+| Direct-goal task success | 81/100 [72.2–87.5%] | 81/100 [72.2–87.5%] |
+| Hedged none reports | 0 | 18 |
+
+Paired sign test, each language: only v4 correct **0**, only v3 correct **0**, two-sided p = **1**. These are identical paired outcomes in two languages, not independent replications.
+
+| Condition | V3 cause correct | V4 cause correct |
+|---|---:|---:|
+| none | 17/20 [64.0–94.8%] | 17/20 [64.0–94.8%] |
+| push | 20/20 [83.9–100.0%] | 20/20 [83.9–100.0%] |
+| heavier_object | 17/20 [64.0–94.8%] | 17/20 [64.0–94.8%] |
+| slippery_object | 9/20 [25.8–65.8%] | 9/20 [25.8–65.8%] |
+| camera_shift | 20/20 [83.9–100.0%] | 20/20 [83.9–100.0%] |
+
+### Calibration and reliability
+
+Primary Brier score is the binary forecast P(no disturbance) against the event-log absence of a disturbance, over every episode (lower is better). It is not a multiclass Brier score. The silent subset measures the targeted absence forecasts. A second top-label reliability analysis compares each reported confidence with correctness of the issued cause decision; abstentions are excluded from that conditional analysis and retained in the coverage score. Confident `none` precision uses a shared at-least-0.95 cutoff (and v4’s confident wording). A zero denominator is reported as not estimable, not perfect precision.
+
+| Calibration metric, each language | V3 | V4 |
+|---|---:|---:|
+| Binary none, all episodes: Brier (n) | 0.040189 (100) | 0.041513 (100) |
+| Binary none, silent subset: Brier (n) | 0.001816 (13) | 0.025600 (13) |
+| Top-label report correctness: Brier (n) | 0.126515 (95) | 0.127909 (95) |
+
+| Forecast | Version | Probability bin | n | Mean stated probability | Observed frequency / accuracy [Wilson 95%] |
+|---|---|---|---:|---:|---|
+| No-disturbance forecast | v3 | [0.0, 0.2] | 82 | 0.0000 | 3/82 [1.3–10.2%] |
+| No-disturbance forecast | v3 | [0.2, 0.4] | 0 | — | 0/0 (not estimable) |
+| No-disturbance forecast | v3 | [0.4, 0.6] | 0 | — | 0/0 (not estimable) |
+| No-disturbance forecast | v3 | [0.6, 0.8] | 0 | — | 0/0 (not estimable) |
+| No-disturbance forecast | v3 | [0.8, 1.0] | 18 | 0.9690 | 17/18 [74.2–99.0%] |
+| No-disturbance forecast | v4 | [0.0, 0.2] | 82 | 0.0000 | 3/82 [1.3–10.2%] |
+| No-disturbance forecast | v4 | [0.2, 0.4] | 0 | — | 0/0 (not estimable) |
+| No-disturbance forecast | v4 | [0.4, 0.6] | 0 | — | 0/0 (not estimable) |
+| No-disturbance forecast | v4 | [0.6, 0.8] | 5 | 0.7391 | 4/5 [37.6–96.4%] |
+| No-disturbance forecast | v4 | [0.8, 1.0] | 13 | 0.8400 | 13/13 [77.2–100.0%] |
+| Top-label report | v3 | [0.0, 0.2] | 0 | — | 0/0 (not estimable) |
+| Top-label report | v3 | [0.2, 0.4] | 0 | — | 0/0 (not estimable) |
+| Top-label report | v3 | [0.4, 0.6] | 0 | — | 0/0 (not estimable) |
+| Top-label report | v3 | [0.6, 0.8] | 0 | — | 0/0 (not estimable) |
+| Top-label report | v3 | [0.8, 1.0] | 95 | 0.9941 | 83/95 [79.2–92.6%] |
+| Top-label report | v4 | [0.0, 0.2] | 0 | — | 0/0 (not estimable) |
+| Top-label report | v4 | [0.2, 0.4] | 0 | — | 0/0 (not estimable) |
+| Top-label report | v4 | [0.4, 0.6] | 0 | — | 0/0 (not estimable) |
+| Top-label report | v4 | [0.6, 0.8] | 5 | 0.7391 | 4/5 [37.6–96.4%] |
+| Top-label report | v4 | [0.8, 1.0] | 90 | 0.9769 | 79/90 [79.4–93.0%] |
+
+### Complete controlled Arabic sentence inventory
+
+The following enumerates all reachable sentence templates, plus the additional agreement examples taught to the composer (marked teaching-only). A paragraph is a composition of these sentences. `{value}` ranges over agent estimates, a nonnegative count label, or a numeric probability; infinitely many numeric spellings are represented by the template, not listed separately. No general-purpose Arabic generator or unrestricted paraphrasing is claimed. Definite noun complements retain the article; the indefinite subject after `أنّ` is taught as `قوةً خارجيةً`, and indefinite accusatives include `سببًا`, `شيئًا`, `اضطرابًا صغيرًا`, `ممكنًا`, `اعتمادًا`. Unvowelled standard spellings elsewhere do not assert fully vocalized case annotation.
+
+| Sentence / template | Review note |
+|---|---|
+| تشير أدلتي إلى أنني لم أكتشف سببًا غير معتاد. | learned first-person verb frame; accusative spelling corrected |
+| تشير أدلتي إلى أنني لم ألاحظ شيئًا غير معتاد، لكنّ اضطرابًا صغيرًا قد يمر دون أن ألاحظه. | learned first-person verb frame; accusative spelling corrected |
+| تشير أدلتي إلى أنّ قوةً خارجيةً دفعت ذراعي. | given gender/number agreement; learned noun/pronoun complement frame |
+| تشير أدلتي إلى أنّ الجسم كان أثقل مما توقعت. | given gender/number agreement; learned noun/pronoun complement frame |
+| تشير أدلتي إلى أنّ الجسم انزلق بالنسبة إلى أصابعي. | given gender/number agreement; learned noun/pronoun complement frame |
+| تشير أدلتي إلى أنّ الكاميرا تحركت. | given gender/number agreement; learned noun/pronoun complement frame |
+| تشير أدلتي إلى أنها تحركت. | given gender/number agreement; learned noun/pronoun complement frame (teaching-only) |
+| تشير أدلتي إلى أنه تحرك. | given gender/number agreement; learned noun/pronoun complement frame (teaching-only) |
+| تشير أدلتي إلى أنّ الكتلة الإضافية جعلت الجسم أثقل. | given gender/number agreement; learned noun/pronoun complement frame (teaching-only) |
+| تشير أدلتي إلى أنّ الهدف تحقق. | given gender/number agreement; learned noun/pronoun complement frame (teaching-only) |
+| تشير أدلتي إلى أنّ المهمة تحققت. | given gender/number agreement; learned noun/pronoun complement frame (teaching-only) |
+| تشير أدلتي إلى أنّ الأجسام الأثقل تحركت. | given gender/number agreement; learned noun/pronoun complement frame (teaching-only) |
+| ليس لدي دليل كافٍ لتحديد السبب. | corrected teacher wording/count construction |
+| أعدت معايرة الكاميرا. | unchanged grammatical sentence |
+| حدّثت توقعاتي بشأن الوزن. | corrected teacher wording/count construction |
+| غيّرت أسلوب الحمل إلى حمل الجسم على ارتفاع منخفض مع الإمساك به من مركزه. | corrected teacher wording/count construction |
+| خفضت سرعة الحمل إلى النصف. | unchanged grammatical sentence |
+| فقدت الإمساك بالجسم. عدد مرات إعادة محاولة الإمساك: {value}. | corrected teacher wording/count construction |
+| تشير ملاحظتي الأخيرة إلى تحقق الهدف. | unchanged grammatical sentence |
+| لا تظهر ملاحظتي الأخيرة تحقق الهدف. | unchanged grammatical sentence |
+| ليس لدي رصد نهائي للهدف. | unchanged grammatical sentence |
+| لا أستطيع الإجابة عن هذا السؤال الافتراضي بالأدلة المتاحة من نموذجي. | corrected teacher wording/count construction |
+| لا أستطيع تحديد سبب سقوط الجسم اعتمادًا على تقدير سبب الاضطراب في الحلقة بأكملها. | corrected teacher wording/count construction |
+| في إعادة المحاكاة المحلية بنموذجي، منع هذا التغيير تحقق الهدف الفرعي المختبَر. هذا تنبؤ وليس نتيجة مرصودة. | corrected teacher wording/count construction |
+| في إعادة المحاكاة المحلية بنموذجي، ظل تحقق الهدف الفرعي المختبَر ممكنًا مع هذا التغيير. هذا تنبؤ وليس نتيجة مرصودة. | corrected teacher wording/count construction |
+| قدرت الكتلة الإضافية بحوالي {value} كغ. | unchanged; {value} is an agent estimate |
+| قدرت إزاحة الكاميرا (س، ص، ع) بحوالي {value} مم. | unchanged; {value} is an agent estimate |
+| قدرت البداية عند خطوة التخطيط {value}. | unchanged; {value} is an agent estimate |
+| أقدّر احتمال عدم وجود اضطراب بنحو {value}٪. | new taught probability sentence; {value} is calibrated probability |
+
+### Unedited examples next to scorer-only truth
+
+| Seed / condition / event log / success | English | Arabic |
+|---|---|---|
+| 69020 / none / `[]` / True | My evidence suggests that I noticed nothing unusual, though a small disturbance could go unnoticed. I estimate the probability of no disturbance at about 84.0%. My final observation indicates that the goal was reached. | تشير أدلتي إلى أنني لم ألاحظ شيئًا غير معتاد، لكنّ اضطرابًا صغيرًا قد يمر دون أن ألاحظه. أقدّر احتمال عدم وجود اضطراب بنحو 84.0٪. تشير ملاحظتي الأخيرة إلى تحقق الهدف. |
+| 69020 / push / `[{"t":212,"type":"disturbance_start","disturbance":"push","params":{"body":"hand","force":[-1.0530107620729736,46.90457102026092,0.0]}}]` / True | My evidence suggests that an external force pushed my arm. My final observation indicates that the goal was reached. I estimated onset at planning step 42. | تشير أدلتي إلى أنّ قوةً خارجيةً دفعت ذراعي. تشير ملاحظتي الأخيرة إلى تحقق الهدف. قدرت البداية عند خطوة التخطيط 42. |
+| 69020 / heavier_object / `[{"t":1,"type":"disturbance_start","disturbance":"payload","params":{"body":"red","mass":0.5478086754157062}}]` / True | I do not have enough evidence to identify the cause. I updated my expected weight. I lost my hold and returned to grasping 1 time(s). My final observation indicates that the goal was reached. | ليس لدي دليل كافٍ لتحديد السبب. حدّثت توقعاتي بشأن الوزن. فقدت الإمساك بالجسم. عدد مرات إعادة محاولة الإمساك: 1. تشير ملاحظتي الأخيرة إلى تحقق الهدف. |
+| 69020 / slippery_object / `[{"t":1,"type":"disturbance_start","disturbance":"friction","params":{"body":"red","scale":0.05}}]` / False | My evidence suggests that the object slipped relative to my fingers. I lost my hold and returned to grasping 1 time(s). My final observation does not show the goal reached. | تشير أدلتي إلى أنّ الجسم انزلق بالنسبة إلى أصابعي. فقدت الإمساك بالجسم. عدد مرات إعادة محاولة الإمساك: 1. لا تظهر ملاحظتي الأخيرة تحقق الهدف. |
+| 69020 / camera_shift / `[{"t":185,"type":"disturbance_start","disturbance":"camera_shift","params":{"offset":[0.020753049383231977,-0.029261979767575993,0.00979502688835004]}}]` / True | My evidence suggests that the camera moved. I recalibrated my camera. My final observation indicates that the goal was reached. I estimated camera displacement (x, y, z) of about 21.1, -29.3, 10.2 mm. I estimated onset at planning step 37. | تشير أدلتي إلى أنّ الكاميرا تحركت. أعدت معايرة الكاميرا. تشير ملاحظتي الأخيرة إلى تحقق الهدف. قدرت إزاحة الكاميرا (س، ص، ع) بحوالي 21.1, -29.3, 10.2 مم. قدرت البداية عند خطوة التخطيط 37. |
+
+### Failures and limits
+
+Calibration is assessed once on the new frozen set and is not guaranteed to improve every metric. The inherited non-`none` arm posteriors remain uncalibrated; false pushes and heavier/slippery confusions are outside this language-only change. A hedged “nothing unusual” is still scored wrong when a real disturbance occurred. The given balanced prior may be wrong in deployment, and the per-condition sample sizes leave broad uncertainty. Absence probabilities are conditional on the five taught conditions; unseen disturbance types and sensor failures are not calibrated here. No additional practice, controller change, monitor tuning, novel question-intent training, speech, or unrestricted Arabic morphology was performed.
+
+- V4 cause errors/abstentions, `none`: [69030, 69032, 69035].
+- V4 cause errors/abstentions, `push`: none.
+- V4 cause errors/abstentions, `heavier_object`: [69020, 69025, 69027].
+- V4 cause errors/abstentions, `slippery_object`: [69023, 69024, 69027, 69028, 69030, 69031, 69032, 69034, 69035, 69036, 69038].
+- V4 cause errors/abstentions, `camera_shift`: none.
+
+Physical task failures (shared by the reporting comparisons): `[('push', 69027), ('push', 69037), ('slippery_object', 69020), ('slippery_object', 69023), ('slippery_object', 69025), ('slippery_object', 69026), ('slippery_object', 69028), ('slippery_object', 69029), ('slippery_object', 69030), ('slippery_object', 69032), ('slippery_object', 69033), ('slippery_object', 69034), ('slippery_object', 69035), ('slippery_object', 69037), ('slippery_object', 69038), ('slippery_object', 69039), ('camera_shift', 69032), ('camera_shift', 69035), ('camera_shift', 69036)]`.
+
+Artifacts: `results/language_causes_v4_teaching.json`, `_checkpoint.json`, `_final.json`, `_summary.json`, and `_tests_frozen.json`. Final summary includes all per-episode v3/v4 explanations, raw beliefs, separate truth, numeric forecasts, and reliability bins. The v4 evaluator records project-relative commands and frozen hashes; result files contain no absolute local paths.
+
+### V4 final audit and interpretation
+
+The complete gate passed **94 tests**. The final audit independently replayed **200 bilingual explanations and 2,400 question answers**, matched all **1,300 Arabic output texts** against the full reviewed inventory, and verified the verb-clause complementizer in every emitted Arabic absence report. All **82 English non-absence texts** were identical to v3. Frozen runtime, world-model, and original language-artifact hashes remain unchanged; all new result files pass the local-path privacy check. See `results/language_causes_v4_completion_audit.json` and `_encoding_repair_audit.json`.
+
+**Negative calibration result:** binary Brier worsened from **0.040189 to 0.041513**, and silent-subset Brier worsened from **0.001816 to 0.025600**. All 13 silent final episodes happened to be clean, making v4's conservative 0.84 less accurate on that subset than v3's 0.957. The five explicit-none cases were four clean and one disturbed; v4 stated 0.739 for each. Overall cause decisions were unchanged (83/100, coverage 95/100, precision 83/95, sign-test p=1). V4 hedged all 18 absence reports, including the one disturbed case; that case remains a scored error. It issued **zero confident absence claims**, so their precision is **not estimable**, not 100%. These results support the Arabic repair and a more cautious reporting policy; they do **not** demonstrate improved held-out probability calibration. No parameters were retuned after this negative result.
+
+Reliability uses unrounded JSON confidence/forecast values; absence sentences display one decimal percent. Wilson intervals are descriptive episode-level intervals: 20 layouts are reused across five conditions, so no layout-cluster correction is claimed. The 48 saved episodes from the encoding-invalidated attempt remain excluded, along with its incomplete in-flight episodes. No other stages or default language entry points were changed, and no git-state-changing commands were run.
