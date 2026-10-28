@@ -334,3 +334,35 @@ def test_touch_breaks_a_persistent_false_wall():
             break
         obs = env.step(move)
     assert len(world.visited) > 40
+
+
+def test_head_camera_reads_most_cells_correctly():
+    """The G1's head camera, turned into cell readings, agrees with the true maze for most cells
+    it reports (errors are open floor read as wall next to walls)."""
+    pytest.importorskip("mujoco")
+    from pai.maze.ego_camera import EgoCameraMaze
+    from pai.maze.walker import WalkerMaze
+
+    world = MazeWorld(seed=20002)
+    cam = EgoCameraMaze(WalkerMaze(world, seed=1, wall_height=1.4))
+    try:
+        seen = cam.observe().visible
+    finally:
+        cam.close()
+    truth = lambda c: "wall" if world.grid[c] else ("goal" if c == world.goal else "floor")
+    assert len(seen) >= 10
+    assert np.mean([seen[c] == truth(c) for c in seen]) > 0.75
+
+
+def test_odometry_starts_exact_and_drifts_slowly():
+    """Own odometry starts at the true pose and stays within a few centimetres over two cells."""
+    pytest.importorskip("mujoco")
+    from pai.maze.walker import WalkerMaze
+
+    world = MazeWorld(seed=20002)
+    walker = WalkerMaze(world, seed=1, odometry=True)
+    assert np.allclose(walker.est_xy, walker.true_xy())
+    for d in ((1, 0), (1, 0)):
+        if not world.grid[world.position[0] + d[0], world.position[1] + d[1]]:
+            walker.step(d)
+    assert np.linalg.norm(walker.est_xy - walker.true_xy()) < 0.3

@@ -88,7 +88,9 @@ class WalkerMaze:
 
     def __init__(self, world: MazeWorld, policy: Path = POLICY, cell: float = 1.0, seed: int = 0,
                  speed: float = 0.6, step_timeout_s: float = 8.0, device: str = "cpu",
-                 wall_height: float = 0.5, solid: bool = True, stall_s: float = 1.0):
+                 wall_height: float = 0.5, solid: bool = True, stall_s: float = 1.0,
+                 odometry: bool = False, odo_seed: int | None = None,
+                 odo_speed_noise: float = 0.05, odo_scale_sd: float = 0.03, odo_gyro_bias_sd: float = 0.001):
         self.world = world
         self.cell = cell
         self.speed = speed
@@ -108,15 +110,52 @@ class WalkerMaze:
         self.bumps = 0
         self.frames: list | None = None
         self.on_frame = None          # optional callback(env) after every control step (video)
+        # Own odometry (Part C step 2): heading from the integrated gyro (with a per-episode bias),
+        # position from the integrated body velocity (per-episode scale error and white noise; a
+        # real robot estimates it from leg kinematics). The walker then steers by this estimate;
+        # the simulator pose is used only to keep the grid's ground truth for scoring.
+        self.odometry = odometry
+        rng = np.random.default_rng(seed + 920000 if odo_seed is None else odo_seed)
+        self._odo_rng = rng
+        self._odo_noise = odo_speed_noise
+        self._odo_scale = 1.0 + rng.normal(0.0, odo_scale_sd)
+        self._odo_bias = rng.normal(0.0, odo_gyro_bias_sd)
+        self.est_xy = self.env.qpos()[0, 0:2].copy()
+        self.est_yaw = float(self.env.yaw()[0])
+        self._yaw_err = 0.0
 
     # ------------------------------------------------------------------ body
-    def xy(self) -> np.ndarray:
+    def true_xy(self) -> np.ndarray:
         return self.env.qpos()[0, 0:2].copy()
+
+    def xy(self) -> np.ndarray:
+        """Where the walker believes it is: its odometry estimate, or the simulator pose."""
+        return self.est_xy.copy() if self.odometry else self.true_xy()
+
+    def yaw(self) -> float:
+        return self.est_yaw if self.odometry else float(self.env.yaw()[0])
+
+    def _command(self, vx: float, vy: float, heading: float):
+        """Heading goals are in the walker's own frame; its controller closes the loop on its own
+        IMU, modelled as the simulator yaw plus the odometry's heading error."""
+        if self.odometry:
+            heading = heading + float(self.env.yaw()[0]) - self.est_yaw
+        self.env.set_command([0], vx, vy, 0.0, heading=heading)
 
     def _tick(self) -> bool:
         a = self.ctrl.act(self.obs)
         self.obs, _, _, info = self.env.step(a)
         self.t += self.env.cfg.ctrl_dt
+        if self.odometry:
+            dt = self.env.cfg.ctrl_dt
+            k = self.env.kinematics()
+            # an IMU integrates its gyro far faster than 50 Hz: its heading is the body's heading
+            # plus a slowly growing error (gyro bias and noise integrated)
+            self._yaw_err += (self._odo_bias + self._odo_rng.normal(0.0, 0.002)) * dt
+            self.est_yaw = float(k["yaw"][0]) + self._yaw_err
+            v = self._odo_scale * k["v_head"][0, :2] + self._odo_rng.normal(0.0, self._odo_noise, 2)
+            c, s_ = np.cos(self.est_yaw), np.sin(self.est_yaw)
+            self.est_xy += dt * np.array([c * v[0] - s_ * v[1], s_ * v[0] + c * v[1]])
         if self.on_frame is not None:
             self.on_frame(self.env)
         if bool(info["fell"][0]):
@@ -135,16 +174,16 @@ class WalkerMaze:
             d = target_xy - self.xy()
             dist = float(np.linalg.norm(d))
             if dist < 0.15 * self.cell:
-                self.env.set_command([0], 0.0, 0.0, 0.0, heading=float(self.env.yaw()[0]))
+                self._command(0.0, 0.0, self.yaw())
                 return StepReport(self.t - t0, False, False, True)
             heading = float(np.arctan2(d[1], d[0]))
-            err = abs(float(wrap(heading - self.env.yaw()[0])))
+            err = abs(float(wrap(heading - self.yaw())))
             # turn on the spot first, then walk while steering toward the target point
             v = 0.0 if err > np.radians(25) else min(self.speed, 1.5 * dist)
-            self.env.set_command([0], v, 0.0, 0.0, heading=heading)
+            self._command(v, 0.0, heading)
             if self._tick():
                 return StepReport(self.t - t0, True, False, False)
-            here = self._cell_of(self.xy())
+            here = self._cell_of(self.true_xy())      # physics: the body cannot be inside a wall
             if stop_if_wall and self._is_wall(here):
                 return StepReport(self.t - t0, False, True, False)
             if v > 0.2:
@@ -162,16 +201,15 @@ class WalkerMaze:
         """After a bump: step backwards to the cell centre keeping the heading (no turning on the
         spot against the wall), within the practised command range (vx >= -0.3, |vy| <= 0.3)."""
         t0 = self.t
-        yaw = float(self.env.yaw()[0])
+        yaw = self.yaw()
         while self.t - t0 < self.timeout:
             d = target_xy - self.xy()
             if float(np.linalg.norm(d)) < 0.15 * self.cell:
-                self.env.set_command([0], 0.0, 0.0, 0.0, heading=yaw)
+                self._command(0.0, 0.0, yaw)
                 return StepReport(self.t - t0, False, False, True)
             c, s = np.cos(yaw), np.sin(yaw)
             fwd, left = c * d[0] + s * d[1], -s * d[0] + c * d[1]      # target in the heading frame
-            self.env.set_command([0], float(np.clip(1.5 * fwd, -0.3, 0.3)),
-                                 float(np.clip(1.5 * left, -0.3, 0.3)), 0.0, heading=yaw)
+            self._command(float(np.clip(1.5 * fwd, -0.3, 0.3)), float(np.clip(1.5 * left, -0.3, 0.3)), yaw)
             if self._tick():
                 return StepReport(self.t - t0, True, False, False)
         return StepReport(self.t - t0, False, False, False)
@@ -191,9 +229,43 @@ class WalkerMaze:
     def observe(self, collided: bool = False) -> Observation:
         return self.world.observe(collided)
 
+    def est_cell(self) -> Cell:
+        """The cell the walker believes it is in (odometry), or the true cell."""
+        return self._cell_of(self.xy())
+
+    def _step_odometry(self, direction: Cell) -> Observation:
+        """Move by the walker's own estimate; afterwards the grid's ground truth (for scoring only)
+        is set to the cell the body is really in."""
+        p = self.est_cell()
+        target = (p[0] + direction[0], p[1] + direction[1])
+        rep = self._walk_to(cell_xy(target, self.world.start, self.cell))
+        self.walk_seconds += rep.seconds
+        if rep.bumped:
+            self.bumps += 1
+            back = self._back_off(cell_xy(p, self.world.start, self.cell))
+            self.walk_seconds += back.seconds
+        w = self.world
+        w.steps += 1
+        true_cell = self._cell_of(self.true_xy())
+        if rep.bumped:
+            w.events.append({"step": w.steps, "type": "collision" if self._is_wall(target) else "felt_blocked",
+                             "position": true_cell})
+        elif not rep.reached:
+            w.events.append({"step": w.steps, "type": "walk_failed", "position": true_cell})
+        if true_cell != w.position and not self._is_wall(true_cell):
+            w.position = true_cell
+            if true_cell not in w.visited:
+                w.events.append({"step": w.steps, "type": "place_discovered", "position": true_cell})
+            w.visited.add(true_cell)
+        if w.position == w.goal:
+            w.events.append({"step": w.steps, "type": "goal_reached", "position": w.goal})
+        return w.observe(rep.bumped)
+
     def step(self, direction: Cell) -> Observation:
         if self.fell:
             raise RuntimeError("the walker fell; the episode is over")
+        if self.odometry:
+            return self._step_odometry(direction)
         p = self.world.position
         target = (p[0] + direction[0], p[1] + direction[1])
         rep = self._walk_to(cell_xy(target, self.world.start, self.cell))

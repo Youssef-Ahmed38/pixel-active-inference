@@ -43,11 +43,12 @@ def wilson(k,n):
     return dict(k=int(k),n=int(n),rate=float(p),wilson95=[max(0.,float(mid-half)),min(1.,float(mid+half))])
 
 
-def metrics(rows,predictions):
-    confusion={c:{p:0 for p in CAUSES} for c in CAUSES[:3]}
+def metrics(rows,predictions,causes=CAUSES[:3]):
+    causes=tuple(causes)
+    confusion={c:{p:0 for p in causes+('unknown',)} for c in causes}
     for row,p in zip(rows,predictions):
         confusion[row['label']][p]+=1
-    recalls={c:wilson(confusion[c][c],sum(confusion[c].values())) for c in CAUSES[:3]}
+    recalls={c:wilson(confusion[c][c],sum(confusion[c].values())) for c in causes}
     return dict(accuracy=wilson(sum(r['label']==p for r,p in zip(rows,predictions)),len(rows)),
         balanced_accuracy=float(np.mean([v['rate'] for v in recalls.values() if v['rate'] is not None])),
         per_class_recall=recalls,confusion_true_by_pred=confusion,
@@ -82,9 +83,13 @@ def collect(args):
     wm=EnsembleBodyModel(ck['train_cfg']['wm_members'])
     wm.load_state_dict(ck['model'])
     wm.to(args.device).eval()
-    body,addresses=instrumented_body()
     conditions=args.conditions.split(',')
     n=args.per*len(conditions)
+    walls='wall' in conditions
+    if walls:
+        # one solid wall per body (its own dynamics variant), parked until the injection
+        ecfg.walls,ecfg.wall_frac,ecfg.n_variants=1,0.,n
+    body,addresses=instrumented_body(walls=int(walls))
     env=LocomotionEnv(n,ecfg,seed=args.seed,stage=len(ecfg.stages)-1,body=body)
     env.pushes_enabled=False
     env.set_command(np.arange(n),0.,0.,0.)
@@ -135,6 +140,21 @@ def collect(args):
                     env.set_command(ids,args.slip_command,0.,0.,heading=start_yaw[ids])
                     for i in ids:
                         truth_events[int(i)]=dict(type='slip',time=args.inject_at,friction_multiplier=.05)
+                elif cause=='wall':
+                    # a wall appears 0.3-0.8 m ahead (face) while the goal drives the body into it
+                    gap=rng.uniform(.3,.8,len(ids))
+                    speed=rng.uniform(.6,1.2,len(ids))
+                    pos=env.qpos()[:,:2]
+                    yaw=env.yaw()
+                    for j,i in enumerate(ids):
+                        m=env.models[i]
+                        g=m.geom('train_wall_0').id
+                        ahead=np.array([np.cos(yaw[i]),np.sin(yaw[i])])
+                        m.geom_pos[g,:2]=pos[i]+(gap[j]+.5)*ahead
+                        m.geom_quat[g]=[np.cos(yaw[i]/2),0.,0.,np.sin(yaw[i]/2)]
+                        truth_events[int(i)]=dict(type='wall',time=args.inject_at,gap_m=float(gap[j]),speed=float(speed[j]))
+                    for j,i in enumerate(ids):
+                        env.set_command([i],float(speed[j]),0.,0.,heading=float(yaw[i]))
                 elif cause=='gait':
                     gait_error_commands(env,ids,rng)
                     for i in ids:
@@ -178,8 +198,18 @@ def collect(args):
     mujoco.set_mju_user_warning(None)
 
 
+def refeature(data):
+    """Recompute every record's features from its stored sensor trace with the current extractor
+    (development data collected before a feature was added)."""
+    for r in data['records']:
+        trace=unpack_trace(r['evidence'])
+        r['features'],r['onsets']=extract_features(trace)
+        r['tail_features'],_=extract_features(trace[-100:])
+    return data
+
+
 def fit(args):
-    datasets=[json.loads(Path(p).read_text(encoding='utf-8')) for p in args.inputs]
+    datasets=[refeature(json.loads(Path(p).read_text(encoding='utf-8'))) for p in args.inputs]
     if not all(d['complete'] for d in datasets):
         raise ValueError('Incomplete development collection')
     candidates=[]
@@ -191,7 +221,7 @@ def fit(args):
                 valid=datasets[hold]['records']
                 model=LearnedFallLikelihood.fit(feature_rows(train,kind),[r['label'] for r in train],shrinkage)
                 p=model.posterior(feature_rows(valid,kind))
-                result=metrics(valid,[CAUSES[j] for j in p.argmax(1)])
+                result=metrics(valid,[model.labels[j] for j in p.argmax(1)],model.causes)
                 results.append(dict(seed=datasets[hold]['seed'],**result))
             candidates.append(dict(feature_kind=kind,shrinkage=shrinkage,folds=results,
                 balanced_accuracy=float(np.mean([r['balanced_accuracy'] for r in results]))))
@@ -200,7 +230,7 @@ def fit(args):
     model=LearnedFallLikelihood.fit(feature_rows(rows,best['feature_kind']),[r['label'] for r in rows],best['shrinkage'])
     save(args.output,dict(development_seeds=[d['seed'] for d in datasets],
         sources={str(p):digest(p) for p in args.inputs},candidate_scores=candidates,selected=best,
-        learned_model=model.to_dict(),class_counts={c:sum(r['label']==c for r in rows) for c in CAUSES[:3]},
+        learned_model=model.to_dict(),class_counts={c:sum(r['label']==c for r in rows) for c in model.causes},
         provenance=provenance(args),unknown_note='Broad Student-t form and prior given; pooled center/scale learned. No real unknown labels.'))
     print(json.dumps({k:best[k] for k in ('feature_kind','shrinkage','balanced_accuracy')},indent=2))
 
@@ -229,30 +259,30 @@ def score(args):
         if evidence_features!=row['features']:
             raise ValueError('Feature record cannot be replayed')
         outrows.append(dict(body=row['body'],truth=row['label'],fall_time=row['fall_time'],
-            inferred=CAUSES[int(p.argmax())],posterior=dict(zip(CAUSES,map(float,p))),
+            inferred=model.labels[int(p.argmax())],posterior=dict(zip(model.labels,map(float,p))),
             old_inferred=CAUSES[int(q.argmax())],old_posterior=dict(zip(CAUSES[:3],map(float,q))),
             model_features=feature_rows([row],checkpoint['selected']['feature_kind'])[0],
             whole_history_features=row['features'],whole_history_onsets=row['onsets'],truth_event=row['truth_event']))
     result=dict(seed=data['seed'],calibration_seed=calibration['seed'],
         final_data=str(args.input),final_data_sha256=digest(args.input),model_sha256=digest(args.model),
         calibration_sha256=digest(args.calibration),old_calibration=cal.to_dict(),
-        new=metrics(rows,[CAUSES[j] for j in probabilities.argmax(1)]),
-        old=metrics(rows,[CAUSES[j] for j in old.argmax(1)]),records=outrows,provenance=provenance(args))
+        new=metrics(rows,[model.labels[j] for j in probabilities.argmax(1)],model.causes),
+        old=metrics(rows,[CAUSES[j] for j in old.argmax(1)],model.causes),records=outrows,provenance=provenance(args))
     # Covariate variants are shared by bodies i % n_variants. A grouped bootstrap
     # complements the requested per-fall Wilson intervals, especially for BA.
     rng=np.random.default_rng(80500)
     variants=np.array([r['body']%data['config']['n_variants'] for r in rows])
     unique=np.unique(variants)
     labels=np.array([r['label'] for r in rows])
-    for name,post in (('new',probabilities),('old',old)):
-        guessed=np.array([CAUSES[j] for j in post.argmax(1)])
+    for name,post,names in (('new',probabilities,model.labels),('old',old,CAUSES)):
+        guessed=np.array([names[j] for j in post.argmax(1)])
         balanced=[]
         accuracy=[]
         for _ in range(5000):
             draws=rng.choice(unique,len(unique),replace=True)
             counts=np.bincount(draws,minlength=int(unique.max())+1)[variants]
             rec=[]
-            for cause in CAUSES[:3]:
+            for cause in model.causes:
                 mask=labels==cause
                 if counts[mask].sum():
                     rec.append(float(np.sum(counts[mask]*(guessed[mask]==cause))/counts[mask].sum()))

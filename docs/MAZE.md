@@ -550,6 +550,77 @@ the eye-view image.
 
     python scripts/maze_walker_demo.py --seed 77104 --branchy --pov --every 18
 
+## 12. The walker sees through its own eyes (head camera and own odometry)
+
+Until now the maze agent's view came from the grid sensor and its position from the simulator. Here
+both come from the robot itself.
+
+**Seeing** (`pai/maze/ego_camera.py`). After every move the G1 looks around with a head-height camera
+(four 160x120 views, colour and depth, 90 degrees apart; walls 1.4 m high so the camera sees down the
+corridors). Depth pixels become 3-D points relative to the body; points more than 0.25 m above the
+floor are obstacle, points at floor level are open floor, floor pixels with the goal disc's gold
+colour (by chromaticity: the rendered disc is dark gold, about 75/58/11) are goal. Two geometric
+rules: a surface seen on the boundary between two cells belongs to the cell farther from the viewer
+(the viewer stands in free space, so a wall face is not the open cell in front of it), and the edge
+of a wall's top surface is ambiguous and dropped; points within 0.35 m of the pelvis are the robot's
+own body. On development mazes about 9% of the cells it reports are wrong, all open floor read as
+wall near walls, and a reading repeats from the same spot: the persistent kind of error of section
+10.2.
+
+**Learning the camera** (no simulator labels). In 20 practice mazes the agent walks with the camera
+and fits the camera's sensor model by EM over its own looks, anchored by labels from its body (stood
+on: open; bumped: wall; stood on gold: goal), and learns the repeat-look weight from how often
+repeat looks disagree (`pai/maze/self_calibration.py`). Development: walls are read as walls 98%,
+open floor as wall 21%, the goal is recognised 57% of the time; repeat looks from one spot disagree
+6% vs 13% across viewpoints, so the learned repeat weight is 0.47.
+
+**Own odometry** (`pai/maze/walker.py`, `odometry=True`). Heading from the IMU (true heading plus an
+integrated gyro bias of about 0.001 rad/s and noise), position from integrating the body's velocity
+with a per-episode 3% scale error and 0.05 m/s noise (a real robot estimates it from leg
+kinematics). The walker steers by this estimate; the simulator pose is used only to keep the grid's
+ground truth for scoring. Pure odometry drifts (median 0.48 m, up to 1.7 m over 50 moves on a
+development maze).
+
+**Localization as inference.** The robot's pose is a hidden state: before a new view enters the map,
+the camera tries small pose corrections (+-0.3 m, +-0.1 rad) and keeps the one under which the
+view's points best fit the agent's own map, with a Gaussian odometry prior. On the same development
+maze, median drift fell from 0.48 m to 0.09 m.
+
+**Visiting seen cells.** The camera sees cells far away, so many cells are seen but never stood on.
+The route planner's rule "an unvisited cell is always worth a visit" then sent the walker to nearby
+cells already read as plain floor (zero information). With a long-range sensor a visit is now worth
+it only if the agent's own goal belief there exceeds 0.005 or the route brings information
+(`RouteEFEExplorer(min_goal_belief=0.005)`; the grid-sensor results keep the old rule).
+
+**Final** (frozen after the development runs; 30 new branchy mazes 82000-82029, never used; walker v4;
+camera sensor model and repeat weight learned in 20 practice mazes with the camera and own odometry:
+walls read as walls 98.5%, open floor as wall 22%, goal recognised 52%, repeat weight 0.42):
+
+| Agent (same mazes) | Goals found (Wilson 95%) | Falls | Bumps | Median final drift |
+|---|---:|---:|---:|---:|
+| walker + grid sensor, route EFE (reference) | 27/30 [74.4, 96.5] | 0 | 0 | - |
+| walker + grid sensor, nearest frontier | 18/30 | 0 | 0 | - |
+| **walker + head camera + own odometry, route EFE** | **26/30** [70.3, 94.7] | 0 | 17 | **5 cm** |
+| same, nearest frontier | 17/30 | 1 | 1 | 4 cm |
+| same, route EFE counting repeat looks | 21/30 | 0 | 0 | 5 cm |
+
+Paired sign tests (camera route EFE vs ...): nearest frontier 9/0, **p = 0.004**; counting repeat looks
+6/1, p = 0.125; the grid-sensor reference 1/2, p = 1.0. **Reading.** Seeing through its own camera and
+knowing its position only from its own odometry (corrected against its own map) costs the agent almost
+nothing here (26 vs 27 goals), and curiosity still beats nearest-frontier exploration clearly. What is
+still given: the cell size, wall height, the goal's colour, the camera's mounting and intrinsics, the
+odometry's noise model (the drift itself is not given: it is estimated and corrected), and the
+body's velocity estimate (simulated rather than computed from leg kinematics). `results/maze_camera_final.json`.
+
+    python scripts/maze_camera_eval.py --test-start 82000 --num 30 --workers 5 --odometry --policy runs/locomotion/policy_v4/policy.pt --output results/maze_camera_final.json
+
+<img src="media/maze/walker_maze_branchy_camera.gif" width="480">
+
+`media/maze/walker_maze_branchy_camera.mp4` (demo maze 74005, final calibration): top, the G1 from
+above and its actual head-camera image; bottom, its belief map (red: where it believes it is; a white
+ring appears when that differs from where it really is), the cells its camera reported this step,
+and its decision. Goal found at step 109, no fall.
+
 # First build (v1), before the active-inference rewrite
 
 Kept for the record; its numbers come from the earlier explorer (`pai/maze/agent.py`).

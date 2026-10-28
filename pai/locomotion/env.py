@@ -28,7 +28,7 @@ import mujoco
 import numpy as np
 from mujoco import rollout
 
-from pai.locomotion.body import CONTROL_SPEC, G1Body, Randomization, load_body, randomized_models
+from pai.locomotion.body import CONTROL_SPEC, G1Body, Randomization, load_body, place_walls, randomized_models
 
 OBS_DIM = 50
 ACT_DIM = 12
@@ -97,6 +97,11 @@ class EnvConfig:
     randomize: bool = True
     n_variants: int = 32
     nthread: int = 6
+    # wall-contact practice: ``walls`` solid 1 m blocks placed in a fraction ``wall_frac`` of the
+    # dynamics variants, ``wall_radius`` metres from the start (0 = no walls, as before)
+    walls: int = 0
+    wall_frac: float = 0.5
+    wall_radius: tuple[float, float] = (1.0, 3.0)
     reward: RewardWeights = field(default_factory=RewardWeights)
     stages: tuple[Stage, ...] = DEFAULT_STAGES
 
@@ -106,7 +111,7 @@ class EnvConfig:
         rw = RewardWeights(**d.pop("reward", {}))
         stages = d.pop("stages", None)
         st = tuple(Stage(**s) for s in stages) if stages else DEFAULT_STAGES
-        for k in ("push_interval_s", "resample_s"):
+        for k in ("push_interval_s", "resample_s", "wall_radius"):
             if k in d:
                 d[k] = tuple(d[k])
         return cls(reward=rw, stages=st, **d)
@@ -148,12 +153,14 @@ class LocomotionEnv:
                  stage: int = 0, body: G1Body | None = None):
         self.cfg = cfg or EnvConfig()
         self.n = num_envs
-        self.body = body or load_body()
+        self.body = body or load_body(walls=self.cfg.walls)
         self.rng = np.random.default_rng(seed)
         m = self.body.model
         self.substeps = int(round(self.cfg.ctrl_dt / m.opt.timestep))
         if self.cfg.randomize:
             variants = randomized_models(self.body, self.cfg.n_variants, self.rng, Randomization())
+            self.wall_layout = (place_walls(variants, self.rng, self.cfg.walls, self.cfg.wall_frac,
+                                            self.cfg.wall_radius) if self.cfg.walls else [])
             self.models = [variants[i % len(variants)] for i in range(num_envs)]
         else:
             self.models = [m] * num_envs

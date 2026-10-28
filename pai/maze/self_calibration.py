@@ -39,6 +39,8 @@ def collect_practice(seeds: list[int], make_env, make_agent, steps: int = 160):
                 if cell != bumped:  # a bump is touch, not a look
                     views[(s, cell)].append((obs.position, KIND_TO_IDX[kind]))
         anchors[(s, obs.position)] = KIND_TO_IDX["goal" if obs.reached_goal else "floor"]
+        if hasattr(env, "close"):
+            env.close()                      # e.g. the camera sensor's OpenGL renderers
     return dict(views), anchors
 
 

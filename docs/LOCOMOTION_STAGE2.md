@@ -74,10 +74,85 @@ preferences weighted higher (lin 2.5, yaw 1.6, defaults 2.0 and 0.8); after B th
 time (was 30%) with yaw weight 2.2 and half the learning rate. The development check after C passed
 everything (`results/locomotion/dev_v3.json`, `dev_v3c.json`), and the final gates were then run once
 on new seeds 54000+: every gate passes, and push recovery at 1.0 m/s rises from 53% (v1) to 100%,
-at 1.25 m/s from 17% to 93%. It is weaker than v2 at 1.5 m/s (33% vs 60%). v3 is the released
-controller.
+at 1.25 m/s from 17% to 93%. It is weaker than v2 at 1.5 m/s (33% vs 60%). v3 was released until
+v4 below.
+
+### v4: walls (released 2026-10-28)
+
+**Problem.** In the maze the walker fell in 24 of 240 noisy-sensing episodes, when its agent walked it
+into a wall it wrongly believed open: the policy had never touched a wall. A fixed **wall test**
+(`scripts/locomotion_eval.py --only walls`) measures it: 40 bodies walk at 0.6 m/s toward a solid
+wall block 0.8-1.5 m ahead along their start heading, keep pushing for 6 s, then back off at
+-0.3 m/s for 3 s (what the maze walker does when blocked). Every body reaches its wall.
+
+**Training.** v4 continues v3 (phase C) for 1.1 h more (`configs/locomotion_v4.yaml`, 391 M steps in
+total): about half of the 32 dynamics variants get four solid 1 m wall blocks 1-3 m from the start
+(`pai/locomotion/body.py:place_walls`; the walls collide with every collision capsule of the body
+through one collision bit nothing else uses), the other half keep open-ground practice so earlier
+skills are not forgotten (v2's lesson). No new sensors and no wall reward: the robot feels contact
+only through its own body, as in the maze; the preference is unchanged (do not fall, track the goal).
+
+**Release rule (fixed before the final run):** v4 replaces v3 only if every existing gate holds.
+Development (seeds 52000+): all gates hold (run 19/20, headings 20/20 at 2.3 degrees), wall test
+**1/40 falls vs 10/40 for v3**. Final, once, on new seeds 57000+:
+
+| Final, seeds 57000+ | v3 | **v4** |
+|---|---|---|
+| Stand 30 s, walk 10 m, headings, run 2 m/s | (its own final, 54000+: 20/20 each) | **20/20 each**, headings 2.1 degrees, run 1.93 m/s |
+| **Wall test: falls (same 40 bodies and walls)** | **14/40** | **2/40** |
+| Push recovery 1.0 / 1.25 / 1.5 m/s (same 30 bodies per size) | 97% / 70% / 50% | 97% / **80%** / 50% |
+
+`results/locomotion/final_v4.json`, `final_v3_walls.json`, `final_v3_pushes57.json`. v4 is the released
+controller (`runs/locomotion/policy_v4/policy.pt`). On development seeds v4 recovered less often
+from 1.5 m/s pushes than v3 (23% vs 47%); on the final seeds, paired, they are equal (50%).
+
+<img src="media/locomotion/g1_wall_contact.gif" width="480">
+
+`media/locomotion/g1_wall_contact.mp4`: the same body walks into the same wall with v3 (left, falls)
+and v4 (right, stays up and backs off). Seed 57100, chosen from five as an example where they
+differ (in 3 of the 5 both stayed up, in 2 only v4); the numbers are in the table.
 
 ## Fall causes
+
+### Four causes on the released v4 (final, three new seeds; 2026-10-28)
+
+The robot now names four causes of a fall from its own senses: its own gait error, a push, a slip,
+and **hitting a wall** (new: at the injection a solid wall appears 0.3-0.8 m ahead while the goal
+drives the body into it at 0.6-1.2 m/s; `scripts/locomotion_fall_causes.py --conditions
+gait,push,slip,wall`). The learned model carries its own list of causes (a model fitted without wall
+falls is the three-cause model of PR #3). Two changes to the evidence, both from the robot's own
+senses: onset times of the joint-position and joint-velocity residuals, and **which went first**
+(an own stumble disturbs the joints before the pelvis, a push the pelvis before the joints).
+
+Development (v4, seeds 58006-58008, held-out-seed cross-validation): the timing features reduced
+own gait errors called push from 22 to 18 of 174, balanced accuracy 92.8% to 93.2%; the selection
+(tail features, shrinkage 0.5) is the fit's own. Then frozen; final once on three new seeds
+59006-59008 (calibration for the old method: 66000), scored on exactly the same falls as the old
+authored likelihoods:
+
+| Final, 3 seeds pooled (Wilson 95%) | Learned, four causes | Old authored rule |
+|---|---:|---:|
+| Accuracy | **504/544 = 92.6%** [90.1, 94.6] | 227/544 = 41.7% [37.7, 45.9] |
+| Own gait error | 148/171 = 86.5% [80.6, 90.9] | 169/171 |
+| Push | 163/164 [96.6, 99.9] | 52/164 |
+| Slip | 170/180 = 94.4% [90.1, 97.0] | 6/180 |
+| **Wall** (new) | **23/29 = 79%** [61.6, 90.2] | 0/29 (no such cause) |
+
+Per seed: accuracy 177/190, 169/180, 158/174; slip 58/60, 57/60, 55/60 (stable across seeds, unlike
+58/60 vs 47/60 before); wall 11/14, 9/10, 3/5; balanced accuracy 90.3%, 93.1%, 84.0% (the last with
+only 5 wall falls; cluster-bootstrap intervals per seed in the result files). What is still wrong:
+**17 own gait errors are called push** (gait recall 86.5%, up from 81.2% for the three-cause model
+on v3, but below the old rule's 98.8%); 6 of 29 wall falls are called push or unknown. Wall falls are
+few because v4 rarely falls at a wall (on average 9 of 60 bodies per seed fell after a wall appeared).
+`results/locomotion/fall_causes4_{dev_*,model,calibration_66000,final_*}.json`; exact commands below.
+
+    python -m scripts.locomotion_fall_causes collect --policy runs/locomotion/policy_v4/policy.pt --ckpt runs/locomotion/policy_v4/ckpt_last.pt --threads 8 --device cuda --seed 58006 --conditions gait,push,slip,wall --output results/locomotion/fall_causes4_dev_58006.json   # also 58007, 58008
+    python -m scripts.locomotion_fall_causes fit --policy ... --ckpt ... --inputs results/locomotion/fall_causes4_dev_5800{6,7,8}.json --output results/locomotion/fall_causes4_model.json
+    python -m scripts.locomotion_fall_causes collect ... --seed 66000 --conditions gait --output results/locomotion/fall_causes4_calibration_66000.json
+    python -m scripts.locomotion_fall_causes collect ... --seed 59006 --conditions gait,push,slip,wall --output results/locomotion/fall_causes4_final_data_59006.json   # also 59007, 59008
+    python -m scripts.locomotion_fall_causes score ... --input results/locomotion/fall_causes4_final_data_59006.json --model results/locomotion/fall_causes4_model.json --calibration results/locomotion/fall_causes4_calibration_66000.json --output results/locomotion/fall_causes4_final_59006.json
+
+The sections below are the three-cause work on v3 (PR #3), kept as measured.
 
 ### Learned sensor likelihoods: fresh gate
 

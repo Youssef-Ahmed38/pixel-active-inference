@@ -187,9 +187,13 @@ class RouteEFEExplorer(ActiveInferenceExplorer):
     agent does not dither between frontiers whose scores change a little at every step.
     """
 
-    def __init__(self, *args, switch_margin: float = 1.0, **kwargs):
+    def __init__(self, *args, switch_margin: float = 1.0, min_goal_belief: float | None = None, **kwargs):
         super().__init__(*args, **kwargs)
         self.switch_margin = switch_margin
+        # None: every unvisited cell is worth a visit (all grid-sensor results). With a long-range
+        # sensor (the head camera) many cells are seen but not stood on; a visit is then worth it only
+        # if the agent's own belief that the goal is there exceeds this, or the route brings information.
+        self.min_goal_belief = min_goal_belief
 
     def _tree(self, start: Cell) -> tuple[dict[Cell, Cell], list[Cell]]:
         parent: dict[Cell, Cell] = {start: start}
@@ -288,7 +292,11 @@ class RouteEFEExplorer(ActiveInferenceExplorer):
         # misreads a cell already seen from every reachable spot has nothing left, and going there
         # and back is a dead loop. An unvisited cell is always worth a visit (it may be the goal).
         def worth(q: Cell) -> bool:
-            return q not in self.map.visits or gain[q] > 0.01
+            if q in self.map.visits:
+                return gain[q] > 0.01
+            if self.min_goal_belief is None:
+                return True
+            return gain[q] > 0.01 or float(beliefs[q[0], q[1], 2]) > self.min_goal_belief
 
         candidates = [q for q in self.map.frontiers(p) if q in parent and worth(q)]
         if not candidates:
