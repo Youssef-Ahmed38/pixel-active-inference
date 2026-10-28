@@ -84,3 +84,26 @@ def test_read_only_sensor_instrumentation_preserves_physics():
     f,t=load_cells(b.sensors,addresses)
     assert f.shape==t.shape==(1,2,3)
     assert np.isfinite(f).all() and np.linalg.norm(f)>0.
+
+
+def test_learned_likelihood_learns_the_causes_present_in_its_falls():
+    """A model fitted on gait/push/slip/wall falls has four causes plus the catch-all; old
+    three-cause checkpoints (no 'causes' key) still load as gait/push/slip."""
+    import numpy as np
+    from pai.locomotion.fall_causes import LearnedFallLikelihood
+
+    rng = np.random.default_rng(0)
+    centres = {"gait": 0.0, "push": 3.0, "slip": -3.0, "wall": 6.0}
+    feats, labels = [], []
+    for cause, c in centres.items():
+        for _ in range(20):
+            feats.append({"a": float(np.exp(c / 4 + rng.normal(0, .1))), "b": float(rng.random())})
+            labels.append(cause)
+    model = LearnedFallLikelihood.fit(feats, labels)
+    assert model.labels == ("gait", "push", "slip", "wall", "unknown")
+    pred = [model.labels[j] for j in model.posterior(feats).argmax(1)]
+    assert np.mean([p == t for p, t in zip(pred, labels)]) > 0.9
+    old = model.to_dict()
+    old.pop("causes")
+    old["means"], old["covariances"] = old["means"][:3], old["covariances"][:3]
+    assert LearnedFallLikelihood(**old).labels == ("gait", "push", "slip", "unknown")

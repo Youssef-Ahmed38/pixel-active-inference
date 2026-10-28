@@ -211,6 +211,43 @@ def test_pushes(ecfg, ctrl, seed, sizes=(0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 2.0), 
     return {"seed": seed, "walk_mps": walk, "push_s": env.cfg.push_s, "after_s": after, "rows": rows}
 
 
+def test_walls(ecfg, ctrl, seed, n=40, speed=0.6, push_s=6.0, back_s=3.0, gap=(0.8, 1.5)):
+    """Walk into a solid wall straight ahead, keep pushing, then back off (as the maze walker does).
+
+    One wall block per body, its face ``gap`` metres ahead along the start heading. Reported: falls
+    (while pushing and while backing off) and whether the body really reached the wall.
+    """
+    cfg = copy.deepcopy(ecfg)
+    cfg.walls, cfg.wall_frac, cfg.n_variants = 1, 0.0, n      # one wall per body, placed below
+    env = make_env(cfg, n, seed)
+    r = Runner(env, ctrl)
+    rng = np.random.default_rng(seed)
+    d = rng.uniform(*gap, n)
+    centre = d + 0.5                                            # 1 m block: face 0.5 m before its centre
+    for i in range(n):
+        m = env.models[i]
+        g = m.geom("train_wall_0").id
+        m.geom_pos[g, :2] = r.start_xy[i] + centre[i] * np.array([np.cos(r.start_yaw[i]), np.sin(r.start_yaw[i])])
+        yaw = r.start_yaw[i]
+        m.geom_quat[g] = [np.cos(yaw / 2), 0.0, 0.0, np.sin(yaw / 2)]
+    env.set_command(np.arange(n), speed, 0.0, 0.0, heading=r.start_yaw)
+    reach = np.zeros(n)
+
+    def watch(rr):
+        np.maximum(reach, rr.forward_distance(), out=reach)
+
+    r.run(push_s, watch)
+    alive_push = r.alive.copy()
+    env.set_command(np.arange(n), -0.3, 0.0, 0.0, heading=r.start_yaw)
+    r.run(back_s, watch)
+    touched = reach >= d - 0.35                                 # pelvis within ~0.35 m of the face
+    return {"seed": seed, "bodies": n, "speed_mps": speed, "push_s": push_s, "back_s": back_s,
+            "gap_m": list(gap), "touched_rate": rate(touched),
+            "fell_while_pushing": int((~alive_push).sum()), "fell_backing_off": int((alive_push & ~r.alive).sum()),
+            "survived_rate": rate(r.alive), "survived_rate_touched": rate(r.alive[touched]) if touched.any() else None,
+            "max_forward_m": [round(float(x), 2) for x in reach], "gap_per_body_m": [round(float(x), 2) for x in d]}
+
+
 def ice_models(env, ids, factor=0.05):
     for i in ids:
         m = copy.deepcopy(env.models[i])
@@ -317,6 +354,7 @@ def main():
              ("run", lambda: test_run(ecfg, ctrl, s0 + 3)),
              ("speeds", lambda: test_speeds(ecfg, ctrl, s0 + 4)),
              ("pushes", lambda: test_pushes(ecfg, ctrl, s0 + 5)),
+             ("walls", lambda: test_walls(ecfg, ctrl, s0 + 7)),
              ("fall_causes", lambda: test_fall_causes(ecfg, ctrl, wm, s0 + 6, 60000 + args.seed_offset))]
     res = Path("results/locomotion")
     res.mkdir(parents=True, exist_ok=True)

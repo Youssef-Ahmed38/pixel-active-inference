@@ -1,0 +1,484 @@
+{
+  "exit_code": 0,
+  "tests": [
+    {
+      "test": "tests/test_language.py::test_heldout_controller_and_observation_narration[english]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language.py::test_failed_skill_is_not_narrated_as_success[english]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language.py::test_unknown_and_negative_answers[english]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language.py::test_checkpoint_unknown_vocabulary_and_ambiguous_entities[english]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language.py::test_success_without_observation_is_not_narrated[english]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language.py::test_sequence_and_preflight_validation[english]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language.py::test_heldout_controller_and_observation_narration[arabic]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language.py::test_failed_skill_is_not_narrated_as_success[arabic]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language.py::test_unknown_and_negative_answers[arabic]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language.py::test_checkpoint_unknown_vocabulary_and_ambiguous_entities[arabic]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language.py::test_success_without_observation_is_not_narrated[arabic]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language.py::test_sequence_and_preflight_validation[arabic]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language.py::test_learned_attributes_use_sensations_and_abstain",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_association.py::test_observations_determine_mapping_and_parameter_binding",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_association.py::test_uninformative_or_conflicting_beliefs_abstain",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_association.py::test_question_generalization_and_unclear_intent",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_association.py::test_all_varied_goals_are_compositional[english]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_association.py::test_all_varied_goals_are_compositional[arabic]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_association.py::test_onset_matches_inferred_event_not_last_other_event",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_association.py::test_wilson_intervals_preserve_extreme_uncertainty",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_association.py::test_grading_uses_spoken_meaning_not_latent_variable_name",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_association.py::test_silent_monitor_is_learned_evidence_for_no_disturbance",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_causes.py::test_numeric_generalization_and_independent_teaching[english]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_causes.py::test_numeric_generalization_and_independent_teaching[arabic]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_causes.py::test_weak_or_invalid_evidence_abstains[posterior0]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_causes.py::test_weak_or_invalid_evidence_abstains[posterior1]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_causes.py::test_weak_or_invalid_evidence_abstains[posterior2]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_causes.py::test_weak_or_invalid_evidence_abstains[posterior3]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_causes.py::test_weak_or_invalid_evidence_abstains[posterior4]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_causes.py::test_weak_or_invalid_evidence_abstains[posterior5]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_causes.py::test_truth_fields_are_never_read",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_causes.py::test_counterfactual_validity_and_false_drop_presupposition[english]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_causes.py::test_counterfactual_validity_and_false_drop_presupposition[arabic]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_causes.py::test_episode_question_slot_and_missing_cause[english]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_causes.py::test_episode_question_slot_and_missing_cause[arabic]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_causes.py::test_invalid_estimates_and_credit_do_not_become_claims",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_causes.py::test_actual_adaptation_can_be_reported_despite_uncertain_final_cause",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_conversations.py::test_conversations_have_exact_observed_evidence",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_conversations.py::test_success_flag_does_not_generate_completed_action_or_cause",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_hypotheses.py::test_uncertain_causes_are_distinct_from_factual_narration[english]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_hypotheses.py::test_no_hypotheses_without_stall_observation_or_unambiguous_confidence[english]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_hypotheses.py::test_invalid_posteriors_rejected[english-posterior0]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_hypotheses.py::test_invalid_posteriors_rejected[english-posterior1]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_hypotheses.py::test_invalid_posteriors_rejected[english-posterior2]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_hypotheses.py::test_uncertain_causes_are_distinct_from_factual_narration[arabic]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_hypotheses.py::test_no_hypotheses_without_stall_observation_or_unambiguous_confidence[arabic]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_hypotheses.py::test_invalid_posteriors_rejected[arabic-posterior0]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_hypotheses.py::test_invalid_posteriors_rejected[arabic-posterior1]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_hypotheses.py::test_invalid_posteriors_rejected[arabic-posterior2]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_hypotheses.py::test_heldout_hypothesis_grammar[english]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_hypotheses.py::test_heldout_hypothesis_grammar[arabic]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_v4.py::test_frames_induced_without_clause_labels",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_v4.py::test_every_producible_arabic_none_hedge_uses_verb_complementizer",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_v4.py::test_all_teacher_pairs_reproduce_and_agreement_is_preserved",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_v4.py::test_per_type_prior_prevents_zero_risk_and_pooling_overconfidence",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_v4.py::test_strength_matches_probability_and_truth_cannot_enter[english]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_v4.py::test_strength_matches_probability_and_truth_cannot_enter[arabic]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_v4.py::test_disturbed_english_unchanged_and_arabic_grammatical[english]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_v4.py::test_disturbed_english_unchanged_and_arabic_grammatical[arabic]",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_v4.py::test_calibration_fit_reads_belief_only_after_teacher_provides_label",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_v4.py::test_every_generated_arabic_sentence_matches_reviewed_inventory",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_v4.py::test_reliability_brier_and_empty_bins",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_v4.py::test_invalid_monitor_probabilities_cannot_trigger_calibrated_none",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_v4.py::test_scoring_decodes_actual_surface_not_old_phrase_or_cause_key",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_language_v4.py::test_all_arabic_teacher_and_probability_strings_survive_utf8",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_cause_inference_identifies_each_cause",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_heavier_object_impossible_without_holding",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_surprise_monitor_triggers_only_on_spikes",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_world_model_shapes_and_checkpoint",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_mppi_moves_towards_goal",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_goal_subgoals_advance_in_order",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_episode_report_mentions_explanation_and_truth",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_masks_to_patches_fractions",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_goal_falls_back_to_regrasp_when_object_is_dropped",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_calibration_sets_floor_and_threshold",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_calibration_per_step_keeps_quiet_steps_sensitive",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_planner_respects_gripper_mode_from_goal_level",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_counterfactual_credit_finds_the_necessary_factor",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_memory_saves_trajectories_beside_jsonl",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_unknown_wins_only_when_no_cause_fits",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_lowered_waits_until_object_is_still",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_recipe_extraction_and_proposal_transfer_to_a_new_layout",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_push_while_holding_is_not_a_slip",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_object_squeezed_out_while_grasping_is_a_slip_not_a_push",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_drop_is_a_slip_with_the_weight_lost",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_no_weight_lost_while_the_object_rests_on_the_table",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_push_while_grasping_drags_the_object_sideways_only",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_push_moves_a_held_object_with_the_hand",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_phase_credit_with_abduction_survives_model_drift",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_cognition.py::test_shared_efe_accounting_matches_both_domains",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_cognition.py::test_cause_posterior_needs_confident_evidence",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_cognition.py::test_memory_stores_arm_and_maze_records",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_cognition.py::test_maze_thinker_uses_observed_evidence_not_cause_reports",
+      "phase": "call",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_cognition.py::test_shared_controller_reaches_maze_goal_with_skill_adapter",
+      "phase": "call",
+      "outcome": "passed"
+    }
+  ],
+  "command": [
+    "python",
+    "scripts/language_causes_v4_tests.py",
+    "--basetemp",
+    "data/pytest_language_v4_utf8_inherited_20261028",
+    "--output",
+    "results/language_causes_v4_tests_frozen.json"
+  ],
+  "note": "Only new test directories use inherited permissions; no production code patched"
+}

@@ -1,0 +1,144 @@
+{
+  "policy": "runs/locomotion/policy_v4/policy.pt",
+  "policy_iteration": 7944,
+  "policy_stage": 4,
+  "policy_steps": 390463488,
+  "commit": "2d5dfa6",
+  "seeds_start": 52000,
+  "stand": {
+    "seed": 52000,
+    "starts": 20,
+    "seconds": 30.0,
+    "stood_rate": 1.0,
+    "median_drift_m": 0.8689055997477229,
+    "max_drift_m": 1.2515897811480579,
+    "seconds_wall": 4.7
+  },
+  "walk_10m": {
+    "seed": 52001,
+    "starts": 20,
+    "command_mps": 0.8,
+    "distance_m": 10.0,
+    "time_limit_s": 20.0,
+    "success_rate": 1.0,
+    "falls": 0,
+    "mean_speed_to_10m_mps": 0.811779176789671,
+    "forward_distance_m": [
+      16.53,
+      16.23,
+      16.13,
+      16.51,
+      16.35,
+      16.68,
+      16.28,
+      16.13,
+      16.08,
+      16.09,
+      16.22,
+      16.36,
+      15.85,
+      16.68,
+      16.18,
+      16.06,
+      16.49,
+      16.51,
+      16.65,
+      16.65
+    ],
+    "seconds_wall": 3.6
+  },
+  "headings": {
+    "seed": 52002,
+    "starts": 20,
+    "speed_mps": 0.5,
+    "seconds": 8.0,
+    "turns_deg": [
+      90.0,
+      -90.0,
+      180.0,
+      45.0,
+      -45.0,
+      135.0,
+      -135.0,
+      60.0,
+      -60.0,
+      120.0,
+      90.0,
+      -90.0,
+      180.0,
+      45.0,
+      -45.0,
+      135.0,
+      -135.0,
+      60.0,
+      -60.0,
+      120.0
+    ],
+    "success_rate": 1.0,
+    "tolerance_deg": 15.0,
+    "median_error_deg": 2.326715637642903,
+    "falls": 0,
+    "seconds_wall": 2.0
+  },
+  "run": {
+    "seed": 52003,
+    "starts": 20,
+    "command_mps": 2.0,
+    "need_mps": 1.5,
+    "success_rate": 0.95,
+    "falls": 1,
+    "median_speed_mps": 1.9428882937574967,
+    "seconds_wall": 2.6
+  },
+  "pushes": {
+    "seed": 52005,
+    "walk_mps": 0.5,
+    "push_s": 0.2,
+    "after_s": 4.0,
+    "rows": [
+      {
+        "push_dv_mps": 0.25,
+        "push_force_N": 41.7,
+        "bodies": 30,
+        "recovered_rate": 1.0
+      },
+      {
+        "push_dv_mps": 0.5,
+        "push_force_N": 83.4,
+        "bodies": 30,
+        "recovered_rate": 1.0
+      },
+      {
+        "push_dv_mps": 0.75,
+        "push_force_N": 125.0,
+        "bodies": 30,
+        "recovered_rate": 1.0
+      },
+      {
+        "push_dv_mps": 1.0,
+        "push_force_N": 166.7,
+        "bodies": 30,
+        "recovered_rate": 1.0
+      },
+      {
+        "push_dv_mps": 1.25,
+        "push_force_N": 208.4,
+        "bodies": 30,
+        "recovered_rate": 0.9333333333333333
+      },
+      {
+        "push_dv_mps": 1.5,
+        "push_force_N": 250.1,
+        "bodies": 30,
+        "recovered_rate": 0.23333333333333334
+      },
+      {
+        "push_dv_mps": 2.0,
+        "push_force_N": 333.4,
+        "bodies": 30,
+        "recovered_rate": 0.06666666666666667
+      }
+    ],
+    "seconds_wall": 4.4
+  }
+}

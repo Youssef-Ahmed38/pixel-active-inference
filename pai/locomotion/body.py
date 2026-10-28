@@ -98,8 +98,50 @@ class G1Body:
         return s
 
 
-def load_body(scene: Path = SCENE) -> G1Body:
-    return G1Body(build_spec(scene).compile())
+WALL_BIT = 2   # collision bit shared only by walls and the body's collision capsules (as in the maze)
+FAR = 100.0    # where an unused training wall is parked
+
+
+def add_training_walls(spec: mujoco.MjSpec, n: int, half: float = 0.5, height: float = 0.5) -> None:
+    """``n`` solid 1 m wall blocks for wall-contact practice, parked far away; ``place_walls`` moves
+    them per dynamics variant. The body's collision capsules (those paired with the floor) get the
+    wall bit, so floor and self contacts are exactly as before."""
+    for i in range(n):
+        spec.worldbody.add_geom(type=mujoco.mjtGeom.mjGEOM_BOX, size=[half, half, height / 2],
+                                pos=[FAR + 3 * i, FAR, height / 2], contype=0, conaffinity=WALL_BIT,
+                                rgba=[0.42, 0.45, 0.52, 1.0], name=f"train_wall_{i}")
+    for pair in spec.pairs:
+        names = {pair.geomname1, pair.geomname2}
+        if "floor" in names:
+            (name,) = names - {"floor"}
+            spec.geom(name).contype = WALL_BIT
+
+
+def load_body(scene: Path = SCENE, walls: int = 0) -> G1Body:
+    spec = build_spec(scene)
+    if walls:
+        add_training_walls(spec, walls)
+    return G1Body(spec.compile())
+
+
+def place_walls(models: list[mujoco.MjModel], rng: np.random.Generator, n: int, frac: float,
+                radius: tuple[float, float]) -> list[list[float]]:
+    """In a fraction ``frac`` of the variants put the ``n`` training walls at random places
+    ``radius`` metres from the start (centre distance); elsewhere they stay parked far away.
+    Returns the placements (for the run log)."""
+    layout = []
+    for m in models:
+        here = []
+        use = rng.random() < frac
+        for i in range(n):
+            g = m.geom(f"train_wall_{i}").id
+            if use:
+                r, a, yaw = rng.uniform(*radius), rng.uniform(-np.pi, np.pi), rng.uniform(0, np.pi / 2)
+                m.geom_pos[g, :2] = [r * np.cos(a), r * np.sin(a)]
+                m.geom_quat[g] = [np.cos(yaw / 2), 0.0, 0.0, np.sin(yaw / 2)]
+                here.append([round(float(r), 2), round(float(a), 2)])
+        layout.append(here)
+    return layout
 
 
 def randomized_models(body: G1Body, n: int, rng: np.random.Generator,

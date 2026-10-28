@@ -54,24 +54,27 @@ The paper draft (`paper/`, IEEEtran in the user's format) is **local only** by t
 `data/paper_overleaf.zip`. Updated 2026-10-28 06:50 with all results above (maze section rewritten
 around the branchy-maze result and the corridor correction; walker figure added).
 
-## In progress (2026-10-28 11:10; the user is away: work continues without asking)
+## In progress (2026-10-28 15:00; the user is away: work continues without asking)
 
-- **Open PRs for the user to merge:** #5 (Stage 4 key chain as an induced recipe, Codex, reviewed)
-  and #6 (walking v4 with wall contact, four fall causes, the maze walker's own eyes; plus the v5
-  negative result). Codex's original Stage 4 files are still untracked in the main checkout
-  (identical; remove after merging #5, then pull). Branch `walking-walls-eyes` has a worktree at
-  `../pai-walls`.
-- **v5 not released:** fast-changing goals kept every gate but raised development maze falls
-  (13 vs 8 of 60). v4 stays released.
-- **Smooth steering for the maze walker** (main checkout, uncommitted: `pai/maze/walker.py`
-  `smooth=True`, `scripts/maze_walker_eval.py --smooth`): start walking below 10 degrees heading
-  error, keep walking until 40, ramp speed at most 1 m/s^2. Development (20100-20129, v4): falls 8 -> 2
-  of 60, goals route EFE 14 -> 16, nearest frontier 2 -> 8. Final running on new mazes 83000-83029:
-  `results/maze_walker_persistent_83000_v4{_smooth,}.json`. Then add to PR #6 (docs: MAZE.md
-  section 11/12 and LOCOMOTION_STAGE2.md v4 paragraph).
-- **Codex: arm cause likelihoods** (`docs/briefs/ARM_CAUSE_LIKELIHOODS.md`, task `arm-causes`):
-  stopped once on "model at capacity" during its camera final; resumed with
-  `data/codex_tasks/arm-causes/continue1.md`. Review when it reports.
+- **Open PRs for the user to merge:** #5 (Stage 4 key chain as an induced recipe), #6 (walking v4
+  with wall contact, four fall causes, the maze walker's own eyes; v5 and v6 not released; smooth
+  steering option), #7 (arm learned cause likelihoods: exact 97 vs 87, camera 78 vs 66), #8 (chess:
+  HRM in search with learned halting; not promoted, no strength gain). Codex's original files for
+  #5, #7, #8 remain untracked in the main checkout (identical; remove after merging, then pull).
+  #9 (bicycle from video), #10 (the G1 rides a realistic bicycle: 23/40 fresh 30 m rides), #11 (on
+  top of #10: the G1 delivers parcels by bicycle in new towns with barriers and parked cars: 36/40
+  delivered, 0 collisions vs blind 21/40; head camera 178/178; cornering and U-turns learned by
+  practice; POV + map + decision video; `docs/BIKE_TOWN.md`). Merge #10 before #11.
+  Worktrees: `../pai-walls` (#6), `../pai-arm2` (#7), `../pai-chess` (#8), `../pai-bike` (#9),
+  `../pai-g1bike` (#10), `../pai-town` (#11). The town files are also untracked in the main checkout.
+- **Bicycle next:** U-turns decided late (the 4 remaining delivery failures); a PPO policy as in
+  CycleRL; steering produced by the G1's arms; other traffic.
+- **Walking plan A-C done.** Open problem: the walker still falls in noisy mazes (v4 + smooth
+  steering: 3 of 60 on new mazes); v5 (fast random goals) and v6 (maze-goal practice) did not fix it.
+- **Codex: bicycle from video** (`docs/briefs/BIKE_FROM_VIDEO.md`, task `bike-video`): learn from
+  rendered video, ride from an on-board camera and own proprioception. Review when it reports (scan
+  results, including inside `.gz`, for absolute local paths before any push).
+- The local paper (`paper/`) includes all results up to the chess PR; zip `data/paper_overleaf.zip`.
 
 ## Next steps (plan agreed with the user, 2026-10-28; in order)
 

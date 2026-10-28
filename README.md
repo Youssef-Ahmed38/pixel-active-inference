@@ -3,6 +3,27 @@
 Hierarchical, pixel-based active inference for a simulated Franka Panda, building on
 PixelAI (Sancaktar et al., 2020). Everything runs in simulation (MuJoCo).
 
+**Showreel (94 s):** [docs/media/showreel.mp4](docs/media/showreel.mp4): every stage's milestone clip
+with its fresh-seed numbers, and an explanation the agent gives in English and Arabic from its own
+beliefs (`scripts/make_showreel.py`).
+
+<img src="docs/media/showreel.png" width="640">
+
+**The G1 rides a bicycle:** [docs/BIKE_G1.md](docs/BIKE_G1.md): the walking humanoid seated on a realistic
+24-inch bicycle (hands on the grips, feet pedalling), balance learned by practice: 23/40 fresh 30 m rides
+(the untuned rule 0/40), with a comparison to published robot cycling work.
+
+<img src="docs/media/bike/g1_riding.gif" width="400">
+
+**The G1 delivers parcels by bicycle in towns it has never seen:** [docs/BIKE_TOWN.md](docs/BIKE_TOWN.md):
+a street grid with barriers and parked cars it does not know about; it looks down each street with
+its head camera, keeps a belief over blocked streets, replans, changes lane around cars, and corners
+and U-turns with steering learned by practice. On 20 new towns: **36/40 deliveries, 0 collisions**,
+against 21/40 and 19 collisions for the same rider riding blind (paired p = 0.0001); the camera read
+178/178 streets right. The video shows its head camera, its map and its decisions.
+
+<img src="docs/media/bike/delivery.gif" width="640">
+
 **One agent, many skills, the same principles:** active inference (world models, expected free
 energy, surprise and Bayesian hidden-cause inference, curiosity), episodic memory and recipes, and an
 HRM "thinker", learned rather than scripted and evaluated on fresh seeds. Plan:
@@ -14,12 +35,12 @@ an independent audit of what is learned vs scripted: [docs/AUDIT_OUTSIDE_BUILDS.
 | Stage | What the agent does | Latest result (fresh seeds) | Still open | Report |
 |---|---|---|---|---|
 | 1 arm | puts objects where asked, explains surprises (push, heavier, slippery, moved camera), adapts | exact state: task **91%**, cause **88%**; from camera images: task **75%**, cause **66%**; **learned cause likelihoods** (new seeds, same episodes): 97/100 vs 87 exact, 78/100 vs 66 from camera, slippery 20/20 and 13/20 (was 9/20) | camera-shift and slip timing; camera-offset estimates | below, [ARM_CAUSES](docs/ARM_CAUSES.md) |
-| 2 walking | Unitree G1 learns to stand, walk, turn and run from its own exploration | v3: stand, walk 10 m, headings, run: **20/20 each**; pushes **100%** at 1.0 m/s, 93% at 1.25 m/s (v1: 53%, 17%) | fall causes: learned sensor likelihoods 92.5% vs 40.6% (fresh seed; gait recall dropped to 81%; speed confound untested) | [LOCOMOTION_STAGE2](docs/LOCOMOTION_STAGE2.md) |
-| 3 maze | explores with a Bayesian map and expected free energy over routes | exact sensing: information-seeking at best a few points above nearest frontier, not significant (corrected after a bug fix); with persistent misreads, learning that repeat looks are useless + touching doubtful walls: **49%** vs 6-13% (p < 1e-6); sensor model and map prior learned from own experience; **the learned G1 walker walks the agent's plans: same outcome as the grid body in 30/30 mazes, 0 falls**; on many-junction mazes information-seeking wins: **84 vs 67** of 100 (p = 0.006), and 28/30 vs 19/30 walked by the G1 with 0 falls; walls are now solid for the body; with persistent misreads it still wins when the G1 walks (14 vs 5 of 30, p = 0.004), but bumping into walls makes it fall in 24/240 noisy episodes | train walking with wall contact; the robot's own camera for the walker | [MAZE](docs/MAZE.md) |
+| 2 walking | Unitree G1 learns to stand, walk, turn and run from its own exploration | v4: stand, walk 10 m, headings, run: **20/20 each**; walks into a wall and falls **2/40** (v3: 14/40); pushes 97% at 1.0 m/s (v1: 53%) | fall causes from own senses, four causes incl. **wall**: 92.6% vs 41.7% on 3 new seeds (544 falls); 17 own stumbles still called push | [LOCOMOTION_STAGE2](docs/LOCOMOTION_STAGE2.md) |
+| 3 maze | explores with a Bayesian map and expected free energy over routes; the learned G1 walker walks its plans | branchy mazes: route EFE 84 vs nearest frontier 67 of 100 (p = 0.006); **seeing through the walker's own head camera with its own odometry: 26/30 goals vs 27/30 with the grid sensor, 5 cm drift, 0 falls** (vs nearest frontier 17/30, p = 0.004); persistent misreads: learned repeat weight + touch 49% vs 6-13% | walker falls in noisy mazes (7/60; rapidly switching goals); cells, wall height and goal colour still given | [MAZE](docs/MAZE.md) |
 | 4 doors, keys | discovers how to open locked doors by experiment | mock: 99.9% solved in 111.6 actions (novelty 80.9%); physics 12/25 with decoys | key handling in physics; recipes instead of a scripted key chain | [DISCOVERY](docs/DISCOVERY.md) |
-| 5 chess | learned rules, learned value, search; Stockfish only as a teacher | **1037** conditional engine-anchor Elo [863, 1134] at 1 s/move; beats its old self 17-2-1 | still weaker than Stockfish 1320-1700; HRM in search | [CHESS_STRENGTH](docs/CHESS_STRENGTH.md) |
+| 5 chess | learned rules, learned value, search; Stockfish only as a teacher | **1037** conditional engine-anchor Elo [863, 1134] at 1 s/move; beats its old self 17-2-1 | still weaker than Stockfish 1320-1700; the HRM thinker inside search with learned halting thinks longer on hard positions but does not play stronger (paired match 1-8-11, ladder 904 vs 904 at 0.2 s) | [CHESS_STRENGTH](docs/CHESS_STRENGTH.md) |
 | 6 language | English and Arabic: instructions, questions, narration, and **why** things happened, from the agent's own beliefs | 456/456 held-out parses; causes named correctly **37/50** per language (37/40 when it commits), cause words grounded in the agent's beliefs from 25 teaching episodes; instructions 41/50 = the arm's own rate | clean episodes abstain instead of saying "nothing unusual"; slip causes | [LANGUAGE_STAGE6](docs/LANGUAGE_STAGE6.md) |
-| 7 bicycle | balances and rides, learned from observed motion and practice | 20/20 fresh starts after practice | learning from video; transfer from walking | [BIKE_STAGE7](docs/BIKE_STAGE7.md) |
+| 7 bicycle | balances and rides, learned from observed motion and practice | 20/20 fresh starts after practice | learned from (calibrated, marked) video: rides 20/20 fresh starts from an on-board camera and proprioception; natural unmarked video and walking transfer open | [BIKE_STAGE7](docs/BIKE_STAGE7.md) |
 
 ### Stage 2: a humanoid that learns to walk
 
@@ -27,12 +48,16 @@ an independent audit of what is learned vs scripted: [docs/AUDIT_OUTSIDE_BUILDS.
 
 The G1 learns a body model by curious motor babbling, then practises stand → balance → walk → turn →
 run with PPO and a curiosity bonus, on the laptop GPU. Goals are speed and heading commands, so the
-maze and bike stages can reuse it. The released controller (v3) passes every gate on fresh seeds
-and recovers from 100% of 1.0 m/s pushes and 93% of 1.25 m/s pushes (v1: 53% and 17%); an earlier
-push-only training run forgot how to turn and run, so v3 kept practising headings while pushes grew.
-The robot now names why it fell from its own senses (body-model error, foot loads and sliding):
-likelihoods learned from development falls give **92.5%** on fresh falls vs 40.6% for the old
-authored rule, though own-gait errors are now sometimes called pushes (81% recall). Details: [docs/LOCOMOTION_STAGE2.md](docs/LOCOMOTION_STAGE2.md).
+maze and bike stages can reuse it. The released controller (v4) passes every gate on fresh seeds,
+recovers from 97% of 1.0 m/s pushes (v1: 53%), and stays upright when it walks into a wall and keeps
+pushing: 2 falls in 40 against 14 for v3, after practising with solid walls nearby while half its
+practice stayed on open ground (an earlier push-only run had forgotten how to turn and run).
+
+<img src="docs/media/locomotion/g1_wall_contact.gif" width="480">
+The robot names why it fell from its own senses (body-model error, foot loads and sliding, and which
+of joints or pelvis went wrong first): own gait error, push, slip or **hitting a wall**. Likelihoods
+learned from development falls give **92.6%** on 544 falls over three new seeds vs 41.7% for the old
+authored rule; own stumbles are still sometimes called pushes (86.5% recall). Details: [docs/LOCOMOTION_STAGE2.md](docs/LOCOMOTION_STAGE2.md).
 
 ### Stage 5: chess strength
 

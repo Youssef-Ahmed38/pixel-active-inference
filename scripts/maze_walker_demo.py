@@ -30,7 +30,7 @@ from pai.maze.env import MazeWorld
 from pai.maze.walker import WalkerMaze
 
 
-def belief_panel(agent, world, height: int) -> np.ndarray:
+def belief_panel(agent, world, height: int, believed=None) -> np.ndarray:
     n = world.size
     px = height // n
     img = np.zeros((n * px, n * px, 3), np.uint8)
@@ -51,8 +51,11 @@ def belief_panel(agent, world, height: int) -> np.ndarray:
     if agent.target is not None:
         tr, tc = agent.target
         cv2.rectangle(img, (tc * px + 2, tr * px + 2), ((tc + 1) * px - 3, (tr + 1) * px - 3), (60, 200, 90), 2)
-    pr, pc = world.position
+    pr, pc = world.position if believed is None else believed
     cv2.circle(img, (pc * px + px // 2, pr * px + px // 2), px // 3, (220, 50, 50), -1)
+    if believed is not None and tuple(believed) != tuple(world.position):
+        tr, tc = world.position          # where it really is (own odometry has drifted)
+        cv2.circle(img, (tc * px + px // 2, tr * px + px // 2), px // 2 - 1, (255, 255, 255), 1)
     out = np.zeros((height, n * px, 3), np.uint8)
     out[:n * px] = img
     return out
@@ -82,6 +85,8 @@ def sensor_patch(obs, size: int, radius: int = 3) -> np.ndarray:
     r0, c0 = obs.position
     for (r, c), kind in obs.visible.items():
         i, j = r - r0 + radius, c - c0 + radius
+        if not (0 <= i < n and 0 <= j < n):
+            continue                       # the camera can see further than this patch
         img[i * px:(i + 1) * px - 1, j * px:(j + 1) * px - 1] = KIND_RGB[kind]
     cv2.circle(img, (radius * px + px // 2, radius * px + px // 2), px // 3, (220, 50, 50), -1)
     cv2.putText(img, "what it senses now", (6, size - 8), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1, cv2.LINE_AA)
@@ -128,13 +133,27 @@ def main():
     ap.add_argument("--out", default=None)
     ap.add_argument("--branchy", action="store_true", help="Prim maze with more loops and open rooms")
     ap.add_argument("--pov", action="store_true", help="add the eye view, sensor patch and decision")
+    ap.add_argument("--camera-from", default=None,
+                    help="a scripts/maze_camera_eval.py report: see through the head camera with own "
+                         "odometry, using the sensor model and repeat weight the agent learned there")
     ap.add_argument("--sensing-from", default=None,
                     help="a results/maze_walker_<regime>.json file: use its regime and the sensor model the agent learned")
     args = ap.parse_args()
 
     world = MazeWorld(args.seed, **(dict(generator="prim", loop_probability=0.25, rooms=3) if args.branchy else {}))
-    walker = WalkerMaze(world, seed=args.seed, wall_height=1.4 if args.pov else 0.5)
+    if args.camera_from:
+        args.pov = True
+    walker = WalkerMaze(world, seed=args.seed, wall_height=1.4 if args.pov else 0.5,
+                        odometry=bool(args.camera_from))
     env, obs_model, repeat_weight = walker, None, 1.0
+    if args.camera_from:
+        import json
+        from pai.maze.ego_camera import EgoCameraMaze
+        from pai.maze.map_model import ObservationModel
+        rep = json.loads(Path(args.camera_from).read_text())
+        obs_model = ObservationModel(matrix=np.array(rep["calibration"]["matrix"]))
+        repeat_weight = rep["calibration"]["repeat_weight"]
+        env = EgoCameraMaze(walker)
     if args.sensing_from:
         import json
         from pai.maze.map_model import ObservationModel
@@ -144,8 +163,11 @@ def main():
         repeat_weight = rep["sensor"]["repeat_weight"]
         env = NoisySensorMaze(walker, seed=args.seed, persistent=rep["regime"] == "persistent")
     agent = RouteEFEExplorer(size=world.size, sensor_range=world.sensor_range, seed=args.seed,
-                             effort_weight=2.0, switch_margin=0.0, obs_model=obs_model)
+                             effort_weight=2.0, switch_margin=0.0, obs_model=obs_model,
+                             min_goal_belief=0.005 if args.camera_from else None)
     agent.map.repeat_weight = repeat_weight
+    if args.camera_from:
+        env.map_ref = agent.map
     m = walker.env.models[0]
     d = mujoco.MjData(m)
     r = mujoco.Renderer(m, 360, 480)
@@ -174,12 +196,21 @@ def main():
         if not args.pov:
             frames.append(np.hstack([img, belief_panel(agent, world, 360)]))
             return
-        top = np.hstack([img, eye_view(r, d, eye, pelvis, float(env.yaw()[0]))])
-        bmap = cv2.resize(belief_panel(agent, world, 300), (300, 300), interpolation=cv2.INTER_NEAREST)
+        if args.camera_from and getattr(walker_env, "last_views", None):
+            view = cv2.resize(walker_env.last_views[0], (480, 360))   # what the agent maps from
+            cv2.putText(view, "head camera (what it maps from)", (10, 22), cv2.FONT_HERSHEY_SIMPLEX, 0.55,
+                        (255, 255, 255), 1, cv2.LINE_AA)
+            believed = walker.est_cell()
+        else:
+            view = eye_view(r, d, eye, pelvis, float(env.yaw()[0]))
+            believed = None
+        top = np.hstack([img, view])
+        bmap = cv2.resize(belief_panel(agent, world, 300, believed), (300, 300), interpolation=cv2.INTER_NEAREST)
         bottom = np.hstack([bmap, sensor_patch(state["obs"], 300),
                             decision_panel(agent, state["move"], state["step"], top.shape[1] - 600, 300)])
         frames.append(np.vstack([top, bottom]))
 
+    walker_env = env
     walker.on_frame = on_frame
     obs = env.observe()
     for step in range(1, args.budget + 1):
@@ -196,7 +227,7 @@ def main():
     for _ in range(args.fps):
         frames.append(frames[-1])
     out = ROOT / (args.out or ("docs/media/maze/walker_maze" + ("_branchy" if args.branchy else "")
-                               + ("_pov" if args.pov else "")))
+                               + ("_camera" if args.camera_from else "_pov" if args.pov else "")))
     out.parent.mkdir(parents=True, exist_ok=True)
     imageio.mimsave(out.with_suffix(".mp4"), frames, fps=args.fps, quality=6, macro_block_size=8)
     small = [cv2.resize(f, (f.shape[1] * 2 // 5, f.shape[0] * 2 // 5)) for f in frames[::2]]

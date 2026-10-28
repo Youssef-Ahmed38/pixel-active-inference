@@ -1,0 +1,160 @@
+{
+ "house": 2,
+ "blind": false,
+ "outcome": "delivered",
+ "time_s": 78.96,
+ "distance_m": 158.7,
+ "replans": 2,
+ "looks": 9,
+ "wrong_looks": 0,
+ "hit": null,
+ "mean_heading_error_deg": 6.09,
+ "mean_cross_track_m": 0.154,
+ "events": [
+  {
+   "t": 0.0,
+   "at": 0,
+   "street": [
+    0,
+    1
+   ],
+   "seen": "clear",
+   "points": 0,
+   "look_yaw": 0.04,
+   "where": null,
+   "truth": "clear",
+   "from_node_m": 1.0
+  },
+  {
+   "t": 7.28,
+   "at": 1,
+   "street": [
+    1,
+    2
+   ],
+   "seen": "clear",
+   "points": 0,
+   "look_yaw": 0.028,
+   "where": null,
+   "truth": "clear",
+   "from_node_m": 10.97
+  },
+  {
+   "t": 23.98,
+   "at": 2,
+   "street": [
+    2,
+    6
+   ],
+   "seen": "clear",
+   "points": 0,
+   "look_yaw": 1.386,
+   "where": null,
+   "truth": "clear",
+   "from_node_m": 4.98
+  },
+  {
+   "t": 33.74,
+   "at": 6,
+   "street": [
+    6,
+    10
+   ],
+   "seen": "blocking",
+   "points": 134,
+   "look_yaw": 1.598,
+   "where": [
+    49.96,
+    36.11
+   ],
+   "truth": "blocking",
+   "from_node_m": 10.99,
+   "decision": "replan via 6-5-9-10-pad"
+  },
+  {
+   "t": 36.76,
+   "at": 6,
+   "street": [
+    6,
+    5
+   ],
+   "seen": "blocking",
+   "points": 488,
+   "look_yaw": 2.956,
+   "where": [
+    40.63,
+    24.96
+   ],
+   "truth": "blocking",
+   "from_node_m": 4.99,
+   "decision": "replan via 6-7-11-10-pad"
+  },
+  {
+   "t": 36.78,
+   "at": 6,
+   "street": [
+    6,
+    7
+   ],
+   "seen": "clear",
+   "points": 0,
+   "look_yaw": 0.199,
+   "where": null,
+   "truth": "clear",
+   "from_node_m": 4.95
+  },
+  {
+   "t": 47.44,
+   "at": 7,
+   "street": [
+    7,
+    11
+   ],
+   "seen": "partial",
+   "points": 241,
+   "look_yaw": 1.386,
+   "where": [
+    76.0,
+    41.52
+   ],
+   "truth": "partial",
+   "from_node_m": 4.96,
+   "decision": "change lane"
+  },
+  {
+   "t": 59.22,
+   "at": 11,
+   "street": [
+    11,
+    10
+   ],
+   "seen": "partial",
+   "points": 1613,
+   "look_yaw": 2.941,
+   "where": [
+    67.23,
+    49.0
+   ],
+   "truth": "partial",
+   "from_node_m": 4.99,
+   "decision": "change lane"
+  },
+  {
+   "t": 71.98,
+   "at": 10,
+   "street": [
+    10,
+    6
+   ],
+   "seen": "blocking",
+   "points": 256,
+   "look_yaw": -1.758,
+   "where": [
+    50.17,
+    36.34
+   ],
+   "truth": "blocking",
+   "from_node_m": 4.97
+  }
+ ]
+}

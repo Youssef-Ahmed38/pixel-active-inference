@@ -88,7 +88,10 @@ class WalkerMaze:
 
     def __init__(self, world: MazeWorld, policy: Path = POLICY, cell: float = 1.0, seed: int = 0,
                  speed: float = 0.6, step_timeout_s: float = 8.0, device: str = "cpu",
-                 wall_height: float = 0.5, solid: bool = True, stall_s: float = 1.0):
+                 wall_height: float = 0.5, solid: bool = True, stall_s: float = 1.0,
+                 odometry: bool = False, odo_seed: int | None = None, smooth: bool = False,
+                 caution: float | None = None, body_model: Path | None = None,
+                 odo_speed_noise: float = 0.05, odo_scale_sd: float = 0.03, odo_gyro_bias_sd: float = 0.001, steady=None):
         self.world = world
         self.cell = cell
         self.speed = speed
@@ -108,20 +111,119 @@ class WalkerMaze:
         self.bumps = 0
         self.frames: list | None = None
         self.on_frame = None          # optional callback(env) after every control step (video)
+        # Own odometry (Part C step 2): heading from the integrated gyro (with a per-episode bias),
+        # position from the integrated body velocity (per-episode scale error and white noise; a
+        # real robot estimates it from leg kinematics). The walker then steers by this estimate;
+        # the simulator pose is used only to keep the grid's ground truth for scoring.
+        self.odometry = odometry
+        # smooth steering (off: the original rule, start walking below 25 deg heading error at full
+        # speed): start walking below 10 deg, keep walking until the error exceeds 40 deg, and ramp the
+        # speed at most 1 m/s^2; the maze falls of v4 came from rapid turn/walk switching
+        self.smooth = smooth
+        self._walking = False
+        self._v_cmd = 0.0
+        # caution (None: off): when the body model's surprise (its own prediction error for the
+        # body's next state) exceeds this, stop forward motion for 0.5 s and keep the heading
+        self.caution = caution
+        # steadying reflex (None: off): when the body tilts more than ``steady`` degrees (roll or
+        # pitch, from its own IMU), stop walking and turning (hold the current heading) until it has
+        # been below half that tilt for 0.4 s (at most 2 s)
+        self.steady = steady
+        self._steady_left = 0
+        self._steady_calm = 0
+        self.steadies = 0
+        self._calm = 0
+        self.cautions = 0
+        self.last_surprise = 0.0
+        self._wm = None
+        if caution is not None:
+            import torch
+            from pai.locomotion.world_model import EnsembleBodyModel
+            ck = torch.load(body_model or Path(policy).with_name("ckpt_last.pt"), map_location="cpu",
+                            weights_only=False)
+            self._wm = EnsembleBodyModel(ck["train_cfg"]["wm_members"])
+            self._wm.load_state_dict(ck["model"])
+            self._wm.eval()
+        rng = np.random.default_rng(seed + 920000 if odo_seed is None else odo_seed)
+        self._odo_rng = rng
+        self._odo_noise = odo_speed_noise
+        self._odo_scale = 1.0 + rng.normal(0.0, odo_scale_sd)
+        self._odo_bias = rng.normal(0.0, odo_gyro_bias_sd)
+        self.est_xy = self.env.qpos()[0, 0:2].copy()
+        self.est_yaw = float(self.env.yaw()[0])
+        self._yaw_err = 0.0
 
     # ------------------------------------------------------------------ body
-    def xy(self) -> np.ndarray:
+    def true_xy(self) -> np.ndarray:
         return self.env.qpos()[0, 0:2].copy()
+
+    def xy(self) -> np.ndarray:
+        """Where the walker believes it is: its odometry estimate, or the simulator pose."""
+        return self.est_xy.copy() if self.odometry else self.true_xy()
+
+    def yaw(self) -> float:
+        return self.est_yaw if self.odometry else float(self.env.yaw()[0])
+
+    def _command(self, vx: float, vy: float, heading: float):
+        """Heading goals are in the walker's own frame; its controller closes the loop on its own
+        IMU, modelled as the simulator yaw plus the odometry's heading error."""
+        if self.odometry:
+            heading = heading + float(self.env.yaw()[0]) - self.est_yaw
+        self.env.set_command([0], vx, vy, 0.0, heading=heading)
 
     def _tick(self) -> bool:
         a = self.ctrl.act(self.obs)
+        prev = self.obs
         self.obs, _, _, info = self.env.step(a)
+        if self._wm is not None:
+            import torch
+            from pai.locomotion.env import PROPRIO
+            with torch.no_grad():
+                t = lambda x: torch.as_tensor(np.asarray(x, np.float32))
+                sur, _ = self._wm.surprise_and_disagreement(t(prev[:, PROPRIO]), t(a), t(self.obs[:, PROPRIO]))
+            self.last_surprise = float(sur[0])
+            if self.last_surprise > self.caution and self._calm == 0:
+                self._calm = int(round(0.5 / self.env.cfg.ctrl_dt))
+                self.cautions += 1
+            self._calm = max(self._calm - 1, 0)
         self.t += self.env.cfg.ctrl_dt
+        if self.odometry:
+            dt = self.env.cfg.ctrl_dt
+            k = self.env.kinematics()
+            # an IMU integrates its gyro far faster than 50 Hz: its heading is the body's heading
+            # plus a slowly growing error (gyro bias and noise integrated)
+            self._yaw_err += (self._odo_bias + self._odo_rng.normal(0.0, 0.002)) * dt
+            self.est_yaw = float(k["yaw"][0]) + self._yaw_err
+            v = self._odo_scale * k["v_head"][0, :2] + self._odo_rng.normal(0.0, self._odo_noise, 2)
+            c, s_ = np.cos(self.est_yaw), np.sin(self.est_yaw)
+            self.est_xy += dt * np.array([c * v[0] - s_ * v[1], s_ * v[0] + c * v[1]])
         if self.on_frame is not None:
             self.on_frame(self.env)
+        if self.steady is not None:
+            g = self.env.kinematics()["grav"][0]
+            tilt = float(np.degrees(np.arccos(np.clip(-g[2], -1.0, 1.0))))
+            dt = self.env.cfg.ctrl_dt
+            if self._steady_left == 0 and tilt > self.steady:
+                self._steady_left = int(round(2.0 / dt))
+                self._steady_calm = 0
+                self._steady_yaw = self.yaw()
+                self.steadies += 1
+            elif self._steady_left > 0:
+                self._steady_calm = self._steady_calm + 1 if tilt < self.steady / 2 else 0
+                self._steady_left -= 1
+                if self._steady_calm * dt >= 0.4:
+                    self._steady_left = 0
         if bool(info["fell"][0]):
             self.fell = True
         return self.fell
+
+    def _steadying(self) -> bool:
+        """The reflex is active: command standing still at the held heading."""
+        if self._steady_left > 0:
+            self._command(0.0, 0.0, self._steady_yaw)
+            self._v_cmd = 0.0
+            return True
+        return False
 
     def _cell_of(self, xy: np.ndarray) -> Cell:
         s = self.world.start
@@ -131,20 +233,37 @@ class WalkerMaze:
         t0 = self.t
         dt = self.env.cfg.ctrl_dt
         trail = []                         # (time, xy) while commanded forward, for stall detection
+        self._walking, self._v_cmd = False, 0.0     # each walk starts from standing at a cell centre
         while self.t - t0 < self.timeout:
             d = target_xy - self.xy()
             dist = float(np.linalg.norm(d))
             if dist < 0.15 * self.cell:
-                self.env.set_command([0], 0.0, 0.0, 0.0, heading=float(self.env.yaw()[0]))
+                self._command(0.0, 0.0, self.yaw())
                 return StepReport(self.t - t0, False, False, True)
             heading = float(np.arctan2(d[1], d[0]))
-            err = abs(float(wrap(heading - self.env.yaw()[0])))
+            err = abs(float(wrap(heading - self.yaw())))
             # turn on the spot first, then walk while steering toward the target point
-            v = 0.0 if err > np.radians(25) else min(self.speed, 1.5 * dist)
-            self.env.set_command([0], v, 0.0, 0.0, heading=heading)
+            if self.smooth:
+                if self._walking and err > np.radians(40):
+                    self._walking = False
+                elif not self._walking and err < np.radians(10):
+                    self._walking = True
+                target_v = min(self.speed, 1.5 * dist) if self._walking else 0.0
+                step = 1.0 * dt
+                self._v_cmd = float(np.clip(target_v, self._v_cmd - step, self._v_cmd + step))
+                v = self._v_cmd
+            else:
+                v = 0.0 if err > np.radians(25) else min(self.speed, 1.5 * dist)
+            if self._calm > 0:
+                v = 0.0                    # caution: surprised body steadies itself first
+                self._v_cmd = 0.0
+            if self._steadying():
+                v = 0.0                    # no stall detection while the body steadies itself
+            else:
+                self._command(v, 0.0, heading)
             if self._tick():
                 return StepReport(self.t - t0, True, False, False)
-            here = self._cell_of(self.xy())
+            here = self._cell_of(self.true_xy())      # physics: the body cannot be inside a wall
             if stop_if_wall and self._is_wall(here):
                 return StepReport(self.t - t0, False, True, False)
             if v > 0.2:
@@ -162,16 +281,16 @@ class WalkerMaze:
         """After a bump: step backwards to the cell centre keeping the heading (no turning on the
         spot against the wall), within the practised command range (vx >= -0.3, |vy| <= 0.3)."""
         t0 = self.t
-        yaw = float(self.env.yaw()[0])
+        yaw = self.yaw()
         while self.t - t0 < self.timeout:
             d = target_xy - self.xy()
             if float(np.linalg.norm(d)) < 0.15 * self.cell:
-                self.env.set_command([0], 0.0, 0.0, 0.0, heading=yaw)
+                self._command(0.0, 0.0, yaw)
                 return StepReport(self.t - t0, False, False, True)
             c, s = np.cos(yaw), np.sin(yaw)
             fwd, left = c * d[0] + s * d[1], -s * d[0] + c * d[1]      # target in the heading frame
-            self.env.set_command([0], float(np.clip(1.5 * fwd, -0.3, 0.3)),
-                                 float(np.clip(1.5 * left, -0.3, 0.3)), 0.0, heading=yaw)
+            if not self._steadying():
+                self._command(float(np.clip(1.5 * fwd, -0.3, 0.3)), float(np.clip(1.5 * left, -0.3, 0.3)), yaw)
             if self._tick():
                 return StepReport(self.t - t0, True, False, False)
         return StepReport(self.t - t0, False, False, False)
@@ -191,9 +310,43 @@ class WalkerMaze:
     def observe(self, collided: bool = False) -> Observation:
         return self.world.observe(collided)
 
+    def est_cell(self) -> Cell:
+        """The cell the walker believes it is in (odometry), or the true cell."""
+        return self._cell_of(self.xy())
+
+    def _step_odometry(self, direction: Cell) -> Observation:
+        """Move by the walker's own estimate; afterwards the grid's ground truth (for scoring only)
+        is set to the cell the body is really in."""
+        p = self.est_cell()
+        target = (p[0] + direction[0], p[1] + direction[1])
+        rep = self._walk_to(cell_xy(target, self.world.start, self.cell))
+        self.walk_seconds += rep.seconds
+        if rep.bumped:
+            self.bumps += 1
+            back = self._back_off(cell_xy(p, self.world.start, self.cell))
+            self.walk_seconds += back.seconds
+        w = self.world
+        w.steps += 1
+        true_cell = self._cell_of(self.true_xy())
+        if rep.bumped:
+            w.events.append({"step": w.steps, "type": "collision" if self._is_wall(target) else "felt_blocked",
+                             "position": true_cell})
+        elif not rep.reached:
+            w.events.append({"step": w.steps, "type": "walk_failed", "position": true_cell})
+        if true_cell != w.position and not self._is_wall(true_cell):
+            w.position = true_cell
+            if true_cell not in w.visited:
+                w.events.append({"step": w.steps, "type": "place_discovered", "position": true_cell})
+            w.visited.add(true_cell)
+        if w.position == w.goal:
+            w.events.append({"step": w.steps, "type": "goal_reached", "position": w.goal})
+        return w.observe(rep.bumped)
+
     def step(self, direction: Cell) -> Observation:
         if self.fell:
             raise RuntimeError("the walker fell; the episode is over")
+        if self.odometry:
+            return self._step_odometry(direction)
         p = self.world.position
         target = (p[0] + direction[0], p[1] + direction[1])
         rep = self._walk_to(cell_xy(target, self.world.start, self.cell))
