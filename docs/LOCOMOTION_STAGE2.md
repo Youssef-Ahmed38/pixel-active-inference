@@ -108,6 +108,27 @@ from 1.5 m/s pushes than v3 (23% vs 47%); on the final seeds, paired, they are e
 
 <img src="media/locomotion/g1_wall_contact.gif" width="480">
 
+**Three training seeds of v4 (new evaluation seeds 61000+).** The v4 practice phase (walls near half
+the bodies, continuing v3 for 1.1 h) was repeated with training seeds 1 and 2 (`train.seed`; the wall
+layouts and dynamics variants differ per seed), and all three v4 policies, plus v3 for the wall test,
+were evaluated on new seeds never used before:
+
+| Policy | Stand | Walk 10 m | Headings | Run | Wall falls (same 40 bodies) | Pushes 1.0 / 1.25 / 1.5 m/s |
+|---|---:|---:|---:|---:|---:|---|
+| v3 | - | - | - | - | 10/40 | - |
+| v4, seed 0 (released) | 20/20 | 20/20 | 18/20 | 18/20 | **4/40** | 100% / 87% / 50% |
+| v4, seed 1 | 20/20 | 20/20 | 20/20 | 19/20 | 9/40 | 93% / 97% / 48% |
+| v4, seed 2 | 20/20 | 20/20 | 19/20 | 19/20 | **4/40** | 97% / 80% / 45% |
+
+Wall practice lowers wall falls for every training seed (mean 5.7 of 40 vs 10 for v3), but by less than
+the first final suggested (2 vs 14 on seeds 57000+) and unevenly (seed 1: 9 vs 10). On these new seeds
+the released policy is not 20/20 on headings and running (18/20 each). Both are reported as the
+spread of the result, not replaced. `results/locomotion/seedstudy_v4_s{0,1,2}.json`,
+`seedstudy_v3_walls.json`.
+
+    python scripts/locomotion_train.py --config configs/locomotion_v4.yaml --out runs/locomotion/policy_v4_seed1 train.seed=1   # after copying policy_v3/ckpt_last.pt into the folder
+    python scripts/locomotion_eval.py --config configs/locomotion_v4.yaml --policy runs/locomotion/policy_v4_seed1/policy.pt --ckpt runs/locomotion/policy_v4_seed1/ckpt_last.pt --name seedstudy_v4_s1 eval.seeds_start=61000
+
 **What v4 did not fix: maze falls.** In noisy mazes (persistent misreads, new mazes 81000-81029) v4
 falls as often as v3: 7 of 60 walked episodes each (`results/maze_walker_persistent_81000_v{3,4}.json`).
 Traces of the falls show no wall contact in most of them: the maze walker's steering switches between
