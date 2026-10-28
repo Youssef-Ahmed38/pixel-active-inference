@@ -101,6 +101,7 @@ def collect(args):
     metadata=provenance(args)
     report=dict(seed=args.seed,conditions=conditions,per_condition=args.per,config=asdict(ecfg),
                 provenance=metadata,channels=CHANNELS,injected_at=args.inject_at,after_s=args.after,
+                push_command=args.push_command,slip_command=args.slip_command,
                 neural_chunk=args.chunk,records=records,pre_injection_falls=pre_falls,complete=False)
     report['solver_warnings']=[]
     warning_context={'step':0}
@@ -126,9 +127,12 @@ def collect(args):
                         force=env.push_force_for_dv(dv[j])
                         env.apply_push([i],[force*np.cos(angles[j]),force*np.sin(angles[j]),0.])
                         truth_events[int(i)]=dict(type='push',time=args.inject_at,target_dv=float(dv[j]),duration=ecfg.push_s)
+                    if args.push_command is not None:
+                        # speed control: change the goal at the push exactly as slip does
+                        env.set_command(ids,args.push_command,0.,0.,heading=start_yaw[ids])
                 elif cause=='slip':
                     ice_models(env,ids)
-                    env.set_command(ids,1.2,0.,0.,heading=start_yaw[ids])
+                    env.set_command(ids,args.slip_command,0.,0.,heading=start_yaw[ids])
                     for i in ids:
                         truth_events[int(i)]=dict(type='slip',time=args.inject_at,friction_multiplier=.05)
                 elif cause=='gait':
@@ -252,7 +256,8 @@ def score(args):
                 mask=labels==cause
                 if counts[mask].sum():
                     rec.append(float(np.sum(counts[mask]*(guessed[mask]==cause))/counts[mask].sum()))
-            if len(rec)==3:
+            # every cause present in the data (the speed control has no gait falls)
+            if len(rec)==len(set(labels)):
                 balanced.append(float(np.mean(rec)))
                 accuracy.append(float(np.sum(counts*(guessed==labels))/counts.sum()))
         result[name]['balanced_accuracy_cluster_bootstrap95']=np.quantile(balanced,[.025,.975]).tolist()
@@ -328,6 +333,10 @@ def main():
     ap.add_argument('--conditions',default='gait,push,slip')
     ap.add_argument('--inject-at',type=float,default=3.)
     ap.add_argument('--after',type=float,default=4.)
+    ap.add_argument('--push-command',type=float,default=None,
+                    help='forward goal (m/s) set at the push; default keeps the 0.6 m/s walk')
+    ap.add_argument('--slip-command',type=float,default=1.2,
+                    help='forward goal (m/s) set when the floor turns to ice (original protocol: 1.2)')
     ap.add_argument('--inputs',nargs='+')
     ap.add_argument('--input')
     ap.add_argument('--model')

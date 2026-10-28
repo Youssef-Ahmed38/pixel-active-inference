@@ -149,9 +149,40 @@ Known failures and limits:
 
 - **Nine gait falls are called push**, versus only one gait error under the old method. Gait recall falls from 97.9% to 81.2%; the aggregate improvement must not hide that loss.
 - **One push is called gait; two slips are called push.** Some wrong predictions have posterior mass near one, so calibrated uncertainty/abstention remains needed.
-- The gate classifies a controlled injected condition, not a counterfactually proven cause of every fall. Gait uses out-of-practice velocity/yaw commands and slip also changes walking speed; although commands are not features, their sensory consequences can confound class identity. Concretely, gait falls follow commands of 3.5 or -2.0 m/s with yaw up to 3 rad/s, pushes happen at 0.6 m/s and slips at 1.2 m/s, so part of the gain may be recognising the speed regime rather than the cause. The control that would settle it (pushes and slips at matched commanded speeds) has not been run. Natural gait failures, mixed causes, hardware noise and real unknown causes remain untested.
+- The gate classifies a controlled injected condition, not a counterfactually proven cause of every fall. Gait uses out-of-practice velocity/yaw commands and slip also changes walking speed; although commands are not features, their sensory consequences can confound class identity. Concretely, gait falls follow commands of 3.5 or -2.0 m/s with yaw up to 3 rad/s, pushes happen at 0.6 m/s and slips at 1.2 m/s, so part of the gain may be recognising the speed regime rather than the cause. The matched-speed control below finds no sign that push or slip is recognised from speed; gait was not part of it. Natural gait failures, mixed causes, hardware noise and real unknown causes remain untested.
 - MuJoCo emitted instability warnings during development. The first two development collections retained console warnings (4 and 5 respectively); explicit warning capture was then added, with four warnings in the third set. All falls were retained. The final batch recorded two QACC warnings at collection steps 283 and 331, both with simulator body time 0.436 s. These are consistent with automatically reset bodies after their first fall, but warnings are batch-level and cannot be assigned conclusively to a scored body. No warning-based exclusions were made; numerical validity is a limitation of this simulator protocol.
 - The final result is one fresh environment seed, with reused domain variants. Wilson intervals assume per-fall binomial sampling; grouped intervals better reflect that dependence but do not establish universal robustness.
+
+### Matched-speed control (frozen model, new seeds)
+
+In the gate, each cause came with its own commanded speed (push 0.6 m/s, slip 1.2 m/s), so the
+model could have learned speed instead of cause. Two new collections remove that difference; the
+frozen model is scored unchanged (no refit), and gait is left out.
+
+| Set | Seed | Push recall | Slip recall | Accuracy | Old rule |
+|---|---|---:|---:|---:|---:|
+| both at 1.2 m/s (pushes switch to 1.2 m/s at the push, as slips do) | 56006 | 53/53 [93.2-100] | 47/60 [66.4-86.9] | 100/113 | 19/113 |
+| both at 0.6 m/s (slips keep 0.6 m/s) | 56007 | 51/54 [84.9-98.1] | 55/60 [81.9-96.4] | 106/114 | 20/114 |
+| gate, for comparison (push 0.6, slip 1.2) | 55006 | 51/52 | 58/60 | 109/112 | 18/112 |
+
+Pushes at slip speed are still called push (never slip), and slips at push speed are still called
+slip (3/60 called push), so the speed regime is not what separates push from slip. A second
+finding is less flattering: the slip condition at 1.2 m/s is the gate's exact protocol, yet slip
+recall is 47/60 on seed 56006 against 58/60 on 55006 (Fisher p = 0.004). Nine of the 13 misses are
+called push. Slip recall therefore varies a lot between environment seeds, and the gate's 96.7% is
+the favourable end; across the three seeds slip recall is 160/180 (88.9%). Falls still come early
+(pushes 0.16-0.96 s after the push, slips 0.18-1.24 s after the ice). Five solver warnings were
+recorded in the 1.2 m/s set and none in the 0.6 m/s set; no falls were excluded.
+
+```powershell
+python scripts/locomotion_fall_causes.py collect --seed 56006 --conditions push,slip --push-command 1.2 --slip-command 1.2 --output results/locomotion/fall_causes_speed12_56006.json
+python scripts/locomotion_fall_causes.py collect --seed 56007 --conditions push,slip --slip-command 0.6 --output results/locomotion/fall_causes_speed06_56007.json
+python scripts/locomotion_fall_causes.py score --input results/locomotion/fall_causes_speed12_56006.json --model results/locomotion/fall_causes_model_frozen.json --calibration results/locomotion/fall_causes_calibration_65000.json --output results/locomotion/fall_causes_gate_speed12_56006.json
+python scripts/locomotion_fall_causes.py score --input results/locomotion/fall_causes_speed06_56007.json --model results/locomotion/fall_causes_model_frozen.json --calibration results/locomotion/fall_causes_calibration_65000.json --output results/locomotion/fall_causes_gate_speed06_56007.json
+```
+
+The two new collector options default to the original protocol; the scorer's bootstrap now uses
+the causes present (no gait here), and re-scoring the gate gives identical labels and metrics.
 
 ### Exact commands
 
