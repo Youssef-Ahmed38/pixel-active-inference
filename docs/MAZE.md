@@ -385,7 +385,7 @@ Reproduce:
 
 `pai/maze/walker.py`: the maze's wall cells become boxes in the G1's MuJoCo scene; `WalkerMaze` keeps
 the grid interface, so every maze agent runs unchanged, and each move is walked by the released v3
-walking policy, steered only through its speed and heading goals. Simplifications: walls are visual,
+walking policy, steered only through its speed and heading goals. Simplifications of the first runs: walls visual,
 not colliders (entering a wall cell is detected from the pelvis position, then the body backs off);
 the agent's local view still comes from the grid sensor and its cell from the simulator pose; a fall
 ends the episode. **30 fresh mazes (75000-75029), exact sensing:** the walker gives the same outcome
@@ -398,6 +398,46 @@ Videos (`scripts/maze_walker_demo.py`): `media/maze/walker_maze.mp4` (third pers
 receives, and its decision: chosen target and the top alternatives with their EFE terms).
 
 <img src="media/maze/walker_maze_branchy_pov.gif" width="480">
+
+**Solid walls (later the same day).** The results above used visual walls. Now every collision
+capsule of the G1 (the 23 it already pairs with the floor: pelvis, legs, feet, torso, head, arms,
+hands) collides with every wall box through one collision bit that nothing else uses, so floor and
+self contacts are untouched; with no wall in reach, walking is bit-for-bit identical
+(`tests/test_maze_walker.py`). A walk that is blocked is felt from the body's own odometry
+(commanded forward, under 5 cm of progress in 1 s); the body backs off and the agent records a bump.
+A first attempt set the collision masks after compiling the model, which MuJoCo's broad phase
+ignores (it uses per-body masks computed at compile time): the walls were still not solid. The
+test now checks the walls actually stop the body (pelvis held under 0.45 m from the start centre
+vs beyond 0.5 m with visual walls), and the runs made with that version were discarded unread.
+
+Fresh mazes, exact sensing, the same mazes walked with visual and with solid walls:
+
+| Mazes | Agent | Goal, visual / solid | Same outcome as grid body (solid) | Failed walks, visual / solid | Falls |
+|---|---|---:|---:|---:|---:|
+| corridor 79200-79229 | route EFE | 22 / 21 | 29/30 | 2 / 1 | 0 |
+| corridor 79200-79229 | nearest frontier | 22 / 22 | 30/30 | 3 / 2 | 0 |
+| branchy 79300-79329 | route EFE | 27 / 27 | 30/30 | 4 / 2 | 0 |
+| branchy 79300-79329 | nearest frontier | 21 / 21 | 30/30 | 11 / 11 | 0 |
+
+Solid walls change almost nothing: the agents never choose to walk into a wall with exact sensing,
+and the body only occasionally brushes one (for example a thigh touching the side wall while turning
+on the spot in a dead end). The one different outcome (corridor maze 79215, route EFE) is the grid
+body finding the goal on the last allowed step, 160, while the walker had one timed-out walk, which
+costs a step. Failed walks (a move that did not arrive within 8 s) are a walker limit that does not
+depend on the walls. `results/maze_walker_solid*.json`, `results/maze_walker_visual*_79*.json`:
+
+    python scripts/maze_walker_eval.py --test-start 79200 --num 30 --workers 10 --output results/maze_walker_solid.json
+    python scripts/maze_walker_eval.py --maze-style branchy --test-start 79300 --num 30 --workers 10 --output results/maze_walker_solid_branchy.json
+    (add --visual-walls for the first version)
+
+Video `media/maze/walker_solid_walls.mp4` (`scripts/maze_wall_bump_demo.py`): the same command to walk
+into a wall, visual walls on the left (the legs sink into the wall box), solid walls on the right
+(stopped at the wall face, bump recorded, backs off).
+
+<img src="media/maze/walker_solid_walls.gif" width="480">
+
+Solid walls matter once the agent can believe a wall is open, so the next test is the walker with
+noisy sensing, where bumps are real evidence.
 
 **Branchy mazes** (`MazeWorld(generator="prim", loop_probability=0.25, rooms=3)`; the default DFS
 mazes are unchanged): about 104 junctions per maze vs 31, twice as many dead ends, three open rooms

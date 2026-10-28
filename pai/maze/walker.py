@@ -6,10 +6,14 @@ maze's interface (``observe``, ``step(direction)``), so every maze agent runs un
 now carried out by the body: the learned locomotion policy (released v3) walks to the next cell
 centre, steered only through its goal (speed and heading), turning on the spot first at corners.
 
-Stated simplifications of this first version:
-- Walls are visual, not physical colliders (the G1 model's collisions are explicit foot-floor
-  contact pairs). Entering a wall cell is detected from the pelvis position; the body then backs off
-  to its cell centre, and the agent observes a bump.
+Walls are solid by default: every collision capsule of the G1 (pelvis, legs, feet, torso, head,
+arms, hands) collides with every wall box through one collision bit that nothing else uses, so
+contacts with the floor and between body parts are exactly as before. A blocked walk is felt from
+the body's own odometry (commanded forward but no progress for a second); the body then backs off to
+its cell centre and the agent observes a bump. ``solid=False`` gives the first version's visual walls
+(entering a wall cell was detected from the pelvis position).
+
+Stated simplifications:
 - The agent's local view of cells still comes from the grid sensor (``MazeWorld.observe`` at the
   cell the body is in), and its cell position comes from the simulator pose (odometry).
 - A fall ends the episode (counted as a failure; the body is not re-placed).
@@ -39,9 +43,12 @@ def cell_xy(cell: Cell, start: Cell, size_m: float) -> np.ndarray:
     return np.array([(cell[1] - start[1]) * size_m, -(cell[0] - start[0]) * size_m])
 
 
+WALL_BIT = 2   # collision bit shared only by the walls and the body's collision capsules
+
+
 def build_maze_body(world: MazeWorld, cell: float = 1.0, wall_height: float = 0.5,
-                    show_goal: bool = True) -> G1Body:
-    """G1 scene with the maze's walls (visual boxes) and, for videos, a goal marker."""
+                    show_goal: bool = True, solid: bool = True) -> G1Body:
+    """G1 scene with the maze's walls and, for videos, a goal marker."""
     spec = build_spec()
     half = cell / 2
     for r in range(world.size):
@@ -49,13 +56,22 @@ def build_maze_body(world: MazeWorld, cell: float = 1.0, wall_height: float = 0.
             if world.grid[r, c]:
                 x, y = cell_xy((r, c), world.start, cell)
                 spec.worldbody.add_geom(type=mujoco.mjtGeom.mjGEOM_BOX, size=[half, half, wall_height / 2],
-                                        pos=[x, y, wall_height / 2], contype=0, conaffinity=0,
+                                        pos=[x, y, wall_height / 2], contype=0,
+                                        conaffinity=WALL_BIT if solid else 0,
                                         rgba=list(WALL_RGBA), name=f"wall_{r}_{c}")
     if show_goal:
         x, y = cell_xy(world.goal, world.start, cell)
         spec.worldbody.add_geom(type=mujoco.mjtGeom.mjGEOM_CYLINDER, size=[0.3 * cell, 0.01, 0],
                                 pos=[x, y, 0.01], contype=0, conaffinity=0, rgba=list(GOAL_RGBA),
                                 name="goal_marker")
+    if solid:
+        # the capsules the G1 already uses against the floor (its explicit "*_floor" pairs); set on
+        # the spec so the compiler also updates the per-body masks its broad phase uses
+        for pair in spec.pairs:
+            names = {pair.geomname1, pair.geomname2}
+            if "floor" in names:
+                (name,) = names - {"floor"}
+                spec.geom(name).contype = WALL_BIT
     return G1Body(spec.compile())
 
 
@@ -72,12 +88,14 @@ class WalkerMaze:
 
     def __init__(self, world: MazeWorld, policy: Path = POLICY, cell: float = 1.0, seed: int = 0,
                  speed: float = 0.6, step_timeout_s: float = 8.0, device: str = "cpu",
-                 wall_height: float = 0.5):
+                 wall_height: float = 0.5, solid: bool = True, stall_s: float = 1.0):
         self.world = world
         self.cell = cell
         self.speed = speed
         self.timeout = step_timeout_s
-        self.body = build_maze_body(world, cell, wall_height=wall_height)   # walls are visual only
+        self.solid = solid
+        self.stall_s = stall_s
+        self.body = build_maze_body(world, cell, wall_height=wall_height, solid=solid)
         cfg = EnvConfig(randomize=False, nthread=1, episode_s=1e6)
         self.env = LocomotionEnv(1, cfg, seed=seed, stage=len(cfg.stages) - 1, body=self.body)
         self.env.pushes_enabled = False
@@ -112,6 +130,7 @@ class WalkerMaze:
     def _walk_to(self, target_xy: np.ndarray, stop_if_wall: bool = True) -> StepReport:
         t0 = self.t
         dt = self.env.cfg.ctrl_dt
+        trail = []                         # (time, xy) while commanded forward, for stall detection
         while self.t - t0 < self.timeout:
             d = target_xy - self.xy()
             dist = float(np.linalg.norm(d))
@@ -128,6 +147,15 @@ class WalkerMaze:
             here = self._cell_of(self.xy())
             if stop_if_wall and self._is_wall(here):
                 return StepReport(self.t - t0, False, True, False)
+            if v > 0.2:
+                trail.append((self.t, self.xy()))
+                while trail and self.t - trail[0][0] > self.stall_s:
+                    trail.pop(0)
+                if (stop_if_wall and self.t - t0 > self.stall_s and len(trail) * dt >= 0.9 * self.stall_s
+                        and np.linalg.norm(trail[-1][1] - trail[0][1]) < 0.05 * self.cell):
+                    return StepReport(self.t - t0, False, True, False)   # pressing against something
+            else:
+                trail.clear()
         return StepReport(self.t - t0, False, False, False)
 
     def _is_wall(self, c: Cell) -> bool:
