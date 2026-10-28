@@ -195,7 +195,15 @@ development selection `results/bike_g1_ppo_dev_{scratch,residual}.json`.
 
 The residual policy rides better but does not deliver better (rule-only 4, residual-only 1,
 p = 0.38): five of its six failures are lane changes around parked cars, often just after a corner,
-which its training never contained (no cars). The practised rule stays the delivery default. The
+which its training never contained (no cars). The practised rule stays the delivery default.
+
+**Practising lane changes did not help (development only).** A second residual run started from the
+selected policy and added parked cars to half of its training routes (the path changes lane around
+1-2 cars, often just after a corner; the rule alone falls on 11 of 27 such routes), with random
+geometry, 40M steps. On development deliveries in new towns 4580-4589 (20 deliveries) every
+checkpoint of it delivered 15/20 (2 collisions with parked cars), the first residual 17/20, the
+practised rule 19/20 (no collision). Worse on development, so not taken to a final; the rule stays
+the delivery rider (`results/bike_g1_ppo_dev_deliveries_run2.json`). The
 first rule run of this final stopped on an OpenGL error of the head camera (no result written) and
 was run again unchanged. `results/bike_g1_delivery_v2_{rule,residual}.json`.
 
