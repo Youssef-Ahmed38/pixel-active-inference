@@ -74,3 +74,24 @@ def test_open_floor_walking_is_unchanged_by_solid_walls():
         paths.append(np.array(trace))
     assert paths[0].shape == paths[1].shape
     assert np.allclose(paths[0], paths[1], atol=1e-9)
+
+
+def test_timed_out_walk_is_not_a_touch():
+    world = MazeWorld(0)
+    open_dir = next(d for d, wall in neighbours(world).items() if not wall)
+    w = walker.WalkerMaze(world, seed=0, step_timeout_s=0.1)
+    obs = w.step(open_dir)
+    assert world.position == world.start and not obs.collided
+    assert world.events[-1]["type"] == "walk_failed"
+
+
+def test_noisy_sensor_sits_on_top_of_the_walker():
+    from pai.maze.noisy import NoisySensorMaze
+    world = MazeWorld(0)
+    wall_dir = next(d for d, wall in neighbours(world).items() if wall)
+    env = NoisySensorMaze(walker.WalkerMaze(world, seed=0), seed=0, persistent=True)
+    assert env.size == world.size and env.position == world.start
+    obs = env.step(wall_dir)
+    # the body hit the wall: touch reports it, whatever the camera said
+    assert obs.touched == (world.start[0] + wall_dir[0], world.start[1] + wall_dir[1])
+    assert obs.visible[obs.touched] == "wall"

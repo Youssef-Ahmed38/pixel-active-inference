@@ -439,6 +439,50 @@ into a wall, visual walls on the left (the legs sink into the wall box), solid w
 Solid walls matter once the agent can believe a wall is open, so the next test is the walker with
 noisy sensing, where bumps are real evidence.
 
+**The walker with noisy sensing and solid walls.** The noisy sensor now sits on top of the walker:
+the body walks, the sensor misreads cells, and a bump is what the body felt (a blocked walk), not
+the grid's truth; a walk that merely timed out is no longer reported as a touch. The sensor model
+and repeat-look weight are the ones the agent learns from its own practice (mazes 1000-1019 of the
+same style, walked by the grid body: the sensor model describes the sensor, not the body). On
+development mazes 20000-20009 the walker fell 5 times in 20 episodes; tracing them showed two
+kinds: turning on the spot while still against the wall after a bump, and slow walks (5-8 s for
+one cell) later on. The back-off after a bump was changed to step straight backwards at the current
+heading (within the practised commands, vx >= -0.3 m/s, |vy| <= 0.3 m/s); that removed the first
+kind but not the falls overall (still 5), and shorter stall windows (0.5 s, 0.3 s) traded falls for
+many more bumps, so the window stayed at 1 s. Nothing else was tuned. Final, 30 fresh mazes per
+row, route EFE vs nearest frontier, goal found:
+
+| Sensing, mazes | Grid body | Walker | Walker falls (of 60) | Same outcome as grid body |
+|---|---:|---:|---:|---:|
+| iid noise, corridor 79400-79429 | 16 vs 19 | 19 vs 14 (n.s.) | 5 | 50/60 |
+| iid noise, branchy 79500-79529 | 21 vs 18 | 21 vs 18 (n.s.) | 1 | 52/60 |
+| persistent misreads, corridor 79400-79429 | **17 vs 4** (p = 0.001) | **14 vs 5** (paired 9/0, p = 0.004) | 13 | 54/60 |
+| persistent misreads, branchy 79500-79529 | 19 vs 17 | 19 vs 18 (n.s.) | 5 | 59/60 |
+
+The main maze result survives the real body: with persistent misreads in corridor mazes, the agent
+that learned repeated looks carry no new information (and touches doubtful walls) beats nearest
+frontier with the G1 doing the walking. The cost is falls: **24 in 240** walked episodes (0 with
+exact sensing), more with more bumps (persistent corridor mazes: about 2 bumps per episode and 13
+falls); 7 goals the grid body found were lost to a fall. No walk felt blocked at an open cell.
+Outcomes differ from the grid body in 25 of 240 episodes, in both directions, because bumps,
+back-offs and timed-out walks change the sequence of looks. The walking policy never practised
+touching walls; training it with wall contact (Stage 2) is the fix this points to, not more
+steering rules. `results/maze_walker_{noisy,persistent}{,_branchy}.json`:
+
+    python scripts/maze_walker_eval.py --regime persistent --test-start 79400 --num 30 --workers 10 --output results/maze_walker_persistent.json
+
+(`--regime noisy`, `--maze-style branchy --test-start 79500` for the other rows).
+
+Video `media/maze/walker_persistent_multiperception.mp4`: maze 79404 with persistent misreads
+(chosen as a run with bumps that still reaches the goal), five panels as above; the sensor patch
+now shows the misread cells the agent actually receives, and the counter shows the bumps. For the
+eye view the walls are 1.4 m high instead of 0.5 m, so the walk in the video can differ from the
+evaluated one.
+
+    python scripts/maze_walker_demo.py --seed 79404 --pov --every 30 --sensing-from results/maze_walker_persistent.json
+
+<img src="media/maze/walker_persistent_multiperception.gif" width="480">
+
 **Branchy mazes** (`MazeWorld(generator="prim", loop_probability=0.25, rooms=3)`; the default DFS
 mazes are unchanged): about 104 junctions per maze vs 31, twice as many dead ends, three open rooms
 (`media/maze/maze_styles.png`). `scripts/maze_v3_eval.py --maze-style branchy`.

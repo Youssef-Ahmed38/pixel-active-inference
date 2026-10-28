@@ -128,12 +128,24 @@ def main():
     ap.add_argument("--out", default=None)
     ap.add_argument("--branchy", action="store_true", help="Prim maze with more loops and open rooms")
     ap.add_argument("--pov", action="store_true", help="add the eye view, sensor patch and decision")
+    ap.add_argument("--sensing-from", default=None,
+                    help="a results/maze_walker_<regime>.json file: use its regime and the sensor model the agent learned")
     args = ap.parse_args()
 
     world = MazeWorld(args.seed, **(dict(generator="prim", loop_probability=0.25, rooms=3) if args.branchy else {}))
     walker = WalkerMaze(world, seed=args.seed, wall_height=1.4 if args.pov else 0.5)
+    env, obs_model, repeat_weight = walker, None, 1.0
+    if args.sensing_from:
+        import json
+        from pai.maze.map_model import ObservationModel
+        from pai.maze.noisy import NoisySensorMaze
+        rep = json.loads(Path(args.sensing_from).read_text())
+        obs_model = ObservationModel(matrix=np.array(rep["sensor"]["matrix"]))
+        repeat_weight = rep["sensor"]["repeat_weight"]
+        env = NoisySensorMaze(walker, seed=args.seed, persistent=rep["regime"] == "persistent")
     agent = RouteEFEExplorer(size=world.size, sensor_range=world.sensor_range, seed=args.seed,
-                             effort_weight=2.0, switch_margin=0.0)
+                             effort_weight=2.0, switch_margin=0.0, obs_model=obs_model)
+    agent.map.repeat_weight = repeat_weight
     m = walker.env.models[0]
     d = mujoco.MjData(m)
     r = mujoco.Renderer(m, 360, 480)
@@ -155,7 +167,7 @@ def main():
         mujoco.mj_forward(m, d)
         r.update_scene(d, cam)
         img = r.render().copy()
-        txt = [f"grid step {state['step']}   walked {walker.t:5.1f} s   falls {int(walker.fell)}",
+        txt = [f"grid step {state['step']}   walked {walker.t:5.1f} s   bumps {walker.bumps}   falls {int(walker.fell)}",
                f"cells visited {len(world.visited)}   goal {'FOUND' if world.position == world.goal or world.goal in world.visited else 'not yet'}"]
         for j, t in enumerate(txt):
             cv2.putText(img, t, (10, 22 + 20 * j), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1, cv2.LINE_AA)
@@ -169,14 +181,14 @@ def main():
         frames.append(np.vstack([top, bottom]))
 
     walker.on_frame = on_frame
-    obs = walker.observe()
+    obs = env.observe()
     for step in range(1, args.budget + 1):
         state["step"] = step
         move = agent.act(obs)
         if move is None:
             break
         state["obs"], state["move"] = obs, move
-        obs = walker.step(move)
+        obs = env.step(move)
         if walker.fell or obs.reached_goal:
             break
     state["k"] = args.every - 1               # render the final state, then hold it for a second

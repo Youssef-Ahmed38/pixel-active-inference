@@ -158,11 +158,36 @@ class WalkerMaze:
                 trail.clear()
         return StepReport(self.t - t0, False, False, False)
 
+    def _back_off(self, target_xy: np.ndarray) -> StepReport:
+        """After a bump: step backwards to the cell centre keeping the heading (no turning on the
+        spot against the wall), within the practised command range (vx >= -0.3, |vy| <= 0.3)."""
+        t0 = self.t
+        yaw = float(self.env.yaw()[0])
+        while self.t - t0 < self.timeout:
+            d = target_xy - self.xy()
+            if float(np.linalg.norm(d)) < 0.15 * self.cell:
+                self.env.set_command([0], 0.0, 0.0, 0.0, heading=yaw)
+                return StepReport(self.t - t0, False, False, True)
+            c, s = np.cos(yaw), np.sin(yaw)
+            fwd, left = c * d[0] + s * d[1], -s * d[0] + c * d[1]      # target in the heading frame
+            self.env.set_command([0], float(np.clip(1.5 * fwd, -0.3, 0.3)),
+                                 float(np.clip(1.5 * left, -0.3, 0.3)), 0.0, heading=yaw)
+            if self._tick():
+                return StepReport(self.t - t0, True, False, False)
+        return StepReport(self.t - t0, False, False, False)
+
     def _is_wall(self, c: Cell) -> bool:
         n = self.world.size
         return not (0 <= c[0] < n and 0 <= c[1] < n) or bool(self.world.grid[c])
 
     # ------------------------------------------------------------------ maze interface
+    def __getattr__(self, name):
+        # grid attributes (size, position, visited, ...) come from the maze, so sensor wrappers such
+        # as ``NoisySensorMaze`` can sit on top of the walker
+        if name == "world":
+            raise AttributeError(name)
+        return getattr(self.world, name)
+
     def observe(self, collided: bool = False) -> Observation:
         return self.world.observe(collided)
 
@@ -175,16 +200,23 @@ class WalkerMaze:
         self.walk_seconds += rep.seconds
         if rep.bumped:
             self.bumps += 1
-            back = self._walk_to(cell_xy(p, self.world.start, self.cell), stop_if_wall=False)
+            back = self._back_off(cell_xy(p, self.world.start, self.cell))
             self.walk_seconds += back.seconds
-        # the grid world is told what the body did; a wall target or a failed walk is a bump
-        moved = rep.reached and not self._is_wall(target)
-        obs = self.world.step(direction) if moved or self._is_wall(target) else self._stay(direction)
-        return obs
+        # the grid world is told what the body did
+        if rep.reached:
+            return self.world.step(direction)
+        if rep.bumped and self._is_wall(target):
+            return self.world.step(direction)          # a real wall: the grid records the collision
+        if rep.bumped:
+            # the body felt blocked although the cell is open (brushing a corner): it stays, and
+            # what the agent receives is a bump, as for a wall
+            return self._stay(direction, "felt_blocked")
+        return self._stay(direction)
 
-    def _stay(self, direction: Cell) -> Observation:
-        """The body did not arrive (timeout or fall): the grid position stays, as after a bump."""
+    def _stay(self, direction: Cell, kind: str = "walk_failed") -> Observation:
+        """The body did not arrive (timeout, fall or felt blocked): the grid position stays."""
         self.world.steps += 1
-        self.world.events.append({"step": self.world.steps, "type": "walk_failed",
+        self.world.events.append({"step": self.world.steps, "type": kind,
                                   "position": self.world.position})
-        return self.world.observe(True)
+        # only a felt block is a touch; a timed-out walk felt nothing (touch would claim a wall)
+        return self.world.observe(kind == "felt_blocked")
