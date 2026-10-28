@@ -54,24 +54,22 @@ The paper draft (`paper/`, IEEEtran in the user's format) is **local only** by t
 `data/paper_overleaf.zip`. Updated 2026-10-28 06:50 with all results above (maze section rewritten
 around the branchy-maze result and the corridor correction; walker figure added).
 
-## In progress (2026-10-28 11:10; the user is away: work continues without asking)
+## In progress (2026-10-28 11:20; the user is away: work continues without asking)
 
-- **Open PRs for the user to merge:** #5 (Stage 4 key chain as an induced recipe, Codex, reviewed)
-  and #6 (walking v4 with wall contact, four fall causes, the maze walker's own eyes; plus the v5
-  negative result). Codex's original Stage 4 files are still untracked in the main checkout
-  (identical; remove after merging #5, then pull). Branch `walking-walls-eyes` has a worktree at
-  `../pai-walls`.
-- **v5 not released:** fast-changing goals kept every gate but raised development maze falls
-  (13 vs 8 of 60). v4 stays released.
-- **Smooth steering for the maze walker** (main checkout, uncommitted: `pai/maze/walker.py`
-  `smooth=True`, `scripts/maze_walker_eval.py --smooth`): start walking below 10 degrees heading
-  error, keep walking until 40, ramp speed at most 1 m/s^2. Development (20100-20129, v4): falls 8 -> 2
-  of 60, goals route EFE 14 -> 16, nearest frontier 2 -> 8. Final running on new mazes 83000-83029:
-  `results/maze_walker_persistent_83000_v4{_smooth,}.json`. Then add to PR #6 (docs: MAZE.md
-  section 11/12 and LOCOMOTION_STAGE2.md v4 paragraph).
-- **Codex: arm cause likelihoods** (`docs/briefs/ARM_CAUSE_LIKELIHOODS.md`, task `arm-causes`):
-  stopped once on "model at capacity" during its camera final; resumed with
-  `data/codex_tasks/arm-causes/continue1.md`. Review when it reports.
+- **Open PRs for the user to merge:** #5 (Stage 4 key chain as an induced recipe, Codex), #6 (walking
+  v4 with wall contact, four fall causes, the maze walker's own eyes, v5 negative result, smooth
+  steering option), #7 (arm: learned cause likelihoods, Codex; exact 97/100 vs 87, camera 78/100 vs
+  66). Codex's original files for #5 and #7 are still untracked in the main checkout (identical;
+  remove after merging, then pull). Worktrees: `../pai-walls` (#6), `../pai-arm2` (#7).
+- **v6 training** (Claude, walking): from v4, half the bodies practise the maze walker's own goal
+  pattern (turn on the spot, walk one cell, stop; abrupt and smooth steering), walls closer
+  (0.9-1.8 m); `configs/locomotion_v6.yaml`, `pai/locomotion/env.py` (`maze_goal_frac`), chain
+  `data/run_v6.sh` -> dev gates + walls + dev maze falls (20100-20129, old and smooth steering;
+  v4 had 8 and 2 falls of 60). Release only if every gate holds and maze falls drop; then a final on
+  new seeds and new mazes (not 57000+, 81000+, 82000+, 83000+).
+- **Codex: chess** (`docs/briefs/CHESS_HRM_SEARCH.md`, task `chess-hrm`): HRM inside search with
+  learned halting, more games per ladder rung. Review when it reports (check result files for
+  absolute local paths, including inside `.gz`).
 
 ## Next steps (plan agreed with the user, 2026-10-28; in order)
 
