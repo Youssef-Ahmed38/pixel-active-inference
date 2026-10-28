@@ -1,4 +1,4 @@
-# Status: where we stopped (updated 2026-10-28, 04:00)
+# Status: where we stopped (updated 2026-10-28, 04:30)
 
 ## Done (on `main`, pushed)
 
@@ -18,29 +18,48 @@
 Audit fix #1 is done (arm relations come from perception, commit aa8d259); the other audit items
 are open (see the queue).
 
-## Running right now
+## Running right now (check these first; updated 2026-10-28 04:30)
 
-Nothing. (Walking v3 is released; maze v3 is done; the Codex language task is reviewed.)
+1. **Language follow-up on PR #2's branch** (`language-causes`, in a separate worktree; see the
+   local hand-off file for its location and setup).
+   New `SilenceModel` in `pai/language/association.py`: a silent surprise monitor is learned evidence
+   for "nothing unusual" (P = 0.957 from teaching: silent 11/15 clean, 0/60 disturbed). Checkpoint
+   `results/language_causes_v3_checkpoint.json` (teaching adds the v2 final episodes). Fresh eval:
+   seeds 68000-68009, disturbance base 79000 -> `results/language_causes_v3_final.json`, log
+   `data/lang_v3_eval.log`. **Next:** recompute cause accuracy per condition from the raw episodes
+   (clean episodes should now say `none`), add a v3 section to `docs/LANGUAGE_STAGE6.md`, commit the
+   new files on the branch (not `third_party`, not `runs`), push, update the PR description (no
+   Claude mentions). The user merges PR #2.
+2. **Codex task `fall-causes`** (brief `docs/briefs/FALL_CAUSES.md`, Sol 6.1, user's thread, main
+   checkout). Logs `data/codex_tasks/fall-causes/events.jsonl`; report `.../report.md` when done.
+   **Next:** review (diff in `pai/locomotion/falls.py` or new files, tests, recompute from
+   `results/locomotion/fall_causes_*.json`, new seeds, no simulator forces/event log in the inference),
+   then commit on a branch via a worktree and open a PR. Keep the Codex thread closed in the app while
+   it runs (an open thread blocks the CLI: "active writer").
+3. **Maze spatial prior** (main checkout, uncommitted: `pai/maze/map_model.py` per-cell unobserved
+   information cache fix + `SpatialPrior.fit_from_beliefs`; `pai/maze/efe_agent.py` prior for the
+   baselines; `scripts/maze_v3_eval.py --prior default|truth|self`). Dev (20000-20029, self prior):
+   route EFE exact 83%, noisy 70%. Final running on seeds 73000-73099 for the three priors ->
+   `results/maze_v3_prior_{default,truth,self}.json`, logs `data/maze_dev/prior_*_final.log`.
+   **Next:** compare, write `docs/MAZE.md` section 10.3 (note: the cache fix changes the info values,
+   so earlier v3 numbers were with the old cache), commit, push.
 
 ## Waiting for the user
 
-- **PR #2** (Stage 6 causal explanations in English and Arabic, built by Codex, reviewed by Claude):
-  https://github.com/Youssef-Ahmed38/pixel-active-inference/pull/2 . Merge it.
+- **PR #2**: wait for item 1 above before merging.
+- Copilot's automatic PR review comes from the user's personal Copilot setting (cannot be removed by
+  us). PR descriptions must not mention Claude.
 - The paper draft (`paper/`, IEEEtran in the user's format) is **local only** by the user's choice:
   `paper/` is in `.git/info/exclude`; numbers live in `paper/numbers.tex`; compile on Overleaf from
   `data/paper_overleaf.zip`. Keep it updated as results land; do not commit it.
 
 ## Next steps (queue, in order)
 
-1. Language follow-up: in undisturbed episodes the surprise monitor never fires, so 8/10 abstain
-   instead of saying "nothing unusual"; treat "no surprise" as evidence for `none`, re-test on new
-   seeds (not 66000-66003, 67000-67009).
-2. Fall-cause inference for walking (40% fresh: push and slip taken for own gait error); add sole
-   forces as evidence. Good task to delegate to Codex.
-3. Maze: use the learned walker in the maze (Stage 2 to 3); learn the spatial prior from own maps.
-4. Audit #4/#5: learned cause likelihoods; key chain from recipes instead of a scripted state machine.
-5. Chess: connect HRM to search with learned halting; more games per ladder rung.
-6. Bike: learn from rendered video, not simulator states; Stage 2 balance transfer.
+1. Finish the three running items above.
+2. Maze: use the learned walker in the maze (Stage 2 to 3).
+3. Audit #4/#5: learned cause likelihoods; key chain from recipes instead of a scripted state machine.
+4. Chess: connect HRM to search with learned halting; more games per ladder rung.
+5. Bike: learn from rendered video, not simulator states; Stage 2 balance transfer.
 
 ## Housekeeping
 
