@@ -54,22 +54,20 @@ The paper draft (`paper/`, IEEEtran in the user's format) is **local only** by t
 `data/paper_overleaf.zip`. Updated 2026-10-28 06:50 with all results above (maze section rewritten
 around the branchy-maze result and the corridor correction; walker figure added).
 
-## In progress (2026-10-28 11:20; the user is away: work continues without asking)
+## In progress (2026-10-28 13:30; the user is away: work continues without asking)
 
-- **Open PRs for the user to merge:** #5 (Stage 4 key chain as an induced recipe, Codex), #6 (walking
-  v4 with wall contact, four fall causes, the maze walker's own eyes, v5 negative result, smooth
-  steering option), #7 (arm: learned cause likelihoods, Codex; exact 97/100 vs 87, camera 78/100 vs
-  66). Codex's original files for #5 and #7 are still untracked in the main checkout (identical;
-  remove after merging, then pull). Worktrees: `../pai-walls` (#6), `../pai-arm2` (#7).
-- **v6 training** (Claude, walking): from v4, half the bodies practise the maze walker's own goal
-  pattern (turn on the spot, walk one cell, stop; abrupt and smooth steering), walls closer
-  (0.9-1.8 m); `configs/locomotion_v6.yaml`, `pai/locomotion/env.py` (`maze_goal_frac`), chain
-  `data/run_v6.sh` -> dev gates + walls + dev maze falls (20100-20129, old and smooth steering;
-  v4 had 8 and 2 falls of 60). Release only if every gate holds and maze falls drop; then a final on
-  new seeds and new mazes (not 57000+, 81000+, 82000+, 83000+).
-- **Codex: chess** (`docs/briefs/CHESS_HRM_SEARCH.md`, task `chess-hrm`): HRM inside search with
-  learned halting, more games per ladder rung. Review when it reports (check result files for
-  absolute local paths, including inside `.gz`).
+- **Open PRs for the user to merge:** #5 (Stage 4 key chain as an induced recipe), #6 (walking v4
+  with wall contact, four fall causes, the maze walker's own eyes; v5 and v6 not released; smooth
+  steering option), #7 (arm learned cause likelihoods: exact 97 vs 87, camera 78 vs 66), #8 (chess:
+  HRM in search with learned halting; not promoted, no strength gain). Codex's original files for
+  #5, #7, #8 remain untracked in the main checkout (identical; remove after merging, then pull).
+  Worktrees: `../pai-walls` (#6), `../pai-arm2` (#7), `../pai-chess` (#8).
+- **Walking plan A-C done.** Open problem: the walker still falls in noisy mazes (v4 + smooth
+  steering: 3 of 60 on new mazes); v5 (fast random goals) and v6 (maze-goal practice) did not fix it.
+- **Codex: bicycle from video** (`docs/briefs/BIKE_FROM_VIDEO.md`, task `bike-video`): learn from
+  rendered video, ride from an on-board camera and own proprioception. Review when it reports (scan
+  results, including inside `.gz`, for absolute local paths before any push).
+- The local paper (`paper/`) includes all results up to the chess PR; zip `data/paper_overleaf.zip`.
 
 ## Next steps (plan agreed with the user, 2026-10-28; in order)
 
