@@ -573,50 +573,50 @@ All **150/150** trials completed: 50 matched layout/condition cases in each of t
 
 | Metric | English | Arabic |
 |---|---:|---:|
-| Instruction goal success | 41/50 [69.–0.2%] | 41/50 [69.–0.2%] |
-| Matched direct-goal baseline | 41/50 [69.–0.2%] | 41/50 [69.–0.2%] |
-| Cause correct against event log | 37/50 [60.–4.1%] | 37/50 [60.–4.1%] |
-| Cause reporting coverage | 40/50 [67.–8.8%] | 40/50 [67.–8.8%] |
-| Correct among issued cause reports | 37/40 [80.–7.4%] | 37/40 [80.–7.4%] |
-| Perceived goal report matches truth | 50/50 [92.–00.0%] | 50/50 [92.–00.0%] |
-| New question wording: intent correct | 9/12 [46.–1.1%] | 9/12 [46.–1.1%] |
+| Instruction goal success | 41/50 [69.2–90.2%] | 41/50 [69.2–90.2%] |
+| Matched direct-goal baseline | 41/50 [69.2–90.2%] | 41/50 [69.2–90.2%] |
+| Cause correct against event log | 37/50 [60.4–84.1%] | 37/50 [60.4–84.1%] |
+| Cause reporting coverage | 40/50 [67.0–88.8%] | 40/50 [67.0–88.8%] |
+| Correct among issued cause reports | 37/40 [80.1–97.4%] | 37/40 [80.1–97.4%] |
+| Perceived goal report matches truth | 50/50 [92.9–100.0%] | 50/50 [92.9–100.0%] |
+| New question wording: intent correct | 9/12 [46.8–91.1%] | 9/12 [46.8–91.1%] |
 
 Each language has **10 abstentions**, including eight clean cases without sufficient cause evidence and two disturbed cases. There are **zero paired task-success disagreements** with the direct-goal baseline. These are paired comparisons under one fixed planning budget, not proof that language has no cost on every task.
 
 | Condition | Direct goal | English instruction | Arabic instruction | English cause correct | Arabic cause correct |
 |---|---:|---:|---:|---:|---:|
-| none | 10/10 [72.–00.0%] | 10/10 [72.–00.0%] | 10/10 [72.–00.0%] | 2/10 [5.–1.0%] | 2/10 [5.–1.0%] |
-| push | 8/10 [49.–4.3%] | 8/10 [49.–4.3%] | 8/10 [49.–4.3%] | 10/10 [72.–00.0%] | 10/10 [72.–00.0%] |
-| heavier_object | 10/10 [72.–00.0%] | 10/10 [72.–00.0%] | 10/10 [72.–00.0%] | 10/10 [72.–00.0%] | 10/10 [72.–00.0%] |
-| slippery_object | 6/10 [31.–3.2%] | 6/10 [31.–3.2%] | 6/10 [31.–3.2%] | 5/10 [23.–6.3%] | 5/10 [23.–6.3%] |
-| camera_shift | 7/10 [39.–9.2%] | 7/10 [39.–9.2%] | 7/10 [39.–9.2%] | 10/10 [72.–00.0%] | 10/10 [72.–00.0%] |
+| none | 10/10 [72.2–100.0%] | 10/10 [72.2–100.0%] | 10/10 [72.2–100.0%] | 2/10 [5.7–51.0%] | 2/10 [5.7–51.0%] |
+| push | 8/10 [49.0–94.3%] | 8/10 [49.0–94.3%] | 8/10 [49.0–94.3%] | 10/10 [72.2–100.0%] | 10/10 [72.2–100.0%] |
+| heavier_object | 10/10 [72.2–100.0%] | 10/10 [72.2–100.0%] | 10/10 [72.2–100.0%] | 10/10 [72.2–100.0%] | 10/10 [72.2–100.0%] |
+| slippery_object | 6/10 [31.3–83.2%] | 6/10 [31.3–83.2%] | 6/10 [31.3–83.2%] | 5/10 [23.7–76.3%] | 5/10 [23.7–76.3%] |
+| camera_shift | 7/10 [39.7–89.2%] | 7/10 [39.7–89.2%] | 7/10 [39.7–89.2%] | 10/10 [72.2–100.0%] | 10/10 [72.2–100.0%] |
 
 | Held-out goal | Direct goal | English instruction | Arabic instruction |
 |---|---:|---:|---:|
-| `('in', 'red', 'bowl')` | 8/10 [49.–4.3%] | 8/10 [49.–4.3%] | 8/10 [49.–4.3%] |
-| `('in', 'yellow', 'bowl')` | 14/15 [70.–8.8%] | 14/15 [70.–8.8%] | 14/15 [70.–8.8%] |
-| `('on', 'blue', 'plate')` | 6/10 [31.–3.2%] | 6/10 [31.–3.2%] | 6/10 [31.–3.2%] |
-| `('on', 'red', 'plate')` | 13/15 [62.–6.3%] | 13/15 [62.–6.3%] | 13/15 [62.–6.3%] |
+| `('in', 'red', 'bowl')` | 8/10 [49.0–94.3%] | 8/10 [49.0–94.3%] | 8/10 [49.0–94.3%] |
+| `('in', 'yellow', 'bowl')` | 14/15 [70.2–98.8%] | 14/15 [70.2–98.8%] | 14/15 [70.2–98.8%] |
+| `('on', 'blue', 'plate')` | 6/10 [31.3–83.2%] | 6/10 [31.3–83.2%] | 6/10 [31.3–83.2%] |
+| `('on', 'red', 'plate')` | 13/15 [62.1–96.3%] | 13/15 [62.1–96.3%] | 13/15 [62.1–96.3%] |
 
 The goal table pools conditions for the same assigned layouts; those denominators are not independent new layouts. Instruction resolution matched the intended goal in **50/50 cases per language**. Actual disturbance activation was checked from the event log: all 40 nominally disturbed layout/condition cases had a logged disturbance in each mode.
 
 | Learned numeric meaning | English: correct / matched event | Arabic: correct / matched event | Unmatched claims, each language | Mean error, each language |
 |---|---:|---:|---:|---:|
-| Extra mass (0.1 kg tolerance) | 10/10 [72.–00.0%] | 10/10 [72.–00.0%] | 0 | 0.003788 kg |
-| Camera offset (10 mm tolerance) | 10/10 [72.–00.0%] | 10/10 [72.–00.0%] | 0 | 0.281237 mm |
-| Onset (0.3 s tolerance) | 20/20 [83.–00.0%] | 20/20 [83.–00.0%] | 3 | 0.032000 s |
+| Extra mass (0.1 kg tolerance) | 10/10 [72.2–100.0%] | 10/10 [72.2–100.0%] | 0 | 0.003788 kg |
+| Camera offset (10 mm tolerance) | 10/10 [72.2–100.0%] | 10/10 [72.2–100.0%] | 0 | 0.281237 mm |
+| Onset (0.3 s tolerance) | 20/20 [83.9–100.0%] | 20/20 [83.9–100.0%] | 3 | 0.032000 s |
 
 Onset was issued 23 times per language. Twenty claims had a matching push/camera event and passed; three push claims during slip had **no matching push event** and were left unmatched, without a fabricated error against the friction-change time. Those three wrong causes remain errors in the main cause score. No slip-onset binding was learned, so v2 makes no slip-onset claim. The conditional numeric results therefore do not establish accurate timing for every disturbance.
 
 | Question intent / wording subset | English | Arabic |
 |---|---:|---:|
-| why | 2/2 [34.–00.0%] | 2/2 [34.–00.0%] |
-| drop | 0/2 [0.–5.8%] | 1/2 [9.–0.5%] |
-| cf:remove_push | 2/2 [34.–00.0%] | 1/2 [9.–0.5%] |
-| cf:open_early | 2/2 [34.–00.0%] | 2/2 [34.–00.0%] |
-| None | 3/4 [30.–5.4%] | 3/4 [30.–5.4%] |
+| why | 2/2 [34.2–100.0%] | 2/2 [34.2–100.0%] |
+| drop | 0/2 [0.0–65.8%] | 1/2 [9.5–90.5%] |
+| cf:remove_push | 2/2 [34.2–100.0%] | 1/2 [9.5–90.5%] |
+| cf:open_early | 2/2 [34.2–100.0%] | 2/2 [34.2–100.0%] |
+| None | 3/4 [30.1–95.4%] | 3/4 [30.1–95.4%] |
 
-On the same 12 new wordings, the unchanged v1 exact-match model scores **4/12 [13.–0.9%]** in each language: it rejects all eight positive-intent wordings and correctly abstains on all four negatives. V2 scores **9/12 [46.–1.1%]** in each language. This is a descriptive comparison on a small authored set; no population-wide language improvement or significance claim is made.
+On the same 12 new wordings, the unchanged v1 exact-match model scores **4/12 [13.8–60.9%]** in each language: it rejects all eight positive-intent wordings and correctly abstains on all four negatives. V2 scores **9/12 [46.8–91.1%]** in each language. This is a descriptive comparison on a small authored set; no population-wide language improvement or significance claim is made.
 
 English misses both new drop wordings by abstaining. Arabic misreads one drop question as general why and abstains on one remove-push wording. Both classifiers label one mixed push/drop request as drop; its downstream drop-attribution answer still abstains, but its **intent classification is scored wrong**. The four negative wordings all receive abstaining replies on all episodes; this does not erase those intent errors. Specific-drop attribution and removing-push counterfactuals remain unsupported. Opening-early replies are local model predictions where a unique valid credit record exists, not measured alternate-world truth.
 
