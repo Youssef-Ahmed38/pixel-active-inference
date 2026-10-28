@@ -1,0 +1,444 @@
+{
+  "split": "pilot",
+  "episodes": [
+    {
+      "index": 0,
+      "seed": 89800,
+      "assigned_condition": "none",
+      "disturbances": [],
+      "events": [
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "blue"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "green"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "yellow"
+          ]
+        },
+        {
+          "t": 210,
+          "type": "grasp",
+          "object": "red"
+        },
+        {
+          "t": 213,
+          "type": "relation_true",
+          "relation": [
+            "grasped",
+            "red"
+          ]
+        },
+        {
+          "t": 253,
+          "type": "relation_true",
+          "relation": [
+            "lifted",
+            "red"
+          ]
+        },
+        {
+          "t": 302,
+          "type": "relation_false",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 337,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 366,
+          "type": "relation_false",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 394,
+          "type": "slip",
+          "object": "red",
+          "speed": 0.12260004948500311
+        },
+        {
+          "t": 397,
+          "type": "slip",
+          "object": "red",
+          "speed": 0.15940559587631467
+        },
+        {
+          "t": 400,
+          "type": "slip",
+          "object": "red",
+          "speed": 0.21128180012896794
+        },
+        {
+          "t": 403,
+          "type": "release",
+          "object": "red"
+        }
+      ],
+      "success": false,
+      "reference": "results/thinker_hier_pilot_reference_0000.npz"
+    },
+    {
+      "index": 1,
+      "seed": 89800,
+      "assigned_condition": "push",
+      "disturbances": [
+        {
+          "t": 217,
+          "type": "disturbance_start",
+          "disturbance": "push",
+          "params": {
+            "body": "hand",
+            "force": [
+              -9.354130858628753,
+              -44.27664528275209,
+              0.0
+            ]
+          }
+        }
+      ],
+      "events": [
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "blue"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "green"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "yellow"
+          ]
+        },
+        {
+          "t": 210,
+          "type": "grasp",
+          "object": "red"
+        },
+        {
+          "t": 213,
+          "type": "relation_true",
+          "relation": [
+            "grasped",
+            "red"
+          ]
+        },
+        {
+          "t": 217,
+          "type": "disturbance_start",
+          "disturbance": "push",
+          "params": {
+            "body": "hand",
+            "force": [
+              -9.354130858628753,
+              -44.27664528275209,
+              0.0
+            ]
+          }
+        },
+        {
+          "t": 232,
+          "type": "disturbance_end",
+          "disturbance": "push",
+          "params": {
+            "body": "hand",
+            "force": [
+              -9.354130858628753,
+              -44.27664528275209,
+              0.0
+            ]
+          }
+        },
+        {
+          "t": 255,
+          "type": "relation_true",
+          "relation": [
+            "lifted",
+            "red"
+          ]
+        },
+        {
+          "t": 320,
+          "type": "relation_false",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 403,
+          "type": "release",
+          "object": "red"
+        },
+        {
+          "t": 404,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        }
+      ],
+      "success": false,
+      "reference": "results/thinker_hier_pilot_reference_0001.npz"
+    },
+    {
+      "index": 2,
+      "seed": 89800,
+      "assigned_condition": "heavier_object",
+      "disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "payload",
+          "params": {
+            "body": "red",
+            "mass": 0.5791885594386301
+          }
+        }
+      ],
+      "events": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "payload",
+          "params": {
+            "body": "red",
+            "mass": 0.5791885594386301
+          }
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "blue"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "green"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "yellow"
+          ]
+        }
+      ],
+      "success": false,
+      "reference": "results/thinker_hier_pilot_reference_0002.npz"
+    },
+    {
+      "index": 3,
+      "seed": 89800,
+      "assigned_condition": "slippery_object",
+      "disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "friction",
+          "params": {
+            "body": "red",
+            "scale": 0.05
+          }
+        }
+      ],
+      "events": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "friction",
+          "params": {
+            "body": "red",
+            "scale": 0.05
+          }
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "blue"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "green"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "yellow"
+          ]
+        }
+      ],
+      "success": false,
+      "reference": "results/thinker_hier_pilot_reference_0003.npz"
+    },
+    {
+      "index": 4,
+      "seed": 89800,
+      "assigned_condition": "camera_shift",
+      "disturbances": [
+        {
+          "t": 58,
+          "type": "disturbance_start",
+          "disturbance": "camera_shift",
+          "params": {
+            "offset": [
+              -0.004156987625021694,
+              0.04060324002090181,
+              0.0021027190098574303
+            ]
+          }
+        }
+      ],
+      "events": [
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "blue"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "green"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "yellow"
+          ]
+        },
+        {
+          "t": 58,
+          "type": "disturbance_start",
+          "disturbance": "camera_shift",
+          "params": {
+            "offset": [
+              -0.004156987625021694,
+              0.04060324002090181,
+              0.0021027190098574303
+            ]
+          }
+        },
+        {
+          "t": 231,
+          "type": "relation_false",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 400,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        }
+      ],
+      "success": false,
+      "reference": "results/thinker_hier_pilot_reference_0004.npz"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "command": [
+    "python",
+    "scripts/thinker_hier_round3_train.py",
+    "--kind",
+    "amortized",
+    "--seed",
+    "100001"
+  ],
+  "exit_code": 0
+}

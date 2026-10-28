@@ -1,0 +1,864 @@
+{
+  "split": "final",
+  "base_seed": 92000,
+  "count_per_condition": 40,
+  "worker": 0,
+  "workers": 2,
+  "source_hashes": {
+    "pai/thinker/hier_sensors.py": "42fd7a0d7bbf68a51ac8f633d341eb582f09c27d06ba5db5888092e827099c54",
+    "scripts/thinker_hier_collect.py": "86c2b3d9fa690615fd284a252ff0d52c2f5a0ae1af1c460066124a6f384d915c",
+    "pai/agents/slice_agent.py": "d557998f64cb80e6bbb80de0e411d91e5b0266ad684d95d10862937e99e1c824",
+    "configs/tabletop.yaml": "99e9d2935fd2de292c2b6f324cc70c9bf818b0aabc0798a50a1d8dcde28f4768"
+  },
+  "world_model_sha256": "2e53d10bb944c3498b6aed22f8bccd209950155a4bdd465f08e3533085f53bb9",
+  "config": {
+    "seed": 0,
+    "env": {
+      "image_size": 160,
+      "render_images": false,
+      "control_dt": 0.02,
+      "control": "ee",
+      "max_ee_vel": 0.25,
+      "max_yaw_vel": 1.5,
+      "max_joint_vel": 1.5,
+      "ik_damping": 0.05,
+      "ik_nullspace_gain": 0.02,
+      "ee_low": [
+        0.2,
+        -0.4,
+        0.005
+      ],
+      "ee_high": [
+        0.8,
+        0.4,
+        0.55
+      ],
+      "stiffness": 0.15,
+      "gripper_strength": 10.0,
+      "home_q": [
+        0.0,
+        0.0,
+        0.0,
+        -2.2,
+        0.0,
+        2.2,
+        0.785
+      ],
+      "settle_steps": 200,
+      "spawn_low": [
+        0.35,
+        -0.25
+      ],
+      "spawn_high": [
+        0.65,
+        0.25
+      ],
+      "object_friction": 1.0,
+      "table_rgba": [
+        0.55,
+        0.42,
+        0.3,
+        1
+      ],
+      "blocks": [
+        {
+          "name": "red",
+          "size": 0.04,
+          "mass": 0.08,
+          "rgba": [
+            0.85,
+            0.15,
+            0.15,
+            1
+          ]
+        },
+        {
+          "name": "green",
+          "size": 0.04,
+          "mass": 0.08,
+          "rgba": [
+            0.15,
+            0.7,
+            0.2,
+            1
+          ]
+        },
+        {
+          "name": "blue",
+          "size": 0.04,
+          "mass": 0.08,
+          "rgba": [
+            0.15,
+            0.3,
+            0.85,
+            1
+          ]
+        },
+        {
+          "name": "yellow",
+          "size": 0.04,
+          "mass": 0.08,
+          "rgba": [
+            0.9,
+            0.8,
+            0.15,
+            1
+          ]
+        }
+      ],
+      "plate": {
+        "radius": 0.07,
+        "height": 0.012,
+        "mass": 0.2,
+        "rgba": [
+          0.92,
+          0.92,
+          0.9,
+          1
+        ]
+      },
+      "bowl": {
+        "radius": 0.07,
+        "height": 0.05,
+        "mass": 0.3,
+        "rgba": [
+          0.3,
+          0.55,
+          0.75,
+          1
+        ]
+      },
+      "cameras": [
+        {
+          "name": "front",
+          "pos": [
+            1.35,
+            0.0,
+            0.85
+          ],
+          "target": [
+            0.45,
+            0.0,
+            0.05
+          ],
+          "fovy": 50
+        },
+        {
+          "name": "side",
+          "pos": [
+            0.5,
+            -1.1,
+            0.7
+          ],
+          "target": [
+            0.45,
+            0.0,
+            0.05
+          ],
+          "fovy": 50
+        },
+        {
+          "name": "top",
+          "pos": [
+            0.9,
+            0.0,
+            1.25
+          ],
+          "target": [
+            0.45,
+            0.0,
+            0.0
+          ],
+          "fovy": 50
+        },
+        {
+          "name": "work",
+          "pos": [
+            1.05,
+            0.0,
+            0.95
+          ],
+          "target": [
+            0.5,
+            0.0,
+            0.02
+          ],
+          "fovy": 36
+        }
+      ],
+      "render": {
+        "msaa": 0,
+        "shadow_size": 0
+      },
+      "disturbances": []
+    },
+    "world_model": {
+      "data_dir": "data/slice_transitions",
+      "out_dir": "runs/slice_world_model",
+      "n_members": 5,
+      "d_model": 128,
+      "n_layers": 3,
+      "n_heads": 4,
+      "lr": 0.001,
+      "batch_size": 512,
+      "steps": 8000,
+      "log_every": 500
+    },
+    "slice": {
+      "world_model": "runs/slice_world_model/world_model.pt",
+      "action_repeat": 5,
+      "max_plan_steps": 80,
+      "settle_steps": 5,
+      "horizon": 6,
+      "samples": 16,
+      "iterations": 1,
+      "temperature": 0.1,
+      "epistemic_weight": 0.0,
+      "episodes": 20,
+      "seed_planner": true,
+      "slippery_carry": "low",
+      "slippery_carry_speed": 1.0,
+      "watch_settle": false
+    },
+    "slots": {
+      "frames_dir": "data/slice_frames",
+      "cache_dir": "data/slice_features",
+      "out_dir": "runs/slots",
+      "camera": "work",
+      "image_size": 448,
+      "feat_dim": 128,
+      "n_slots": 8,
+      "dim": 128,
+      "iters": 3,
+      "lr": 0.0004,
+      "batch_size": 64,
+      "steps": 20000,
+      "batch_size_auto": false,
+      "vram_fill": 0.9,
+      "pool_memory": true,
+      "gpu_cache": "auto",
+      "assignment": "fixed",
+      "mask_weight": 1.0,
+      "attn_weight": 1.0,
+      "recon_weight": 1.0,
+      "token_weight": 1.0,
+      "pos_weight": 1.0,
+      "val_fraction": 0.05,
+      "log_every": 1000
+    }
+  },
+  "regime": "RGB with given calibrated color/shape geometry; proprioception; adapt=False",
+  "command": [
+    "python",
+    "scripts/thinker_hier_collect.py",
+    "--split",
+    "final",
+    "--workers",
+    "2",
+    "--worker",
+    "0"
+  ],
+  "episodes": [
+    {
+      "index": 0,
+      "path": "results/thinker_hier_final_0000.npz",
+      "sha256": "5476220992bb4d4c6969f7194501ddb94d57c7603430e0aee76db18b08b6e43f",
+      "steps": 80
+    },
+    {
+      "index": 2,
+      "path": "results/thinker_hier_final_0002.npz",
+      "sha256": "a796a161b8bdf2d058534c61db13f6a39535762c6e90593b1996defb929d42be",
+      "steps": 80
+    },
+    {
+      "index": 4,
+      "path": "results/thinker_hier_final_0004.npz",
+      "sha256": "02c3345563217e1d8ddb95fe82d7bd3dcd2da0f6be371d481e162f07516a288a",
+      "steps": 80
+    },
+    {
+      "index": 6,
+      "path": "results/thinker_hier_final_0006.npz",
+      "sha256": "492084ce89124491afad0ad8c0f7e87580f19e56b693f312b48df73231a0280e",
+      "steps": 80
+    },
+    {
+      "index": 8,
+      "path": "results/thinker_hier_final_0008.npz",
+      "sha256": "1b4ec49eaa663ab2a17d2e125fc576377c3397392abd646370d1f37f8436f345",
+      "steps": 80
+    },
+    {
+      "index": 10,
+      "path": "results/thinker_hier_final_0010.npz",
+      "sha256": "cd864913ec4da6d4cc3e993697fbcba25f463384d64eabf7a32ea880fbb93559",
+      "steps": 80
+    },
+    {
+      "index": 12,
+      "path": "results/thinker_hier_final_0012.npz",
+      "sha256": "3c3e7ad940a579eeaa667727556c71b08c9bd1d36260f567045498a0b0385be7",
+      "steps": 80
+    },
+    {
+      "index": 14,
+      "path": "results/thinker_hier_final_0014.npz",
+      "sha256": "e133cc4794e688b305102f97f077a61cd3cb573ce7cee8cc63ad98accf02fbc0",
+      "steps": 80
+    },
+    {
+      "index": 16,
+      "path": "results/thinker_hier_final_0016.npz",
+      "sha256": "776bcb3abea51669e9d6c4d41f1e03cfb8b90bda91aa3ec4f4997edefd8dfae0",
+      "steps": 80
+    },
+    {
+      "index": 18,
+      "path": "results/thinker_hier_final_0018.npz",
+      "sha256": "55b9fea358171fc6f75bb6fb1b2585e77cabebf2aa3606fa71a98f7a6b74e949",
+      "steps": 80
+    },
+    {
+      "index": 20,
+      "path": "results/thinker_hier_final_0020.npz",
+      "sha256": "aab67ac381b7ee1c5117eeb906e479e3d2adea9b06d9e5efe8ae3493bad9d219",
+      "steps": 80
+    },
+    {
+      "index": 22,
+      "path": "results/thinker_hier_final_0022.npz",
+      "sha256": "06f42701003106181084c034335767ebcd35a8b417c0eab8055b7cf236c05638",
+      "steps": 80
+    },
+    {
+      "index": 24,
+      "path": "results/thinker_hier_final_0024.npz",
+      "sha256": "a45af7218c106361c8fca94057da58e0448dc8f769f1fe753524ef648cc040d2",
+      "steps": 80
+    },
+    {
+      "index": 26,
+      "path": "results/thinker_hier_final_0026.npz",
+      "sha256": "08427dbe6002ff08b78a4d07026f17286a8a3c9d27529d8954f143fed659bb15",
+      "steps": 80
+    },
+    {
+      "index": 28,
+      "path": "results/thinker_hier_final_0028.npz",
+      "sha256": "5d070653139f4f4fe5ebaa4cf14b02a381aa0e898531b1a067b5c964c83d5743",
+      "steps": 80
+    },
+    {
+      "index": 30,
+      "path": "results/thinker_hier_final_0030.npz",
+      "sha256": "1d4e42508bfcc8a8eaaec80fc2ac2ae28a605c161acd15fad9bfb67518610975",
+      "steps": 80
+    },
+    {
+      "index": 32,
+      "path": "results/thinker_hier_final_0032.npz",
+      "sha256": "fa4ec356cc29047526bc2e33c76d20e8025e79e40da584f59964cfcdc44bbb91",
+      "steps": 80
+    },
+    {
+      "index": 34,
+      "path": "results/thinker_hier_final_0034.npz",
+      "sha256": "b1efe78f3e69a0391153f8ccd5e4be40c45aa44c5115adb5ae0c2d6d1fd238f1",
+      "steps": 80
+    },
+    {
+      "index": 36,
+      "path": "results/thinker_hier_final_0036.npz",
+      "sha256": "e0756e5509ad62f275aad0fb8dc0bed2441aaa4af85b0f846b5f1b1b987edd45",
+      "steps": 80
+    },
+    {
+      "index": 38,
+      "path": "results/thinker_hier_final_0038.npz",
+      "sha256": "9652d6b2099a33f5ea359480d77731011fb31af1d67a2bd2666e724726623805",
+      "steps": 80
+    },
+    {
+      "index": 40,
+      "path": "results/thinker_hier_final_0040.npz",
+      "sha256": "e58230ae0498ba2e707bd55063ee6f109308c6ef5f3f35d07e0c6d4d29a03b9c",
+      "steps": 80
+    },
+    {
+      "index": 42,
+      "path": "results/thinker_hier_final_0042.npz",
+      "sha256": "d11920a6bc399a9f71fb066bfe98e69bf992a9d64107b6a89dee2f5603f42013",
+      "steps": 80
+    },
+    {
+      "index": 44,
+      "path": "results/thinker_hier_final_0044.npz",
+      "sha256": "3302a769f9eae55430b432e828698d15cc05ab8427a7d27f79fcd8d03ae64fea",
+      "steps": 80
+    },
+    {
+      "index": 46,
+      "path": "results/thinker_hier_final_0046.npz",
+      "sha256": "905d6731ea13b927f6c81f3fa3c3bc9fa61b70301168177652e96f775b7fddfe",
+      "steps": 80
+    },
+    {
+      "index": 48,
+      "path": "results/thinker_hier_final_0048.npz",
+      "sha256": "8258ef83a797894d4aaad7f7486256372b279129909c311a2db16c311dec4d4c",
+      "steps": 80
+    },
+    {
+      "index": 50,
+      "path": "results/thinker_hier_final_0050.npz",
+      "sha256": "34e7dbf15769ed915200ef541653acd8097026846b3cd175f8ab39ccc2d81831",
+      "steps": 80
+    },
+    {
+      "index": 52,
+      "path": "results/thinker_hier_final_0052.npz",
+      "sha256": "5f3e0229a454d075950b142d6fd1ca81d1fae1bca1566e329220bef881c6c87b",
+      "steps": 80
+    },
+    {
+      "index": 54,
+      "path": "results/thinker_hier_final_0054.npz",
+      "sha256": "4a595ad73f7c7d78e95a9055534f3c68c65a2b2fdebc4e1105612fd5bb4d1946",
+      "steps": 80
+    },
+    {
+      "index": 56,
+      "path": "results/thinker_hier_final_0056.npz",
+      "sha256": "6c2afafead806b946a07122d1c48704329625dd53580d99799e9aa1030776624",
+      "steps": 80
+    },
+    {
+      "index": 58,
+      "path": "results/thinker_hier_final_0058.npz",
+      "sha256": "2b85d1d8dc853d05e5098b956d397d6eb9e19fead166dfcf945b10374510f573",
+      "steps": 80
+    },
+    {
+      "index": 60,
+      "path": "results/thinker_hier_final_0060.npz",
+      "sha256": "753ff4089fe2d96e04a3000ceab8de392f04fb141a54390ccef1c1bce1efdfc5",
+      "steps": 80
+    },
+    {
+      "index": 62,
+      "path": "results/thinker_hier_final_0062.npz",
+      "sha256": "fb87a64061ee440744ca7fb34c98871cc9af29e9a249540f1cc4cf48ef907c1f",
+      "steps": 80
+    },
+    {
+      "index": 64,
+      "path": "results/thinker_hier_final_0064.npz",
+      "sha256": "9033b2e288bd36d0140a6c20d7070ad81aedbe432fdd464761982f1adceb325b",
+      "steps": 80
+    },
+    {
+      "index": 66,
+      "path": "results/thinker_hier_final_0066.npz",
+      "sha256": "81730a334662e7be6d59a50a46e423d25f7f9571ad7b6f00c60f3daac065657a",
+      "steps": 80
+    },
+    {
+      "index": 68,
+      "path": "results/thinker_hier_final_0068.npz",
+      "sha256": "42c7fddd98ea22dca000ce9fe748e7468a521f672e93c8804ce530a65d1c45c9",
+      "steps": 80
+    },
+    {
+      "index": 70,
+      "path": "results/thinker_hier_final_0070.npz",
+      "sha256": "da73039f3230620bd02ce5f89835cf5a1ec2fb673435aa4f9a951eae7129231f",
+      "steps": 80
+    },
+    {
+      "index": 72,
+      "path": "results/thinker_hier_final_0072.npz",
+      "sha256": "bfc61b78b11074b68f6d7c03d9155eff5c9689a69995eadf6aa790d4026ba0f6",
+      "steps": 80
+    },
+    {
+      "index": 74,
+      "path": "results/thinker_hier_final_0074.npz",
+      "sha256": "13680de2c3318e141c896a65306c68528845f5c1abf53efbd6de7761276e8a68",
+      "steps": 80
+    },
+    {
+      "index": 76,
+      "path": "results/thinker_hier_final_0076.npz",
+      "sha256": "38df46c19555d771fc33d2c776448c0d80669a17f23e4837d022fe8dc99b413d",
+      "steps": 80
+    },
+    {
+      "index": 78,
+      "path": "results/thinker_hier_final_0078.npz",
+      "sha256": "af06ad1bb9788f5acd387d0b9769577810a2b02df21ccd6e591e41b7913a8f01",
+      "steps": 80
+    },
+    {
+      "index": 80,
+      "path": "results/thinker_hier_final_0080.npz",
+      "sha256": "3804a453e99d2f9574b1861341288a03ae4209d3e01498ffc482c35496a41264",
+      "steps": 80
+    },
+    {
+      "index": 82,
+      "path": "results/thinker_hier_final_0082.npz",
+      "sha256": "54931bd40e722e5709ce8f2d6ebe7cc612f7c4a6271004148ad9c2af122d8cce",
+      "steps": 80
+    },
+    {
+      "index": 84,
+      "path": "results/thinker_hier_final_0084.npz",
+      "sha256": "c3f69d508c2dd4d087436d74f4ec1a4a7b39afcd481c8c1a46d89893f82ed830",
+      "steps": 80
+    },
+    {
+      "index": 86,
+      "path": "results/thinker_hier_final_0086.npz",
+      "sha256": "ab5df072eaa4a3913fc89ee66a2f7ce5a1b55072820b8c0b695fb18a12586742",
+      "steps": 80
+    },
+    {
+      "index": 88,
+      "path": "results/thinker_hier_final_0088.npz",
+      "sha256": "9569599ebf1d089dd1c36d71ff21aad2a86d2f4f08c0838f0ee7596fb690559e",
+      "steps": 80
+    },
+    {
+      "index": 90,
+      "path": "results/thinker_hier_final_0090.npz",
+      "sha256": "7443d3ef1231f462f71ba9594c4d99527322e35137adcf71401e4d30476650bf",
+      "steps": 80
+    },
+    {
+      "index": 92,
+      "path": "results/thinker_hier_final_0092.npz",
+      "sha256": "8784e0a5c2a00226bf8420fc0359e46555ae170227a4fc8cf633fdae4f62e21c",
+      "steps": 80
+    },
+    {
+      "index": 94,
+      "path": "results/thinker_hier_final_0094.npz",
+      "sha256": "c6489dece24cc5faca3fa3c688fa4482f7d2ac80a141f7691b22e50a8a0143e9",
+      "steps": 80
+    },
+    {
+      "index": 96,
+      "path": "results/thinker_hier_final_0096.npz",
+      "sha256": "4ac562a93f220ef1e3de88fb6c8005ff98237a540b580f9cad61c1dd2b1c2fc6",
+      "steps": 80
+    },
+    {
+      "index": 98,
+      "path": "results/thinker_hier_final_0098.npz",
+      "sha256": "b5a08685744027a578dc4dd00a7cfde3c59c4df8452b703f4eb68185348c739a",
+      "steps": 80
+    },
+    {
+      "index": 100,
+      "path": "results/thinker_hier_final_0100.npz",
+      "sha256": "1be02ec47f1eb521ee56531894fce67cbb2f5910bdbfcff57dcb3a381627036e",
+      "steps": 80
+    },
+    {
+      "index": 102,
+      "path": "results/thinker_hier_final_0102.npz",
+      "sha256": "0137e052a13d2bfbd4f563e8da992d11c27276f8cf121582d604a05f62134afa",
+      "steps": 80
+    },
+    {
+      "index": 104,
+      "path": "results/thinker_hier_final_0104.npz",
+      "sha256": "2610275a3fe0dadb916675fdfc39ff128addff3c015bd4332dc3c190a33d79e2",
+      "steps": 80
+    },
+    {
+      "index": 106,
+      "path": "results/thinker_hier_final_0106.npz",
+      "sha256": "14e5e4779ec9bbc3dc7f7064ce13101ae72a5ee5a707a51c2bc523521bf2efd6",
+      "steps": 80
+    },
+    {
+      "index": 108,
+      "path": "results/thinker_hier_final_0108.npz",
+      "sha256": "8c102953c38aefb755bd334694b37bf5c985a06684ba41efc47155f26681e443",
+      "steps": 80
+    },
+    {
+      "index": 110,
+      "path": "results/thinker_hier_final_0110.npz",
+      "sha256": "4b3977fa6598882f8f7903f0f94cea6ca411c0785fbd87eaf6f94d2250ac7221",
+      "steps": 80
+    },
+    {
+      "index": 112,
+      "path": "results/thinker_hier_final_0112.npz",
+      "sha256": "430406cc28ab014f6e852da5deaf11c7672405dad2f2181ee50ae8c089d2e4af",
+      "steps": 80
+    },
+    {
+      "index": 114,
+      "path": "results/thinker_hier_final_0114.npz",
+      "sha256": "3fcaa824098107dd5bf4a4c52c1ab4eacddd9a374f0c9abe23fa002b2befd39f",
+      "steps": 80
+    },
+    {
+      "index": 116,
+      "path": "results/thinker_hier_final_0116.npz",
+      "sha256": "ce5f25dad96b946cef49884f81bce3ab906140f1bec663e2cdf8713a3bf48bc2",
+      "steps": 80
+    },
+    {
+      "index": 118,
+      "path": "results/thinker_hier_final_0118.npz",
+      "sha256": "a3429aa8cd17a78135eae86dd9589d404894e58987270d9cc6ecb9fc0405e4cb",
+      "steps": 80
+    },
+    {
+      "index": 120,
+      "path": "results/thinker_hier_final_0120.npz",
+      "sha256": "d5e8d3838328cbd4db0f46e2d3094ba7927bb6d55464ad39d6e4be85b718952a",
+      "steps": 80
+    },
+    {
+      "index": 122,
+      "path": "results/thinker_hier_final_0122.npz",
+      "sha256": "609c5f08beff9e56134c20751430af4433dbcc8c0cec2b0e439f2778070aac6f",
+      "steps": 80
+    },
+    {
+      "index": 124,
+      "path": "results/thinker_hier_final_0124.npz",
+      "sha256": "08f3235d4a479444c1d6589190aaae27890448bfe1128df635df21519c595f6d",
+      "steps": 80
+    },
+    {
+      "index": 126,
+      "path": "results/thinker_hier_final_0126.npz",
+      "sha256": "fc123cc0ec32921151789d106cb414f8869fd2ab6b51f3439765324bb00df755",
+      "steps": 80
+    },
+    {
+      "index": 128,
+      "path": "results/thinker_hier_final_0128.npz",
+      "sha256": "de1a97f141b0ba58e8918c36915bd2ccb579b6dc74c0969b76609ea80ef22291",
+      "steps": 80
+    },
+    {
+      "index": 130,
+      "path": "results/thinker_hier_final_0130.npz",
+      "sha256": "b6f8ffcd4fc61fa560a99fa28d81c8b32a8e563bc273cc544a4c63b92bf7a125",
+      "steps": 80
+    },
+    {
+      "index": 132,
+      "path": "results/thinker_hier_final_0132.npz",
+      "sha256": "f6fde95cce1f3509979723ff34a74e036a32073d40155675dee7cfd0087e19bd",
+      "steps": 80
+    },
+    {
+      "index": 134,
+      "path": "results/thinker_hier_final_0134.npz",
+      "sha256": "4a34f7f276520a27aa6825aa62f6075a4d2c8d968ac5c82ab27dfd6de4fb5753",
+      "steps": 80
+    },
+    {
+      "index": 136,
+      "path": "results/thinker_hier_final_0136.npz",
+      "sha256": "c6d29ff2df6d9064080ff48067407af4c46137a67bab98be75d67b762b773cd2",
+      "steps": 80
+    },
+    {
+      "index": 138,
+      "path": "results/thinker_hier_final_0138.npz",
+      "sha256": "3a17454759cbf4db1d277ac93be155921564eff2fd35c7e6c81fae82dce911f0",
+      "steps": 80
+    },
+    {
+      "index": 140,
+      "path": "results/thinker_hier_final_0140.npz",
+      "sha256": "d69226f4fac7f4f15c32ccd763dfba5236da3226ca4c78916bf4c4a7141a7a6a",
+      "steps": 80
+    },
+    {
+      "index": 142,
+      "path": "results/thinker_hier_final_0142.npz",
+      "sha256": "a74c7c7ee33d3af2ba7be8ed985c0273b375158e456ec937004c354c29905314",
+      "steps": 80
+    },
+    {
+      "index": 144,
+      "path": "results/thinker_hier_final_0144.npz",
+      "sha256": "fb51c35630f526c3999bb91bcf03205a768731f95705afdd5597a569108b7fd1",
+      "steps": 80
+    },
+    {
+      "index": 146,
+      "path": "results/thinker_hier_final_0146.npz",
+      "sha256": "92dbf67c097cec1178449d2c7d2cec002df95bcb62f4110fc90bf95aa75a8e12",
+      "steps": 80
+    },
+    {
+      "index": 148,
+      "path": "results/thinker_hier_final_0148.npz",
+      "sha256": "f258f693bb7ea82982b4c46cde9f65c3b236bd186ed2498027fda2b337f47b8d",
+      "steps": 80
+    },
+    {
+      "index": 150,
+      "path": "results/thinker_hier_final_0150.npz",
+      "sha256": "d0f84d235812a59f6461196069743fc26afdad35499793ee05ea75403ac77745",
+      "steps": 80
+    },
+    {
+      "index": 152,
+      "path": "results/thinker_hier_final_0152.npz",
+      "sha256": "44fbea52d640b7625f9978efa0fb7b5390d77085cda49a1ac8eb9ed57eb8af29",
+      "steps": 80
+    },
+    {
+      "index": 154,
+      "path": "results/thinker_hier_final_0154.npz",
+      "sha256": "6e491e058e78f2bffcbcc96e06ed2b6cc4bad7f52cdd49a55d92165f67b23385",
+      "steps": 80
+    },
+    {
+      "index": 156,
+      "path": "results/thinker_hier_final_0156.npz",
+      "sha256": "0ac743dba2ad4ecaee920aeaa6026e34c54a69babd2477d2b58bcdca6c323d46",
+      "steps": 80
+    },
+    {
+      "index": 158,
+      "path": "results/thinker_hier_final_0158.npz",
+      "sha256": "6116865bcbd96392ec3d59f056cb38e6528fa2d2229792023f55f1e8ec4877ee",
+      "steps": 80
+    },
+    {
+      "index": 160,
+      "path": "results/thinker_hier_final_0160.npz",
+      "sha256": "fd8377c804aad7495a5b08dcc89036ece80364c6c881e82b83a02077b9bc04fe",
+      "steps": 80
+    },
+    {
+      "index": 162,
+      "path": "results/thinker_hier_final_0162.npz",
+      "sha256": "54583bcdf2f199c0751474661763ed6704425387c0f642367b77c835c71ca35c",
+      "steps": 80
+    },
+    {
+      "index": 164,
+      "path": "results/thinker_hier_final_0164.npz",
+      "sha256": "0433128ff1825eac19043f2492cc0c58373f328d95f4b67f5ba245f9145f0dbe",
+      "steps": 80
+    },
+    {
+      "index": 166,
+      "path": "results/thinker_hier_final_0166.npz",
+      "sha256": "0b41558a08eb3db6506df1a63e6c307498d178446c8e7db1f9f3d7b208e11b8e",
+      "steps": 80
+    },
+    {
+      "index": 168,
+      "path": "results/thinker_hier_final_0168.npz",
+      "sha256": "7233774ed591e8567420d2626e4f3132a74cfaf9c159e37cd22cec234fd40990",
+      "steps": 80
+    },
+    {
+      "index": 170,
+      "path": "results/thinker_hier_final_0170.npz",
+      "sha256": "a5ddf15a4418e4ea9ab9552cd063d1756c1d148a0bc16590989720d506dd4087",
+      "steps": 80
+    },
+    {
+      "index": 172,
+      "path": "results/thinker_hier_final_0172.npz",
+      "sha256": "a9b6eb125f2a9cc76ae9ca60bcf108c9dad5046de0a5e6880a53bbeb52e7ab57",
+      "steps": 80
+    },
+    {
+      "index": 174,
+      "path": "results/thinker_hier_final_0174.npz",
+      "sha256": "22f08f698bce116006de9e6b1186fbb93a5f72a88a8070c302a00940aca57a09",
+      "steps": 80
+    },
+    {
+      "index": 176,
+      "path": "results/thinker_hier_final_0176.npz",
+      "sha256": "cf96307104808779c506d99bae4dde519c2af327a0e1ed9efdc4df69cb4407ee",
+      "steps": 80
+    },
+    {
+      "index": 178,
+      "path": "results/thinker_hier_final_0178.npz",
+      "sha256": "ec13868e586c56faeb21a8f25877ae9dbc5a75877ed50be6dad8d2ffa528498f",
+      "steps": 80
+    },
+    {
+      "index": 180,
+      "path": "results/thinker_hier_final_0180.npz",
+      "sha256": "6e0628ed29438129e6a6ca03401dcdab586e99ee6db036191f678456d1f7742c",
+      "steps": 80
+    },
+    {
+      "index": 182,
+      "path": "results/thinker_hier_final_0182.npz",
+      "sha256": "eb6197956fc2e9f8cfd621e12cd0d482b180f787d4356d953cccc3b62aabe6f0",
+      "steps": 80
+    },
+    {
+      "index": 184,
+      "path": "results/thinker_hier_final_0184.npz",
+      "sha256": "f8485a1b774cdb121aba50abfdc67b40347ff11e659518aed058679c09e90572",
+      "steps": 80
+    },
+    {
+      "index": 186,
+      "path": "results/thinker_hier_final_0186.npz",
+      "sha256": "4f29af2122f58a7bac7f7f2e049c274abd1bbfad1ae0488f5a1a5288f672d556",
+      "steps": 80
+    },
+    {
+      "index": 188,
+      "path": "results/thinker_hier_final_0188.npz",
+      "sha256": "cd21dfe3fbf34c9c69e2b0106a30d17c853f3dcdc3083bafea03e9b4655ad45e",
+      "steps": 80
+    },
+    {
+      "index": 190,
+      "path": "results/thinker_hier_final_0190.npz",
+      "sha256": "d668d1a41834f8b178b7334a822ee886953a122a7577f10cda4287bfd5464336",
+      "steps": 80
+    },
+    {
+      "index": 192,
+      "path": "results/thinker_hier_final_0192.npz",
+      "sha256": "290d1ddb5afb70b28930b727d56cf84857bca39daf0874e20ffe3b8ba34e3638",
+      "steps": 80
+    },
+    {
+      "index": 194,
+      "path": "results/thinker_hier_final_0194.npz",
+      "sha256": "0363640408c448f35c7ca697bda5369b4539e3cebddbfe3848a8469e5ffafd2e",
+      "steps": 80
+    },
+    {
+      "index": 196,
+      "path": "results/thinker_hier_final_0196.npz",
+      "sha256": "d08302946b8374be22e1443876db9db011e88e515b0f1a6524977dd497928da7",
+      "steps": 80
+    },
+    {
+      "index": 198,
+      "path": "results/thinker_hier_final_0198.npz",
+      "sha256": "5796ead3ff9597487157cbc92d7d2911b6e3c529e995ef4c89e614707791cf1a",
+      "steps": 80
+    }
+  ],
+  "complete": true
+}

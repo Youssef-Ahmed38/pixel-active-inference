@@ -1,0 +1,14 @@
+{
+  "reason": "Shared laptop CUDA out of memory in worker 1; renderer shutdown did not exit promptly",
+  "terminated_failed_worker_pids": [
+    13196,
+    26188
+  ],
+  "retained_worker1_episodes": 43,
+  "failed_uncommitted_index": 87,
+  "policy": "Complete worker 0, then resume worker 1 alone with unchanged sources, settings and seeds. No completed episode is recollected.",
+  "recovery_complete": true,
+  "completed_episodes_recollected": 0,
+  "missing_worker1_episodes_resumed": 57,
+  "traceback_absolute_paths_redacted": true
+}

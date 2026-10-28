@@ -1,0 +1,12 @@
+{
+  "episodes": 1000,
+  "steps": 80000,
+  "unique_keys": true,
+  "all_stream_hashes_match": true,
+  "finite_senses": true,
+  "unexpected_fields_rejected": true,
+  "one_uncommitted_training_retry": [
+    804
+  ],
+  "development_episodes": 200
+}

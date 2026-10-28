@@ -1,0 +1,7 @@
+{
+  "command": [
+    "python",
+    "scripts/thinker_hier_round3_audit.py"
+  ],
+  "exit_code": 0
+}

@@ -1,0 +1,8 @@
+{
+  "command": [
+    "python",
+    "scripts/thinker_hier_round3_collect.py",
+    "calibrate"
+  ],
+  "exit_code": 0
+}

@@ -1,0 +1,8 @@
+{
+  "command": [
+    "python",
+    "scripts/thinker_hier_round3_evaluate.py",
+    "freeze"
+  ],
+  "exit_code": 0
+}

@@ -1,0 +1,343 @@
+{
+  "exit_code": 0,
+  "tests": [
+    {
+      "test": "tests/test_thinker.py::test_sample_shapes_and_teacher_normalised",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker.py::test_teacher_exact_on_noise_free_example",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker.py::test_teacher_matches_brute_force",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker.py::test_hrm_shapes_and_halting_respects_max",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker.py::test_one_step_gradient_reaches_all_parts",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker.py::test_baselines_interface",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker.py::test_tiny_training_reduces_loss",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker.py::test_multicause_sample_shapes_and_teacher_normalised",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker.py::test_multicause_teacher_exact_brute_force",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker.py::test_multicause_marginal_consistent_with_subset_posterior",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker.py::test_multicause_model_interface_and_training_reduces_loss",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_hier.py::test_matched_budgets_and_refinement_no_parameter_gradients",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_hier.py::test_self_supervised_gradient_updates[hierarchical]",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_hier.py::test_self_supervised_gradient_updates[flat]",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_hier.py::test_self_supervised_gradient_updates[amortized]",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_hier.py::test_future_changes_cannot_change_past_predictions",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_hier.py::test_single_pass_ablation_and_three_distinct_timescales",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_hier.py::test_stream_loader_rejects_truth_fields",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_hier.py::test_rgb_perception_cannot_read_simulator_state",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_hier.py::test_sensory_recording_preserves_default_agent_behavior",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_hier.py::test_result_retry_is_scoped_and_preserves_content",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_hier.py::test_scoring_censors_missing_adaptation_and_handles_constant_states",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_hier.py::test_partial_post_onset_windows_are_not_scored_as_full20",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_hier_round2.py::test_round2_uses_normal_motor_settings",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_hier_round2.py::test_round2_records_every_sensor_call_and_only_own_proprioception",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_hier_round2.py::test_failed_gate_blocks_training_and_final_collection",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_hier_round2.py::test_gate_counts_unrealized_assigned_disturbances_as_errors",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_hier_round3.py::test_gate_a_requires_both_eighty_percent[31-False]",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_hier_round3.py::test_gate_a_requires_both_eighty_percent[32-True]",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_hier_round3.py::test_failed_round3_gate_is_binding",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_hier_round3.py::test_default_token_recorder_preserves_motor_trajectory",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_real.py::test_fake_file_matches_contract",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_real.py::test_dataset_shapes",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_real.py::test_peak_in_jittered_window",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_real.py::test_split_has_no_episode_overlap_and_is_seeded",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_real.py::test_model_on_real_batch",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_thinker_real.py::test_script_end_to_end",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_slice.py::test_cause_inference_identifies_each_cause",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_slice.py::test_heavier_object_impossible_without_holding",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_slice.py::test_surprise_monitor_triggers_only_on_spikes",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_slice.py::test_world_model_shapes_and_checkpoint",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_slice.py::test_mppi_moves_towards_goal",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_slice.py::test_goal_subgoals_advance_in_order",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_slice.py::test_episode_report_mentions_explanation_and_truth",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_slice.py::test_masks_to_patches_fractions",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_slice.py::test_goal_falls_back_to_regrasp_when_object_is_dropped",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_slice.py::test_calibration_sets_floor_and_threshold",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_slice.py::test_calibration_per_step_keeps_quiet_steps_sensitive",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_slice.py::test_planner_respects_gripper_mode_from_goal_level",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_slice.py::test_counterfactual_credit_finds_the_necessary_factor",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_slice.py::test_memory_saves_trajectories_beside_jsonl",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_slice.py::test_unknown_wins_only_when_no_cause_fits",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_slice.py::test_lowered_waits_until_object_is_still",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_slice.py::test_recipe_extraction_and_proposal_transfer_to_a_new_layout",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_slice.py::test_push_while_holding_is_not_a_slip",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_slice.py::test_object_squeezed_out_while_grasping_is_a_slip_not_a_push",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_slice.py::test_drop_is_a_slip_with_the_weight_lost",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_slice.py::test_no_weight_lost_while_the_object_rests_on_the_table",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_slice.py::test_push_while_grasping_drags_the_object_sideways_only",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_slice.py::test_push_moves_a_held_object_with_the_hand",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_slice.py::test_phase_credit_with_abduction_survives_model_drift",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_cognition.py::test_shared_efe_accounting_matches_both_domains",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_cognition.py::test_cause_posterior_needs_confident_evidence",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_cognition.py::test_memory_stores_arm_and_maze_records",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_cognition.py::test_maze_thinker_uses_observed_evidence_not_cause_reports",
+      "outcome": "passed",
+      "phase": "call"
+    },
+    {
+      "test": "tests/test_cognition.py::test_shared_controller_reaches_maze_goal_with_skill_adapter",
+      "outcome": "passed",
+      "phase": "call"
+    }
+  ],
+  "command": [
+    "python",
+    "scripts/thinker_hier_tests.py",
+    "--basetemp",
+    "data/pytest_thinker_hier3_20261028",
+    "--output",
+    "results/thinker_hier3_tests.json"
+  ]
+}

@@ -1,0 +1,519 @@
+{
+  "split": "calibration",
+  "episodes": [
+    {
+      "index": 1,
+      "seed": 95201,
+      "assigned_condition": "none",
+      "disturbances": [],
+      "events": [
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "blue"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "green"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "yellow"
+          ]
+        },
+        {
+          "t": 106,
+          "type": "grasp",
+          "object": "red"
+        },
+        {
+          "t": 109,
+          "type": "relation_true",
+          "relation": [
+            "grasped",
+            "red"
+          ]
+        },
+        {
+          "t": 127,
+          "type": "relation_true",
+          "relation": [
+            "lifted",
+            "red"
+          ]
+        },
+        {
+          "t": 245,
+          "type": "relation_false",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 335,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 367,
+          "type": "relation_false",
+          "relation": [
+            "lifted",
+            "red"
+          ]
+        },
+        {
+          "t": 379,
+          "type": "slip",
+          "object": "red",
+          "speed": 0.15279012468673153
+        },
+        {
+          "t": 384,
+          "type": "relation_false",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 387,
+          "type": "slip",
+          "object": "red",
+          "speed": 0.2866438864615101
+        },
+        {
+          "t": 390,
+          "type": "release",
+          "object": "red"
+        },
+        {
+          "t": 393,
+          "type": "relation_false",
+          "relation": [
+            "grasped",
+            "red"
+          ]
+        },
+        {
+          "t": 410,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        }
+      ],
+      "success": false,
+      "reference": "results/thinker_hier2_calibration_reference_0001.npz",
+      "steps": 150,
+      "holding_steps": 57,
+      "settle_steps": 0,
+      "collection_s": 21.214884996414185
+    },
+    {
+      "index": 3,
+      "seed": 95203,
+      "assigned_condition": "none",
+      "disturbances": [],
+      "events": [
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "blue"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "green"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "yellow"
+          ]
+        },
+        {
+          "t": 110,
+          "type": "grasp",
+          "object": "red"
+        },
+        {
+          "t": 113,
+          "type": "relation_true",
+          "relation": [
+            "grasped",
+            "red"
+          ]
+        },
+        {
+          "t": 140,
+          "type": "relation_true",
+          "relation": [
+            "lifted",
+            "red"
+          ]
+        },
+        {
+          "t": 238,
+          "type": "relation_false",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 263,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 334,
+          "type": "relation_false",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 351,
+          "type": "relation_false",
+          "relation": [
+            "lifted",
+            "red"
+          ]
+        },
+        {
+          "t": 362,
+          "type": "release",
+          "object": "red"
+        },
+        {
+          "t": 365,
+          "type": "relation_false",
+          "relation": [
+            "grasped",
+            "red"
+          ]
+        }
+      ],
+      "success": false,
+      "reference": "results/thinker_hier2_calibration_reference_0003.npz",
+      "steps": 150,
+      "holding_steps": 53,
+      "settle_steps": 0,
+      "collection_s": 21.705207586288452
+    },
+    {
+      "index": 5,
+      "seed": 95205,
+      "assigned_condition": "none",
+      "disturbances": [],
+      "events": [
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "blue"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "green"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "yellow"
+          ]
+        },
+        {
+          "t": 95,
+          "type": "relation_true",
+          "relation": [
+            "lifted",
+            "bowl"
+          ]
+        },
+        {
+          "t": 126,
+          "type": "grasp",
+          "object": "red"
+        },
+        {
+          "t": 129,
+          "type": "relation_true",
+          "relation": [
+            "grasped",
+            "red"
+          ]
+        },
+        {
+          "t": 160,
+          "type": "relation_false",
+          "relation": [
+            "lifted",
+            "bowl"
+          ]
+        },
+        {
+          "t": 171,
+          "type": "relation_true",
+          "relation": [
+            "lifted",
+            "red"
+          ]
+        },
+        {
+          "t": 252,
+          "type": "relation_false",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 267,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 291,
+          "type": "relation_false",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 323,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 351,
+          "type": "relation_false",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 358,
+          "type": "release",
+          "object": "red"
+        },
+        {
+          "t": 360,
+          "type": "relation_false",
+          "relation": [
+            "lifted",
+            "red"
+          ]
+        },
+        {
+          "t": 361,
+          "type": "relation_false",
+          "relation": [
+            "grasped",
+            "red"
+          ]
+        },
+        {
+          "t": 377,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        }
+      ],
+      "success": false,
+      "reference": "results/thinker_hier2_calibration_reference_0005.npz",
+      "steps": 150,
+      "holding_steps": 47,
+      "settle_steps": 0,
+      "collection_s": 20.643259525299072
+    },
+    {
+      "index": 7,
+      "seed": 95207,
+      "assigned_condition": "none",
+      "disturbances": [],
+      "events": [
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "blue"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "green"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "yellow"
+          ]
+        },
+        {
+          "t": 151,
+          "type": "grasp",
+          "object": "red"
+        },
+        {
+          "t": 154,
+          "type": "relation_true",
+          "relation": [
+            "grasped",
+            "red"
+          ]
+        },
+        {
+          "t": 186,
+          "type": "relation_true",
+          "relation": [
+            "lifted",
+            "red"
+          ]
+        },
+        {
+          "t": 294,
+          "type": "relation_false",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 304,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 367,
+          "type": "relation_false",
+          "relation": [
+            "lifted",
+            "red"
+          ]
+        },
+        {
+          "t": 372,
+          "type": "slip",
+          "object": "red",
+          "speed": 0.2802324198849681
+        },
+        {
+          "t": 374,
+          "type": "release",
+          "object": "red"
+        },
+        {
+          "t": 377,
+          "type": "relation_false",
+          "relation": [
+            "grasped",
+            "red"
+          ]
+        },
+        {
+          "t": 385,
+          "type": "relation_false",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        }
+      ],
+      "success": false,
+      "reference": "results/thinker_hier2_calibration_reference_0007.npz",
+      "steps": 150,
+      "holding_steps": 45,
+      "settle_steps": 0,
+      "collection_s": 22.80478048324585
+    }
+  ]
+}

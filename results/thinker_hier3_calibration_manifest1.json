@@ -1,0 +1,41 @@
+{
+  "split": "calibration",
+  "worker": 1,
+  "workers": 2,
+  "source_hashes": {
+    "scripts/thinker_hier_round3_collect.py": "9d7482d94689971f5a2f84fc34c36f37771d839637ad08d93c50870d6438f5f3",
+    "pai/thinker/hier3_tokens.py": "1965382b4a48aa244ac177fccfa92cfbc0b6fc55c53f7e22647de6d00be264f3",
+    "pai/agents/slice_agent.py": "d557998f64cb80e6bbb80de0e411d91e5b0266ad684d95d10862937e99e1c824",
+    "pai/perception/camera_frame.py": "d8d4cca32310b7ba89e69a50c91b414c20bd04279c4cacd9e2164276cd29e24e",
+    "pai/causes/inference.py": "b8bc059371003492bffbdc1479bee10b833b8d5e55207d3ba98e191573abe2bf",
+    "configs/tabletop.yaml": "99e9d2935fd2de292c2b6f324cc70c9bf818b0aabc0798a50a1d8dcde28f4768"
+  },
+  "world_model_sha256": "2e53d10bb944c3498b6aed22f8bccd209950155a4bdd465f08e3533085f53bb9",
+  "episodes": [
+    {
+      "index": 1,
+      "path": "results/thinker_hier3_calibration_0001.npz",
+      "sha256": "96b91ca0ac0c9d8019b474c2e9165ce0f8c0fc38d45fae1844f37ea4f595ef16",
+      "steps": 82
+    },
+    {
+      "index": 3,
+      "path": "results/thinker_hier3_calibration_0003.npz",
+      "sha256": "13bc320c20f1d7db00ba35fe24c122682c1254af80538490098a90350b0276a7",
+      "steps": 88
+    },
+    {
+      "index": 5,
+      "path": "results/thinker_hier3_calibration_0005.npz",
+      "sha256": "212aea059737606da3882674f71d0a9da45a04c520b2e710db3b4992d9dd527a",
+      "steps": 72
+    },
+    {
+      "index": 7,
+      "path": "results/thinker_hier3_calibration_0007.npz",
+      "sha256": "a8df1d8059d10ab60647c56a6918e9e8397b7416ce0dada31aad521b1197553b",
+      "steps": 90
+    }
+  ],
+  "complete": true
+}

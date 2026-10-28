@@ -1,0 +1,298 @@
+{
+  "calibration": {
+    "episodes": 8,
+    "placement": {
+      "k": 8,
+      "n": 8,
+      "rate": 1.0,
+      "wilson95": [
+        0.6755924351161318,
+        1.0
+      ]
+    },
+    "per_condition": {
+      "none": {
+        "placement": {
+          "k": 8,
+          "n": 8,
+          "rate": 1.0,
+          "wilson95": [
+            0.6755924351161318,
+            1.0
+          ]
+        },
+        "grasp_episodes": 8,
+        "holding_episodes": 8,
+        "realized_disturbance_episodes": 0,
+        "settle_transitions": 35
+      }
+    }
+  },
+  "train": {
+    "episodes": 1000,
+    "placement": {
+      "k": 768,
+      "n": 1000,
+      "rate": 0.768,
+      "wilson95": [
+        0.7408422968503325,
+        0.79310656060141
+      ]
+    },
+    "per_condition": {
+      "camera_shift": {
+        "placement": {
+          "k": 33,
+          "n": 200,
+          "rate": 0.165,
+          "wilson95": [
+            0.11996855328217415,
+            0.22265781539059376
+          ]
+        },
+        "grasp_episodes": 104,
+        "holding_episodes": 158,
+        "realized_disturbance_episodes": 200,
+        "settle_transitions": 30
+      },
+      "heavier_object": {
+        "placement": {
+          "k": 198,
+          "n": 200,
+          "rate": 0.99,
+          "wilson95": [
+            0.9642782382838243,
+            0.9972533418664554
+          ]
+        },
+        "grasp_episodes": 199,
+        "holding_episodes": 200,
+        "realized_disturbance_episodes": 200,
+        "settle_transitions": 940
+      },
+      "none": {
+        "placement": {
+          "k": 199,
+          "n": 200,
+          "rate": 0.995,
+          "wilson95": [
+            0.9722262956021082,
+            0.999116831284399
+          ]
+        },
+        "grasp_episodes": 199,
+        "holding_episodes": 199,
+        "realized_disturbance_episodes": 0,
+        "settle_transitions": 970
+      },
+      "push": {
+        "placement": {
+          "k": 200,
+          "n": 200,
+          "rate": 1.0,
+          "wilson95": [
+            0.9811546736227346,
+            1.0
+          ]
+        },
+        "grasp_episodes": 200,
+        "holding_episodes": 200,
+        "realized_disturbance_episodes": 199,
+        "settle_transitions": 980
+      },
+      "slippery_object": {
+        "placement": {
+          "k": 138,
+          "n": 200,
+          "rate": 0.69,
+          "wilson95": [
+            0.6228282243374215,
+            0.7500105516392175
+          ]
+        },
+        "grasp_episodes": 198,
+        "holding_episodes": 194,
+        "realized_disturbance_episodes": 200,
+        "settle_transitions": 60
+      }
+    }
+  },
+  "development": {
+    "episodes": 200,
+    "placement": {
+      "k": 153,
+      "n": 200,
+      "rate": 0.765,
+      "wilson95": [
+        0.7015863111723765,
+        0.8184256658476728
+      ]
+    },
+    "per_condition": {
+      "camera_shift": {
+        "placement": {
+          "k": 10,
+          "n": 40,
+          "rate": 0.25,
+          "wilson95": [
+            0.1418711863909653,
+            0.4019396142076759
+          ]
+        },
+        "grasp_episodes": 22,
+        "holding_episodes": 28,
+        "realized_disturbance_episodes": 40,
+        "settle_transitions": 5
+      },
+      "heavier_object": {
+        "placement": {
+          "k": 40,
+          "n": 40,
+          "rate": 1.0,
+          "wilson95": [
+            0.912378398802718,
+            1.0
+          ]
+        },
+        "grasp_episodes": 40,
+        "holding_episodes": 40,
+        "realized_disturbance_episodes": 40,
+        "settle_transitions": 195
+      },
+      "none": {
+        "placement": {
+          "k": 38,
+          "n": 40,
+          "rate": 0.95,
+          "wilson95": [
+            0.8349612263085947,
+            0.9861793326138512
+          ]
+        },
+        "grasp_episodes": 39,
+        "holding_episodes": 39,
+        "realized_disturbance_episodes": 0,
+        "settle_transitions": 190
+      },
+      "push": {
+        "placement": {
+          "k": 40,
+          "n": 40,
+          "rate": 1.0,
+          "wilson95": [
+            0.912378398802718,
+            1.0
+          ]
+        },
+        "grasp_episodes": 40,
+        "holding_episodes": 40,
+        "realized_disturbance_episodes": 40,
+        "settle_transitions": 200
+      },
+      "slippery_object": {
+        "placement": {
+          "k": 25,
+          "n": 40,
+          "rate": 0.625,
+          "wilson95": [
+            0.4703243913730152,
+            0.7577702083276642
+          ]
+        },
+        "grasp_episodes": 39,
+        "holding_episodes": 39,
+        "realized_disturbance_episodes": 40,
+        "settle_transitions": 10
+      }
+    }
+  },
+  "final": {
+    "episodes": 200,
+    "placement": {
+      "k": 148,
+      "n": 200,
+      "rate": 0.74,
+      "wilson95": [
+        0.6750925439746607,
+        0.7958616993642518
+      ]
+    },
+    "per_condition": {
+      "camera_shift": {
+        "placement": {
+          "k": 5,
+          "n": 40,
+          "rate": 0.125,
+          "wilson95": [
+            0.05459500250945523,
+            0.26112119838850645
+          ]
+        },
+        "grasp_episodes": 19,
+        "holding_episodes": 31,
+        "realized_disturbance_episodes": 40,
+        "settle_transitions": 0
+      },
+      "heavier_object": {
+        "placement": {
+          "k": 38,
+          "n": 40,
+          "rate": 0.95,
+          "wilson95": [
+            0.8349612263085947,
+            0.9861793326138512
+          ]
+        },
+        "grasp_episodes": 39,
+        "holding_episodes": 39,
+        "realized_disturbance_episodes": 40,
+        "settle_transitions": 185
+      },
+      "none": {
+        "placement": {
+          "k": 40,
+          "n": 40,
+          "rate": 1.0,
+          "wilson95": [
+            0.912378398802718,
+            1.0
+          ]
+        },
+        "grasp_episodes": 40,
+        "holding_episodes": 40,
+        "realized_disturbance_episodes": 0,
+        "settle_transitions": 200
+      },
+      "push": {
+        "placement": {
+          "k": 39,
+          "n": 40,
+          "rate": 0.975,
+          "wilson95": [
+            0.8711863103652634,
+            0.9955731684973185
+          ]
+        },
+        "grasp_episodes": 39,
+        "holding_episodes": 39,
+        "realized_disturbance_episodes": 40,
+        "settle_transitions": 190
+      },
+      "slippery_object": {
+        "placement": {
+          "k": 26,
+          "n": 40,
+          "rate": 0.65,
+          "wilson95": [
+            0.4950588083725812,
+            0.7786547112682342
+          ]
+        },
+        "grasp_episodes": 39,
+        "holding_episodes": 37,
+        "realized_disturbance_episodes": 40,
+        "settle_transitions": 10
+      }
+    }
+  }
+}

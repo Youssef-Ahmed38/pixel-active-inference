@@ -1,0 +1,12 @@
+{
+  "reason": "Transient Windows destination-file sharing violation",
+  "uncommitted_training_episode_retried": [
+    804
+  ],
+  "duplicate_answer_keys_identical": true,
+  "original_ledger": "results/thinker_hier_io_original_truth0.json",
+  "original_ledger_sha256": "eb721df5d4300f5c07760031fc03d6e7499603c3f3d48834c77a24823b2bf997",
+  "unique_committed_truth_rows": 500,
+  "student_model_changes": false,
+  "retry_wrapper_sha256": "d716518ea2c92d4468b4a4506599e76b6b14d776d84ee93a84955030e7241f22"
+}

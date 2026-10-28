@@ -1,0 +1,491 @@
+{
+  "split": "calibration",
+  "episodes": [
+    {
+      "index": 0,
+      "seed": 95200,
+      "assigned_condition": "none",
+      "disturbances": [],
+      "events": [
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "blue"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "green"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "yellow"
+          ]
+        },
+        {
+          "t": 246,
+          "type": "grasp",
+          "object": "red"
+        },
+        {
+          "t": 249,
+          "type": "relation_true",
+          "relation": [
+            "grasped",
+            "red"
+          ]
+        },
+        {
+          "t": 270,
+          "type": "relation_true",
+          "relation": [
+            "lifted",
+            "red"
+          ]
+        },
+        {
+          "t": 367,
+          "type": "relation_false",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 422,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 464,
+          "type": "relation_false",
+          "relation": [
+            "lifted",
+            "red"
+          ]
+        },
+        {
+          "t": 484,
+          "type": "relation_false",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 487,
+          "type": "slip",
+          "object": "red",
+          "speed": 0.7214336156200665
+        },
+        {
+          "t": 488,
+          "type": "release",
+          "object": "red"
+        },
+        {
+          "t": 491,
+          "type": "relation_false",
+          "relation": [
+            "grasped",
+            "red"
+          ]
+        }
+      ],
+      "success": false,
+      "reference": "results/thinker_hier2_calibration_reference_0000.npz",
+      "steps": 150,
+      "holding_steps": 48,
+      "settle_steps": 0,
+      "collection_s": 21.339571237564087
+    },
+    {
+      "index": 2,
+      "seed": 95202,
+      "assigned_condition": "none",
+      "disturbances": [],
+      "events": [
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "blue"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "green"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "yellow"
+          ]
+        },
+        {
+          "t": 166,
+          "type": "grasp",
+          "object": "red"
+        },
+        {
+          "t": 169,
+          "type": "relation_true",
+          "relation": [
+            "grasped",
+            "red"
+          ]
+        },
+        {
+          "t": 193,
+          "type": "relation_true",
+          "relation": [
+            "lifted",
+            "red"
+          ]
+        },
+        {
+          "t": 353,
+          "type": "relation_false",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 380,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 402,
+          "type": "relation_false",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 433,
+          "type": "slip",
+          "object": "red",
+          "speed": 0.11553305107357456
+        },
+        {
+          "t": 436,
+          "type": "slip",
+          "object": "red",
+          "speed": 0.28771525530025405
+        },
+        {
+          "t": 438,
+          "type": "release",
+          "object": "red"
+        },
+        {
+          "t": 440,
+          "type": "relation_false",
+          "relation": [
+            "lifted",
+            "red"
+          ]
+        },
+        {
+          "t": 441,
+          "type": "relation_false",
+          "relation": [
+            "grasped",
+            "red"
+          ]
+        },
+        {
+          "t": 473,
+          "type": "relation_false",
+          "relation": [
+            "upright",
+            "yellow"
+          ]
+        }
+      ],
+      "success": false,
+      "reference": "results/thinker_hier2_calibration_reference_0002.npz",
+      "steps": 150,
+      "holding_steps": 54,
+      "settle_steps": 0,
+      "collection_s": 21.16022825241089
+    },
+    {
+      "index": 4,
+      "seed": 95204,
+      "assigned_condition": "none",
+      "disturbances": [],
+      "events": [
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "blue"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "green"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "yellow"
+          ]
+        },
+        {
+          "t": 165,
+          "type": "grasp",
+          "object": "red"
+        },
+        {
+          "t": 168,
+          "type": "relation_true",
+          "relation": [
+            "grasped",
+            "red"
+          ]
+        },
+        {
+          "t": 186,
+          "type": "relation_true",
+          "relation": [
+            "lifted",
+            "red"
+          ]
+        },
+        {
+          "t": 277,
+          "type": "relation_false",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 348,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 392,
+          "type": "relation_false",
+          "relation": [
+            "lifted",
+            "red"
+          ]
+        },
+        {
+          "t": 410,
+          "type": "relation_false",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 411,
+          "type": "slip",
+          "object": "red",
+          "speed": 0.5478331633067117
+        },
+        {
+          "t": 412,
+          "type": "release",
+          "object": "red"
+        },
+        {
+          "t": 415,
+          "type": "relation_false",
+          "relation": [
+            "grasped",
+            "red"
+          ]
+        }
+      ],
+      "success": false,
+      "reference": "results/thinker_hier2_calibration_reference_0004.npz",
+      "steps": 150,
+      "holding_steps": 50,
+      "settle_steps": 0,
+      "collection_s": 21.999905824661255
+    },
+    {
+      "index": 6,
+      "seed": 95206,
+      "assigned_condition": "none",
+      "disturbances": [],
+      "events": [
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "blue"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "green"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 3,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "yellow"
+          ]
+        },
+        {
+          "t": 122,
+          "type": "grasp",
+          "object": "red"
+        },
+        {
+          "t": 125,
+          "type": "relation_true",
+          "relation": [
+            "grasped",
+            "red"
+          ]
+        },
+        {
+          "t": 141,
+          "type": "relation_true",
+          "relation": [
+            "lifted",
+            "red"
+          ]
+        },
+        {
+          "t": 244,
+          "type": "relation_false",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 300,
+          "type": "relation_true",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 338,
+          "type": "relation_false",
+          "relation": [
+            "lifted",
+            "red"
+          ]
+        },
+        {
+          "t": 356,
+          "type": "relation_false",
+          "relation": [
+            "upright",
+            "red"
+          ]
+        },
+        {
+          "t": 360,
+          "type": "slip",
+          "object": "red",
+          "speed": 0.45195443101559535
+        },
+        {
+          "t": 362,
+          "type": "release",
+          "object": "red"
+        },
+        {
+          "t": 365,
+          "type": "relation_false",
+          "relation": [
+            "grasped",
+            "red"
+          ]
+        }
+      ],
+      "success": false,
+      "reference": "results/thinker_hier2_calibration_reference_0006.npz",
+      "steps": 150,
+      "holding_steps": 49,
+      "settle_steps": 0,
+      "collection_s": 20.84180188179016
+    }
+  ]
+}

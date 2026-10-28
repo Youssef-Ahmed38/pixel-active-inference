@@ -1,0 +1,25 @@
+{
+  "trained_models": 9,
+  "same_data": true,
+  "same_steps": 1200,
+  "same_neural_training_code": true,
+  "parameter_counts": {
+    "hierarchical": 31974,
+    "flat": 32084,
+    "amortized": 31974
+  },
+  "guarded_input_reader_opened_no_truth_or_reference_files": true,
+  "guarded_streams": 1000,
+  "training_wall_s": {
+    "hierarchical_93000": 167.5506796836853,
+    "flat_93000": 47.643205642700195,
+    "amortized_93000": 85.13600015640259,
+    "hierarchical_93001": 181.04008722305298,
+    "flat_93001": 46.922043561935425,
+    "amortized_93001": 83.88240599632263,
+    "hierarchical_93002": 157.91785264015198,
+    "flat_93002": 46.85427761077881,
+    "amortized_93002": 83.44040369987488
+  },
+  "scoring_only_window_definition_corrected_before_final": true
+}

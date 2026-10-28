@@ -1,0 +1,8 @@
+{
+  "command": [
+    "python",
+    "scripts/thinker_hier_round3_report.py",
+    "gates"
+  ],
+  "exit_code": 0
+}
