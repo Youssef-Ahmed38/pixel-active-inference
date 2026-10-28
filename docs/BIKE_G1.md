@@ -28,7 +28,8 @@ the grips and pedals (residual gaps 2-16 mm, under 1 mm after settling). Total m
 
 **Stated simplifications:** the drive torque acts at the rear wheel (the legs follow the pedals rather
 than producing it); steering is a servo on the fork that the hands hold, not steering produced by the
-arms; the G1 does not collide with the bike; the rider rides straight (no heading changes).
+arms; the G1 does not collide with the bike; the rider rides straight (no heading changes; corners,
+U-turns and deliveries in a town: [BIKE_TOWN.md](BIKE_TOWN.md)).
 
 ## Learning to balance by practice
 

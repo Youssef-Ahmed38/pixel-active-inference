@@ -38,10 +38,10 @@ LEG = ("hip_pitch", "hip_roll", "hip_yaw", "knee", "ankle_pitch", "ankle_roll")
 GEAR = 0.5            # crank angle per wheel angle (as in pai/bike/real_bike.py)
 
 
-def build_spec(scenery: bool = True) -> mujoco.MjSpec:
+def build_spec(scenery=True, seed: int = 0) -> mujoco.MjSpec:
     """The realistic bicycle (``pai/bike/real_bike.py``) with the G1 seated on it."""
     from pai.bike import real_bike as rb
-    bike = rb.build_spec(scenery=scenery)
+    bike = rb.build_spec(scenery=scenery, seed=seed)
     frame = bike.body("frame")
     # the saddle point in the frame body's coordinates (the frame body sits at the bottom bracket)
     post_top = rb.SEAT_TOP + 0.10 * np.array([-math.cos(math.radians(73)), math.sin(math.radians(73))])
@@ -63,8 +63,11 @@ class G1BikeEnv:
 
     domain = "bike_g1"
 
-    def __init__(self, distance=10.0, control_dt=.02, max_seconds=10.0, leg_kp=8.0):
-        self.model = build_spec().compile()
+    def __init__(self, distance=10.0, control_dt=.02, max_seconds=10.0, leg_kp=8.0, scenery=True,
+                 arm_kp=None, steer_kp=None):
+        # arm_kp: soft arm servos so the arms follow the handlebar (None keeps the stiff arms of the
+        # straight-riding results, which hold the steering to about +-0.24 rad)
+        self.model = build_spec(scenery).compile()
         self.data = mujoco.MjData(self.model)
         m = self.model
         self.distance, self.max_seconds = distance, max_seconds
@@ -84,6 +87,13 @@ class G1BikeEnv:
                 m.actuator_gainprm[i, 0] = kp
                 m.actuator_biasprm[i, 1] = -kp
                 m.actuator_biasprm[i, 2] = -0.1 * kp
+            if arm_kp is not None and any(j in name for j in ("shoulder", "elbow", "wrist")):
+                m.actuator_gainprm[i, 0] = arm_kp
+                m.actuator_biasprm[i, 1] = -arm_kp
+                m.actuator_biasprm[i, 2] = -0.1 * arm_kp
+        if steer_kp is not None:       # a stronger steering servo (the arms resist the handlebar)
+            m.actuator_gainprm[self.a_steer, 0] = steer_kp
+            m.actuator_biasprm[self.a_steer, 1] = -steer_kp
         self.steer_q = m.jnt_qposadr[m.joint("steering").id]
         self.rear = m.joint("rear_spin")
         self.front = m.joint("front_spin")
@@ -136,7 +146,7 @@ class G1BikeEnv:
             d.qpos[:7] = root
             d.qvel[:6] = 0.0
 
-    def reset(self, seed=0, speed=4.0, roll=None):
+    def reset(self, seed=0, speed=4.0, roll=None, start_xy=None, yaw=0.0):
         m, d = self.model, self.data
         mujoco.mj_resetData(m, d)
         for j, val in self.ik_q.items():
@@ -145,9 +155,13 @@ class G1BikeEnv:
         self._settle(0.5)
         rng = np.random.default_rng(seed)
         angle = float(rng.uniform(-.03, .03)) if roll is None else float(roll)
-        d.qpos[3:7] = [math.cos(angle / 2), math.sin(angle / 2), 0, 0]
+        # heading ``yaw`` (about z), then the initial tilt ``angle`` (about the bike's own x axis)
+        cy, sy, cr, sr = math.cos(yaw / 2), math.sin(yaw / 2), math.cos(angle / 2), math.sin(angle / 2)
+        d.qpos[3:7] = [cy * cr, cy * sr, sy * sr, sy * cr]
+        if start_xy is not None:
+            d.qpos[0:2] = start_xy
         d.qvel[:] = 0.0
-        d.qvel[0] = speed
+        d.qvel[0], d.qvel[1] = speed * math.cos(yaw), speed * math.sin(yaw)
         for j in (self.rear, self.front):
             d.qvel[j.dofadr[0]] = speed / R_TYRE
         d.qvel[m.jnt_dofadr[m.joint("crank").id]] = GEAR * speed / R_TYRE
