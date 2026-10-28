@@ -132,6 +132,17 @@ mazes 83000-83029, same policy, paired: falls **5 -> 3** (4 vs 2 discordant, p =
 the maze-fall problem stays open (`results/maze_walker_persistent_83000_v4{,_smooth}.json`,
 `results/maze_walker_dev_persistent_20100_v4_smooth.json`).
 
+**v6 (not released).** v6 continued v4 for 1.1 h with half the bodies practising the maze walker's
+own goal pattern (`EnvConfig.maze_goal_frac`: turn on the spot to a new heading, walk about one
+cell, stop; half with abrupt, half with smooth steering) and the walls closer (0.9-1.8 m;
+`configs/locomotion_v6.yaml`). Development: every gate holds (run 19/20, headings 20/20 at 4.2
+degrees), but the wall test regressed (**6/40 falls vs 1/40 for v4**), and development maze falls
+fell only a little with abrupt steering (8 -> 5 of 60) and not at all with smooth steering (2 -> 2;
+`results/maze_walker_dev_persistent_20100_v6{,_smooth}.json`). Not taken to a final; v4 stays
+released, and v4 with smooth steering is the best maze configuration found. Three practice
+variants (v5, v6 and smooth steering as an interface fix) did not remove the maze falls; they
+remain an open problem.
+
 `media/locomotion/g1_wall_contact.mp4`: the same body walks into the same wall with v3 (left, falls)
 and v4 (right, stays up and backs off). Seed 57100, chosen from five as an example where they
 differ (in 3 of the 5 both stayed up, in 2 only v4); the numbers are in the table.
