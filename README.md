@@ -20,7 +20,10 @@ a street grid with barriers and parked cars it does not know about; it looks dow
 its head camera, keeps a belief over blocked streets, replans, changes lane around cars, and corners
 and U-turns with steering learned by practice. On 20 new towns: **36/40 deliveries, 0 collisions**,
 against 21/40 and 19 collisions for the same rider riding blind (paired p = 0.0001); the camera read
-178/178 streets right. The video shows its head camera, its map and its decisions.
+178/178 streets right. The video shows its head camera, its map and its decisions. **v2:** U-turn and
+dead-end fixes (37/40 delivered on new towns), and a learned riding policy (PPO correcting the
+practised rule) that rides random corner and U-turn shapes 40/40 where the rule manages 31/40
+(paired p = 0.004); PPO from scratch failed (0/40) at this training scale.
 
 <img src="docs/media/bike/delivery.gif" width="640">
 

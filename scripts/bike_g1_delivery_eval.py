@@ -48,15 +48,24 @@ def jobs_for(towns, per_town=2):
 
 
 def deliver(args):
-    seed, house, blind, gains, prior = args
-    if seed not in _CACHE:
+    seed, house, blind, gains, prior = args[:5]
+    ppo = args[5] if len(args) > 5 else None
+    if seed not in _CACHE or _CACHE.get("_ppo") != ppo:
         from pai.bike.g1_rider import G1BikeEnv
         from pai.bike.navigation import HeadCamera
         from pai.bike.town import Town, town_scene
         town = Town(n=4, seed=seed)
         env = G1BikeEnv(scenery=town_scene(town), max_seconds=1e9, arm_kp=ARM_KP, steer_kp=STEER_KP)
+        follower = None
+        if ppo is not None:          # the learned PPO riding policy instead of the practised rule
+            sys.path.insert(0, str(ROOT / "scripts"))
+            from bike_g1_ppo_eval import load
+            from pai.bike.ppo_rider import PPOFollower
+            policy = load(ppo)
+            follower = lambda path, env=env: PPOFollower(path, policy, env, residual_gains=policy.residual_gains)
         _CACHE.clear()
-        _CACHE[seed] = Delivery(town, env, gains, prior, HeadCamera(env.model))
+        _CACHE["_ppo"] = ppo
+        _CACHE[seed] = Delivery(town, env, gains, prior, HeadCamera(env.model), follower=follower)
     r = _CACHE[seed].run(house, seed=seed, blind=blind)
     r["town"] = seed
     return r
@@ -100,6 +109,7 @@ def main():
     ap.add_argument("--gains-from", type=Path, default=ROOT / "results/bike_g1_turns_v3.json")
     ap.add_argument("--towns", type=int, nargs=2, default=[4540, 4560])
     ap.add_argument("--workers", type=int, default=8)
+    ap.add_argument("--ppo", help="steer with this PPO checkpoint instead of the practised rule")
     ap.add_argument("--output", type=Path, required=True)
     args = ap.parse_args()
     gains = np.array(json.loads(args.gains_from.read_text())["practised"])
@@ -107,12 +117,13 @@ def main():
     jobs = jobs_for(range(*args.towns))
     with Pool(args.workers) as pool:
         # one town per worker task keeps a worker's cached scene: order jobs by town
-        res = pool.map(deliver, [(s, h, blind, gains, prior) for s, h in jobs for blind in (False, True)], chunksize=2)
+        res = pool.map(deliver, [(s, h, blind, gains, prior, args.ppo) for s, h in jobs for blind in (False, True)],
+                       chunksize=2)
     look = [r for r in res if not r["blind"]]
     blind = [r for r in res if r["blind"]]
     a = sum(x["outcome"] == "delivered" and y["outcome"] != "delivered" for x, y in zip(look, blind))
     b = sum(y["outcome"] == "delivered" and x["outcome"] != "delivered" for x, y in zip(look, blind))
-    report = {"towns": args.towns, "gains": gains.round(4).tolist(), "blocked_prior": round(prior, 3),
+    report = {"towns": args.towns, "steering": args.ppo and Path(args.ppo).name or "practised rule", "gains": gains.round(4).tolist(), "blocked_prior": round(prior, 3),
               "arm_kp": ARM_KP, "steer_kp": STEER_KP,
               "summary": {"looking": summarise(look), "blind": summarise(blind)},
               "paired": {"looking_only": a, "blind_only": b, "sign_test_p": round(sign_test(a, b), 4)},

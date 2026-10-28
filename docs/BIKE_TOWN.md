@@ -132,3 +132,82 @@ Where it is behind: real hardware; heading accuracy (CycleRL 1.15 deg in simulat
 heading commands, here 3.7 deg over town routes with corners); a richer learned policy (CycleRL's
 PPO) instead of a law with 9 gains learned by practice; the arms do not produce the steering torque;
 U-turns decided late; no other traffic.
+
+## Bicycle v2: late U-turns, a learned riding policy (PPO), and robustness
+
+### Fixing the late U-turns
+The four failures of the final delivery evaluation all ended in a U-turn decided about 5 m before an
+intersection. Tracing them found two causes:
+
+- **A bug.** After switching to the U-turn route, the rider located itself on the nearest point of
+  the new path, which was on the U-turn's way back in the other lane, 2.2 m away. It then believed it
+  faced 126 degrees off its route and threw itself into a turn. It now takes the nearest path point
+  that runs the way it faces.
+- **Dead ends.** A barrier on the only side street of an intersection (three were at the town's
+  corner) leaves a late U-turn as the only way on. Routes now include the expected cost of being
+  forced into one: at each intersection, the probability that every way on is blocked (from the
+  belief, e.g. 12.5% at a corner with one unchecked exit, about 1.6% at an edge intersection with
+  two), times 150 m. With both changes, 4 of the 6 failed deliveries of the earlier evaluations were
+  delivered (development use of those towns); the two left are true dead ends.
+
+**The practised rule is brittle.** The practised lean-target rule (v3) rides the exact U-turn loop
+it practised (18/18 U-turns on practice and development towns) but only 9/18 when the loop's centre
+moves 0.3 m, 0/18 at 1.0 m, and 0/18 with a 2.8 m instead of 2.4 m loop: nine gains tuned on one
+geometry do not generalise to another.
+
+### A learned riding policy (PPO, as CycleRL)
+`pai/bike/ppo_rider.py`, `scripts/bike_g1_ppo_train.py`: the policy sees the bicycle's IMU, speed
+and steering, its distance from the lane, the heading to route points 1, 2.5 and 4 m ahead and the
+curvature ahead (16 numbers), and outputs steering and drive torque. 512 riders on random town routes
+(30% with a U-turn) in training towns 5000-5007, simulated on CPU threads (`mujoco.rollout`), the
+network on the GPU.
+
+- **From scratch (negative).** The first reward paid route progress anywhere, and the policy learned
+  to balance while drifting off the route. With progress counted only near the lane it learned to
+  balance and keep the lane (0.25 m) but not to lean into corners: on development towns it completed
+  **0/20** routes at every checkpoint (best mean progress 38%), after about 12M steps. CycleRL trains
+  at far larger scale.
+- **Residual PPO.** The policy corrects the practised rule by at most 0.15 rad of steering and 4 N m of
+  torque, trained with random corner (3.0-3.8 m) and U-turn (2.2-2.6 m) radii, i.e. exactly where the
+  rule is brittle. With zero correction it rides exactly as the rule.
+
+**Final routes** (new towns 4230-4239: 2 routes with corners and 2 with a U-turn per town, 40
+routes; checkpoints chosen on development towns 4100-4104 only: residual iteration 600 by most
+completions then least distance from the lane, from-scratch iteration 200 by most progress):
+
+| Rider | Standard geometry | Random corner and U-turn radii | Mean / max distance from the lane (random) |
+|---|---:|---:|---:|
+| **Residual PPO** | **40/40** [91.2, 100] | **40/40** [91.2, 100] (U-turns 20/20) | **0.08 / 1.29 m** |
+| Practised rule (v3) | 40/40 | 31/40 [62.5, 87.7] (U-turns 11/20; 9 falls) | 0.15 / 1.03 m |
+| From-scratch PPO | 0/40 | 0/40 (all fall, mean progress 31%) | - |
+
+With random geometry the residual policy completed 9 routes the rule failed and never the reverse
+(paired sign test p = 0.004); on the standard geometry both complete everything, and the residual
+rides about twice as close to the lane (0.08 vs 0.15 m). `results/bike_g1_ppo_final_{standard,varied}.json`,
+development selection `results/bike_g1_ppo_dev_{scratch,residual}.json`.
+
+**Final deliveries** (new towns 4560-4579, 40 deliveries; both riders with the U-turn fixes):
+
+| Steering of the looking rider | Delivered | Collisions | Falls | Blind rider, same towns | Paired vs blind |
+|---|---:|---:|---:|---:|---|
+| **Practised rule** | **37/40** [80.1, 97.4] | 1 | 2 | 23/40 (17 collisions) | 14-0, p = 0.0001 |
+| Residual PPO | 34/40 [70.9, 92.9] | 1 | 4 (+1 off the road) | 23/40 | 11-0, p = 0.001 |
+
+The residual policy rides better but does not deliver better (rule-only 4, residual-only 1,
+p = 0.38): five of its six failures are lane changes around parked cars, often just after a corner,
+which its training never contained (no cars). The practised rule stays the delivery default. The
+first rule run of this final stopped on an OpenGL error of the head camera (no result written) and
+was run again unchanged. `results/bike_g1_delivery_v2_{rule,residual}.json`.
+
+    python scripts/bike_g1_ppo_train.py --out data/bike_ppo/run2 --hours 3 --init <run1 iteration 150>   # from scratch
+    python scripts/bike_g1_ppo_train.py --out data/bike_ppo/residual1 --hours 2.5 --residual results/bike_g1_turns_v3.json --vary-geometry
+    python scripts/bike_g1_ppo_eval.py --ckpts results/bike_ppo/residual_selected.pt results/bike_ppo/scratch_selected.pt --towns 4230 4240 --vary-geometry --with-rule --output results/bike_g1_ppo_final_varied.json
+    python scripts/bike_g1_delivery_eval.py --towns 4560 4580 --ppo results/bike_ppo/residual_selected.pt --output results/bike_g1_delivery_v2_residual.json
+    python scripts/bike_g1_delivery_eval.py --towns 4560 4580 --output results/bike_g1_delivery_v2_rule.json
+
+### Faster training without a GPU simulator
+MJX (MuJoCo on the GPU, via WSL2) was no faster for the G1 on its bicycle on this laptop (about 5,200
+control steps/s at 4,096 parallel riders, the same as CPU threads), and MuJoCo Warp ran out of the
+8 GB of GPU memory. The bottleneck was the per-rider Python code; computing observations, progress,
+rewards and the residual rule for all riders as arrays (`FastBikeVecEnv`, identical numbers) is 2.5x
+faster.

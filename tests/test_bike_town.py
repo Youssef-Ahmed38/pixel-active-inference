@@ -57,3 +57,36 @@ def test_lane_change_around_a_parked_car():
 def test_blocked_prior_is_counted_from_practice_towns():
     p = blocked_prior(range(4000, 4004))
     assert 0.05 < p < 0.4
+
+
+def test_dead_end_risk_counts_the_unchecked_ways_on():
+    from pai.bike.navigation import dead_end_risk
+    t = Town(n=4, seed=0)
+    b = StreetBelief(prior=0.125)
+    assert abs(dead_end_risk(t, b, 2, 3) - 0.125) < 1e-9          # town corner: one way on
+    assert abs(dead_end_risk(t, b, 0, 1) - 0.125 ** 2) < 1e-9     # edge: two ways on
+    b.update((3, 7), False)
+    assert dead_end_risk(t, b, 2, 3) < 0.05                       # the way on was seen clear
+
+
+def test_u_turn_loop_stays_tight_but_bounded():
+    t = Town(n=4, seed=0)
+    p = lane_path(t.nodes, [0, 1, 2, 1, 5], radius=CORNER_R)
+    k = np.abs(curvature(p))
+    assert 0.35 < k.max() < 0.7                                    # a ~2.4 m loop, no sharp reversal
+    assert np.linalg.norm(np.diff(p, axis=0), axis=1).max() < 0.7
+
+
+def test_fast_vector_env_matches_the_reference():
+    import json
+    from pathlib import Path
+    from pai.bike.ppo_rider import BikeVecEnv, FastBikeVecEnv
+    g = np.array(json.loads(Path("results/bike_g1_turns_v3.json").read_text())["practised"])
+    a = BikeVecEnv(4, towns=range(5000, 5002), seed=5, nthread=2, residual_gains=g)
+    b = FastBikeVecEnv(4, towns=range(5000, 5002), seed=5, nthread=2, residual_gains=g)
+    rng = np.random.default_rng(0)
+    for _ in range(20):
+        act = rng.normal(0, 0.3, (4, 2))
+        oa, ra, da, _ = a.step(act)
+        ob, rb, db, _ = b.step(act)
+        assert np.allclose(oa, ob, atol=1e-5) and np.allclose(ra, rb, atol=1e-5) and (da == db).all()

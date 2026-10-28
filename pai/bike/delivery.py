@@ -18,7 +18,7 @@ import math
 
 import numpy as np
 
-from pai.bike.navigation import DETOUR, HeadCamera, StreetBelief, avoid_cars, inspect_street, plan
+from pai.bike.navigation import DETOUR, HeadCamera, StreetBelief, avoid_cars, inspect_street, plan, step_cost
 from pai.bike.riding import CORNER_R, LeanFollower, lane_path
 from pai.bike.town import LANE, ROAD_HALF, Town
 
@@ -49,8 +49,7 @@ def plan_delivery(town: Town, belief: StreetBelief, start: int, house: int, bann
         r = [start] if start == end else plan(town, belief, start, end, banned)
         if r is None or (len(r) > 1 and tuple(sorted(r[-2:])) == e):
             continue
-        cost = sum(float(np.linalg.norm(np.subtract(town.nodes[u], town.nodes[v]))) + belief.get((u, v)) * DETOUR
-                   for u, v in zip(r[:-1], r[1:]))
+        cost = sum(step_cost(town, belief, u, v, None) for u, v in zip(r[:-1], r[1:]))
         # the last leg into the house street: blocked only if a barrier stands between the end and the pad
         if e in belief.barriers:
             from_end = np.linalg.norm(np.subtract(belief.barriers[e], town.nodes[end]))
@@ -68,8 +67,11 @@ def plan_delivery(town: Town, belief: StreetBelief, start: int, house: int, bann
 
 
 class Delivery:
-    def __init__(self, town: Town, env, gains, prior: float, camera: HeadCamera | None):
+    def __init__(self, town: Town, env, gains, prior: float, camera: HeadCamera | None, follower=None):
+        """``follower(path)`` makes the steering for a path (default: the practised lean-target rule
+        with ``gains``; e.g. a ``PPOFollower`` for the learned policy)."""
         self.town, self.env, self.gains, self.cam = town, env, np.asarray(gains), camera
+        self.follower = follower or (lambda path: LeanFollower(path, self.gains))
         self.prior = prior
 
     # ---------------------------------------------------------------- geometry helpers
@@ -116,13 +118,17 @@ class Delivery:
         route = plan_delivery(town, belief, depot, house)
         events, frames = [], []
 
-        def build(route, at=None, xy=None):
+        def build(route, at=None, xy=None, yaw=None):
             path = avoid_cars(lane_path(nodes, route, radius=CORNER_R), belief.cars.values())
-            f = LeanFollower(path, self.gains)
+            f = self.follower(path)
             nidx = self._node_index(nodes, route, path)
-            if at is not None:          # continue from where the rider is, just before route node ``at``
-                lo = max(0, nidx[at] - 40)
-                f.i = lo + int(np.argmin(np.linalg.norm(path[lo:nidx[at] + 5] - xy, axis=1)))
+            if at is not None:
+                # continue from where the rider is: the nearest path point that runs the way the rider
+                # faces (a U-turn's way back passes close by in the other lane)
+                tang = np.gradient(path, axis=0)
+                same = tang @ np.array([math.cos(yaw), math.sin(yaw)]) > 0
+                dist = np.where(same, np.linalg.norm(path - xy, axis=1), np.inf)
+                f.i = int(np.argmin(dist[: nidx[at] + 5]))
             return path, f, nidx
 
         path, f, nidx = build(route)
@@ -179,7 +185,7 @@ class Delivery:
                             replans += changed
                             ev["decision"] = ("replan via " + "-".join(map(str, new))) if changed else "change lane"
                             route = new_route
-                            path, f, nidx = build(route, at=i, xy=xy)
+                            path, f, nidx = build(route, at=i, xy=xy, yaw=float(s[5]))
                             # looks at streets already passed stay done; a new route is looked at again
                             # from this intersection at once
                             looked_at = {j for j in looked_at if j < i or (j == i and not changed)}

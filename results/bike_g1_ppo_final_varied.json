@@ -1,0 +1,2417 @@
+{
+ "towns": [
+  4230,
+  4240
+ ],
+ "vary_geometry": true,
+ "summary": {
+  "residual_selected.pt": {
+   "completed": 40,
+   "routes": 40,
+   "u_turns_completed": 20,
+   "u_turns": 20,
+   "falls": 0,
+   "off_road": 0,
+   "mean_progress": 1.0,
+   "mean_heading_error_deg_completed": 6.03,
+   "mean_cross_track_m_completed": 0.079,
+   "max_cross_track_m_completed": 1.289
+  },
+  "scratch_selected.pt": {
+   "completed": 0,
+   "routes": 40,
+   "u_turns_completed": 0,
+   "u_turns": 20,
+   "falls": 40,
+   "off_road": 0,
+   "mean_progress": 0.306,
+   "mean_heading_error_deg_completed": null,
+   "mean_cross_track_m_completed": null,
+   "max_cross_track_m_completed": null
+  },
+  "practised_rule_v3": {
+   "completed": 31,
+   "routes": 40,
+   "u_turns_completed": 11,
+   "u_turns": 20,
+   "falls": 9,
+   "off_road": 0,
+   "mean_progress": 0.916,
+   "mean_heading_error_deg_completed": 4.54,
+   "mean_cross_track_m_completed": 0.146,
+   "max_cross_track_m_completed": 1.027
+  }
+ },
+ "rides": [
+  {
+   "who": "residual_selected.pt",
+   "seed": 4230,
+   "route": [
+    13,
+    9,
+    8,
+    12
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 29.9,
+   "mean_heading_error_deg": 2.95,
+   "mean_cross_track_m": 0.058,
+   "max_cross_track_m": 0.275
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4230,
+   "route": [
+    4,
+    0,
+    1,
+    2,
+    3
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 46.26,
+   "mean_heading_error_deg": 2.38,
+   "mean_cross_track_m": 0.039,
+   "max_cross_track_m": 0.315
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4230,
+   "route": [
+    11,
+    10,
+    14,
+    10,
+    11
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 46.66,
+   "mean_heading_error_deg": 8.9,
+   "mean_cross_track_m": 0.112,
+   "max_cross_track_m": 0.762
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4230,
+   "route": [
+    5,
+    1,
+    2,
+    1,
+    0
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 49.24,
+   "mean_heading_error_deg": 9.19,
+   "mean_cross_track_m": 0.104,
+   "max_cross_track_m": 0.979
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4231,
+   "route": [
+    1,
+    5,
+    6,
+    7
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 32.24,
+   "mean_heading_error_deg": 2.3,
+   "mean_cross_track_m": 0.036,
+   "max_cross_track_m": 0.224
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4231,
+   "route": [
+    10,
+    11,
+    7,
+    6
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 30.12,
+   "mean_heading_error_deg": 3.09,
+   "mean_cross_track_m": 0.049,
+   "max_cross_track_m": 0.255
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4231,
+   "route": [
+    10,
+    6,
+    7,
+    6,
+    10
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 46.48,
+   "mean_heading_error_deg": 9.34,
+   "mean_cross_track_m": 0.117,
+   "max_cross_track_m": 0.809
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4231,
+   "route": [
+    13,
+    9,
+    5,
+    9,
+    8
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 49.02,
+   "mean_heading_error_deg": 8.11,
+   "mean_cross_track_m": 0.093,
+   "max_cross_track_m": 0.702
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4232,
+   "route": [
+    9,
+    10,
+    11,
+    15,
+    14
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 46.18,
+   "mean_heading_error_deg": 3.38,
+   "mean_cross_track_m": 0.053,
+   "max_cross_track_m": 0.269
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4232,
+   "route": [
+    15,
+    11,
+    10,
+    14,
+    13
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 41.42,
+   "mean_heading_error_deg": 3.62,
+   "mean_cross_track_m": 0.069,
+   "max_cross_track_m": 0.314
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4232,
+   "route": [
+    4,
+    0,
+    1,
+    0,
+    4
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 46.7,
+   "mean_heading_error_deg": 9.21,
+   "mean_cross_track_m": 0.111,
+   "max_cross_track_m": 0.888
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4232,
+   "route": [
+    6,
+    2,
+    3,
+    2,
+    1
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 50.06,
+   "mean_heading_error_deg": 10.26,
+   "mean_cross_track_m": 0.117,
+   "max_cross_track_m": 1.289
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4233,
+   "route": [
+    10,
+    6,
+    7,
+    11
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 34.38,
+   "mean_heading_error_deg": 4.13,
+   "mean_cross_track_m": 0.069,
+   "max_cross_track_m": 0.34
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4233,
+   "route": [
+    9,
+    13,
+    14,
+    10
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 30.12,
+   "mean_heading_error_deg": 3.1,
+   "mean_cross_track_m": 0.049,
+   "max_cross_track_m": 0.253
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4233,
+   "route": [
+    10,
+    14,
+    15,
+    14,
+    10
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 46.8,
+   "mean_heading_error_deg": 9.29,
+   "mean_cross_track_m": 0.103,
+   "max_cross_track_m": 0.872
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4233,
+   "route": [
+    10,
+    9,
+    13,
+    9,
+    8
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 44.04,
+   "mean_heading_error_deg": 8.46,
+   "mean_cross_track_m": 0.103,
+   "max_cross_track_m": 0.723
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4234,
+   "route": [
+    3,
+    2,
+    6,
+    10
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 32.3,
+   "mean_heading_error_deg": 2.34,
+   "mean_cross_track_m": 0.039,
+   "max_cross_track_m": 0.226
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4234,
+   "route": [
+    15,
+    11,
+    7,
+    6,
+    2
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 43.84,
+   "mean_heading_error_deg": 2.9,
+   "mean_cross_track_m": 0.05,
+   "max_cross_track_m": 0.302
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4234,
+   "route": [
+    12,
+    13,
+    9,
+    13,
+    12
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 46.9,
+   "mean_heading_error_deg": 9.53,
+   "mean_cross_track_m": 0.106,
+   "max_cross_track_m": 0.863
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4234,
+   "route": [
+    12,
+    8,
+    4,
+    8,
+    12
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 48.92,
+   "mean_heading_error_deg": 6.46,
+   "mean_cross_track_m": 0.066,
+   "max_cross_track_m": 0.663
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4235,
+   "route": [
+    14,
+    13,
+    9,
+    5
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 34.54,
+   "mean_heading_error_deg": 2.78,
+   "mean_cross_track_m": 0.046,
+   "max_cross_track_m": 0.308
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4235,
+   "route": [
+    0,
+    4,
+    5,
+    9,
+    8
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 43.8,
+   "mean_heading_error_deg": 4.15,
+   "mean_cross_track_m": 0.068,
+   "max_cross_track_m": 0.273
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4235,
+   "route": [
+    10,
+    11,
+    7,
+    11,
+    10
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 46.6,
+   "mean_heading_error_deg": 8.84,
+   "mean_cross_track_m": 0.11,
+   "max_cross_track_m": 0.693
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4235,
+   "route": [
+    9,
+    8,
+    12,
+    8,
+    9
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 46.6,
+   "mean_heading_error_deg": 8.65,
+   "mean_cross_track_m": 0.106,
+   "max_cross_track_m": 0.703
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4236,
+   "route": [
+    7,
+    6,
+    2,
+    1,
+    0
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 44.24,
+   "mean_heading_error_deg": 3.08,
+   "mean_cross_track_m": 0.052,
+   "max_cross_track_m": 0.314
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4236,
+   "route": [
+    1,
+    5,
+    4,
+    8
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 32.12,
+   "mean_heading_error_deg": 3.58,
+   "mean_cross_track_m": 0.06,
+   "max_cross_track_m": 0.292
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4236,
+   "route": [
+    10,
+    14,
+    15,
+    14,
+    13
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 46.88,
+   "mean_heading_error_deg": 7.86,
+   "mean_cross_track_m": 0.086,
+   "max_cross_track_m": 0.703
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4236,
+   "route": [
+    14,
+    13,
+    12,
+    13,
+    9
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 46.42,
+   "mean_heading_error_deg": 6.97,
+   "mean_cross_track_m": 0.076,
+   "max_cross_track_m": 0.631
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4237,
+   "route": [
+    2,
+    3,
+    7,
+    11,
+    15
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 46.22,
+   "mean_heading_error_deg": 2.37,
+   "mean_cross_track_m": 0.039,
+   "max_cross_track_m": 0.326
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4237,
+   "route": [
+    11,
+    7,
+    3,
+    2
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 32.04,
+   "mean_heading_error_deg": 1.91,
+   "mean_cross_track_m": 0.035,
+   "max_cross_track_m": 0.274
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4237,
+   "route": [
+    15,
+    11,
+    10,
+    11,
+    15
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 46.72,
+   "mean_heading_error_deg": 10.27,
+   "mean_cross_track_m": 0.122,
+   "max_cross_track_m": 1.026
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4237,
+   "route": [
+    2,
+    1,
+    5,
+    1,
+    2
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 47.08,
+   "mean_heading_error_deg": 10.66,
+   "mean_cross_track_m": 0.125,
+   "max_cross_track_m": 1.115
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4238,
+   "route": [
+    6,
+    2,
+    1,
+    0,
+    4
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 41.84,
+   "mean_heading_error_deg": 2.81,
+   "mean_cross_track_m": 0.044,
+   "max_cross_track_m": 0.223
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4238,
+   "route": [
+    12,
+    8,
+    9,
+    13,
+    14
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 43.5,
+   "mean_heading_error_deg": 4.2,
+   "mean_cross_track_m": 0.073,
+   "max_cross_track_m": 0.311
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4238,
+   "route": [
+    1,
+    0,
+    4,
+    0,
+    1
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 46.54,
+   "mean_heading_error_deg": 9.34,
+   "mean_cross_track_m": 0.113,
+   "max_cross_track_m": 0.746
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4238,
+   "route": [
+    6,
+    7,
+    11,
+    7,
+    6
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 47.0,
+   "mean_heading_error_deg": 10.13,
+   "mean_cross_track_m": 0.127,
+   "max_cross_track_m": 0.842
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4239,
+   "route": [
+    11,
+    15,
+    14,
+    13
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 34.7,
+   "mean_heading_error_deg": 2.8,
+   "mean_cross_track_m": 0.048,
+   "max_cross_track_m": 0.326
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4239,
+   "route": [
+    3,
+    2,
+    6,
+    5,
+    4
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 44.02,
+   "mean_heading_error_deg": 3.09,
+   "mean_cross_track_m": 0.048,
+   "max_cross_track_m": 0.233
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4239,
+   "route": [
+    14,
+    13,
+    9,
+    13,
+    12
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 48.86,
+   "mean_heading_error_deg": 9.46,
+   "mean_cross_track_m": 0.12,
+   "max_cross_track_m": 0.872
+  },
+  {
+   "who": "residual_selected.pt",
+   "seed": 4239,
+   "route": [
+    2,
+    3,
+    7,
+    3,
+    2
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 46.8,
+   "mean_heading_error_deg": 9.22,
+   "mean_cross_track_m": 0.105,
+   "max_cross_track_m": 0.746
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4230,
+   "route": [
+    13,
+    9,
+    8,
+    12
+   ],
+   "u_turn": false,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.4090909090909091,
+   "time_s": 11.54,
+   "mean_heading_error_deg": 35.25,
+   "mean_cross_track_m": 0.597,
+   "max_cross_track_m": 1.747
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4230,
+   "route": [
+    4,
+    0,
+    1,
+    2,
+    3
+   ],
+   "u_turn": false,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.24120603015075376,
+   "time_s": 9.26,
+   "mean_heading_error_deg": 23.31,
+   "mean_cross_track_m": 0.428,
+   "max_cross_track_m": 0.922
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4230,
+   "route": [
+    11,
+    10,
+    14,
+    10,
+    11
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.21991701244813278,
+   "time_s": 11.44,
+   "mean_heading_error_deg": 33.63,
+   "mean_cross_track_m": 0.561,
+   "max_cross_track_m": 1.584
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4230,
+   "route": [
+    5,
+    1,
+    2,
+    1,
+    0
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.1867704280155642,
+   "time_s": 9.26,
+   "mean_heading_error_deg": 23.45,
+   "mean_cross_track_m": 0.427,
+   "max_cross_track_m": 0.918
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4231,
+   "route": [
+    1,
+    5,
+    6,
+    7
+   ],
+   "u_turn": false,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.3546099290780142,
+   "time_s": 10.72,
+   "mean_heading_error_deg": 21.46,
+   "mean_cross_track_m": 0.398,
+   "max_cross_track_m": 0.867
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4231,
+   "route": [
+    10,
+    11,
+    7,
+    6
+   ],
+   "u_turn": false,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.37593984962406013,
+   "time_s": 10.84,
+   "mean_heading_error_deg": 20.94,
+   "mean_cross_track_m": 0.404,
+   "max_cross_track_m": 0.864
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4231,
+   "route": [
+    10,
+    6,
+    7,
+    6,
+    10
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.1991701244813278,
+   "time_s": 9.32,
+   "mean_heading_error_deg": 23.11,
+   "mean_cross_track_m": 0.419,
+   "max_cross_track_m": 0.901
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4231,
+   "route": [
+    13,
+    9,
+    5,
+    9,
+    8
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.525691699604743,
+   "time_s": 20.08,
+   "mean_heading_error_deg": 28.33,
+   "mean_cross_track_m": 0.482,
+   "max_cross_track_m": 1.599
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4232,
+   "route": [
+    9,
+    10,
+    11,
+    15,
+    14
+   ],
+   "u_turn": false,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.5151515151515151,
+   "time_s": 19.16,
+   "mean_heading_error_deg": 25.47,
+   "mean_cross_track_m": 0.457,
+   "max_cross_track_m": 0.879
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4232,
+   "route": [
+    15,
+    11,
+    10,
+    14,
+    13
+   ],
+   "u_turn": false,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.29444444444444445,
+   "time_s": 11.36,
+   "mean_heading_error_deg": 32.8,
+   "mean_cross_track_m": 0.54,
+   "max_cross_track_m": 1.475
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4232,
+   "route": [
+    4,
+    0,
+    1,
+    0,
+    4
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.21774193548387097,
+   "time_s": 11.32,
+   "mean_heading_error_deg": 27.93,
+   "mean_cross_track_m": 0.435,
+   "max_cross_track_m": 0.907
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4232,
+   "route": [
+    6,
+    2,
+    3,
+    2,
+    1
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.1839080459770115,
+   "time_s": 9.24,
+   "mean_heading_error_deg": 23.57,
+   "mean_cross_track_m": 0.43,
+   "max_cross_track_m": 0.925
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4233,
+   "route": [
+    10,
+    6,
+    7,
+    11
+   ],
+   "u_turn": false,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.36486486486486486,
+   "time_s": 11.32,
+   "mean_heading_error_deg": 28.02,
+   "mean_cross_track_m": 0.435,
+   "max_cross_track_m": 0.907
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4233,
+   "route": [
+    9,
+    13,
+    14,
+    10
+   ],
+   "u_turn": false,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.37593984962406013,
+   "time_s": 10.78,
+   "mean_heading_error_deg": 21.05,
+   "mean_cross_track_m": 0.403,
+   "max_cross_track_m": 0.87
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4233,
+   "route": [
+    10,
+    14,
+    15,
+    14,
+    10
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.1984126984126984,
+   "time_s": 10.88,
+   "mean_heading_error_deg": 21.02,
+   "mean_cross_track_m": 0.408,
+   "max_cross_track_m": 0.87
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4233,
+   "route": [
+    10,
+    9,
+    13,
+    9,
+    8
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.22746781115879827,
+   "time_s": 11.52,
+   "mean_heading_error_deg": 34.52,
+   "mean_cross_track_m": 0.579,
+   "max_cross_track_m": 1.673
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4234,
+   "route": [
+    3,
+    2,
+    6,
+    10
+   ],
+   "u_turn": false,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.37857142857142856,
+   "time_s": 10.98,
+   "mean_heading_error_deg": 27.63,
+   "mean_cross_track_m": 0.457,
+   "max_cross_track_m": 0.911
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4234,
+   "route": [
+    15,
+    11,
+    7,
+    6,
+    2
+   ],
+   "u_turn": false,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.4973544973544973,
+   "time_s": 17.18,
+   "mean_heading_error_deg": 24.32,
+   "mean_cross_track_m": 0.479,
+   "max_cross_track_m": 0.879
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4234,
+   "route": [
+    12,
+    13,
+    9,
+    13,
+    12
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.20161290322580644,
+   "time_s": 10.5,
+   "mean_heading_error_deg": 22.08,
+   "mean_cross_track_m": 0.39,
+   "max_cross_track_m": 0.87
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4234,
+   "route": [
+    12,
+    8,
+    4,
+    8,
+    12
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.5236220472440944,
+   "time_s": 20.12,
+   "mean_heading_error_deg": 28.2,
+   "mean_cross_track_m": 0.481,
+   "max_cross_track_m": 1.652
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4235,
+   "route": [
+    14,
+    13,
+    9,
+    5
+   ],
+   "u_turn": false,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.3221476510067114,
+   "time_s": 9.24,
+   "mean_heading_error_deg": 23.57,
+   "mean_cross_track_m": 0.429,
+   "max_cross_track_m": 0.921
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4235,
+   "route": [
+    0,
+    4,
+    5,
+    9,
+    8
+   ],
+   "u_turn": false,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.26595744680851063,
+   "time_s": 10.68,
+   "mean_heading_error_deg": 22.16,
+   "mean_cross_track_m": 0.388,
+   "max_cross_track_m": 0.856
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4235,
+   "route": [
+    10,
+    11,
+    7,
+    11,
+    10
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.2190082644628099,
+   "time_s": 11.4,
+   "mean_heading_error_deg": 32.99,
+   "mean_cross_track_m": 0.55,
+   "max_cross_track_m": 1.52
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4235,
+   "route": [
+    9,
+    8,
+    12,
+    8,
+    9
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.2190082644628099,
+   "time_s": 11.18,
+   "mean_heading_error_deg": 30.6,
+   "mean_cross_track_m": 0.496,
+   "max_cross_track_m": 1.238
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4236,
+   "route": [
+    7,
+    6,
+    2,
+    1,
+    0
+   ],
+   "u_turn": false,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.24867724867724866,
+   "time_s": 9.2,
+   "mean_heading_error_deg": 23.41,
+   "mean_cross_track_m": 0.435,
+   "max_cross_track_m": 0.948
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4236,
+   "route": [
+    1,
+    5,
+    4,
+    8
+   ],
+   "u_turn": false,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.38848920863309355,
+   "time_s": 11.34,
+   "mean_heading_error_deg": 27.64,
+   "mean_cross_track_m": 0.438,
+   "max_cross_track_m": 0.915
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4236,
+   "route": [
+    10,
+    14,
+    15,
+    14,
+    13
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.2,
+   "time_s": 11.0,
+   "mean_heading_error_deg": 19.52,
+   "mean_cross_track_m": 0.434,
+   "max_cross_track_m": 0.917
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4236,
+   "route": [
+    14,
+    13,
+    12,
+    13,
+    9
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.5387755102040817,
+   "time_s": 20.1,
+   "mean_heading_error_deg": 28.1,
+   "mean_cross_track_m": 0.481,
+   "max_cross_track_m": 1.637
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4237,
+   "route": [
+    2,
+    3,
+    7,
+    11,
+    15
+   ],
+   "u_turn": false,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.271356783919598,
+   "time_s": 11.42,
+   "mean_heading_error_deg": 27.82,
+   "mean_cross_track_m": 0.428,
+   "max_cross_track_m": 0.909
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4237,
+   "route": [
+    11,
+    7,
+    3,
+    2
+   ],
+   "u_turn": false,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.6714285714285714,
+   "time_s": 17.28,
+   "mean_heading_error_deg": 24.35,
+   "mean_cross_track_m": 0.479,
+   "max_cross_track_m": 0.879
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4237,
+   "route": [
+    15,
+    11,
+    10,
+    11,
+    15
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.21285140562248997,
+   "time_s": 11.46,
+   "mean_heading_error_deg": 33.78,
+   "mean_cross_track_m": 0.564,
+   "max_cross_track_m": 1.6
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4237,
+   "route": [
+    2,
+    1,
+    5,
+    1,
+    2
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.21686746987951808,
+   "time_s": 11.26,
+   "mean_heading_error_deg": 31.26,
+   "mean_cross_track_m": 0.512,
+   "max_cross_track_m": 1.305
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4238,
+   "route": [
+    6,
+    2,
+    1,
+    0,
+    4
+   ],
+   "u_turn": false,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.27472527472527475,
+   "time_s": 11.22,
+   "mean_heading_error_deg": 19.47,
+   "mean_cross_track_m": 0.423,
+   "max_cross_track_m": 0.876
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4238,
+   "route": [
+    12,
+    8,
+    9,
+    13,
+    14
+   ],
+   "u_turn": false,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.32978723404255317,
+   "time_s": 12.42,
+   "mean_heading_error_deg": 30.56,
+   "mean_cross_track_m": 0.56,
+   "max_cross_track_m": 1.674
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4238,
+   "route": [
+    1,
+    0,
+    4,
+    0,
+    1
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.2163265306122449,
+   "time_s": 11.44,
+   "mean_heading_error_deg": 33.42,
+   "mean_cross_track_m": 0.558,
+   "max_cross_track_m": 1.565
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4238,
+   "route": [
+    6,
+    7,
+    11,
+    7,
+    6
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.19672131147540983,
+   "time_s": 9.26,
+   "mean_heading_error_deg": 23.39,
+   "mean_cross_track_m": 0.428,
+   "max_cross_track_m": 0.92
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4239,
+   "route": [
+    11,
+    15,
+    14,
+    13
+   ],
+   "u_turn": false,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.31756756756756754,
+   "time_s": 9.22,
+   "mean_heading_error_deg": 23.32,
+   "mean_cross_track_m": 0.431,
+   "max_cross_track_m": 0.939
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4239,
+   "route": [
+    3,
+    2,
+    6,
+    5,
+    4
+   ],
+   "u_turn": false,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.2631578947368421,
+   "time_s": 10.32,
+   "mean_heading_error_deg": 23.29,
+   "mean_cross_track_m": 0.373,
+   "max_cross_track_m": 0.861
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4239,
+   "route": [
+    14,
+    13,
+    9,
+    13,
+    12
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.1927710843373494,
+   "time_s": 9.32,
+   "mean_heading_error_deg": 23.17,
+   "mean_cross_track_m": 0.42,
+   "max_cross_track_m": 0.904
+  },
+  {
+   "who": "scratch_selected.pt",
+   "seed": 4239,
+   "route": [
+    2,
+    3,
+    7,
+    3,
+    2
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.1935483870967742,
+   "time_s": 9.22,
+   "mean_heading_error_deg": 23.81,
+   "mean_cross_track_m": 0.433,
+   "max_cross_track_m": 0.931
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4230,
+   "route": [
+    13,
+    9,
+    8,
+    12
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 33.52,
+   "mean_heading_error_deg": 4.38,
+   "mean_cross_track_m": 0.144,
+   "max_cross_track_m": 0.33
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4230,
+   "route": [
+    4,
+    0,
+    1,
+    2,
+    3
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 52.84,
+   "mean_heading_error_deg": 1.79,
+   "mean_cross_track_m": 0.131,
+   "max_cross_track_m": 0.319
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4230,
+   "route": [
+    11,
+    10,
+    14,
+    10,
+    11
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 50.46,
+   "mean_heading_error_deg": 8.26,
+   "mean_cross_track_m": 0.172,
+   "max_cross_track_m": 0.696
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4230,
+   "route": [
+    5,
+    1,
+    2,
+    1,
+    0
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.622568093385214,
+   "time_s": 29.38,
+   "mean_heading_error_deg": 12.42,
+   "mean_cross_track_m": 0.204,
+   "max_cross_track_m": 2.29
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4231,
+   "route": [
+    1,
+    5,
+    6,
+    7
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 36.94,
+   "mean_heading_error_deg": 2.43,
+   "mean_cross_track_m": 0.134,
+   "max_cross_track_m": 0.31
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4231,
+   "route": [
+    10,
+    11,
+    7,
+    6
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 33.72,
+   "mean_heading_error_deg": 3.99,
+   "mean_cross_track_m": 0.139,
+   "max_cross_track_m": 0.307
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4231,
+   "route": [
+    10,
+    6,
+    7,
+    6,
+    10
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 50.34,
+   "mean_heading_error_deg": 7.72,
+   "mean_cross_track_m": 0.167,
+   "max_cross_track_m": 0.665
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4231,
+   "route": [
+    13,
+    9,
+    5,
+    9,
+    8
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 53.62,
+   "mean_heading_error_deg": 5.07,
+   "mean_cross_track_m": 0.145,
+   "max_cross_track_m": 0.445
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4232,
+   "route": [
+    9,
+    10,
+    11,
+    15,
+    14
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 51.84,
+   "mean_heading_error_deg": 3.17,
+   "mean_cross_track_m": 0.139,
+   "max_cross_track_m": 0.333
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4232,
+   "route": [
+    15,
+    11,
+    10,
+    14,
+    13
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 45.82,
+   "mean_heading_error_deg": 4.49,
+   "mean_cross_track_m": 0.143,
+   "max_cross_track_m": 0.32
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4232,
+   "route": [
+    4,
+    0,
+    1,
+    0,
+    4
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.6451612903225806,
+   "time_s": 29.38,
+   "mean_heading_error_deg": 12.45,
+   "mean_cross_track_m": 0.208,
+   "max_cross_track_m": 2.26
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4232,
+   "route": [
+    6,
+    2,
+    3,
+    2,
+    1
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.6245210727969349,
+   "time_s": 29.12,
+   "mean_heading_error_deg": 11.32,
+   "mean_cross_track_m": 0.192,
+   "max_cross_track_m": 1.379
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4233,
+   "route": [
+    10,
+    6,
+    7,
+    11
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 37.96,
+   "mean_heading_error_deg": 4.01,
+   "mean_cross_track_m": 0.144,
+   "max_cross_track_m": 0.346
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4233,
+   "route": [
+    9,
+    13,
+    14,
+    10
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 33.72,
+   "mean_heading_error_deg": 4.01,
+   "mean_cross_track_m": 0.139,
+   "max_cross_track_m": 0.308
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4233,
+   "route": [
+    10,
+    14,
+    15,
+    14,
+    10
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.6150793650793651,
+   "time_s": 27.12,
+   "mean_heading_error_deg": 14.12,
+   "mean_cross_track_m": 0.21,
+   "max_cross_track_m": 2.295
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4233,
+   "route": [
+    10,
+    9,
+    13,
+    9,
+    8
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 48.2,
+   "mean_heading_error_deg": 8.59,
+   "mean_cross_track_m": 0.175,
+   "max_cross_track_m": 0.723
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4234,
+   "route": [
+    3,
+    2,
+    6,
+    10
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 36.98,
+   "mean_heading_error_deg": 2.45,
+   "mean_cross_track_m": 0.136,
+   "max_cross_track_m": 0.362
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4234,
+   "route": [
+    15,
+    11,
+    7,
+    6,
+    2
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 49.32,
+   "mean_heading_error_deg": 2.83,
+   "mean_cross_track_m": 0.134,
+   "max_cross_track_m": 0.297
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4234,
+   "route": [
+    12,
+    13,
+    9,
+    13,
+    12
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.6169354838709677,
+   "time_s": 27.28,
+   "mean_heading_error_deg": 13.35,
+   "mean_cross_track_m": 0.213,
+   "max_cross_track_m": 2.005
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4234,
+   "route": [
+    12,
+    8,
+    4,
+    8,
+    12
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 54.88,
+   "mean_heading_error_deg": 4.34,
+   "mean_cross_track_m": 0.144,
+   "max_cross_track_m": 0.457
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4235,
+   "route": [
+    14,
+    13,
+    9,
+    5
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 39.1,
+   "mean_heading_error_deg": 2.09,
+   "mean_cross_track_m": 0.132,
+   "max_cross_track_m": 0.318
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4235,
+   "route": [
+    0,
+    4,
+    5,
+    9,
+    8
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 48.26,
+   "mean_heading_error_deg": 4.63,
+   "mean_cross_track_m": 0.145,
+   "max_cross_track_m": 0.323
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4235,
+   "route": [
+    10,
+    11,
+    7,
+    11,
+    10
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 50.18,
+   "mean_heading_error_deg": 7.21,
+   "mean_cross_track_m": 0.159,
+   "max_cross_track_m": 0.503
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4235,
+   "route": [
+    9,
+    8,
+    12,
+    8,
+    9
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 50.28,
+   "mean_heading_error_deg": 7.5,
+   "mean_cross_track_m": 0.163,
+   "max_cross_track_m": 0.614
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4236,
+   "route": [
+    7,
+    6,
+    2,
+    1,
+    0
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 49.74,
+   "mean_heading_error_deg": 2.86,
+   "mean_cross_track_m": 0.136,
+   "max_cross_track_m": 0.322
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4236,
+   "route": [
+    1,
+    5,
+    4,
+    8
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 35.62,
+   "mean_heading_error_deg": 3.39,
+   "mean_cross_track_m": 0.136,
+   "max_cross_track_m": 0.294
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4236,
+   "route": [
+    10,
+    14,
+    15,
+    14,
+    13
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 52.12,
+   "mean_heading_error_deg": 7.73,
+   "mean_cross_track_m": 0.176,
+   "max_cross_track_m": 1.027
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4236,
+   "route": [
+    14,
+    13,
+    12,
+    13,
+    9
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 51.64,
+   "mean_heading_error_deg": 5.91,
+   "mean_cross_track_m": 0.154,
+   "max_cross_track_m": 0.557
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4237,
+   "route": [
+    2,
+    3,
+    7,
+    11,
+    15
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 52.82,
+   "mean_heading_error_deg": 1.83,
+   "mean_cross_track_m": 0.132,
+   "max_cross_track_m": 0.332
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4237,
+   "route": [
+    11,
+    7,
+    3,
+    2
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 36.7,
+   "mean_heading_error_deg": 2.28,
+   "mean_cross_track_m": 0.133,
+   "max_cross_track_m": 0.308
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4237,
+   "route": [
+    15,
+    11,
+    10,
+    11,
+    15
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.6184738955823293,
+   "time_s": 26.74,
+   "mean_heading_error_deg": 12.16,
+   "mean_cross_track_m": 0.201,
+   "max_cross_track_m": 1.318
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4237,
+   "route": [
+    2,
+    1,
+    5,
+    1,
+    2
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.6184738955823293,
+   "time_s": 26.36,
+   "mean_heading_error_deg": 11.3,
+   "mean_cross_track_m": 0.207,
+   "max_cross_track_m": 1.483
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4238,
+   "route": [
+    6,
+    2,
+    1,
+    0,
+    4
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 47.5,
+   "mean_heading_error_deg": 3.32,
+   "mean_cross_track_m": 0.139,
+   "max_cross_track_m": 0.314
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4238,
+   "route": [
+    12,
+    8,
+    9,
+    13,
+    14
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 48.08,
+   "mean_heading_error_deg": 4.52,
+   "mean_cross_track_m": 0.145,
+   "max_cross_track_m": 0.327
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4238,
+   "route": [
+    1,
+    0,
+    4,
+    0,
+    1
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.6285714285714286,
+   "time_s": 27.6,
+   "mean_heading_error_deg": 13.6,
+   "mean_cross_track_m": 0.225,
+   "max_cross_track_m": 1.374
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4238,
+   "route": [
+    6,
+    7,
+    11,
+    7,
+    6
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 50.48,
+   "mean_heading_error_deg": 7.12,
+   "mean_cross_track_m": 0.16,
+   "max_cross_track_m": 0.531
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4239,
+   "route": [
+    11,
+    15,
+    14,
+    13
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 39.16,
+   "mean_heading_error_deg": 2.19,
+   "mean_cross_track_m": 0.135,
+   "max_cross_track_m": 0.322
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4239,
+   "route": [
+    3,
+    2,
+    6,
+    5,
+    4
+   ],
+   "u_turn": false,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 49.62,
+   "mean_heading_error_deg": 3.48,
+   "mean_cross_track_m": 0.141,
+   "max_cross_track_m": 0.332
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4239,
+   "route": [
+    14,
+    13,
+    9,
+    13,
+    12
+   ],
+   "u_turn": true,
+   "completed": true,
+   "fell": false,
+   "off_road": false,
+   "progress": 1.0,
+   "time_s": 52.5,
+   "mean_heading_error_deg": 7.02,
+   "mean_cross_track_m": 0.161,
+   "max_cross_track_m": 0.553
+  },
+  {
+   "who": "practised_rule_v3",
+   "seed": 4239,
+   "route": [
+    2,
+    3,
+    7,
+    3,
+    2
+   ],
+   "u_turn": true,
+   "completed": false,
+   "fell": true,
+   "off_road": false,
+   "progress": 0.6612903225806451,
+   "time_s": 29.72,
+   "mean_heading_error_deg": 11.07,
+   "mean_cross_track_m": 0.2,
+   "max_cross_track_m": 1.385
+  }
+ ]
+}
