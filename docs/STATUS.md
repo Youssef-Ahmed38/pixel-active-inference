@@ -1,4 +1,4 @@
-# Status: where we stopped (updated 2026-10-28, 06:45)
+# Status: where we stopped (updated 2026-10-28, evening)
 
 ## Results
 
@@ -18,7 +18,7 @@
 Audit fix #1 is done (arm relations come from perception, commit aa8d259); audit #4 is done for
 walking (PR #3); the other audit items are open (see the queue).
 
-Everything is merged into `main` (PRs #1-#4). Nothing is running; no PR is open.
+PRs #1-#12 are merged into `main`. Open: #13 (maze walker at 0.4 m/s), #14 (bicycle v2).
 
 ## Session log, 2026-10-28 (a second Claude session, in a worktree, while the main session's account was switched)
 
@@ -54,27 +54,34 @@ The paper draft (`paper/`, IEEEtran in the user's format) is **local only** by t
 `data/paper_overleaf.zip`. Updated 2026-10-28 06:50 with all results above (maze section rewritten
 around the branchy-maze result and the corridor correction; walker figure added).
 
-## In progress (2026-10-28 15:00; the user is away: work continues without asking)
+## In progress (2026-10-28 evening; the user is away: work continues without asking)
 
-- **Open PRs for the user to merge:** #5 (Stage 4 key chain as an induced recipe), #6 (walking v4
-  with wall contact, four fall causes, the maze walker's own eyes; v5 and v6 not released; smooth
-  steering option), #7 (arm learned cause likelihoods: exact 97 vs 87, camera 78 vs 66), #8 (chess:
-  HRM in search with learned halting; not promoted, no strength gain). Codex's original files for
-  #5, #7, #8 remain untracked in the main checkout (identical; remove after merging, then pull).
-  #9 (bicycle from video), #10 (the G1 rides a realistic bicycle: 23/40 fresh 30 m rides), #11 (on
-  top of #10: the G1 delivers parcels by bicycle in new towns with barriers and parked cars: 36/40
-  delivered, 0 collisions vs blind 21/40; head camera 178/178; cornering and U-turns learned by
-  practice; POV + map + decision video; `docs/BIKE_TOWN.md`). Merge #10 before #11.
-  Worktrees: `../pai-walls` (#6), `../pai-arm2` (#7), `../pai-chess` (#8), `../pai-bike` (#9),
-  `../pai-g1bike` (#10), `../pai-town` (#11). The town files are also untracked in the main checkout.
-- **Bicycle next:** U-turns decided late (the 4 remaining delivery failures); a PPO policy as in
-  CycleRL; steering produced by the G1's arms; other traffic.
-- **Walking plan A-C done.** Open problem: the walker still falls in noisy mazes (v4 + smooth
-  steering: 3 of 60 on new mazes); v5 (fast random goals) and v6 (maze-goal practice) did not fix it.
-- **Codex: bicycle from video** (`docs/briefs/BIKE_FROM_VIDEO.md`, task `bike-video`): learn from
-  rendered video, ride from an on-board camera and own proprioception. Review when it reports (scan
-  results, including inside `.gz`, for absolute local paths before any push).
-- The local paper (`paper/`) includes all results up to the chess PR; zip `data/paper_overleaf.zip`.
+**Paper direction (agreed with the user):** the centre is a brain-inspired *hierarchical thinker that
+learns through its own perception* (fast sensory prediction, slower hidden-cause inference that
+"thinks" by reducing prediction error, slow goals), with measured brain-like signatures, ablations,
+3 training seeds and standard baselines; target IEEE Transactions on Cognitive and Developmental
+Systems (check the current quartile). No hardware for now. The paper stays local (`paper/`).
+
+- **Codex, thinker go/no-go** (`docs/briefs/THINKER_HIERARCHY.md`, `docs/THINKER_HIERARCHY.md`):
+  round 1 NO-GO under the registered rule (cluster accuracy 28.8% vs flat 24.8%, CI [-1, +9] pp;
+  probe 37.8% vs 29.5%), but the data could not test it (the Bayesian reference scored 28.5% on it:
+  short episodes, objects rarely grasped). Round 2 runs with a data-quality gate registered before
+  training (normal arm behaviour, Bayesian reference >= 80% on development) and final seeds 93000+.
+  Codex works in the main checkout; do not pull or clean the main checkout until it finishes.
+- **Bicycle (PR #14):** late U-turn bug fixed; dead-end-aware planning; rule 37/40 deliveries on new
+  towns; residual PPO rides random geometry 40/40 vs rule 31/40 (p = 0.004) but delivers 34/40
+  (lane changes were not trained); PPO from scratch 0/40. **Running:** residual PPO run 2 with lane
+  changes around parked cars (`data/bike_ppo/residual2`, 2 h), then development selection and a
+  final on new towns (routes and deliveries).
+- **Maze (PR #13):** walking at 0.4 m/s removes the maze falls (2.60 -> 0.46 per 1000 moves on new
+  mazes, p = 0.0003; 0 falls in 60 explorations, same goals). Five earlier attempts failed.
+- **GPU physics:** WSL2 Ubuntu 24.04 + JAX CUDA + MJX + MuJoCo Warp installed (`/opt/pai-venv` in
+  WSL); not faster for the G1 models on this laptop (MJX ~5,200 control steps/s; Warp out of
+  memory or crashing WSL). CPU threads + `FastBikeVecEnv` are used instead.
+- **Housekeeping after Codex finishes:** remove Codex's and the bike work's untracked copies in the
+  main checkout that are now merged (identical), pull main, remove finished worktrees (`pai-walls`,
+  `pai-arm2`, `pai-chess`, `pai-bike`, `pai-g1bike`, `pai-town`, `pai-lang4`, `pai-keys`,
+  `pai-status`); `pai-walls` has a `third_party` junction (never commit it).
 
 ## Next steps (plan agreed with the user, 2026-10-28; in order)
 
