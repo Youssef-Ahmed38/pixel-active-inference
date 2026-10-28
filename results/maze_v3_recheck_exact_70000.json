@@ -1,0 +1,8162 @@
+{
+ "git_commit": "111fe32",
+ "seeds": [
+  70000,
+  70099
+ ],
+ "budget": 160,
+ "params": {
+  "epistemic_weight": 1.0,
+  "effort_weight": 2.0,
+  "goal_weight": 5.0,
+  "switch_margin": 0.0,
+  "maze_style": "dfs"
+ },
+ "prior": "default",
+ "sensors": {
+  "exact": {
+   "matrix": null,
+   "repeat_weight": 1.0,
+   "fit": {
+    "source": "none (exact sensing)"
+   }
+  }
+ },
+ "summary": {
+  "exact/random": {
+   "episodes": 100,
+   "mean_coverage": 0.10131226489371774,
+   "mean_seen_coverage": 0.13537986303045213,
+   "goal_rate": 0.05,
+   "goal_rate_ci95": [
+    0.02154336145631356,
+    0.11175196527208817
+   ],
+   "mean_goal_step_capped": 155.39,
+   "mean_collisions": 0.0
+  },
+  "exact/nearest_frontier": {
+   "episodes": 100,
+   "mean_coverage": 0.6298782273920271,
+   "mean_seen_coverage": 0.711422459621271,
+   "goal_rate": 0.6,
+   "goal_rate_ci95": [
+    0.5020007846184025,
+    0.6906002538863971
+   ],
+   "mean_goal_step_capped": 105.87,
+   "mean_collisions": 0.0
+  },
+  "exact/infogain_frontier": {
+   "episodes": 100,
+   "mean_coverage": 0.6604120335972403,
+   "mean_seen_coverage": 0.7780193257811302,
+   "goal_rate": 0.72,
+   "goal_rate_ci95": [
+    0.6251178763865427,
+    0.7986044083240164
+   ],
+   "mean_goal_step_capped": 96.46,
+   "mean_collisions": 0.0
+  },
+  "exact/efe_v2": {
+   "episodes": 100,
+   "mean_coverage": 0.5988848590717987,
+   "mean_seen_coverage": 0.7429802422697851,
+   "goal_rate": 0.65,
+   "goal_rate_ci95": [
+    0.5525426042919797,
+    0.7363589534652197
+   ],
+   "mean_goal_step_capped": 106.39,
+   "mean_collisions": 0.0
+  },
+  "exact/efe_route": {
+   "episodes": 100,
+   "mean_coverage": 0.6293861518695015,
+   "mean_seen_coverage": 0.7517453208648729,
+   "goal_rate": 0.71,
+   "goal_rate_ci95": [
+    0.6146092505999207,
+    0.7898529302601586
+   ],
+   "mean_goal_step_capped": 97.21,
+   "mean_collisions": 0.0
+  },
+  "exact/efe_route_no_epistemic": {
+   "episodes": 100,
+   "mean_coverage": 0.5562882016789896,
+   "mean_seen_coverage": 0.6412470481609129,
+   "goal_rate": 0.7,
+   "goal_rate_ci95": [
+    0.6041496156718804,
+    0.7810524613377188
+   ],
+   "mean_goal_step_capped": 97.34,
+   "mean_collisions": 0.0
+  },
+  "exact/efe_route_no_goal_belief": {
+   "episodes": 100,
+   "mean_coverage": 0.6493431821725751,
+   "mean_seen_coverage": 0.7742681111076357,
+   "goal_rate": 0.71,
+   "goal_rate_ci95": [
+    0.6146092505999207,
+    0.7898529302601586
+   ],
+   "mean_goal_step_capped": 97.29,
+   "mean_collisions": 0.0
+  },
+  "exact/efe_route_count_repeats": {
+   "episodes": 100,
+   "mean_coverage": 0.6293861518695015,
+   "mean_seen_coverage": 0.7517453208648729,
+   "goal_rate": 0.71,
+   "goal_rate_ci95": [
+    0.6146092505999207,
+    0.7898529302601586
+   ],
+   "mean_goal_step_capped": 97.21,
+   "mean_collisions": 0.0
+  }
+ },
+ "paired_goal_comparisons": [
+  {
+   "a": "efe_route",
+   "b": "nearest_frontier",
+   "only_a": 24,
+   "only_b": 13,
+   "sign_test_p": 0.09887174959294498
+  },
+  {
+   "a": "efe_route",
+   "b": "infogain_frontier",
+   "only_a": 11,
+   "only_b": 12,
+   "sign_test_p": 1.0
+  },
+  {
+   "a": "efe_route",
+   "b": "efe_route_no_epistemic",
+   "only_a": 16,
+   "only_b": 15,
+   "sign_test_p": 1.0
+  },
+  {
+   "a": "efe_route",
+   "b": "efe_route_no_goal_belief",
+   "only_a": 0,
+   "only_b": 0,
+   "sign_test_p": 1.0
+  },
+  {
+   "a": "efe_route",
+   "b": "efe_route_count_repeats",
+   "only_a": 0,
+   "only_b": 0,
+   "sign_test_p": 1.0
+  }
+ ],
+ "episodes": [
+  {
+   "seen_coverage": 0.07766990291262135,
+   "seed": 70000,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.06310679611650485,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8446601941747572,
+   "seed": 70000,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6893203883495146,
+   "found_goal": true,
+   "goal_step": 76,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8980582524271845,
+   "seed": 70000,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.7378640776699029,
+   "found_goal": true,
+   "goal_step": 70,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.9271844660194175,
+   "seed": 70000,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.7135922330097088,
+   "found_goal": true,
+   "goal_step": 76,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.912621359223301,
+   "seed": 70000,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.7281553398058253,
+   "found_goal": true,
+   "goal_step": 78,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7621359223300971,
+   "seed": 70000,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6893203883495146,
+   "found_goal": true,
+   "goal_step": 100,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.912621359223301,
+   "seed": 70000,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.7281553398058253,
+   "found_goal": true,
+   "goal_step": 78,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.912621359223301,
+   "seed": 70000,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.7281553398058253,
+   "found_goal": true,
+   "goal_step": 78,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.19069767441860466,
+   "seed": 70001,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.13488372093023257,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7348837209302326,
+   "seed": 70001,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6232558139534884,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6558139534883721,
+   "seed": 70001,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.5906976744186047,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5581395348837209,
+   "seed": 70001,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.4883720930232558,
+   "found_goal": true,
+   "goal_step": 57,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7581395348837209,
+   "seed": 70001,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6325581395348837,
+   "found_goal": true,
+   "goal_step": 157,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7069767441860465,
+   "seed": 70001,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5767441860465117,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.786046511627907,
+   "seed": 70001,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.641860465116279,
+   "found_goal": true,
+   "goal_step": 157,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7581395348837209,
+   "seed": 70001,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6325581395348837,
+   "found_goal": true,
+   "goal_step": 157,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.2535211267605634,
+   "seed": 70002,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.1784037558685446,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6948356807511737,
+   "seed": 70002,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6244131455399061,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7934272300469484,
+   "seed": 70002,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.647887323943662,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7605633802816901,
+   "seed": 70002,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6103286384976526,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7230046948356808,
+   "seed": 70002,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6244131455399061,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5539906103286385,
+   "seed": 70002,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5258215962441315,
+   "found_goal": true,
+   "goal_step": 116,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7230046948356808,
+   "seed": 70002,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6244131455399061,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7230046948356808,
+   "seed": 70002,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6244131455399061,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.09268292682926829,
+   "seed": 70003,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.07804878048780488,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8,
+   "seed": 70003,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.7073170731707317,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8146341463414634,
+   "seed": 70003,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.697560975609756,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7121951219512195,
+   "seed": 70003,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6439024390243903,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8146341463414634,
+   "seed": 70003,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.697560975609756,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.775609756097561,
+   "seed": 70003,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6878048780487804,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8146341463414634,
+   "seed": 70003,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.697560975609756,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8146341463414634,
+   "seed": 70003,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.697560975609756,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.08653846153846154,
+   "seed": 70004,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.07211538461538461,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6826923076923077,
+   "seed": 70004,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6298076923076923,
+   "found_goal": true,
+   "goal_step": 24,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7788461538461539,
+   "seed": 70004,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6490384615384616,
+   "found_goal": true,
+   "goal_step": 18,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7355769230769231,
+   "seed": 70004,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6346153846153846,
+   "found_goal": true,
+   "goal_step": 18,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6682692307692307,
+   "seed": 70004,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.5817307692307693,
+   "found_goal": true,
+   "goal_step": 18,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6682692307692307,
+   "seed": 70004,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6201923076923077,
+   "found_goal": true,
+   "goal_step": 26,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6682692307692307,
+   "seed": 70004,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5817307692307693,
+   "found_goal": true,
+   "goal_step": 18,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6682692307692307,
+   "seed": 70004,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.5817307692307693,
+   "found_goal": true,
+   "goal_step": 18,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.22815533980582525,
+   "seed": 70005,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.17475728155339806,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6796116504854369,
+   "seed": 70005,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6213592233009708,
+   "found_goal": true,
+   "goal_step": 88,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6747572815533981,
+   "seed": 70005,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.5970873786407767,
+   "found_goal": true,
+   "goal_step": 68,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7427184466019418,
+   "seed": 70005,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5970873786407767,
+   "found_goal": true,
+   "goal_step": 128,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6844660194174758,
+   "seed": 70005,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.5776699029126213,
+   "found_goal": true,
+   "goal_step": 66,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7669902912621359,
+   "seed": 70005,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6504854368932039,
+   "found_goal": true,
+   "goal_step": 100,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6844660194174758,
+   "seed": 70005,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5776699029126213,
+   "found_goal": true,
+   "goal_step": 66,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6844660194174758,
+   "seed": 70005,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.5776699029126213,
+   "found_goal": true,
+   "goal_step": 66,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.12745098039215685,
+   "seed": 70006,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.10784313725490197,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8088235294117647,
+   "seed": 70006,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6911764705882353,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7745098039215687,
+   "seed": 70006,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.7009803921568627,
+   "found_goal": true,
+   "goal_step": 126,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8137254901960784,
+   "seed": 70006,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.696078431372549,
+   "found_goal": true,
+   "goal_step": 66,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8137254901960784,
+   "seed": 70006,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.7205882352941176,
+   "found_goal": true,
+   "goal_step": 78,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7745098039215687,
+   "seed": 70006,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6813725490196079,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8137254901960784,
+   "seed": 70006,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.7205882352941176,
+   "found_goal": true,
+   "goal_step": 78,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8137254901960784,
+   "seed": 70006,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.7205882352941176,
+   "found_goal": true,
+   "goal_step": 78,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.057971014492753624,
+   "seed": 70007,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.043478260869565216,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6956521739130435,
+   "seed": 70007,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6135265700483091,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8019323671497585,
+   "seed": 70007,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6714975845410628,
+   "found_goal": true,
+   "goal_step": 68,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6811594202898551,
+   "seed": 70007,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5942028985507246,
+   "found_goal": true,
+   "goal_step": 88,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8019323671497585,
+   "seed": 70007,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6618357487922706,
+   "found_goal": true,
+   "goal_step": 84,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6521739130434783,
+   "seed": 70007,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5942028985507246,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8019323671497585,
+   "seed": 70007,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6618357487922706,
+   "found_goal": true,
+   "goal_step": 84,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8019323671497585,
+   "seed": 70007,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6618357487922706,
+   "found_goal": true,
+   "goal_step": 84,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.09313725490196079,
+   "seed": 70008,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.08333333333333333,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8431372549019608,
+   "seed": 70008,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.7205882352941176,
+   "found_goal": true,
+   "goal_step": 24,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7843137254901961,
+   "seed": 70008,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6715686274509803,
+   "found_goal": true,
+   "goal_step": 24,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8774509803921569,
+   "seed": 70008,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6911764705882353,
+   "found_goal": true,
+   "goal_step": 24,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7843137254901961,
+   "seed": 70008,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6715686274509803,
+   "found_goal": true,
+   "goal_step": 24,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7058823529411765,
+   "seed": 70008,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6568627450980392,
+   "found_goal": true,
+   "goal_step": 28,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7843137254901961,
+   "seed": 70008,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6715686274509803,
+   "found_goal": true,
+   "goal_step": 24,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7843137254901961,
+   "seed": 70008,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6715686274509803,
+   "found_goal": true,
+   "goal_step": 24,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.10952380952380952,
+   "seed": 70009,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.09523809523809523,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7047619047619048,
+   "seed": 70009,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6142857142857143,
+   "found_goal": true,
+   "goal_step": 91,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7714285714285715,
+   "seed": 70009,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6428571428571429,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6333333333333333,
+   "seed": 70009,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5333333333333333,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7523809523809524,
+   "seed": 70009,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6333333333333333,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6619047619047619,
+   "seed": 70009,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5714285714285714,
+   "found_goal": true,
+   "goal_step": 75,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7523809523809524,
+   "seed": 70009,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6333333333333333,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7523809523809524,
+   "seed": 70009,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6333333333333333,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.1822429906542056,
+   "seed": 70010,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.1261682242990654,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6448598130841121,
+   "seed": 70010,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.5794392523364486,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8411214953271028,
+   "seed": 70010,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.677570093457944,
+   "found_goal": true,
+   "goal_step": 70,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5981308411214953,
+   "seed": 70010,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.45794392523364486,
+   "found_goal": true,
+   "goal_step": 48,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8130841121495327,
+   "seed": 70010,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6588785046728972,
+   "found_goal": true,
+   "goal_step": 72,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.602803738317757,
+   "seed": 70010,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5514018691588785,
+   "found_goal": true,
+   "goal_step": 58,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8130841121495327,
+   "seed": 70010,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6588785046728972,
+   "found_goal": true,
+   "goal_step": 72,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8130841121495327,
+   "seed": 70010,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6588785046728972,
+   "found_goal": true,
+   "goal_step": 72,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.05365853658536585,
+   "seed": 70011,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.03902439024390244,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7951219512195122,
+   "seed": 70011,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.7073170731707317,
+   "found_goal": true,
+   "goal_step": 29,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8780487804878049,
+   "seed": 70011,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.7317073170731707,
+   "found_goal": true,
+   "goal_step": 25,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.9073170731707317,
+   "seed": 70011,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.7268292682926829,
+   "found_goal": true,
+   "goal_step": 25,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8731707317073171,
+   "seed": 70011,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.7219512195121951,
+   "found_goal": true,
+   "goal_step": 25,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7268292682926829,
+   "seed": 70011,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6731707317073171,
+   "found_goal": true,
+   "goal_step": 37,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8731707317073171,
+   "seed": 70011,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.7219512195121951,
+   "found_goal": true,
+   "goal_step": 25,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8731707317073171,
+   "seed": 70011,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.7219512195121951,
+   "found_goal": true,
+   "goal_step": 25,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.14285714285714285,
+   "seed": 70012,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.1,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5619047619047619,
+   "seed": 70012,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.5285714285714286,
+   "found_goal": true,
+   "goal_step": 48,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.780952380952381,
+   "seed": 70012,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6571428571428571,
+   "found_goal": true,
+   "goal_step": 22,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8095238095238095,
+   "seed": 70012,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6285714285714286,
+   "found_goal": true,
+   "goal_step": 42,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7428571428571429,
+   "seed": 70012,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6,
+   "found_goal": true,
+   "goal_step": 90,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.719047619047619,
+   "seed": 70012,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6571428571428571,
+   "found_goal": true,
+   "goal_step": 160,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7428571428571429,
+   "seed": 70012,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6,
+   "found_goal": true,
+   "goal_step": 90,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7428571428571429,
+   "seed": 70012,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6,
+   "found_goal": true,
+   "goal_step": 90,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.1291866028708134,
+   "seed": 70013,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.08133971291866028,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7320574162679426,
+   "seed": 70013,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6267942583732058,
+   "found_goal": true,
+   "goal_step": 102,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8229665071770335,
+   "seed": 70013,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6555023923444976,
+   "found_goal": true,
+   "goal_step": 48,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.69377990430622,
+   "seed": 70013,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5645933014354066,
+   "found_goal": true,
+   "goal_step": 54,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8277511961722488,
+   "seed": 70013,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.631578947368421,
+   "found_goal": true,
+   "goal_step": 60,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.31100478468899523,
+   "seed": 70013,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.23444976076555024,
+   "found_goal": true,
+   "goal_step": 60,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6889952153110048,
+   "seed": 70013,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5550239234449761,
+   "found_goal": true,
+   "goal_step": 60,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8277511961722488,
+   "seed": 70013,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.631578947368421,
+   "found_goal": true,
+   "goal_step": 60,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.15789473684210525,
+   "seed": 70014,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.11483253588516747,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7703349282296651,
+   "seed": 70014,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6794258373205742,
+   "found_goal": true,
+   "goal_step": 140,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7655502392344498,
+   "seed": 70014,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6698564593301436,
+   "found_goal": true,
+   "goal_step": 116,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8277511961722488,
+   "seed": 70014,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6842105263157895,
+   "found_goal": true,
+   "goal_step": 48,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7607655502392344,
+   "seed": 70014,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6698564593301436,
+   "found_goal": true,
+   "goal_step": 108,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7464114832535885,
+   "seed": 70014,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6602870813397129,
+   "found_goal": true,
+   "goal_step": 58,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7607655502392344,
+   "seed": 70014,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6698564593301436,
+   "found_goal": true,
+   "goal_step": 108,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7607655502392344,
+   "seed": 70014,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6698564593301436,
+   "found_goal": true,
+   "goal_step": 108,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.1024390243902439,
+   "seed": 70015,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.08780487804878048,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7804878048780488,
+   "seed": 70015,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.7121951219512195,
+   "found_goal": true,
+   "goal_step": 31,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.824390243902439,
+   "seed": 70015,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.7219512195121951,
+   "found_goal": true,
+   "goal_step": 31,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7658536585365854,
+   "seed": 70015,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6390243902439025,
+   "found_goal": true,
+   "goal_step": 31,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.18536585365853658,
+   "seed": 70015,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.16097560975609757,
+   "found_goal": true,
+   "goal_step": 31,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.18536585365853658,
+   "seed": 70015,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.16097560975609757,
+   "found_goal": true,
+   "goal_step": 31,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.824390243902439,
+   "seed": 70015,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.697560975609756,
+   "found_goal": true,
+   "goal_step": 31,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.18536585365853658,
+   "seed": 70015,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.16097560975609757,
+   "found_goal": true,
+   "goal_step": 31,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.05714285714285714,
+   "seed": 70016,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.047619047619047616,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7238095238095238,
+   "seed": 70016,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6047619047619047,
+   "found_goal": true,
+   "goal_step": 83,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7952380952380952,
+   "seed": 70016,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6,
+   "found_goal": true,
+   "goal_step": 123,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6428571428571429,
+   "seed": 70016,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.4523809523809524,
+   "found_goal": true,
+   "goal_step": 151,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6714285714285714,
+   "seed": 70016,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.580952380952381,
+   "found_goal": true,
+   "goal_step": 135,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5714285714285714,
+   "seed": 70016,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.44761904761904764,
+   "found_goal": true,
+   "goal_step": 111,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7761904761904762,
+   "seed": 70016,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6095238095238096,
+   "found_goal": true,
+   "goal_step": 135,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6714285714285714,
+   "seed": 70016,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.580952380952381,
+   "found_goal": true,
+   "goal_step": 135,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.1291866028708134,
+   "seed": 70017,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.0861244019138756,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7033492822966507,
+   "seed": 70017,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6411483253588517,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8325358851674641,
+   "seed": 70017,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6842105263157895,
+   "found_goal": true,
+   "goal_step": 45,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7368421052631579,
+   "seed": 70017,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6267942583732058,
+   "found_goal": true,
+   "goal_step": 117,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.2727272727272727,
+   "seed": 70017,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.18181818181818182,
+   "found_goal": true,
+   "goal_step": 43,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5311004784688995,
+   "seed": 70017,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.4258373205741627,
+   "found_goal": true,
+   "goal_step": 99,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.784688995215311,
+   "seed": 70017,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6411483253588517,
+   "found_goal": true,
+   "goal_step": 43,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.2727272727272727,
+   "seed": 70017,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.18181818181818182,
+   "found_goal": true,
+   "goal_step": 43,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.13679245283018868,
+   "seed": 70018,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.10377358490566038,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7075471698113207,
+   "seed": 70018,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6132075471698113,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8349056603773585,
+   "seed": 70018,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6839622641509434,
+   "found_goal": true,
+   "goal_step": 97,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8443396226415094,
+   "seed": 70018,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6084905660377359,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8632075471698113,
+   "seed": 70018,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6462264150943396,
+   "found_goal": true,
+   "goal_step": 53,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7216981132075472,
+   "seed": 70018,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6226415094339622,
+   "found_goal": true,
+   "goal_step": 83,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8632075471698113,
+   "seed": 70018,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6462264150943396,
+   "found_goal": true,
+   "goal_step": 53,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8632075471698113,
+   "seed": 70018,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6462264150943396,
+   "found_goal": true,
+   "goal_step": 53,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.3157894736842105,
+   "seed": 70019,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.21052631578947367,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7272727272727273,
+   "seed": 70019,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6028708133971292,
+   "found_goal": true,
+   "goal_step": 149,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7320574162679426,
+   "seed": 70019,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.631578947368421,
+   "found_goal": true,
+   "goal_step": 25,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.583732057416268,
+   "seed": 70019,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.44976076555023925,
+   "found_goal": true,
+   "goal_step": 133,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8086124401913876,
+   "seed": 70019,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6746411483253588,
+   "found_goal": true,
+   "goal_step": 25,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.18660287081339713,
+   "seed": 70019,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.1339712918660287,
+   "found_goal": true,
+   "goal_step": 25,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8516746411483254,
+   "seed": 70019,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6985645933014354,
+   "found_goal": true,
+   "goal_step": 25,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8086124401913876,
+   "seed": 70019,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6746411483253588,
+   "found_goal": true,
+   "goal_step": 25,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.11428571428571428,
+   "seed": 70020,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.1,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6571428571428571,
+   "seed": 70020,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.5714285714285714,
+   "found_goal": true,
+   "goal_step": 103,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7095238095238096,
+   "seed": 70020,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.580952380952381,
+   "found_goal": true,
+   "goal_step": 51,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8,
+   "seed": 70020,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6571428571428571,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7238095238095238,
+   "seed": 70020,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6047619047619047,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7047619047619048,
+   "seed": 70020,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6142857142857143,
+   "found_goal": true,
+   "goal_step": 103,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7238095238095238,
+   "seed": 70020,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6047619047619047,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7238095238095238,
+   "seed": 70020,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6047619047619047,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.17703349282296652,
+   "seed": 70021,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.11483253588516747,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6363636363636364,
+   "seed": 70021,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.5502392344497608,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7894736842105263,
+   "seed": 70021,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6842105263157895,
+   "found_goal": true,
+   "goal_step": 100,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7272727272727273,
+   "seed": 70021,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6124401913875598,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8038277511961722,
+   "seed": 70021,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.69377990430622,
+   "found_goal": true,
+   "goal_step": 40,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6650717703349283,
+   "seed": 70021,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5502392344497608,
+   "found_goal": true,
+   "goal_step": 20,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8038277511961722,
+   "seed": 70021,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.69377990430622,
+   "found_goal": true,
+   "goal_step": 40,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8038277511961722,
+   "seed": 70021,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.69377990430622,
+   "found_goal": true,
+   "goal_step": 40,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.19607843137254902,
+   "seed": 70022,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.13725490196078433,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6813725490196079,
+   "seed": 70022,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6421568627450981,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8235294117647058,
+   "seed": 70022,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6911764705882353,
+   "found_goal": true,
+   "goal_step": 131,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6225490196078431,
+   "seed": 70022,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5245098039215687,
+   "found_goal": true,
+   "goal_step": 59,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7254901960784313,
+   "seed": 70022,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6078431372549019,
+   "found_goal": true,
+   "goal_step": 73,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6813725490196079,
+   "seed": 70022,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6421568627450981,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7450980392156863,
+   "seed": 70022,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6274509803921569,
+   "found_goal": true,
+   "goal_step": 73,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7254901960784313,
+   "seed": 70022,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6078431372549019,
+   "found_goal": true,
+   "goal_step": 73,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.14925373134328357,
+   "seed": 70023,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.12437810945273632,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7263681592039801,
+   "seed": 70023,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6865671641791045,
+   "found_goal": true,
+   "goal_step": 41,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.736318407960199,
+   "seed": 70023,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6865671641791045,
+   "found_goal": true,
+   "goal_step": 37,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8258706467661692,
+   "seed": 70023,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.7313432835820896,
+   "found_goal": true,
+   "goal_step": 37,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7810945273631841,
+   "seed": 70023,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.7064676616915423,
+   "found_goal": true,
+   "goal_step": 37,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.746268656716418,
+   "seed": 70023,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.7014925373134329,
+   "found_goal": true,
+   "goal_step": 41,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7810945273631841,
+   "seed": 70023,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.7064676616915423,
+   "found_goal": true,
+   "goal_step": 37,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7810945273631841,
+   "seed": 70023,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.7064676616915423,
+   "found_goal": true,
+   "goal_step": 37,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.14634146341463414,
+   "seed": 70024,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.09268292682926829,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6536585365853659,
+   "seed": 70024,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.5902439024390244,
+   "found_goal": true,
+   "goal_step": 38,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7951219512195122,
+   "seed": 70024,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.697560975609756,
+   "found_goal": true,
+   "goal_step": 26,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8048780487804879,
+   "seed": 70024,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6731707317073171,
+   "found_goal": true,
+   "goal_step": 34,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.775609756097561,
+   "seed": 70024,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6731707317073171,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7121951219512195,
+   "seed": 70024,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6634146341463415,
+   "found_goal": true,
+   "goal_step": 38,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.775609756097561,
+   "seed": 70024,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6731707317073171,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.775609756097561,
+   "seed": 70024,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6731707317073171,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.054455445544554455,
+   "seed": 70025,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.039603960396039604,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7673267326732673,
+   "seed": 70025,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.7079207920792079,
+   "found_goal": true,
+   "goal_step": 59,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.801980198019802,
+   "seed": 70025,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.7178217821782178,
+   "found_goal": true,
+   "goal_step": 59,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7673267326732673,
+   "seed": 70025,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6831683168316832,
+   "found_goal": true,
+   "goal_step": 73,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7178217821782178,
+   "seed": 70025,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6782178217821783,
+   "found_goal": true,
+   "goal_step": 95,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7178217821782178,
+   "seed": 70025,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6831683168316832,
+   "found_goal": true,
+   "goal_step": 95,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7178217821782178,
+   "seed": 70025,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6782178217821783,
+   "found_goal": true,
+   "goal_step": 95,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7178217821782178,
+   "seed": 70025,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6782178217821783,
+   "found_goal": true,
+   "goal_step": 95,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.2,
+   "seed": 70026,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.14285714285714285,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8047619047619048,
+   "seed": 70026,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6904761904761905,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8285714285714286,
+   "seed": 70026,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6619047619047619,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7523809523809524,
+   "seed": 70026,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.819047619047619,
+   "seed": 70026,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.638095238095238,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7333333333333333,
+   "seed": 70026,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6238095238095238,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.819047619047619,
+   "seed": 70026,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.638095238095238,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.819047619047619,
+   "seed": 70026,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.638095238095238,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.15609756097560976,
+   "seed": 70027,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.11219512195121951,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6146341463414634,
+   "seed": 70027,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.5609756097560976,
+   "found_goal": true,
+   "goal_step": 80,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7170731707317073,
+   "seed": 70027,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6146341463414634,
+   "found_goal": true,
+   "goal_step": 74,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7317073170731707,
+   "seed": 70027,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6292682926829268,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6585365853658537,
+   "seed": 70027,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.5756097560975609,
+   "found_goal": true,
+   "goal_step": 96,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7170731707317073,
+   "seed": 70027,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6146341463414634,
+   "found_goal": true,
+   "goal_step": 74,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6585365853658537,
+   "seed": 70027,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5756097560975609,
+   "found_goal": true,
+   "goal_step": 96,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6585365853658537,
+   "seed": 70027,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.5756097560975609,
+   "found_goal": true,
+   "goal_step": 96,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.12322274881516587,
+   "seed": 70028,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.08056872037914692,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7061611374407583,
+   "seed": 70028,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6445497630331753,
+   "found_goal": true,
+   "goal_step": 122,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8483412322274881,
+   "seed": 70028,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6540284360189573,
+   "found_goal": true,
+   "goal_step": 44,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6635071090047393,
+   "seed": 70028,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5165876777251185,
+   "found_goal": true,
+   "goal_step": 90,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8483412322274881,
+   "seed": 70028,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6540284360189573,
+   "found_goal": true,
+   "goal_step": 44,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5450236966824644,
+   "seed": 70028,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.4597156398104265,
+   "found_goal": true,
+   "goal_step": 112,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8293838862559242,
+   "seed": 70028,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6682464454976303,
+   "found_goal": true,
+   "goal_step": 44,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8483412322274881,
+   "seed": 70028,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6540284360189573,
+   "found_goal": true,
+   "goal_step": 44,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.1407766990291262,
+   "seed": 70029,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.1262135922330097,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6941747572815534,
+   "seed": 70029,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6116504854368932,
+   "found_goal": true,
+   "goal_step": 140,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7766990291262136,
+   "seed": 70029,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6650485436893204,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7135922330097088,
+   "seed": 70029,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5970873786407767,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7718446601941747,
+   "seed": 70029,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6456310679611651,
+   "found_goal": true,
+   "goal_step": 120,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6941747572815534,
+   "seed": 70029,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6213592233009708,
+   "found_goal": true,
+   "goal_step": 144,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7718446601941747,
+   "seed": 70029,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6456310679611651,
+   "found_goal": true,
+   "goal_step": 120,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7718446601941747,
+   "seed": 70029,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6456310679611651,
+   "found_goal": true,
+   "goal_step": 120,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.10900473933649289,
+   "seed": 70030,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.07582938388625593,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7251184834123223,
+   "seed": 70030,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6587677725118484,
+   "found_goal": true,
+   "goal_step": 71,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8672985781990521,
+   "seed": 70030,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.7061611374407583,
+   "found_goal": true,
+   "goal_step": 59,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7203791469194313,
+   "seed": 70030,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5355450236966824,
+   "found_goal": true,
+   "goal_step": 115,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6966824644549763,
+   "seed": 70030,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6113744075829384,
+   "found_goal": true,
+   "goal_step": 63,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8104265402843602,
+   "seed": 70030,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6492890995260664,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6966824644549763,
+   "seed": 70030,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6113744075829384,
+   "found_goal": true,
+   "goal_step": 63,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6966824644549763,
+   "seed": 70030,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6113744075829384,
+   "found_goal": true,
+   "goal_step": 63,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.06220095693779904,
+   "seed": 70031,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.04784688995215311,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5550239234449761,
+   "seed": 70031,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.507177033492823,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7751196172248804,
+   "seed": 70031,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6889952153110048,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6889952153110048,
+   "seed": 70031,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5550239234449761,
+   "found_goal": true,
+   "goal_step": 159,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6985645933014354,
+   "seed": 70031,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.569377990430622,
+   "found_goal": true,
+   "goal_step": 47,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.784688995215311,
+   "seed": 70031,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6746411483253588,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6985645933014354,
+   "seed": 70031,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.569377990430622,
+   "found_goal": true,
+   "goal_step": 47,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6985645933014354,
+   "seed": 70031,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.569377990430622,
+   "found_goal": true,
+   "goal_step": 47,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.2971698113207547,
+   "seed": 70032,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.19811320754716982,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6792452830188679,
+   "seed": 70032,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.5801886792452831,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7216981132075472,
+   "seed": 70032,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6037735849056604,
+   "found_goal": true,
+   "goal_step": 138,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.75,
+   "seed": 70032,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5566037735849056,
+   "found_goal": true,
+   "goal_step": 110,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8254716981132075,
+   "seed": 70032,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6320754716981132,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7783018867924528,
+   "seed": 70032,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6132075471698113,
+   "found_goal": true,
+   "goal_step": 76,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8254716981132075,
+   "seed": 70032,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6320754716981132,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8254716981132075,
+   "seed": 70032,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6320754716981132,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.11538461538461539,
+   "seed": 70033,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.09134615384615384,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6538461538461539,
+   "seed": 70033,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6105769230769231,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8173076923076923,
+   "seed": 70033,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6730769230769231,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6105769230769231,
+   "seed": 70033,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5528846153846154,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8461538461538461,
+   "seed": 70033,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6730769230769231,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5961538461538461,
+   "seed": 70033,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5865384615384616,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8461538461538461,
+   "seed": 70033,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6730769230769231,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8461538461538461,
+   "seed": 70033,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6730769230769231,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.10144927536231885,
+   "seed": 70034,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.09178743961352658,
+   "found_goal": true,
+   "goal_step": 50,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5797101449275363,
+   "seed": 70034,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.5652173913043478,
+   "found_goal": true,
+   "goal_step": 10,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.714975845410628,
+   "seed": 70034,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6570048309178744,
+   "found_goal": true,
+   "goal_step": 10,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7922705314009661,
+   "seed": 70034,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6328502415458938,
+   "found_goal": true,
+   "goal_step": 10,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.714975845410628,
+   "seed": 70034,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6376811594202898,
+   "found_goal": true,
+   "goal_step": 10,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.821256038647343,
+   "seed": 70034,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6859903381642513,
+   "found_goal": true,
+   "goal_step": 10,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.714975845410628,
+   "seed": 70034,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6376811594202898,
+   "found_goal": true,
+   "goal_step": 10,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.714975845410628,
+   "seed": 70034,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6376811594202898,
+   "found_goal": true,
+   "goal_step": 10,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.2523809523809524,
+   "seed": 70035,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.18095238095238095,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6714285714285714,
+   "seed": 70035,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.5476190476190477,
+   "found_goal": true,
+   "goal_step": 141,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8238095238095238,
+   "seed": 70035,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.680952380952381,
+   "found_goal": true,
+   "goal_step": 97,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.780952380952381,
+   "seed": 70035,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6047619047619047,
+   "found_goal": true,
+   "goal_step": 145,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8047619047619048,
+   "seed": 70035,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6285714285714286,
+   "found_goal": true,
+   "goal_step": 93,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8047619047619048,
+   "seed": 70035,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6095238095238096,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8095238095238095,
+   "seed": 70035,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6428571428571429,
+   "found_goal": true,
+   "goal_step": 93,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8047619047619048,
+   "seed": 70035,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6285714285714286,
+   "found_goal": true,
+   "goal_step": 93,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.05714285714285714,
+   "seed": 70036,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.047619047619047616,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7095238095238096,
+   "seed": 70036,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6428571428571429,
+   "found_goal": true,
+   "goal_step": 87,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8523809523809524,
+   "seed": 70036,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.7047619047619048,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8047619047619048,
+   "seed": 70036,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6095238095238096,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8,
+   "seed": 70036,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6666666666666666,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.3761904761904762,
+   "seed": 70036,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.2904761904761905,
+   "found_goal": true,
+   "goal_step": 63,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8,
+   "seed": 70036,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6666666666666666,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8,
+   "seed": 70036,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6666666666666666,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.13526570048309178,
+   "seed": 70037,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.0966183574879227,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.642512077294686,
+   "seed": 70037,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.5458937198067633,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6183574879227053,
+   "seed": 70037,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.5797101449275363,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6618357487922706,
+   "seed": 70037,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5314009661835749,
+   "found_goal": true,
+   "goal_step": 131,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6231884057971014,
+   "seed": 70037,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.5942028985507246,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7922705314009661,
+   "seed": 70037,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6570048309178744,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6231884057971014,
+   "seed": 70037,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5942028985507246,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6231884057971014,
+   "seed": 70037,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.5942028985507246,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.22439024390243903,
+   "seed": 70038,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.16097560975609757,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7024390243902439,
+   "seed": 70038,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6195121951219512,
+   "found_goal": true,
+   "goal_step": 84,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8,
+   "seed": 70038,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6829268292682927,
+   "found_goal": true,
+   "goal_step": 156,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7073170731707317,
+   "seed": 70038,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8341463414634146,
+   "seed": 70038,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6926829268292682,
+   "found_goal": true,
+   "goal_step": 152,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7365853658536585,
+   "seed": 70038,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6585365853658537,
+   "found_goal": true,
+   "goal_step": 80,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8341463414634146,
+   "seed": 70038,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6926829268292682,
+   "found_goal": true,
+   "goal_step": 152,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8341463414634146,
+   "seed": 70038,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6926829268292682,
+   "found_goal": true,
+   "goal_step": 152,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.09389671361502347,
+   "seed": 70039,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.07981220657276995,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7417840375586855,
+   "seed": 70039,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.647887323943662,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8732394366197183,
+   "seed": 70039,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6713615023474179,
+   "found_goal": true,
+   "goal_step": 82,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8028169014084507,
+   "seed": 70039,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5821596244131455,
+   "found_goal": true,
+   "goal_step": 86,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.9014084507042254,
+   "seed": 70039,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.7089201877934272,
+   "found_goal": true,
+   "goal_step": 64,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8450704225352113,
+   "seed": 70039,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6807511737089202,
+   "found_goal": true,
+   "goal_step": 72,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.9014084507042254,
+   "seed": 70039,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.7089201877934272,
+   "found_goal": true,
+   "goal_step": 64,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.9014084507042254,
+   "seed": 70039,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.7089201877934272,
+   "found_goal": true,
+   "goal_step": 64,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.0970873786407767,
+   "seed": 70040,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.07766990291262135,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7524271844660194,
+   "seed": 70040,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6747572815533981,
+   "found_goal": true,
+   "goal_step": 36,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7572815533980582,
+   "seed": 70040,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6650485436893204,
+   "found_goal": true,
+   "goal_step": 32,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8737864077669902,
+   "seed": 70040,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6893203883495146,
+   "found_goal": true,
+   "goal_step": 26,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7766990291262136,
+   "seed": 70040,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6699029126213593,
+   "found_goal": true,
+   "goal_step": 24,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7184466019417476,
+   "seed": 70040,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6310679611650486,
+   "found_goal": true,
+   "goal_step": 36,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7766990291262136,
+   "seed": 70040,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6699029126213593,
+   "found_goal": true,
+   "goal_step": 24,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7766990291262136,
+   "seed": 70040,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6699029126213593,
+   "found_goal": true,
+   "goal_step": 24,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.057692307692307696,
+   "seed": 70041,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.04807692307692308,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7211538461538461,
+   "seed": 70041,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6586538461538461,
+   "found_goal": true,
+   "goal_step": 86,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8894230769230769,
+   "seed": 70041,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.7019230769230769,
+   "found_goal": true,
+   "goal_step": 106,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8942307692307693,
+   "seed": 70041,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.7163461538461539,
+   "found_goal": true,
+   "goal_step": 80,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5288461538461539,
+   "seed": 70041,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.4423076923076923,
+   "found_goal": true,
+   "goal_step": 102,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7115384615384616,
+   "seed": 70041,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6442307692307693,
+   "found_goal": true,
+   "goal_step": 98,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.9230769230769231,
+   "seed": 70041,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.7163461538461539,
+   "found_goal": true,
+   "goal_step": 102,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5288461538461539,
+   "seed": 70041,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.4423076923076923,
+   "found_goal": true,
+   "goal_step": 102,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.05365853658536585,
+   "seed": 70042,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.04390243902439024,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6439024390243903,
+   "seed": 70042,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.5951219512195122,
+   "found_goal": true,
+   "goal_step": 57,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7414634146341463,
+   "seed": 70042,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6682926829268293,
+   "found_goal": true,
+   "goal_step": 57,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6439024390243903,
+   "seed": 70042,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5804878048780487,
+   "found_goal": true,
+   "goal_step": 57,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6439024390243903,
+   "seed": 70042,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.5804878048780487,
+   "found_goal": true,
+   "goal_step": 57,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6439024390243903,
+   "seed": 70042,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5902439024390244,
+   "found_goal": true,
+   "goal_step": 57,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6439024390243903,
+   "seed": 70042,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5804878048780487,
+   "found_goal": true,
+   "goal_step": 57,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6439024390243903,
+   "seed": 70042,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.5804878048780487,
+   "found_goal": true,
+   "goal_step": 57,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.07655502392344497,
+   "seed": 70043,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.06698564593301436,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.645933014354067,
+   "seed": 70043,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6220095693779905,
+   "found_goal": true,
+   "goal_step": 20,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.84688995215311,
+   "seed": 70043,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6746411483253588,
+   "found_goal": true,
+   "goal_step": 20,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6794258373205742,
+   "seed": 70043,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5741626794258373,
+   "found_goal": true,
+   "goal_step": 20,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6411483253588517,
+   "seed": 70043,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.5215311004784688,
+   "found_goal": true,
+   "goal_step": 20,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.1339712918660287,
+   "seed": 70043,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.11004784688995216,
+   "found_goal": true,
+   "goal_step": 20,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6411483253588517,
+   "seed": 70043,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.569377990430622,
+   "found_goal": true,
+   "goal_step": 20,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6411483253588517,
+   "seed": 70043,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.5215311004784688,
+   "found_goal": true,
+   "goal_step": 20,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.10849056603773585,
+   "seed": 70044,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.0660377358490566,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8066037735849056,
+   "seed": 70044,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.7028301886792453,
+   "found_goal": true,
+   "goal_step": 88,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7783018867924528,
+   "seed": 70044,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6792452830188679,
+   "found_goal": true,
+   "goal_step": 20,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7452830188679245,
+   "seed": 70044,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5424528301886793,
+   "found_goal": true,
+   "goal_step": 26,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6792452830188679,
+   "seed": 70044,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.5330188679245284,
+   "found_goal": true,
+   "goal_step": 20,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.18396226415094338,
+   "seed": 70044,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.13679245283018868,
+   "found_goal": true,
+   "goal_step": 28,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8113207547169812,
+   "seed": 70044,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6698113207547169,
+   "found_goal": true,
+   "goal_step": 20,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6792452830188679,
+   "seed": 70044,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.5330188679245284,
+   "found_goal": true,
+   "goal_step": 20,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.16097560975609757,
+   "seed": 70045,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.12682926829268293,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6439024390243903,
+   "seed": 70045,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6097560975609756,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.751219512195122,
+   "seed": 70045,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6682926829268293,
+   "found_goal": true,
+   "goal_step": 44,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6536585365853659,
+   "seed": 70045,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.551219512195122,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6487804878048781,
+   "seed": 70045,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6,
+   "found_goal": true,
+   "goal_step": 44,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7707317073170732,
+   "seed": 70045,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6878048780487804,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6487804878048781,
+   "seed": 70045,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6,
+   "found_goal": true,
+   "goal_step": 44,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6487804878048781,
+   "seed": 70045,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6,
+   "found_goal": true,
+   "goal_step": 44,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.052884615384615384,
+   "seed": 70046,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.04326923076923077,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6105769230769231,
+   "seed": 70046,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.5625,
+   "found_goal": true,
+   "goal_step": 40,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7644230769230769,
+   "seed": 70046,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6442307692307693,
+   "found_goal": true,
+   "goal_step": 56,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6298076923076923,
+   "seed": 70046,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5240384615384616,
+   "found_goal": true,
+   "goal_step": 38,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8028846153846154,
+   "seed": 70046,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6634615384615384,
+   "found_goal": true,
+   "goal_step": 44,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6442307692307693,
+   "seed": 70046,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5769230769230769,
+   "found_goal": true,
+   "goal_step": 48,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8028846153846154,
+   "seed": 70046,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6634615384615384,
+   "found_goal": true,
+   "goal_step": 44,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8028846153846154,
+   "seed": 70046,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6634615384615384,
+   "found_goal": true,
+   "goal_step": 44,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.22488038277511962,
+   "seed": 70047,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.14354066985645933,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.861244019138756,
+   "seed": 70047,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.7081339712918661,
+   "found_goal": true,
+   "goal_step": 9,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7799043062200957,
+   "seed": 70047,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6555023923444976,
+   "found_goal": true,
+   "goal_step": 141,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6602870813397129,
+   "seed": 70047,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5023923444976076,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7751196172248804,
+   "seed": 70047,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6076555023923444,
+   "found_goal": true,
+   "goal_step": 141,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.09090909090909091,
+   "seed": 70047,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.05263157894736842,
+   "found_goal": true,
+   "goal_step": 9,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7799043062200957,
+   "seed": 70047,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6555023923444976,
+   "found_goal": true,
+   "goal_step": 141,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7751196172248804,
+   "seed": 70047,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6076555023923444,
+   "found_goal": true,
+   "goal_step": 141,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.10784313725490197,
+   "seed": 70048,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.09313725490196079,
+   "found_goal": true,
+   "goal_step": 10,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5196078431372549,
+   "seed": 70048,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.4950980392156863,
+   "found_goal": true,
+   "goal_step": 4,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7009803921568627,
+   "seed": 70048,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6127450980392157,
+   "found_goal": true,
+   "goal_step": 4,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7058823529411765,
+   "seed": 70048,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5882352941176471,
+   "found_goal": true,
+   "goal_step": 4,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7009803921568627,
+   "seed": 70048,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6127450980392157,
+   "found_goal": true,
+   "goal_step": 4,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5049019607843137,
+   "seed": 70048,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.4950980392156863,
+   "found_goal": true,
+   "goal_step": 4,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7009803921568627,
+   "seed": 70048,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6127450980392157,
+   "found_goal": true,
+   "goal_step": 4,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7009803921568627,
+   "seed": 70048,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6127450980392157,
+   "found_goal": true,
+   "goal_step": 4,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.0673076923076923,
+   "seed": 70049,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.052884615384615384,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6826923076923077,
+   "seed": 70049,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6009615384615384,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8894230769230769,
+   "seed": 70049,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.7019230769230769,
+   "found_goal": true,
+   "goal_step": 135,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5961538461538461,
+   "seed": 70049,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5144230769230769,
+   "found_goal": true,
+   "goal_step": 99,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7692307692307693,
+   "seed": 70049,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6634615384615384,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8605769230769231,
+   "seed": 70049,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6971153846153846,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7692307692307693,
+   "seed": 70049,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6634615384615384,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7692307692307693,
+   "seed": 70049,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6634615384615384,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.1596244131455399,
+   "seed": 70050,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.11737089201877934,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8075117370892019,
+   "seed": 70050,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6807511737089202,
+   "found_goal": true,
+   "goal_step": 45,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.892018779342723,
+   "seed": 70050,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.7136150234741784,
+   "found_goal": true,
+   "goal_step": 41,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.784037558685446,
+   "seed": 70050,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6572769953051644,
+   "found_goal": true,
+   "goal_step": 49,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.9389671361502347,
+   "seed": 70050,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.7136150234741784,
+   "found_goal": true,
+   "goal_step": 41,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.3051643192488263,
+   "seed": 70050,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.215962441314554,
+   "found_goal": true,
+   "goal_step": 45,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.9389671361502347,
+   "seed": 70050,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.7136150234741784,
+   "found_goal": true,
+   "goal_step": 41,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.9389671361502347,
+   "seed": 70050,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.7136150234741784,
+   "found_goal": true,
+   "goal_step": 41,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.13106796116504854,
+   "seed": 70051,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.09223300970873786,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7912621359223301,
+   "seed": 70051,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.7281553398058253,
+   "found_goal": true,
+   "goal_step": 151,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7330097087378641,
+   "seed": 70051,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6893203883495146,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7233009708737864,
+   "seed": 70051,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6553398058252428,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7281553398058253,
+   "seed": 70051,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6553398058252428,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.3737864077669903,
+   "seed": 70051,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.32524271844660196,
+   "found_goal": true,
+   "goal_step": 71,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7281553398058253,
+   "seed": 70051,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6553398058252428,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7281553398058253,
+   "seed": 70051,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6553398058252428,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.0825242718446602,
+   "seed": 70052,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.06796116504854369,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6553398058252428,
+   "seed": 70052,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.5776699029126213,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8106796116504854,
+   "seed": 70052,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6747572815533981,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7621359223300971,
+   "seed": 70052,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6262135922330098,
+   "found_goal": true,
+   "goal_step": 137,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7572815533980582,
+   "seed": 70052,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6747572815533981,
+   "found_goal": true,
+   "goal_step": 131,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6990291262135923,
+   "seed": 70052,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6407766990291263,
+   "found_goal": true,
+   "goal_step": 99,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7572815533980582,
+   "seed": 70052,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6747572815533981,
+   "found_goal": true,
+   "goal_step": 131,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7572815533980582,
+   "seed": 70052,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6747572815533981,
+   "found_goal": true,
+   "goal_step": 131,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.06763285024154589,
+   "seed": 70053,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.057971014492753624,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7536231884057971,
+   "seed": 70053,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6473429951690821,
+   "found_goal": true,
+   "goal_step": 60,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6763285024154589,
+   "seed": 70053,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6135265700483091,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7632850241545893,
+   "seed": 70053,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6231884057971014,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6908212560386473,
+   "seed": 70053,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.5990338164251208,
+   "found_goal": true,
+   "goal_step": 84,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.642512077294686,
+   "seed": 70053,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5990338164251208,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6908212560386473,
+   "seed": 70053,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5990338164251208,
+   "found_goal": true,
+   "goal_step": 84,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6908212560386473,
+   "seed": 70053,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.5990338164251208,
+   "found_goal": true,
+   "goal_step": 84,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.13043478260869565,
+   "seed": 70054,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.0966183574879227,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.714975845410628,
+   "seed": 70054,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.642512077294686,
+   "found_goal": true,
+   "goal_step": 90,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8260869565217391,
+   "seed": 70054,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.7004830917874396,
+   "found_goal": true,
+   "goal_step": 66,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5748792270531401,
+   "seed": 70054,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5169082125603864,
+   "found_goal": true,
+   "goal_step": 76,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7101449275362319,
+   "seed": 70054,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6086956521739131,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.3864734299516908,
+   "seed": 70054,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.3188405797101449,
+   "found_goal": true,
+   "goal_step": 64,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7101449275362319,
+   "seed": 70054,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6086956521739131,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7101449275362319,
+   "seed": 70054,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6086956521739131,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.059113300492610835,
+   "seed": 70055,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.04433497536945813,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7093596059113301,
+   "seed": 70055,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6354679802955665,
+   "found_goal": true,
+   "goal_step": 82,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7881773399014779,
+   "seed": 70055,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6896551724137931,
+   "found_goal": true,
+   "goal_step": 82,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8275862068965517,
+   "seed": 70055,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.7044334975369458,
+   "found_goal": true,
+   "goal_step": 46,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8423645320197044,
+   "seed": 70055,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.729064039408867,
+   "found_goal": true,
+   "goal_step": 46,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7093596059113301,
+   "seed": 70055,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6354679802955665,
+   "found_goal": true,
+   "goal_step": 82,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8423645320197044,
+   "seed": 70055,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.729064039408867,
+   "found_goal": true,
+   "goal_step": 46,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8423645320197044,
+   "seed": 70055,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.729064039408867,
+   "found_goal": true,
+   "goal_step": 46,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.06511627906976744,
+   "seed": 70056,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.05581395348837209,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7627906976744186,
+   "seed": 70056,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6232558139534884,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8418604651162791,
+   "seed": 70056,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6697674418604651,
+   "found_goal": true,
+   "goal_step": 44,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8697674418604651,
+   "seed": 70056,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6372093023255814,
+   "found_goal": true,
+   "goal_step": 38,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8325581395348837,
+   "seed": 70056,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6604651162790698,
+   "found_goal": true,
+   "goal_step": 44,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7488372093023256,
+   "seed": 70056,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6465116279069767,
+   "found_goal": true,
+   "goal_step": 94,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8325581395348837,
+   "seed": 70056,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6604651162790698,
+   "found_goal": true,
+   "goal_step": 44,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8325581395348837,
+   "seed": 70056,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6604651162790698,
+   "found_goal": true,
+   "goal_step": 44,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.09090909090909091,
+   "seed": 70057,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.08133971291866028,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8421052631578947,
+   "seed": 70057,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.7177033492822966,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8277511961722488,
+   "seed": 70057,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.7033492822966507,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7655502392344498,
+   "seed": 70057,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6220095693779905,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8421052631578947,
+   "seed": 70057,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.7033492822966507,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7942583732057417,
+   "seed": 70057,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6889952153110048,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8421052631578947,
+   "seed": 70057,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.7033492822966507,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8421052631578947,
+   "seed": 70057,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.7033492822966507,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.1201923076923077,
+   "seed": 70058,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.10576923076923077,
+   "found_goal": true,
+   "goal_step": 10,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7548076923076923,
+   "seed": 70058,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6346153846153846,
+   "found_goal": true,
+   "goal_step": 6,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.875,
+   "seed": 70058,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6971153846153846,
+   "found_goal": true,
+   "goal_step": 6,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8076923076923077,
+   "seed": 70058,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6346153846153846,
+   "found_goal": true,
+   "goal_step": 6,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8509615384615384,
+   "seed": 70058,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6826923076923077,
+   "found_goal": true,
+   "goal_step": 6,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7692307692307693,
+   "seed": 70058,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6201923076923077,
+   "found_goal": true,
+   "goal_step": 6,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8509615384615384,
+   "seed": 70058,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6826923076923077,
+   "found_goal": true,
+   "goal_step": 6,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8509615384615384,
+   "seed": 70058,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6826923076923077,
+   "found_goal": true,
+   "goal_step": 6,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.1650485436893204,
+   "seed": 70059,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.11650485436893204,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6844660194174758,
+   "seed": 70059,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6310679611650486,
+   "found_goal": true,
+   "goal_step": 23,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8883495145631068,
+   "seed": 70059,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.7427184466019418,
+   "found_goal": true,
+   "goal_step": 143,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7864077669902912,
+   "seed": 70059,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6407766990291263,
+   "found_goal": true,
+   "goal_step": 147,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8932038834951457,
+   "seed": 70059,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.7330097087378641,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.19902912621359223,
+   "seed": 70059,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.12135922330097088,
+   "found_goal": true,
+   "goal_step": 23,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8932038834951457,
+   "seed": 70059,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.7330097087378641,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8932038834951457,
+   "seed": 70059,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.7330097087378641,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.32057416267942584,
+   "seed": 70060,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.21052631578947367,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7464114832535885,
+   "seed": 70060,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6172248803827751,
+   "found_goal": true,
+   "goal_step": 63,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5980861244019139,
+   "seed": 70060,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.5454545454545454,
+   "found_goal": true,
+   "goal_step": 45,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7177033492822966,
+   "seed": 70060,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5454545454545454,
+   "found_goal": true,
+   "goal_step": 153,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7320574162679426,
+   "seed": 70060,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6507177033492823,
+   "found_goal": true,
+   "goal_step": 97,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7416267942583732,
+   "seed": 70060,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6411483253588517,
+   "found_goal": true,
+   "goal_step": 89,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7320574162679426,
+   "seed": 70060,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6507177033492823,
+   "found_goal": true,
+   "goal_step": 97,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7320574162679426,
+   "seed": 70060,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6507177033492823,
+   "found_goal": true,
+   "goal_step": 97,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.08780487804878048,
+   "seed": 70061,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.07804878048780488,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8146341463414634,
+   "seed": 70061,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.7170731707317073,
+   "found_goal": true,
+   "goal_step": 115,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6731707317073171,
+   "seed": 70061,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6439024390243903,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6634146341463415,
+   "seed": 70061,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6146341463414634,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6731707317073171,
+   "seed": 70061,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6341463414634146,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7170731707317073,
+   "seed": 70061,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6439024390243903,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6731707317073171,
+   "seed": 70061,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6341463414634146,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6731707317073171,
+   "seed": 70061,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6341463414634146,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.19806763285024154,
+   "seed": 70062,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.1642512077294686,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6859903381642513,
+   "seed": 70062,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.5893719806763285,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6714975845410628,
+   "seed": 70062,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.5893719806763285,
+   "found_goal": true,
+   "goal_step": 50,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8599033816425121,
+   "seed": 70062,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6811594202898551,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6908212560386473,
+   "seed": 70062,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.5990338164251208,
+   "found_goal": true,
+   "goal_step": 50,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7246376811594203,
+   "seed": 70062,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6570048309178744,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6908212560386473,
+   "seed": 70062,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5990338164251208,
+   "found_goal": true,
+   "goal_step": 50,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6908212560386473,
+   "seed": 70062,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.5990338164251208,
+   "found_goal": true,
+   "goal_step": 50,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.14691943127962084,
+   "seed": 70063,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.11848341232227488,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6682464454976303,
+   "seed": 70063,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6350710900473934,
+   "found_goal": true,
+   "goal_step": 49,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7535545023696683,
+   "seed": 70063,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6350710900473934,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5734597156398105,
+   "seed": 70063,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.4597156398104265,
+   "found_goal": true,
+   "goal_step": 129,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7345971563981043,
+   "seed": 70063,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6303317535545023,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6635071090047393,
+   "seed": 70063,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6303317535545023,
+   "found_goal": true,
+   "goal_step": 151,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7345971563981043,
+   "seed": 70063,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6303317535545023,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7345971563981043,
+   "seed": 70063,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6303317535545023,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.06310679611650485,
+   "seed": 70064,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.05339805825242718,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6213592233009708,
+   "seed": 70064,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.5485436893203883,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8398058252427184,
+   "seed": 70064,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.7038834951456311,
+   "found_goal": true,
+   "goal_step": 73,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7281553398058253,
+   "seed": 70064,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.616504854368932,
+   "found_goal": true,
+   "goal_step": 103,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7233009708737864,
+   "seed": 70064,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6213592233009708,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5145631067961165,
+   "seed": 70064,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.3640776699029126,
+   "found_goal": true,
+   "goal_step": 75,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7233009708737864,
+   "seed": 70064,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6213592233009708,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7233009708737864,
+   "seed": 70064,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6213592233009708,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.12796208530805686,
+   "seed": 70065,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.10900473933649289,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7393364928909952,
+   "seed": 70065,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6350710900473934,
+   "found_goal": true,
+   "goal_step": 136,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7725118483412322,
+   "seed": 70065,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6540284360189573,
+   "found_goal": true,
+   "goal_step": 120,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8293838862559242,
+   "seed": 70065,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6492890995260664,
+   "found_goal": true,
+   "goal_step": 82,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8578199052132701,
+   "seed": 70065,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6919431279620853,
+   "found_goal": true,
+   "goal_step": 82,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5876777251184834,
+   "seed": 70065,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.47393364928909953,
+   "found_goal": true,
+   "goal_step": 124,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8578199052132701,
+   "seed": 70065,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6919431279620853,
+   "found_goal": true,
+   "goal_step": 82,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8578199052132701,
+   "seed": 70065,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6919431279620853,
+   "found_goal": true,
+   "goal_step": 82,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.16585365853658537,
+   "seed": 70066,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.1024390243902439,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7414634146341463,
+   "seed": 70066,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6682926829268293,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7121951219512195,
+   "seed": 70066,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6487804878048781,
+   "found_goal": true,
+   "goal_step": 143,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7317073170731707,
+   "seed": 70066,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6390243902439025,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6780487804878049,
+   "seed": 70066,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6292682926829268,
+   "found_goal": true,
+   "goal_step": 109,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7463414634146341,
+   "seed": 70066,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6731707317073171,
+   "found_goal": true,
+   "goal_step": 95,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6439024390243903,
+   "seed": 70066,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6097560975609756,
+   "found_goal": true,
+   "goal_step": 117,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6780487804878049,
+   "seed": 70066,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6292682926829268,
+   "found_goal": true,
+   "goal_step": 109,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.07281553398058252,
+   "seed": 70067,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.06310679611650485,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7233009708737864,
+   "seed": 70067,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6601941747572816,
+   "found_goal": true,
+   "goal_step": 133,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7427184466019418,
+   "seed": 70067,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6650485436893204,
+   "found_goal": true,
+   "goal_step": 129,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7524271844660194,
+   "seed": 70067,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6504854368932039,
+   "found_goal": true,
+   "goal_step": 113,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7281553398058253,
+   "seed": 70067,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6456310679611651,
+   "found_goal": true,
+   "goal_step": 133,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8155339805825242,
+   "seed": 70067,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.7038834951456311,
+   "found_goal": true,
+   "goal_step": 93,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7281553398058253,
+   "seed": 70067,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6456310679611651,
+   "found_goal": true,
+   "goal_step": 133,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7281553398058253,
+   "seed": 70067,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6456310679611651,
+   "found_goal": true,
+   "goal_step": 133,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.30660377358490565,
+   "seed": 70068,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.2028301886792453,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6556603773584906,
+   "seed": 70068,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.5849056603773585,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8113207547169812,
+   "seed": 70068,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6415094339622641,
+   "found_goal": true,
+   "goal_step": 70,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6981132075471698,
+   "seed": 70068,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.49528301886792453,
+   "found_goal": true,
+   "goal_step": 146,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7311320754716981,
+   "seed": 70068,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6132075471698113,
+   "found_goal": true,
+   "goal_step": 58,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.589622641509434,
+   "seed": 70068,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5424528301886793,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7311320754716981,
+   "seed": 70068,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6132075471698113,
+   "found_goal": true,
+   "goal_step": 58,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7311320754716981,
+   "seed": 70068,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6132075471698113,
+   "found_goal": true,
+   "goal_step": 58,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.12735849056603774,
+   "seed": 70069,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.08490566037735849,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6556603773584906,
+   "seed": 70069,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.5660377358490566,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8584905660377359,
+   "seed": 70069,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6650943396226415,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8537735849056604,
+   "seed": 70069,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6084905660377359,
+   "found_goal": true,
+   "goal_step": 72,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8537735849056604,
+   "seed": 70069,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6556603773584906,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6179245283018868,
+   "seed": 70069,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5235849056603774,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8537735849056604,
+   "seed": 70069,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6556603773584906,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8537735849056604,
+   "seed": 70069,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6556603773584906,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.16822429906542055,
+   "seed": 70070,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.102803738317757,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6495327102803738,
+   "seed": 70070,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.5841121495327103,
+   "found_goal": true,
+   "goal_step": 113,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8130841121495327,
+   "seed": 70070,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6542056074766355,
+   "found_goal": true,
+   "goal_step": 109,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6495327102803738,
+   "seed": 70070,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.46261682242990654,
+   "found_goal": true,
+   "goal_step": 65,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7616822429906542,
+   "seed": 70070,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.5467289719626168,
+   "found_goal": true,
+   "goal_step": 89,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.2616822429906542,
+   "seed": 70070,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.17757009345794392,
+   "found_goal": true,
+   "goal_step": 39,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.780373831775701,
+   "seed": 70070,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5934579439252337,
+   "found_goal": true,
+   "goal_step": 89,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7616822429906542,
+   "seed": 70070,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.5467289719626168,
+   "found_goal": true,
+   "goal_step": 89,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.17061611374407584,
+   "seed": 70071,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.13270142180094788,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7109004739336493,
+   "seed": 70071,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6445497630331753,
+   "found_goal": true,
+   "goal_step": 34,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7630331753554502,
+   "seed": 70071,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6729857819905213,
+   "found_goal": true,
+   "goal_step": 120,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7867298578199052,
+   "seed": 70071,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6398104265402843,
+   "found_goal": true,
+   "goal_step": 124,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8104265402843602,
+   "seed": 70071,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6824644549763034,
+   "found_goal": true,
+   "goal_step": 36,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7393364928909952,
+   "seed": 70071,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6919431279620853,
+   "found_goal": true,
+   "goal_step": 36,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8104265402843602,
+   "seed": 70071,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6824644549763034,
+   "found_goal": true,
+   "goal_step": 36,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8104265402843602,
+   "seed": 70071,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6824644549763034,
+   "found_goal": true,
+   "goal_step": 36,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.043478260869565216,
+   "seed": 70072,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.033816425120772944,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6811594202898551,
+   "seed": 70072,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6231884057971014,
+   "found_goal": true,
+   "goal_step": 55,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8309178743961353,
+   "seed": 70072,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.7053140096618358,
+   "found_goal": true,
+   "goal_step": 125,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8840579710144928,
+   "seed": 70072,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.7294685990338164,
+   "found_goal": true,
+   "goal_step": 47,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.821256038647343,
+   "seed": 70072,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.7198067632850241,
+   "found_goal": true,
+   "goal_step": 139,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6763285024154589,
+   "seed": 70072,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6231884057971014,
+   "found_goal": true,
+   "goal_step": 109,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.821256038647343,
+   "seed": 70072,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.7198067632850241,
+   "found_goal": true,
+   "goal_step": 139,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.821256038647343,
+   "seed": 70072,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.7198067632850241,
+   "found_goal": true,
+   "goal_step": 139,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.125,
+   "seed": 70073,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.08173076923076923,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7163461538461539,
+   "seed": 70073,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6586538461538461,
+   "found_goal": true,
+   "goal_step": 123,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8269230769230769,
+   "seed": 70073,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.7115384615384616,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7259615384615384,
+   "seed": 70073,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6105769230769231,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6490384615384616,
+   "seed": 70073,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.5721153846153846,
+   "found_goal": true,
+   "goal_step": 75,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7644230769230769,
+   "seed": 70073,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6730769230769231,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6490384615384616,
+   "seed": 70073,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5721153846153846,
+   "found_goal": true,
+   "goal_step": 75,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6490384615384616,
+   "seed": 70073,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.5721153846153846,
+   "found_goal": true,
+   "goal_step": 75,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.1201923076923077,
+   "seed": 70074,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.08653846153846154,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7355769230769231,
+   "seed": 70074,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6394230769230769,
+   "found_goal": true,
+   "goal_step": 17,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7115384615384616,
+   "seed": 70074,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.5961538461538461,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7163461538461539,
+   "seed": 70074,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5913461538461539,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.3173076923076923,
+   "seed": 70074,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.25,
+   "found_goal": true,
+   "goal_step": 53,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.13942307692307693,
+   "seed": 70074,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.08173076923076923,
+   "found_goal": true,
+   "goal_step": 15,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8221153846153846,
+   "seed": 70074,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6634615384615384,
+   "found_goal": true,
+   "goal_step": 53,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.3173076923076923,
+   "seed": 70074,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.25,
+   "found_goal": true,
+   "goal_step": 53,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.05853658536585366,
+   "seed": 70075,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.04878048780487805,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6829268292682927,
+   "seed": 70075,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6048780487804878,
+   "found_goal": true,
+   "goal_step": 36,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8195121951219512,
+   "seed": 70075,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6829268292682927,
+   "found_goal": true,
+   "goal_step": 32,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7951219512195122,
+   "seed": 70075,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6439024390243903,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7365853658536585,
+   "seed": 70075,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.624390243902439,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6829268292682927,
+   "seed": 70075,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6048780487804878,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7365853658536585,
+   "seed": 70075,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.624390243902439,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7365853658536585,
+   "seed": 70075,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.624390243902439,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.07766990291262135,
+   "seed": 70076,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.06796116504854369,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8058252427184466,
+   "seed": 70076,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6893203883495146,
+   "found_goal": true,
+   "goal_step": 18,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8640776699029126,
+   "seed": 70076,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.7427184466019418,
+   "found_goal": true,
+   "goal_step": 18,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7912621359223301,
+   "seed": 70076,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6747572815533981,
+   "found_goal": true,
+   "goal_step": 18,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8446601941747572,
+   "seed": 70076,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.7184466019417476,
+   "found_goal": true,
+   "goal_step": 18,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7669902912621359,
+   "seed": 70076,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.7087378640776699,
+   "found_goal": true,
+   "goal_step": 18,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8446601941747572,
+   "seed": 70076,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.7184466019417476,
+   "found_goal": true,
+   "goal_step": 18,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8446601941747572,
+   "seed": 70076,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.7184466019417476,
+   "found_goal": true,
+   "goal_step": 18,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.15384615384615385,
+   "seed": 70077,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.10096153846153846,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7259615384615384,
+   "seed": 70077,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6442307692307693,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7355769230769231,
+   "seed": 70077,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6346153846153846,
+   "found_goal": true,
+   "goal_step": 146,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8846153846153846,
+   "seed": 70077,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6971153846153846,
+   "found_goal": true,
+   "goal_step": 152,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7740384615384616,
+   "seed": 70077,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6490384615384616,
+   "found_goal": true,
+   "goal_step": 84,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7259615384615384,
+   "seed": 70077,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6442307692307693,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8125,
+   "seed": 70077,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6682692307692307,
+   "found_goal": true,
+   "goal_step": 84,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7740384615384616,
+   "seed": 70077,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6490384615384616,
+   "found_goal": true,
+   "goal_step": 84,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.15942028985507245,
+   "seed": 70078,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.11594202898550725,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.782608695652174,
+   "seed": 70078,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6570048309178744,
+   "found_goal": true,
+   "goal_step": 41,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7294685990338164,
+   "seed": 70078,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.642512077294686,
+   "found_goal": true,
+   "goal_step": 43,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.782608695652174,
+   "seed": 70078,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6231884057971014,
+   "found_goal": true,
+   "goal_step": 45,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8502415458937198,
+   "seed": 70078,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.7004830917874396,
+   "found_goal": true,
+   "goal_step": 43,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7971014492753623,
+   "seed": 70078,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6763285024154589,
+   "found_goal": true,
+   "goal_step": 51,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8502415458937198,
+   "seed": 70078,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.7004830917874396,
+   "found_goal": true,
+   "goal_step": 43,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8502415458937198,
+   "seed": 70078,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.7004830917874396,
+   "found_goal": true,
+   "goal_step": 43,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.1778846153846154,
+   "seed": 70079,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.10096153846153846,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5384615384615384,
+   "seed": 70079,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.5288461538461539,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5384615384615384,
+   "seed": 70079,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.5288461538461539,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6298076923076923,
+   "seed": 70079,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5,
+   "found_goal": true,
+   "goal_step": 139,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5480769230769231,
+   "seed": 70079,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.5384615384615384,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.625,
+   "seed": 70079,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5865384615384616,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5480769230769231,
+   "seed": 70079,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5384615384615384,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5480769230769231,
+   "seed": 70079,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.5384615384615384,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.19718309859154928,
+   "seed": 70080,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.1643192488262911,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.755868544600939,
+   "seed": 70080,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6525821596244131,
+   "found_goal": true,
+   "goal_step": 40,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6901408450704225,
+   "seed": 70080,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6103286384976526,
+   "found_goal": true,
+   "goal_step": 62,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5868544600938967,
+   "seed": 70080,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5305164319248826,
+   "found_goal": true,
+   "goal_step": 38,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6901408450704225,
+   "seed": 70080,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6056338028169014,
+   "found_goal": true,
+   "goal_step": 64,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.23943661971830985,
+   "seed": 70080,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.15492957746478872,
+   "found_goal": true,
+   "goal_step": 30,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6901408450704225,
+   "seed": 70080,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6056338028169014,
+   "found_goal": true,
+   "goal_step": 64,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6901408450704225,
+   "seed": 70080,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6056338028169014,
+   "found_goal": true,
+   "goal_step": 64,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.0995260663507109,
+   "seed": 70081,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.06635071090047394,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6255924170616114,
+   "seed": 70081,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.5781990521327014,
+   "found_goal": true,
+   "goal_step": 70,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7962085308056872,
+   "seed": 70081,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6966824644549763,
+   "found_goal": true,
+   "goal_step": 30,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7677725118483413,
+   "seed": 70081,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5971563981042654,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8483412322274881,
+   "seed": 70081,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.7061611374407583,
+   "found_goal": true,
+   "goal_step": 30,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6635071090047393,
+   "seed": 70081,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5876777251184834,
+   "found_goal": true,
+   "goal_step": 54,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8483412322274881,
+   "seed": 70081,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.7061611374407583,
+   "found_goal": true,
+   "goal_step": 30,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8483412322274881,
+   "seed": 70081,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.7061611374407583,
+   "found_goal": true,
+   "goal_step": 30,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.19626168224299065,
+   "seed": 70082,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.17289719626168223,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6962616822429907,
+   "seed": 70082,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6355140186915887,
+   "found_goal": true,
+   "goal_step": 45,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.794392523364486,
+   "seed": 70082,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6728971962616822,
+   "found_goal": true,
+   "goal_step": 75,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8551401869158879,
+   "seed": 70082,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6355140186915887,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8271028037383178,
+   "seed": 70082,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6542056074766355,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5981308411214953,
+   "seed": 70082,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5747663551401869,
+   "found_goal": true,
+   "goal_step": 45,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8271028037383178,
+   "seed": 70082,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6542056074766355,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8271028037383178,
+   "seed": 70082,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6542056074766355,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.12735849056603774,
+   "seed": 70083,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.11320754716981132,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7405660377358491,
+   "seed": 70083,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6415094339622641,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7641509433962265,
+   "seed": 70083,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6462264150943396,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8066037735849056,
+   "seed": 70083,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5990566037735849,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8584905660377359,
+   "seed": 70083,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6509433962264151,
+   "found_goal": true,
+   "goal_step": 55,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6792452830188679,
+   "seed": 70083,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5754716981132075,
+   "found_goal": true,
+   "goal_step": 81,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8584905660377359,
+   "seed": 70083,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6509433962264151,
+   "found_goal": true,
+   "goal_step": 55,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8584905660377359,
+   "seed": 70083,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6509433962264151,
+   "found_goal": true,
+   "goal_step": 55,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.12077294685990338,
+   "seed": 70084,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.09178743961352658,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7439613526570048,
+   "seed": 70084,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6666666666666666,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7632850241545893,
+   "seed": 70084,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6956521739130435,
+   "found_goal": true,
+   "goal_step": 37,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7004830917874396,
+   "seed": 70084,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5942028985507246,
+   "found_goal": true,
+   "goal_step": 47,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7198067632850241,
+   "seed": 70084,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6376811594202898,
+   "found_goal": true,
+   "goal_step": 39,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7971014492753623,
+   "seed": 70084,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6956521739130435,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7198067632850241,
+   "seed": 70084,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6376811594202898,
+   "found_goal": true,
+   "goal_step": 39,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7198067632850241,
+   "seed": 70084,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6376811594202898,
+   "found_goal": true,
+   "goal_step": 39,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.17142857142857143,
+   "seed": 70085,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.12857142857142856,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7285714285714285,
+   "seed": 70085,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6333333333333333,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7,
+   "seed": 70085,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.5952380952380952,
+   "found_goal": true,
+   "goal_step": 135,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6761904761904762,
+   "seed": 70085,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5333333333333333,
+   "found_goal": true,
+   "goal_step": 117,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7047619047619048,
+   "seed": 70085,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6238095238095238,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7333333333333333,
+   "seed": 70085,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6571428571428571,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7047619047619048,
+   "seed": 70085,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6238095238095238,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7047619047619048,
+   "seed": 70085,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6238095238095238,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.09223300970873786,
+   "seed": 70086,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.0825242718446602,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7524271844660194,
+   "seed": 70086,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6941747572815534,
+   "found_goal": true,
+   "goal_step": 112,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6747572815533981,
+   "seed": 70086,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6310679611650486,
+   "found_goal": true,
+   "goal_step": 60,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6699029126213593,
+   "seed": 70086,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5485436893203883,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7912621359223301,
+   "seed": 70086,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6601941747572816,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7281553398058253,
+   "seed": 70086,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6359223300970874,
+   "found_goal": true,
+   "goal_step": 50,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7912621359223301,
+   "seed": 70086,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6601941747572816,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7912621359223301,
+   "seed": 70086,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6601941747572816,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.06018518518518518,
+   "seed": 70087,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.05092592592592592,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6805555555555556,
+   "seed": 70087,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6018518518518519,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8796296296296297,
+   "seed": 70087,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6944444444444444,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7407407407407407,
+   "seed": 70087,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5416666666666666,
+   "found_goal": true,
+   "goal_step": 67,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7962962962962963,
+   "seed": 70087,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6203703703703703,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7962962962962963,
+   "seed": 70087,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6481481481481481,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7962962962962963,
+   "seed": 70087,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6203703703703703,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7962962962962963,
+   "seed": 70087,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6203703703703703,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.17535545023696683,
+   "seed": 70088,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.13270142180094788,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7772511848341233,
+   "seed": 70088,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6208530805687204,
+   "found_goal": true,
+   "goal_step": 158,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6919431279620853,
+   "seed": 70088,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.5687203791469194,
+   "found_goal": true,
+   "goal_step": 152,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7156398104265402,
+   "seed": 70088,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5450236966824644,
+   "found_goal": true,
+   "goal_step": 138,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7488151658767772,
+   "seed": 70088,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6255924170616114,
+   "found_goal": true,
+   "goal_step": 20,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7582938388625592,
+   "seed": 70088,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6208530805687204,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7488151658767772,
+   "seed": 70088,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6255924170616114,
+   "found_goal": true,
+   "goal_step": 20,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7488151658767772,
+   "seed": 70088,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6255924170616114,
+   "found_goal": true,
+   "goal_step": 20,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.1201923076923077,
+   "seed": 70089,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.09615384615384616,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6442307692307693,
+   "seed": 70089,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6105769230769231,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8125,
+   "seed": 70089,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6923076923076923,
+   "found_goal": true,
+   "goal_step": 120,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8125,
+   "seed": 70089,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.625,
+   "found_goal": true,
+   "goal_step": 84,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8461538461538461,
+   "seed": 70089,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6826923076923077,
+   "found_goal": true,
+   "goal_step": 108,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6586538461538461,
+   "seed": 70089,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6105769230769231,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8461538461538461,
+   "seed": 70089,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6826923076923077,
+   "found_goal": true,
+   "goal_step": 108,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8461538461538461,
+   "seed": 70089,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6826923076923077,
+   "found_goal": true,
+   "goal_step": 108,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.12735849056603774,
+   "seed": 70090,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.11320754716981132,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6698113207547169,
+   "seed": 70090,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.5566037735849056,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7594339622641509,
+   "seed": 70090,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6084905660377359,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7688679245283019,
+   "seed": 70090,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5660377358490566,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8349056603773585,
+   "seed": 70090,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6415094339622641,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8443396226415094,
+   "seed": 70090,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6839622641509434,
+   "found_goal": true,
+   "goal_step": 117,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8349056603773585,
+   "seed": 70090,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6415094339622641,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8349056603773585,
+   "seed": 70090,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6415094339622641,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.10526315789473684,
+   "seed": 70091,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.09090909090909091,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7320574162679426,
+   "seed": 70091,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.645933014354067,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6794258373205742,
+   "seed": 70091,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.5885167464114832,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8516746411483254,
+   "seed": 70091,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.631578947368421,
+   "found_goal": true,
+   "goal_step": 128,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8421052631578947,
+   "seed": 70091,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.645933014354067,
+   "found_goal": true,
+   "goal_step": 150,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.42105263157894735,
+   "seed": 70091,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.37799043062200954,
+   "found_goal": true,
+   "goal_step": 90,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8421052631578947,
+   "seed": 70091,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.645933014354067,
+   "found_goal": true,
+   "goal_step": 150,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8421052631578947,
+   "seed": 70091,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.645933014354067,
+   "found_goal": true,
+   "goal_step": 150,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.2146341463414634,
+   "seed": 70092,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.16097560975609757,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7951219512195122,
+   "seed": 70092,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.7121951219512195,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7609756097560976,
+   "seed": 70092,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6926829268292682,
+   "found_goal": true,
+   "goal_step": 101,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.775609756097561,
+   "seed": 70092,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6536585365853659,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7609756097560976,
+   "seed": 70092,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.697560975609756,
+   "found_goal": true,
+   "goal_step": 139,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7560975609756098,
+   "seed": 70092,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6439024390243903,
+   "found_goal": true,
+   "goal_step": 107,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7609756097560976,
+   "seed": 70092,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.697560975609756,
+   "found_goal": true,
+   "goal_step": 139,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7609756097560976,
+   "seed": 70092,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.697560975609756,
+   "found_goal": true,
+   "goal_step": 139,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.15165876777251186,
+   "seed": 70093,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.12322274881516587,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8483412322274881,
+   "seed": 70093,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6919431279620853,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7772511848341233,
+   "seed": 70093,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6492890995260664,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7725118483412322,
+   "seed": 70093,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5829383886255924,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6445497630331753,
+   "seed": 70093,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.5545023696682464,
+   "found_goal": true,
+   "goal_step": 157,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6540284360189573,
+   "seed": 70093,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5876777251184834,
+   "found_goal": true,
+   "goal_step": 113,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6445497630331753,
+   "seed": 70093,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5545023696682464,
+   "found_goal": true,
+   "goal_step": 157,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6445497630331753,
+   "seed": 70093,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.5545023696682464,
+   "found_goal": true,
+   "goal_step": 157,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.30660377358490565,
+   "seed": 70094,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.20754716981132076,
+   "found_goal": true,
+   "goal_step": 157,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7216981132075472,
+   "seed": 70094,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6273584905660378,
+   "found_goal": true,
+   "goal_step": 67,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8490566037735849,
+   "seed": 70094,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6698113207547169,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.75,
+   "seed": 70094,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5566037735849056,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8207547169811321,
+   "seed": 70094,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6556603773584906,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8066037735849056,
+   "seed": 70094,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6367924528301887,
+   "found_goal": true,
+   "goal_step": 145,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8207547169811321,
+   "seed": 70094,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6556603773584906,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8207547169811321,
+   "seed": 70094,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6556603773584906,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.14009661835748793,
+   "seed": 70095,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.10628019323671498,
+   "found_goal": true,
+   "goal_step": 112,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7922705314009661,
+   "seed": 70095,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6956521739130435,
+   "found_goal": true,
+   "goal_step": 12,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7246376811594203,
+   "seed": 70095,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6231884057971014,
+   "found_goal": true,
+   "goal_step": 12,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6763285024154589,
+   "seed": 70095,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5458937198067633,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7922705314009661,
+   "seed": 70095,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6763285024154589,
+   "found_goal": true,
+   "goal_step": 104,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7342995169082126,
+   "seed": 70095,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5990338164251208,
+   "found_goal": true,
+   "goal_step": 140,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7922705314009661,
+   "seed": 70095,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6763285024154589,
+   "found_goal": true,
+   "goal_step": 104,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7922705314009661,
+   "seed": 70095,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6763285024154589,
+   "found_goal": true,
+   "goal_step": 104,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.23809523809523808,
+   "seed": 70096,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.1619047619047619,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7,
+   "seed": 70096,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.5952380952380952,
+   "found_goal": true,
+   "goal_step": 92,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6761904761904762,
+   "seed": 70096,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6095238095238096,
+   "found_goal": true,
+   "goal_step": 28,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7380952380952381,
+   "seed": 70096,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5761904761904761,
+   "found_goal": true,
+   "goal_step": 28,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8857142857142857,
+   "seed": 70096,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.7333333333333333,
+   "found_goal": true,
+   "goal_step": 128,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.680952380952381,
+   "seed": 70096,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6142857142857143,
+   "found_goal": true,
+   "goal_step": 96,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8857142857142857,
+   "seed": 70096,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.7333333333333333,
+   "found_goal": true,
+   "goal_step": 128,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8857142857142857,
+   "seed": 70096,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.7333333333333333,
+   "found_goal": true,
+   "goal_step": 128,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.10526315789473684,
+   "seed": 70097,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.08133971291866028,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6363636363636364,
+   "seed": 70097,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6028708133971292,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.69377990430622,
+   "seed": 70097,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.5933014354066986,
+   "found_goal": true,
+   "goal_step": 94,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6555023923444976,
+   "seed": 70097,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5406698564593302,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6507177033492823,
+   "seed": 70097,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.5550239234449761,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6507177033492823,
+   "seed": 70097,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5645933014354066,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6507177033492823,
+   "seed": 70097,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5550239234449761,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6507177033492823,
+   "seed": 70097,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.5550239234449761,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.11538461538461539,
+   "seed": 70098,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.07692307692307693,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6298076923076923,
+   "seed": 70098,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.5817307692307693,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8269230769230769,
+   "seed": 70098,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.6394230769230769,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7740384615384616,
+   "seed": 70098,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.5769230769230769,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8221153846153846,
+   "seed": 70098,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.6298076923076923,
+   "found_goal": true,
+   "goal_step": 132,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7259615384615384,
+   "seed": 70098,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6057692307692307,
+   "found_goal": true,
+   "goal_step": 92,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8221153846153846,
+   "seed": 70098,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6298076923076923,
+   "found_goal": true,
+   "goal_step": 132,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8221153846153846,
+   "seed": 70098,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.6298076923076923,
+   "found_goal": true,
+   "goal_step": 132,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.09178743961352658,
+   "seed": 70099,
+   "regime": "exact",
+   "agent": "random",
+   "coverage": 0.0821256038647343,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7874396135265701,
+   "seed": 70099,
+   "regime": "exact",
+   "agent": "nearest_frontier",
+   "coverage": 0.6859903381642513,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8164251207729468,
+   "seed": 70099,
+   "regime": "exact",
+   "agent": "infogain_frontier",
+   "coverage": 0.7101449275362319,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.821256038647343,
+   "seed": 70099,
+   "regime": "exact",
+   "agent": "efe_v2",
+   "coverage": 0.6473429951690821,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8164251207729468,
+   "seed": 70099,
+   "regime": "exact",
+   "agent": "efe_route",
+   "coverage": 0.7053140096618358,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8164251207729468,
+   "seed": 70099,
+   "regime": "exact",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6956521739130435,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8164251207729468,
+   "seed": 70099,
+   "regime": "exact",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.7053140096618358,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8164251207729468,
+   "seed": 70099,
+   "regime": "exact",
+   "agent": "efe_route_count_repeats",
+   "coverage": 0.7053140096618358,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  }
+ ]
+}

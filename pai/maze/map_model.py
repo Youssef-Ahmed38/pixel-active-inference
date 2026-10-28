@@ -120,6 +120,22 @@ class SpatialPrior:
         sums[sums == 0] = 1.0
         return cls(size=size, priors=counts / sums)
 
+    @classmethod
+    def fit_from_beliefs(cls, maps: Sequence[np.ndarray], observed: Sequence[set], size: int = 21,
+                         alpha: float = 2.0, base: "SpatialPrior | None" = None) -> SpatialPrior:
+        """Learn P0(M_rc) from the agent's own end-of-practice maps, without true layouts.
+
+        Each practice map contributes its posterior belief at the cells the agent observed (soft
+        counts); unobserved cells contribute nothing. ``alpha`` pseudo-counts of the generic prior
+        keep cells the agent rarely saw close to it.
+        """
+        base = base or cls(size=size)
+        counts = alpha * base.priors.copy()
+        for beliefs, seen in zip(maps, observed):
+            for (r, c) in seen:
+                counts[r, c] += beliefs[r, c]
+        return cls(size=size, priors=counts / counts.sum(-1, keepdims=True))
+
     def save(self, path: Path | str) -> None:
         path = Path(path)
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -249,7 +265,11 @@ class ProbabilisticMap:
     def expected_cell_information_gain(self, cell: Cell) -> float:
         """Mutual information I(M_c; O_c) = H(M_c) - E_{O_c}[H(M_c | O_c)]."""
         if cell not in self.observed_cells:
-            if not hasattr(self, "_unobserved_ig"):
+            # An unobserved cell still has its prior belief, which can differ from cell to cell (a
+            # learned spatial prior). Cached per cell; the first version cached one value for all
+            # unobserved cells, so a spatial prior could not change the information values.
+            cache = self.__dict__.setdefault("_unobserved_ig", {})
+            if cell not in cache:
                 prior_b = self.beliefs[cell[0], cell[1]]
                 h_prior = shannon_entropy(prior_b)
                 p_obs = self.obs_model.obs_probabilities(prior_b)
@@ -258,8 +278,8 @@ class ProbabilisticMap:
                     if p_obs[o_idx] > 1e-12:
                         post_b = self.obs_model.posterior(prior_b, IDX_TO_KIND[o_idx])
                         expected_post += float(p_obs[o_idx] * shannon_entropy(post_b))
-                self._unobserved_ig = max(0.0, h_prior - expected_post)
-            return self._unobserved_ig
+                cache[cell] = max(0.0, h_prior - expected_post)
+            return cache[cell]
 
         prior_b = self.beliefs[cell[0], cell[1]]
         h_prior = shannon_entropy(prior_b)

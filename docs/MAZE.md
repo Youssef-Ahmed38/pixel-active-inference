@@ -2,6 +2,23 @@
 
 This document details the Active Inference implementation of Stage 3 in **Pixel Active Inference** (a research project for PhD application). 
 
+> **Correction (2026-10-28, later the same day).** A bug made the map give every unobserved cell
+> the information value of the first one it computed (`expected_cell_information_gain` cached one
+> number). Fixed (per-cell cache). Rerun on the same final mazes 70000-70099: route EFE **71%** vs
+> nearest frontier 60% (p = 0.10, was 79% vs 60%, p = 0.003); a new set 73000-73099 gives 77% vs 77%.
+> So with exact sensing information-seeking is at best a few points better than nearest frontier,
+> **not significantly**. The persistent-misread result holds with the fix: **49%** vs 6-13%
+> (`results/maze_v3_recheck_*.json`). A spatial prior learned from the agent's own practice maps
+> (`SpatialPrior.fit_from_beliefs`) does as well as one counted from true layouts; neither helps
+> consistently (`results/maze_v3_prior_*.json`). The tables below are kept as first measured.
+>
+> Seeds 73000-73099, goal found out of 100 (route EFE vs nearest frontier vs info-gain frontier;
+> paired sign tests against route EFE): default prior exact 77 / 77 / 72, noisy 59 / 56 / 62; true-layout
+> prior exact 72 / 77 / **83** (info-gain beats route EFE, p = 0.035), noisy **71** / 69 / 58 (route
+> EFE beats info-gain, p = 0.019); self-learned prior exact 77 / 76 / 78, noisy 61 / 63 / 68. No
+> difference between route EFE and nearest frontier is significant under any prior. The dev lead
+> for the self prior (83% exact, 70% noisy on 20000-20029) did not replicate (77%, 61%).
+
 > **v3 (2026-10-28): route-level EFE and noisy sensing.** Final test on 100 fresh mazes (seeds
 > 70000-70099, settings frozen on development seeds 20000-20029). Goal found within 160 steps:
 >
@@ -363,6 +380,175 @@ Reproduce:
 .venv/Scripts/python scripts/maze_v3_eval.py --test-start 20000 --num-test-mazes 30 --effort-weight 2.0 --switch-margin 0 --output data/maze_dev/v3_dev.json
 .venv/Scripts/python scripts/maze_v3_eval.py --test-start 70000 --num-test-mazes 100 --effort-weight 2.0 --switch-margin 0 --output results/maze_v3_final.json
 ```
+
+## 11. The learned G1 walker inside the maze, and branchy mazes
+
+`pai/maze/walker.py`: the maze's wall cells become boxes in the G1's MuJoCo scene; `WalkerMaze` keeps
+the grid interface, so every maze agent runs unchanged, and each move is walked by the released v3
+walking policy, steered only through its speed and heading goals. Simplifications of the first runs: walls visual,
+not colliders (entering a wall cell is detected from the pelvis position, then the body backs off);
+the agent's local view still comes from the grid sensor and its cell from the simulator pose; a fall
+ends the episode. **30 fresh mazes (75000-75029), exact sensing:** the walker gives the same outcome
+as the instant grid body in **30/30 mazes** for both the route-EFE agent (67%) and nearest frontier
+(73%), with **0 falls and 0 bumps** in about 16,000 s of walking (1 timed-out walk per agent).
+`results/maze_walker.json`, `scripts/maze_walker_eval.py`.
+
+Videos (`scripts/maze_walker_demo.py`): `media/maze/walker_maze.mp4` (third person + belief map) and
+`media/maze/walker_maze_branchy_pov.mp4` (adds the robot's eye view, the raw sensor patch it
+receives, and its decision: chosen target and the top alternatives with their EFE terms).
+
+<img src="media/maze/walker_maze_branchy_pov.gif" width="480">
+
+**Solid walls (later the same day).** The results above used visual walls. Now every collision
+capsule of the G1 (the 23 it already pairs with the floor: pelvis, legs, feet, torso, head, arms,
+hands) collides with every wall box through one collision bit that nothing else uses, so floor and
+self contacts are untouched; with no wall in reach, walking is bit-for-bit identical
+(`tests/test_maze_walker.py`). A walk that is blocked is felt from the body's own odometry
+(commanded forward, under 5 cm of progress in 1 s); the body backs off and the agent records a bump.
+A first attempt set the collision masks after compiling the model, which MuJoCo's broad phase
+ignores (it uses per-body masks computed at compile time): the walls were still not solid. The
+test now checks the walls actually stop the body (pelvis held under 0.45 m from the start centre
+vs beyond 0.5 m with visual walls), and the runs made with that version were discarded unread.
+
+Fresh mazes, exact sensing, the same mazes walked with visual and with solid walls:
+
+| Mazes | Agent | Goal, visual / solid | Same outcome as grid body (solid) | Failed walks, visual / solid | Falls |
+|---|---|---:|---:|---:|---:|
+| corridor 79200-79229 | route EFE | 22 / 21 | 29/30 | 2 / 1 | 0 |
+| corridor 79200-79229 | nearest frontier | 22 / 22 | 30/30 | 3 / 2 | 0 |
+| branchy 79300-79329 | route EFE | 27 / 27 | 30/30 | 4 / 2 | 0 |
+| branchy 79300-79329 | nearest frontier | 21 / 21 | 30/30 | 11 / 11 | 0 |
+
+Solid walls change almost nothing: the agents never choose to walk into a wall with exact sensing,
+and the body only occasionally brushes one (for example a thigh touching the side wall while turning
+on the spot in a dead end). The one different outcome (corridor maze 79215, route EFE) is the grid
+body finding the goal on the last allowed step, 160, while the walker had one timed-out walk, which
+costs a step. Failed walks (a move that did not arrive within 8 s) are a walker limit that does not
+depend on the walls. `results/maze_walker_solid*.json`, `results/maze_walker_visual*_79*.json`:
+
+    python scripts/maze_walker_eval.py --test-start 79200 --num 30 --workers 10 --output results/maze_walker_solid.json
+    python scripts/maze_walker_eval.py --maze-style branchy --test-start 79300 --num 30 --workers 10 --output results/maze_walker_solid_branchy.json
+    (add --visual-walls for the first version)
+
+Video `media/maze/walker_solid_walls.mp4` (`scripts/maze_wall_bump_demo.py`): the same command to walk
+into a wall, visual walls on the left (the legs sink into the wall box), solid walls on the right
+(stopped at the wall face, bump recorded, backs off).
+
+<img src="media/maze/walker_solid_walls.gif" width="480">
+
+Solid walls matter once the agent can believe a wall is open, so the next test is the walker with
+noisy sensing, where bumps are real evidence.
+
+**The walker with noisy sensing and solid walls.** The noisy sensor now sits on top of the walker:
+the body walks, the sensor misreads cells, and a bump is what the body felt (a blocked walk), not
+the grid's truth; a walk that merely timed out is no longer reported as a touch. The sensor model
+and repeat-look weight are the ones the agent learns from its own practice (mazes 1000-1019 of the
+same style, walked by the grid body: the sensor model describes the sensor, not the body). On
+development mazes 20000-20009 the walker fell 5 times in 20 episodes; tracing them showed two
+kinds: turning on the spot while still against the wall after a bump, and slow walks (5-8 s for
+one cell) later on. The back-off after a bump was changed to step straight backwards at the current
+heading (within the practised commands, vx >= -0.3 m/s, |vy| <= 0.3 m/s); that removed the first
+kind but not the falls overall (still 5), and shorter stall windows (0.5 s, 0.3 s) traded falls for
+many more bumps, so the window stayed at 1 s. Nothing else was tuned. Final, 30 fresh mazes per
+row, route EFE vs nearest frontier, goal found:
+
+| Sensing, mazes | Grid body | Walker | Walker falls (of 60) | Same outcome as grid body |
+|---|---:|---:|---:|---:|
+| iid noise, corridor 79400-79429 | 16 vs 19 | 19 vs 14 (n.s.) | 5 | 50/60 |
+| iid noise, branchy 79500-79529 | 21 vs 18 | 21 vs 18 (n.s.) | 1 | 52/60 |
+| persistent misreads, corridor 79400-79429 | **17 vs 4** (p = 0.001) | **14 vs 5** (paired 9/0, p = 0.004) | 13 | 54/60 |
+| persistent misreads, branchy 79500-79529 | 19 vs 17 | 19 vs 18 (n.s.) | 5 | 59/60 |
+
+The main maze result survives the real body: with persistent misreads in corridor mazes, the agent
+that learned repeated looks carry no new information (and touches doubtful walls) beats nearest
+frontier with the G1 doing the walking. The cost is falls: **24 in 240** walked episodes (0 with
+exact sensing), more with more bumps (persistent corridor mazes: about 2 bumps per episode and 13
+falls); 7 goals the grid body found were lost to a fall. No walk felt blocked at an open cell.
+Outcomes differ from the grid body in 25 of 240 episodes, in both directions, because bumps,
+back-offs and timed-out walks change the sequence of looks. The walking policy never practised
+touching walls; training it with wall contact (Stage 2) is the fix this points to, not more
+steering rules. `results/maze_walker_{noisy,persistent}{,_branchy}.json`:
+
+    python scripts/maze_walker_eval.py --regime persistent --test-start 79400 --num 30 --workers 10 --output results/maze_walker_persistent.json
+
+(`--regime noisy`, `--maze-style branchy --test-start 79500` for the other rows).
+
+Video `media/maze/walker_persistent_multiperception.mp4`: maze 79404 with persistent misreads
+(chosen as a run with bumps that still reaches the goal), five panels as above; the sensor patch
+now shows the misread cells the agent actually receives, and the counter shows the bumps. For the
+eye view the walls are 1.4 m high instead of 0.5 m, so the walk in the video can differ from the
+evaluated one.
+
+    python scripts/maze_walker_demo.py --seed 79404 --pov --every 30 --sensing-from results/maze_walker_persistent.json
+
+<img src="media/maze/walker_persistent_multiperception.gif" width="480">
+
+**Branchy mazes** (`MazeWorld(generator="prim", loop_probability=0.25, rooms=3)`; the default DFS
+mazes are unchanged): about 104 junctions per maze vs 31, twice as many dead ends, three open rooms
+(`media/maze/maze_styles.png`). `scripts/maze_v3_eval.py --maze-style branchy`.
+
+**The walker on branchy mazes: 30 fresh mazes (77000-77029), exact sensing, 160 grid steps,
+nothing tuned on branchy mazes.** Route EFE finds the goal in **28/30** [78.7-98.2%], nearest
+frontier in **19/30** [45.5-78.1%]; paired, route EFE alone solves 10 mazes and nearest frontier
+alone 1 (sign test **p = 0.012**). The walker gives the same outcome as the instant grid body in
+**30/30** mazes for both agents, with **0 falls and 0 bumps** in about 15,100 s of walking; failed
+walks (a move that timed out and was retried) 1 for route EFE, 6 for nearest frontier. On the
+long-corridor mazes the two agents were not significantly different (section 10 correction); with
+many junctions and dead ends, choosing where to look pays off. One set of 30 mazes, so the size of
+the gap is uncertain. `results/maze_walker_branchy.json`:
+
+    python scripts/maze_walker_eval.py --maze-style branchy --test-start 77000 --num 30 --workers 6 --output results/maze_walker_branchy.json
+
+**Branchy mazes with noisy sensing and the learned priors: 100 fresh mazes (78000-78099), grid
+body, nothing tuned.** The sensor model and the spatial priors are learned from practice mazes
+(1000-1019) of the same branchy style (before this change the practice mazes were always the
+long-corridor kind). Development check on 20000-20029 (self prior) only confirmed the pipeline;
+no parameter was changed after it. Goal found out of 100; in brackets route EFE only / baseline
+only, paired sign test:
+
+| Regime, prior | Route EFE | Nearest frontier | Info-gain frontier | Route EFE, no epistemic term | Route EFE, counting repeat looks |
+|---|---:|---:|---:|---:|---:|
+| exact, default | **84** | 67 (26/9, p = 0.006) | 81 (n.s.) | 65 (25/6, p = 0.001) | 84 |
+| exact, true layouts | **84** | 67 (23/6, p = 0.002) | 83 (n.s.) | 69 (p = 0.008) | 84 |
+| exact, self-learned | **81** | 66 (24/9, p = 0.014) | 85 (n.s.) | 67 (p = 0.016) | 81 |
+| iid noise, default | 78 | 65 (29/16, p = 0.07) | 70 (n.s.) | 71 (n.s.) | 78 |
+| iid noise, true layouts | 76 | 59 (30/13, p = 0.014) | 65 (p = 0.05) | 72 (n.s.) | 76 |
+| iid noise, self-learned | 69 | 62 (n.s.) | 68 (n.s.) | 67 (n.s.) | 69 |
+| persistent misreads, default | 64 | 54 (n.s.) | 61 (n.s.) | 67 (n.s.) | 51 (21/8, p = 0.024) |
+| persistent, true layouts | **80** | 64 (24/8, p = 0.007) | 76 (n.s.) | 78 (n.s.) | 58 (28/6, p < 0.001) |
+| persistent, self-learned | 72 | 60 (p = 0.09) | 73 (n.s.) | 70 (n.s.) | 59 (19/6, p = 0.015) |
+
+What holds on branchy mazes: (1) with exact sensing, route EFE beats nearest frontier under every
+prior (84 vs 67), replicating the 30-maze walker result, and the epistemic term is what does it
+(without it, 65); it ties the information-gain frontier, which also seeks information. (2) With
+persistent misreads, learning that repeated looks at the same cell carry no new information
+(repeat weight 0, learned from the agent's own looks) beats counting them, under every prior
+(64 vs 51, 80 vs 58, 72 vs 59). What does not: under noise the advantage over nearest frontier
+is significant only with the true-layout prior, and the baselines do not collapse under persistent
+misreads as they did in corridor mazes (54-64% here vs 6-13%), probably because loops let them
+walk round a wall they wrongly believe in. The true-layout prior helps route EFE under persistent
+misreads (80 vs 64 with the default prior, paired 24/8, p = 0.007); the self-learned prior does
+not significantly (72, p = 0.24) and is nominally worse under iid noise (69 vs 78, p = 0.15). Many
+comparisons are made here; single p-values near 0.05 should not be read as findings.
+`results/maze_v3_branchy_prior_{default,truth,self}.json`:
+
+    python scripts/maze_v3_eval.py --test-start 78000 --num-test-mazes 100 --effort-weight 2.0 --switch-margin 0.0 --sensor-source self --regimes exact noisy persistent --maze-style branchy --prior default --workers 10 --output results/maze_v3_branchy_prior_default.json
+
+(same with `--prior truth` and `--prior self`).
+
+**Video with everything the agent perceives and why it moves** (`media/maze/walker_branchy_multiperception.mp4`,
+maze 77104, chosen from 30 screened mazes because its search is long enough to show branching; 67
+grid steps, goal found, 194 s walked, 0 falls). Five panels: the G1 from above; the robot's eye
+view; its belief map (dark unknown, grey wall, light open, blue visited, green target); the raw
+sensor patch it receives this step; and its decision, the top three candidate targets with their
+information gain, goal/risk and walking cost, and which of those terms gives the chosen target its
+lead over the runner-up (the earlier video's "why" line only distinguished goal from information,
+so short-walk choices were mislabelled). The decisions still come from the grid sensor, not from
+the eye-view image.
+
+<img src="media/maze/walker_branchy_multiperception.gif" width="480">
+
+    python scripts/maze_walker_demo.py --seed 77104 --branchy --pov --every 18
 
 # First build (v1), before the active-inference rewrite
 

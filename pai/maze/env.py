@@ -47,9 +47,15 @@ class MazeWorld:
 
     def __init__(self, seed: int = 0, size: int = 21, sensor_range: int = 3,
                  loop_probability: float = 0.08, appearance_jitter: float = 0.0,
-                 appearance_bias: tuple[float, float, float] = (0.0, 0.0, 0.0)):
+                 appearance_bias: tuple[float, float, float] = (0.0, 0.0, 0.0),
+                 generator: str = "dfs", rooms: int = 0):
+        """``generator="dfs"`` (default): long winding corridors with few junctions.
+        ``generator="prim"``: randomized Prim, many short branches and junctions. ``rooms`` opens
+        that many 3x3 open areas. Defaults reproduce every maze used before 2026-10-28."""
         if size < 7 or size % 2 != 1:
             raise ValueError("size must be odd and at least 7")
+        if generator not in ("dfs", "prim"):
+            raise ValueError("generator must be 'dfs' or 'prim'")
         self.rng = np.random.default_rng(seed)
         self.size, self.sensor_range = size, sensor_range
         self.grid = np.ones((size, size), dtype=np.uint8)
@@ -57,6 +63,18 @@ class MazeWorld:
         stack = [self.start]
         seen = {self.start}
         self.grid[self.start] = 0
+        if generator == "prim":
+            # grow from a random frontier cell each time (not the newest): many short branches
+            frontier = [(self.start, d) for d in DIRECTIONS]
+            while frontier:
+                (r, c), (dr, dc) = frontier.pop(int(self.rng.integers(len(frontier))))
+                nr, nc = r + 2 * dr, c + 2 * dc
+                if not (1 <= nr < size - 1 and 1 <= nc < size - 1) or (nr, nc) in seen:
+                    continue
+                self.grid[r + dr, c + dc] = self.grid[nr, nc] = 0
+                seen.add((nr, nc))
+                frontier.extend(((nr, nc), d) for d in DIRECTIONS)
+            stack = []
         while stack:
             r, c = stack[-1]
             choices = [(r + 2 * dr, c + 2 * dc, dr, dc) for dr, dc in DIRECTIONS
@@ -79,6 +97,11 @@ class MazeWorld:
                 elif self.grid[r, c] and self.grid[r, c - 1] == self.grid[r, c + 1] == 0 \
                         and self.rng.random() < loop_probability:
                     self.grid[r, c] = 0
+        for _ in range(rooms):
+            # a 3x3 open area centred on a random cell-centre (odd coordinates)
+            rr = 2 + 2 * int(self.rng.integers(max(1, (size - 5) // 2)))
+            cc = 2 + 2 * int(self.rng.integers(max(1, (size - 5) // 2)))
+            self.grid[rr - 1:rr + 2, cc - 1:cc + 2] = 0
         floors = [tuple(map(int, p)) for p in np.argwhere(self.grid == 0) if tuple(p) != self.start]
         self.goal: Cell = floors[int(self.rng.integers(len(floors)))]
         landmark_cells = [p for p in floors if p != self.goal]
