@@ -86,6 +86,10 @@ def load_value(path):
         from pai.chess.distill import DistilledValue
         return DistilledValue.load(path)
     if Path(path).suffix == ".pt":
+        kind = torch.load(path, map_location="cpu", weights_only=True).get("type")
+        if kind == "chess_adaptive_hrm_value":
+            from pai.chess.adaptive_hrm import AdaptiveHRMValue
+            return AdaptiveHRMValue.load(path)
         return HRMPositionValue.load(path)
     data = json.loads(Path(path).read_text(encoding="utf-8"))
     if data.get("type") == "learned_context_value":

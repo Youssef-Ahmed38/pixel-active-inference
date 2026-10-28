@@ -43,9 +43,15 @@ class AgentPlayer:
     def command_from_belief(self,belief):
         state = GameState.from_belief(belief)
         c = self.config
+        adaptive = self.planner.value if hasattr(self.planner.value, "reset_diagnostics") else None
+        if adaptive is not None:
+            adaptive.reset_diagnostics()
         result = self.planner.search(state,max_depth=c.get("max_depth",32),max_nodes=c.get("nodes",10**9),
                                      time_limit=c.get("time"),max_quiescence=c.get("quiescence",0),reuse_pv=c.get("reuse_pv",False))
-        return result.command(),{"depth":result.completed_depth,"nodes":result.nodes,
-                                 "seconds":result.elapsed_seconds,"budget_exhausted":result.budget_exhausted}
+        diagnostics = {"depth":result.completed_depth,"nodes":result.nodes,
+                       "seconds":result.elapsed_seconds,"budget_exhausted":result.budget_exhausted}
+        if adaptive is not None:
+            diagnostics["halting"] = adaptive.halting_stats()
+        return result.command(), diagnostics
 
     def close(self): pass
