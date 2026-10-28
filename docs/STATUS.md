@@ -12,7 +12,7 @@
 | 3 maze | v3: route EFE + noisy sensing | goal 79% vs nearest frontier 60% (p=0.003), ties info-gain baseline 78%; iid noise: no rule wins; persistent misreads: learned repeat weight + touch 47% vs 9-13% (p<1e-6); sensor self-learned | `docs/MAZE.md` §10 |
 | 4 doors/keys | discovery agent | mock 99.9% solved (111.6 actions) vs novelty 80.9%; physics 12/25 with decoys | `docs/DISCOVERY.md` |
 | 5 chess | done (PR #1 reviewed and merged, 2026-10-28) | 1037 conditional engine-anchor Elo [863, 1134] at 1 s/move; beats old player 17-2-1 | `docs/CHESS_STRENGTH.md` |
-| 6 language | earlier build only; causal explanations in progress (below) | 456/456 held-out parses per language | `docs/LANGUAGE_STAGE6.md` |
+| 6 language | causal explanations v2 (Codex, reviewed; PR) | causes 37/50 per language (37/40 committed), grounded cause words 5/5, unseen question wording 9/12, instructions 41/50 = arm baseline | `docs/LANGUAGE_STAGE6.md` |
 | 7 bicycle | earlier build | practised policy 20/20 fresh starts; learns from simulator states, not video | `docs/BIKE_STAGE7.md` |
 
 Audit fix #1 is done (arm relations come from perception, commit aa8d259); the other audit items
