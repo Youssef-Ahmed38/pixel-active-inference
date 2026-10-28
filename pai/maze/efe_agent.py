@@ -32,6 +32,16 @@ def relook_move(belief_map: ProbabilisticMap, p: Cell, floor: float = 0.05) -> C
             b = belief_map.beliefs[q[0], q[1]]
             if float(b[1] + b[2]) > best_p:
                 best, best_p = d, float(b[1] + b[2])
+    if best is None and belief_map.repeat_weight < 1.0:
+        # Looking again from here cannot help (repeat looks carry little information), so test the
+        # untouched neighbour most likely to be open by trying to step into it: touch is reliable.
+        best_p = -1.0
+        for d in DIRECTIONS:
+            q = p[0] + d[0], p[1] + d[1]
+            if 0 <= q[0] < belief_map.size and 0 <= q[1] < belief_map.size and q not in belief_map.touched:
+                b = belief_map.beliefs[q[0], q[1]]
+                if float(b[1] + b[2]) > best_p:
+                    best, best_p = d, float(b[1] + b[2])
     return best
 
 
@@ -193,6 +203,50 @@ class RouteEFEExplorer(ActiveInferenceExplorer):
                     queue.append(q)
         return parent, order
 
+    def _touch_move(self, p: Cell, parent: dict[Cell, Cell], order: list[Cell],
+                    depth: dict[Cell, int]) -> Cell | None:
+        """Touch as an epistemic action, used when looking can no longer change the map.
+
+        Stepping into a cell settles for certain whether it is open, so its expected information
+        gain is the entropy of P(open). Score each untouched cell next to the reachable region by
+        EFE = effort_weight * (walk + 1) - epistemic_weight * H(open), and walk to the best one.
+        """
+        kept = getattr(self, "_touch_plan", None)
+        if kept is not None:
+            v, d = kept
+            q = v[0] + d[0], v[1] + d[1]
+            if (v == p or v in parent) and q not in self.map.touched and q not in parent:
+                return self._walk_to_touch(p, parent, v, d)   # finish the chosen test first
+        best = None
+        for v in [p] + order:
+            for d in DIRECTIONS:
+                q = v[0] + d[0], v[1] + d[1]
+                if q in parent or q in self.map.touched or not (0 <= q[0] < self.size and 0 <= q[1] < self.size):
+                    continue
+                b = self.map.beliefs[q[0], q[1]]
+                p_open = float(b[1] + b[2])
+                if not 1e-3 < p_open < 1.0 - 1e-3:
+                    continue
+                h = -(p_open * np.log2(p_open) + (1 - p_open) * np.log2(1 - p_open))
+                efe = self.effort_weight * (depth[v] + 1) - self.epistemic_weight * h
+                if best is None or (efe, depth[v]) < best[:2]:
+                    best = (efe, depth[v], v, d)
+        if best is None:
+            self._touch_plan = None
+            return None
+        _, _, v, d = best
+        self._touch_plan = (v, d)
+        return self._walk_to_touch(p, parent, v, d)
+
+    def _walk_to_touch(self, p: Cell, parent: dict[Cell, Cell], v: Cell, d: Cell) -> Cell:
+        self.target = (v[0] + d[0], v[1] + d[1])
+        if v == p:
+            return d
+        step = v
+        while parent[step] != p:
+            step = parent[step]
+        return step[0] - p[0], step[1] - p[1]
+
     def act(self, obs: Observation) -> Cell | None:
         self.map.update(obs)
         p = obs.position
@@ -222,14 +276,28 @@ class RouteEFEExplorer(ActiveInferenceExplorer):
         gain, goal_mass, risk, depth = {p: 0.0}, {p: 0.0}, {p: 0.0}, {p: 0}
         for v in order:
             u = parent[v]
-            gain[v] = gain[u] + sum(gain_of(c) for c in view(v) - view(u))
+            # a cell already seen from v gives only repeat_weight of a fresh look's information
+            w = self.map.repeat_weight
+            gain[v] = gain[u] + sum(gain_of(c) * (w if (c, v) in self.map.looked else 1.0)
+                                    for c in view(v) - view(u))
             goal_mass[v] = goal_mass[u] + float(beliefs[v[0], v[1], 2])
             risk[v] = risk[u] + float(beliefs[v[0], v[1], 0])
             depth[v] = depth[u] + 1
 
-        candidates = [q for q in self.map.frontiers(p) if q in parent]
+        # A visited cell is a target only if it still has something to show: with persistent
+        # misreads a cell already seen from every reachable spot has nothing left, and going there
+        # and back is a dead loop. An unvisited cell is always worth a visit (it may be the goal).
+        def worth(q: Cell) -> bool:
+            return q not in self.map.visits or gain[q] > 0.01
+
+        candidates = [q for q in self.map.frontiers(p) if q in parent and worth(q)]
         if not candidates:
-            candidates = [q for q in order if q not in self.map.visits or self.map.cell_entropy(q) > 0.05]
+            candidates = [q for q in order if (q not in self.map.visits or self.map.cell_entropy(q) > 0.05)
+                          and worth(q)]
+        if not candidates and self.map.repeat_weight < 1.0:
+            touch = self._touch_move(p, parent, order, depth)
+            if touch is not None:
+                return touch
         if not candidates:
             return relook_move(self.map, p)
 

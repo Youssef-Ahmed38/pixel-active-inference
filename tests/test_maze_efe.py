@@ -300,3 +300,37 @@ def test_dawid_skene_recovers_confusion_from_looks_and_few_body_labels():
     model, prior = dawid_skene(looks, anchors)
     assert np.abs(model.matrix[:, :2] - true_m[:, :2]).max() < 0.03
     assert abs(prior[0] - 0.55) < 0.03
+
+
+def test_repeat_look_weight_is_learned_from_disagreement_rates():
+    """Independent repeat looks get weight ~1; repeats that copy the first reading get weight 0."""
+    from pai.maze.self_calibration import repeat_look_weight
+
+    rng = np.random.default_rng(1)
+    iid, persistent = {}, {}
+    for i in range(400):
+        k = int(rng.integers(2))
+        draw = lambda: int(rng.random() < 0.15) ^ k
+        iid[i] = [(v, draw()) for v in range(3) for _ in range(3)]
+        persistent[i] = [(v, r) for v in range(3) for r in [draw()] for _ in range(3)]
+    assert repeat_look_weight(iid)[0] > 0.8
+    assert repeat_look_weight(persistent)[0] == 0.0
+
+
+def test_touch_breaks_a_persistent_false_wall():
+    """With uninformative repeat looks the route agent leaves a start that a misread seals."""
+    from pai.maze.efe_agent import RouteEFEExplorer
+    from pai.maze.noisy import DEFAULT_CONFUSION, NoisySensorMaze
+
+    world = MazeWorld(seed=20010, size=21)
+    env = NoisySensorMaze(world, seed=20010, persistent=True)
+    agent = RouteEFEExplorer(size=21, sensor_range=3, seed=0, effort_weight=2.0, switch_margin=0.0,
+                             obs_model=ObservationModel(matrix=DEFAULT_CONFUSION))  # calibrated
+    agent.map.repeat_weight = 0.0
+    obs = env.observe()
+    for _ in range(160):
+        move = agent.act(obs)
+        if move is None:
+            break
+        obs = env.step(move)
+    assert len(world.visited) > 40

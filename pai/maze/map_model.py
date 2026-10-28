@@ -154,6 +154,12 @@ class ProbabilisticMap:
         self.visits = {}
         self.edges: dict[Cell, set[Cell]] = {}
         self.events: list[dict] = []
+        # Evidence weight of a repeat look at a cell from a viewpoint already used (1.0: looks are
+        # independent; 0.0: a repeat carries no new information). Learned from practice, see
+        # pai/maze/self_calibration.py:repeat_look_weight.
+        self.repeat_weight = 1.0
+        self.looked: set[tuple[Cell, Cell]] = set()
+        self.touched: set[Cell] = set()   # cells bumped into: walls known by touch
 
     @property
     def cells(self) -> dict[Cell, str]:
@@ -195,14 +201,27 @@ class ProbabilisticMap:
         # Update beliefs for all visible cells
         for cell, obs_kind in obs.visible.items():
             r, c = cell
-            if not (0 <= r < self.size and 0 <= c < self.size):
+            if not (0 <= r < self.size and 0 <= c < self.size) or cell == p:
                 continue
             if cell not in self.observed_cells:
                 self.observed_cells.add(cell)
                 self.events.append({"type": "observed", "cell": cell, "kind": obs_kind})
             old_b = self.beliefs[r, c]
-            new_b = self.obs_model.posterior(old_b, obs_kind)
+            if (cell, p) in self.looked and self.repeat_weight != 1.0 and cell != getattr(obs, "touched", None):
+                likelihood = self.obs_model.matrix[KIND_TO_IDX.get(obs_kind, 1), :] ** self.repeat_weight
+                new_b = likelihood * old_b / max(float(likelihood @ old_b), 1e-12)
+            else:
+                new_b = self.obs_model.posterior(old_b, obs_kind)
+            self.looked.add((cell, p))
             self.beliefs[r, c] = new_b
+
+        if getattr(obs, "touched", None) is not None:
+            self.touched.add(obs.touched)
+        # Body evidence: the cell the agent stands on is open (the goal if it reports reaching it),
+        # whatever the camera says about it.
+        r0, c0 = p
+        self.beliefs[r0, c0] = (0.0, 0.0, 1.0) if obs.reached_goal else (1e-6, 1.0 - 2e-6, 1e-6)
+        self.observed_cells.add(p)
 
         # If a collision occurred on an attempted move, update that cell toward wall
         if obs.collided and hasattr(obs, "attempted_target"):

@@ -20,7 +20,11 @@ This document details the Active Inference implementation of Stage 3 in **Pixel 
 > adds nothing. A second fresh set (71000-71099) did **not** replicate the noisy lead (route EFE
 > 53-56% vs 54-58% for the baselines): under noise no decision rule wins. The noisy sensor model is
 > now learned from the agent's own looks and bumps (EM, no simulator labels) and works as well as
-> the labelled fit. Details in section 10 below; the v2 review that follows is kept unchanged.
+> the labelled fit. With **persistent** misreads (same spot, same mistake), agents that count every
+> look as evidence stall (9-13% goal rate); learning from practice that repeat looks are worthless and
+> testing doubtful walls by touch gives 47% (p < 1e-6, 100 fresh mazes), though the curiosity weighting
+> itself adds nothing there (49% without it). Details in section 10 below; the v2 review that follows
+> is kept unchanged.
 
 > **Honest summary (review, 2026-10-28).** On 30 fresh mazes the EFE explorer covers 64.6%
 > [62.6, 66.6] against 64.0% [62.4, 65.8] for the nearest-frontier baseline: **a tie, not a gain**.
@@ -302,9 +306,59 @@ disappears (53-56% vs 54-58%; all sign tests p >= 0.47). With iid sensor noise, 
 decision rules beats the others; the first set's lead was chance. Files:
 `results/maze_v3_selfcal_truth.json`, `results/maze_v3_selfcal_self.json`.
 
+### 10.2 Persistent misreads: when the agent must learn that looking again is useless
+
+With iid noise a second look from the same spot is a fresh draw, so re-looking is cheap and every
+decision rule does about equally well (10.1). Real sensors also make **persistent** errors (a
+reflection, a shadow): `NoisySensorMaze(persistent=True)` reads a cell the same way every time it is
+seen from the same spot; only a new viewpoint, or touch, gives an independent reading.
+
+What the agent learns from its own practice (no labels): repeat looks from one spot disagree 0.0% of
+the time against 18.5% for looks from different spots (iid noise: 19.4% vs 18.2%), so the learned
+**repeat-look weight** is 0.0 (iid: 1.0). Three changes use it (`pai/maze/map_model.py`,
+`pai/maze/efe_agent.py`):
+
+1. the map gives a repeat look from a used viewpoint that weight (likelihood tempered by it), and the
+   route planner counts information only from new viewpoints;
+2. body evidence: the cell the agent stands on is open, whatever the camera says (before, a
+   persistent misread of its own cell cut every route out of it);
+3. **touch as an epistemic action**: when looking can no longer change the map, the agent scores each
+   untouched doubtful cell next to its reachable region by `effort * (walk + 1) - H(open)` and walks
+   into the best one (a bump is certain). Visited cells with nothing left to show are no longer
+   targets (that made it shuttle between two cells).
+
+Final test, persistent misreads, 100 fresh mazes (seeds 72000-72099), sensor model and repeat weight
+learned in practice mazes 1000-1019, settings frozen (effort 2.0, margin 0); dev seeds 20000-20029
+were used only to find the failure modes above, not to tune:
+
+| Agent | Goal found [Wilson 95%] | Cells visited |
+|---|---|---|
+| random walk | 0.0% [0.0, 3.7] | 6.7% |
+| nearest frontier | 13.0% [7.8, 21.0] | 15.8% |
+| information-gain frontier | 9.0% [4.8, 16.2] | 16.6% |
+| EFE v2 | 10.0% [5.5, 17.4] | 16.2% |
+| **route EFE, learned repeat weight + touch** | **47.0%** [37.5, 56.7] | 45.3% |
+| same, treating repeat looks as new evidence | 9.0% [4.8, 16.2] | 11.0% |
+| same, no epistemic term | 49.0% [39.4, 58.7] | 45.5% |
+| same, no goal belief | 43.0% [33.7, 52.8] | 47.2% |
+
+Paired sign tests (route EFE vs ...): nearest frontier 40/6, p = 3e-7; information-gain frontier
+39/1, p = 7e-11; treating repeats as new evidence 39/1, p = 7e-11; no epistemic term 15/17, p = 0.86.
+
+**Reading.** Agents that count every look as new evidence grow *more* confident in a false wall each
+time they re-read it and stall (about 15% of cells). Learning from its own practice that repeat looks
+carry no information, and testing doubtful walls by touch, quadruples the goal rate (9-13% to 47%).
+The gain comes from that learned sensor structure and the touch action, **not** from the curiosity
+weighting: choosing what to touch by distance alone does as well (49%). The baselines have no touch
+action, so the comparison measures the whole package, and the ablation shows which part matters.
+The touch target is kept until tested (added after the first final run when a unit test showed two
+equal targets swapping; the rerun on the same seeds gave identical numbers). File:
+`results/maze_v3_persistent.json`.
+
 Reproduce:
 
 ```bash
+.venv/Scripts/python scripts/maze_v3_eval.py --test-start 72000 --num-test-mazes 100 --effort-weight 2.0 --switch-margin 0 --regimes persistent --sensor-source self --output results/maze_v3_persistent.json
 .venv/Scripts/python scripts/maze_v3_eval.py --test-start 71000 --num-test-mazes 100 --effort-weight 2.0 --switch-margin 0 --regimes noisy --sensor-source self --output results/maze_v3_selfcal_self.json
 .venv/Scripts/python scripts/maze_v3_eval.py --test-start 20000 --num-test-mazes 30 --effort-weight 2.0 --switch-margin 0 --output data/maze_dev/v3_dev.json
 .venv/Scripts/python scripts/maze_v3_eval.py --test-start 70000 --num-test-mazes 100 --effort-weight 2.0 --switch-margin 0 --output results/maze_v3_final.json

@@ -17,8 +17,8 @@ from pai.maze.map_model import KIND_TO_IDX, ObservationModel
 
 
 def collect_practice(seeds: list[int], make_env, make_agent, steps: int = 160):
-    """Run practice episodes; return per-cell look counts and body labels (no simulator truth)."""
-    looks: dict[tuple, np.ndarray] = defaultdict(lambda: np.zeros(3))
+    """Run practice episodes; return every look (with its viewpoint) and body labels (no simulator truth)."""
+    views: dict[tuple, list[tuple]] = defaultdict(list)   # (seed, cell) -> [(viewpoint, seen index)]
     anchors: dict[tuple, int] = {}
     for s in seeds:
         env = make_env(s)
@@ -37,9 +37,48 @@ def collect_practice(seeds: list[int], make_env, make_agent, steps: int = 160):
                 anchors[(s, bumped)] = KIND_TO_IDX["wall"]
             for cell, kind in obs.visible.items():
                 if cell != bumped:  # a bump is touch, not a look
-                    looks[(s, cell)][KIND_TO_IDX[kind]] += 1
+                    views[(s, cell)].append((obs.position, KIND_TO_IDX[kind]))
         anchors[(s, obs.position)] = KIND_TO_IDX["goal" if obs.reached_goal else "floor"]
-    return dict(looks), anchors
+    return dict(views), anchors
+
+
+def repeat_look_weight(views: dict[tuple, list[tuple]]) -> tuple[float, dict]:
+    """How much new evidence a repeat look from the same viewpoint carries, from disagreement rates.
+
+    If repeat looks from one spot disagree as often as looks from different spots, they are
+    independent (weight 1); if they never disagree, they only repeat the first reading (weight 0).
+    """
+    same = [0, 0]
+    diff = [0, 0]
+    for looks in views.values():
+        first_from: dict = {}
+        for vantage, seen in looks:
+            if vantage in first_from:
+                same[0] += seen != first_from[vantage]
+                same[1] += 1
+            else:
+                for other, other_seen in first_from.items():
+                    diff[0] += seen != other_seen
+                    diff[1] += 1
+                first_from[vantage] = seen
+    d_same = same[0] / max(same[1], 1)
+    d_diff = diff[0] / max(diff[1], 1)
+    weight = float(np.clip(d_same / d_diff, 0.0, 1.0)) if d_diff > 0 else 1.0
+    return weight, {"repeat_pairs": same[1], "repeat_disagreement": round(d_same, 4),
+                    "viewpoint_pairs": diff[1], "viewpoint_disagreement": round(d_diff, 4)}
+
+
+def weighted_counts(views: dict[tuple, list[tuple]], weight: float) -> dict[tuple, np.ndarray]:
+    """Per-cell label counts; the first look from each viewpoint counts 1, repeats count ``weight``."""
+    counts = {}
+    for key, looks in views.items():
+        c = np.zeros(3)
+        seen_from = set()
+        for vantage, seen in looks:
+            c[seen] += weight if vantage in seen_from else 1.0
+            seen_from.add(vantage)
+        counts[key] = c
+    return counts
 
 
 def dawid_skene(looks: dict[tuple, np.ndarray], anchors: dict[tuple, int],
@@ -64,8 +103,12 @@ def dawid_skene(looks: dict[tuple, np.ndarray], anchors: dict[tuple, int],
 
 
 def self_calibrated_sensor(seeds: list[int], size: int, make_env, make_agent) -> tuple[ObservationModel, dict]:
-    looks, anchors = collect_practice(seeds, make_env, make_agent)
+    """Sensor model and repeat-look weight from practice; ``info['repeat_weight']`` goes to the map."""
+    views, anchors = collect_practice(seeds, make_env, make_agent)
+    weight, stats = repeat_look_weight(views)
+    looks = weighted_counts(views, weight)
     model, prior = dawid_skene(looks, anchors)
-    info = {"cells": len(set(looks) | set(anchors)), "looks": int(sum(v.sum() for v in looks.values())),
-            "body_labels": len(anchors), "class_frequencies": prior.round(4).tolist()}
+    info = {"cells": len(set(looks) | set(anchors)), "looks": int(sum(len(v) for v in views.values())),
+            "body_labels": len(anchors), "class_frequencies": prior.round(4).tolist(),
+            "repeat_weight": round(weight, 4), **stats}
     return model, info
