@@ -1,0 +1,32 @@
+{
+  "kind": "bridge_development_failure",
+  "seeds": [
+    734000,
+    734001
+  ],
+  "completed_summary": {
+    "seed": 734000,
+    "cold": {
+      "success": false,
+      "actions": 800,
+      "moves": 163
+    },
+    "warm": {
+      "success": false,
+      "actions": 800,
+      "moves": 190
+    },
+    "scripted": {
+      "success": true,
+      "actions": 13,
+      "moves": 67
+    }
+  },
+  "exception": {
+    "seed": 734001,
+    "baseline": "ValueError: max() iterable argument is empty in _drawer_cell"
+  },
+  "reason": "new adapter placed a workspace beyond the closed exit; existing baseline also rejects some generated layouts",
+  "body_source": "\"\"\"Skill-level maze body for the learned chain, with sensor-coupled passage.\n\nNavigation to a selected entity is a GIVEN L0 reach skill. The policy decides\nwhich entity/action comes next; this body never chooses a drawer, key or fixture\nrole. It uses one existing Explorer map across every reach. This is a bridge of\ntwo mocks, not a trained mobile manipulator or a physical carrying simulation.\n\"\"\"\nfrom __future__ import annotations\n\nimport numpy as np\n\nfrom pai.discovery.belief import entity_of\nfrom pai.discovery.interface import Outcome\nfrom pai.discovery.key_chain_recipe import EvidenceWorld\nfrom pai.maze.agent import Explorer\nfrom pai.maze.env import Observation\n\n\nclass SituatedChainBody:\n    \"\"\"Route generic reaches by observed position; the fixture owns the door.\n\n    Scene construction supplies two fixture-workspace anchors. A metric radius\n    .8m maps any observed part/object to its nearest workspace; this is a given\n    spatial discretisation, not a membership label or a policy prior.\n    \"\"\"\n    def __init__(self, maze, fixture, seed=0, move_budget=10000):\n        self.maze = maze\n        self.body = EvidenceWorld(fixture)\n        self.move_budget = move_budget\n        self.navigator = Explorer(maze.sensor_range, maze.size, seed)\n        self.navigation = []\n        # Ground-truth geometry is used ONLY here for scene construction.\n        distances = maze.distances_from(maze.start)\n        near = [p for p in distances if sum(abs(a-b) for a, b in zip(p, maze.goal)) == 1]\n        self.approach = min(near, key=lambda p: distances[p])\n        far = [p for p in distances if p not in (maze.goal, maze.start, self.approach)\n               and sum(abs(a-b) for a, b in zip(p, maze.goal)) >= 4]\n        self.remote = max(far, key=lambda p: (distances[p], p))\n        self.entered_exit = False\n\n    def entities(self):\n        return self.body.entities()\n\n    def features(self):\n        return self.body.features()\n\n    def actions(self):\n        return self.body.actions()\n\n    def goal(self):\n        return self.body.goal()\n\n    def goal_reached(self):\n        return self.body.goal_reached()\n\n    def _step(self, delta):\n        target = tuple(a+b for a, b in zip(self.maze.position, delta))\n        if target == self.maze.goal and not self.body.goal_reached():\n            self.maze.steps += 1\n            self.navigation.append({'type': 'closed_passage_contact', 'position': list(target)})\n            return False\n        self.maze.step(delta)\n        return True\n\n    def walk_to(self, target):\n        # Remove stale goals when the same map is reused for a new reach.\n        for cell, kind in list(self.navigator.memory.cells.items()):\n            if kind == 'goal':\n                self.navigator.memory.cells[cell] = 'floor'\n        while self.maze.position != target and self.maze.steps < self.move_budget:\n            base = self.maze.observe()\n            visible = {p: ('goal' if p == target and kind != 'wall' else\n                           'floor' if kind == 'goal' else kind) for p, kind in base.visible.items()}\n            if not self.body.goal_reached() and self.maze.goal in visible:\n                visible[self.maze.goal] = 'wall'\n            obs = Observation(base.position, visible, False, False)\n            move = self.navigator.act(obs)\n            route = self.navigator.memory.route(base.position, target)\n            if route:\n                move = tuple(a-b for a, b in zip(route[0], base.position))\n            if move is None or not self._step(move):\n                return False\n        return self.maze.position == target\n\n    def execute(self, action):\n        ents = {e.id: e for e in self.body.entities()}\n        eid = action[2] if action[0] == 'insert' else action[1]\n        goal_id = entity_of(next(iter(self.body.goal())))\n        distance = np.linalg.norm(np.subtract(ents[eid].pos, ents[goal_id].pos))\n        destination = self.approach if distance <= .8 else self.remote\n        before = self.maze.steps\n        reached = self.walk_to(destination)\n        self.navigation.append({'type': 'reach', 'entity': eid, 'destination': list(destination),\n                                'moves': self.maze.steps - before, 'reached': reached})\n        if not reached:\n            return Outcome(tuple(action), False, False, {}, [], float(self.maze.steps-before), '')\n        out = self.body.execute(action)\n        out.cost += self.maze.steps - before\n        return out\n\n    def pass_goal(self):\n        \"\"\"Execute the requested exit navigation after its observed guard holds.\n\n        Traversal/navigation primitives are given L0; the manipulated dependency\n        chain is learned. No writable door-open flag exists on this adapter.\n        \"\"\"\n        if self.body.goal_reached():\n            self.entered_exit = self.walk_to(self.maze.goal)\n        return self.entered_exit\n",
+  "body_sha256": "ba7537ca5b4ffd9bc2db40a036c5948c89b6d8d1239c4aba5505338ba36fd6c7"
+}

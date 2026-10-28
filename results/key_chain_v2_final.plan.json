@@ -1,0 +1,321 @@
+{
+  "config": {
+    "seed": 736000,
+    "layouts": 8,
+    "budget": 800,
+    "workers": 2,
+    "model": "results\\key_chain_v2_model_final_frozen.json",
+    "output": "results\\key_chain_v2_final.json"
+  },
+  "sources": {
+    "pai/discovery/key_chain_recipe.py": "837f164f8162273fbab5b623f0585ade9e63ee26195a622e1631350f76ae40c9",
+    "pai/discovery/agent.py": "9915f36061cb9f2649e82476cc75885dde4ecf5c6baa4f2af3560ecc303c305a",
+    "pai/discovery/belief.py": "c1dd8961e5163dcb461276ad98370a0b319dce5bdd34670d4e09b7c391ebc98a",
+    "pai/discovery/recipes.py": "4f10e5afa09ea4bd10927c9aaf858679f5c2b55be52b2fe2cfc6432e73efe0e0",
+    "pai/discovery/mock.py": "493af80b8ec7ada4caccea6fc605ee7b28aad6098bc02f62f61f7e265cebe4e5",
+    "pai/maze/key_chain.py": "9565553c00e2e7e91a333f410696e06816743b5cf447a237585c7899f2cdd0a5",
+    "scripts/key_chain_v2_eval.py": "df3b2ab3dd5fa625168ecf3df01644ba749b938042fb879e8da3812a56815ab8",
+    "scripts/key_chain_v2_gate.py": "264c936174fadc89a8f70dd30f1eb7500374efc2d11fb62f83832d1b67792eb4"
+  },
+  "model_sha256": "f1cbb55fc8a9ae13d5186865c301c63da6e4929f3bdddec5f88a5a181ff42ed9",
+  "jobs": [
+    {
+      "index": 0,
+      "seed": 736000,
+      "case": "unlocked",
+      "type": "hd_lever_pull_right"
+    },
+    {
+      "index": 1,
+      "seed": 736001,
+      "case": "latched",
+      "type": "hd_lever_pull_right"
+    },
+    {
+      "index": 2,
+      "seed": 736002,
+      "case": "locked",
+      "type": "hd_lever_pull_right"
+    },
+    {
+      "index": 3,
+      "seed": 736003,
+      "case": "key",
+      "type": "hd_lever_pull_right"
+    },
+    {
+      "index": 4,
+      "seed": 736004,
+      "case": "both",
+      "type": "hd_lever_pull_right"
+    },
+    {
+      "index": 5,
+      "seed": 736005,
+      "case": "blocked",
+      "type": "hd_lever_pull_right"
+    },
+    {
+      "index": 6,
+      "seed": 736006,
+      "case": "unlocked",
+      "type": "hd_lever_pull_right"
+    },
+    {
+      "index": 7,
+      "seed": 736007,
+      "case": "latched",
+      "type": "hd_lever_pull_right"
+    },
+    {
+      "index": 8,
+      "seed": 736008,
+      "case": "locked",
+      "type": "hd_lever_pull_right"
+    },
+    {
+      "index": 9,
+      "seed": 736009,
+      "case": "key",
+      "type": "hd_lever_pull_right"
+    },
+    {
+      "index": 10,
+      "seed": 736010,
+      "case": "both",
+      "type": "hd_lever_pull_right"
+    },
+    {
+      "index": 11,
+      "seed": 736011,
+      "case": "blocked",
+      "type": "hd_lever_pull_right"
+    },
+    {
+      "index": 12,
+      "seed": 736012,
+      "case": "unlocked",
+      "type": "hd_lever_pull_right"
+    },
+    {
+      "index": 13,
+      "seed": 736013,
+      "case": "latched",
+      "type": "hd_lever_pull_right"
+    },
+    {
+      "index": 14,
+      "seed": 736014,
+      "case": "locked",
+      "type": "hd_lever_pull_right"
+    },
+    {
+      "index": 15,
+      "seed": 736015,
+      "case": "key",
+      "type": "hd_lever_pull_right"
+    },
+    {
+      "index": 16,
+      "seed": 736016,
+      "case": "both",
+      "type": "hd_lever_pull_right"
+    },
+    {
+      "index": 17,
+      "seed": 736017,
+      "case": "blocked",
+      "type": "hd_lever_pull_right"
+    },
+    {
+      "index": 18,
+      "seed": 736018,
+      "case": "unlocked",
+      "type": "hd_lever_pull_right"
+    },
+    {
+      "index": 19,
+      "seed": 736019,
+      "case": "latched",
+      "type": "hd_lever_pull_right"
+    },
+    {
+      "index": 20,
+      "seed": 736020,
+      "case": "locked",
+      "type": "hd_lever_pull_right"
+    },
+    {
+      "index": 21,
+      "seed": 736021,
+      "case": "key",
+      "type": "hd_lever_pull_right"
+    },
+    {
+      "index": 22,
+      "seed": 736022,
+      "case": "both",
+      "type": "hd_lever_pull_right"
+    },
+    {
+      "index": 23,
+      "seed": 736023,
+      "case": "blocked",
+      "type": "hd_lever_pull_right"
+    },
+    {
+      "index": 24,
+      "seed": 736024,
+      "case": "unlocked",
+      "type": "hd_knob_pull_right"
+    },
+    {
+      "index": 25,
+      "seed": 736025,
+      "case": "latched",
+      "type": "hd_knob_pull_right"
+    },
+    {
+      "index": 26,
+      "seed": 736026,
+      "case": "locked",
+      "type": "hd_knob_pull_right"
+    },
+    {
+      "index": 27,
+      "seed": 736027,
+      "case": "key",
+      "type": "hd_knob_pull_right"
+    },
+    {
+      "index": 28,
+      "seed": 736028,
+      "case": "both",
+      "type": "hd_knob_pull_right"
+    },
+    {
+      "index": 29,
+      "seed": 736029,
+      "case": "blocked",
+      "type": "hd_knob_pull_right"
+    },
+    {
+      "index": 30,
+      "seed": 736030,
+      "case": "unlocked",
+      "type": "hd_knob_pull_right"
+    },
+    {
+      "index": 31,
+      "seed": 736031,
+      "case": "latched",
+      "type": "hd_knob_pull_right"
+    },
+    {
+      "index": 32,
+      "seed": 736032,
+      "case": "locked",
+      "type": "hd_knob_pull_right"
+    },
+    {
+      "index": 33,
+      "seed": 736033,
+      "case": "key",
+      "type": "hd_knob_pull_right"
+    },
+    {
+      "index": 34,
+      "seed": 736034,
+      "case": "both",
+      "type": "hd_knob_pull_right"
+    },
+    {
+      "index": 35,
+      "seed": 736035,
+      "case": "blocked",
+      "type": "hd_knob_pull_right"
+    },
+    {
+      "index": 36,
+      "seed": 736036,
+      "case": "unlocked",
+      "type": "hd_knob_pull_right"
+    },
+    {
+      "index": 37,
+      "seed": 736037,
+      "case": "latched",
+      "type": "hd_knob_pull_right"
+    },
+    {
+      "index": 38,
+      "seed": 736038,
+      "case": "locked",
+      "type": "hd_knob_pull_right"
+    },
+    {
+      "index": 39,
+      "seed": 736040,
+      "case": "key",
+      "type": "hd_knob_pull_right"
+    },
+    {
+      "index": 40,
+      "seed": 736041,
+      "case": "both",
+      "type": "hd_knob_pull_right"
+    },
+    {
+      "index": 41,
+      "seed": 736042,
+      "case": "blocked",
+      "type": "hd_knob_pull_right"
+    },
+    {
+      "index": 42,
+      "seed": 736043,
+      "case": "unlocked",
+      "type": "hd_knob_pull_right"
+    },
+    {
+      "index": 43,
+      "seed": 736044,
+      "case": "latched",
+      "type": "hd_knob_pull_right"
+    },
+    {
+      "index": 44,
+      "seed": 736046,
+      "case": "locked",
+      "type": "hd_knob_pull_right"
+    },
+    {
+      "index": 45,
+      "seed": 736047,
+      "case": "key",
+      "type": "hd_knob_pull_right"
+    },
+    {
+      "index": 46,
+      "seed": 736048,
+      "case": "both",
+      "type": "hd_knob_pull_right"
+    },
+    {
+      "index": 47,
+      "seed": 736049,
+      "case": "blocked",
+      "type": "hd_knob_pull_right"
+    }
+  ],
+  "rejected_geometry": [
+    {
+      "seed": 736039,
+      "reason": "max() iterable argument is empty"
+    },
+    {
+      "seed": 736045,
+      "reason": "drawer must occupy a separate traversable cell"
+    }
+  ]
+}

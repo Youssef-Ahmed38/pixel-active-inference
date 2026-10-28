@@ -1,0 +1,21 @@
+{
+  "exit_code": 0,
+  "collected": 62,
+  "counts": {
+    "passed": 62
+  },
+  "files": [
+    "tests\\test_discovery.py",
+    "tests\\test_discovery_physics.py",
+    "tests\\test_key_chain.py",
+    "tests\\test_key_chain_v2.py"
+  ],
+  "source_sha256": {
+    "tests\\test_discovery.py": "c4f6b9bec4bc30a484a2d060e78b4132edd7201372e1dd5858869afb90574843",
+    "tests\\test_discovery_physics.py": "33686b2361dcd40d9c6b29be7f85c68e4010a6a6c34c3343842f70d3eed2cd57",
+    "tests\\test_key_chain.py": "9fc9a4433b67dc072a103709c9afd3303728a0b14f746a969b7d1792e0a54b5e",
+    "tests\\test_key_chain_v2.py": "75645ec2ba162b0d49887e01d33ce457c2e24d5c6c1e2dcad81e69ccc760d802"
+  },
+  "python": "C:\\projects\\pixel-active-inference\\.venv\\Scripts\\python.exe",
+  "environment_workaround": "only multiprocessing scheduling changed to processes=1; original scenes, seeds and assertions preserved"
+}

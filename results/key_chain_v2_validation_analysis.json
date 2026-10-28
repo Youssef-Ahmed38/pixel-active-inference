@@ -1,0 +1,768 @@
+{
+  "input_sha256": "d38bb0303554c7377daadfe40dd44b9bf7678c15337bc27d2c9aad0ab914cff3",
+  "input": "results\\key_chain_v2_validation.json",
+  "explanations": {
+    "cold": {
+      "n": 1108,
+      "correct": 791,
+      "accuracy": 0.7138989169675091,
+      "wilson95": [
+        0.6865849181594772,
+        0.739734856336755
+      ],
+      "coverage": 0.8140794223826715,
+      "answered_accuracy": 0.876940133037694,
+      "row_labels": [
+        "locked",
+        "latched",
+        "wrong_key",
+        "key_not_turned",
+        "blocked"
+      ],
+      "column_labels": [
+        "locked",
+        "latched",
+        "wrong_key",
+        "key_not_turned",
+        "blocked",
+        "unknown"
+      ],
+      "confusion": [
+        [
+          172,
+          79,
+          0,
+          0,
+          0,
+          144
+        ],
+        [
+          24,
+          30,
+          0,
+          4,
+          0,
+          60
+        ],
+        [
+          0,
+          0,
+          8,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          3,
+          0,
+          0,
+          581,
+          2
+        ]
+      ],
+      "by_cause": {
+        "locked": {
+          "n": 395,
+          "correct": 172,
+          "wilson95": [
+            0.38740136431953937,
+            0.48472827799297674
+          ]
+        },
+        "latched": {
+          "n": 118,
+          "correct": 30,
+          "wilson95": [
+            0.1842822782172189,
+            0.3396892782514648
+          ]
+        },
+        "wrong_key": {
+          "n": 8,
+          "correct": 8,
+          "wilson95": [
+            0.6755924351161198,
+            1
+          ]
+        },
+        "key_not_turned": {
+          "n": 0,
+          "correct": 0,
+          "wilson95": [
+            null,
+            null
+          ]
+        },
+        "blocked": {
+          "n": 587,
+          "correct": 581,
+          "wilson95": [
+            0.9778810817450763,
+            0.9953072269218319
+          ]
+        }
+      },
+      "episode_bootstrap95": [
+        0.575037095002803,
+        0.8362918415640438
+      ]
+    },
+    "warm": {
+      "n": 932,
+      "correct": 753,
+      "accuracy": 0.8079399141630901,
+      "wilson95": [
+        0.7814062361097869,
+        0.8319455176406072
+      ],
+      "coverage": 0.8658798283261803,
+      "answered_accuracy": 0.9330855018587361,
+      "row_labels": [
+        "locked",
+        "latched",
+        "wrong_key",
+        "key_not_turned",
+        "blocked"
+      ],
+      "column_labels": [
+        "locked",
+        "latched",
+        "wrong_key",
+        "key_not_turned",
+        "blocked",
+        "unknown"
+      ],
+      "confusion": [
+        [
+          281,
+          35,
+          0,
+          0,
+          0,
+          103
+        ],
+        [
+          16,
+          6,
+          0,
+          0,
+          0,
+          20
+        ],
+        [
+          0,
+          0,
+          6,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          2,
+          0,
+          0,
+          460,
+          2
+        ]
+      ],
+      "by_cause": {
+        "locked": {
+          "n": 419,
+          "correct": 281,
+          "wilson95": [
+            0.6242714203559938,
+            0.7139167989326904
+          ]
+        },
+        "latched": {
+          "n": 42,
+          "correct": 6,
+          "wilson95": [
+            0.06715967015962647,
+            0.27841089474444775
+          ]
+        },
+        "wrong_key": {
+          "n": 6,
+          "correct": 6,
+          "wilson95": [
+            0.6096657120978346,
+            1
+          ]
+        },
+        "key_not_turned": {
+          "n": 0,
+          "correct": 0,
+          "wilson95": [
+            null,
+            null
+          ]
+        },
+        "blocked": {
+          "n": 465,
+          "correct": 460,
+          "wilson95": [
+            0.9750787228442922,
+            0.9953985919061773
+          ]
+        }
+      },
+      "episode_bootstrap95": [
+        0.5462155074795876,
+        0.8993484154628051
+      ]
+    },
+    "prior_only": {
+      "n": 1204,
+      "correct": 877,
+      "accuracy": 0.728405315614618,
+      "wilson95": [
+        0.7025847456001186,
+        0.7527730300279891
+      ],
+      "coverage": 0.8230897009966778,
+      "answered_accuracy": 0.8849646821392533,
+      "row_labels": [
+        "locked",
+        "latched",
+        "wrong_key",
+        "key_not_turned",
+        "blocked"
+      ],
+      "column_labels": [
+        "locked",
+        "latched",
+        "wrong_key",
+        "key_not_turned",
+        "blocked",
+        "unknown"
+      ],
+      "confusion": [
+        [
+          279,
+          89,
+          0,
+          2,
+          0,
+          175
+        ],
+        [
+          19,
+          12,
+          0,
+          1,
+          0,
+          37
+        ],
+        [
+          0,
+          0,
+          12,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          1,
+          0,
+          0,
+          574,
+          1
+        ]
+      ],
+      "by_cause": {
+        "locked": {
+          "n": 545,
+          "correct": 279,
+          "wilson95": [
+            0.47002429470160273,
+            0.5536619625792035
+          ]
+        },
+        "latched": {
+          "n": 69,
+          "correct": 12,
+          "wilson95": [
+            0.10238368967996812,
+            0.2798362613128917
+          ]
+        },
+        "wrong_key": {
+          "n": 12,
+          "correct": 12,
+          "wilson95": [
+            0.7575059933447592,
+            1
+          ]
+        },
+        "key_not_turned": {
+          "n": 0,
+          "correct": 0,
+          "wilson95": [
+            null,
+            null
+          ]
+        },
+        "blocked": {
+          "n": 578,
+          "correct": 574,
+          "wilson95": [
+            0.9823427162706003,
+            0.9973055905986025
+          ]
+        }
+      },
+      "episode_bootstrap95": [
+        0.5416651459854014,
+        0.8315400962790198
+      ]
+    },
+    "no_recipe": {
+      "n": 1108,
+      "correct": 791,
+      "accuracy": 0.7138989169675091,
+      "wilson95": [
+        0.6865849181594772,
+        0.739734856336755
+      ],
+      "coverage": 0.8140794223826715,
+      "answered_accuracy": 0.876940133037694,
+      "row_labels": [
+        "locked",
+        "latched",
+        "wrong_key",
+        "key_not_turned",
+        "blocked"
+      ],
+      "column_labels": [
+        "locked",
+        "latched",
+        "wrong_key",
+        "key_not_turned",
+        "blocked",
+        "unknown"
+      ],
+      "confusion": [
+        [
+          172,
+          79,
+          0,
+          0,
+          0,
+          144
+        ],
+        [
+          24,
+          30,
+          0,
+          4,
+          0,
+          60
+        ],
+        [
+          0,
+          0,
+          8,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          3,
+          0,
+          0,
+          581,
+          2
+        ]
+      ],
+      "by_cause": {
+        "locked": {
+          "n": 395,
+          "correct": 172,
+          "wilson95": [
+            0.38740136431953937,
+            0.48472827799297674
+          ]
+        },
+        "latched": {
+          "n": 118,
+          "correct": 30,
+          "wilson95": [
+            0.1842822782172189,
+            0.3396892782514648
+          ]
+        },
+        "wrong_key": {
+          "n": 8,
+          "correct": 8,
+          "wilson95": [
+            0.6755924351161198,
+            1
+          ]
+        },
+        "key_not_turned": {
+          "n": 0,
+          "correct": 0,
+          "wilson95": [
+            null,
+            null
+          ]
+        },
+        "blocked": {
+          "n": 587,
+          "correct": 581,
+          "wilson95": [
+            0.9778810817450763,
+            0.9953072269218319
+          ]
+        }
+      }
+    }
+  },
+  "paired": {
+    "warm_minus_cold": {
+      "mean_actions_all_solvable": -18.5,
+      "episode_bootstrap95": [
+        -156.0,
+        158.90499999999994
+      ],
+      "failure_penalized_difference": -18.5,
+      "failure_penalized_bootstrap95": [
+        -156.0,
+        158.90499999999994
+      ],
+      "warm_faster": 6,
+      "n": 10
+    },
+    "warm_minus_prior_only": {
+      "mean_actions_all_solvable": 2.5,
+      "episode_bootstrap95": [
+        -153.6,
+        199.0
+      ],
+      "failure_penalized_difference": 2.5,
+      "failure_penalized_bootstrap95": [
+        -153.6,
+        199.0
+      ],
+      "warm_faster": 4,
+      "n": 10
+    },
+    "warm_minus_scripted": {
+      "mean_actions_all_solvable": 106.3,
+      "episode_bootstrap95": [
+        -43.205,
+        284.2399999999994
+      ],
+      "failure_penalized_difference": 106.3,
+      "failure_penalized_bootstrap95": [
+        -43.205,
+        284.2399999999994
+      ],
+      "warm_faster": 6,
+      "n": 10
+    }
+  },
+  "examples": [
+    {
+      "seed": 712002,
+      "case": "locked",
+      "type": "hd_lever_pull_right",
+      "step": 12,
+      "cause": "locked",
+      "action": [
+        "turn_pull",
+        "p1",
+        1
+      ],
+      "posterior": {
+        "locked": 0.7090031535743031,
+        "latched": 0.2876190043619865,
+        "wrong_key": 9.358501250536305e-14,
+        "key_not_turned": 0.003372879337417526,
+        "blocked": 4.962726199477014e-06
+      },
+      "evidence": [
+        "kind=turn_pull",
+        "stalled=True",
+        "where=none",
+        "angle=none",
+        "inserted=True",
+        "inserted_turned=True",
+        "turned_parts=2",
+        "object_later_turns=False",
+        "later_object_effect=True",
+        "later_goal=True",
+        "same_final_kind=True",
+        "same_final_entity=False"
+      ],
+      "truth": "locked",
+      "correct": true
+    },
+    {
+      "seed": 712002,
+      "case": "locked",
+      "type": "hd_lever_pull_right",
+      "step": 7,
+      "cause": "unknown",
+      "action": [
+        "turn_pull",
+        "p10",
+        -1
+      ],
+      "posterior": {
+        "locked": 0.4949160554319643,
+        "latched": 0.5025210449065441,
+        "wrong_key": 6.495638764924281e-16,
+        "key_not_turned": 0.002558787490406525,
+        "blocked": 4.112171084308402e-06
+      },
+      "evidence": [
+        "kind=turn_pull",
+        "stalled=True",
+        "where=none",
+        "angle=none",
+        "inserted=True",
+        "inserted_turned=True",
+        "turned_parts=1",
+        "object_later_turns=False",
+        "later_object_effect=True",
+        "later_goal=True",
+        "same_final_kind=True",
+        "same_final_entity=True"
+      ],
+      "truth": "locked",
+      "correct": false
+    },
+    {
+      "seed": 712002,
+      "case": "locked",
+      "type": "hd_lever_pull_right",
+      "step": 1,
+      "cause": "latched",
+      "action": [
+        "turn_pull",
+        "p7",
+        -1
+      ],
+      "posterior": {
+        "locked": 0.2713467527846826,
+        "latched": 0.7276079414125681,
+        "wrong_key": 8.010090836827495e-15,
+        "key_not_turned": 0.0010425044057647472,
+        "blocked": 2.8013969762559806e-06
+      },
+      "evidence": [
+        "kind=turn_pull",
+        "stalled=True",
+        "where=none",
+        "angle=none",
+        "inserted=False",
+        "inserted_turned=False",
+        "turned_parts=1",
+        "object_later_turns=False",
+        "later_object_effect=True",
+        "later_goal=True",
+        "same_final_kind=True",
+        "same_final_entity=False"
+      ],
+      "truth": "latched",
+      "correct": true
+    },
+    {
+      "seed": 712003,
+      "case": "key",
+      "type": "hd_lever_pull_right",
+      "step": 279,
+      "cause": "locked",
+      "action": [
+        "turn_pull",
+        "p8",
+        -1
+      ],
+      "posterior": {
+        "locked": 0.7090031535743031,
+        "latched": 0.2876190043619865,
+        "wrong_key": 9.358501250536305e-14,
+        "key_not_turned": 0.003372879337417526,
+        "blocked": 4.962726199477014e-06
+      },
+      "evidence": [
+        "kind=turn_pull",
+        "stalled=True",
+        "where=none",
+        "angle=none",
+        "inserted=True",
+        "inserted_turned=True",
+        "turned_parts=2",
+        "object_later_turns=False",
+        "later_object_effect=True",
+        "later_goal=True",
+        "same_final_kind=True",
+        "same_final_entity=False"
+      ],
+      "truth": "latched",
+      "correct": false
+    },
+    {
+      "seed": 712003,
+      "case": "key",
+      "type": "hd_lever_pull_right",
+      "step": 91,
+      "cause": "wrong_key",
+      "action": [
+        "turn_held",
+        "o1",
+        -1
+      ],
+      "posterior": {
+        "locked": 3.1405670661161585e-13,
+        "latched": 1.2919472016311555e-11,
+        "wrong_key": 0.999999994945421,
+        "key_not_turned": 5.041220568583338e-09,
+        "blocked": 1.2474095631218978e-13
+      },
+      "evidence": [
+        "kind=turn_held",
+        "stalled=True",
+        "where=in",
+        "angle=rest",
+        "inserted=True",
+        "inserted_turned=False",
+        "turned_parts=2",
+        "object_later_turns=False",
+        "later_object_effect=True",
+        "later_goal=True",
+        "same_final_kind=False",
+        "same_final_entity=False"
+      ],
+      "truth": "wrong_key",
+      "correct": true
+    },
+    {
+      "seed": 712002,
+      "case": "locked",
+      "type": "hd_lever_pull_right",
+      "step": 9,
+      "cause": "blocked",
+      "action": [
+        "turn_push",
+        "p10",
+        -1
+      ],
+      "posterior": {
+        "locked": 0.00014252942570766925,
+        "latched": 0.00046661444458462125,
+        "wrong_key": 2.359362926715507e-13,
+        "key_not_turned": 3.6905211955087663e-05,
+        "blocked": 0.9993539509175166
+      },
+      "evidence": [
+        "kind=turn_push",
+        "stalled=True",
+        "where=none",
+        "angle=none",
+        "inserted=True",
+        "inserted_turned=True",
+        "turned_parts=1",
+        "object_later_turns=False",
+        "later_object_effect=True",
+        "later_goal=True",
+        "same_final_kind=False",
+        "same_final_entity=True"
+      ],
+      "truth": "blocked",
+      "correct": true
+    },
+    {
+      "seed": 712005,
+      "case": "blocked",
+      "type": "hd_lever_pull_right",
+      "step": 1,
+      "cause": "latched",
+      "action": [
+        "turn_pull",
+        "p6",
+        -1
+      ],
+      "posterior": {
+        "locked": 0.2918052582878627,
+        "latched": 0.6827179617928845,
+        "wrong_key": 3.4669634424396972e-12,
+        "key_not_turned": 0.011987348645710503,
+        "blocked": 0.013489431270075443
+      },
+      "evidence": [
+        "kind=turn_pull",
+        "stalled=True",
+        "where=none",
+        "angle=none",
+        "inserted=False",
+        "inserted_turned=False",
+        "turned_parts=0",
+        "object_later_turns=False",
+        "later_object_effect=True",
+        "later_goal=False",
+        "same_final_kind=False",
+        "same_final_entity=False"
+      ],
+      "truth": "blocked",
+      "correct": false
+    }
+  ],
+  "replay": {
+    "cold": {
+      "actions": 0,
+      "repaired_episodes": 0
+    },
+    "warm": {
+      "actions": 37,
+      "repaired_episodes": 11
+    },
+    "prior_only": {
+      "actions": 0,
+      "repaired_episodes": 0
+    }
+  },
+  "bootstrap": {
+    "replicates": 5000,
+    "seed": 714000,
+    "unit": "whole scene"
+  }
+}
