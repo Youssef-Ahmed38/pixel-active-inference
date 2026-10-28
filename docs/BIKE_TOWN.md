@@ -155,6 +155,25 @@ it practised (18/18 U-turns on practice and development towns) but only 9/18 whe
 moves 0.3 m, 0/18 at 1.0 m, and 0/18 with a 2.8 m instead of 2.4 m loop: nine gains tuned on one
 geometry do not generalise to another.
 
+### Three training seeds of the practised rule
+The cornering practice chain (v1 progress, v2 lane tracking, v3 with U-turns) was repeated with two
+new search seeds (`--seed 1`, `--seed 2`) and every resulting v3 rider ridden on the same 40 new
+routes (towns 4240-4249, 2 with corners and 2 with a U-turn per town):
+
+| Training seed | Completed | Falls | Heading error | Distance from the lane, mean / max |
+|---|---:|---:|---:|---:|
+| 0 (the published rider) | 40/40 | 0 | 5.4 deg | 0.15 / 0.91 m |
+| 1 | 40/40 | 0 | 4.2 deg | 0.18 / 0.65 m |
+| 2 | 40/40 | 0 | 8.8 deg | 0.18 / 0.87 m |
+| mean +- SD | 120/120 | 0 | 6.1 +- 2.4 deg | 0.17 +- 0.02 m |
+
+The final rider does not depend on a lucky practice run; the intermediate stages do vary (seed 1's
+v2 fell on 7 of 20 routes before the U-turn stage). `results/bike_seeds/`.
+
+    python scripts/bike_g1_turn_practice.py --seed 1 --final-towns 4240 4250 --output results/bike_seeds/turns_v1_seed1.json
+    python scripts/bike_g1_turn_practice.py --seed 1 --start-from results/bike_seeds/turns_v1_seed1.json --track-weight 0.3 --iterations 10 --final-towns 4240 4250 --output results/bike_seeds/turns_v2_seed1.json
+    python scripts/bike_g1_turn_practice.py --seed 1 --start-from results/bike_seeds/turns_v2_seed1.json --u-turns 2 --track-weight 0.3 --iterations 12 --final-towns 4240 4250 --output results/bike_seeds/turns_v3_seed1.json
+
 ### A learned riding policy (PPO, as CycleRL)
 `pai/bike/ppo_rider.py`, `scripts/bike_g1_ppo_train.py`: the policy sees the bicycle's IMU, speed
 and steering, its distance from the lane, the heading to route points 1, 2.5 and 4 m ahead and the

@@ -125,12 +125,13 @@ def main():
     ap.add_argument("--track-weight", type=float, default=0.0,
                     help="practice score = progress - weight x mean cross-track error (m), capped at 2 m")
     ap.add_argument("--final-towns", type=int, nargs=2, default=[4200, 4210])
+    ap.add_argument("--seed", type=int, default=0, help="seed of the cross-entropy search (practice runs)")
     ap.add_argument("--u-turns", type=int, default=0, help="U-turn routes per town (practice, dev, final)")
     args = ap.parse_args()
     u = args.u_turns
     practice, dev, final = (courses(range(4000, 4004), u_turns=u), courses(range(4100, 4105), u_turns=u),
                             courses(range(*args.final_towns), u_turns=u))
-    rng = np.random.default_rng(0)
+    rng = np.random.default_rng(args.seed)
     start = DEFAULT.copy() if args.start_from is None else np.array(json.loads(args.start_from.read_text())["practised"])
     lo, hi = LO, HI
     if args.u_turns:
@@ -184,7 +185,7 @@ def main():
                     "mean_cross_track_m": round(float(np.mean([r["mean_cross_track_m"] for r in dev_res])), 3),
                     "starting_gains_completed": sum(r["completed"] for r in dev_start),
                     "starting_gains_mean_cross_track_m": round(float(np.mean([r["mean_cross_track_m"] for r in dev_start])), 3)},
-            "track_weight": args.track_weight, "u_turns_per_town": u, "start_from": None if args.start_from is None else args.start_from.name,
+            "track_weight": args.track_weight, "search_seed": args.seed, "u_turns_per_town": u, "start_from": None if args.start_from is None else args.start_from.name,
               "summary": summary, "final": final_res}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=1))
