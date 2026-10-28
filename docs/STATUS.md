@@ -54,16 +54,56 @@ The paper draft (`paper/`, IEEEtran in the user's format) is **local only** by t
 `data/paper_overleaf.zip`. Updated 2026-10-28 06:50 with all results above (maze section rewritten
 around the branchy-maze result and the corridor correction; walker figure added).
 
-## Next steps (queue, in order)
+## Next steps (plan agreed with the user, 2026-10-28; in order)
 
-1. Fall causes: gait errors at practised speeds (now 9/48 called push); more seeds for slip.
-2. Walking with wall contact: the walker falls in 24/240 noisy-sensing maze episodes (0 with exact
-   sensing) because the policy never practised touching walls; train Stage 2 with wall contact. Then
-   the agent's view from the robot's own camera instead of the grid sensor (MAZE.md 11).
-3. Audit #4/#5 for the arm: learned cause likelihoods; key chain from recipes instead of a scripted
-   state machine.
-4. Chess: connect HRM to search with learned halting; more games per ladder rung.
-5. Bike: learn from rendered video, not simulator states; Stage 2 balance transfer.
+Division of work: **all walking work is Claude's**; Codex works on other stages (now: Stage 4 key
+chain as a learned recipe, brief `docs/briefs/KEY_CHAIN_RECIPES.md`, CPU only, no walking files).
+
+**A. Walking with wall contact (Claude).** Started: optional solid training walls in
+`pai/locomotion/body.py` (`add_training_walls`, `place_walls`) and `EnvConfig.walls/wall_frac/
+wall_radius` in `pai/locomotion/env.py` (off by default; uncommitted, nothing trained yet).
+1. Wall test in `scripts/locomotion_eval.py`: 40 bodies walk at 0.6 m/s toward a solid wall
+   0.8-1.5 m ahead, keep pushing, then back off (as the maze walker does); falls and contact. Run on
+   v3 first (the "before"). If v3 rarely falls there, find the real cause of the maze falls first.
+2. Train v4 from v3 (~1 h, laptop GPU): about half of the 32 dynamics variants get four solid walls
+   1-3 m from the start; the rest keep open-ground practice (avoid v2's forgetting). No new sensors,
+   no wall reward.
+3. Development check: every existing gate must still pass (stand, walk 10 m, headings, run,
+   pushes); the wall test should improve. If a skill degrades, a short corrective phase (as v3 C).
+4. Final, once, on new seeds: all gates + wall test + the walker in noisy mazes on new mazes (v3:
+   24/240 falls), v3 vs v4 on the same mazes.
+5. Video of a wall bump and recovery; walking and maze reports, README, local paper; PR.
+   Release rule: v4 only if every existing gate holds; otherwise keep v3 and report it.
+
+**B. Fall-cause refinement (Claude), on the released walker (after A, so it is fitted once).**
+1. Own gait errors called push (9/48): find the features; add own-sense evidence (jolt timing vs own
+   leg motion; jolt starting at the torso vs at a foot).
+2. Slip recall that varies by seed (58/60 vs 47/60): make the evidence and learned likelihoods hold
+   across several development seeds.
+3. A fourth cause, **hit a wall** (sudden stop while the legs keep driving), from own senses only.
+4. Refit likelihoods on development falls of the released walker; final on several new seeds with
+   seed-grouped intervals; per-cause results vs the current and the old method on the same falls.
+5. Reports, local paper, PR.
+
+**C. The maze walker sees through its own eyes (Claude; recommended next after A and B).** Today the
+maze agent's view still comes from the grid sensor and its position from the simulator. Next, its
+map comes from the robot's own head camera and its position from its own odometry (with drift).
+That removes the last two pieces handed to it for free in Stages 2+3, and is the strongest claim
+for the application: **from pixels and proprioception to an explored maze, with no ground truth.**
+The noisy- and persistent-sensor work (learned sensor model, learned repeat-look weight, touch as
+an epistemic action) is the preparation for this, since real camera readings are noisy and
+persistent.
+
+**Expected achievement after A and B** (to be confirmed by the final tests): a humanoid that keeps
+all its skills and survives wall contact; a maze walker that rarely falls; falls explained from its
+own senses (gait, push, slip, wall) across seeds; Stage 2 complete as part of the one agent.
+
+**After C, in order:**
+1. Arm audit (Stage 1): learned cause likelihoods instead of authored ones.
+2. Chess (Stage 5): the HRM thinker inside search, with learned halting; more games per ladder rung.
+3. Bicycle (Stage 7): learn from rendered video instead of simulator states; reuse walking balance.
+4. Final paper numbers for every stage (local, the user's format).
+Codex: Stage 4 key chain (running), then further non-walking tasks; Claude reviews each and opens a PR.
 
 ## Housekeeping
 
