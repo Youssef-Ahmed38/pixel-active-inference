@@ -238,3 +238,21 @@ control steps/s at 4,096 parallel riders, the same as CPU threads), and MuJoCo W
 8 GB of GPU memory. The bottleneck was the per-rider Python code; computing observations, progress,
 rewards and the residual rule for all riders as arrays (`FastBikeVecEnv`, identical numbers) is 2.5x
 faster.
+
+## Audit: are the perception and decisions real?
+
+`scripts/bike_g1_audit.py`, development towns 4300-4304 (2 deliveries each), with the **truth guard**
+on: the town's hidden obstacles can only be read inside `pai/bike/town.py:scoring()` (counting
+practice-town outcomes, the world's collision check, and logging each camera reading against the
+truth); any other read raises `TruthAccessError` (tested).
+
+| Test | Delivered | Collisions | What it shows |
+|---|---:|---:|---|
+| Normal rider | 10/10 | 0 | |
+| **Blindfold** (the head camera sees nothing) | 5/10 | 5 | the same as the blind rider (5/10, 5 collisions); all 29 of its readings were "clear": its success comes from what it sees |
+| **Tamper** (the camera sees this town's obstacles; the hidden truth is swapped for another town's on the same streets) | 6/10 | 4 | its 38 readings match what was shown 38/38 and the hidden truth 25/38; on the 13 streets where they differ, all 13 match what was shown: decisions follow the camera |
+| **Determinism** (each delivery ridden twice) | 10/10 identical | | outcome, time, route and every reading are reproducible |
+
+`results/bike_g1_audit.json`.
+
+    python scripts/bike_g1_audit.py --towns 4300 4305 --output results/bike_g1_audit.json

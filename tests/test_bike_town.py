@@ -9,8 +9,10 @@ from pai.bike.town import Town
 def test_town_layout_and_hidden_obstacles():
     t = Town(n=4, seed=4300)
     assert len(t.nodes) == 16 and len(t.edges) == 24 and len(t.houses) == 8
-    assert all(0 not in o.edge for o in t.obstacles)          # the depot's streets stay open
-    assert t.truth["blocked"] and t.truth["partial"]
+    from pai.bike.town import scoring
+    with scoring():
+        assert all(0 not in o.edge for o in t.obstacles)      # the depot's streets stay open
+        assert t.truth["blocked"] and t.truth["partial"]
 
 
 def test_rounded_lane_stays_within_its_radius():
@@ -90,3 +92,15 @@ def test_fast_vector_env_matches_the_reference():
         oa, ra, da, _ = a.step(act)
         ob, rb, db, _ = b.step(act)
         assert np.allclose(oa, ob, atol=1e-5) and np.allclose(ra, rb, atol=1e-5) and (da == db).all()
+
+
+def test_truth_guard_blocks_the_rider_from_hidden_obstacles():
+    import pytest
+    from pai.bike.town import TruthAccessError, scoring
+    t = Town(n=4, seed=4300)
+    with pytest.raises(TruthAccessError):
+        _ = t.truth
+    with pytest.raises(TruthAccessError):
+        _ = t.obstacles
+    with scoring():
+        assert t.truth["blocked"]

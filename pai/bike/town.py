@@ -14,6 +14,7 @@ scoring only.
 
 from __future__ import annotations
 
+from contextlib import contextmanager
 from dataclasses import dataclass, field
 
 import mujoco
@@ -21,6 +22,29 @@ import numpy as np
 
 ROAD_HALF = 2.0
 LANE = 1.0                                   # lane centre offset from the street centre line
+
+
+class TruthAccessError(RuntimeError):
+    """Raised when code outside a ``scoring()`` block reads the town's hidden obstacles."""
+
+
+_SCORING = [0]
+
+
+@contextmanager
+def scoring():
+    """The only place the hidden obstacles may be read: scoring, collision checking (the world's own
+    physics), and counting outcomes in practice towns. The rider's decisions run outside it."""
+    _SCORING[0] += 1
+    try:
+        yield
+    finally:
+        _SCORING[0] -= 1
+
+
+def _check():
+    if _SCORING[0] <= 0:
+        raise TruthAccessError("hidden obstacles read outside scoring(): the rider must find them with its camera")
 
 
 @dataclass
@@ -40,7 +64,7 @@ class Town:
     edges: list = field(default_factory=list)           # (a, b) with a < b
     houses: dict = field(default_factory=dict)          # number -> (edge, pad position, side)
     depot: tuple = (0, (0.0, 0.0))                      # node id, position
-    obstacles: list = field(default_factory=list)
+    hidden: list = field(default_factory=list, repr=False)      # the obstacles (read via scoring())
 
     def __post_init__(self):
         rng = np.random.default_rng(self.seed)
@@ -76,9 +100,9 @@ class Town:
             t = float(rng.uniform(0.3, 0.7))
             pos = tuple(pa + t * (pb - pa))
             if u < 0.2:
-                self.obstacles.append(Obstacle(e, "blocking", pos))
+                self.hidden.append(Obstacle(e, "blocking", pos))
             elif u < 0.45:
-                self.obstacles.append(Obstacle(e, "partial", pos, int(rng.choice([-1, 1]))))
+                self.hidden.append(Obstacle(e, "partial", pos, int(rng.choice([-1, 1]))))
         self._rng = rng
 
     @property
@@ -90,10 +114,17 @@ class Town:
         return g
 
     @property
+    def obstacles(self) -> list:
+        """The hidden obstacles (only inside ``scoring()``)."""
+        _check()
+        return self.hidden
+
+    @property
     def truth(self) -> dict:
-        """Evaluation only: which segments are blocked."""
-        return {"blocked": {o.edge for o in self.obstacles if o.kind == "blocking"},
-                "partial": {o.edge for o in self.obstacles if o.kind == "partial"}}
+        """Evaluation only: which segments are blocked (only inside ``scoring()``)."""
+        _check()
+        return {"blocked": {o.edge for o in self.hidden if o.kind == "blocking"},
+                "partial": {o.edge for o in self.hidden if o.kind == "partial"}}
 
     # ------------------------------------------------------------------ the MuJoCo scene
     def build(self, spec: mujoco.MjSpec, rng=None) -> None:
@@ -163,7 +194,7 @@ class Town:
             wb.add_geom(type=mujoco.mjtGeom.mjGEOM_BOX, pos=[post[0], post[1], 1.0], size=[0.05, 0.05, 1.0],
                         rgba=[0.95, 0.55, 0.1, 1], **vis)
         # obstacles (visual; the rider's camera sees them, contacts are checked geometrically)
-        for k, o in enumerate(self.obstacles):
+        for k, o in enumerate(self.hidden):           # the scene: the camera sees them
             a, b = o.edge
             pa, pb = np.array(self.nodes[a]), np.array(self.nodes[b])
             d = (pb - pa) / np.linalg.norm(pb - pa)

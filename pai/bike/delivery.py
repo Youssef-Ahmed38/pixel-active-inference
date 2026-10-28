@@ -20,7 +20,7 @@ import numpy as np
 
 from pai.bike.navigation import DETOUR, HeadCamera, StreetBelief, avoid_cars, inspect_street, plan, step_cost
 from pai.bike.riding import CORNER_R, LeanFollower, lane_path
-from pai.bike.town import LANE, ROAD_HALF, Town
+from pai.bike.town import LANE, ROAD_HALF, Town, scoring
 
 LOOK_M = 4.0           # streets around a corner (corner buildings hide them from further back)
 LOOK_STRAIGHT_M = 10.0  # the street straight ahead
@@ -35,7 +35,8 @@ def blocked_prior(seeds) -> float:
     for s in seeds:
         t = Town(n=4, seed=s)
         n += sum(0 not in e for e in t.edges)
-        k += len(t.truth["blocked"])
+        with scoring():           # outcomes counted after riding the practice towns
+            k += len(t.truth["blocked"])
     return k / n
 
 
@@ -92,7 +93,9 @@ class Delivery:
         return idx
 
     def _collision(self, xy):
-        for o in self.town.obstacles:
+        with scoring():           # the world's physics, not the rider's knowledge
+            obstacles = list(self.town.obstacles)
+        for o in obstacles:
             a, b = o.edge
             pa, pb = np.array(self.town.nodes[a], float), np.array(self.town.nodes[b], float)
             d = (pb - pa) / np.linalg.norm(pb - pa)
@@ -160,7 +163,9 @@ class Delivery:
                     blocked, where, img, npts = inspect_street(town, self.cam, env.data, a, b, max_range=RANGE_M)
                     looks += 1
                     e = tuple(sorted((a, b)))
-                    truth = "blocking" if e in town.truth["blocked"] else "partial" if e in town.truth["partial"] else "clear"
+                    with scoring():   # logged for scoring the camera, never used by the rider
+                        tr = town.truth
+                    truth = "blocking" if e in tr["blocked"] else "partial" if e in tr["partial"] else "clear"
                     seen = "blocking" if blocked else "partial" if where is not None else "clear"
                     wrong_looks += truth != seen
                     belief.update(e, blocked, where)
