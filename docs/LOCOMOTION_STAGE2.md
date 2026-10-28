@@ -40,30 +40,50 @@ explorer's data better than the random explorer's own model does.
 
 ## Results on fresh seeds
 
-Training: seed 0. Development checks: seeds 777, 51000+, 52000+. **Final gates: seeds 50000–50006,
-never used before**; video 50100. Each test uses 20 bodies with randomised dynamics.
+Training: seed 0. Development checks: seeds 777, 51000+, 52000+. **Final gates: v1 and v2 seeds
+50000–50006, v3 seeds 54000–54006, each never used before**; videos 50100 (v1) and 54100 (v3). Each
+test uses 20 bodies with randomised dynamics.
 
-| Test | Gate | **v1** (released) | v2 (push-trained) |
-|---|---|---|---|
-| Stand 30 s | stands | ✅ 20/20, drift 0.11 m | ✅ 20/20, drift 0.76 m |
-| Walk 10 m at 0.8 m/s | ≥ 90% at ≥ 0.5 m/s | ✅ 20/20, 0.77 m/s | ✅ 20/20, 0.71 m/s |
-| Turn to a commanded heading | within 15° | ✅ 20/20, median 2.5° | ❌ 10/20, median 15.8° |
-| Run at 2.0 m/s | ≥ 1.5 m/s | ✅ 20/20, 1.99 m/s | ❌ 3/20, 1.29 m/s |
-| Push recovery, 0.5 m/s (83 N) | — | 93% | 100% |
-| Push recovery, 1.0 m/s (167 N) | — | 53% | **100%** |
-| Push recovery, 1.25 m/s (208 N) | — | 17% | **93%** |
-| Push recovery, 1.5 m/s (250 N) | — | 0% | 60% |
+| Test | Gate | v1 | v2 (push-trained) | **v3** (released, 2026-10-28) |
+|---|---|---|---|---|
+| Stand 30 s | stands | ✅ 20/20, drift 0.11 m | ✅ 20/20, drift 0.76 m | ✅ 20/20, drift 0.57 m |
+| Walk 10 m at 0.8 m/s | ≥ 90% at ≥ 0.5 m/s | ✅ 20/20, 0.77 m/s | ✅ 20/20, 0.71 m/s | ✅ 20/20, 0.74 m/s |
+| Turn to a commanded heading | within 15° | ✅ 20/20, median 2.5° | ❌ 10/20, median 15.8° | ✅ 20/20, median 1.6° |
+| Run at 2.0 m/s | ≥ 1.5 m/s | ✅ 20/20, 1.99 m/s | ❌ 3/20, 1.29 m/s | ✅ 20/20, 1.95 m/s |
+| Push recovery, 0.5 m/s (83 N) | — | 93% | 100% | 100% |
+| Push recovery, 1.0 m/s (167 N) | — | 53% | **100%** | **100%** |
+| Push recovery, 1.25 m/s (208 N) | — | 17% | **93%** | **93%** |
+| Push recovery, 1.5 m/s (250 N) | — | 0% | 60% | 33% |
 
-Files: `results/locomotion/final_v1.json`, `final_v2.json`.
+Files: `results/locomotion/final_v1.json`, `final_v2.json`, `final_v3.json` (30 pushed bodies per row).
+
+<img src="media/locomotion/g1_locomotion_v3.gif" width="320"> v3 on a fresh body (seed 54100):
+stand, walk, turn to +90°, run, and a 1.25 m/s side push, no fall
+(`media/locomotion/g1_locomotion_v3.mp4`).
 
 **v1** trained 92 minutes (125 M steps) through the whole curriculum. It passes every gate.
 **v2** continued v1 for 57 minutes with pushes up to 1.25 m/s (v1 had practised up to 0.6 m/s).
 It became far more robust to pushes but **forgot part of its heading and speed control**
 (catastrophic forgetting): practice dominated by large pushes crowded out precise tracking. v1 is
-the released controller; v2 is kept as the push-robust variant. Next: v3, continued from v1 with
-pushes increased gradually and the tracking preferences weighted higher, to keep both.
+the released controller; v2 is kept as the push-robust variant.
 
-## Fall causes (development check, not yet a fresh gate)
+**v3 keeps both.** It continued v1 in three phases (`configs/locomotion_v3a/b/c.yaml`, 297 M steps,
+3.5 h in total): A with pushes up to 0.9 m/s, B up to 1.25 m/s, both with the speed and heading
+preferences weighted higher (lin 2.5, yaw 1.6, defaults 2.0 and 0.8); after B the development check
+(seeds 52000+) kept every gate except headings (14/20), so C practised heading commands 60% of the
+time (was 30%) with yaw weight 2.2 and half the learning rate. The development check after C passed
+everything (`results/locomotion/dev_v3.json`, `dev_v3c.json`), and the final gates were then run once
+on new seeds 54000+: every gate passes, and push recovery at 1.0 m/s rises from 53% (v1) to 100%,
+at 1.25 m/s from 17% to 93%. It is weaker than v2 at 1.5 m/s (33% vs 60%). v3 is the released
+controller.
+
+## Fall causes
+
+**Fresh gate (v3, seed 54006, calibration seed 64000): 40% accuracy** (balanced 43%) on 153 scored
+falls. Own gait error is recognised 96%, push 19%, slip 13%: the cause model still attributes most
+pushed and slipped falls to the body's own error. It needs better evidence (e.g. sole forces).
+
+Development check (v1):
 
 On 180 injected falls (60 each, seed 51006, calibration on 90 undisturbed falls, seed 61000):
 accuracy **59%**. Own gait error is recognised 97%, push 42%, slip 38%. Pushes and slips are often

@@ -1,0 +1,285 @@
+{
+  "policy": "runs/locomotion/policy_v3/policy.pt",
+  "policy_iteration": 6046,
+  "policy_stage": 4,
+  "policy_steps": 297172992,
+  "commit": "9b53ff1",
+  "seeds_start": 54000,
+  "stand": {
+    "seed": 54000,
+    "starts": 20,
+    "seconds": 30.0,
+    "stood_rate": 1.0,
+    "median_drift_m": 0.5669914034615826,
+    "max_drift_m": 1.0041666881679079,
+    "seconds_wall": 6.1
+  },
+  "walk_10m": {
+    "seed": 54001,
+    "starts": 20,
+    "command_mps": 0.8,
+    "distance_m": 10.0,
+    "time_limit_s": 20.0,
+    "success_rate": 1.0,
+    "falls": 0,
+    "mean_speed_to_10m_mps": 0.7360170456742148,
+    "forward_distance_m": [
+      15.12,
+      15.24,
+      14.61,
+      14.85,
+      14.11,
+      15.22,
+      14.63,
+      14.97,
+      14.09,
+      14.65,
+      13.91,
+      15.4,
+      15.53,
+      15.42,
+      14.41,
+      14.59,
+      14.31,
+      14.05,
+      15.19,
+      15.18
+    ],
+    "seconds_wall": 4.7
+  },
+  "headings": {
+    "seed": 54002,
+    "starts": 20,
+    "speed_mps": 0.5,
+    "seconds": 8.0,
+    "turns_deg": [
+      90.0,
+      -90.0,
+      180.0,
+      45.0,
+      -45.0,
+      135.0,
+      -135.0,
+      60.0,
+      -60.0,
+      120.0,
+      90.0,
+      -90.0,
+      180.0,
+      45.0,
+      -45.0,
+      135.0,
+      -135.0,
+      60.0,
+      -60.0,
+      120.0
+    ],
+    "success_rate": 1.0,
+    "tolerance_deg": 15.0,
+    "median_error_deg": 1.6377996092033282,
+    "falls": 0,
+    "seconds_wall": 2.7
+  },
+  "run": {
+    "seed": 54003,
+    "starts": 20,
+    "command_mps": 2.0,
+    "need_mps": 1.5,
+    "success_rate": 1.0,
+    "falls": 0,
+    "median_speed_mps": 1.9500434214599593,
+    "seconds_wall": 3.1
+  },
+  "speeds": {
+    "seed": 54004,
+    "seconds": 10.0,
+    "measured_last_s": 6.0,
+    "rows": [
+      {
+        "command_mps": 0.0,
+        "bodies": 10,
+        "falls": 0,
+        "mean_forward_mps": 0.00021292659646484686,
+        "sd_forward_mps": 0.009466244535519473
+      },
+      {
+        "command_mps": 0.25,
+        "bodies": 10,
+        "falls": 0,
+        "mean_forward_mps": 0.23207617312466827,
+        "sd_forward_mps": 0.011597512614394028
+      },
+      {
+        "command_mps": 0.5,
+        "bodies": 10,
+        "falls": 0,
+        "mean_forward_mps": 0.45613995536277346,
+        "sd_forward_mps": 0.010823294816932469
+      },
+      {
+        "command_mps": 0.75,
+        "bodies": 10,
+        "falls": 0,
+        "mean_forward_mps": 0.6885773474082274,
+        "sd_forward_mps": 0.013451064667263679
+      },
+      {
+        "command_mps": 1.0,
+        "bodies": 10,
+        "falls": 0,
+        "mean_forward_mps": 0.9494980389085113,
+        "sd_forward_mps": 0.018412474763352282
+      },
+      {
+        "command_mps": 1.25,
+        "bodies": 10,
+        "falls": 0,
+        "mean_forward_mps": 1.193062031315853,
+        "sd_forward_mps": 0.019818072497443457
+      },
+      {
+        "command_mps": 1.5,
+        "bodies": 10,
+        "falls": 0,
+        "mean_forward_mps": 1.4251486669442142,
+        "sd_forward_mps": 0.02665102352969838
+      },
+      {
+        "command_mps": 1.75,
+        "bodies": 10,
+        "falls": 0,
+        "mean_forward_mps": 1.6712157077625627,
+        "sd_forward_mps": 0.03314081452789448
+      },
+      {
+        "command_mps": 2.0,
+        "bodies": 10,
+        "falls": 0,
+        "mean_forward_mps": 1.9565416623900327,
+        "sd_forward_mps": 0.03283281129438529
+      }
+    ],
+    "seconds_wall": 4.9
+  },
+  "pushes": {
+    "seed": 54005,
+    "walk_mps": 0.5,
+    "push_s": 0.2,
+    "after_s": 4.0,
+    "rows": [
+      {
+        "push_dv_mps": 0.25,
+        "push_force_N": 41.7,
+        "bodies": 30,
+        "recovered_rate": 1.0
+      },
+      {
+        "push_dv_mps": 0.5,
+        "push_force_N": 83.4,
+        "bodies": 30,
+        "recovered_rate": 1.0
+      },
+      {
+        "push_dv_mps": 0.75,
+        "push_force_N": 125.0,
+        "bodies": 30,
+        "recovered_rate": 1.0
+      },
+      {
+        "push_dv_mps": 1.0,
+        "push_force_N": 166.7,
+        "bodies": 30,
+        "recovered_rate": 1.0
+      },
+      {
+        "push_dv_mps": 1.25,
+        "push_force_N": 208.4,
+        "bodies": 30,
+        "recovered_rate": 0.9333333333333333
+      },
+      {
+        "push_dv_mps": 1.5,
+        "push_force_N": 250.1,
+        "bodies": 30,
+        "recovered_rate": 0.3333333333333333
+      },
+      {
+        "push_dv_mps": 2.0,
+        "push_force_N": 333.4,
+        "bodies": 30,
+        "recovered_rate": 0.1
+      }
+    ],
+    "seconds_wall": 6.3
+  },
+  "fall_causes": {
+    "seed": 54006,
+    "calibration_seed": 64000,
+    "calibration": {
+      "mu_log": [
+        1.2973467573057118,
+        -0.09876461393588797
+      ],
+      "sd_log": [
+        0.1567871258083821,
+        0.6608690489772366
+      ],
+      "n": 70,
+      "median_U": 3.65957403699574,
+      "median_S": 0.9059559323287188
+    },
+    "calibration_falls": 70,
+    "injected": {
+      "gait": 60,
+      "push": 60,
+      "slip": 60
+    },
+    "surprise_walking_median": 5.451637658675511,
+    "falls_scored": 153,
+    "accuracy": 0.39869281045751637,
+    "balanced_accuracy": 0.4271148113886319,
+    "per_class_recall": {
+      "gait": 0.9565217391304348,
+      "push": 0.19148936170212766,
+      "slip": 0.13333333333333333
+    },
+    "confusion_true_by_pred": {
+      "gait": {
+        "gait": 44,
+        "push": 1,
+        "slip": 1
+      },
+      "push": {
+        "gait": 38,
+        "push": 9,
+        "slip": 0
+      },
+      "slip": {
+        "gait": 49,
+        "push": 3,
+        "slip": 8
+      }
+    },
+    "falls_by_cause": {
+      "gait": 46,
+      "push": 47,
+      "slip": 60
+    },
+    "surprise_last_0.2s_before_fall_median": 12.393387603759766,
+    "median_features": {
+      "gait": [
+        3.496,
+        1.002
+      ],
+      "push": [
+        3.966,
+        0.308
+      ],
+      "slip": [
+        3.236,
+        2.426
+      ]
+    },
+    "seconds_wall": 18.0
+  }
+}

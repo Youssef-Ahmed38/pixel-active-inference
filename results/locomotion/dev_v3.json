@@ -1,0 +1,144 @@
+{
+  "policy": "runs/locomotion/policy_v3/policy.pt",
+  "policy_iteration": 5028,
+  "policy_stage": 4,
+  "policy_steps": 247136256,
+  "commit": "5d5b9f5",
+  "seeds_start": 52000,
+  "stand": {
+    "seed": 52000,
+    "starts": 20,
+    "seconds": 30.0,
+    "stood_rate": 1.0,
+    "median_drift_m": 0.3489879104180119,
+    "max_drift_m": 0.8361658305780165,
+    "seconds_wall": 7.0
+  },
+  "walk_10m": {
+    "seed": 52001,
+    "starts": 20,
+    "command_mps": 0.8,
+    "distance_m": 10.0,
+    "time_limit_s": 20.0,
+    "success_rate": 1.0,
+    "falls": 0,
+    "mean_speed_to_10m_mps": 0.7818536480537579,
+    "forward_distance_m": [
+      16.02,
+      15.54,
+      15.59,
+      15.69,
+      15.75,
+      16.07,
+      15.85,
+      15.71,
+      15.39,
+      15.6,
+      15.53,
+      15.79,
+      15.27,
+      15.99,
+      15.61,
+      15.76,
+      15.81,
+      15.98,
+      15.73,
+      15.83
+    ],
+    "seconds_wall": 4.7
+  },
+  "headings": {
+    "seed": 52002,
+    "starts": 20,
+    "speed_mps": 0.5,
+    "seconds": 8.0,
+    "turns_deg": [
+      90.0,
+      -90.0,
+      180.0,
+      45.0,
+      -45.0,
+      135.0,
+      -135.0,
+      60.0,
+      -60.0,
+      120.0,
+      90.0,
+      -90.0,
+      180.0,
+      45.0,
+      -45.0,
+      135.0,
+      -135.0,
+      60.0,
+      -60.0,
+      120.0
+    ],
+    "success_rate": 0.7,
+    "tolerance_deg": 15.0,
+    "median_error_deg": 8.297577385025168,
+    "falls": 0,
+    "seconds_wall": 2.6
+  },
+  "run": {
+    "seed": 52003,
+    "starts": 20,
+    "command_mps": 2.0,
+    "need_mps": 1.5,
+    "success_rate": 1.0,
+    "falls": 0,
+    "median_speed_mps": 2.0176649142004788,
+    "seconds_wall": 3.3
+  },
+  "pushes": {
+    "seed": 52005,
+    "walk_mps": 0.5,
+    "push_s": 0.2,
+    "after_s": 4.0,
+    "rows": [
+      {
+        "push_dv_mps": 0.25,
+        "push_force_N": 41.7,
+        "bodies": 30,
+        "recovered_rate": 1.0
+      },
+      {
+        "push_dv_mps": 0.5,
+        "push_force_N": 83.4,
+        "bodies": 30,
+        "recovered_rate": 1.0
+      },
+      {
+        "push_dv_mps": 0.75,
+        "push_force_N": 125.0,
+        "bodies": 30,
+        "recovered_rate": 1.0
+      },
+      {
+        "push_dv_mps": 1.0,
+        "push_force_N": 166.7,
+        "bodies": 30,
+        "recovered_rate": 0.9666666666666667
+      },
+      {
+        "push_dv_mps": 1.25,
+        "push_force_N": 208.4,
+        "bodies": 30,
+        "recovered_rate": 0.7666666666666667
+      },
+      {
+        "push_dv_mps": 1.5,
+        "push_force_N": 250.1,
+        "bodies": 30,
+        "recovered_rate": 0.4666666666666667
+      },
+      {
+        "push_dv_mps": 2.0,
+        "push_force_N": 333.4,
+        "bodies": 30,
+        "recovered_rate": 0.03333333333333333
+      }
+    ],
+    "seconds_wall": 7.3
+  }
+}

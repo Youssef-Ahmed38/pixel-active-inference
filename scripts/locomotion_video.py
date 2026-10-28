@@ -39,6 +39,7 @@ def main():
     ap.add_argument("--seed", type=int, default=50100)
     ap.add_argument("--out", default="docs/media/locomotion/g1_locomotion")
     ap.add_argument("--fps", type=int, default=25)
+    ap.add_argument("--push-dv", type=float, default=1.0, help="speed change of the scripted side push")
     args = ap.parse_args()
     ctrl = LocomotionController(Path(args.policy))
     env = LocomotionEnv(1, EnvConfig(nthread=1, n_variants=1, episode_s=1e5), seed=args.seed, stage=4)
@@ -58,7 +59,9 @@ def main():
     every = max(1, int(round(1 / (args.fps * env.cfg.ctrl_dt))))
     k = 0
     falls = 0
-    for secs, label, vx, head, push in SCRIPT:
+    script = [(secs, label.replace("1.0 m/s", f"{args.push_dv:g} m/s") if push else label, vx, head,
+               args.push_dv if push else 0.0) for secs, label, vx, head, push in SCRIPT]
+    for secs, label, vx, head, push in script:
         env.set_command([0], vx, 0.0, 0.0, heading=wrap(yaw0 + np.deg2rad(head)))
         if push:
             f = env.push_force_for_dv(push)

@@ -14,7 +14,7 @@ an independent audit of what is learned vs scripted: [docs/AUDIT_OUTSIDE_BUILDS.
 | Stage | What the agent does | Latest result (fresh seeds) | Still open | Report |
 |---|---|---|---|---|
 | 1 arm | puts objects where asked, explains surprises (push, heavier, slippery, moved camera), adapts | exact state: task **91%**, cause **88%**; from camera images: task **75%**, cause **66%** | slippery block from pixels (35%) | below |
-| 2 walking | Unitree G1 learns to stand, walk, turn and run from its own exploration | stand, walk 10 m, headings, run: **20/20 each**; pushes 93% at 0.5 m/s | push robustness without forgetting (v3 training), fall causes 59% | [LOCOMOTION_STAGE2](docs/LOCOMOTION_STAGE2.md) |
+| 2 walking | Unitree G1 learns to stand, walk, turn and run from its own exploration | v3: stand, walk 10 m, headings, run: **20/20 each**; pushes **100%** at 1.0 m/s, 93% at 1.25 m/s (v1: 53%, 17%) | fall causes 40% (push and slip taken for own gait error) | [LOCOMOTION_STAGE2](docs/LOCOMOTION_STAGE2.md) |
 | 3 maze | explores with a Bayesian map and expected free energy over routes | goal found **79%** vs nearest frontier 60% (p = 0.003, 100 mazes); ties the information-gain baseline (78%); under random sensor noise no rule wins; with persistent misreads, learning that repeat looks are useless + touching doubtful walls: **47%** vs 9-13% (p < 1e-6); sensor model learned from own looks and bumps | curiosity under noise; use the learned walker | [MAZE](docs/MAZE.md) |
 | 4 doors, keys | discovers how to open locked doors by experiment | mock: 99.9% solved in 111.6 actions (novelty 80.9%); physics 12/25 with decoys | key handling in physics; recipes instead of a scripted key chain | [DISCOVERY](docs/DISCOVERY.md) |
 | 5 chess | learned rules, learned value, search; Stockfish only as a teacher | **1037** conditional engine-anchor Elo [863, 1134] at 1 s/move; beats its old self 17-2-1 | still weaker than Stockfish 1320-1700; HRM in search | [CHESS_STRENGTH](docs/CHESS_STRENGTH.md) |
@@ -23,13 +23,14 @@ an independent audit of what is learned vs scripted: [docs/AUDIT_OUTSIDE_BUILDS.
 
 ### Stage 2: a humanoid that learns to walk
 
-<img src="docs/media/locomotion/g1_locomotion.gif" width="400">
+<img src="docs/media/locomotion/g1_locomotion_v3.gif" width="400">
 
 The G1 learns a body model by curious motor babbling, then practises stand → balance → walk → turn →
 run with PPO and a curiosity bonus, on the laptop GPU. Goals are speed and heading commands, so the
-maze and bike stages can reuse it. The released controller passes every gate on fresh seeds; a
-push-trained variant became far more robust (93% at 1.25 m/s) but forgot part of its turning and
-running, which v3 training addresses. Details: [docs/LOCOMOTION_STAGE2.md](docs/LOCOMOTION_STAGE2.md).
+maze and bike stages can reuse it. The released controller (v3) passes every gate on fresh seeds
+and recovers from 100% of 1.0 m/s pushes and 93% of 1.25 m/s pushes (v1: 53% and 17%); an earlier
+push-only training run forgot how to turn and run, so v3 kept practising headings while pushes grew.
+Naming the cause of a fall is still weak (40%). Details: [docs/LOCOMOTION_STAGE2.md](docs/LOCOMOTION_STAGE2.md).
 
 ### Stage 5: chess strength
 
