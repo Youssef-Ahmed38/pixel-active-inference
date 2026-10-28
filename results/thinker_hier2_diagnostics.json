@@ -1,0 +1,87 @@
+{
+  "per_condition": {
+    "none": {
+      "median_holding_belief_steps": 50.5,
+      "episodes_with_slip_event": 29,
+      "median_episode_held_absolute_vertical_force_residual_N": 0.4875509738922119,
+      "phase_steps": {
+        "above_object": 2654,
+        "at_object": 1083,
+        "grasped": 67,
+        "lifted": 453,
+        "over_target": 1743
+      }
+    },
+    "push": {
+      "median_holding_belief_steps": 52.0,
+      "episodes_with_slip_event": 22,
+      "median_episode_held_absolute_vertical_force_residual_N": 0.49673688411712646,
+      "phase_steps": {
+        "above_object": 2761,
+        "at_object": 1003,
+        "grasped": 69,
+        "lifted": 468,
+        "over_target": 1699
+      }
+    },
+    "heavier_object": {
+      "median_holding_belief_steps": 48.0,
+      "episodes_with_slip_event": 7,
+      "median_episode_held_absolute_vertical_force_residual_N": 4.387538194656372,
+      "phase_steps": {
+        "above_object": 2318,
+        "at_object": 1537,
+        "grasped": 83,
+        "lifted": 605,
+        "over_target": 1457
+      }
+    },
+    "slippery_object": {
+      "median_holding_belief_steps": 24.5,
+      "episodes_with_slip_event": 14,
+      "median_episode_held_absolute_vertical_force_residual_N": 0.12067198753356934,
+      "phase_steps": {
+        "above_object": 2598,
+        "at_object": 2221,
+        "grasped": 107,
+        "lifted": 717,
+        "over_target": 357
+      }
+    },
+    "camera_shift": {
+      "median_holding_belief_steps": 28.0,
+      "episodes_with_slip_event": 2,
+      "median_episode_held_absolute_vertical_force_residual_N": 1.5594158172607422,
+      "phase_steps": {
+        "above_object": 1420,
+        "at_object": 2796,
+        "grasped": 259,
+        "lifted": 1365,
+        "over_target": 160
+      }
+    }
+  },
+  "calibration_force_floors_N": {
+    "above_object": [
+      32.48305222174519,
+      17.424116132477046,
+      20.521188346257585
+    ],
+    "at_object": [
+      4.7279141597797745,
+      0.3,
+      17.336414552359148
+    ],
+    "lifted": [
+      22.05180363274241,
+      3.6942319036039115,
+      13.665331581467218
+    ],
+    "over_target": [
+      24.53429519315768,
+      10.852501056199197,
+      9.975394686202035
+    ]
+  },
+  "interpretation": "Descriptive scoring after the failed gate; not fitted or used for behaviour/training. Holding is a belief; simulator slip events are audit heuristics."
+}

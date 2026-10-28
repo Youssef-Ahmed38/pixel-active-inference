@@ -1,0 +1,14 @@
+{
+  "previous_round_files_unchanged": 3389,
+  "previous_round_text_unchanged": true,
+  "stream_counts": {
+    "calibration": 8,
+    "development": 200,
+    "train": 1000,
+    "final": 200
+  },
+  "final_replays": 2400,
+  "trained_models": 9,
+  "guarded_sensory_loading_passed": true,
+  "passing_tests": 66
+}

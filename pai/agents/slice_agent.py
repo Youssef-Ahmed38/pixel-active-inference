@@ -42,9 +42,10 @@ def run_episode(env, wm, cfg, episode: int, seed: int, disturbances: list[dict] 
                 frames: list | None = None, calibration: Calibration | None = None,
                 raw: list | None = None, perceive=None, adapt: bool = True,
                 evidence: list | None = None, recipe=None, cognitive_memory=None,
-                online_thinker=None) -> EpisodeRecord:
+                online_thinker=None, sensory: list | None = None) -> EpisodeRecord:
     """raw, if given, collects (residual, model_sigma, step name) per step, used to calibrate
     surprise. evidence, if given, collects (z, holding, subgoal index) per step for the thinker.
+    sensory: optional raw own-token/action stream; never includes events, labels, or disturbance parameters.
     adapt: act on confident explanations (off for the ablation).
     recipe: a recalled pai.memory.recipes.Recipe; its waypoints become an extra planner candidate."""
     sc = cfg.slice
@@ -109,6 +110,10 @@ def run_episode(env, wm, cfg, episode: int, seed: int, disturbances: list[dict] 
             if frames is not None and env.t % 4 == 0:
                 frames.append(annotate(obs["image"], goal_text, goal.current.name, level, belief, env.t * env.control_dt))
         new_tokens = sense(obs, prev_ee)
+        if sensory is not None:
+            sensory.append(dict(before=tokens.copy(), after=new_tokens.copy(), action=a_np.copy(),
+                                holding=bool(holding), phase=int(goal.index), t=int(k),
+                                q=obs['q'].copy(), dq=obs['dq'].copy()))
         err = new_tokens[:, POS] - (tokens[:, POS] + pred.delta[0, :, :3].cpu().numpy())   # (N, 3)
         var = (pred.aleatoric + pred.epistemic)[0, :, :3].cpu().numpy()
         residual = np.r_[err[0], new_tokens[0, FORCE] - pred.force[0].cpu().numpy(),

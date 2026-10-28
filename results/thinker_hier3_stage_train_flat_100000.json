@@ -1,0 +1,11 @@
+{
+  "command": [
+    "python",
+    "scripts/thinker_hier_round3_train.py",
+    "--kind",
+    "flat",
+    "--seed",
+    "100000"
+  ],
+  "exit_code": 0
+}

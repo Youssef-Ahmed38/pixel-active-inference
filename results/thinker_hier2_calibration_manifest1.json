@@ -1,0 +1,39 @@
+{
+  "split": "calibration",
+  "worker": 1,
+  "workers": 2,
+  "source_hashes": {
+    "scripts/thinker_hier_round2.py": "f2aa599dffa174f755e456d67403e18e2b86a42823859423416b0dded524366a",
+    "pai/thinker/hier_sensors.py": "42fd7a0d7bbf68a51ac8f633d341eb582f09c27d06ba5db5888092e827099c54",
+    "pai/agents/slice_agent.py": "d557998f64cb80e6bbb80de0e411d91e5b0266ad684d95d10862937e99e1c824",
+    "configs/tabletop.yaml": "99e9d2935fd2de292c2b6f324cc70c9bf818b0aabc0798a50a1d8dcde28f4768"
+  },
+  "world_model_sha256": "2e53d10bb944c3498b6aed22f8bccd209950155a4bdd465f08e3533085f53bb9",
+  "episodes": [
+    {
+      "index": 1,
+      "path": "results/thinker_hier2_calibration_0001.npz",
+      "sha256": "e7c03355ef8aaf8ee1dace5c4c16007d0ec9e438fadbe61e1ee59209a2686abc",
+      "steps": 150
+    },
+    {
+      "index": 3,
+      "path": "results/thinker_hier2_calibration_0003.npz",
+      "sha256": "adc25e4425990c6ae9d2d0c00a3cedd5a2787eaf1635cdf3a357a63b85af5a6d",
+      "steps": 150
+    },
+    {
+      "index": 5,
+      "path": "results/thinker_hier2_calibration_0005.npz",
+      "sha256": "9718599c90dcccf748cd651bd3530bd2098b4f6cb897c835c226b708c4ef9f78",
+      "steps": 150
+    },
+    {
+      "index": 7,
+      "path": "results/thinker_hier2_calibration_0007.npz",
+      "sha256": "b7cd16ff39ad86543f30c3cf6f466cb7544c7d36717f6900eb775c39348ffa9a",
+      "steps": 150
+    }
+  ],
+  "complete": true
+}

@@ -1,0 +1,21 @@
+{
+  "refinement_cluster_gain": 0.025000000000000022,
+  "refinement_paired_seed_t95": [
+    -0.2352423262545693,
+    0.28524232625456936
+  ],
+  "refinement_mse_ratio": 1.0000684344849078,
+  "refinement_probe_gain": -0.00666666666666671,
+  "hierarchical_timescales": {
+    "level1": 9.253333333333332,
+    "level2": 4.951666666666667,
+    "level3": 16.19666666666667
+  },
+  "strict_timescale_order": false,
+  "final_full_post20": [
+    151,
+    151,
+    151
+  ],
+  "scope": "Descriptive interpretation only, after final scoring; no model/readout/source changes or new physical episodes"
+}

@@ -1,0 +1,8 @@
+{
+  "command": [
+    "python",
+    "scripts/thinker_hier_round3_evaluate.py",
+    "development"
+  ],
+  "exit_code": 0
+}

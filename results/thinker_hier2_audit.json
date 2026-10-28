@@ -1,0 +1,13 @@
+{
+  "round1_files_unchanged": 2949,
+  "round1_text_unchanged": true,
+  "audited_streams": {
+    "calibration": 8,
+    "development": 200
+  },
+  "collection_sources_and_world_model_unchanged": true,
+  "reference_source_sha256": "b8bc059371003492bffbdc1479bee10b833b8d5e55207d3ba98e191573abe2bf",
+  "reference_replays_identical": 200,
+  "models_trained": 0,
+  "final_streams": 0
+}

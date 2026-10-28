@@ -1,0 +1,9 @@
+{
+  "files": {
+    "results/thinker_hier3_final_manifest0.json": "f5ab7cd48b730a16920e6b02c00a7a34b6e872f7be46d4de729ba7d02bbfaac2",
+    "results/thinker_hier3_final_manifest1.json": "46767e99b9f52ed51eb5425d210ec120e16f0a6889a61816b95d47e7efe1a462",
+    "results/thinker_hier3_final_truth0.json": "48a6f2382e3b6a1be6097856b94a1e2f0e8b8fb5f6047bdd3916eaf672d1d635",
+    "results/thinker_hier3_final_truth1.json": "126a255b696a7a7dbaae0b96cbae5713db6ecf5150e2c8b99c56f3017b09a3c0"
+  },
+  "rule": "Seal immutable capture before the first final model score"
+}
