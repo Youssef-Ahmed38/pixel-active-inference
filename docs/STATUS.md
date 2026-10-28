@@ -51,20 +51,19 @@ us). PR descriptions must not mention Claude.
 
 The paper draft (`paper/`, IEEEtran in the user's format) is **local only** by the user's choice:
 `paper/` is in `.git/info/exclude`; numbers live in `paper/numbers.tex`; compile on Overleaf from
-`data/paper_overleaf.zip`. Not yet updated with today's numbers (fall causes 92.5% and the speed
-control, language v3, maze correction, branchy mazes, walker with solid walls and noise).
+`data/paper_overleaf.zip`. Updated 2026-10-28 06:50 with all results above (maze section rewritten
+around the branchy-maze result and the corridor correction; walker figure added).
 
 ## Next steps (queue, in order)
 
-1. Update `paper/numbers.tex` with the results above.
-2. Fall causes: gait errors at practised speeds (now 9/48 called push); more seeds for slip.
-3. Walking with wall contact: the walker falls in 24/240 noisy-sensing maze episodes (0 with exact
+1. Fall causes: gait errors at practised speeds (now 9/48 called push); more seeds for slip.
+2. Walking with wall contact: the walker falls in 24/240 noisy-sensing maze episodes (0 with exact
    sensing) because the policy never practised touching walls; train Stage 2 with wall contact. Then
    the agent's view from the robot's own camera instead of the grid sensor (MAZE.md 11).
-4. Audit #4/#5 for the arm: learned cause likelihoods; key chain from recipes instead of a scripted
+3. Audit #4/#5 for the arm: learned cause likelihoods; key chain from recipes instead of a scripted
    state machine.
-5. Chess: connect HRM to search with learned halting; more games per ladder rung.
-6. Bike: learn from rendered video, not simulator states; Stage 2 balance transfer.
+4. Chess: connect HRM to search with learned halting; more games per ladder rung.
+5. Bike: learn from rendered video, not simulator states; Stage 2 balance transfer.
 
 ## Housekeeping
 
