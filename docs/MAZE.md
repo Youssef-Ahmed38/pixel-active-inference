@@ -2,6 +2,23 @@
 
 This document details the Active Inference implementation of Stage 3 in **Pixel Active Inference** (a research project for PhD application). 
 
+> **Correction (2026-10-28, later the same day).** A bug made the map give every unobserved cell
+> the information value of the first one it computed (`expected_cell_information_gain` cached one
+> number). Fixed (per-cell cache). Rerun on the same final mazes 70000-70099: route EFE **71%** vs
+> nearest frontier 60% (p = 0.10, was 79% vs 60%, p = 0.003); a new set 73000-73099 gives 77% vs 77%.
+> So with exact sensing information-seeking is at best a few points better than nearest frontier,
+> **not significantly**. The persistent-misread result holds with the fix: **49%** vs 6-13%
+> (`results/maze_v3_recheck_*.json`). A spatial prior learned from the agent's own practice maps
+> (`SpatialPrior.fit_from_beliefs`) does as well as one counted from true layouts; neither helps
+> consistently (`results/maze_v3_prior_*.json`). The tables below are kept as first measured.
+>
+> Seeds 73000-73099, goal found out of 100 (route EFE vs nearest frontier vs info-gain frontier;
+> paired sign tests against route EFE): default prior exact 77 / 77 / 72, noisy 59 / 56 / 62; true-layout
+> prior exact 72 / 77 / **83** (info-gain beats route EFE, p = 0.035), noisy **71** / 69 / 58 (route
+> EFE beats info-gain, p = 0.019); self-learned prior exact 77 / 76 / 78, noisy 61 / 63 / 68. No
+> difference between route EFE and nearest frontier is significant under any prior. The dev lead
+> for the self prior (83% exact, 70% noisy on 20000-20029) did not replicate (77%, 61%).
+
 > **v3 (2026-10-28): route-level EFE and noisy sensing.** Final test on 100 fresh mazes (seeds
 > 70000-70099, settings frozen on development seeds 20000-20029). Goal found within 160 steps:
 >
@@ -363,6 +380,28 @@ Reproduce:
 .venv/Scripts/python scripts/maze_v3_eval.py --test-start 20000 --num-test-mazes 30 --effort-weight 2.0 --switch-margin 0 --output data/maze_dev/v3_dev.json
 .venv/Scripts/python scripts/maze_v3_eval.py --test-start 70000 --num-test-mazes 100 --effort-weight 2.0 --switch-margin 0 --output results/maze_v3_final.json
 ```
+
+## 11. The learned G1 walker inside the maze, and branchy mazes
+
+`pai/maze/walker.py`: the maze's wall cells become boxes in the G1's MuJoCo scene; `WalkerMaze` keeps
+the grid interface, so every maze agent runs unchanged, and each move is walked by the released v3
+walking policy, steered only through its speed and heading goals. Simplifications: walls are visual,
+not colliders (entering a wall cell is detected from the pelvis position, then the body backs off);
+the agent's local view still comes from the grid sensor and its cell from the simulator pose; a fall
+ends the episode. **30 fresh mazes (75000-75029), exact sensing:** the walker gives the same outcome
+as the instant grid body in **30/30 mazes** for both the route-EFE agent (67%) and nearest frontier
+(73%), with **0 falls and 0 bumps** in about 16,000 s of walking (1 timed-out walk per agent).
+`results/maze_walker.json`, `scripts/maze_walker_eval.py`.
+
+Videos (`scripts/maze_walker_demo.py`): `media/maze/walker_maze.mp4` (third person + belief map) and
+`media/maze/walker_maze_branchy_pov.mp4` (adds the robot's eye view, the raw sensor patch it
+receives, and its decision: chosen target and the top alternatives with their EFE terms).
+
+<img src="media/maze/walker_maze_branchy_pov.gif" width="480">
+
+**Branchy mazes** (`MazeWorld(generator="prim", loop_probability=0.25, rooms=3)`; the default DFS
+mazes are unchanged): about 104 junctions per maze vs 31, twice as many dead ends, three open rooms
+(`media/maze/maze_styles.png`). `scripts/maze_v3_eval.py --maze-style branchy`. Not evaluated yet.
 
 # First build (v1), before the active-inference rewrite
 

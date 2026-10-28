@@ -1,6 +1,6 @@
-# Status: where we stopped (updated 2026-10-28, 04:30)
+# Status: where we stopped (updated 2026-10-28, 06:00)
 
-## Done (on `main`, pushed)
+## Results
 
 | Stage | State | Key result (fresh seeds) | Report |
 |---|---|---|---|
@@ -8,58 +8,51 @@
 | 1 arm, from camera | done (gate > 50%) | task 75%, cause 66% (slippery block 35% is the weak spot) | `results/pixel_v3` |
 | Perception (slots) | done | object IoU 0.68, position 7.8 mm mean | `results/slots/joba_log.jsonl` |
 | Thinker (HRM) gate | passed | 96.0% agreement with the Bayesian teacher (transformer 95.8%) | `results/thinker/real_c1000.md` |
-| 2 walking (G1) | v3 released | stand, walk 10 m, headings, run: 20/20 each; pushes 100% at 1.0 m/s, 93% at 1.25 m/s; fall causes 40% (fresh) | `docs/LOCOMOTION_STAGE2.md` |
-| 3 maze | v3: route EFE + noisy sensing | goal 79% vs nearest frontier 60% (p=0.003), ties info-gain baseline 78%; iid noise: no rule wins; persistent misreads: learned repeat weight + touch 47% vs 9-13% (p<1e-6); sensor self-learned | `docs/MAZE.md` §10 |
+| 2 walking (G1) | v3 released; fall causes in PR #3 | stand, walk 10 m, headings, run: 20/20 each; pushes 100% at 1.0 m/s, 93% at 1.25 m/s; fall causes learned from own senses 92.5% vs 40.6% (gait recall down to 81%) | `docs/LOCOMOTION_STAGE2.md` |
+| 3 maze | v3 + learned walker in the maze (PR #4) | exact sensing: info-seeking not significantly better than nearest frontier (corrected after a bug fix); persistent misreads: learned repeat weight + touch 49% vs 6-13%; walker = grid outcome 30/30 mazes, 0 falls | `docs/MAZE.md` §10-11 |
 | 4 doors/keys | discovery agent | mock 99.9% solved (111.6 actions) vs novelty 80.9%; physics 12/25 with decoys | `docs/DISCOVERY.md` |
-| 5 chess | done (PR #1 reviewed and merged, 2026-10-28) | 1037 conditional engine-anchor Elo [863, 1134] at 1 s/move; beats old player 17-2-1 | `docs/CHESS_STRENGTH.md` |
-| 6 language | earlier build only; causal explanations in progress (below) | 456/456 held-out parses per language | `docs/LANGUAGE_STAGE6.md` |
+| 5 chess | done (PR #1 merged) | 1037 conditional engine-anchor Elo [863, 1134] at 1 s/move; beats old player 17-2-1 | `docs/CHESS_STRENGTH.md` |
+| 6 language | causal explanations in PR #2 (v3) | cause correct 41/50 per language (clean 9/10; v2 explainer on the same episodes 33/50, p = 0.008); 456/456 held-out parses | `docs/LANGUAGE_STAGE6.md` |
 | 7 bicycle | earlier build | practised policy 20/20 fresh starts; learns from simulator states, not video | `docs/BIKE_STAGE7.md` |
 
-Audit fix #1 is done (arm relations come from perception, commit aa8d259); the other audit items
-are open (see the queue).
+Audit fix #1 is done (arm relations come from perception, commit aa8d259); audit #4 is done for
+walking (PR #3); the other audit items are open (see the queue).
 
-## Running right now (check these first; updated 2026-10-28 04:30)
+## Nothing is running. Waiting for the user: three PRs to merge
 
-1. **Language follow-up on PR #2's branch** (`language-causes`, in a separate worktree; see the
-   local hand-off file for its location and setup).
-   New `SilenceModel` in `pai/language/association.py`: a silent surprise monitor is learned evidence
-   for "nothing unusual" (P = 0.957 from teaching: silent 11/15 clean, 0/60 disturbed). Checkpoint
-   `results/language_causes_v3_checkpoint.json` (teaching adds the v2 final episodes). Fresh eval:
-   seeds 68000-68009, disturbance base 79000 -> `results/language_causes_v3_final.json`, log
-   `data/lang_v3_eval.log`. **Next:** recompute cause accuracy per condition from the raw episodes
-   (clean episodes should now say `none`), add a v3 section to `docs/LANGUAGE_STAGE6.md`, commit the
-   new files on the branch (not `third_party`, not `runs`), push, update the PR description (no
-   Claude mentions). The user merges PR #2.
-2. **Codex task `fall-causes`** (brief `docs/briefs/FALL_CAUSES.md`, Sol 6.1, user's thread, main
-   checkout). Logs `data/codex_tasks/fall-causes/events.jsonl`; report `.../report.md` when done.
-   **Next:** review (diff in `pai/locomotion/falls.py` or new files, tests, recompute from
-   `results/locomotion/fall_causes_*.json`, new seeds, no simulator forces/event log in the inference),
-   then commit on a branch via a worktree and open a PR. Keep the Codex thread closed in the app while
-   it runs (an open thread blocks the CLI: "active writer").
-3. **Maze spatial prior** (main checkout, uncommitted: `pai/maze/map_model.py` per-cell unobserved
-   information cache fix + `SpatialPrior.fit_from_beliefs`; `pai/maze/efe_agent.py` prior for the
-   baselines; `scripts/maze_v3_eval.py --prior default|truth|self`). Dev (20000-20029, self prior):
-   route EFE exact 83%, noisy 70%. Final running on seeds 73000-73099 for the three priors ->
-   `results/maze_v3_prior_{default,truth,self}.json`, logs `data/maze_dev/prior_*_final.log`.
-   **Next:** compare, write `docs/MAZE.md` section 10.3 (note: the cache fix changes the info values,
-   so earlier v3 numbers were with the old cache), commit, push.
+- **PR #2** `language-causes` (Stage 6 v3, silent monitor as evidence; also repairs 69 v2 intervals
+  that an earlier dash fix had corrupted). Ready.
+- **PR #3** `fall-causes` (Codex task reviewed: numbers recomputed from the per-fall records, no
+  leakage, model frozen before the final falls). Open question for a follow-up: each cause comes
+  with its own commanded speed, so a matched-speed control is needed.
+- **PR #4** `maze-walker` (spatial-prior comparison, cache-fix correction, G1 walker in the maze,
+  branchy mazes, this status file).
 
-## Waiting for the user
+**After merging, clean the main checkout before `git pull`:** it still holds the same files as
+uncommitted copies (the maze files staged, Codex's fall-cause files and the language files
+untracked), and git refuses to overwrite untracked files. From the main checkout:
+`git restore --staged .` then delete the copies listed by `git status` that the PRs add, then pull.
+Then remove the language worktree (see the local hand-off file).
 
-- **PR #2**: wait for item 1 above before merging.
-- Copilot's automatic PR review comes from the user's personal Copilot setting (cannot be removed by
-  us). PR descriptions must not mention Claude.
-- The paper draft (`paper/`, IEEEtran in the user's format) is **local only** by the user's choice:
-  `paper/` is in `.git/info/exclude`; numbers live in `paper/numbers.tex`; compile on Overleaf from
-  `data/paper_overleaf.zip`. Keep it updated as results land; do not commit it.
+Copilot's automatic PR review comes from the user's personal Copilot setting (cannot be removed by
+us). PR descriptions must not mention Claude.
+
+The paper draft (`paper/`, IEEEtran in the user's format) is **local only** by the user's choice:
+`paper/` is in `.git/info/exclude`; numbers live in `paper/numbers.tex`; compile on Overleaf from
+`data/paper_overleaf.zip`. Not yet updated with today's numbers (fall causes 92.5%, language v3,
+maze correction).
 
 ## Next steps (queue, in order)
 
-1. Finish the three running items above.
-2. Maze: use the learned walker in the maze (Stage 2 to 3).
-3. Audit #4/#5: learned cause likelihoods; key chain from recipes instead of a scripted state machine.
-4. Chess: connect HRM to search with learned halting; more games per ladder rung.
-5. Bike: learn from rendered video, not simulator states; Stage 2 balance transfer.
+1. Update `paper/numbers.tex` with the results above.
+2. Fall causes: matched-speed control (pushes and slips at the same commanded speed) on new seeds.
+3. Maze: evaluate branchy mazes (`scripts/maze_v3_eval.py --maze-style branchy`, dev 20000-20029,
+   final e.g. 76000+); walker upgrades: solid walls (wall/foot contact pairs), the agent's view from
+   the robot's own camera instead of the grid sensor.
+4. Audit #4/#5 for the arm: learned cause likelihoods; key chain from recipes instead of a scripted
+   state machine.
+5. Chess: connect HRM to search with learned halting; more games per ladder rung.
+6. Bike: learn from rendered video, not simulator states; Stage 2 balance transfer.
 
 ## Housekeeping
 

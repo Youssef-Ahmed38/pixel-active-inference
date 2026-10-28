@@ -309,7 +309,11 @@ class RouteEFEExplorer(ActiveInferenceExplorer):
             ))
             return efe, gain[q], pragmatic
 
-        best = min(candidates, key=lambda q: (score(q)[0], depth[q], q))
+        ranked = sorted(candidates, key=lambda q: (score(q)[0], depth[q], q))
+        # the top alternatives with their EFE terms, for explanations and videos
+        self.last_candidates = [dict(cell=q, efe=score(q)[0], gain=score(q)[1], pragmatic=score(q)[2],
+                                     effort=depth[q]) for q in ranked[:3]]
+        best = ranked[0]
         if self.target in candidates and self.target != best:
             if score(self.target)[0] <= score(best)[0] + self.switch_margin:
                 best = self.target
@@ -331,11 +335,11 @@ class NearestFrontierExplorer:
     """
 
     def __init__(self, sensor_range: int = 3, size: int = 21, seed: int = 0,
-                 obs_model: ObservationModel | None = None):
+                 obs_model: ObservationModel | None = None, prior: SpatialPrior | None = None):
         self.sensor_range = sensor_range
         self.size = size
         self.rng = np.random.default_rng(seed)
-        self.map = ProbabilisticMap(size=size, sensor_range=sensor_range, obs_model=obs_model)
+        self.map = ProbabilisticMap(size=size, sensor_range=sensor_range, obs_model=obs_model, prior=prior)
         self.target: Cell | None = None
 
     @property
@@ -385,11 +389,12 @@ class InfoGainFrontierExplorer:
     """
 
     def __init__(self, sensor_range: int = 3, size: int = 21, seed: int = 0,
-                 gain_weight: float = 0.03, obs_model: ObservationModel | None = None):
+                 gain_weight: float = 0.03, obs_model: ObservationModel | None = None,
+                 prior: SpatialPrior | None = None):
         self.sensor_range = sensor_range
         self.size = size
         self.rng = np.random.default_rng(seed)
-        self.map = ProbabilisticMap(size=size, sensor_range=sensor_range, obs_model=obs_model)
+        self.map = ProbabilisticMap(size=size, sensor_range=sensor_range, obs_model=obs_model, prior=prior)
         self.gain_weight = gain_weight
         self.target: Cell | None = None
 

@@ -34,7 +34,7 @@ from pai.maze.efe_agent import (
     RouteEFEExplorer,
 )
 from pai.maze.env import DIRECTIONS, MazeWorld
-from pai.maze.map_model import ObservationModel
+from pai.maze.map_model import ObservationModel, SpatialPrior
 from pai.maze.noisy import NoisySensorMaze
 from pai.maze.self_calibration import self_calibrated_sensor
 
@@ -42,6 +42,8 @@ AGENTS = ["random", "nearest_frontier", "infogain_frontier", "efe_v2", "efe_rout
           "efe_route_no_epistemic", "efe_route_no_goal_belief", "efe_route_count_repeats"]
 # persistent: misreads repeat when a cell is seen again from the same spot (pai/maze/noisy.py)
 REGIMES = ["exact", "noisy", "persistent"]
+MAZE_STYLES = {"dfs": {}, "branchy": dict(generator="prim", loop_probability=0.25, rooms=3)}
+
 
 
 def fit_sensor_model(train_seeds: list[int], size: int, steps: int = 200) -> ObservationModel:
@@ -60,8 +62,9 @@ def fit_sensor_model(train_seeds: list[int], size: int, steps: int = 200) -> Obs
     return ObservationModel.fit(seen, actual)
 
 
-def make_agent(name: str, world: MazeWorld, seed: int, obs_model: ObservationModel | None, params: dict):
-    common = dict(size=world.size, sensor_range=world.sensor_range, seed=seed)
+def make_agent(name: str, world: MazeWorld, seed: int, obs_model: ObservationModel | None, params: dict,
+               prior: SpatialPrior | None = None):
+    common = dict(size=world.size, sensor_range=world.sensor_range, seed=seed, prior=prior)
     if name == "random":
         return RandomWalker(seed=seed)
     if name == "nearest_frontier":
@@ -82,13 +85,42 @@ def make_agent(name: str, world: MazeWorld, seed: int, obs_model: ObservationMod
     return RouteEFEExplorer(obs_model=obs_model, **route, **common)
 
 
+def learn_prior(source: str, regime: str, train: list[int], size: int, sensor: tuple,
+                params: dict) -> SpatialPrior:
+    """Spatial prior from true training layouts, or from the agent's own end-of-practice maps."""
+    if source == "truth":
+        worlds = [MazeWorld(s, size=size) for s in train]
+        return SpatialPrior.fit_from_mazes([w.grid for w in worlds], [w.goal for w in worlds],
+                                           size=size, alpha=2.0)
+    matrix, repeat_weight, _ = sensor
+    maps, seen = [], []
+    for s in train:
+        world = MazeWorld(s, size=size)
+        env = NoisySensorMaze(world, seed=s, persistent=regime == "persistent") if regime != "exact" else world
+        agent = RouteEFEExplorer(size=size, sensor_range=3, seed=s, effort_weight=params["effort_weight"],
+                                 switch_margin=params["switch_margin"],
+                                 obs_model=ObservationModel(matrix=np.array(matrix)) if matrix is not None else None)
+        agent.map.repeat_weight = repeat_weight
+        obs = env.observe()
+        for _ in range(160):
+            move = agent.act(obs)
+            if move is None:
+                break
+            obs = env.step(move)
+        agent.map.update(obs)
+        maps.append(agent.map.beliefs.copy())
+        seen.append(set(agent.map.observed_cells))
+    return SpatialPrior.fit_from_beliefs(maps, seen, size=size, alpha=2.0)
+
+
 def run_episode(job: tuple) -> dict:
-    seed, regime, name, size, budget, matrix, repeat_weight, params = job
-    world = MazeWorld(seed, size=size)
+    seed, regime, name, size, budget, matrix, repeat_weight, prior, params = job
+    world = MazeWorld(seed, size=size, **MAZE_STYLES[params.get("maze_style", "dfs")])
     env = (NoisySensorMaze(world, seed=seed, persistent=regime == "persistent")
            if regime != "exact" else world)
     obs_model = ObservationModel(matrix=np.array(matrix)) if matrix is not None else None
-    agent = make_agent(name, world, seed, obs_model, params)
+    agent = make_agent(name, world, seed, obs_model, params,
+                       SpatialPrior(size=size, priors=np.array(prior)) if prior is not None else None)
     if hasattr(agent, "map") and name != "efe_route_count_repeats":
         agent.map.repeat_weight = repeat_weight
     obs = env.observe()
@@ -164,11 +196,18 @@ def main():
                         help="fit the noisy sensor model from labelled training mazes, or from the "
                              "agent's own practice (looks plus body labels, EM; no simulator labels)")
     parser.add_argument("--regimes", nargs="+", choices=REGIMES, default=["exact", "noisy"])
+    parser.add_argument("--maze-style", choices=list(MAZE_STYLES), default="dfs",
+                        help="dfs: long corridors (all results before 2026-10-28); branchy: Prim "
+                             "maze with more loops and three open rooms (test mazes only)")
+    parser.add_argument("--prior", choices=["default", "truth", "self"], default="default",
+                        help="spatial prior for every map agent: the designed default, counted from "
+                             "true training layouts, or learned from the agent's own practice maps")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
 
     params = {"epistemic_weight": args.epistemic_weight, "effort_weight": args.effort_weight,
-              "goal_weight": args.goal_weight, "switch_margin": args.switch_margin}
+              "goal_weight": args.goal_weight, "switch_margin": args.switch_margin,
+              "maze_style": args.maze_style}
     train = list(range(1000, 1020))
     sensors = {"exact": (None, 1.0, {"source": "none (exact sensing)"})}
     for regime in [r for r in args.regimes if r != "exact"]:
@@ -187,8 +226,11 @@ def main():
                                                   goal_weight=args.goal_weight,
                                                   switch_margin=args.switch_margin))
         sensors[regime] = (sensor.matrix.tolist(), info["repeat_weight"], {"source": "self", **info})
+    priors = {r: (None if args.prior == "default" else
+                  learn_prior(args.prior, r, train, args.size, sensors[r], params).priors.tolist())
+              for r in args.regimes}
     seeds = list(range(args.test_start, args.test_start + args.num_test_mazes))
-    jobs = [(s, r, a, args.size, args.budget, sensors[r][0], sensors[r][1], params)
+    jobs = [(s, r, a, args.size, args.budget, sensors[r][0], sensors[r][1], priors[r], params)
             for s in seeds for r in args.regimes for a in AGENTS]
     with Pool(args.workers) as pool:
         episodes = pool.map(run_episode, jobs, chunksize=4)
@@ -201,7 +243,7 @@ def main():
     commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True,
                             cwd=ROOT).stdout.strip()
     report = {"git_commit": commit, "seeds": [seeds[0], seeds[-1]], "budget": args.budget,
-              "params": params,
+              "params": params, "prior": args.prior,
               "sensors": {r: {"matrix": None if m is None else np.round(m, 4).tolist(),
                               "repeat_weight": w, "fit": info}
                           for r, (m, w, info) in sensors.items() if r in args.regimes},
