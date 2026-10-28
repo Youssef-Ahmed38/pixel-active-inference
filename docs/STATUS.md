@@ -54,31 +54,29 @@ The paper draft (`paper/`, IEEEtran in the user's format) is **local only** by t
 `data/paper_overleaf.zip`. Updated 2026-10-28 06:50 with all results above (maze section rewritten
 around the branchy-maze result and the corridor correction; walker figure added).
 
-## In progress (2026-10-28 08:00; the user is away: work continues without asking)
+## In progress (2026-10-28 08:55; the user is away: work continues without asking)
 
-Uncommitted on `main` (local), to go into one PR per part when finished:
-- **A (walking with walls):** `pai/locomotion/body.py` (training walls), `pai/locomotion/env.py`
-  (`walls`, `wall_frac`, `wall_radius`), `scripts/locomotion_eval.py` (`test_walls`),
-  `configs/locomotion_v4.yaml`. v3 baseline wall test (dev 52007): **10/40 fell** (9 while pushing).
-  v4 training: `data/run_v4.sh` (from v3, ~1.1 h, `runs/locomotion/train_v4.log`, status
-  `runs/locomotion/train_v4.status`), then dev gates (`results/locomotion/dev_v4.json`). If the gates
-  hold, run the wall dev test on v4, then the final chain `data/run_v4_final.sh` (gates + walls on
-  57000+, v3 vs v4 walls, persistent-misread walker mazes 81000-81029 for v4 and v3;
-  `scripts/maze_walker_eval.py --policy` added).
-- **B (fall causes):** a fourth cause `wall` (`pai/locomotion/fall_causes.py`: `ALL_CAUSES`,
-  models carry their own `causes`; `scripts/locomotion_fall_causes.py`: `--conditions ...,wall`
-  places a solid wall 0.3-0.8 m ahead at the injection). Smoke test (v3, 90001): 4/12 wall falls.
-  Chains: `data/run_partB_dev.sh <policy_dir>` (dev 58006-58008 + calibration 66000), then the
-  feature analysis (gait called push, slip across seeds), then `data/run_partB_final.sh <policy_dir>`
-  (fit + final 59006-59008).
-- **C (own eyes):** `pai/maze/ego_camera.py` (head camera, 4 views, depth -> cells; faces to the far
-  cell; gold by chromaticity; pose correction against the agent's own map), `pai/maze/walker.py`
-  (`odometry=True`: IMU heading drift + leg-odometry velocity noise; grid truth only for scoring),
-  `scripts/maze_camera_eval.py` (`--odometry`), tests in `tests/test_maze_efe.py`. Dev so far:
-  camera readings 9% wrong (floor seen as wall); learned camera sensor model and repeat weight 0.26;
-  localization cuts median drift 0.48 -> 0.09 m over 50 moves. Dev run with odometry:
-  `data/maze_dev/camera_odo_dev.log`.
-- **Codex:** Stage 4 key chain (`data/codex_tasks/key-chain-recipes/`), review when it reports.
+- **PR #5 open (Stage 4, Codex, reviewed):** key chain as an induced recipe; final 736000-736049:
+  cold 38, warm 38, prior-only 39, old scripted 35 of 40 solvable scenes; replay gives no reliable
+  gain. Large results gzip-compressed. Codex's original uncommitted files are still in the main
+  checkout (identical content; remove them after the merge, then pull).
+- **A (walls) done, uncommitted:** v4 released by the agreed rule. Final on new seeds 57000+: every
+  gate 20/20; wall test falls **2/40 vs 14/40 for v3**; pushes equal or better on the same seeds.
+  But in noisy mazes (persistent misreads, 81000-81029) v4 falls as often as v3 (7/60 each): traced
+  to rapidly switching goals (turn on the spot / walk at 0.6 m/s while still turning), not walls.
+- **A2: v5 training** (`configs/locomotion_v5.yaml`, goals changing every 0.5-3 s, walls kept; from
+  v4), chain `data/run_v5.sh`: train (~1.1 h, `runs/locomotion/train_v5.log`), dev gates + walls,
+  then dev maze falls v5 vs v4 on 20100-20129 (`data/maze_dev/walker_persistent_20100_*.json`). If
+  it holds every gate and reduces maze falls, final on new seeds and new mazes (not 57000+, 81000+).
+- **B (four fall causes) done on v4, uncommitted:** final over three new seeds 59006-59008: 504/544
+  (92.6%) vs 41.7% for the old rule; wall 23/29; 17 own stumbles still called push. Written into
+  `docs/LOCOMOTION_STAGE2.md`.
+- **C (own eyes) final running:** `results/maze_camera_final.json` (branchy 82000-82029, head camera,
+  own odometry with map-based pose correction, v4 walker), log `runs/maze_camera_final.log`. Dev
+  (20000-20009): camera route EFE 9/10 vs grid sensor 8/10, median drift 5 cm, 0 falls. Design
+  written in `docs/MAZE.md` section 12; add the final table.
+- After A2/C: one PR for A+B+C (walking v4/v5, four fall causes, the walker's own eyes), media, local
+  paper numbers.
 
 ## Next steps (plan agreed with the user, 2026-10-28; in order)
 
@@ -133,5 +131,6 @@ Codex: Stage 4 key chain (running), then further non-walking tasks; Claude revie
 
 ## Housekeeping
 
+- Leftover empty folders `C:\projects\pai-keychain`, `pai-chess-review`, `pai-codex-language-causes` (worktrees already removed; delete when unlocked).
 - Archived drafts (not in git): `data/archive/` (old chess drafts, a Kaggle job text, partial language
   files, the abandoned `pai-ceiling` work, the main checkout leftovers of 2026-10-28).
