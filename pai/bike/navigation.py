@@ -25,6 +25,7 @@ import numpy as np
 from pai.bike.town import LANE, ROAD_HALF, Town
 
 DETOUR = 60.0          # expected extra metres if a planned street turns out blocked
+U_TURN_RISK_M = 150.0  # the cost (in metres) of being forced into a late U-turn at a dead end
 
 
 @dataclass
@@ -47,8 +48,23 @@ class StreetBelief:
             (self.barriers if blocked else self.cars)[e] = where
 
 
+def dead_end_risk(town: Town, belief: StreetBelief, came_from, v) -> float:
+    """P(every way on from intersection ``v`` is blocked) for a rider arriving from ``came_from``:
+    then the only way on is a U-turn, decided late (a side street is seen only 4 m before)."""
+    return float(np.prod([belief.get((v, x)) for x in town.graph[v] if x != came_from]))
+
+
+def step_cost(town: Town, belief: StreetBelief, u, v, goal) -> float:
+    length = float(np.linalg.norm(np.subtract(town.nodes[u], town.nodes[v])))
+    c = length + belief.get((u, v)) * DETOUR
+    if v != goal:
+        c += dead_end_risk(town, belief, u, v) * U_TURN_RISK_M
+    return c
+
+
 def plan(town: Town, belief: StreetBelief, start: int, goal: int, banned=()) -> list[int] | None:
-    """Expected-cost shortest route over the street graph."""
+    """Expected-cost shortest route over the street graph: length, the expected detour if a street
+    turns out blocked, and the expected cost of being forced into a U-turn at a dead end."""
     g = town.graph
     dist, prev = {start: 0.0}, {}
     pq = [(0.0, start)]
@@ -60,13 +76,9 @@ def plan(town: Town, belief: StreetBelief, start: int, goal: int, banned=()) -> 
             continue
         for v in g[u]:
             e = tuple(sorted((u, v)))
-            if e in banned:
+            if e in banned or belief.get(e) > 0.9:
                 continue
-            length = float(np.linalg.norm(np.subtract(town.nodes[u], town.nodes[v])))
-            pb = belief.get(e)
-            if pb > 0.9:
-                continue
-            nc = c + length + pb * DETOUR
+            nc = c + step_cost(town, belief, u, v, goal)
             if nc < dist.get(v, math.inf):
                 dist[v], prev[v] = nc, u
                 heapq.heappush(pq, (nc, v))

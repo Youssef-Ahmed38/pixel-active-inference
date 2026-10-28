@@ -1,0 +1,356 @@
+{
+ "towns": [
+  4580,
+  4590
+ ],
+ "riders": {
+  "ckpt_00400": {
+   "summary": {
+    "looking": {
+     "delivered": 15,
+     "deliveries": 20,
+     "wilson95": [
+      0.531,
+      0.888
+     ],
+     "collision": 2,
+     "fell": 3,
+     "off_road": 0,
+     "timeout": 0,
+     "no_route": 0,
+     "collisions_by_kind": {
+      "blocking": 1,
+      "partial": 1
+     },
+     "mean_time_s_delivered": 25.3,
+     "mean_distance_m_delivered": 56.6,
+     "mean_heading_error_deg_delivered": 2.98,
+     "mean_cross_track_m_delivered": 0.043,
+     "replans": 7,
+     "street_looks": 70,
+     "street_looks_wrong": 1
+    },
+    "blind": {
+     "delivered": 13,
+     "deliveries": 20,
+     "wilson95": [
+      0.433,
+      0.819
+     ],
+     "collision": 7,
+     "fell": 0,
+     "off_road": 0,
+     "timeout": 0,
+     "no_route": 0,
+     "collisions_by_kind": {
+      "blocking": 5,
+      "partial": 2
+     },
+     "mean_time_s_delivered": 20.9,
+     "mean_distance_m_delivered": 46.8,
+     "mean_heading_error_deg_delivered": 2.67,
+     "mean_cross_track_m_delivered": 0.039,
+     "replans": 0,
+     "street_looks": 0,
+     "street_looks_wrong": 0
+    }
+   },
+   "paired": {
+    "looking_only": 3,
+    "blind_only": 1,
+    "sign_test_p": 0.625
+   },
+   "steering": "ckpt_00400.pt"
+  },
+  "ckpt_00800": {
+   "summary": {
+    "looking": {
+     "delivered": 15,
+     "deliveries": 20,
+     "wilson95": [
+      0.531,
+      0.888
+     ],
+     "collision": 2,
+     "fell": 2,
+     "off_road": 1,
+     "timeout": 0,
+     "no_route": 0,
+     "collisions_by_kind": {
+      "blocking": 1,
+      "partial": 1
+     },
+     "mean_time_s_delivered": 25.0,
+     "mean_distance_m_delivered": 56.6,
+     "mean_heading_error_deg_delivered": 3.87,
+     "mean_cross_track_m_delivered": 0.053,
+     "replans": 8,
+     "street_looks": 74,
+     "street_looks_wrong": 1
+    },
+    "blind": {
+     "delivered": 13,
+     "deliveries": 20,
+     "wilson95": [
+      0.433,
+      0.819
+     ],
+     "collision": 7,
+     "fell": 0,
+     "off_road": 0,
+     "timeout": 0,
+     "no_route": 0,
+     "collisions_by_kind": {
+      "blocking": 5,
+      "partial": 2
+     },
+     "mean_time_s_delivered": 20.7,
+     "mean_distance_m_delivered": 46.8,
+     "mean_heading_error_deg_delivered": 3.66,
+     "mean_cross_track_m_delivered": 0.051,
+     "replans": 0,
+     "street_looks": 0,
+     "street_looks_wrong": 0
+    }
+   },
+   "paired": {
+    "looking_only": 3,
+    "blind_only": 1,
+    "sign_test_p": 0.625
+   },
+   "steering": "ckpt_00800.pt"
+  },
+  "ckpt_01200": {
+   "summary": {
+    "looking": {
+     "delivered": 15,
+     "deliveries": 20,
+     "wilson95": [
+      0.531,
+      0.888
+     ],
+     "collision": 2,
+     "fell": 2,
+     "off_road": 1,
+     "timeout": 0,
+     "no_route": 0,
+     "collisions_by_kind": {
+      "blocking": 1,
+      "partial": 1
+     },
+     "mean_time_s_delivered": 24.8,
+     "mean_distance_m_delivered": 56.6,
+     "mean_heading_error_deg_delivered": 3.92,
+     "mean_cross_track_m_delivered": 0.05,
+     "replans": 8,
+     "street_looks": 74,
+     "street_looks_wrong": 1
+    },
+    "blind": {
+     "delivered": 13,
+     "deliveries": 20,
+     "wilson95": [
+      0.433,
+      0.819
+     ],
+     "collision": 7,
+     "fell": 0,
+     "off_road": 0,
+     "timeout": 0,
+     "no_route": 0,
+     "collisions_by_kind": {
+      "blocking": 5,
+      "partial": 2
+     },
+     "mean_time_s_delivered": 20.5,
+     "mean_distance_m_delivered": 46.8,
+     "mean_heading_error_deg_delivered": 3.73,
+     "mean_cross_track_m_delivered": 0.046,
+     "replans": 0,
+     "street_looks": 0,
+     "street_looks_wrong": 0
+    }
+   },
+   "paired": {
+    "looking_only": 3,
+    "blind_only": 1,
+    "sign_test_p": 0.625
+   },
+   "steering": "ckpt_01200.pt"
+  },
+  "ckpt_last": {
+   "summary": {
+    "looking": {
+     "delivered": 15,
+     "deliveries": 20,
+     "wilson95": [
+      0.531,
+      0.888
+     ],
+     "collision": 2,
+     "fell": 2,
+     "off_road": 1,
+     "timeout": 0,
+     "no_route": 0,
+     "collisions_by_kind": {
+      "blocking": 1,
+      "partial": 1
+     },
+     "mean_time_s_delivered": 24.8,
+     "mean_distance_m_delivered": 56.6,
+     "mean_heading_error_deg_delivered": 3.98,
+     "mean_cross_track_m_delivered": 0.05,
+     "replans": 8,
+     "street_looks": 74,
+     "street_looks_wrong": 1
+    },
+    "blind": {
+     "delivered": 13,
+     "deliveries": 20,
+     "wilson95": [
+      0.433,
+      0.819
+     ],
+     "collision": 7,
+     "fell": 0,
+     "off_road": 0,
+     "timeout": 0,
+     "no_route": 0,
+     "collisions_by_kind": {
+      "blocking": 5,
+      "partial": 2
+     },
+     "mean_time_s_delivered": 20.5,
+     "mean_distance_m_delivered": 46.8,
+     "mean_heading_error_deg_delivered": 3.8,
+     "mean_cross_track_m_delivered": 0.046,
+     "replans": 0,
+     "street_looks": 0,
+     "street_looks_wrong": 0
+    }
+   },
+   "paired": {
+    "looking_only": 3,
+    "blind_only": 1,
+    "sign_test_p": 0.625
+   },
+   "steering": "ckpt_last.pt"
+  },
+  "residual_selected": {
+   "summary": {
+    "looking": {
+     "delivered": 17,
+     "deliveries": 20,
+     "wilson95": [
+      0.64,
+      0.948
+     ],
+     "collision": 2,
+     "fell": 1,
+     "off_road": 0,
+     "timeout": 0,
+     "no_route": 0,
+     "collisions_by_kind": {
+      "blocking": 1,
+      "partial": 1
+     },
+     "mean_time_s_delivered": 29.9,
+     "mean_distance_m_delivered": 65.5,
+     "mean_heading_error_deg_delivered": 3.41,
+     "mean_cross_track_m_delivered": 0.057,
+     "replans": 7,
+     "street_looks": 72,
+     "street_looks_wrong": 1
+    },
+    "blind": {
+     "delivered": 13,
+     "deliveries": 20,
+     "wilson95": [
+      0.433,
+      0.819
+     ],
+     "collision": 7,
+     "fell": 0,
+     "off_road": 0,
+     "timeout": 0,
+     "no_route": 0,
+     "collisions_by_kind": {
+      "blocking": 5,
+      "partial": 2
+     },
+     "mean_time_s_delivered": 21.3,
+     "mean_distance_m_delivered": 46.8,
+     "mean_heading_error_deg_delivered": 2.92,
+     "mean_cross_track_m_delivered": 0.05,
+     "replans": 0,
+     "street_looks": 0,
+     "street_looks_wrong": 0
+    }
+   },
+   "paired": {
+    "looking_only": 5,
+    "blind_only": 1,
+    "sign_test_p": 0.2188
+   },
+   "steering": "residual_selected.pt"
+  },
+  "rule": {
+   "summary": {
+    "looking": {
+     "delivered": 19,
+     "deliveries": 20,
+     "wilson95": [
+      0.764,
+      0.991
+     ],
+     "collision": 0,
+     "fell": 1,
+     "off_road": 0,
+     "timeout": 0,
+     "no_route": 0,
+     "collisions_by_kind": {
+      "blocking": 0,
+      "partial": 0
+     },
+     "mean_time_s_delivered": 40.3,
+     "mean_distance_m_delivered": 79.6,
+     "mean_heading_error_deg_delivered": 3.16,
+     "mean_cross_track_m_delivered": 0.139,
+     "replans": 9,
+     "street_looks": 85,
+     "street_looks_wrong": 0
+    },
+    "blind": {
+     "delivered": 13,
+     "deliveries": 20,
+     "wilson95": [
+      0.433,
+      0.819
+     ],
+     "collision": 7,
+     "fell": 0,
+     "off_road": 0,
+     "timeout": 0,
+     "no_route": 0,
+     "collisions_by_kind": {
+      "blocking": 5,
+      "partial": 2
+     },
+     "mean_time_s_delivered": 23.8,
+     "mean_distance_m_delivered": 46.8,
+     "mean_heading_error_deg_delivered": 2.47,
+     "mean_cross_track_m_delivered": 0.136,
+     "replans": 0,
+     "street_looks": 0,
+     "street_looks_wrong": 0
+    }
+   },
+   "paired": {
+    "looking_only": 7,
+    "blind_only": 1,
+    "sign_test_p": 0.0703
+   },
+   "steering": "practised rule"
+  }
+ }
+}

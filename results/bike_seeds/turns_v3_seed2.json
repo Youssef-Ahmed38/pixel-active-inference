@@ -1,0 +1,2437 @@
+{
+ "follower": "LeanFollower",
+ "arm_kp": 5.0,
+ "steer_kp": 300.0,
+ "corner_radius_m": 3.4,
+ "practice_towns": [
+  4000,
+  4003
+ ],
+ "dev_towns": [
+  4100,
+  4104
+ ],
+ "final_towns": [
+  4240,
+  4250
+ ],
+ "gains_names": [
+  "roll",
+  "roll_rate",
+  "heading_to_lean",
+  "steer_feedforward",
+  "speed",
+  "lookahead_m",
+  "cruise_mps",
+  "corner_mps",
+  "u_turn_mps"
+ ],
+ "practised": [
+  6.3371,
+  0.4832,
+  0.1129,
+  1.7204,
+  7.2309,
+  1.4928,
+  3.1056,
+  2.4174,
+  2.7879
+ ],
+ "default": [
+  3.2,
+  0.75,
+  0.3,
+  1.0,
+  6.8,
+  3.0,
+  3.0,
+  2.0
+ ],
+ "history": [
+  {
+   "iteration": 0,
+   "best_practice_score": 0.6766580706659951,
+   "gains": [
+    7.709,
+    0.585,
+    0.222,
+    1.332,
+    6.707,
+    1.032,
+    2.912,
+    2.633,
+    2.633
+   ]
+  },
+  {
+   "iteration": 1,
+   "best_practice_score": 0.8082625,
+   "gains": [
+    6.071,
+    0.009,
+    0.033,
+    1.508,
+    6.825,
+    1.661,
+    3.093,
+    2.677,
+    2.688
+   ]
+  },
+  {
+   "iteration": 2,
+   "best_practice_score": 0.94770625,
+   "gains": [
+    6.337,
+    0.483,
+    0.113,
+    1.72,
+    7.231,
+    1.493,
+    3.106,
+    2.417,
+    2.788
+   ]
+  },
+  {
+   "iteration": 3,
+   "best_practice_score": 0.94770625,
+   "gains": [
+    6.337,
+    0.483,
+    0.113,
+    1.72,
+    7.231,
+    1.493,
+    3.106,
+    2.417,
+    2.788
+   ]
+  },
+  {
+   "iteration": 4,
+   "best_practice_score": 0.94770625,
+   "gains": [
+    6.337,
+    0.483,
+    0.113,
+    1.72,
+    7.231,
+    1.493,
+    3.106,
+    2.417,
+    2.788
+   ]
+  },
+  {
+   "iteration": 5,
+   "best_practice_score": 0.94770625,
+   "gains": [
+    6.337,
+    0.483,
+    0.113,
+    1.72,
+    7.231,
+    1.493,
+    3.106,
+    2.417,
+    2.788
+   ]
+  },
+  {
+   "iteration": 6,
+   "best_practice_score": 0.94770625,
+   "gains": [
+    6.337,
+    0.483,
+    0.113,
+    1.72,
+    7.231,
+    1.493,
+    3.106,
+    2.417,
+    2.788
+   ]
+  },
+  {
+   "iteration": 7,
+   "best_practice_score": 0.94770625,
+   "gains": [
+    6.337,
+    0.483,
+    0.113,
+    1.72,
+    7.231,
+    1.493,
+    3.106,
+    2.417,
+    2.788
+   ]
+  },
+  {
+   "iteration": 8,
+   "best_practice_score": 0.94770625,
+   "gains": [
+    6.337,
+    0.483,
+    0.113,
+    1.72,
+    7.231,
+    1.493,
+    3.106,
+    2.417,
+    2.788
+   ]
+  },
+  {
+   "iteration": 9,
+   "best_practice_score": 0.94770625,
+   "gains": [
+    6.337,
+    0.483,
+    0.113,
+    1.72,
+    7.231,
+    1.493,
+    3.106,
+    2.417,
+    2.788
+   ]
+  },
+  {
+   "iteration": 10,
+   "best_practice_score": 0.94770625,
+   "gains": [
+    6.337,
+    0.483,
+    0.113,
+    1.72,
+    7.231,
+    1.493,
+    3.106,
+    2.417,
+    2.788
+   ]
+  },
+  {
+   "iteration": 11,
+   "best_practice_score": 0.94770625,
+   "gains": [
+    6.337,
+    0.483,
+    0.113,
+    1.72,
+    7.231,
+    1.493,
+    3.106,
+    2.417,
+    2.788
+   ]
+  },
+  {
+   "iteration": 12,
+   "best_practice_score": 0.94770625,
+   "gains": [
+    6.337,
+    0.483,
+    0.113,
+    1.72,
+    7.231,
+    1.493,
+    3.106,
+    2.417,
+    2.788
+   ]
+  }
+ ],
+ "dev": {
+  "completed": 20,
+  "routes": 20,
+  "mean_cross_track_m": 0.175,
+  "starting_gains_completed": 10,
+  "starting_gains_mean_cross_track_m": 0.152
+ },
+ "track_weight": 0.3,
+ "search_seed": 2,
+ "u_turns_per_town": 2,
+ "start_from": "turns_v2_seed2.json",
+ "summary": {
+  "practised": {
+   "completed": 40,
+   "routes": 40,
+   "wilson95": [
+    0.912,
+    1.0
+   ],
+   "falls": 0,
+   "off_road": 0,
+   "mean_heading_error_deg_completed": 8.75,
+   "mean_cross_track_m_completed": 0.177,
+   "max_cross_track_m_completed": 0.869
+  },
+  "default": {
+   "completed": 0,
+   "routes": 40,
+   "wilson95": [
+    -0.0,
+    0.088
+   ],
+   "falls": 40,
+   "off_road": 0,
+   "mean_heading_error_deg_completed": null,
+   "mean_cross_track_m_completed": null,
+   "max_cross_track_m_completed": null
+  },
+  "starting_gains": {
+   "completed": 20,
+   "routes": 40,
+   "wilson95": [
+    0.352,
+    0.648
+   ],
+   "falls": 20,
+   "off_road": 0,
+   "mean_heading_error_deg_completed": 4.65,
+   "mean_cross_track_m_completed": 0.158,
+   "max_cross_track_m_completed": 0.619
+  }
+ },
+ "final": {
+  "practised": [
+   {
+    "seed": 4240,
+    "route": [
+     3,
+     7,
+     11,
+     10,
+     14
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 38.7,
+    "mean_heading_error_deg": 5.97,
+    "mean_cross_track_m": 0.16,
+    "max_cross_track_m": 0.379
+   },
+   {
+    "seed": 4240,
+    "route": [
+     14,
+     10,
+     6,
+     5,
+     1
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 38.64,
+    "mean_heading_error_deg": 3.9,
+    "mean_cross_track_m": 0.139,
+    "max_cross_track_m": 0.305
+   },
+   {
+    "seed": 4240,
+    "route": [
+     12,
+     13,
+     14,
+     13,
+     12
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 42.28,
+    "mean_heading_error_deg": 9.53,
+    "mean_cross_track_m": 0.185,
+    "max_cross_track_m": 0.76
+   },
+   {
+    "seed": 4240,
+    "route": [
+     10,
+     11,
+     15,
+     11,
+     10
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 43.78,
+    "mean_heading_error_deg": 12.01,
+    "mean_cross_track_m": 0.196,
+    "max_cross_track_m": 0.77
+   },
+   {
+    "seed": 4241,
+    "route": [
+     12,
+     8,
+     9,
+     5
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 29.26,
+    "mean_heading_error_deg": 4.8,
+    "mean_cross_track_m": 0.141,
+    "max_cross_track_m": 0.304
+   },
+   {
+    "seed": 4241,
+    "route": [
+     2,
+     6,
+     10,
+     11,
+     15
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 38.64,
+    "mean_heading_error_deg": 3.9,
+    "mean_cross_track_m": 0.139,
+    "max_cross_track_m": 0.305
+   },
+   {
+    "seed": 4241,
+    "route": [
+     7,
+     6,
+     5,
+     6,
+     7
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 42.28,
+    "mean_heading_error_deg": 9.53,
+    "mean_cross_track_m": 0.185,
+    "max_cross_track_m": 0.76
+   },
+   {
+    "seed": 4241,
+    "route": [
+     10,
+     9,
+     5,
+     9,
+     8
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 45.34,
+    "mean_heading_error_deg": 12.15,
+    "mean_cross_track_m": 0.198,
+    "max_cross_track_m": 0.77
+   },
+   {
+    "seed": 4242,
+    "route": [
+     13,
+     14,
+     15,
+     11,
+     7
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 37.2,
+    "mean_heading_error_deg": 3.23,
+    "mean_cross_track_m": 0.138,
+    "max_cross_track_m": 0.29
+   },
+   {
+    "seed": 4242,
+    "route": [
+     13,
+     9,
+     10,
+     6
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 29.26,
+    "mean_heading_error_deg": 4.8,
+    "mean_cross_track_m": 0.141,
+    "max_cross_track_m": 0.304
+   },
+   {
+    "seed": 4242,
+    "route": [
+     0,
+     4,
+     5,
+     4,
+     8
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 42.34,
+    "mean_heading_error_deg": 13.69,
+    "mean_cross_track_m": 0.216,
+    "max_cross_track_m": 0.869
+   },
+   {
+    "seed": 4242,
+    "route": [
+     11,
+     7,
+     3,
+     7,
+     11
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 42.28,
+    "mean_heading_error_deg": 9.53,
+    "mean_cross_track_m": 0.185,
+    "max_cross_track_m": 0.76
+   },
+   {
+    "seed": 4243,
+    "route": [
+     3,
+     2,
+     6,
+     7,
+     3
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 37.16,
+    "mean_heading_error_deg": 7.39,
+    "mean_cross_track_m": 0.16,
+    "max_cross_track_m": 0.351
+   },
+   {
+    "seed": 4243,
+    "route": [
+     5,
+     4,
+     0,
+     1,
+     2
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 40.2,
+    "mean_heading_error_deg": 6.2,
+    "mean_cross_track_m": 0.161,
+    "max_cross_track_m": 0.373
+   },
+   {
+    "seed": 4243,
+    "route": [
+     9,
+     10,
+     6,
+     10,
+     9
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 43.94,
+    "mean_heading_error_deg": 13.8,
+    "mean_cross_track_m": 0.217,
+    "max_cross_track_m": 0.869
+   },
+   {
+    "seed": 4243,
+    "route": [
+     9,
+     13,
+     14,
+     13,
+     9
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 43.94,
+    "mean_heading_error_deg": 13.8,
+    "mean_cross_track_m": 0.217,
+    "max_cross_track_m": 0.869
+   },
+   {
+    "seed": 4244,
+    "route": [
+     15,
+     11,
+     10,
+     14
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 27.82,
+    "mean_heading_error_deg": 6.14,
+    "mean_cross_track_m": 0.151,
+    "max_cross_track_m": 0.333
+   },
+   {
+    "seed": 4244,
+    "route": [
+     8,
+     4,
+     5,
+     1
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 29.26,
+    "mean_heading_error_deg": 4.8,
+    "mean_cross_track_m": 0.141,
+    "max_cross_track_m": 0.304
+   },
+   {
+    "seed": 4244,
+    "route": [
+     4,
+     8,
+     9,
+     8,
+     4
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 43.94,
+    "mean_heading_error_deg": 13.8,
+    "mean_cross_track_m": 0.217,
+    "max_cross_track_m": 0.869
+   },
+   {
+    "seed": 4244,
+    "route": [
+     3,
+     7,
+     11,
+     7,
+     6
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 42.26,
+    "mean_heading_error_deg": 10.63,
+    "mean_cross_track_m": 0.19,
+    "max_cross_track_m": 0.76
+   },
+   {
+    "seed": 4245,
+    "route": [
+     12,
+     13,
+     9,
+     10,
+     14
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 40.18,
+    "mean_heading_error_deg": 8.12,
+    "mean_cross_track_m": 0.173,
+    "max_cross_track_m": 0.368
+   },
+   {
+    "seed": 4245,
+    "route": [
+     7,
+     3,
+     2,
+     6,
+     7
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 37.16,
+    "mean_heading_error_deg": 7.39,
+    "mean_cross_track_m": 0.16,
+    "max_cross_track_m": 0.351
+   },
+   {
+    "seed": 4245,
+    "route": [
+     0,
+     1,
+     5,
+     1,
+     2
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 45.34,
+    "mean_heading_error_deg": 12.15,
+    "mean_cross_track_m": 0.198,
+    "max_cross_track_m": 0.77
+   },
+   {
+    "seed": 4245,
+    "route": [
+     14,
+     15,
+     11,
+     15,
+     14
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 43.94,
+    "mean_heading_error_deg": 13.8,
+    "mean_cross_track_m": 0.217,
+    "max_cross_track_m": 0.869
+   },
+   {
+    "seed": 4246,
+    "route": [
+     5,
+     9,
+     13,
+     12
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 29.38,
+    "mean_heading_error_deg": 4.64,
+    "mean_cross_track_m": 0.153,
+    "max_cross_track_m": 0.383
+   },
+   {
+    "seed": 4246,
+    "route": [
+     10,
+     11,
+     15,
+     14
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 30.82,
+    "mean_heading_error_deg": 6.8,
+    "mean_cross_track_m": 0.163,
+    "max_cross_track_m": 0.373
+   },
+   {
+    "seed": 4246,
+    "route": [
+     5,
+     9,
+     8,
+     9,
+     5
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 43.78,
+    "mean_heading_error_deg": 12.01,
+    "mean_cross_track_m": 0.196,
+    "max_cross_track_m": 0.77
+   },
+   {
+    "seed": 4246,
+    "route": [
+     10,
+     6,
+     2,
+     6,
+     10
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 42.28,
+    "mean_heading_error_deg": 9.53,
+    "mean_cross_track_m": 0.185,
+    "max_cross_track_m": 0.76
+   },
+   {
+    "seed": 4247,
+    "route": [
+     0,
+     1,
+     2,
+     6
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 29.38,
+    "mean_heading_error_deg": 4.64,
+    "mean_cross_track_m": 0.153,
+    "max_cross_track_m": 0.383
+   },
+   {
+    "seed": 4247,
+    "route": [
+     3,
+     7,
+     6,
+     2,
+     1
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 40.12,
+    "mean_heading_error_deg": 7.19,
+    "mean_cross_track_m": 0.164,
+    "max_cross_track_m": 0.38
+   },
+   {
+    "seed": 4247,
+    "route": [
+     7,
+     3,
+     2,
+     3,
+     7
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 43.94,
+    "mean_heading_error_deg": 13.8,
+    "mean_cross_track_m": 0.217,
+    "max_cross_track_m": 0.869
+   },
+   {
+    "seed": 4247,
+    "route": [
+     5,
+     9,
+     13,
+     9,
+     10
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 43.78,
+    "mean_heading_error_deg": 9.4,
+    "mean_cross_track_m": 0.181,
+    "max_cross_track_m": 0.76
+   },
+   {
+    "seed": 4248,
+    "route": [
+     13,
+     9,
+     10,
+     11
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 29.32,
+    "mean_heading_error_deg": 3.73,
+    "mean_cross_track_m": 0.14,
+    "max_cross_track_m": 0.304
+   },
+   {
+    "seed": 4248,
+    "route": [
+     9,
+     5,
+     1,
+     2
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 29.38,
+    "mean_heading_error_deg": 4.64,
+    "mean_cross_track_m": 0.153,
+    "max_cross_track_m": 0.383
+   },
+   {
+    "seed": 4248,
+    "route": [
+     8,
+     12,
+     13,
+     12,
+     8
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 43.94,
+    "mean_heading_error_deg": 13.8,
+    "mean_cross_track_m": 0.217,
+    "max_cross_track_m": 0.869
+   },
+   {
+    "seed": 4248,
+    "route": [
+     15,
+     11,
+     10,
+     11,
+     7
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 42.34,
+    "mean_heading_error_deg": 13.69,
+    "mean_cross_track_m": 0.216,
+    "max_cross_track_m": 0.869
+   },
+   {
+    "seed": 4249,
+    "route": [
+     6,
+     10,
+     11,
+     7
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 27.82,
+    "mean_heading_error_deg": 6.14,
+    "mean_cross_track_m": 0.151,
+    "max_cross_track_m": 0.333
+   },
+   {
+    "seed": 4249,
+    "route": [
+     10,
+     11,
+     15,
+     14,
+     10
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 41.66,
+    "mean_heading_error_deg": 7.7,
+    "mean_cross_track_m": 0.171,
+    "max_cross_track_m": 0.377
+   },
+   {
+    "seed": 4249,
+    "route": [
+     1,
+     2,
+     3,
+     2,
+     6
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 42.26,
+    "mean_heading_error_deg": 10.63,
+    "mean_cross_track_m": 0.19,
+    "max_cross_track_m": 0.76
+   },
+   {
+    "seed": 4249,
+    "route": [
+     9,
+     10,
+     11,
+     10,
+     14
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 42.26,
+    "mean_heading_error_deg": 10.63,
+    "mean_cross_track_m": 0.19,
+    "max_cross_track_m": 0.76
+   }
+  ],
+  "default": [
+   {
+    "seed": 4240,
+    "route": [
+     3,
+     7,
+     11,
+     10,
+     14
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.5157894736842106,
+    "time_s": 21.22,
+    "mean_heading_error_deg": 2.26,
+    "mean_cross_track_m": 0.16,
+    "max_cross_track_m": 1.69
+   },
+   {
+    "seed": 4240,
+    "route": [
+     14,
+     10,
+     6,
+     5,
+     1
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.49473684210526314,
+    "time_s": 20.36,
+    "mean_heading_error_deg": 1.95,
+    "mean_cross_track_m": 0.149,
+    "max_cross_track_m": 1.185
+   },
+   {
+    "seed": 4240,
+    "route": [
+     12,
+     13,
+     14,
+     13,
+     12
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.3682170542635659,
+    "time_s": 20.86,
+    "mean_heading_error_deg": 2.85,
+    "mean_cross_track_m": 0.164,
+    "max_cross_track_m": 0.854
+   },
+   {
+    "seed": 4240,
+    "route": [
+     10,
+     11,
+     15,
+     11,
+     10
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.1935483870967742,
+    "time_s": 11.32,
+    "mean_heading_error_deg": 3.18,
+    "mean_cross_track_m": 0.154,
+    "max_cross_track_m": 0.959
+   },
+   {
+    "seed": 4241,
+    "route": [
+     12,
+     8,
+     9,
+     5
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.34285714285714286,
+    "time_s": 11.32,
+    "mean_heading_error_deg": 3.18,
+    "mean_cross_track_m": 0.154,
+    "max_cross_track_m": 0.959
+   },
+   {
+    "seed": 4241,
+    "route": [
+     2,
+     6,
+     10,
+     11,
+     15
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.49473684210526314,
+    "time_s": 20.36,
+    "mean_heading_error_deg": 1.95,
+    "mean_cross_track_m": 0.149,
+    "max_cross_track_m": 1.185
+   },
+   {
+    "seed": 4241,
+    "route": [
+     7,
+     6,
+     5,
+     6,
+     7
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.3682170542635659,
+    "time_s": 20.86,
+    "mean_heading_error_deg": 2.85,
+    "mean_cross_track_m": 0.164,
+    "max_cross_track_m": 0.854
+   },
+   {
+    "seed": 4241,
+    "route": [
+     10,
+     9,
+     5,
+     9,
+     8
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.1875,
+    "time_s": 11.32,
+    "mean_heading_error_deg": 3.18,
+    "mean_cross_track_m": 0.154,
+    "max_cross_track_m": 0.959
+   },
+   {
+    "seed": 4242,
+    "route": [
+     13,
+     14,
+     15,
+     11,
+     7
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.49214659685863876,
+    "time_s": 20.36,
+    "mean_heading_error_deg": 1.95,
+    "mean_cross_track_m": 0.149,
+    "max_cross_track_m": 1.185
+   },
+   {
+    "seed": 4242,
+    "route": [
+     13,
+     9,
+     10,
+     6
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.34285714285714286,
+    "time_s": 11.32,
+    "mean_heading_error_deg": 3.18,
+    "mean_cross_track_m": 0.154,
+    "max_cross_track_m": 0.959
+   },
+   {
+    "seed": 4242,
+    "route": [
+     0,
+     4,
+     5,
+     4,
+     8
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.18333333333333332,
+    "time_s": 10.56,
+    "mean_heading_error_deg": 3.42,
+    "mean_cross_track_m": 0.171,
+    "max_cross_track_m": 1.324
+   },
+   {
+    "seed": 4242,
+    "route": [
+     11,
+     7,
+     3,
+     7,
+     11
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.3682170542635659,
+    "time_s": 20.86,
+    "mean_heading_error_deg": 2.85,
+    "mean_cross_track_m": 0.164,
+    "max_cross_track_m": 0.854
+   },
+   {
+    "seed": 4243,
+    "route": [
+     3,
+     2,
+     6,
+     7,
+     3
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.2543352601156069,
+    "time_s": 10.56,
+    "mean_heading_error_deg": 3.42,
+    "mean_cross_track_m": 0.171,
+    "max_cross_track_m": 1.324
+   },
+   {
+    "seed": 4243,
+    "route": [
+     5,
+     4,
+     0,
+     1,
+     2
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.24242424242424243,
+    "time_s": 11.32,
+    "mean_heading_error_deg": 3.18,
+    "mean_cross_track_m": 0.154,
+    "max_cross_track_m": 0.959
+   },
+   {
+    "seed": 4243,
+    "route": [
+     9,
+     10,
+     6,
+     10,
+     9
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.1774193548387097,
+    "time_s": 10.56,
+    "mean_heading_error_deg": 3.42,
+    "mean_cross_track_m": 0.171,
+    "max_cross_track_m": 1.324
+   },
+   {
+    "seed": 4243,
+    "route": [
+     9,
+     13,
+     14,
+     13,
+     9
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.1774193548387097,
+    "time_s": 10.56,
+    "mean_heading_error_deg": 3.42,
+    "mean_cross_track_m": 0.171,
+    "max_cross_track_m": 1.324
+   },
+   {
+    "seed": 4244,
+    "route": [
+     15,
+     11,
+     10,
+     14
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.3333333333333333,
+    "time_s": 10.56,
+    "mean_heading_error_deg": 3.42,
+    "mean_cross_track_m": 0.171,
+    "max_cross_track_m": 1.324
+   },
+   {
+    "seed": 4244,
+    "route": [
+     8,
+     4,
+     5,
+     1
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.34285714285714286,
+    "time_s": 11.32,
+    "mean_heading_error_deg": 3.18,
+    "mean_cross_track_m": 0.154,
+    "max_cross_track_m": 0.959
+   },
+   {
+    "seed": 4244,
+    "route": [
+     4,
+     8,
+     9,
+     8,
+     4
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.1774193548387097,
+    "time_s": 10.56,
+    "mean_heading_error_deg": 3.42,
+    "mean_cross_track_m": 0.171,
+    "max_cross_track_m": 1.324
+   },
+   {
+    "seed": 4244,
+    "route": [
+     3,
+     7,
+     11,
+     7,
+     6
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.3815261044176707,
+    "time_s": 20.86,
+    "mean_heading_error_deg": 2.85,
+    "mean_cross_track_m": 0.164,
+    "max_cross_track_m": 0.854
+   },
+   {
+    "seed": 4245,
+    "route": [
+     12,
+     13,
+     9,
+     10,
+     14
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.2328042328042328,
+    "time_s": 10.56,
+    "mean_heading_error_deg": 3.42,
+    "mean_cross_track_m": 0.171,
+    "max_cross_track_m": 1.324
+   },
+   {
+    "seed": 4245,
+    "route": [
+     7,
+     3,
+     2,
+     6,
+     7
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.2543352601156069,
+    "time_s": 10.56,
+    "mean_heading_error_deg": 3.42,
+    "mean_cross_track_m": 0.171,
+    "max_cross_track_m": 1.324
+   },
+   {
+    "seed": 4245,
+    "route": [
+     0,
+     1,
+     5,
+     1,
+     2
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.1875,
+    "time_s": 11.32,
+    "mean_heading_error_deg": 3.18,
+    "mean_cross_track_m": 0.154,
+    "max_cross_track_m": 0.959
+   },
+   {
+    "seed": 4245,
+    "route": [
+     14,
+     15,
+     11,
+     15,
+     14
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.1774193548387097,
+    "time_s": 10.56,
+    "mean_heading_error_deg": 3.42,
+    "mean_cross_track_m": 0.171,
+    "max_cross_track_m": 1.324
+   },
+   {
+    "seed": 4246,
+    "route": [
+     5,
+     9,
+     13,
+     12
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.6577181208053692,
+    "time_s": 21.22,
+    "mean_heading_error_deg": 2.26,
+    "mean_cross_track_m": 0.16,
+    "max_cross_track_m": 1.69
+   },
+   {
+    "seed": 4246,
+    "route": [
+     10,
+     11,
+     15,
+     14
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.32432432432432434,
+    "time_s": 11.32,
+    "mean_heading_error_deg": 3.18,
+    "mean_cross_track_m": 0.154,
+    "max_cross_track_m": 0.959
+   },
+   {
+    "seed": 4246,
+    "route": [
+     5,
+     9,
+     8,
+     9,
+     5
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.1935483870967742,
+    "time_s": 11.32,
+    "mean_heading_error_deg": 3.18,
+    "mean_cross_track_m": 0.154,
+    "max_cross_track_m": 0.959
+   },
+   {
+    "seed": 4246,
+    "route": [
+     10,
+     6,
+     2,
+     6,
+     10
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.3682170542635659,
+    "time_s": 20.86,
+    "mean_heading_error_deg": 2.85,
+    "mean_cross_track_m": 0.164,
+    "max_cross_track_m": 0.854
+   },
+   {
+    "seed": 4247,
+    "route": [
+     0,
+     1,
+     2,
+     6
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.6577181208053692,
+    "time_s": 21.22,
+    "mean_heading_error_deg": 2.26,
+    "mean_cross_track_m": 0.16,
+    "max_cross_track_m": 1.69
+   },
+   {
+    "seed": 4247,
+    "route": [
+     3,
+     7,
+     6,
+     2,
+     1
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.25396825396825395,
+    "time_s": 11.32,
+    "mean_heading_error_deg": 3.18,
+    "mean_cross_track_m": 0.154,
+    "max_cross_track_m": 0.959
+   },
+   {
+    "seed": 4247,
+    "route": [
+     7,
+     3,
+     2,
+     3,
+     7
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.1774193548387097,
+    "time_s": 10.56,
+    "mean_heading_error_deg": 3.42,
+    "mean_cross_track_m": 0.171,
+    "max_cross_track_m": 1.324
+   },
+   {
+    "seed": 4247,
+    "route": [
+     5,
+     9,
+     13,
+     9,
+     10
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.36964980544747084,
+    "time_s": 20.86,
+    "mean_heading_error_deg": 2.85,
+    "mean_cross_track_m": 0.164,
+    "max_cross_track_m": 0.854
+   },
+   {
+    "seed": 4248,
+    "route": [
+     13,
+     9,
+     10,
+     11
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.3221476510067114,
+    "time_s": 11.32,
+    "mean_heading_error_deg": 3.18,
+    "mean_cross_track_m": 0.154,
+    "max_cross_track_m": 0.959
+   },
+   {
+    "seed": 4248,
+    "route": [
+     9,
+     5,
+     1,
+     2
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.6577181208053692,
+    "time_s": 21.22,
+    "mean_heading_error_deg": 2.26,
+    "mean_cross_track_m": 0.16,
+    "max_cross_track_m": 1.69
+   },
+   {
+    "seed": 4248,
+    "route": [
+     8,
+     12,
+     13,
+     12,
+     8
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.1774193548387097,
+    "time_s": 10.56,
+    "mean_heading_error_deg": 3.42,
+    "mean_cross_track_m": 0.171,
+    "max_cross_track_m": 1.324
+   },
+   {
+    "seed": 4248,
+    "route": [
+     15,
+     11,
+     10,
+     11,
+     7
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.18333333333333332,
+    "time_s": 10.56,
+    "mean_heading_error_deg": 3.42,
+    "mean_cross_track_m": 0.171,
+    "max_cross_track_m": 1.324
+   },
+   {
+    "seed": 4249,
+    "route": [
+     6,
+     10,
+     11,
+     7
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.3333333333333333,
+    "time_s": 10.56,
+    "mean_heading_error_deg": 3.42,
+    "mean_cross_track_m": 0.171,
+    "max_cross_track_m": 1.324
+   },
+   {
+    "seed": 4249,
+    "route": [
+     10,
+     11,
+     15,
+     14,
+     10
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.2436548223350254,
+    "time_s": 11.32,
+    "mean_heading_error_deg": 3.18,
+    "mean_cross_track_m": 0.154,
+    "max_cross_track_m": 0.959
+   },
+   {
+    "seed": 4249,
+    "route": [
+     1,
+     2,
+     3,
+     2,
+     6
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.3815261044176707,
+    "time_s": 20.86,
+    "mean_heading_error_deg": 2.85,
+    "mean_cross_track_m": 0.164,
+    "max_cross_track_m": 0.854
+   },
+   {
+    "seed": 4249,
+    "route": [
+     9,
+     10,
+     11,
+     10,
+     14
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.3815261044176707,
+    "time_s": 20.86,
+    "mean_heading_error_deg": 2.85,
+    "mean_cross_track_m": 0.164,
+    "max_cross_track_m": 0.854
+   }
+  ],
+  "starting_gains": [
+   {
+    "seed": 4240,
+    "route": [
+     3,
+     7,
+     11,
+     10,
+     14
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 39.32,
+    "mean_heading_error_deg": 3.63,
+    "mean_cross_track_m": 0.151,
+    "max_cross_track_m": 0.476
+   },
+   {
+    "seed": 4240,
+    "route": [
+     14,
+     10,
+     6,
+     5,
+     1
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 39.3,
+    "mean_heading_error_deg": 4.07,
+    "mean_cross_track_m": 0.152,
+    "max_cross_track_m": 0.564
+   },
+   {
+    "seed": 4240,
+    "route": [
+     12,
+     13,
+     14,
+     13,
+     12
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.43023255813953487,
+    "time_s": 21.18,
+    "mean_heading_error_deg": 3.79,
+    "mean_cross_track_m": 0.134,
+    "max_cross_track_m": 0.351
+   },
+   {
+    "seed": 4240,
+    "route": [
+     10,
+     11,
+     15,
+     11,
+     10
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.46774193548387094,
+    "time_s": 21.98,
+    "mean_heading_error_deg": 8.42,
+    "mean_cross_track_m": 0.169,
+    "max_cross_track_m": 0.738
+   },
+   {
+    "seed": 4241,
+    "route": [
+     12,
+     8,
+     9,
+     5
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 29.28,
+    "mean_heading_error_deg": 5.99,
+    "mean_cross_track_m": 0.168,
+    "max_cross_track_m": 0.619
+   },
+   {
+    "seed": 4241,
+    "route": [
+     2,
+     6,
+     10,
+     11,
+     15
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 39.3,
+    "mean_heading_error_deg": 4.07,
+    "mean_cross_track_m": 0.152,
+    "max_cross_track_m": 0.564
+   },
+   {
+    "seed": 4241,
+    "route": [
+     7,
+     6,
+     5,
+     6,
+     7
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.43023255813953487,
+    "time_s": 21.18,
+    "mean_heading_error_deg": 3.79,
+    "mean_cross_track_m": 0.134,
+    "max_cross_track_m": 0.351
+   },
+   {
+    "seed": 4241,
+    "route": [
+     10,
+     9,
+     5,
+     9,
+     8
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.453125,
+    "time_s": 21.98,
+    "mean_heading_error_deg": 8.42,
+    "mean_cross_track_m": 0.169,
+    "max_cross_track_m": 0.738
+   },
+   {
+    "seed": 4242,
+    "route": [
+     13,
+     14,
+     15,
+     11,
+     7
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 38.78,
+    "mean_heading_error_deg": 2.25,
+    "mean_cross_track_m": 0.137,
+    "max_cross_track_m": 0.523
+   },
+   {
+    "seed": 4242,
+    "route": [
+     13,
+     9,
+     10,
+     6
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 29.28,
+    "mean_heading_error_deg": 5.99,
+    "mean_cross_track_m": 0.168,
+    "max_cross_track_m": 0.619
+   },
+   {
+    "seed": 4242,
+    "route": [
+     0,
+     4,
+     5,
+     4,
+     8
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.42916666666666664,
+    "time_s": 20.14,
+    "mean_heading_error_deg": 6.45,
+    "mean_cross_track_m": 0.161,
+    "max_cross_track_m": 0.453
+   },
+   {
+    "seed": 4242,
+    "route": [
+     11,
+     7,
+     3,
+     7,
+     11
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.43023255813953487,
+    "time_s": 21.18,
+    "mean_heading_error_deg": 3.79,
+    "mean_cross_track_m": 0.134,
+    "max_cross_track_m": 0.351
+   },
+   {
+    "seed": 4243,
+    "route": [
+     3,
+     2,
+     6,
+     7,
+     3
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 36.62,
+    "mean_heading_error_deg": 5.1,
+    "mean_cross_track_m": 0.166,
+    "max_cross_track_m": 0.517
+   },
+   {
+    "seed": 4243,
+    "route": [
+     5,
+     4,
+     0,
+     1,
+     2
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 41.0,
+    "mean_heading_error_deg": 4.85,
+    "mean_cross_track_m": 0.156,
+    "max_cross_track_m": 0.619
+   },
+   {
+    "seed": 4243,
+    "route": [
+     9,
+     10,
+     6,
+     10,
+     9
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.4153225806451613,
+    "time_s": 20.14,
+    "mean_heading_error_deg": 6.45,
+    "mean_cross_track_m": 0.161,
+    "max_cross_track_m": 0.453
+   },
+   {
+    "seed": 4243,
+    "route": [
+     9,
+     13,
+     14,
+     13,
+     9
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.4153225806451613,
+    "time_s": 20.14,
+    "mean_heading_error_deg": 6.45,
+    "mean_cross_track_m": 0.161,
+    "max_cross_track_m": 0.453
+   },
+   {
+    "seed": 4244,
+    "route": [
+     15,
+     11,
+     10,
+     14
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 27.62,
+    "mean_heading_error_deg": 4.71,
+    "mean_cross_track_m": 0.163,
+    "max_cross_track_m": 0.517
+   },
+   {
+    "seed": 4244,
+    "route": [
+     8,
+     4,
+     5,
+     1
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 29.28,
+    "mean_heading_error_deg": 5.99,
+    "mean_cross_track_m": 0.168,
+    "max_cross_track_m": 0.619
+   },
+   {
+    "seed": 4244,
+    "route": [
+     4,
+     8,
+     9,
+     8,
+     4
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.4153225806451613,
+    "time_s": 20.14,
+    "mean_heading_error_deg": 6.45,
+    "mean_cross_track_m": 0.161,
+    "max_cross_track_m": 0.453
+   },
+   {
+    "seed": 4244,
+    "route": [
+     3,
+     7,
+     11,
+     7,
+     6
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.4457831325301205,
+    "time_s": 21.18,
+    "mean_heading_error_deg": 3.79,
+    "mean_cross_track_m": 0.134,
+    "max_cross_track_m": 0.351
+   },
+   {
+    "seed": 4245,
+    "route": [
+     12,
+     13,
+     9,
+     10,
+     14
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 39.84,
+    "mean_heading_error_deg": 5.62,
+    "mean_cross_track_m": 0.168,
+    "max_cross_track_m": 0.511
+   },
+   {
+    "seed": 4245,
+    "route": [
+     7,
+     3,
+     2,
+     6,
+     7
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 36.62,
+    "mean_heading_error_deg": 5.1,
+    "mean_cross_track_m": 0.166,
+    "max_cross_track_m": 0.517
+   },
+   {
+    "seed": 4245,
+    "route": [
+     0,
+     1,
+     5,
+     1,
+     2
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.453125,
+    "time_s": 21.98,
+    "mean_heading_error_deg": 8.42,
+    "mean_cross_track_m": 0.169,
+    "max_cross_track_m": 0.738
+   },
+   {
+    "seed": 4245,
+    "route": [
+     14,
+     15,
+     11,
+     15,
+     14
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.4153225806451613,
+    "time_s": 20.14,
+    "mean_heading_error_deg": 6.45,
+    "mean_cross_track_m": 0.161,
+    "max_cross_track_m": 0.453
+   },
+   {
+    "seed": 4246,
+    "route": [
+     5,
+     9,
+     13,
+     12
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 30.32,
+    "mean_heading_error_deg": 2.85,
+    "mean_cross_track_m": 0.144,
+    "max_cross_track_m": 0.47
+   },
+   {
+    "seed": 4246,
+    "route": [
+     10,
+     11,
+     15,
+     14
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 30.96,
+    "mean_heading_error_deg": 6.06,
+    "mean_cross_track_m": 0.165,
+    "max_cross_track_m": 0.619
+   },
+   {
+    "seed": 4246,
+    "route": [
+     5,
+     9,
+     8,
+     9,
+     5
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.46774193548387094,
+    "time_s": 21.98,
+    "mean_heading_error_deg": 8.42,
+    "mean_cross_track_m": 0.169,
+    "max_cross_track_m": 0.738
+   },
+   {
+    "seed": 4246,
+    "route": [
+     10,
+     6,
+     2,
+     6,
+     10
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.43023255813953487,
+    "time_s": 21.18,
+    "mean_heading_error_deg": 3.79,
+    "mean_cross_track_m": 0.134,
+    "max_cross_track_m": 0.351
+   },
+   {
+    "seed": 4247,
+    "route": [
+     0,
+     1,
+     2,
+     6
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 30.32,
+    "mean_heading_error_deg": 2.85,
+    "mean_cross_track_m": 0.144,
+    "max_cross_track_m": 0.47
+   },
+   {
+    "seed": 4247,
+    "route": [
+     3,
+     7,
+     6,
+     2,
+     1
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 39.98,
+    "mean_heading_error_deg": 6.02,
+    "mean_cross_track_m": 0.166,
+    "max_cross_track_m": 0.619
+   },
+   {
+    "seed": 4247,
+    "route": [
+     7,
+     3,
+     2,
+     3,
+     7
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.4153225806451613,
+    "time_s": 20.14,
+    "mean_heading_error_deg": 6.45,
+    "mean_cross_track_m": 0.161,
+    "max_cross_track_m": 0.453
+   },
+   {
+    "seed": 4247,
+    "route": [
+     5,
+     9,
+     13,
+     9,
+     10
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.43190661478599224,
+    "time_s": 21.18,
+    "mean_heading_error_deg": 3.79,
+    "mean_cross_track_m": 0.134,
+    "max_cross_track_m": 0.351
+   },
+   {
+    "seed": 4248,
+    "route": [
+     13,
+     9,
+     10,
+     11
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 30.36,
+    "mean_heading_error_deg": 4.35,
+    "mean_cross_track_m": 0.151,
+    "max_cross_track_m": 0.619
+   },
+   {
+    "seed": 4248,
+    "route": [
+     9,
+     5,
+     1,
+     2
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 30.32,
+    "mean_heading_error_deg": 2.85,
+    "mean_cross_track_m": 0.144,
+    "max_cross_track_m": 0.47
+   },
+   {
+    "seed": 4248,
+    "route": [
+     8,
+     12,
+     13,
+     12,
+     8
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.4153225806451613,
+    "time_s": 20.14,
+    "mean_heading_error_deg": 6.45,
+    "mean_cross_track_m": 0.161,
+    "max_cross_track_m": 0.453
+   },
+   {
+    "seed": 4248,
+    "route": [
+     15,
+     11,
+     10,
+     11,
+     7
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.42916666666666664,
+    "time_s": 20.14,
+    "mean_heading_error_deg": 6.45,
+    "mean_cross_track_m": 0.161,
+    "max_cross_track_m": 0.453
+   },
+   {
+    "seed": 4249,
+    "route": [
+     6,
+     10,
+     11,
+     7
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 27.62,
+    "mean_heading_error_deg": 4.71,
+    "mean_cross_track_m": 0.163,
+    "max_cross_track_m": 0.517
+   },
+   {
+    "seed": 4249,
+    "route": [
+     10,
+     11,
+     15,
+     14,
+     10
+    ],
+    "completed": true,
+    "fell": false,
+    "off_road": false,
+    "progress": 1.0,
+    "time_s": 41.52,
+    "mean_heading_error_deg": 6.03,
+    "mean_cross_track_m": 0.169,
+    "max_cross_track_m": 0.619
+   },
+   {
+    "seed": 4249,
+    "route": [
+     1,
+     2,
+     3,
+     2,
+     6
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.4457831325301205,
+    "time_s": 21.18,
+    "mean_heading_error_deg": 3.79,
+    "mean_cross_track_m": 0.134,
+    "max_cross_track_m": 0.351
+   },
+   {
+    "seed": 4249,
+    "route": [
+     9,
+     10,
+     11,
+     10,
+     14
+    ],
+    "completed": false,
+    "fell": true,
+    "off_road": false,
+    "progress": 0.4457831325301205,
+    "time_s": 21.18,
+    "mean_heading_error_deg": 3.79,
+    "mean_cross_track_m": 0.134,
+    "max_cross_track_m": 0.351
+   }
+  ]
+ }
+}
