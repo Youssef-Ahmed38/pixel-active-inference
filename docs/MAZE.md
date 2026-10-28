@@ -467,7 +467,10 @@ falls); 7 goals the grid body found were lost to a fall. No walk felt blocked at
 Outcomes differ from the grid body in 25 of 240 episodes, in both directions, because bumps,
 back-offs and timed-out walks change the sequence of looks. The walking policy never practised
 touching walls; training it with wall contact (Stage 2) is the fix this points to, not more
-steering rules. `results/maze_walker_{noisy,persistent}{,_branchy}.json`:
+steering rules. (Later: wall-contact training (v4) and four more attempts did not remove these falls;
+walking at 0.4 m/s instead of 0.6 m/s did: on new persistent-misread mazes 84000-84029, 0 falls in 60
+walked episodes vs 5, with as many goals; details in `docs/LOCOMOTION_STAGE2.md`.)
+`results/maze_walker_{noisy,persistent}{,_branchy}.json`:
 
     python scripts/maze_walker_eval.py --regime persistent --test-start 79400 --num 30 --workers 10 --output results/maze_walker_persistent.json
 

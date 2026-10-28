@@ -171,10 +171,30 @@ Worse, not better (the differences are within chance). Stopping when tilted does
 whose own walking produces these tilts. Not taken to a final run
 (`results/maze_walker_stress_dev_smooth{,_steady30,_steady34}.json`).
 
-Five attempts (v5, v6, smooth steering, caution, a steadying reflex) did not remove the maze falls;
-the best configuration is v4 with smooth steering (3 of 60 on new mazes; 1.74 falls per 1000 stress
-moves), and the falls remain an open problem. The fix this points to is practice of exactly these
-moves: training the walking policy on the stress test's turn, walk and touch pattern.
+Five attempts (v5, v6, smooth steering, caution, a steadying reflex) did not remove the maze falls.
+
+**Walking more slowly in the maze removes the falls (no retraining).** The falls traced in the stress
+test happen while walking forward at 0.6 m/s with a heading correction, so the sixth attempt changes
+only the walker's commanded speed in the maze: 0.4 m/s instead of 0.6 m/s (`WalkerMaze(speed=0.4)`,
+within the speeds the policy practised). Same policy v4, smooth steering:
+
+| Test | 0.6 m/s | 0.4 m/s | |
+|---|---:|---:|---|
+| Stress, development mazes 21000-21079 (two sets of 40) | 23 falls / 10171 moves (2.26 per 1000) | 10 / 11357 (0.88) | p = 0.014 |
+| **Stress, final mazes 22000-22059 (new)** | **20 / 7706 (2.60 per 1000)** | **4 / 8707 (0.46)** | **p = 0.0003** |
+| **Exploration, persistent misreads, final mazes 84000-84029 (new), 60 walked episodes** | **5 falls, 24 goals** | **0 falls, 23 goals** | falls 5-0 discordant, p = 0.06; goals 1-0, p = 1 |
+
+On new mazes slower walking cuts the falls per 1000 maze moves by 82% (exact binomial test on the
+fall counts given the moves); in full exploration it had no fall in 60 episodes against 5, and found
+as many goals (route EFE 18/30 at both speeds, the same outcome as the instant grid body in all 30
+mazes; nearest frontier 6 vs 5). The cost is time: about 11% more walking time per move and more
+felt bumps (a slower walk reaches the stall test more often). The released maze configuration is
+now v4, smooth steering, 0.4 m/s. Development used mazes 21000-21079 only; the final mazes were run
+once (`results/maze_walker_stress_{dev,dev2,final}_smooth_speed*.json`,
+`results/maze_walker_persistent_84000_v4_smooth_speed{06,04}.json`).
+
+    python scripts/maze_walker_stress.py --start 22000 --num 60 --moves 150 --smooth --speed 0.4 --policy runs/locomotion/policy_v4/policy.pt --output results/maze_walker_stress_final_smooth_speed04.json
+    python scripts/maze_walker_eval.py --test-start 84000 --num 30 --regime persistent --smooth --speed 0.4 --workers 6 --policy runs/locomotion/policy_v4/policy.pt --output results/maze_walker_persistent_84000_v4_smooth_speed04.json
 
 `media/locomotion/g1_wall_contact.mp4`: the same body walks into the same wall with v3 (left, falls)
 and v4 (right, stays up and backs off). Seed 57100, chosen from five as an example where they

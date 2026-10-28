@@ -29,14 +29,14 @@ DIRS = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
 
 def run(job):
-    seed, moves, policy, smooth, steady = job
+    seed, moves, policy, smooth, steady, speed = job
     import torch
     torch.set_num_threads(1)
     from pai.maze.walker import WalkerMaze
     from pai.maze.env import MazeWorld
     world = MazeWorld(seed)
     kw = {"steady": steady} if steady is not None else {}
-    w = WalkerMaze(world, seed=seed, solid=True, stall_s=1.0, policy=Path(policy), smooth=smooth, **kw)
+    w = WalkerMaze(world, seed=seed, solid=True, stall_s=1.0, policy=Path(policy), smooth=smooth, speed=speed, **kw)
     rng = np.random.default_rng(seed + 5150)
     buf = collections.deque(maxlen=100)
     tick = w._tick
@@ -75,10 +75,11 @@ def main():
     ap.add_argument("--policy", default="runs/locomotion/policy_v4/policy.pt")
     ap.add_argument("--smooth", action="store_true")
     ap.add_argument("--steady", type=float, default=None, help="tilt (deg) that makes the walker stop and steady itself")
+    ap.add_argument("--speed", type=float, default=0.6, help="walking speed (m/s)")
     ap.add_argument("--workers", type=int, default=6)
     ap.add_argument("--output", type=Path, required=True)
     args = ap.parse_args()
-    jobs = [(s, args.moves, args.policy, args.smooth, args.steady) for s in range(args.start, args.start + args.num)]
+    jobs = [(s, args.moves, args.policy, args.smooth, args.steady, args.speed) for s in range(args.start, args.start + args.num)]
     with Pool(args.workers) as pool:
         eps = pool.map(run, jobs, chunksize=1)
     moves = sum(e["moves"] for e in eps)
@@ -87,7 +88,7 @@ def main():
                "bumps": sum(e["bumps"] for e in eps), "walk_hours": round(sum(e["walk_seconds"] for e in eps) / 3600, 2),
                "steadies": sum(e["steadies"] for e in eps)}
     out = {"seeds": [args.start, args.start + args.num - 1], "moves_per_maze": args.moves, "policy": args.policy,
-           "smooth": args.smooth, "steady": args.steady, "summary": summary, "episodes": eps}
+           "smooth": args.smooth, "steady": args.steady, "speed": args.speed, "summary": summary, "episodes": eps}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(out, indent=1))
     print(json.dumps(summary))

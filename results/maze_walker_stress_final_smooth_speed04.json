@@ -1,0 +1,1046 @@
+{
+ "seeds": [
+  22000,
+  22059
+ ],
+ "moves_per_maze": 150,
+ "policy": "../pixel-active-inference/runs/locomotion/policy_v4/policy.pt",
+ "smooth": true,
+ "steady": null,
+ "speed": 0.4,
+ "summary": {
+  "mazes": 60,
+  "moves": 8707,
+  "falls": 4,
+  "falls_per_1000_moves": 0.46,
+  "bumps": 1980,
+  "walk_hours": 13.77,
+  "steadies": 0
+ },
+ "episodes": [
+  {
+   "seed": 22000,
+   "moves": 150,
+   "fell": false,
+   "bumps": 29,
+   "walk_seconds": 863.8,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22001,
+   "moves": 150,
+   "fell": false,
+   "bumps": 34,
+   "walk_seconds": 872.5,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22002,
+   "moves": 150,
+   "fell": false,
+   "bumps": 39,
+   "walk_seconds": 868.5,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22003,
+   "moves": 150,
+   "fell": false,
+   "bumps": 32,
+   "walk_seconds": 833.6,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22004,
+   "moves": 150,
+   "fell": false,
+   "bumps": 41,
+   "walk_seconds": 817.3,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22005,
+   "moves": 150,
+   "fell": false,
+   "bumps": 37,
+   "walk_seconds": 863.6,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22006,
+   "moves": 34,
+   "fell": true,
+   "bumps": 10,
+   "walk_seconds": 177.5,
+   "steadies": 0,
+   "before_fall": [
+    [
+     175.5,
+     0.0,
+     14.6,
+     8.0
+    ],
+    [
+     175.6,
+     0.0,
+     9.4,
+     11.2
+    ],
+    [
+     175.7,
+     0.0,
+     1.4,
+     12.2
+    ],
+    [
+     175.8,
+     0.0,
+     -2.2,
+     11.4
+    ],
+    [
+     175.9,
+     0.0,
+     -3.1,
+     10.5
+    ],
+    [
+     176.0,
+     0.0,
+     -4.8,
+     5.7
+    ],
+    [
+     176.1,
+     0.0,
+     -3.4,
+     1.2
+    ],
+    [
+     176.2,
+     0.0,
+     -2.2,
+     -5.9
+    ],
+    [
+     176.3,
+     0.0,
+     3.6,
+     -10.7
+    ],
+    [
+     176.4,
+     0.0,
+     4.9,
+     -12.5
+    ],
+    [
+     176.5,
+     0.0,
+     8.1,
+     -12.4
+    ],
+    [
+     176.6,
+     0.0,
+     8.3,
+     -8.5
+    ],
+    [
+     176.7,
+     0.0,
+     7.9,
+     -3.9
+    ],
+    [
+     176.8,
+     0.0,
+     8.3,
+     2.9
+    ],
+    [
+     176.9,
+     0.0,
+     8.6,
+     10.6
+    ],
+    [
+     177.0,
+     0.0,
+     4.2,
+     21.6
+    ],
+    [
+     177.1,
+     0.0,
+     -2.0,
+     34.6
+    ],
+    [
+     177.2,
+     0.0,
+     -5.6,
+     42.2
+    ],
+    [
+     177.3,
+     0.0,
+     -13.8,
+     48.3
+    ],
+    [
+     177.4,
+     0.0,
+     -16.8,
+     51.3
+    ]
+   ]
+  },
+  {
+   "seed": 22007,
+   "moves": 150,
+   "fell": false,
+   "bumps": 30,
+   "walk_seconds": 863.6,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22008,
+   "moves": 150,
+   "fell": false,
+   "bumps": 29,
+   "walk_seconds": 903.8,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22009,
+   "moves": 150,
+   "fell": false,
+   "bumps": 39,
+   "walk_seconds": 856.4,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22010,
+   "moves": 150,
+   "fell": false,
+   "bumps": 31,
+   "walk_seconds": 831.3,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22011,
+   "moves": 150,
+   "fell": false,
+   "bumps": 36,
+   "walk_seconds": 845.3,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22012,
+   "moves": 150,
+   "fell": false,
+   "bumps": 37,
+   "walk_seconds": 854.4,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22013,
+   "moves": 150,
+   "fell": false,
+   "bumps": 33,
+   "walk_seconds": 888.9,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22014,
+   "moves": 150,
+   "fell": false,
+   "bumps": 40,
+   "walk_seconds": 816.7,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22015,
+   "moves": 150,
+   "fell": false,
+   "bumps": 33,
+   "walk_seconds": 903.1,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22016,
+   "moves": 150,
+   "fell": false,
+   "bumps": 30,
+   "walk_seconds": 848.5,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22017,
+   "moves": 150,
+   "fell": false,
+   "bumps": 40,
+   "walk_seconds": 842.8,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22018,
+   "moves": 150,
+   "fell": false,
+   "bumps": 27,
+   "walk_seconds": 849.9,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22019,
+   "moves": 150,
+   "fell": false,
+   "bumps": 24,
+   "walk_seconds": 875.2,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22020,
+   "moves": 150,
+   "fell": false,
+   "bumps": 41,
+   "walk_seconds": 846.4,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22021,
+   "moves": 150,
+   "fell": false,
+   "bumps": 30,
+   "walk_seconds": 813.1,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22022,
+   "moves": 150,
+   "fell": false,
+   "bumps": 38,
+   "walk_seconds": 862.5,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22023,
+   "moves": 150,
+   "fell": false,
+   "bumps": 25,
+   "walk_seconds": 865.5,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22024,
+   "moves": 150,
+   "fell": false,
+   "bumps": 34,
+   "walk_seconds": 860.9,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22025,
+   "moves": 150,
+   "fell": false,
+   "bumps": 28,
+   "walk_seconds": 849.3,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22026,
+   "moves": 150,
+   "fell": false,
+   "bumps": 25,
+   "walk_seconds": 859.1,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22027,
+   "moves": 24,
+   "fell": true,
+   "bumps": 4,
+   "walk_seconds": 127.0,
+   "steadies": 0,
+   "before_fall": [
+    [
+     125.04,
+     0.4,
+     -8.2,
+     9.5
+    ],
+    [
+     125.14,
+     0.4,
+     -10.9,
+     15.3
+    ],
+    [
+     125.24,
+     0.4,
+     -9.4,
+     17.5
+    ],
+    [
+     125.34,
+     0.4,
+     -4.1,
+     19.3
+    ],
+    [
+     125.44,
+     0.4,
+     1.5,
+     19.6
+    ],
+    [
+     125.54,
+     0.4,
+     6.5,
+     18.2
+    ],
+    [
+     125.64,
+     0.4,
+     9.6,
+     20.7
+    ],
+    [
+     125.74,
+     0.4,
+     14.1,
+     19.3
+    ],
+    [
+     125.84,
+     0.4,
+     15.3,
+     19.4
+    ],
+    [
+     125.94,
+     0.4,
+     15.5,
+     22.3
+    ],
+    [
+     126.04,
+     0.4,
+     15.1,
+     21.7
+    ],
+    [
+     126.14,
+     0.4,
+     15.3,
+     22.1
+    ],
+    [
+     126.24,
+     0.4,
+     16.3,
+     22.1
+    ],
+    [
+     126.34,
+     0.4,
+     17.4,
+     22.1
+    ],
+    [
+     126.44,
+     0.4,
+     18.9,
+     23.2
+    ],
+    [
+     126.54,
+     0.4,
+     21.2,
+     24.8
+    ],
+    [
+     126.64,
+     0.4,
+     25.0,
+     27.5
+    ],
+    [
+     126.74,
+     0.4,
+     28.6,
+     32.7
+    ],
+    [
+     126.84,
+     0.4,
+     29.9,
+     39.9
+    ],
+    [
+     126.94,
+     0.38,
+     23.6,
+     46.7
+    ]
+   ]
+  },
+  {
+   "seed": 22028,
+   "moves": 150,
+   "fell": false,
+   "bumps": 29,
+   "walk_seconds": 828.5,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22029,
+   "moves": 150,
+   "fell": false,
+   "bumps": 38,
+   "walk_seconds": 872.3,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22030,
+   "moves": 150,
+   "fell": false,
+   "bumps": 28,
+   "walk_seconds": 851.8,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22031,
+   "moves": 150,
+   "fell": false,
+   "bumps": 35,
+   "walk_seconds": 847.0,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22032,
+   "moves": 150,
+   "fell": false,
+   "bumps": 39,
+   "walk_seconds": 790.1,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22033,
+   "moves": 150,
+   "fell": false,
+   "bumps": 31,
+   "walk_seconds": 874.9,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22034,
+   "moves": 150,
+   "fell": false,
+   "bumps": 31,
+   "walk_seconds": 840.0,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22035,
+   "moves": 150,
+   "fell": false,
+   "bumps": 31,
+   "walk_seconds": 871.0,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22036,
+   "moves": 150,
+   "fell": false,
+   "bumps": 37,
+   "walk_seconds": 857.4,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22037,
+   "moves": 118,
+   "fell": true,
+   "bumps": 23,
+   "walk_seconds": 707.3,
+   "steadies": 0,
+   "before_fall": [
+    [
+     705.34,
+     0.4,
+     3.7,
+     26.8
+    ],
+    [
+     705.44,
+     0.3,
+     15.5,
+     33.9
+    ],
+    [
+     705.54,
+     0.2,
+     20.5,
+     35.4
+    ],
+    [
+     705.64,
+     0.1,
+     25.1,
+     35.6
+    ],
+    [
+     705.74,
+     0.0,
+     29.7,
+     32.5
+    ],
+    [
+     705.84,
+     0.0,
+     31.2,
+     29.8
+    ],
+    [
+     705.94,
+     0.02,
+     23.2,
+     35.2
+    ],
+    [
+     706.04,
+     0.12,
+     19.4,
+     41.6
+    ],
+    [
+     706.14,
+     0.22,
+     19.6,
+     31.5
+    ],
+    [
+     706.24,
+     0.32,
+     25.6,
+     34.9
+    ],
+    [
+     706.34,
+     0.4,
+     26.6,
+     36.3
+    ],
+    [
+     706.44,
+     0.3,
+     23.4,
+     42.9
+    ],
+    [
+     706.54,
+     0.3,
+     12.9,
+     47.0
+    ],
+    [
+     706.64,
+     0.3,
+     4.0,
+     50.1
+    ],
+    [
+     706.74,
+     0.3,
+     1.0,
+     47.7
+    ],
+    [
+     706.84,
+     0.3,
+     12.9,
+     46.9
+    ],
+    [
+     706.94,
+     0.3,
+     13.8,
+     43.2
+    ],
+    [
+     707.04,
+     0.3,
+     9.1,
+     39.5
+    ],
+    [
+     707.14,
+     0.3,
+     6.5,
+     38.5
+    ],
+    [
+     707.24,
+     0.3,
+     2.8,
+     47.9
+    ]
+   ]
+  },
+  {
+   "seed": 22038,
+   "moves": 131,
+   "fell": true,
+   "bumps": 20,
+   "walk_seconds": 741.3,
+   "steadies": 0,
+   "before_fall": [
+    [
+     739.36,
+     0.4,
+     -2.9,
+     10.4
+    ],
+    [
+     739.46,
+     0.4,
+     -3.6,
+     0.0
+    ],
+    [
+     739.56,
+     0.4,
+     -5.1,
+     -7.4
+    ],
+    [
+     739.66,
+     0.4,
+     -4.5,
+     -11.1
+    ],
+    [
+     739.76,
+     0.4,
+     -7.3,
+     -16.5
+    ],
+    [
+     739.86,
+     0.4,
+     -8.6,
+     -19.8
+    ],
+    [
+     739.96,
+     0.4,
+     -4.1,
+     -20.4
+    ],
+    [
+     740.06,
+     0.4,
+     -2.4,
+     -22.0
+    ],
+    [
+     740.16,
+     0.0,
+     -0.8,
+     -23.1
+    ],
+    [
+     740.26,
+     0.0,
+     0.3,
+     -24.1
+    ],
+    [
+     740.36,
+     0.0,
+     0.9,
+     -24.6
+    ],
+    [
+     740.46,
+     0.0,
+     2.1,
+     -24.9
+    ],
+    [
+     740.56,
+     0.0,
+     3.3,
+     -24.7
+    ],
+    [
+     740.66,
+     0.0,
+     4.9,
+     -24.2
+    ],
+    [
+     740.76,
+     0.0,
+     6.0,
+     -23.4
+    ],
+    [
+     740.86,
+     0.0,
+     8.2,
+     -23.6
+    ],
+    [
+     740.96,
+     0.0,
+     11.4,
+     -24.2
+    ],
+    [
+     741.06,
+     0.0,
+     15.5,
+     -24.5
+    ],
+    [
+     741.16,
+     0.0,
+     22.0,
+     -29.0
+    ],
+    [
+     741.26,
+     0.0,
+     7.5,
+     -41.3
+    ]
+   ]
+  },
+  {
+   "seed": 22039,
+   "moves": 150,
+   "fell": false,
+   "bumps": 37,
+   "walk_seconds": 835.2,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22040,
+   "moves": 150,
+   "fell": false,
+   "bumps": 31,
+   "walk_seconds": 897.8,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22041,
+   "moves": 150,
+   "fell": false,
+   "bumps": 36,
+   "walk_seconds": 846.4,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22042,
+   "moves": 150,
+   "fell": false,
+   "bumps": 36,
+   "walk_seconds": 870.1,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22043,
+   "moves": 150,
+   "fell": false,
+   "bumps": 41,
+   "walk_seconds": 924.9,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22044,
+   "moves": 150,
+   "fell": false,
+   "bumps": 41,
+   "walk_seconds": 897.4,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22045,
+   "moves": 150,
+   "fell": false,
+   "bumps": 34,
+   "walk_seconds": 813.1,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22046,
+   "moves": 150,
+   "fell": false,
+   "bumps": 34,
+   "walk_seconds": 870.9,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22047,
+   "moves": 150,
+   "fell": false,
+   "bumps": 37,
+   "walk_seconds": 794.3,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22048,
+   "moves": 150,
+   "fell": false,
+   "bumps": 27,
+   "walk_seconds": 877.1,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22049,
+   "moves": 150,
+   "fell": false,
+   "bumps": 37,
+   "walk_seconds": 852.5,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22050,
+   "moves": 150,
+   "fell": false,
+   "bumps": 38,
+   "walk_seconds": 810.3,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22051,
+   "moves": 150,
+   "fell": false,
+   "bumps": 45,
+   "walk_seconds": 874.8,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22052,
+   "moves": 150,
+   "fell": false,
+   "bumps": 35,
+   "walk_seconds": 798.5,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22053,
+   "moves": 150,
+   "fell": false,
+   "bumps": 34,
+   "walk_seconds": 891.1,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22054,
+   "moves": 150,
+   "fell": false,
+   "bumps": 38,
+   "walk_seconds": 819.9,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22055,
+   "moves": 150,
+   "fell": false,
+   "bumps": 28,
+   "walk_seconds": 838.6,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22056,
+   "moves": 150,
+   "fell": false,
+   "bumps": 40,
+   "walk_seconds": 847.1,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22057,
+   "moves": 150,
+   "fell": false,
+   "bumps": 31,
+   "walk_seconds": 810.4,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22058,
+   "moves": 150,
+   "fell": false,
+   "bumps": 49,
+   "walk_seconds": 879.0,
+   "steadies": 0,
+   "before_fall": []
+  },
+  {
+   "seed": 22059,
+   "moves": 150,
+   "fell": false,
+   "bumps": 33,
+   "walk_seconds": 897.9,
+   "steadies": 0,
+   "before_fall": []
+  }
+ ]
+}
