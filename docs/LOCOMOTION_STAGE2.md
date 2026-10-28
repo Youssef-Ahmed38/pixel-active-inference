@@ -129,6 +129,36 @@ spread of the result, not replaced. `results/locomotion/seedstudy_v4_s{0,1,2}.js
     python scripts/locomotion_train.py --config configs/locomotion_v4.yaml --out runs/locomotion/policy_v4_seed1 train.seed=1   # after copying policy_v3/ckpt_last.pt into the folder
     python scripts/locomotion_eval.py --config configs/locomotion_v4.yaml --policy runs/locomotion/policy_v4_seed1/policy.pt --ckpt runs/locomotion/policy_v4_seed1/ckpt_last.pt --name seedstudy_v4_s1 eval.seeds_start=61000
 
+**A standard baseline trained on the GPU.** MuJoCo Playground's G1 joystick task with its published PPO
+recipe (MJX/MuJoCo Warp physics, Brax PPO, 200M steps, 8,192 parallel bodies) was trained on this
+laptop's GPU in WSL2: 1.8 h at 31,000 steps/s (`scripts/gpu/g1_playground_train.py`; the CPU trainer
+runs at about 19,500 steps/s, and both can train at the same time). It trains with 3 solver iterations
+for speed, so it was evaluated both with that physics and with full-accuracy physics (100 solver and 50
+line-search iterations, the same equations as CPU MuJoCo); the results barely change, so it does not
+depend on the approximate physics (`scripts/gpu/g1_playground_eval.py`). Same kinds of tests as our
+gates, 20 starts each, new seeds, **nominal dynamics for both** (our walkers re-evaluated with
+`env.randomize=false`):
+
+| Test | Baseline (training physics / full accuracy) | Our v4, training seeds 0 / 1 / 2 |
+|---|---:|---:|
+| Stand 30 s, walk 10 m, headings | 20/20 each (heading error 3.2 / 3.0 deg) | 20/20 each (0.6 / 3.0 / 6.3 deg) |
+| Push 1.0 m/s | 100% / 100% | 100% / 100% / 100% |
+| Push 1.25 m/s | 90% / 90% | 90% / 100% / 97% |
+| Push 1.5 m/s | 90% / 95% | 60% / 77% / 70% |
+| Push 2.0 m/s | 60% / 60% | 7% / 3% / 0% |
+
+The standard recipe is clearly more robust to strong pushes; walking, headings and moderate pushes are
+equal. Differences: the baseline uses its own G1 model and gait-phase rewards and has no 2 m/s run
+(its commands stop at 1 m/s); its pushes are instantaneous velocity changes, ours the same change over
+0.2 s. Our walker's own contributions are the curiosity-trained body model, the fall-cause inference
+and the maze integration, not push robustness; the stronger baseline walker could serve as the body
+under the same cause level. `results/gpu_g1_baseline_eval.json`, `results/gpu_g1_baseline_training_*.json`,
+`results/locomotion/nominal_v4_s{0,1,2}.json`.
+
+    # in WSL2 (Ubuntu 24.04, JAX with CUDA, MuJoCo Playground)
+    python scripts/gpu/g1_playground_train.py --steps 200000000 --envs 8192 --out runs/gpu/g1_flat_full_s0
+    python scripts/gpu/g1_playground_eval.py --run runs/gpu/g1_flat_full_s0 --output results/gpu_g1_baseline_eval.json
+
 **What v4 did not fix: maze falls.** In noisy mazes (persistent misreads, new mazes 81000-81029) v4
 falls as often as v3: 7 of 60 walked episodes each (`results/maze_walker_persistent_81000_v{3,4}.json`).
 Traces of the falls show no wall contact in most of them: the maze walker's steering switches between

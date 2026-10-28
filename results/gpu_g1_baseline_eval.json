@@ -1,0 +1,36 @@
+{
+ "run": "runs/gpu/g1_flat_full_s0",
+ "starts_per_test": 20,
+ "eval_seed": 61000,
+ "env": "G1JoystickFlatTerrain",
+ "training_physics": {
+  "stand_30s": 20,
+  "walk_10m": 20,
+  "headings": 20,
+  "headings_median_error_deg": 3.19,
+  "pushes_recovered_of_20": {
+   "0.25": 20,
+   "0.5": 20,
+   "0.75": 20,
+   "1.0": 20,
+   "1.25": 18,
+   "1.5": 18,
+   "2.0": 12
+  }
+ },
+ "full_accuracy_physics": {
+  "stand_30s": 20,
+  "walk_10m": 20,
+  "headings": 20,
+  "headings_median_error_deg": 2.98,
+  "pushes_recovered_of_20": {
+   "0.25": 20,
+   "0.5": 20,
+   "0.75": 20,
+   "1.0": 20,
+   "1.25": 18,
+   "1.5": 19,
+   "2.0": 12
+  }
+ }
+}
