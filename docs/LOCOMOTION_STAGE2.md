@@ -108,6 +108,21 @@ from 1.5 m/s pushes than v3 (23% vs 47%); on the final seeds, paired, they are e
 
 <img src="media/locomotion/g1_wall_contact.gif" width="480">
 
+**What v4 did not fix: maze falls.** In noisy mazes (persistent misreads, new mazes 81000-81029) v4
+falls as often as v3: 7 of 60 walked episodes each (`results/maze_walker_persistent_81000_v{3,4}.json`).
+Traces of the falls show no wall contact in most of them: the maze walker's steering switches between
+turning on the spot and walking at 0.6 m/s every few tenths of a second, while still turning, and the
+body loses its sideways balance. Training never had goals change that fast (every 4-8 s).
+
+**v5 (not released, negative result).** v5 continued v4 for 1.1 h with goals changing every 0.5-3 s
+(`configs/locomotion_v5.yaml`, walls kept). Development: every gate holds (run 20/20, headings
+20/20 at 2.6 degrees), walls 2/40, pushes at 1.5 m/s 63% (v4 23%). But on development mazes
+20100-20129 (persistent misreads) the walker fell **more** with v5 than with v4: 13 vs 8 of 60
+episodes (nearest frontier 11 vs 5, route EFE 2 vs 3; `results/maze_walker_dev_persistent_20100_v{4,5}.json`).
+Its purpose failed on development data, so it was not taken to a final run and v4 stays released. The
+fix this points to is in the walker's steering (smooth transitions between turning and walking), not
+more practice with random goal changes.
+
 `media/locomotion/g1_wall_contact.mp4`: the same body walks into the same wall with v3 (left, falls)
 and v4 (right, stays up and backs off). Seed 57100, chosen from five as an example where they
 differ (in 3 of the 5 both stayed up, in 2 only v4); the numbers are in the table.
