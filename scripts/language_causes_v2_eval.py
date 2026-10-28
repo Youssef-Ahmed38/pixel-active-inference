@@ -18,7 +18,7 @@ from pai.envs import TabletopEnv
 from pai.envs.predicates import perceived_predicates
 from pai.goals.relations import RelationalGoal
 from pai.cognition.adapters import arm_state
-from pai.language.association import BeliefCoordinates,EvidenceLexicon,QuestionIntent,AssociatedExplainer
+from pai.language.association import BeliefCoordinates,EvidenceLexicon,QuestionIntent,AssociatedExplainer,SilenceModel
 from pai.language.association_teacher import FINAL_QUESTIONS,truth_cause
 from pai.language.causal import EpisodeEvidence
 from pai.language.causal_teacher import PHRASES
@@ -52,8 +52,12 @@ def instruction_model(language):
 
 def load_explainers(checkpoint):
     coordinates=BeliefCoordinates(**checkpoint['coordinates'])
+    silence=None
+    if 'silence' in checkpoint:
+        silence=SilenceModel(**{k:v for k,v in checkpoint['silence'].items() if k!='p_none_given_silent'})
     return {lang:AssociatedExplainer(coordinates,EvidenceLexicon(**m['lexicon']),m['templates'],
-                                     QuestionIntent(**m['questions'])) for lang,m in checkpoint['models'].items()}
+                                     QuestionIntent(**m['questions']),silence=silence)
+            for lang,m in checkpoint['models'].items()}
 
 
 def score_v2(output,truth,language,plan_dt=.1,control_dt=.02):
@@ -106,6 +110,8 @@ def main():
     ap.add_argument('--device',default='cuda',choices=['cpu','cuda'])
     ap.add_argument('--output',type=Path,required=True)
     ap.add_argument('--resume',action='store_true')
+    ap.add_argument('--disturbance-base',type=int,default=78000,
+                    help='disturbance draws: base + 100*condition + layout index (v2 final used 78000)')
     args=ap.parse_args()
     if args.output.exists() and not args.resume:
         raise FileExistsError(args.output)
@@ -162,7 +168,7 @@ def main():
         for i,seed in enumerate(report['seeds']):
             frame=GOALS[i%len(GOALS)]
             expected=(frame.predicate,frame.subject_color,'plate' if frame.target_kind=='plate' else 'bowl')
-            disturbance_seed=78000+ci*100+i
+            disturbance_seed=args.disturbance_base+ci*100+i
             disturbances=disturbance_for(condition,np.random.default_rng(disturbance_seed))
             for d in disturbances:
                 if d.get('body')=='red':

@@ -1,0 +1,123 @@
+{
+  "input": "results\\language_causes_v3_final.json",
+  "languages": {
+    "english": {
+      "v2": {
+        "cause_correct": 33,
+        "n": 50,
+        "abstentions": 10,
+        "by_condition": {
+          "none": [
+            1,
+            10
+          ],
+          "push": [
+            10,
+            10
+          ],
+          "heavier_object": [
+            7,
+            10
+          ],
+          "slippery_object": [
+            5,
+            10
+          ],
+          "camera_shift": [
+            10,
+            10
+          ]
+        }
+      },
+      "v3": {
+        "cause_correct": 41,
+        "n": 50,
+        "abstentions": 0,
+        "by_condition": {
+          "none": [
+            9,
+            10
+          ],
+          "push": [
+            10,
+            10
+          ],
+          "heavier_object": [
+            7,
+            10
+          ],
+          "slippery_object": [
+            5,
+            10
+          ],
+          "camera_shift": [
+            10,
+            10
+          ]
+        }
+      },
+      "only_v3_correct": 8,
+      "only_v2_correct": 0,
+      "sign_test_p": 0.0078125
+    },
+    "arabic": {
+      "v2": {
+        "cause_correct": 33,
+        "n": 50,
+        "abstentions": 10,
+        "by_condition": {
+          "none": [
+            1,
+            10
+          ],
+          "push": [
+            10,
+            10
+          ],
+          "heavier_object": [
+            7,
+            10
+          ],
+          "slippery_object": [
+            5,
+            10
+          ],
+          "camera_shift": [
+            10,
+            10
+          ]
+        }
+      },
+      "v3": {
+        "cause_correct": 41,
+        "n": 50,
+        "abstentions": 0,
+        "by_condition": {
+          "none": [
+            9,
+            10
+          ],
+          "push": [
+            10,
+            10
+          ],
+          "heavier_object": [
+            7,
+            10
+          ],
+          "slippery_object": [
+            5,
+            10
+          ],
+          "camera_shift": [
+            10,
+            10
+          ]
+        }
+      },
+      "only_v3_correct": 8,
+      "only_v2_correct": 0,
+      "sign_test_p": 0.0078125
+    }
+  }
+}

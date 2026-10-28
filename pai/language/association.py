@@ -136,6 +136,35 @@ class QuestionIntent:
         return ranked[0][0]
 
 
+class SilenceModel:
+    """What a silent surprise monitor says about the episode, learned from teaching episodes.
+
+    When the monitor never fires, the agent has no cause posterior. Silence is still evidence: the
+    teacher's labels on teaching episodes give how often the monitor stays silent with no
+    disturbance and with some disturbance (Jeffreys prior), and Bayes' rule turns that into
+    P(no disturbance | silent). Disturbances are pooled because silence says whether anything
+    changed the dynamics, not which change it was.
+    """
+    def __init__(self, silent_none, n_none, silent_disturbed, n_disturbed, alpha=.5):
+        self.silent_none,self.n_none=silent_none,n_none
+        self.silent_disturbed,self.n_disturbed=silent_disturbed,n_disturbed
+        self.alpha=alpha
+
+    @classmethod
+    def fit(cls, rows, cause_of):
+        none=[r for r in rows if cause_of(r)=='none']
+        disturbed=[r for r in rows if cause_of(r)!='none']
+        silent=lambda r: not r['belief']['posterior']
+        return cls(sum(map(silent,none)),len(none),sum(map(silent,disturbed)),len(disturbed))
+
+    def p_none_given_silent(self):
+        a=self.alpha
+        like_none=(self.silent_none+a)/(self.n_none+2*a)
+        like_dist=(self.silent_disturbed+a)/(self.n_disturbed+2*a)
+        prior_none=(self.n_none+a)/(self.n_none+self.n_disturbed+2*a)
+        return like_none*prior_none/(like_none*prior_none+like_dist*(1-prior_none))
+
+
 class AssociatedLanguage(ClauseLanguage):
     def __init__(self, templates, questions):
         super().__init__(templates)
@@ -149,8 +178,9 @@ class AssociatedLanguage(ClauseLanguage):
 
 
 class AssociatedExplainer:
-    def __init__(self, coordinates, lexicon, templates, questions, threshold=.9):
+    def __init__(self, coordinates, lexicon, templates, questions, threshold=.9, silence=None):
         self.coordinates,self.lexicon=coordinates,lexicon
+        self.silence=silence
         self.templates,self.questions,self.threshold=templates,questions,threshold
         runtime=dict(templates)
         for coordinate,phrase in lexicon.phrase_by_coordinate.items():
@@ -160,9 +190,17 @@ class AssociatedExplainer:
 
     def explain(self,evidence):
         # The old numeric-name dictionary is deliberately not used here.
-        safe=EpisodeEvidence(evidence.episode,evidence.posterior,{},evidence.adaptations,
+        posterior,source=evidence.posterior,'cause_monitor'
+        if not posterior and self.silence is not None:
+            # No alarm all episode: the posterior comes from the learned meaning of silence.
+            p=self.silence.p_none_given_silent()
+            others=[c for c in self.coordinates.causes if c!='none']
+            posterior={c:(p if c=='none' else (1-p)/len(others)) for c in self.coordinates.causes}
+            source='silent_monitor'
+        safe=EpisodeEvidence(evidence.episode,posterior,{},evidence.adaptations,
                              evidence.fallbacks,evidence.goal_observed,evidence.credits)
         out=self.base.explain(safe)
+        out['evidence_source']=source
         out['agent_cause']=out.pop('cause')
         out['phrase']=None
         out['numeric_claims']=[]

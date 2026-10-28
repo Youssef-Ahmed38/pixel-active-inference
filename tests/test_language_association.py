@@ -91,3 +91,16 @@ def test_grading_uses_spoken_meaning_not_latent_variable_name():
     score=score_v2(out,truth,'english')
     assert score['reported_cause']=='push'
     assert not score['cause_correct']
+
+
+def test_silent_monitor_is_learned_evidence_for_no_disturbance():
+    """Silence never seen with a disturbance supports 'none'; silence seen often with one does not."""
+    from pai.language.association import SilenceModel
+
+    strong = SilenceModel(silent_none=11, n_none=15, silent_disturbed=0, n_disturbed=60)
+    weak = SilenceModel(silent_none=11, n_none=15, silent_disturbed=20, n_disturbed=60)
+    assert strong.p_none_given_silent() > 0.9
+    assert weak.p_none_given_silent() < 0.5
+    rows = [dict(belief=dict(posterior={}), c='none'), dict(belief=dict(posterior={'push': 1.0}), c='push')]
+    fitted = SilenceModel.fit(rows, lambda r: r['c'])
+    assert (fitted.silent_none, fitted.n_none, fitted.silent_disturbed, fitted.n_disturbed) == (1, 1, 0, 1)

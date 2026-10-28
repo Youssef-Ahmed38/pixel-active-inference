@@ -5,8 +5,8 @@ import hashlib
 import json
 from pathlib import Path
 import numpy as np
-from pai.language.association import BeliefCoordinates,EvidenceLexicon,QuestionIntent
-from pai.language.association_teacher import make_pairs,question_rows,scaffold
+from pai.language.association import BeliefCoordinates,EvidenceLexicon,QuestionIntent,SilenceModel
+from pai.language.association_teacher import make_pairs,question_rows,scaffold,truth_cause
 from pai.language.causal import ClauseLanguage
 from pai.language.causal_teacher import PHRASES
 
@@ -21,6 +21,11 @@ def train(sources):
     result=dict(coordinates=dict(causes=coordinates.causes,features=coordinates.features),
                 sources={str(p):hashlib.sha256(Path(p).read_bytes()).hexdigest() for p in sources},
                 development_seeds=sorted({r['seed'] for r in rows}),episodes=len(rows),models={},diagnostics={})
+    # Silence is learned from all teaching episodes (balanced interleaving is only for the curves).
+    all_rows=[r for path in sources for r in json.loads(Path(path).read_text(encoding='utf-8'))['episodes'] if r['mode']=='baseline']
+    silence=SilenceModel.fit(all_rows,truth_cause)
+    result['silence']=dict(silence.__dict__,p_none_given_silent=silence.p_none_given_silent())
+    result['development_seeds']=sorted({r['seed'] for r in all_rows})
     for language in ('english','arabic'):
         pairs=make_pairs(rows,language,coordinates)
         lexicon=EvidenceLexicon.fit(pairs)

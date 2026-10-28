@@ -644,3 +644,87 @@ All three slip/push confusions (67003, 67005, 67009) are confidently wrong arm i
 The review requests are implemented, with these remaining limits: five-layout teaching data; only four instructed goals; a shallow intent model with 3/12 wording errors per language; awkward inherited controlled Arabic phrasing; approximate, uncalibrated arm cause posteriors; no learned slip-onset quantity; no verified physical counterfactual accuracy; and no speech or pixel-perception validation. Better word grounding has not repaired the arm controller or cause model. Changes to those other stages were outside this task.
 
 Final artifacts: `results/language_causes_v2_checkpoint.json`, `results/language_causes_v2_final.json`, and `results/language_causes_v2_summary.json`, alongside both retained v2 development attempts and all unchanged v1 results.
+
+## V3: silence of the surprise monitor as learned evidence
+
+In v2, 8 of 10 clean episodes abstained: when the arm's surprise monitor never fires, the
+agent has no cause posterior, so the reporter said "I do not have enough evidence". But
+silence is evidence. `SilenceModel` (`pai/language/association.py`) learns what it means
+from the teaching episodes only: how often the monitor stays silent with no disturbance
+(11/15) and with any disturbance (0/60), with a Jeffreys prior, turned into
+P(no disturbance | silent) = **0.957** by Bayes' rule. When the posterior is empty, the
+explainer uses that probability for `none` and spreads the rest over the other causes;
+the existing 0.9 reporting threshold and the taught phrase for `none` then apply as
+before. Each explanation records `evidence_source` (`cause_monitor` or `silent_monitor`).
+
+What is given: the pooling of all disturbances into one "disturbed" class, the prior and
+the threshold. What is learned: the two silence rates, from teacher labels on teaching
+episodes. The teaching set for v3 is the v2 development episodes **plus the v2 final
+episodes (seeds 67000-67009)**, so those seeds are no longer a holdout; v3 is evaluated
+on new seeds **68000-68009** with disturbance draws from base 79000 (v2 used 78000).
+
+```powershell
+$env:PYTHONPATH='.;scripts'
+$env:PYTHONIOENCODING='utf-8'
+python scripts/language_causes_v2_train.py --output results/language_causes_v3_checkpoint.json   # sources as in the checkpoint
+python scripts/language_causes_v2_eval.py --checkpoint results/language_causes_v3_checkpoint.json --seed 68000 --count 10 --disturbance-base 79000 --output results/language_causes_v3_final.json
+python scripts/language_causes_v2_summary.py --input results/language_causes_v3_final.json --output results/language_causes_v3_summary.json
+python scripts/language_causes_v3_paired.py --output results/language_causes_v3_paired.json
+```
+
+### V3 frozen final results
+
+All 150/150 trials completed (50 layout/condition cases × direct goal, English, Arabic).
+The summary replayed all **300/300** bilingual bundles from the saved beliefs and
+recomputed every score from the separate event logs. English and Arabic give identical
+counts. `k/n [Wilson 95%]`:
+
+| Metric | English and Arabic (each) |
+|---|---:|
+| Instruction goal success | 43/50 [73.8-93.0%] |
+| Matched direct-goal baseline | 43/50 [73.8-93.0%] (0 paired disagreements) |
+| Cause correct against event log | **41/50 [69.2-90.2%]** |
+| Cause reporting coverage | 50/50 [92.9-100%] (no abstentions) |
+| Perceived goal report matches truth | 50/50 [92.9-100%] |
+| End-to-end "why" answers correct | 82/100 [73.3-88.3%] |
+| New question wording: intent correct | 9/12 [46.8-91.1%] (same model as v2) |
+
+| Condition | Cause correct (each language) | Of which via silent monitor |
+|---|---:|---:|
+| none | **9/10** [59.6-98.2%] | 8 correct of 8 silent |
+| push | 10/10 | 0 |
+| heavier_object | 7/10 | 1 silent, wrongly `none` |
+| slippery_object | 5/10 | 1 silent, wrongly `none` |
+| camera_shift | 10/10 | 0 |
+
+**Paired comparison** (`results/language_causes_v3_paired.json`): the frozen v2 and v3
+explainers replayed on the *same* v3 episodes. v2 gets 33/50 (10 abstentions, clean
+cases 1/10); v3 gets 41/50 (0 abstentions). v3 is right where v2 was wrong in 8 episodes,
+all clean, and never the reverse (sign test p = 0.008, each language). The disturbed
+conditions are unchanged, since silence is only used when the monitor never fired.
+
+The price of no abstentions: precision among issued reports falls from v2's 37/40
+(different seeds) to 41/50. On these seeds the monitor was silent in 2/40 disturbed
+cases (68009 heavier object, 68005 slippery object), and the agent then said "no unusual
+cause was detected" for a real disturbance; teaching had 0/60 such cases, so the learned
+0.957 is optimistic on 15 + 60 teaching episodes. The other wrong reports come from the
+arm cause monitor itself, not from the language layer: clean 68001 reported a push;
+heavier 68002/68003 and slippery 68003/68006/68009 reported a push; slippery 68004 gave
+a confident `none` posterior. Numeric claims: mass 7/7, camera offset 10/10, onset 20/20
+with matching events (6 onset claims had no matching push/camera event and stay
+unmatched; their causes are counted wrong above).
+
+Examples (unedited saved outputs):
+
+| Seed / truth | English | Arabic |
+|---|---|---|
+| 68000, clean, success | My evidence suggests that no unusual cause was detected. My final observation indicates that the goal was reached. | تشير أدلتي إلى أن لم أكتشف سببا غير معتاد. تشير ملاحظتي الأخيرة إلى تحقق الهدف. |
+| 68009, heavier object, failed (silent monitor) | My evidence suggests that no unusual cause was detected. My final observation does not show the goal reached. | تشير أدلتي إلى أن لم أكتشف سببا غير معتاد. لا تظهر ملاحظتي الأخيرة تحقق الهدف. |
+
+The Arabic `none` sentence is ungrammatical: the taught phrase "لم أكتشف" is placed in the
+controlled frame "تشير أدلتي إلى أن", which needs a pronoun before a verb clause ("أنني لم
+أكتشف"). This is a limit of the template frame, not of the learned cause meaning. Tests: the language/slice/cognition
+selection passes **80 tests** (one new `SilenceModel` test).
+
+Artifacts: `results/language_causes_v3_checkpoint.json`, `results/language_causes_v3_final.json`,
+`results/language_causes_v3_summary.json`, `results/language_causes_v3_paired.json`.
