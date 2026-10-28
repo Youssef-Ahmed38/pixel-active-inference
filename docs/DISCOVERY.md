@@ -327,3 +327,436 @@ information gain in active inference; object-centric world models with sparse in
 (AXIOM); learned symbolic operators from interaction (VisualPredicator); and "tool use" and
 lock-box puzzles from developmental psychology and animal cognition (e.g. the mechanical
 puzzle-box tradition). These have to be cited carefully in the paper; see docs/LITERATURE.md.
+
+
+## Stage 4 v2: an induced key-chain recipe
+
+> **Files.** Result files larger than 1 MB are committed gzip-compressed (`results/key_chain_v2_*.json.gz`;
+> read with `gzip.open(path, "rt")` then `json.load`). `key_chain_v2_final.partial.jsonl` (the
+> run's incremental log, duplicated by `key_chain_v2_final.json`) is not committed. **Review summary
+> (independent check of this work):** the 38/38/39/35 of 40 solvable fixture scenes (cold, warm,
+> prior-only, scripted) recompute from the per-episode records; the recipe agent's evidence boundary
+> removes role IDs, truth and event notes, and binds recipe roles by generic joint/graspability and
+> metric offset only; 62 Stage 4 tests pass. The honest reading stands as written below: replaying a
+> learned chain gave no reliable advantage over prior-only transfer, and explanations of failed
+> openings remain weak for latches.
+
+This CPU-only build addresses audit item 5 through a new entry point,
+`pai.discovery.key_chain_recipe.RecipeDiscoveryAgent`. The old
+`pai.maze.key_chain.run_key_chain` remains unchanged as a scripted comparison;
+its historical results above are not evidence for the new agent.
+
+### Measured results
+
+The completed fixture gate contains **48 fresh valid scenes**, including **40 solvable scenes** and **8 permanently blocked scenes**. Cold and warm solve **38/40**; abstract-prior transfer alone solves **39/40**. The scripted reference solves **35/40** with its authored scoping and different per-fixture budget.
+
+| Layout split | Mode | Solved (Wilson 95%) | Actions, successes only | Actions, all solvable attempts |
+|---|---|---|---:|---:|
+| All valid layouts | cold | 38/40 (83.5-98.6%) | 168.4 | 200.0 |
+| All valid layouts | warm | 38/40 (83.5-98.6%) | 159.8 | 191.8 |
+| All valid layouts | no_recipe | 38/40 (83.5-98.6%) | 168.4 | 200.0 |
+| All valid layouts | prior_only | 39/40 (87.1-99.6%) | 134.9 | 151.6 |
+| All valid layouts | scripted | 35/40 (73.9-94.5%) | 34.1 | 31.1 |
+| Unseen layouts, trained lever type | cold | 19/20 (76.4-99.1%) | 168.0 | 199.6 |
+| Unseen layouts, trained lever type | warm | 20/20 (83.9-100.0%) | 177.9 | 177.9 |
+| Unseen layouts, trained lever type | no_recipe | 19/20 (76.4-99.1%) | 168.0 | 199.6 |
+| Unseen layouts, trained lever type | prior_only | 19/20 (76.4-99.1%) | 133.4 | 166.8 |
+| Unseen layouts, trained lever type | scripted | 18/20 (69.9-97.2%) | 37.3 | 34.4 |
+| Unseen layouts, held-out knob type | cold | 19/20 (76.4-99.1%) | 168.9 | 200.4 |
+| Unseen layouts, held-out knob type | warm | 18/20 (69.9-97.2%) | 139.7 | 205.7 |
+| Unseen layouts, held-out knob type | no_recipe | 19/20 (76.4-99.1%) | 168.9 | 200.4 |
+| Unseen layouts, held-out knob type | prior_only | 20/20 (83.9-100.0%) | 136.3 | 136.3 |
+| Unseen layouts, held-out knob type | scripted | 17/20 (64.0-94.8%) | 30.8 | 27.9 |
+
+Warm-minus-cold effort is **-8.2 actions**, paired whole-scene bootstrap 95% **[-77.9, 57.6]**; warm is faster on **21/40** solvable scenes. This does **not** establish a reliable action saving. Warm-minus-prior-only is **+40.3 actions** with interval **[-6.0, 88.9]**. Prior-only transfer has the strongest observed solve count and lowest learned-agent effort.
+
+All **48/48** warm scenes reject some guard or predicted transition and invoke repair; only **108** actions in total are taken in direct replay. The prototype learns and stores a sequence, but **reliable end-to-end sequence transfer is not established**. Guarded replay often gives way to ordinary discovery with abstract priors. The eight permanently blocked scenes remain unopened in every mode; they are not mixed into the 40-scene solvable denominator.
+
+| Scenario | Cold | Warm | Prior only | Scripted reference |
+|---|---:|---:|---:|---:|
+| unlocked | 8/8 | 8/8 | 8/8 | 7/8 |
+| latched | 8/8 | 8/8 | 8/8 | 8/8 |
+| locked | 6/8 | 8/8 | 8/8 | 6/8 |
+| key | 8/8 | 8/8 | 8/8 | 7/8 |
+| both | 8/8 | 6/8 | 7/8 | 7/8 |
+| blocked | 0/8 | 0/8 | 0/8 | 0/8 |
+
+No execution exception occurred in the completed gate. The pre-rollout plan rejected two geometrically invalid seeds before any policy acted. The frozen gate took **26.0 minutes** on this shared laptop. Its original source/model hashes still match; all 48 pairs were checkpointed. The earlier aborted attempt and its captured failures remain separately recorded.
+
+
+The separate maze bridge requires opening the fixture **and entering the exit**.
+
+| Mode | Entered exit (Wilson 95%) | Actions, successes only | Actions, all attempts | Maze moves, all attempts |
+|---|---|---:|---:|---:|
+| cold | 7/8 (52.9-97.8%) | 349.9 | 406.1 | 1089.6 |
+| warm | 8/8 (67.6-100.0%) | 267.9 | 267.9 | 1311.5 |
+| no_recipe | 7/8 (52.9-97.8%) | 349.9 | 406.1 | 1089.6 |
+| scripted | 7/8 (52.9-97.8%) | 30.4 | 27.8 | 85.0 |
+
+Eight bridge scenes are a small sample. All accepted layouts in this run were valid; no scene was dropped. Warm reuse reduced manipulation effort but **increased mean maze movement**. The agent still estimates effort from fixture/hand distances, not learned maze travel cost.
+
+Expanded explanation scores below include matching-key direction/end-stop stalls. The same frozen likelihood is used for every mode; differences reflect the trajectories each policy collected.
+
+| Task policy | Correct / scored failures | Accuracy (whole-scene bootstrap 95%) | False wrong-key claims / all wrong-key claims |
+|---|---:|---|---:|
+| cold | 4023/5254 | 76.6% (69.4-82.0%) | 52/74 |
+| warm | 3791/5328 | 71.2% (63.7-77.6%) | 49/87 |
+| prior_only | 3619/5029 | 72.0% (63.1-78.5%) | 30/70 |
+
+For the warm task policy, each true cause has fresh support:
+
+| True cause | Correct / failures | Accuracy (Wilson 95%) | Abstentions |
+|---|---:|---|---:|
+| locked | 1029/2163 | 47.6% (45.5-49.7%) | 903 |
+| latched | 46/343 | 13.4% (10.2-17.4%) | 167 |
+| wrong_key | 38/38 | 100.0% (90.8-100.0%) | 0 |
+| key_not_turned | 17/46 | 37.0% (24.5-51.4%) | 29 |
+| blocked | 2661/2738 | 97.2% (96.5-97.7%) | 9 |
+
+Warm macro-average class accuracy is **59.0%**. Its wrong-key precision is only **43.7%**, because matching-key limits are confused with incompatible objects. Scoring is restricted to actual door-opening probes and inserted-object turn failures; predictions on unrelated parts remain in the raw files but are not graded as door-opening claims. A higher pooled score dominated by blocked cases is not evidence of reliable diagnosis across causes.
+
+
+The fresh randomized diagnostic audit gives support for all five causes. After including matching-key direction/end-stop stalls, its accuracy is **61.4%** (whole-scene bootstrap 95% **59.6-63.3%**), with **29.1% abstention**. The original narrower score was 62.1%; both denominators are retained. The wrong-key precision is **490/637 = 76.9%**, despite 100% recall on the true wrong-key turn events.
+
+| True failure cause | Correct / failures | Accuracy (Wilson 95%) | Abstentions |
+|---|---:|---|---:|
+| locked | 612/4409 | 13.9% (12.9-14.9%) | 2967 |
+| latched | 276/1055 | 26.2% (23.6-28.9%) | 584 |
+| wrong_key | 490/490 | 100.0% (99.2-100.0%) | 0 |
+| key_not_turned | 48/207 | 23.2% (18.0-29.4%) | 156 |
+| blocked | 6458/6676 | 96.7% (96.3-97.1%) | 28 |
+
+Expanded diagnostic denominator: **12,837** failed openings/inserted turns; balanced class accuracy **52.0%**. The categorical learner performs poorly on locked, latched and key-not-turned failures. Its direction/end-stop false wrong-key claims expose an incomplete teaching curriculum; these failures remain, with no post-final fitting.
+
+### Example induced recipe and explanations
+
+The recipe from seed **710044** is stored with anonymous variables and eight learned operators. It compresses a 261-action experimental episode. The machine does not receive the readable fixture-role names.
+
+| Step | Learned action | Selected observed preconditions |
+|---:|---|---|
+| 1 | `pull, r1` | `part:r1.open=closed; body:hand=empty` |
+| 2 | `turn_pull, r3, -1` | `body:hand=empty; part:r3.angle=pos` |
+| 3 | `pick, r0` | `body:hand=empty; obj:r0.where=free; obj:r0.angle=rest` |
+| 4 | `insert, r0, r4` | `body:hand=r0; obj:r0.where=held; part:r4.angle=rest; obj:r0.angle=rest` |
+| 5 | `turn_held, r0, 1` | `body:hand=r0; obj:r0.where=in:r4; part:r4.angle=rest; obj:r0.angle=rest` |
+| 6 | `release, r0` | `part:r4.angle=pos; obj:r0.angle=pos; body:hand=r0; obj:r0.where=in:r4` |
+| 7 | `pull, r6` | `body:hand=empty; part:r6.angle=rest` |
+| 8 | `turn_pull, r5, -1` | `body:hand=empty; part:r5.angle=rest; obj:r0.angle=pos; part:r3.angle=rest; part:r4.angle=pos; part:r2.open=open; obj:r0.where=in:r4` |
+
+Object visibility is also a precondition: the pick-role is bound only after the learned revealing action. The seventh operator opens an empty cabinet in the teaching scene; it is retained because of a conservative contextual guard, **not established as necessary**. The recipe therefore is not claimed to be a minimal causal explanation.
+
+The following are structured agent outputs, next to scoring-only simulator events. Posterior values are model outputs, not calibrated frequencies.
+
+| Fresh diagnostic seed / step | Agent output | Simulator failure event |
+|---|---|---|
+| 730100 / 18 | `locked`; P=0.668 | `locked`; action `['turn_pull', 'p2', 1]` |
+| 730102 / 16 | `latched`; P=0.796 | `latched`; action `['turn_pull', 'p7', -1]` |
+| 730100 / 156 | `wrong_key`; P=1.000 | `wrong_key`; action `['turn_held', 'o3', 1]` |
+| 730100 / 646 | `key_not_turned`; P=0.789 | `key_not_turned`; action `['turn_pull', 'p1', -1]` |
+| 730100 / 0 | `blocked`; P=0.999 | `blocked`; action `['push', 'p11']` |
+| 730100 / 480 | **Wrong:** `wrong_key`; P=1.000 | matching key, stalled turn: `blocked` |
+| 730100 / 29 | `unknown` (abstain); best P=0.649 | `locked` |
+
+Machine-readable records include every prediction, its posterior, own-evidence tokens, action/state trace and separate scoring events. The expanded-scoring file also gives the additional matching-key stalls and false claims.
+
+
+### Design and the truth boundary
+
+The policy receives a narrow `EvidenceWorld`: copied generic entities, discrete
+observed features, offered motor actions, and executed/stalled/changed/revealed
+outcomes. Shape, size, colour and semantic outcome notes are removed. It receives
+no fixture membership lists, `pid`, matching-key flags, lock state or event log.
+It observes the supplied goal feature. The interface exposes every visible part
+and object, including decoys; there is no smallest-first insertion order, special
+elongated-object selection, shape-sorted fallback, or two-stalled-turn key rule.
+The API boundary is tested, not a Python security sandbox.
+
+The existing discovery agent supplies Bayesian beliefs over `(probe, conditions)`,
+expected information gain per effort, a learned contextual action model, and
+planning. Locality priors/radius filtering are disabled, and its optional scripted
+object-trial controller is disabled. A successful episode is backward-sliced from
+the observed goal transition, the agent's inferred conditions, and observed action
+contexts. Reveal dependencies connect newly visible objects to the action that
+revealed them. A shortest-path search over the demonstrated transition operators
+removes exploratory loops. The sequence and contextual preconditions are stored
+with anonymous `r0`, `r1`, ... variables, rather than fixture IDs. Hidden roles
+are bound only after their demonstrated reveal step. Binding compares generic
+joint/graspability and exemplar metric offsets, not authored shape names.
+
+The posterior MAP rule can omit a real condition after only one success. Therefore
+the last operator also keeps observed changes from the initial state as conservative
+contextual guards. These are demonstrated contexts, **not proven necessary causal
+conditions**. Recipes may retain irrelevant interventions; this is measured rather
+than called perfect causal discovery. Abstract causal-rule priors from the existing
+`RecipeBook` are also reused, with shape weight zero. A separate prior-only ablation
+measures their contribution without transition replay.
+
+`Locality.off()` removes exploration's spatial penalties and probe filtering.
+Warm exemplar matching still uses the existing given near/offset similarity
+thresholds and weights; it does not establish learning those weights from data.
+
+A mismatched precondition stops sequence replay. An outcome contradicting a predicted
+transition additionally withdraws transferred causal priors, rebuilds the ordinary
+belief and replays its own evidence. The contextual action model is retained. If a
+failed transfer cycles through the same observable state at least three times in
+20 steps, the agent chooses an untried action/context as a repair experiment. This
+is generic novelty, not an inverse-key, release-after-turn, or fixture-specific
+repair program. Recipe parameters remain frozen across final scenes; within-scene
+belief and action-effect learning continues.
+
+Failed-opening explanations use a separate, learned categorical likelihood over
+`locked`, `latched`, `wrong_key`, `key_not_turned`, `blocked`, with `unknown` as an
+abstention when the maximum posterior is below .65. Features are anonymous tokens
+from the agent's own episode: action kind, observed insertion/angle/hand state,
+other observed joint changes, and subsequent intervention/goal outcomes. These
+are **retrospective** explanations, not online diagnoses. Teacher labels fit only
+the development likelihood counts. Predictions are generated for every executed,
+stalled probe or held-object turn before joining to the simulator failure events
+for scoring. Changing/removing that scoring log cannot change the predictions.
+
+`ScoredMock` retains the original mock mechanics and adds a truth-only failure
+log. It also supplies a permanently obstructed-door case. Causes can overlap;
+the scoring convention prioritizes wrong-direction/ungraspable-panel blocking,
+then bolts (matching inserted key at rest and no thumb bolt gives key-not-turned),
+then an unreleased latch, then an external obstruction. Wrong-key labels refer to
+failed turns of an inserted incompatible object. A failed probe with that object
+still in place is labelled locked under this convention. Blocked includes an
+incorrect opening direction, not only external jams. These are simulator-defined
+labels, not inferred physical necessities. No first object is forced wrong.
+
+The original logger omitted stalled turns of a **matching** inserted key (wrong
+turn direction or a joint end stop). The postprocessing scorer includes these as
+blocked failures, using the simulator's `key_inserted.matches` event, and scores
+the already-saved prediction. It neither refits nor reruns the agent. Both narrow
+and expanded denominators are retained; the expanded score is the explanation
+headline. In the random diagnostic audit this adds 147 failed turns, all falsely
+called wrong-key: recall of true wrong-key turns is 100%, but wrong-key precision
+is **76.9%**. Thus the narrower score must not be described as perfect wrong-key
+diagnosis. This scoring correction does not enter the agent's words or beliefs.
+
+### Learned versus given
+
+| Given | Learned from the agent's observations/experiments |
+|---|---|
+| Generic motor/composite skills, one-hand affordances, supplied goal, discrete joint/open/insertion observations | Contextual action effects, what probes attain the goal, Bayesian conditions and reveal dependencies |
+| Existing hypothesis family (at most two literals), Occam/error/unknown priors and information-rate objective | Posterior weights from successes and failures; no named fixture priors in the new agent |
+| Backward slicing, 10,000-state operator search cap, generic variable matching algorithm and metric similarity | The successful sequence, its entity-role exemplars, observed preconditions/effects and action order |
+| Existing generic recipe similarity weights, with shape weight zero | Recipe probe/condition exemplars from one successful both-lock episode, seed 710044 |
+| Failure vocabulary, token design, symmetric Dirichlet smoothing .5, uniform class prior and .65 abstention threshold | Per-cause categorical likelihood counts: locked 5,488; latched 1,400; wrong key 457; key not turned 202; blocked 7,915 |
+| Symbolic mock observations; fixture positions visible without maze occlusion | No visual model or new body policy is trained in this build |
+
+The discovery policy almost always turns inserted objects before probing. Its
+24 development episodes supplied **zero** key-not-turned labels. Consequently a
+separate development curriculum uses uniformly random offered motor actions,
+without selecting keys or forcing failures. Its 120 scenes supply all five
+classes. Both curricula fit the frozen likelihood (15,462 labelled failures in
+total); final labels never update it. The threshold was given, not calibrated.
+
+The reused discovery defaults are also given: two-literal rules, error rate
+.005, unknown prior .1, exploitation threshold .8, Beta(1,3) reveal prior,
+reveal bonus .3 and novelty bonus .01. Abstract recipe biases are 1.5 for
+released probes, .5 for action family, .3 for direction, 1.5 for role similarity,
+3.0 for literals and .4 for container reveal; shape weight is zero. The role
+matching threshold is .7 m and the offset similarity scale is .1 in normalized
+units. Generic motor times and hand-travel costs are the existing supplied body
+self-model. These weights are not learned in this build; the exemplars,
+transitions, rule evidence and likelihood counts are learned. Exact
+implementations are source-snapshotted.
+
+### Maze bridge
+
+`SituatedChainBody` is a skill-level bridge over the existing maze and fixture
+mocks. The learned agent selects the next generic manipulation. L0 navigation
+reaches that entity's observed workspace using one persistent `Explorer` map.
+Scene construction supplies a remote workspace and a door approach, with a given
+.8 m metric discretisation assigning generic observed positions to workspaces.
+It never uses fixture role IDs or tells the policy which parts belong together.
+Geometry is read during scene construction, not given as a map to the navigator.
+A requested final traversal is an L0 navigation skill guarded by the fixture's
+observed goal condition. The adapter has no writable door-open flag: the fixture's
+own rules must open it before the exit can be entered.
+
+This is not a learned mobile manipulator. Navigation/reaching and final guarded
+traversal are given primitives; the discovered part is their manipulation target
+order and opening dependencies. The same symbolic hand is carried between sites;
+walking does not advance fixture dynamics or a door closer. Global fixture
+observations, two-workspace discretisation and privileged symbolic geometry remain
+limitations. No walking, maze-walker, environment-physics, policy or body-model
+file was changed.
+
+### Seeds, protocol and retained failures
+
+- Exploratory development: 710001-710002 and 710020-710031. The initial result is
+  retained as exploration; it does not supply final model counts or recipes.
+- Discovery teaching: **710040-710063**, 24 scenes (four per scenario).
+  The first successful both-lock episode, 710044, supplies the one-shot recipe.
+- Uniform development experiments: **711000-711119**, 120 scenes.
+- Paired development validation: **712000-712011**; repair development rechecks
+  **712008**. Validation found an 800-action oscillation; withdrawing contradicted
+  priors plus generic novelty repaired that scene in **44 actions**. Earlier
+  failed versions remain in `key_chain_v2_validation.json` and the two repair
+  development files. No final scene was used for that change. The separate
+  `key_chain_v2_validation_provenance.json` corrects the validation's at-end hash:
+  that development process loaded the earlier frozen class before the repair
+  edits, as checked at startup. Final processes use the refrozen model and
+  unchanged inference sources; exact source text is retained separately.
+- Aborted first final attempt: **730000-730047**. The unchanged scripted
+  baseline rejected layout **730019** (the generated drawer cell equalled the
+  start). The original harness propagated that exception without checkpointing
+  in-memory results. Nineteen captured stdout summaries and the error are kept
+  in `key_chain_v2_aborted_gate_730000.json`; this is not a complete result set.
+  Neither the agent nor the fitted likelihood was changed after this attempt.
+- Replacement final task gate: fresh valid scenes starting at **736000**,
+  eight layouts per scenario,
+  four per type. Scenarios are unlocked, latched, thumb-locked, key-in-drawer,
+  both-locks/key-in-drawer, and permanently blocked. All modes share each initial
+  scene, two keys, an elongated decoy, look-alike fixture decoys and .03 skill
+  failure probability. One type is trained (`hd_lever_pull_right`); the other
+  (`hd_knob_pull_right`) is registry-held-out. This is a new door **type**, not a
+  held-out lock mechanism. No warm memory updates cross final episodes.
+  The hardened harness validates fixture placement before any rollout, records
+  geometry-only rejections, checkpoints every completed pair, and retains
+  execution failures. Its pre-rollout plan contains the exact accepted seed IDs.
+  The frozen agent, likelihood, budgets and original inference sources match the
+  aborted attempt. This replacement study is disclosed; it is not presented as
+  an uninterrupted single attempt.
+  The fixed pre-rollout plan accepts **736000-736049 except 736039 and 736045**;
+  those two seeds fail geometric placement validation. No policy outcome was
+  inspected to choose or reject any replacement-gate layout.
+- Separate final randomized diagnostic audit: **730100-730219**, 120 scenes,
+  half of each type. This is a uniform-experiment distribution, not the task
+  policy success rate. It provides fresh support for all five failure classes.
+- Initial bridge probes **734000-734001** are development, not a successful final
+  gate: workspace placement accidentally used a path through the closed exit;
+  the old baseline also crashes on the second layout. Their summaries, exception
+  and original adapter source are retained. The repair constructs furniture only
+  in the component reachable without crossing the exit. Invalid layouts are
+  recorded as failures rather than silently resampled. Fresh bridge gate:
+  **735000-735007**.
+
+Prior `results/key_chain_*` and recursively nested `results/discovery_*` JSON seed
+metadata were inventoried before the final gate. The fitted model records that
+inventory and input/source SHA256 hashes. V2 diagnostic/bridge checks also check
+prior v2 episode IDs. Unit-test seeds 710900-710904 and 734001 are development.
+The new data are CPU-only, two threads for the paired task gate and one for the
+bridge/diagnostic audit; they do not use the shared GPU.
+
+Learned modes have an 800-manipulation-action budget; the historical script retains
+its original **per-fixture** budget and can exceed 800 in total. Thus it is a
+reference with different authored action scoping, not a perfectly matched
+information/budget ablation. Cold and no-recipe are exactly the same deterministic
+algorithm after removing recipe memory: the no-recipe records are explicit copies,
+not independent trials. Prior-only removes the stored sequence but keeps learned
+abstract priors. Success-only action averages exclude failures and are accompanied
+by success counts and all-attempt effort/paired failure penalties in the JSON
+analysis. Blocked cases are reported separately from solvable task denominators.
+Wilson intervals describe binomial scene success or individual explanation
+correctness. Repeated explanations within a scene are correlated; 5,000 whole-scene
+bootstrap replicates provide an additional accuracy interval (analysis RNG 714000;
+randomized audit RNG 714001).
+
+### Reproduce
+
+The primary [per-episode bundle](../results/key_chain_v2_final.json) was compacted
+from 130,013,983 to 58,702,900 bytes by removing JSON whitespace only. Every parsed
+record is unchanged. `key_chain_v2_final_format.json` records both hashes and the
+exact reconstruction of its original pretty/CRLF rendering. Earlier analysis
+files retain the original byte hash. The refreshed
+[analysis](../results/key_chain_v2_analysis_final.json),
+[expanded scoring](../results/key_chain_v2_expanded_final_scoring_review.json) and
+[audit](../results/key_chain_v2_audit_final.json) reference the current bundle.
+
+Across the three final studies, the record audits reproduced **50,595 predictions
+from 280 non-baseline records** using only their own-evidence fields. This checks
+the truth boundary and saved-data consistency, not behavioral accuracy. Final
+test-file hashes are recorded in `key_chain_v2_test_results_final.json`; later
+evaluator/scorer source text is also retained in `key_chain_v2_evaluator_sources.json`.
+
+Run from the main checkout with the project interpreter. The commands refuse to
+overwrite existing result paths and reject previously used evaluation seeds.
+Use new paths and unused seeds for a new independent evaluation. To reproduce
+the exact measured seeds, use a clean copy of this code with these generated
+final-result files absent; do not present repeated seeds as fresh evaluation.
+Inference/collector source hashes must match the frozen model. Development raw
+records collected before the repair change remain valid: that change only affects
+failed warm transfer, not the cold collection or likelihood feature extraction.
+
+Episode RNG seeds are recorded, but `PYTHONHASHSEED` was not pinned in these
+runs. The existing planner uses set iteration when breaking some planning ties,
+so an exact action-by-action replay in another interpreter process is not
+guaranteed. Saved traces and frozen parameters document the actual measured
+runs. This is a reproducibility limitation, not a reason to discard failures.
+
+```powershell
+$env:PYTHONPATH='.'
+$env:OPENBLAS_NUM_THREADS='1'
+$env:OMP_NUM_THREADS='1'
+$py='C:\projects\pixel-active-inference\.venv\Scripts\python.exe'
+& $py scripts/key_chain_v2_eval.py develop --seed 710040 --layouts 4 --budget 800 --output results/key_chain_v2_development.json
+& $py scripts/key_chain_v2_eval.py teacher --seed 711000 --layouts 120 --budget 800 --output results/key_chain_v2_random_teacher.json
+& $py scripts/key_chain_v2_eval.py freeze --seed 710040 --model results/key_chain_v2_development.json --teacher results/key_chain_v2_random_teacher.json --output results/key_chain_v2_model_final_frozen.json
+& $py scripts/key_chain_v2_gate.py --seed 736000 --layouts 8 --budget 800 --workers 2 --model results/key_chain_v2_model_final_frozen.json --output results/key_chain_v2_final.json
+& $py -c "import json; from pathlib import Path; p=Path('results/key_chain_v2_final.json'); d=json.loads(p.read_bytes()); p.write_bytes((json.dumps(d,separators=(',',':'))+'\n').encode())"
+& $py scripts/key_chain_v2_diagnostic.py --seed 730100 --episodes 120 --budget 800 --model results/key_chain_v2_model_final_frozen.json --output results/key_chain_v2_diagnostic_final.json
+& $py scripts/key_chain_v2_situated.py --seed 735000 --layouts 4 --budget 800 --model results/key_chain_v2_model_final_frozen.json --output results/key_chain_v2_situated_final.json
+& $py scripts/key_chain_v2_report.py --input results/key_chain_v2_final.json --output results/key_chain_v2_analysis_final.json
+& $py scripts/key_chain_v2_scoring.py --inputs results/key_chain_v2_diagnostic_final.json results/key_chain_v2_situated_final.json --output results/key_chain_v2_expanded_completed_scoring.json
+& $py scripts/key_chain_v2_scoring.py --inputs results/key_chain_v2_final.json --output results/key_chain_v2_expanded_final_scoring_review.json
+```
+
+### Tests and audit
+
+All **62** tests in `tests/test_key_chain*.py` and `tests/test_discovery*.py`
+passed in **399.74 s**, including ten new fast tests (the latter also passed
+separately in 1.58 s). `results/key_chain_v2_test_results_final.json` records the interpreter,
+files and counts. The initial unmodified run had 57 passes and one Windows
+runtime error: multiprocessing named-pipe creation was denied. Its same 50-scene
+comparison passed serially. The final full-group run uses that serial scheduling
+workaround; no scene, seed or assertion is removed or weakened. No pytest
+permission/temporary-directory error occurred for this group.
+
+```powershell
+@'
+from pathlib import Path
+import pytest
+import pai.discovery.agent as agent
+original = agent.evaluate
+def serial(*args, **kwargs):
+    kwargs['processes'] = 1
+    return original(*args, **kwargs)
+agent.evaluate = serial
+files = sorted({str(p) for pat in ['test_key_chain*.py', 'test_discovery*.py']
+                for p in Path('tests').glob(pat)})
+raise SystemExit(pytest.main([*files, '-q', '-p', 'no:cacheprovider',
+                             '--basetemp=data/pytest_key_chain_v2_harness_final_20261028']))
+'@ | & $py -
+```
+
+The tests cover learned order and loop removal, anonymous-variable serialization,
+a seven-step successful replay, contradicted-prior withdrawal, generic cycle repair,
+a truth-raising world, event-log mutation invariance, learned-label permutation,
+unknown abstention, real closed-passage guarding, map persistence and unreachable
+workspace rejection. The audit script recomputes saved predictions from an
+explicit own-evidence allowlist and checks that truth joins happen after prediction.
+The final added regression test also verifies that a failing baseline retains
+the other modes' results and is recorded as failure rather than discarded.
+Exact frozen source text and hashes are in `results/key_chain_v2_frozen_sources.json`;
+the diagnostic/bridge audit is in `results/key_chain_v2_completed_studies_audit.json`.
+
+```powershell
+& $py scripts/key_chain_v2_audit.py --model results/key_chain_v2_model_final_frozen.json --inputs results/key_chain_v2_diagnostic_final.json results/key_chain_v2_situated_final.json --output results/key_chain_v2_completed_studies_audit.json
+& $py scripts/key_chain_v2_audit.py --model results/key_chain_v2_model_final_frozen.json --inputs results/key_chain_v2_final.json --output results/key_chain_v2_audit_final.json
+```
+
+### Remaining research limits
+
+No new physics gate was run. The primary paired gate measures fixture manipulation;
+the separate bridge gate additionally requires reaching and entering the exit in
+a maze. Neither is a humanoid-with-hands evaluation. A recipe is learned from one
+successful episode, retains conservative/possibly irrelevant contextual guards,
+and may hurt transfer. Anonymous geometric binding can select a wrong object or
+a look-alike part. Explanation posteriors are not empirically calibrated; the
+categorical independence assumption is imperfect. Locked versus latched can be
+observationally ambiguous and generates errors and abstentions. High wrong-key
+accuracy does not establish reliable diagnosis of all classes. No evidence here
+establishes new-mechanism transfer, real contact reasoning or hardware success.

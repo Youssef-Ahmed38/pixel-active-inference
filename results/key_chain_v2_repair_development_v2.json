@@ -1,0 +1,2000 @@
+{
+  "sources": {
+    "pai/discovery/key_chain_recipe.py": "837f164f8162273fbab5b623f0585ade9e63ee26195a622e1631350f76ae40c9",
+    "pai/discovery/agent.py": "9915f36061cb9f2649e82476cc75885dde4ecf5c6baa4f2af3560ecc303c305a",
+    "pai/discovery/belief.py": "c1dd8961e5163dcb461276ad98370a0b319dce5bdd34670d4e09b7c391ebc98a",
+    "pai/discovery/recipes.py": "4f10e5afa09ea4bd10927c9aaf858679f5c2b55be52b2fe2cfc6432e73efe0e0",
+    "pai/discovery/mock.py": "493af80b8ec7ada4caccea6fc605ee7b28aad6098bc02f62f61f7e265cebe4e5",
+    "pai/maze/key_chain.py": "9565553c00e2e7e91a333f410696e06816743b5cf447a237585c7899f2cdd0a5",
+    "scripts/key_chain_v2_eval.py": "df3b2ab3dd5fa625168ecf3df01644ba749b938042fb879e8da3812a56815ab8"
+  },
+  "episode": {
+    "seed": 712008,
+    "type": "hd_knob_pull_right",
+    "case": "locked",
+    "success": true,
+    "actions": 44,
+    "actions_to_success": 44,
+    "time_cost": 189.02530250973035,
+    "stop": "goal",
+    "goal": {
+      "part:p1.open": "open"
+    },
+    "belief": {
+      "probe": [
+        "turn_pull",
+        "p12",
+        1
+      ],
+      "literals": {},
+      "p": 0.8094861803970144
+    },
+    "trace": [
+      {
+        "action": [
+          "pull",
+          "p7"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "pos",
+          "part:p4.angle": "rest",
+          "part:p7.open": "closed",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "rest",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "empty"
+        },
+        "outcome": {
+          "action": [
+            "pull",
+            "p7"
+          ],
+          "executed": true,
+          "stalled": false,
+          "changed": {
+            "part:p7.open": [
+              "closed",
+              "open"
+            ],
+            "obj:o1.where": [
+              null,
+              "free"
+            ],
+            "obj:o1.angle": [
+              null,
+              "rest"
+            ],
+            "obj:o3.where": [
+              null,
+              "free"
+            ],
+            "obj:o3.angle": [
+              null,
+              "rest"
+            ]
+          },
+          "revealed": [
+            {
+              "id": "o1",
+              "kind": "object",
+              "joint": "none",
+              "graspable": true,
+              "pos": [
+                0.2566041671377111,
+                -1.2313906765584128,
+                0.6
+              ],
+              "attrs": {}
+            },
+            {
+              "id": "o3",
+              "kind": "object",
+              "joint": "none",
+              "graspable": true,
+              "pos": [
+                0.23090716577478124,
+                -1.15489820919487,
+                0.6
+              ],
+              "attrs": {}
+            }
+          ],
+          "cost": 4.558406702310188,
+          "notes": ""
+        },
+        "mode": "recipe"
+      },
+      {
+        "action": [
+          "turn_pull",
+          "p5",
+          -1
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "pos",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "rest",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "empty",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "free",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "turn_pull",
+            "p5",
+            -1
+          ],
+          "executed": true,
+          "stalled": true,
+          "changed": {
+            "part:p5.angle": [
+              "pos",
+              "rest"
+            ]
+          },
+          "revealed": [],
+          "cost": 6.2727365196770775,
+          "notes": ""
+        },
+        "mode": "recipe"
+      },
+      {
+        "action": [
+          "pick",
+          "o3"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "rest",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "empty",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "free",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "pick",
+            "o3"
+          ],
+          "executed": true,
+          "stalled": false,
+          "changed": {
+            "obj:o3.where": [
+              "free",
+              "held"
+            ],
+            "body:hand": [
+              "empty",
+              "o3"
+            ]
+          },
+          "revealed": [],
+          "cost": 4.24989143248553,
+          "notes": ""
+        },
+        "mode": "recipe"
+      },
+      {
+        "action": [
+          "insert",
+          "o3",
+          "p4"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "rest",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "o3",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "held",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "insert",
+            "o3",
+            "p4"
+          ],
+          "executed": true,
+          "stalled": false,
+          "changed": {
+            "obj:o3.where": [
+              "held",
+              "in:p4"
+            ]
+          },
+          "revealed": [],
+          "cost": 5.164448881640771,
+          "notes": ""
+        },
+        "mode": "recipe"
+      },
+      {
+        "action": [
+          "turn_held",
+          "o3",
+          1
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "rest",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "o3",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "turn_held",
+            "o3",
+            1
+          ],
+          "executed": true,
+          "stalled": true,
+          "changed": {},
+          "revealed": [],
+          "cost": 3.0,
+          "notes": ""
+        },
+        "mode": "recipe"
+      },
+      {
+        "action": [
+          "turn_held",
+          "o3",
+          -1
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "rest",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "o3",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "turn_held",
+            "o3",
+            -1
+          ],
+          "executed": true,
+          "stalled": false,
+          "changed": {
+            "part:p4.angle": [
+              "rest",
+              "neg"
+            ],
+            "obj:o3.angle": [
+              "rest",
+              "neg"
+            ]
+          },
+          "revealed": [],
+          "cost": 2.0,
+          "notes": ""
+        },
+        "mode": "explore"
+      },
+      {
+        "action": [
+          "turn_held",
+          "o3",
+          -1
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "neg",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "rest",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "o3",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "neg"
+        },
+        "outcome": {
+          "action": [
+            "turn_held",
+            "o3",
+            -1
+          ],
+          "executed": true,
+          "stalled": true,
+          "changed": {},
+          "revealed": [],
+          "cost": 3.0,
+          "notes": ""
+        },
+        "mode": "explore"
+      },
+      {
+        "action": [
+          "turn_held",
+          "o3",
+          1
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "neg",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "rest",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "o3",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "neg"
+        },
+        "outcome": {
+          "action": [
+            "turn_held",
+            "o3",
+            1
+          ],
+          "executed": true,
+          "stalled": false,
+          "changed": {
+            "part:p4.angle": [
+              "neg",
+              "rest"
+            ],
+            "obj:o3.angle": [
+              "neg",
+              "rest"
+            ]
+          },
+          "revealed": [],
+          "cost": 2.0,
+          "notes": ""
+        },
+        "mode": "explore"
+      },
+      {
+        "action": [
+          "turn_held",
+          "o3",
+          -1
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "rest",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "o3",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "turn_held",
+            "o3",
+            -1
+          ],
+          "executed": true,
+          "stalled": false,
+          "changed": {
+            "part:p4.angle": [
+              "rest",
+              "neg"
+            ],
+            "obj:o3.angle": [
+              "rest",
+              "neg"
+            ]
+          },
+          "revealed": [],
+          "cost": 2.0,
+          "notes": ""
+        },
+        "mode": "explore"
+      },
+      {
+        "action": [
+          "turn_held",
+          "o3",
+          1
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "neg",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "rest",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "o3",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "neg"
+        },
+        "outcome": {
+          "action": [
+            "turn_held",
+            "o3",
+            1
+          ],
+          "executed": true,
+          "stalled": false,
+          "changed": {
+            "part:p4.angle": [
+              "neg",
+              "rest"
+            ],
+            "obj:o3.angle": [
+              "neg",
+              "rest"
+            ]
+          },
+          "revealed": [],
+          "cost": 2.0,
+          "notes": ""
+        },
+        "mode": "explore"
+      },
+      {
+        "action": [
+          "release",
+          "o3"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "rest",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "o3",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "release",
+            "o3"
+          ],
+          "executed": true,
+          "stalled": false,
+          "changed": {
+            "body:hand": [
+              "o3",
+              "empty"
+            ]
+          },
+          "revealed": [],
+          "cost": 1.5,
+          "notes": ""
+        },
+        "mode": "repair_experiment"
+      },
+      {
+        "action": [
+          "push",
+          "p4"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "rest",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "empty",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "push",
+            "p4"
+          ],
+          "executed": true,
+          "stalled": true,
+          "changed": {},
+          "revealed": [],
+          "cost": 4.0,
+          "notes": ""
+        },
+        "mode": "explore"
+      },
+      {
+        "action": [
+          "pull",
+          "p8"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "rest",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "empty",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "pull",
+            "p8"
+          ],
+          "executed": true,
+          "stalled": true,
+          "changed": {},
+          "revealed": [],
+          "cost": 4.950528616876769,
+          "notes": ""
+        },
+        "mode": "explore"
+      },
+      {
+        "action": [
+          "push",
+          "p8"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "rest",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "empty",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "push",
+            "p8"
+          ],
+          "executed": true,
+          "stalled": true,
+          "changed": {},
+          "revealed": [],
+          "cost": 4.0,
+          "notes": ""
+        },
+        "mode": "explore"
+      },
+      {
+        "action": [
+          "turn",
+          "p9",
+          -1
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "rest",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "empty",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "turn",
+            "p9",
+            -1
+          ],
+          "executed": true,
+          "stalled": false,
+          "changed": {
+            "part:p9.angle": [
+              "rest",
+              "neg"
+            ]
+          },
+          "revealed": [],
+          "cost": 3.8242409378826547,
+          "notes": ""
+        },
+        "mode": "repair_experiment"
+      },
+      {
+        "action": [
+          "push",
+          "p11"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "empty",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "push",
+            "p11"
+          ],
+          "executed": true,
+          "stalled": true,
+          "changed": {},
+          "revealed": [],
+          "cost": 4.233741900934486,
+          "notes": ""
+        },
+        "mode": "explore"
+      },
+      {
+        "action": [
+          "push",
+          "p10"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "empty",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "push",
+            "p10"
+          ],
+          "executed": true,
+          "stalled": true,
+          "changed": {},
+          "revealed": [],
+          "cost": 4.640419659828103,
+          "notes": ""
+        },
+        "mode": "explore"
+      },
+      {
+        "action": [
+          "pull",
+          "p3"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "empty",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "pull",
+            "p3"
+          ],
+          "executed": true,
+          "stalled": false,
+          "changed": {
+            "part:p10.open": [
+              "closed",
+              "open"
+            ]
+          },
+          "revealed": [],
+          "cost": 3.1389100428334826,
+          "notes": ""
+        },
+        "mode": "explore"
+      },
+      {
+        "action": [
+          "push",
+          "p3"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "open",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "empty",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "push",
+            "p3"
+          ],
+          "executed": true,
+          "stalled": false,
+          "changed": {
+            "part:p10.open": [
+              "open",
+              "closed"
+            ]
+          },
+          "revealed": [],
+          "cost": 3.0,
+          "notes": ""
+        },
+        "mode": "explore"
+      },
+      {
+        "action": [
+          "turn_pull",
+          "p3",
+          1
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "empty",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "turn_pull",
+            "p3",
+            1
+          ],
+          "executed": true,
+          "stalled": false,
+          "changed": {
+            "part:p10.open": [
+              "closed",
+              "open"
+            ]
+          },
+          "revealed": [],
+          "cost": 4.0,
+          "notes": ""
+        },
+        "mode": "repair_experiment"
+      },
+      {
+        "action": [
+          "turn_pull",
+          "p3",
+          -1
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "open",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "empty",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "turn_pull",
+            "p3",
+            -1
+          ],
+          "executed": true,
+          "stalled": true,
+          "changed": {},
+          "revealed": [],
+          "cost": 5.0,
+          "notes": ""
+        },
+        "mode": "explore"
+      },
+      {
+        "action": [
+          "turn_push",
+          "p3",
+          -1
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "open",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "empty",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "turn_push",
+            "p3",
+            -1
+          ],
+          "executed": true,
+          "stalled": false,
+          "changed": {
+            "part:p10.open": [
+              "open",
+              "closed"
+            ]
+          },
+          "revealed": [],
+          "cost": 4.0,
+          "notes": ""
+        },
+        "mode": "explore"
+      },
+      {
+        "action": [
+          "turn",
+          "p3",
+          -1
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "empty",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "turn",
+            "p3",
+            -1
+          ],
+          "executed": true,
+          "stalled": false,
+          "changed": {},
+          "revealed": [],
+          "cost": 2.0,
+          "notes": ""
+        },
+        "mode": "repair_experiment"
+      },
+      {
+        "action": [
+          "turn_push",
+          "p12",
+          1
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "empty",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "turn_push",
+            "p12",
+            1
+          ],
+          "executed": true,
+          "stalled": true,
+          "changed": {},
+          "revealed": [],
+          "cost": 6.433729236122744,
+          "notes": ""
+        },
+        "mode": "repair_experiment"
+      },
+      {
+        "action": [
+          "pick",
+          "o1"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "empty",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "pick",
+            "o1"
+          ],
+          "executed": true,
+          "stalled": false,
+          "changed": {
+            "obj:o1.where": [
+              "free",
+              "held"
+            ],
+            "body:hand": [
+              "empty",
+              "o1"
+            ]
+          },
+          "revealed": [],
+          "cost": 4.153174813507533,
+          "notes": ""
+        },
+        "mode": "repair_experiment"
+      },
+      {
+        "action": [
+          "insert",
+          "o1",
+          "p9"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "o1",
+          "obj:o1.where": "held",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "insert",
+            "o1",
+            "p9"
+          ],
+          "executed": true,
+          "stalled": true,
+          "changed": {},
+          "revealed": [],
+          "cost": 5.373731949804548,
+          "notes": ""
+        },
+        "mode": "explore"
+      },
+      {
+        "action": [
+          "insert",
+          "o1",
+          "p11"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "o1",
+          "obj:o1.where": "held",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "insert",
+            "o1",
+            "p11"
+          ],
+          "executed": true,
+          "stalled": true,
+          "changed": {},
+          "revealed": [],
+          "cost": 5.233741900934486,
+          "notes": ""
+        },
+        "mode": "explore"
+      },
+      {
+        "action": [
+          "insert",
+          "o1",
+          "p7"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "o1",
+          "obj:o1.where": "held",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "insert",
+            "o1",
+            "p7"
+          ],
+          "executed": true,
+          "stalled": true,
+          "changed": {},
+          "revealed": [],
+          "cost": 5.157539811993465,
+          "notes": ""
+        },
+        "mode": "explore"
+      },
+      {
+        "action": [
+          "insert",
+          "o1",
+          "p5"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "o1",
+          "obj:o1.where": "held",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "insert",
+            "o1",
+            "p5"
+          ],
+          "executed": true,
+          "stalled": true,
+          "changed": {},
+          "revealed": [],
+          "cost": 6.2727365196770775,
+          "notes": ""
+        },
+        "mode": "repair_experiment"
+      },
+      {
+        "action": [
+          "insert",
+          "o1",
+          "p12"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "o1",
+          "obj:o1.where": "held",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "insert",
+            "o1",
+            "p12"
+          ],
+          "executed": true,
+          "stalled": true,
+          "changed": {},
+          "revealed": [],
+          "cost": 5.333548467735296,
+          "notes": ""
+        },
+        "mode": "repair_experiment"
+      },
+      {
+        "action": [
+          "insert",
+          "o1",
+          "p8"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "o1",
+          "obj:o1.where": "held",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "insert",
+            "o1",
+            "p8"
+          ],
+          "executed": true,
+          "stalled": true,
+          "changed": {},
+          "revealed": [],
+          "cost": 6.090778688175678,
+          "notes": ""
+        },
+        "mode": "repair_experiment"
+      },
+      {
+        "action": [
+          "insert",
+          "o1",
+          "p1"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "o1",
+          "obj:o1.where": "held",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "insert",
+            "o1",
+            "p1"
+          ],
+          "executed": true,
+          "stalled": true,
+          "changed": {},
+          "revealed": [],
+          "cost": 5.9121921168349525,
+          "notes": ""
+        },
+        "mode": "repair_experiment"
+      },
+      {
+        "action": [
+          "insert",
+          "o1",
+          "p6"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "o1",
+          "obj:o1.where": "held",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "insert",
+            "o1",
+            "p6"
+          ],
+          "executed": true,
+          "stalled": true,
+          "changed": {},
+          "revealed": [],
+          "cost": 5.389231837330666,
+          "notes": ""
+        },
+        "mode": "repair_experiment"
+      },
+      {
+        "action": [
+          "insert",
+          "o1",
+          "p2"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "o1",
+          "obj:o1.where": "held",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "insert",
+            "o1",
+            "p2"
+          ],
+          "executed": true,
+          "stalled": true,
+          "changed": {},
+          "revealed": [],
+          "cost": 6.150750380169913,
+          "notes": ""
+        },
+        "mode": "repair_experiment"
+      },
+      {
+        "action": [
+          "insert",
+          "o1",
+          "p4"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "o1",
+          "obj:o1.where": "held",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "insert",
+            "o1",
+            "p4"
+          ],
+          "executed": true,
+          "stalled": true,
+          "changed": {},
+          "revealed": [],
+          "cost": 6.488809251035127,
+          "notes": ""
+        },
+        "mode": "repair_experiment"
+      },
+      {
+        "action": [
+          "turn_held",
+          "o1",
+          -1
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "o1",
+          "obj:o1.where": "held",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "turn_held",
+            "o1",
+            -1
+          ],
+          "executed": true,
+          "stalled": false,
+          "changed": {},
+          "revealed": [],
+          "cost": 3.24681358666763,
+          "notes": ""
+        },
+        "mode": "repair_experiment"
+      },
+      {
+        "action": [
+          "insert",
+          "o1",
+          "p3"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "o1",
+          "obj:o1.where": "held",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "insert",
+            "o1",
+            "p3"
+          ],
+          "executed": true,
+          "stalled": true,
+          "changed": {},
+          "revealed": [],
+          "cost": 5.30870409749332,
+          "notes": ""
+        },
+        "mode": "repair_experiment"
+      },
+      {
+        "action": [
+          "turn_held",
+          "o1",
+          1
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "o1",
+          "obj:o1.where": "held",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "turn_held",
+            "o1",
+            1
+          ],
+          "executed": true,
+          "stalled": false,
+          "changed": {},
+          "revealed": [],
+          "cost": 2.3087040974933197,
+          "notes": ""
+        },
+        "mode": "repair_experiment"
+      },
+      {
+        "action": [
+          "release",
+          "o1"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "o1",
+          "obj:o1.where": "held",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "release",
+            "o1"
+          ],
+          "executed": true,
+          "stalled": false,
+          "changed": {
+            "obj:o1.where": [
+              "held",
+              "free"
+            ],
+            "body:hand": [
+              "o1",
+              "empty"
+            ]
+          },
+          "revealed": [],
+          "cost": 1.5,
+          "notes": ""
+        },
+        "mode": "repair_experiment"
+      },
+      {
+        "action": [
+          "push",
+          "p12"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "empty",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "push",
+            "p12"
+          ],
+          "executed": true,
+          "stalled": true,
+          "changed": {},
+          "revealed": [],
+          "cost": 5.153174813507533,
+          "notes": ""
+        },
+        "mode": "repair_experiment"
+      },
+      {
+        "action": [
+          "turn_pull",
+          "p9",
+          1
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "neg",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "empty",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "turn_pull",
+            "p9",
+            1
+          ],
+          "executed": true,
+          "stalled": true,
+          "changed": {
+            "part:p9.angle": [
+              "neg",
+              "rest"
+            ]
+          },
+          "revealed": [],
+          "cost": 5.885671256181563,
+          "notes": ""
+        },
+        "mode": "repair_experiment"
+      },
+      {
+        "action": [
+          "turn_push",
+          "p3",
+          1
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "rest",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "empty",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "turn_push",
+            "p3",
+            1
+          ],
+          "executed": true,
+          "stalled": true,
+          "changed": {},
+          "revealed": [],
+          "cost": 5.66521575447369,
+          "notes": ""
+        },
+        "mode": "explore"
+      },
+      {
+        "action": [
+          "pull",
+          "p12"
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "rest",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "empty",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "pull",
+            "p12"
+          ],
+          "executed": true,
+          "stalled": true,
+          "changed": {},
+          "revealed": [],
+          "cost": 5.433729236122744,
+          "notes": ""
+        },
+        "mode": "explore"
+      },
+      {
+        "action": [
+          "turn_pull",
+          "p12",
+          1
+        ],
+        "before": {
+          "part:p1.open": "closed",
+          "part:p12.angle": "rest",
+          "part:p5.angle": "rest",
+          "part:p4.angle": "rest",
+          "part:p7.open": "open",
+          "part:p10.open": "closed",
+          "part:p3.angle": "rest",
+          "part:p9.angle": "rest",
+          "part:p6.angle": "rest",
+          "obj:o2.where": "free",
+          "obj:o2.angle": "rest",
+          "body:hand": "empty",
+          "obj:o1.where": "free",
+          "obj:o1.angle": "rest",
+          "obj:o3.where": "in:p4",
+          "obj:o3.angle": "rest"
+        },
+        "outcome": {
+          "action": [
+            "turn_pull",
+            "p12",
+            1
+          ],
+          "executed": true,
+          "stalled": false,
+          "changed": {
+            "part:p1.open": [
+              "closed",
+              "open"
+            ]
+          },
+          "revealed": [],
+          "cost": 4.0,
+          "notes": ""
+        },
+        "mode": "explore"
+      }
+    ],
+    "events": [
+      {
+        "n": 0,
+        "type": "reset",
+        "truth_state": "deadbolt"
+      },
+      {
+        "n": 1,
+        "type": "drawer_opened"
+      },
+      {
+        "n": 2,
+        "type": "bolt_retracted",
+        "bolt": "thumb"
+      },
+      {
+        "n": 4,
+        "type": "key_inserted",
+        "key": "o3",
+        "matches": true
+      },
+      {
+        "n": 6,
+        "type": "key_turned",
+        "key": "o3"
+      },
+      {
+        "n": 6,
+        "type": "bolt_extended",
+        "bolt": "key"
+      },
+      {
+        "n": 8,
+        "type": "bolt_retracted",
+        "bolt": "key"
+      },
+      {
+        "n": 9,
+        "type": "key_turned",
+        "key": "o3"
+      },
+      {
+        "n": 9,
+        "type": "bolt_extended",
+        "bolt": "key"
+      },
+      {
+        "n": 10,
+        "type": "bolt_retracted",
+        "bolt": "key"
+      },
+      {
+        "n": 24,
+        "type": "knob_turned"
+      },
+      {
+        "n": 44,
+        "type": "knob_turned"
+      },
+      {
+        "n": 44,
+        "type": "latch_released"
+      },
+      {
+        "n": 44,
+        "type": "door_opened"
+      }
+    ],
+    "failure_events": [
+      {
+        "step": 1,
+        "cause": "latched",
+        "action": [
+          "turn_pull",
+          "p5",
+          -1
+        ]
+      },
+      {
+        "step": 12,
+        "cause": "latched",
+        "action": [
+          "pull",
+          "p8"
+        ]
+      },
+      {
+        "step": 13,
+        "cause": "blocked",
+        "action": [
+          "push",
+          "p8"
+        ]
+      },
+      {
+        "step": 23,
+        "cause": "blocked",
+        "action": [
+          "turn_push",
+          "p12",
+          1
+        ]
+      },
+      {
+        "step": 39,
+        "cause": "blocked",
+        "action": [
+          "push",
+          "p12"
+        ]
+      },
+      {
+        "step": 42,
+        "cause": "latched",
+        "action": [
+          "pull",
+          "p12"
+        ]
+      }
+    ],
+    "recipe_actions": 5,
+    "repair_reason": "observed transition contradicted the recipe"
+  }
+}

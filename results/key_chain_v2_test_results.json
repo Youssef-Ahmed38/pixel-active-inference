@@ -1,0 +1,15 @@
+{
+  "exit_code": 0,
+  "collected": 61,
+  "counts": {
+    "passed": 61
+  },
+  "files": [
+    "tests\\test_discovery.py",
+    "tests\\test_discovery_physics.py",
+    "tests\\test_key_chain.py",
+    "tests\\test_key_chain_v2.py"
+  ],
+  "python": "C:\\projects\\pixel-active-inference\\.venv\\Scripts\\python.exe",
+  "environment_workaround": "agent.evaluate uses processes=1 because managed Windows blocks multiprocessing named pipes; all original scenarios, seeds and assertions are preserved"
+}

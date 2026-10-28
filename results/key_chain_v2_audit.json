@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "model_sha256": "f1cbb55fc8a9ae13d5186865c301c63da6e4929f3bdddec5f88a5a181ff42ed9",
+  "inputs_sha256": {
+    "results\\key_chain_v2_final.json": "08b3c3a220468afb0618b0604842392bc23fe697322d06f78fcbd71e2b5a4856"
+  },
+  "counts": {
+    "records": 144,
+    "predictions": 25934,
+    "scored_explanations": 15480,
+    "no_recipe_pairs": 48
+  },
+  "checks": [
+    "frozen inference sources unchanged",
+    "same frozen model for all final studies",
+    "own-evidence feature allowlist",
+    "all semantic notes and appearance attributes stripped",
+    "all predictions reproduced without truth fields",
+    "truth joined only after prediction",
+    "deterministic no-recipe alias checked"
+  ],
+  "source_sha256": "191f78f1305cc7648479818a84a56a0a28b844bac054966d0eebc67ce4f350a0"
+}

@@ -1,0 +1,418 @@
+{
+  "kind": "aborted_final_harness_attempt",
+  "planned_seeds": [
+    730000,
+    730047
+  ],
+  "retained_stdout_summaries": [
+    {
+      "seed": 730000,
+      "captured_stdout_summary": {
+        "cold": {
+          "success": true,
+          "actions": 2
+        },
+        "warm": {
+          "success": true,
+          "actions": 2
+        },
+        "prior_only": {
+          "success": true,
+          "actions": 1
+        },
+        "scripted": {
+          "success": true,
+          "actions": 47
+        }
+      }
+    },
+    {
+      "seed": 730001,
+      "captured_stdout_summary": {
+        "cold": {
+          "success": true,
+          "actions": 22
+        },
+        "warm": {
+          "success": true,
+          "actions": 2
+        },
+        "prior_only": {
+          "success": true,
+          "actions": 1
+        },
+        "scripted": {
+          "success": true,
+          "actions": 48
+        }
+      }
+    },
+    {
+      "seed": 730002,
+      "captured_stdout_summary": {
+        "cold": {
+          "success": true,
+          "actions": 128
+        },
+        "warm": {
+          "success": true,
+          "actions": 326
+        },
+        "prior_only": {
+          "success": true,
+          "actions": 56
+        },
+        "scripted": {
+          "success": true,
+          "actions": 51
+        }
+      }
+    },
+    {
+      "seed": 730003,
+      "captured_stdout_summary": {
+        "cold": {
+          "success": true,
+          "actions": 421
+        },
+        "warm": {
+          "success": true,
+          "actions": 210
+        },
+        "prior_only": {
+          "success": true,
+          "actions": 377
+        },
+        "scripted": {
+          "success": true,
+          "actions": 12
+        }
+      }
+    },
+    {
+      "seed": 730004,
+      "captured_stdout_summary": {
+        "cold": {
+          "success": true,
+          "actions": 409
+        },
+        "warm": {
+          "success": true,
+          "actions": 8
+        },
+        "prior_only": {
+          "success": true,
+          "actions": 373
+        },
+        "scripted": {
+          "success": true,
+          "actions": 32
+        }
+      }
+    },
+    {
+      "seed": 730005,
+      "captured_stdout_summary": {
+        "cold": {
+          "success": false,
+          "actions": 800
+        },
+        "warm": {
+          "success": false,
+          "actions": 800
+        },
+        "prior_only": {
+          "success": false,
+          "actions": 800
+        },
+        "scripted": {
+          "success": false,
+          "actions": 823
+        }
+      }
+    },
+    {
+      "seed": 730006,
+      "captured_stdout_summary": {
+        "cold": {
+          "success": true,
+          "actions": 3
+        },
+        "warm": {
+          "success": true,
+          "actions": 19
+        },
+        "prior_only": {
+          "success": true,
+          "actions": 2
+        },
+        "scripted": {
+          "success": true,
+          "actions": 64
+        }
+      }
+    },
+    {
+      "seed": 730007,
+      "captured_stdout_summary": {
+        "cold": {
+          "success": true,
+          "actions": 21
+        },
+        "warm": {
+          "success": true,
+          "actions": 2
+        },
+        "prior_only": {
+          "success": true,
+          "actions": 1
+        },
+        "scripted": {
+          "success": true,
+          "actions": 54
+        }
+      }
+    },
+    {
+      "seed": 730008,
+      "captured_stdout_summary": {
+        "cold": {
+          "success": true,
+          "actions": 116
+        },
+        "warm": {
+          "success": true,
+          "actions": 25
+        },
+        "prior_only": {
+          "success": true,
+          "actions": 56
+        },
+        "scripted": {
+          "success": true,
+          "actions": 49
+        }
+      }
+    },
+    {
+      "seed": 730009,
+      "captured_stdout_summary": {
+        "cold": {
+          "success": true,
+          "actions": 436
+        },
+        "warm": {
+          "success": true,
+          "actions": 245
+        },
+        "prior_only": {
+          "success": true,
+          "actions": 126
+        },
+        "scripted": {
+          "success": true,
+          "actions": 10
+        }
+      }
+    },
+    {
+      "seed": 730010,
+      "captured_stdout_summary": {
+        "cold": {
+          "success": true,
+          "actions": 379
+        },
+        "warm": {
+          "success": true,
+          "actions": 21
+        },
+        "prior_only": {
+          "success": true,
+          "actions": 377
+        },
+        "scripted": {
+          "success": false,
+          "actions": 8
+        }
+      }
+    },
+    {
+      "seed": 730011,
+      "captured_stdout_summary": {
+        "cold": {
+          "success": false,
+          "actions": 800
+        },
+        "warm": {
+          "success": false,
+          "actions": 800
+        },
+        "prior_only": {
+          "success": false,
+          "actions": 800
+        },
+        "scripted": {
+          "success": false,
+          "actions": 334
+        }
+      }
+    },
+    {
+      "seed": 730012,
+      "captured_stdout_summary": {
+        "cold": {
+          "success": true,
+          "actions": 2
+        },
+        "warm": {
+          "success": true,
+          "actions": 2
+        },
+        "prior_only": {
+          "success": true,
+          "actions": 1
+        },
+        "scripted": {
+          "success": true,
+          "actions": 48
+        }
+      }
+    },
+    {
+      "seed": 730013,
+      "captured_stdout_summary": {
+        "cold": {
+          "success": true,
+          "actions": 25
+        },
+        "warm": {
+          "success": true,
+          "actions": 2
+        },
+        "prior_only": {
+          "success": true,
+          "actions": 1
+        },
+        "scripted": {
+          "success": true,
+          "actions": 16
+        }
+      }
+    },
+    {
+      "seed": 730014,
+      "captured_stdout_summary": {
+        "cold": {
+          "success": false,
+          "actions": 800
+        },
+        "warm": {
+          "success": false,
+          "actions": 800
+        },
+        "prior_only": {
+          "success": true,
+          "actions": 55
+        },
+        "scripted": {
+          "success": true,
+          "actions": 49
+        }
+      }
+    },
+    {
+      "seed": 730015,
+      "captured_stdout_summary": {
+        "cold": {
+          "success": true,
+          "actions": 433
+        },
+        "warm": {
+          "success": true,
+          "actions": 370
+        },
+        "prior_only": {
+          "success": true,
+          "actions": 288
+        },
+        "scripted": {
+          "success": true,
+          "actions": 24
+        }
+      }
+    },
+    {
+      "seed": 730016,
+      "captured_stdout_summary": {
+        "cold": {
+          "success": true,
+          "actions": 307
+        },
+        "warm": {
+          "success": false,
+          "actions": 800
+        },
+        "prior_only": {
+          "success": true,
+          "actions": 367
+        },
+        "scripted": {
+          "success": true,
+          "actions": 28
+        }
+      }
+    },
+    {
+      "seed": 730017,
+      "captured_stdout_summary": {
+        "cold": {
+          "success": false,
+          "actions": 800
+        },
+        "warm": {
+          "success": false,
+          "actions": 800
+        },
+        "prior_only": {
+          "success": false,
+          "actions": 800
+        },
+        "scripted": {
+          "success": false,
+          "actions": 339
+        }
+      }
+    },
+    {
+      "seed": 730018,
+      "captured_stdout_summary": {
+        "cold": {
+          "success": true,
+          "actions": 2
+        },
+        "warm": {
+          "success": true,
+          "actions": 2
+        },
+        "prior_only": {
+          "success": true,
+          "actions": 1
+        },
+        "scripted": {
+          "success": false,
+          "actions": 10
+        }
+      }
+    }
+  ],
+  "construction_errors": [
+    {
+      "seed": 730019,
+      "error": "drawer must occupy a separate traversable cell"
+    }
+  ],
+  "error": "ValueError: drawer must occupy a separate traversable cell",
+  "raw_records_recovered": false,
+  "reason": "ordered future exception plus missing checkpoints discarded in-memory records; no model refit follows",
+  "replacement_policy": "same frozen model and inference sources; fresh valid layouts; checkpoint completed pairs"
+}

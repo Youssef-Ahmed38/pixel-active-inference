@@ -1,0 +1,12 @@
+{
+  "kind": "lossless_json_whitespace_compaction",
+  "file": "results\\key_chain_v2_final.json",
+  "old_sha256": "08b3c3a220468afb0618b0604842392bc23fe697322d06f78fcbd71e2b5a4856",
+  "new_sha256": "72b217c2e27834336314503555e7a946258aaf1936de22aa37fb7227340a449e",
+  "old_bytes": 130013983,
+  "new_bytes": 58702900,
+  "same_parsed_records": true,
+  "original_pretty_newline": "CRLF",
+  "original_reconstruction": "json.dumps(data, indent=2) + newline; use the recorded LF/CRLF style",
+  "note": "Only whitespace changes. Earlier analyses reference the old byte hash; refreshed audits reference the compact hash. No simulator or agent rerun."
+}

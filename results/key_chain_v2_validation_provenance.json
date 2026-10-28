@@ -1,0 +1,15 @@
+{
+  "kind": "development_provenance_correction",
+  "input": "results/key_chain_v2_validation.json",
+  "actual_runtime_sources": {
+    "pai/discovery/key_chain_recipe.py": "b416fb8f15c638c2c1fd9f9ea73cd4147a2ed83960a88985cb9d42f4a0bc4283",
+    "pai/discovery/agent.py": "9915f36061cb9f2649e82476cc75885dde4ecf5c6baa4f2af3560ecc303c305a",
+    "pai/discovery/belief.py": "c1dd8961e5163dcb461276ad98370a0b319dce5bdd34670d4e09b7c391ebc98a",
+    "pai/discovery/recipes.py": "4f10e5afa09ea4bd10927c9aaf858679f5c2b55be52b2fe2cfc6432e73efe0e0",
+    "pai/discovery/mock.py": "493af80b8ec7ada4caccea6fc605ee7b28aad6098bc02f62f61f7e265cebe4e5",
+    "pai/maze/key_chain.py": "9565553c00e2e7e91a333f410696e06816743b5cf447a237585c7899f2cdd0a5",
+    "scripts/key_chain_v2_eval.py": "df3b2ab3dd5fa625168ecf3df01644ba749b938042fb879e8da3812a56815ab8"
+  },
+  "reason": "the validation process loaded and checked model_frozen sources at startup; the recipe file was edited for development repair while that process was finishing, so its at-end source hashes do not describe its imported recipe class",
+  "final_gate_note": "the final model was refrozen after repair; its sources have remained unchanged during the final gate"
+}
