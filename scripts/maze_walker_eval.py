@@ -40,7 +40,7 @@ def wilson(k: int, n: int, z: float = 1.96) -> list[float]:
 
 
 def run(job: tuple) -> dict:
-    seed, agent_name, body, budget, style, solid, regime, matrix, repeat_weight, stall_s, policy = job
+    seed, agent_name, body, budget, style, solid, regime, matrix, repeat_weight, stall_s, policy, smooth = job
     import torch
     torch.set_num_threads(1)
     world = MazeWorld(seed, **MAZE_STYLES[style])
@@ -56,7 +56,7 @@ def run(job: tuple) -> dict:
     walker = None
     if body == "walker":
         from pai.maze.walker import WalkerMaze
-        walker = env = WalkerMaze(world, seed=seed, solid=solid, stall_s=stall_s, policy=Path(policy))
+        walker = env = WalkerMaze(world, seed=seed, solid=solid, stall_s=stall_s, policy=Path(policy), smooth=smooth)
     if regime != "exact":
         # the noisy sensor sits on top of the body: the walker moves, the sensor reads and touches
         env = NoisySensorMaze(env, seed=seed, persistent=regime == "persistent")
@@ -95,6 +95,7 @@ def main():
     ap.add_argument("--visual-walls", action="store_true",
                     help="walls the body passes through (the first version; results before solid walls)")
     ap.add_argument("--policy", default="runs/locomotion/policy_v3/policy.pt", help="walking policy")
+    ap.add_argument("--smooth", action="store_true", help="smooth steering (pai/maze/walker.py)")
     ap.add_argument("--output", type=Path, required=True)
     args = ap.parse_args()
     seeds = list(range(args.test_start, args.test_start + args.num))
@@ -110,7 +111,7 @@ def main():
             make_agent=lambda s: RouteEFEExplorer(size=21, sensor_range=3, seed=s, effort_weight=2.0,
                                                   switch_margin=0.0))
         matrix, repeat_weight = sensor.matrix.tolist(), sensor_info["repeat_weight"]
-    jobs = [(s, a, b, args.budget, args.maze_style, not args.visual_walls, args.regime, matrix, repeat_weight, args.stall_s, args.policy) for s in seeds for a in AGENTS for b in BODIES]
+    jobs = [(s, a, b, args.budget, args.maze_style, not args.visual_walls, args.regime, matrix, repeat_weight, args.stall_s, args.policy, args.smooth) for s in seeds for a in AGENTS for b in BODIES]
     with Pool(args.workers) as pool:
         episodes = pool.map(run, jobs, chunksize=1)
     summary = {}
@@ -133,7 +134,7 @@ def main():
     report = {"git_commit": commit, "seeds": [seeds[0], seeds[-1]], "budget": args.budget, "maze_style": args.maze_style,
               "walls": "visual" if args.visual_walls else "solid", "regime": args.regime, "stall_s": args.stall_s,
               "sensor": {"matrix": matrix, "repeat_weight": repeat_weight, "fit": sensor_info},
-              "policy": args.policy, "summary": summary,
+              "policy": args.policy, "smooth": args.smooth, "summary": summary,
               "same_outcome_grid_vs_walker": same, "episodes": episodes}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=1))

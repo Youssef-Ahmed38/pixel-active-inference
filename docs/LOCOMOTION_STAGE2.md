@@ -123,6 +123,15 @@ Its purpose failed on development data, so it was not taken to a final run and v
 fix this points to is in the walker's steering (smooth transitions between turning and walking), not
 more practice with random goal changes.
 
+**Smooth steering (an option of the maze walker, `WalkerMaze(smooth=True)`).** Start walking only
+below 10 degrees heading error (was 25), keep walking until the error exceeds 40 degrees (no
+toggling), and ramp the speed at most 1 m/s^2 instead of jumping to 0.6 m/s. Development (v4, mazes
+20100-20129, persistent misreads, 60 walked episodes): falls 8 -> 2, goals 16 -> 24. Final on new
+mazes 83000-83029, same policy, paired: falls **5 -> 3** (4 vs 2 discordant, p = 0.69), goals 22 -> 26
+(1 vs 5, p = 0.22). Better in both, significant in neither on the final set, so it stays an option and
+the maze-fall problem stays open (`results/maze_walker_persistent_83000_v4{,_smooth}.json`,
+`results/maze_walker_dev_persistent_20100_v4_smooth.json`).
+
 `media/locomotion/g1_wall_contact.mp4`: the same body walks into the same wall with v3 (left, falls)
 and v4 (right, stays up and backs off). Seed 57100, chosen from five as an example where they
 differ (in 3 of the 5 both stayed up, in 2 only v4); the numbers are in the table.

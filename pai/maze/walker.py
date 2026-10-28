@@ -89,7 +89,7 @@ class WalkerMaze:
     def __init__(self, world: MazeWorld, policy: Path = POLICY, cell: float = 1.0, seed: int = 0,
                  speed: float = 0.6, step_timeout_s: float = 8.0, device: str = "cpu",
                  wall_height: float = 0.5, solid: bool = True, stall_s: float = 1.0,
-                 odometry: bool = False, odo_seed: int | None = None,
+                 odometry: bool = False, odo_seed: int | None = None, smooth: bool = False,
                  odo_speed_noise: float = 0.05, odo_scale_sd: float = 0.03, odo_gyro_bias_sd: float = 0.001):
         self.world = world
         self.cell = cell
@@ -115,6 +115,12 @@ class WalkerMaze:
         # real robot estimates it from leg kinematics). The walker then steers by this estimate;
         # the simulator pose is used only to keep the grid's ground truth for scoring.
         self.odometry = odometry
+        # smooth steering (off: the original rule, start walking below 25 deg heading error at full
+        # speed): start walking below 10 deg, keep walking until the error exceeds 40 deg, and ramp the
+        # speed at most 1 m/s^2; the maze falls of v4 came from rapid turn/walk switching
+        self.smooth = smooth
+        self._walking = False
+        self._v_cmd = 0.0
         rng = np.random.default_rng(seed + 920000 if odo_seed is None else odo_seed)
         self._odo_rng = rng
         self._odo_noise = odo_speed_noise
@@ -170,6 +176,7 @@ class WalkerMaze:
         t0 = self.t
         dt = self.env.cfg.ctrl_dt
         trail = []                         # (time, xy) while commanded forward, for stall detection
+        self._walking, self._v_cmd = False, 0.0     # each walk starts from standing at a cell centre
         while self.t - t0 < self.timeout:
             d = target_xy - self.xy()
             dist = float(np.linalg.norm(d))
@@ -179,7 +186,17 @@ class WalkerMaze:
             heading = float(np.arctan2(d[1], d[0]))
             err = abs(float(wrap(heading - self.yaw())))
             # turn on the spot first, then walk while steering toward the target point
-            v = 0.0 if err > np.radians(25) else min(self.speed, 1.5 * dist)
+            if self.smooth:
+                if self._walking and err > np.radians(40):
+                    self._walking = False
+                elif not self._walking and err < np.radians(10):
+                    self._walking = True
+                target_v = min(self.speed, 1.5 * dist) if self._walking else 0.0
+                step = 1.0 * dt
+                self._v_cmd = float(np.clip(target_v, self._v_cmd - step, self._v_cmd + step))
+                v = self._v_cmd
+            else:
+                v = 0.0 if err > np.radians(25) else min(self.speed, 1.5 * dist)
             self._command(v, 0.0, heading)
             if self._tick():
                 return StepReport(self.t - t0, True, False, False)
