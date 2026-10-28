@@ -36,6 +36,7 @@ from pai.maze.efe_agent import (
 from pai.maze.env import DIRECTIONS, MazeWorld
 from pai.maze.map_model import ObservationModel
 from pai.maze.noisy import NoisySensorMaze
+from pai.maze.self_calibration import self_calibrated_sensor
 
 AGENTS = ["random", "nearest_frontier", "infogain_frontier", "efe_v2", "efe_route",
           "efe_route_no_epistemic", "efe_route_no_goal_belief"]
@@ -113,7 +114,7 @@ def wilson(k: int, n: int, z: float = 1.96) -> list[float]:
 
 def summarise(episodes: list[dict], budget: int) -> dict:
     out = {}
-    for regime in REGIMES:
+    for regime in sorted({e["regime"] for e in episodes}, key=REGIMES.index):
         for name in AGENTS:
             eps = [e for e in episodes if e["regime"] == regime and e["agent"] == name]
             k = sum(e["found_goal"] for e in eps)
@@ -153,26 +154,44 @@ def main():
     parser.add_argument("--goal-weight", type=float, default=5.0)
     parser.add_argument("--switch-margin", type=float, default=1.0)
     parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument("--sensor-source", choices=["truth", "self"], default="truth",
+                        help="fit the noisy sensor model from labelled training mazes, or from the "
+                             "agent's own practice (looks plus body labels, EM; no simulator labels)")
+    parser.add_argument("--regimes", nargs="+", choices=REGIMES, default=REGIMES)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
 
     params = {"epistemic_weight": args.epistemic_weight, "effort_weight": args.effort_weight,
               "goal_weight": args.goal_weight, "switch_margin": args.switch_margin}
-    sensor = fit_sensor_model(list(range(1000, 1020)), args.size)
+    train = list(range(1000, 1020))
+    sensor_info = {"source": args.sensor_source}
+    if args.sensor_source == "truth":
+        sensor = fit_sensor_model(train, args.size)
+    else:
+        sensor, info = self_calibrated_sensor(
+            train, args.size,
+            make_env=lambda s: NoisySensorMaze(MazeWorld(s, size=args.size), seed=s),
+            make_agent=lambda s: RouteEFEExplorer(size=args.size, sensor_range=3, seed=s,
+                                                  epistemic_weight=args.epistemic_weight,
+                                                  effort_weight=args.effort_weight,
+                                                  goal_weight=args.goal_weight,
+                                                  switch_margin=args.switch_margin))
+        sensor_info.update(info)
     seeds = list(range(args.test_start, args.test_start + args.num_test_mazes))
     jobs = [(s, r, a, args.size, args.budget, sensor.matrix.tolist(), params)
-            for s in seeds for r in REGIMES for a in AGENTS]
+            for s in seeds for r in args.regimes for a in AGENTS]
     with Pool(args.workers) as pool:
         episodes = pool.map(run_episode, jobs, chunksize=4)
 
     summary = summarise(episodes, args.budget)
     comparisons = [paired_goal_comparison(episodes, r, "efe_route", b)
-                   for r in REGIMES for b in ("nearest_frontier", "infogain_frontier",
+                   for r in args.regimes for b in ("nearest_frontier", "infogain_frontier",
                                               "efe_route_no_epistemic", "efe_route_no_goal_belief")]
     commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True,
                             cwd=ROOT).stdout.strip()
     report = {"git_commit": commit, "seeds": [seeds[0], seeds[-1]], "budget": args.budget,
               "params": params, "fitted_sensor_model": sensor.matrix.round(4).tolist(),
+              "sensor_fit": sensor_info,
               "summary": summary, "paired_goal_comparisons": comparisons, "episodes": episodes}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=1))

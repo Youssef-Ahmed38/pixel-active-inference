@@ -283,3 +283,20 @@ def test_route_efe_explorer_finds_goal_without_grid_access():
             break
         obs = world.step(move)
     assert obs.reached_goal
+
+
+def test_dawid_skene_recovers_confusion_from_looks_and_few_body_labels():
+    """EM recovers P(seen | true) from repeated noisy looks; only 5% of cells have body labels."""
+    from pai.maze.self_calibration import dawid_skene
+
+    rng = np.random.default_rng(0)
+    true_m = np.array([[0.85, 0.1, 0.05], [0.12, 0.88, 0.35], [0.03, 0.02, 0.6]])
+    looks, anchors = {}, {}
+    for i in range(3000):
+        k = rng.choice(3, p=[0.55, 0.43, 0.02])
+        looks[i] = np.bincount(rng.choice(3, size=8, p=true_m[:, k]), minlength=3).astype(float)
+        if rng.random() < 0.05 or k == 2 and rng.random() < 0.3:
+            anchors[i] = int(k)
+    model, prior = dawid_skene(looks, anchors)
+    assert np.abs(model.matrix[:, :2] - true_m[:, :2]).max() < 0.03
+    assert abs(prior[0] - 0.55) < 0.03

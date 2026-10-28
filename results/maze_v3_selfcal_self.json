@@ -1,0 +1,7160 @@
+{
+ "git_commit": "5d5b9f5",
+ "seeds": [
+  71000,
+  71099
+ ],
+ "budget": 160,
+ "params": {
+  "epistemic_weight": 1.0,
+  "effort_weight": 2.0,
+  "goal_weight": 5.0,
+  "switch_margin": 0.0
+ },
+ "fitted_sensor_model": [
+  [
+   0.9014,
+   0.0804,
+   0.0322
+  ],
+  [
+   0.0901,
+   0.899,
+   0.3644
+  ],
+  [
+   0.0085,
+   0.0206,
+   0.6034
+  ]
+ ],
+ "sensor_fit": {
+  "source": "self",
+  "cells": 5639,
+  "looks": 39864,
+  "body_labels": 2104,
+  "class_frequencies": [
+   0.5461,
+   0.4511,
+   0.0028
+  ]
+ },
+ "summary": {
+  "noisy/random": {
+   "episodes": 100,
+   "mean_coverage": 0.09923006231200487,
+   "mean_seen_coverage": 0.13384514624385305,
+   "goal_rate": 0.11,
+   "goal_rate_ci95": [
+    0.06254131955225126,
+    0.18631463027903022
+   ],
+   "mean_goal_step_capped": 150.4,
+   "mean_collisions": 11.8
+  },
+  "noisy/nearest_frontier": {
+   "episodes": 100,
+   "mean_coverage": 0.4999148459075529,
+   "mean_seen_coverage": 0.5725687794022372,
+   "goal_rate": 0.56,
+   "goal_rate_ci95": [
+    0.4622792771125631,
+    0.6532813459903167
+   ],
+   "mean_goal_step_capped": 110.7,
+   "mean_collisions": 1.43
+  },
+  "noisy/infogain_frontier": {
+   "episodes": 100,
+   "mean_coverage": 0.5058687663609888,
+   "mean_seen_coverage": 0.5966445870442444,
+   "goal_rate": 0.58,
+   "goal_rate_ci95": [
+    0.4820630799889527,
+    0.672017750814887
+   ],
+   "mean_goal_step_capped": 108.42,
+   "mean_collisions": 1.28
+  },
+  "noisy/efe_v2": {
+   "episodes": 100,
+   "mean_coverage": 0.504227020642755,
+   "mean_seen_coverage": 0.5921680023814857,
+   "goal_rate": 0.56,
+   "goal_rate_ci95": [
+    0.4622792771125631,
+    0.6532813459903167
+   ],
+   "mean_goal_step_capped": 114.6,
+   "mean_collisions": 0.8
+  },
+  "noisy/efe_route": {
+   "episodes": 100,
+   "mean_coverage": 0.4947928435801797,
+   "mean_seen_coverage": 0.5887887791564649,
+   "goal_rate": 0.56,
+   "goal_rate_ci95": [
+    0.4622792771125631,
+    0.6532813459903167
+   ],
+   "mean_goal_step_capped": 114.52,
+   "mean_collisions": 1.17
+  },
+  "noisy/efe_route_no_epistemic": {
+   "episodes": 100,
+   "mean_coverage": 0.46802448395883933,
+   "mean_seen_coverage": 0.5437948703964822,
+   "goal_rate": 0.51,
+   "goal_rate_ci95": [
+    0.4134784047743415,
+    0.6057816990761385
+   ],
+   "mean_goal_step_capped": 115.23,
+   "mean_collisions": 0.7
+  },
+  "noisy/efe_route_no_goal_belief": {
+   "episodes": 100,
+   "mean_coverage": 0.5055829545259631,
+   "mean_seen_coverage": 0.5999426562746526,
+   "goal_rate": 0.54,
+   "goal_rate_ci95": [
+    0.44264685393523856,
+    0.6343935614666815
+   ],
+   "mean_goal_step_capped": 115.8,
+   "mean_collisions": 1.05
+  }
+ },
+ "paired_goal_comparisons": [
+  {
+   "a": "efe_route",
+   "b": "nearest_frontier",
+   "only_a": 18,
+   "only_b": 18,
+   "sign_test_p": 1.0
+  },
+  {
+   "a": "efe_route",
+   "b": "infogain_frontier",
+   "only_a": 19,
+   "only_b": 21,
+   "sign_test_p": 0.8746293123804207
+  },
+  {
+   "a": "efe_route",
+   "b": "efe_route_no_epistemic",
+   "only_a": 18,
+   "only_b": 13,
+   "sign_test_p": 0.47312965989112854
+  },
+  {
+   "a": "efe_route",
+   "b": "efe_route_no_goal_belief",
+   "only_a": 8,
+   "only_b": 6,
+   "sign_test_p": 0.79052734375
+  }
+ ],
+ "episodes": [
+  {
+   "seen_coverage": 0.29245283018867924,
+   "seed": 71000,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.2028301886792453,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 14
+  },
+  {
+   "seen_coverage": 0.5471698113207547,
+   "seed": 71000,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.4811320754716981,
+   "found_goal": true,
+   "goal_step": 47,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7169811320754716,
+   "seed": 71000,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5943396226415094,
+   "found_goal": true,
+   "goal_step": 103,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6886792452830188,
+   "seed": 71000,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5849056603773585,
+   "found_goal": true,
+   "goal_step": 103,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.589622641509434,
+   "seed": 71000,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5047169811320755,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5801886792452831,
+   "seed": 71000,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.49056603773584906,
+   "found_goal": true,
+   "goal_step": 35,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8207547169811321,
+   "seed": 71000,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6179245283018868,
+   "found_goal": true,
+   "goal_step": 133,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.07177033492822966,
+   "seed": 71001,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.06220095693779904,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 9
+  },
+  {
+   "seen_coverage": 0.20095693779904306,
+   "seed": 71001,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.19138755980861244,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.20095693779904306,
+   "seed": 71001,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.19138755980861244,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.20095693779904306,
+   "seed": 71001,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.19138755980861244,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.69377990430622,
+   "seed": 71001,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.6172248803827751,
+   "found_goal": true,
+   "goal_step": 146,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6650717703349283,
+   "seed": 71001,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5215311004784688,
+   "found_goal": true,
+   "goal_step": 63,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6602870813397129,
+   "seed": 71001,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5980861244019139,
+   "found_goal": true,
+   "goal_step": 150,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.2616822429906542,
+   "seed": 71002,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.1588785046728972,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 9
+  },
+  {
+   "seen_coverage": 0.6214953271028038,
+   "seed": 71002,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5,
+   "found_goal": true,
+   "goal_step": 63,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.7009345794392523,
+   "seed": 71002,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5794392523364486,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6962616822429907,
+   "seed": 71002,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.602803738317757,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6495327102803738,
+   "seed": 71002,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5327102803738317,
+   "found_goal": true,
+   "goal_step": 120,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5560747663551402,
+   "seed": 71002,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5,
+   "found_goal": true,
+   "goal_step": 49,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6495327102803738,
+   "seed": 71002,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5327102803738317,
+   "found_goal": true,
+   "goal_step": 116,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.15865384615384615,
+   "seed": 71003,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.11057692307692307,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 10
+  },
+  {
+   "seen_coverage": 0.6442307692307693,
+   "seed": 71003,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5817307692307693,
+   "found_goal": true,
+   "goal_step": 119,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.8509615384615384,
+   "seed": 71003,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.6538461538461539,
+   "found_goal": true,
+   "goal_step": 121,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.7836538461538461,
+   "seed": 71003,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5528846153846154,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 5
+  },
+  {
+   "seen_coverage": 0.8365384615384616,
+   "seed": 71003,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.6442307692307693,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.7451923076923077,
+   "seed": 71003,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6105769230769231,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.7211538461538461,
+   "seed": 71003,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5913461538461539,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.19138755980861244,
+   "seed": 71004,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.13875598086124402,
+   "found_goal": true,
+   "goal_step": 112,
+   "collisions": 10
+  },
+  {
+   "seen_coverage": 0.5119617224880383,
+   "seed": 71004,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.44976076555023925,
+   "found_goal": true,
+   "goal_step": 19,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6172248803827751,
+   "seed": 71004,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5454545454545454,
+   "found_goal": true,
+   "goal_step": 21,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.569377990430622,
+   "seed": 71004,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.4880382775119617,
+   "found_goal": true,
+   "goal_step": 21,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6411483253588517,
+   "seed": 71004,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5502392344497608,
+   "found_goal": true,
+   "goal_step": 21,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.49760765550239233,
+   "seed": 71004,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.46411483253588515,
+   "found_goal": true,
+   "goal_step": 19,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.507177033492823,
+   "seed": 71004,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.4449760765550239,
+   "found_goal": true,
+   "goal_step": 21,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.1339712918660287,
+   "seed": 71005,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.10526315789473684,
+   "found_goal": true,
+   "goal_step": 62,
+   "collisions": 10
+  },
+  {
+   "seen_coverage": 0.7464114832535885,
+   "seed": 71005,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.6363636363636364,
+   "found_goal": true,
+   "goal_step": 7,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.722488038277512,
+   "seed": 71005,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5980861244019139,
+   "found_goal": true,
+   "goal_step": 7,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.7033492822966507,
+   "seed": 71005,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5789473684210527,
+   "found_goal": true,
+   "goal_step": 7,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8373205741626795,
+   "seed": 71005,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.631578947368421,
+   "found_goal": true,
+   "goal_step": 9,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6602870813397129,
+   "seed": 71005,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5980861244019139,
+   "found_goal": true,
+   "goal_step": 7,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8373205741626795,
+   "seed": 71005,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.631578947368421,
+   "found_goal": true,
+   "goal_step": 9,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.13592233009708737,
+   "seed": 71006,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.09223300970873786,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 8
+  },
+  {
+   "seen_coverage": 0.20388349514563106,
+   "seed": 71006,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.17475728155339806,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6699029126213593,
+   "seed": 71006,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5388349514563107,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6699029126213593,
+   "seed": 71006,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.558252427184466,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.21359223300970873,
+   "seed": 71006,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.18932038834951456,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.18446601941747573,
+   "seed": 71006,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.16019417475728157,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5048543689320388,
+   "seed": 71006,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.42718446601941745,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.12980769230769232,
+   "seed": 71007,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.09615384615384616,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 10
+  },
+  {
+   "seen_coverage": 0.7115384615384616,
+   "seed": 71007,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.6201923076923077,
+   "found_goal": true,
+   "goal_step": 99,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.3269230769230769,
+   "seed": 71007,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.3173076923076923,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.3269230769230769,
+   "seed": 71007,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.3173076923076923,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.20673076923076922,
+   "seed": 71007,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.1971153846153846,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7692307692307693,
+   "seed": 71007,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6394230769230769,
+   "found_goal": true,
+   "goal_step": 83,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.20673076923076922,
+   "seed": 71007,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.1971153846153846,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.07246376811594203,
+   "seed": 71008,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.06280193236714976,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 14
+  },
+  {
+   "seen_coverage": 0.5410628019323671,
+   "seed": 71008,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.47342995169082125,
+   "found_goal": true,
+   "goal_step": 101,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7391304347826086,
+   "seed": 71008,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.6038647342995169,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.5942028985507246,
+   "seed": 71008,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5217391304347826,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.5362318840579711,
+   "seed": 71008,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.48792270531400966,
+   "found_goal": true,
+   "goal_step": 64,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.23671497584541062,
+   "seed": 71008,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.2222222222222222,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8357487922705314,
+   "seed": 71008,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6473429951690821,
+   "found_goal": true,
+   "goal_step": 64,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.0821256038647343,
+   "seed": 71009,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.05314009661835749,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 15
+  },
+  {
+   "seen_coverage": 0.6038647342995169,
+   "seed": 71009,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5169082125603864,
+   "found_goal": true,
+   "goal_step": 98,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.5990338164251208,
+   "seed": 71009,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5217391304347826,
+   "found_goal": true,
+   "goal_step": 118,
+   "collisions": 5
+  },
+  {
+   "seen_coverage": 0.7342995169082126,
+   "seed": 71009,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.6038647342995169,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6183574879227053,
+   "seed": 71009,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5603864734299517,
+   "found_goal": true,
+   "goal_step": 108,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6521739130434783,
+   "seed": 71009,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5507246376811594,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6183574879227053,
+   "seed": 71009,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5603864734299517,
+   "found_goal": true,
+   "goal_step": 108,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.07692307692307693,
+   "seed": 71010,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.0673076923076923,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 13
+  },
+  {
+   "seen_coverage": 0.4951923076923077,
+   "seed": 71010,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.4807692307692308,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.09615384615384616,
+   "seed": 71010,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.07692307692307693,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.09615384615384616,
+   "seed": 71010,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.07692307692307693,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.09615384615384616,
+   "seed": 71010,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.07692307692307693,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6442307692307693,
+   "seed": 71010,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5721153846153846,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.09615384615384616,
+   "seed": 71010,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.07692307692307693,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.17073170731707318,
+   "seed": 71011,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.12195121951219512,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 12
+  },
+  {
+   "seen_coverage": 0.4926829268292683,
+   "seed": 71011,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.44390243902439025,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6048780487804878,
+   "seed": 71011,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5170731707317073,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.5317073170731708,
+   "seed": 71011,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.4926829268292683,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5853658536585366,
+   "seed": 71011,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5121951219512195,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.5024390243902439,
+   "seed": 71011,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.43902439024390244,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7317073170731707,
+   "seed": 71011,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.624390243902439,
+   "found_goal": true,
+   "goal_step": 81,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.14563106796116504,
+   "seed": 71012,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.11650485436893204,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 13
+  },
+  {
+   "seen_coverage": 0.6456310679611651,
+   "seed": 71012,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.6116504854368932,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.32524271844660196,
+   "seed": 71012,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.3155339805825243,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.32524271844660196,
+   "seed": 71012,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.3155339805825243,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.33495145631067963,
+   "seed": 71012,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.32524271844660196,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.32524271844660196,
+   "seed": 71012,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.3155339805825243,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.33495145631067963,
+   "seed": 71012,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.32524271844660196,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.19617224880382775,
+   "seed": 71013,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.15311004784688995,
+   "found_goal": true,
+   "goal_step": 89,
+   "collisions": 8
+  },
+  {
+   "seen_coverage": 0.7033492822966507,
+   "seed": 71013,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.6028708133971292,
+   "found_goal": true,
+   "goal_step": 24,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6794258373205742,
+   "seed": 71013,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5311004784688995,
+   "found_goal": true,
+   "goal_step": 24,
+   "collisions": 6
+  },
+  {
+   "seen_coverage": 0.7033492822966507,
+   "seed": 71013,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5502392344497608,
+   "found_goal": true,
+   "goal_step": 24,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.7799043062200957,
+   "seed": 71013,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5789473684210527,
+   "found_goal": true,
+   "goal_step": 24,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7559808612440191,
+   "seed": 71013,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6363636363636364,
+   "found_goal": true,
+   "goal_step": 24,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7799043062200957,
+   "seed": 71013,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5789473684210527,
+   "found_goal": true,
+   "goal_step": 24,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.15311004784688995,
+   "seed": 71014,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.12440191387559808,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 6
+  },
+  {
+   "seen_coverage": 0.6220095693779905,
+   "seed": 71014,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5550239234449761,
+   "found_goal": true,
+   "goal_step": 48,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7177033492822966,
+   "seed": 71014,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5645933014354066,
+   "found_goal": true,
+   "goal_step": 49,
+   "collisions": 4
+  },
+  {
+   "seen_coverage": 0.6220095693779905,
+   "seed": 71014,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5023923444976076,
+   "found_goal": true,
+   "goal_step": 49,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.631578947368421,
+   "seed": 71014,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5263157894736842,
+   "found_goal": true,
+   "goal_step": 63,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.5789473684210527,
+   "seed": 71014,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5023923444976076,
+   "found_goal": true,
+   "goal_step": 71,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.631578947368421,
+   "seed": 71014,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5263157894736842,
+   "found_goal": true,
+   "goal_step": 63,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.14634146341463414,
+   "seed": 71015,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.11707317073170732,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 16
+  },
+  {
+   "seen_coverage": 0.2926829268292683,
+   "seed": 71015,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.2780487804878049,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6585365853658537,
+   "seed": 71015,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5707317073170731,
+   "found_goal": true,
+   "goal_step": 159,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.7073170731707317,
+   "seed": 71015,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5902439024390244,
+   "found_goal": true,
+   "goal_step": 145,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.4,
+   "seed": 71015,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.3902439024390244,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.5414634146341464,
+   "seed": 71015,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5121951219512195,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.4,
+   "seed": 71015,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.3902439024390244,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.16908212560386474,
+   "seed": 71016,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.12560386473429952,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 10
+  },
+  {
+   "seen_coverage": 0.5603864734299517,
+   "seed": 71016,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5120772946859904,
+   "found_goal": true,
+   "goal_step": 61,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.7584541062801933,
+   "seed": 71016,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.6135265700483091,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7198067632850241,
+   "seed": 71016,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5990338164251208,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7294685990338164,
+   "seed": 71016,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5603864734299517,
+   "found_goal": true,
+   "goal_step": 51,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.357487922705314,
+   "seed": 71016,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.2560386473429952,
+   "found_goal": true,
+   "goal_step": 55,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7681159420289855,
+   "seed": 71016,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5797101449275363,
+   "found_goal": true,
+   "goal_step": 51,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.11483253588516747,
+   "seed": 71017,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.08133971291866028,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 7
+  },
+  {
+   "seen_coverage": 0.5645933014354066,
+   "seed": 71017,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5119617224880383,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 5
+  },
+  {
+   "seen_coverage": 0.7511961722488039,
+   "seed": 71017,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.6076555023923444,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7511961722488039,
+   "seed": 71017,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.6076555023923444,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5789473684210527,
+   "seed": 71017,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5119617224880383,
+   "found_goal": true,
+   "goal_step": 71,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.69377990430622,
+   "seed": 71017,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5933014354066986,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5789473684210527,
+   "seed": 71017,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5167464114832536,
+   "found_goal": true,
+   "goal_step": 71,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.06074766355140187,
+   "seed": 71018,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.03271028037383177,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 15
+  },
+  {
+   "seen_coverage": 0.5046728971962616,
+   "seed": 71018,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.40654205607476634,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6869158878504673,
+   "seed": 71018,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5467289719626168,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6401869158878505,
+   "seed": 71018,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5467289719626168,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6728971962616822,
+   "seed": 71018,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5373831775700935,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.616822429906542,
+   "seed": 71018,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5373831775700935,
+   "found_goal": true,
+   "goal_step": 115,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7616822429906542,
+   "seed": 71018,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5747663551401869,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.24285714285714285,
+   "seed": 71019,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.16666666666666666,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 9
+  },
+  {
+   "seen_coverage": 0.6095238095238096,
+   "seed": 71019,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5523809523809524,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6904761904761905,
+   "seed": 71019,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.6095238095238096,
+   "found_goal": true,
+   "goal_step": 154,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5666666666666667,
+   "seed": 71019,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5047619047619047,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8142857142857143,
+   "seed": 71019,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.6761904761904762,
+   "found_goal": true,
+   "goal_step": 126,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5523809523809524,
+   "seed": 71019,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5,
+   "found_goal": true,
+   "goal_step": 133,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6190476190476191,
+   "seed": 71019,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5619047619047619,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.0673076923076923,
+   "seed": 71020,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.057692307692307696,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 6
+  },
+  {
+   "seen_coverage": 0.4423076923076923,
+   "seed": 71020,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.38461538461538464,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5384615384615384,
+   "seed": 71020,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.47115384615384615,
+   "found_goal": true,
+   "goal_step": 50,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5384615384615384,
+   "seed": 71020,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.47115384615384615,
+   "found_goal": true,
+   "goal_step": 50,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5913461538461539,
+   "seed": 71020,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5144230769230769,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5769230769230769,
+   "seed": 71020,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5384615384615384,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5913461538461539,
+   "seed": 71020,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5144230769230769,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.09004739336492891,
+   "seed": 71021,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.07582938388625593,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 8
+  },
+  {
+   "seen_coverage": 0.6350710900473934,
+   "seed": 71021,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5781990521327014,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.7156398104265402,
+   "seed": 71021,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5592417061611374,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7203791469194313,
+   "seed": 71021,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5734597156398105,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5402843601895735,
+   "seed": 71021,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5165876777251185,
+   "found_goal": true,
+   "goal_step": 114,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6445497630331753,
+   "seed": 71021,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5781990521327014,
+   "found_goal": true,
+   "goal_step": 75,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6255924170616114,
+   "seed": 71021,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5308056872037915,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.07441860465116279,
+   "seed": 71022,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.05581395348837209,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 13
+  },
+  {
+   "seen_coverage": 0.7581395348837209,
+   "seed": 71022,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5674418604651162,
+   "found_goal": true,
+   "goal_step": 39,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.7255813953488373,
+   "seed": 71022,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5720930232558139,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.7395348837209302,
+   "seed": 71022,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5348837209302325,
+   "found_goal": true,
+   "goal_step": 52,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.3023255813953488,
+   "seed": 71022,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.1813953488372093,
+   "found_goal": true,
+   "goal_step": 52,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.4883720930232558,
+   "seed": 71022,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.31627906976744186,
+   "found_goal": true,
+   "goal_step": 79,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6093023255813953,
+   "seed": 71022,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.49767441860465117,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.1111111111111111,
+   "seed": 71023,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.10144927536231885,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 7
+  },
+  {
+   "seen_coverage": 0.1111111111111111,
+   "seed": 71023,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.10144927536231885,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6328502415458938,
+   "seed": 71023,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5990338164251208,
+   "found_goal": true,
+   "goal_step": 131,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6859903381642513,
+   "seed": 71023,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.6328502415458938,
+   "found_goal": true,
+   "goal_step": 125,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.8454106280193237,
+   "seed": 71023,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.7053140096618358,
+   "found_goal": true,
+   "goal_step": 76,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7729468599033816,
+   "seed": 71023,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6521739130434783,
+   "found_goal": true,
+   "goal_step": 83,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6135265700483091,
+   "seed": 71023,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5603864734299517,
+   "found_goal": true,
+   "goal_step": 140,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.22115384615384615,
+   "seed": 71024,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.15865384615384615,
+   "found_goal": true,
+   "goal_step": 152,
+   "collisions": 11
+  },
+  {
+   "seen_coverage": 0.6923076923076923,
+   "seed": 71024,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.625,
+   "found_goal": true,
+   "goal_step": 39,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.5528846153846154,
+   "seed": 71024,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5096153846153846,
+   "found_goal": true,
+   "goal_step": 25,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5721153846153846,
+   "seed": 71024,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5144230769230769,
+   "found_goal": true,
+   "goal_step": 25,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5,
+   "seed": 71024,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.47115384615384615,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.23557692307692307,
+   "seed": 71024,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.14903846153846154,
+   "found_goal": true,
+   "goal_step": 33,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5,
+   "seed": 71024,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.47115384615384615,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.19339622641509435,
+   "seed": 71025,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.1320754716981132,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 17
+  },
+  {
+   "seen_coverage": 0.5990566037735849,
+   "seed": 71025,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5188679245283019,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.5849056603773585,
+   "seed": 71025,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5377358490566038,
+   "found_goal": true,
+   "goal_step": 123,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.5943396226415094,
+   "seed": 71025,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5330188679245284,
+   "found_goal": true,
+   "goal_step": 116,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.7594339622641509,
+   "seed": 71025,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5849056603773585,
+   "found_goal": true,
+   "goal_step": 56,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6462264150943396,
+   "seed": 71025,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5754716981132075,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7028301886792453,
+   "seed": 71025,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5801886792452831,
+   "found_goal": true,
+   "goal_step": 54,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.0761904761904762,
+   "seed": 71026,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.05238095238095238,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 14
+  },
+  {
+   "seen_coverage": 0.5476190476190477,
+   "seed": 71026,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5142857142857142,
+   "found_goal": true,
+   "goal_step": 134,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.7047619047619048,
+   "seed": 71026,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5666666666666667,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.7571428571428571,
+   "seed": 71026,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.6285714285714286,
+   "found_goal": true,
+   "goal_step": 60,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.5952380952380952,
+   "seed": 71026,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5428571428571428,
+   "found_goal": true,
+   "goal_step": 122,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.6857142857142857,
+   "seed": 71026,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5714285714285714,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.6047619047619047,
+   "seed": 71026,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5380952380952381,
+   "found_goal": true,
+   "goal_step": 127,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.08415841584158416,
+   "seed": 71027,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.06930693069306931,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 10
+  },
+  {
+   "seen_coverage": 0.04455445544554455,
+   "seed": 71027,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.034653465346534656,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.04455445544554455,
+   "seed": 71027,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.034653465346534656,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.5,
+   "seed": 71027,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.4603960396039604,
+   "found_goal": true,
+   "goal_step": 86,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.11386138613861387,
+   "seed": 71027,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.10396039603960396,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.04455445544554455,
+   "seed": 71027,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.034653465346534656,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.11386138613861387,
+   "seed": 71027,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.10396039603960396,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.18269230769230768,
+   "seed": 71028,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.15384615384615385,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 14
+  },
+  {
+   "seen_coverage": 0.5480769230769231,
+   "seed": 71028,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.4807692307692308,
+   "found_goal": true,
+   "goal_step": 56,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.6538461538461539,
+   "seed": 71028,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5192307692307693,
+   "found_goal": true,
+   "goal_step": 19,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.7403846153846154,
+   "seed": 71028,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.6057692307692307,
+   "found_goal": true,
+   "goal_step": 19,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.7548076923076923,
+   "seed": 71028,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5865384615384616,
+   "found_goal": true,
+   "goal_step": 141,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7067307692307693,
+   "seed": 71028,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5817307692307693,
+   "found_goal": true,
+   "goal_step": 111,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6634615384615384,
+   "seed": 71028,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5480769230769231,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.1407766990291262,
+   "seed": 71029,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.1262135922330097,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 11
+  },
+  {
+   "seen_coverage": 0.6893203883495146,
+   "seed": 71029,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.6407766990291263,
+   "found_goal": true,
+   "goal_step": 35,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6893203883495146,
+   "seed": 71029,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.616504854368932,
+   "found_goal": true,
+   "goal_step": 39,
+   "collisions": 4
+  },
+  {
+   "seen_coverage": 0.6504854368932039,
+   "seed": 71029,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5679611650485437,
+   "found_goal": true,
+   "goal_step": 40,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7330097087378641,
+   "seed": 71029,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.6116504854368932,
+   "found_goal": true,
+   "goal_step": 39,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.7378640776699029,
+   "seed": 71029,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6504854368932039,
+   "found_goal": true,
+   "goal_step": 39,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7330097087378641,
+   "seed": 71029,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6116504854368932,
+   "found_goal": true,
+   "goal_step": 39,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.17142857142857143,
+   "seed": 71030,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.12380952380952381,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 11
+  },
+  {
+   "seen_coverage": 0.6476190476190476,
+   "seed": 71030,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5761904761904761,
+   "found_goal": true,
+   "goal_step": 65,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6904761904761905,
+   "seed": 71030,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.6047619047619047,
+   "found_goal": true,
+   "goal_step": 63,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.638095238095238,
+   "seed": 71030,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5571428571428572,
+   "found_goal": true,
+   "goal_step": 127,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.680952380952381,
+   "seed": 71030,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5571428571428572,
+   "found_goal": true,
+   "goal_step": 149,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.24285714285714285,
+   "seed": 71030,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.18095238095238095,
+   "found_goal": true,
+   "goal_step": 47,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.680952380952381,
+   "seed": 71030,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5571428571428572,
+   "found_goal": true,
+   "goal_step": 149,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.04739336492890995,
+   "seed": 71031,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.037914691943127965,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 19
+  },
+  {
+   "seen_coverage": 0.6540284360189573,
+   "seed": 71031,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5639810426540285,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6919431279620853,
+   "seed": 71031,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5734597156398105,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6919431279620853,
+   "seed": 71031,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5734597156398105,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7440758293838863,
+   "seed": 71031,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5876777251184834,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.5639810426540285,
+   "seed": 71031,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.4834123222748815,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6303317535545023,
+   "seed": 71031,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5402843601895735,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.06862745098039216,
+   "seed": 71032,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.058823529411764705,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 23
+  },
+  {
+   "seen_coverage": 0.5098039215686274,
+   "seed": 71032,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.45588235294117646,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7156862745098039,
+   "seed": 71032,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.6127450980392157,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.5882352941176471,
+   "seed": 71032,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5049019607843137,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5833333333333334,
+   "seed": 71032,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.4950980392156863,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.5784313725490197,
+   "seed": 71032,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.4852941176470588,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5098039215686274,
+   "seed": 71032,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.43137254901960786,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.22488038277511962,
+   "seed": 71033,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.13875598086124402,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 5
+  },
+  {
+   "seen_coverage": 0.5406698564593302,
+   "seed": 71033,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.46411483253588515,
+   "found_goal": true,
+   "goal_step": 145,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6267942583732058,
+   "seed": 71033,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5454545454545454,
+   "found_goal": true,
+   "goal_step": 41,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.569377990430622,
+   "seed": 71033,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5167464114832536,
+   "found_goal": true,
+   "goal_step": 132,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.631578947368421,
+   "seed": 71033,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.4688995215311005,
+   "found_goal": true,
+   "goal_step": 47,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.49760765550239233,
+   "seed": 71033,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.3923444976076555,
+   "found_goal": true,
+   "goal_step": 121,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.645933014354067,
+   "seed": 71033,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.49760765550239233,
+   "found_goal": true,
+   "goal_step": 47,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.1201923076923077,
+   "seed": 71034,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.08173076923076923,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 6
+  },
+  {
+   "seen_coverage": 0.75,
+   "seed": 71034,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.6346153846153846,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.7403846153846154,
+   "seed": 71034,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5913461538461539,
+   "found_goal": true,
+   "goal_step": 119,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.7067307692307693,
+   "seed": 71034,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5480769230769231,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.6875,
+   "seed": 71034,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5817307692307693,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.4951923076923077,
+   "seed": 71034,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.41346153846153844,
+   "found_goal": true,
+   "goal_step": 105,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6875,
+   "seed": 71034,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5817307692307693,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.09523809523809523,
+   "seed": 71035,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.07142857142857142,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 15
+  },
+  {
+   "seen_coverage": 0.5238095238095238,
+   "seed": 71035,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.4714285714285714,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6857142857142857,
+   "seed": 71035,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5857142857142857,
+   "found_goal": true,
+   "goal_step": 113,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.7619047619047619,
+   "seed": 71035,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.6238095238095238,
+   "found_goal": true,
+   "goal_step": 136,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7523809523809524,
+   "seed": 71035,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5714285714285714,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.638095238095238,
+   "seed": 71035,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5714285714285714,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7523809523809524,
+   "seed": 71035,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5714285714285714,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.1848341232227488,
+   "seed": 71036,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.14691943127962084,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 9
+  },
+  {
+   "seen_coverage": 0.5592417061611374,
+   "seed": 71036,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.46445497630331756,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.5355450236966824,
+   "seed": 71036,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.47393364928909953,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5355450236966824,
+   "seed": 71036,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.47393364928909953,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.3222748815165877,
+   "seed": 71036,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.23696682464454977,
+   "found_goal": true,
+   "goal_step": 51,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.4218009478672986,
+   "seed": 71036,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.32701421800947866,
+   "found_goal": true,
+   "goal_step": 79,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7251184834123223,
+   "seed": 71036,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5971563981042654,
+   "found_goal": true,
+   "goal_step": 79,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.1619047619047619,
+   "seed": 71037,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.11904761904761904,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 9
+  },
+  {
+   "seen_coverage": 0.6761904761904762,
+   "seed": 71037,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5666666666666667,
+   "found_goal": true,
+   "goal_step": 46,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.48095238095238096,
+   "seed": 71037,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.4523809523809524,
+   "found_goal": true,
+   "goal_step": 159,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.5857142857142857,
+   "seed": 71037,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.48095238095238096,
+   "found_goal": true,
+   "goal_step": 140,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.47619047619047616,
+   "seed": 71037,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.4380952380952381,
+   "found_goal": true,
+   "goal_step": 30,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6428571428571429,
+   "seed": 71037,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5333333333333333,
+   "found_goal": true,
+   "goal_step": 34,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.37142857142857144,
+   "seed": 71037,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.34285714285714286,
+   "found_goal": true,
+   "goal_step": 30,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.05825242718446602,
+   "seed": 71038,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.043689320388349516,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 14
+  },
+  {
+   "seen_coverage": 0.5533980582524272,
+   "seed": 71038,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5194174757281553,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.3058252427184466,
+   "seed": 71038,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.2669902912621359,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.3155339805825243,
+   "seed": 71038,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.2961165048543689,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6116504854368932,
+   "seed": 71038,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.558252427184466,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.616504854368932,
+   "seed": 71038,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5631067961165048,
+   "found_goal": true,
+   "goal_step": 92,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.6650485436893204,
+   "seed": 71038,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5922330097087378,
+   "found_goal": true,
+   "goal_step": 159,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.23696682464454977,
+   "seed": 71039,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.16113744075829384,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 4
+  },
+  {
+   "seen_coverage": 0.6492890995260664,
+   "seed": 71039,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5687203791469194,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7203791469194313,
+   "seed": 71039,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5639810426540285,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.7014218009478673,
+   "seed": 71039,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5971563981042654,
+   "found_goal": true,
+   "goal_step": 140,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7393364928909952,
+   "seed": 71039,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.6066350710900474,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5734597156398105,
+   "seed": 71039,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5213270142180095,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7393364928909952,
+   "seed": 71039,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6066350710900474,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.07692307692307693,
+   "seed": 71040,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.0625,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 19
+  },
+  {
+   "seen_coverage": 0.7451923076923077,
+   "seed": 71040,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.6298076923076923,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.8028846153846154,
+   "seed": 71040,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.6634615384615384,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6730769230769231,
+   "seed": 71040,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5432692307692307,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7788461538461539,
+   "seed": 71040,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.6153846153846154,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.5961538461538461,
+   "seed": 71040,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.4951923076923077,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7788461538461539,
+   "seed": 71040,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6153846153846154,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.054187192118226604,
+   "seed": 71041,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.04433497536945813,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 14
+  },
+  {
+   "seen_coverage": 0.11330049261083744,
+   "seed": 71041,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.09852216748768473,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.29064039408866993,
+   "seed": 71041,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.28078817733990147,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.29064039408866993,
+   "seed": 71041,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.28078817733990147,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6305418719211823,
+   "seed": 71041,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5467980295566502,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.29064039408866993,
+   "seed": 71041,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.28078817733990147,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6354679802955665,
+   "seed": 71041,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5467980295566502,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.07582938388625593,
+   "seed": 71042,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.06635071090047394,
+   "found_goal": true,
+   "goal_step": 3,
+   "collisions": 9
+  },
+  {
+   "seen_coverage": 0.7251184834123223,
+   "seed": 71042,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5639810426540285,
+   "found_goal": true,
+   "goal_step": 4,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.7630331753554502,
+   "seed": 71042,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5971563981042654,
+   "found_goal": true,
+   "goal_step": 4,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6587677725118484,
+   "seed": 71042,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5308056872037915,
+   "found_goal": true,
+   "goal_step": 4,
+   "collisions": 4
+  },
+  {
+   "seen_coverage": 0.8151658767772512,
+   "seed": 71042,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.6066350710900474,
+   "found_goal": true,
+   "goal_step": 4,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.5592417061611374,
+   "seed": 71042,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.4928909952606635,
+   "found_goal": true,
+   "goal_step": 4,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.8151658767772512,
+   "seed": 71042,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6066350710900474,
+   "found_goal": true,
+   "goal_step": 4,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.09345794392523364,
+   "seed": 71043,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.0514018691588785,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 12
+  },
+  {
+   "seen_coverage": 0.6261682242990654,
+   "seed": 71043,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5373831775700935,
+   "found_goal": true,
+   "goal_step": 56,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.5514018691588785,
+   "seed": 71043,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.48598130841121495,
+   "found_goal": true,
+   "goal_step": 56,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7897196261682243,
+   "seed": 71043,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5841121495327103,
+   "found_goal": true,
+   "goal_step": 98,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6214953271028038,
+   "seed": 71043,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.48598130841121495,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6401869158878505,
+   "seed": 71043,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5467289719626168,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6214953271028038,
+   "seed": 71043,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.48598130841121495,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.06698564593301436,
+   "seed": 71044,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.05741626794258373,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 10
+  },
+  {
+   "seen_coverage": 0.6507177033492823,
+   "seed": 71044,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5789473684210527,
+   "found_goal": true,
+   "goal_step": 137,
+   "collisions": 5
+  },
+  {
+   "seen_coverage": 0.2631578947368421,
+   "seed": 71044,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.24880382775119617,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.2631578947368421,
+   "seed": 71044,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.24880382775119617,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.2631578947368421,
+   "seed": 71044,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.24880382775119617,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.10526315789473684,
+   "seed": 71044,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.09090909090909091,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.2631578947368421,
+   "seed": 71044,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.24880382775119617,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.29523809523809524,
+   "seed": 71045,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.21428571428571427,
+   "found_goal": true,
+   "goal_step": 141,
+   "collisions": 10
+  },
+  {
+   "seen_coverage": 0.5238095238095238,
+   "seed": 71045,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5,
+   "found_goal": true,
+   "goal_step": 39,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.5523809523809524,
+   "seed": 71045,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5380952380952381,
+   "found_goal": true,
+   "goal_step": 44,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5523809523809524,
+   "seed": 71045,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5380952380952381,
+   "found_goal": true,
+   "goal_step": 44,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5523809523809524,
+   "seed": 71045,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5142857142857142,
+   "found_goal": true,
+   "goal_step": 44,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.5619047619047619,
+   "seed": 71045,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5428571428571428,
+   "found_goal": true,
+   "goal_step": 81,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7142857142857143,
+   "seed": 71045,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.580952380952381,
+   "found_goal": true,
+   "goal_step": 40,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.09223300970873786,
+   "seed": 71046,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.06310679611650485,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 13
+  },
+  {
+   "seen_coverage": 0.6650485436893204,
+   "seed": 71046,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5922330097087378,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5145631067961165,
+   "seed": 71046,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.48058252427184467,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6844660194174758,
+   "seed": 71046,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.587378640776699,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6456310679611651,
+   "seed": 71046,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5339805825242718,
+   "found_goal": true,
+   "goal_step": 151,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6407766990291263,
+   "seed": 71046,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5776699029126213,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6650485436893204,
+   "seed": 71046,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5485436893203883,
+   "found_goal": true,
+   "goal_step": 151,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.12807881773399016,
+   "seed": 71047,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.10344827586206896,
+   "found_goal": true,
+   "goal_step": 17,
+   "collisions": 17
+  },
+  {
+   "seen_coverage": 0.5467980295566502,
+   "seed": 71047,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.47783251231527096,
+   "found_goal": true,
+   "goal_step": 7,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.4729064039408867,
+   "seed": 71047,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.4088669950738916,
+   "found_goal": true,
+   "goal_step": 7,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.541871921182266,
+   "seed": 71047,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5123152709359606,
+   "found_goal": true,
+   "goal_step": 7,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.645320197044335,
+   "seed": 71047,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5615763546798029,
+   "found_goal": true,
+   "goal_step": 7,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.07881773399014778,
+   "seed": 71047,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.04926108374384237,
+   "found_goal": true,
+   "goal_step": 7,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.541871921182266,
+   "seed": 71047,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5123152709359606,
+   "found_goal": true,
+   "goal_step": 7,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.1523809523809524,
+   "seed": 71048,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.12380952380952381,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 17
+  },
+  {
+   "seen_coverage": 0.7476190476190476,
+   "seed": 71048,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.6047619047619047,
+   "found_goal": true,
+   "goal_step": 21,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7095238095238096,
+   "seed": 71048,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5380952380952381,
+   "found_goal": true,
+   "goal_step": 112,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6619047619047619,
+   "seed": 71048,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5523809523809524,
+   "found_goal": true,
+   "goal_step": 108,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7761904761904762,
+   "seed": 71048,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.6190476190476191,
+   "found_goal": true,
+   "goal_step": 88,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7142857142857143,
+   "seed": 71048,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5619047619047619,
+   "found_goal": true,
+   "goal_step": 135,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.7095238095238096,
+   "seed": 71048,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5523809523809524,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.18385650224215247,
+   "seed": 71049,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.1210762331838565,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 6
+  },
+  {
+   "seen_coverage": 0.6053811659192825,
+   "seed": 71049,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5291479820627802,
+   "found_goal": true,
+   "goal_step": 75,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.8430493273542601,
+   "seed": 71049,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5739910313901345,
+   "found_goal": true,
+   "goal_step": 111,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7668161434977578,
+   "seed": 71049,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5560538116591929,
+   "found_goal": true,
+   "goal_step": 111,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6547085201793722,
+   "seed": 71049,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5067264573991032,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.726457399103139,
+   "seed": 71049,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6053811659192825,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.672645739910314,
+   "seed": 71049,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.4977578475336323,
+   "found_goal": true,
+   "goal_step": 92,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.1346153846153846,
+   "seed": 71050,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.09615384615384616,
+   "found_goal": true,
+   "goal_step": 132,
+   "collisions": 11
+  },
+  {
+   "seen_coverage": 0.5817307692307693,
+   "seed": 71050,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5240384615384616,
+   "found_goal": true,
+   "goal_step": 26,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.6105769230769231,
+   "seed": 71050,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5288461538461539,
+   "found_goal": true,
+   "goal_step": 30,
+   "collisions": 4
+  },
+  {
+   "seen_coverage": 0.6394230769230769,
+   "seed": 71050,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5336538461538461,
+   "found_goal": true,
+   "goal_step": 25,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6057692307692307,
+   "seed": 71050,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5096153846153846,
+   "found_goal": true,
+   "goal_step": 30,
+   "collisions": 6
+  },
+  {
+   "seen_coverage": 0.49038461538461536,
+   "seed": 71050,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.4423076923076923,
+   "found_goal": true,
+   "goal_step": 26,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6201923076923077,
+   "seed": 71050,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5240384615384616,
+   "found_goal": true,
+   "goal_step": 30,
+   "collisions": 7
+  },
+  {
+   "seen_coverage": 0.09905660377358491,
+   "seed": 71051,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.08962264150943396,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 12
+  },
+  {
+   "seen_coverage": 0.6509433962264151,
+   "seed": 71051,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5660377358490566,
+   "found_goal": true,
+   "goal_step": 56,
+   "collisions": 4
+  },
+  {
+   "seen_coverage": 0.6509433962264151,
+   "seed": 71051,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5801886792452831,
+   "found_goal": true,
+   "goal_step": 55,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6367924528301887,
+   "seed": 71051,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5566037735849056,
+   "found_goal": true,
+   "goal_step": 62,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7594339622641509,
+   "seed": 71051,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5943396226415094,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6084905660377359,
+   "seed": 71051,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5471698113207547,
+   "found_goal": true,
+   "goal_step": 52,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7924528301886793,
+   "seed": 71051,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6226415094339622,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.04807692307692308,
+   "seed": 71052,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.038461538461538464,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 7
+  },
+  {
+   "seen_coverage": 0.10576923076923077,
+   "seed": 71052,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.09615384615384616,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6153846153846154,
+   "seed": 71052,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5865384615384616,
+   "found_goal": true,
+   "goal_step": 107,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.7692307692307693,
+   "seed": 71052,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.6201923076923077,
+   "found_goal": true,
+   "goal_step": 109,
+   "collisions": 4
+  },
+  {
+   "seen_coverage": 0.6153846153846154,
+   "seed": 71052,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5865384615384616,
+   "found_goal": true,
+   "goal_step": 107,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.10576923076923077,
+   "seed": 71052,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.09615384615384616,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6009615384615384,
+   "seed": 71052,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5721153846153846,
+   "found_goal": true,
+   "goal_step": 107,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.20772946859903382,
+   "seed": 71053,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.13526570048309178,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 12
+  },
+  {
+   "seen_coverage": 0.6618357487922706,
+   "seed": 71053,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5555555555555556,
+   "found_goal": true,
+   "goal_step": 108,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7053140096618358,
+   "seed": 71053,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5990338164251208,
+   "found_goal": true,
+   "goal_step": 29,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.714975845410628,
+   "seed": 71053,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5942028985507246,
+   "found_goal": true,
+   "goal_step": 129,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5990338164251208,
+   "seed": 71053,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5217391304347826,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.642512077294686,
+   "seed": 71053,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5458937198067633,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 5
+  },
+  {
+   "seen_coverage": 0.7632850241545893,
+   "seed": 71053,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6135265700483091,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.15942028985507245,
+   "seed": 71054,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.13043478260869565,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 14
+  },
+  {
+   "seen_coverage": 0.5072463768115942,
+   "seed": 71054,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.46859903381642515,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.391304347826087,
+   "seed": 71054,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.37681159420289856,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.391304347826087,
+   "seed": 71054,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.37681159420289856,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.391304347826087,
+   "seed": 71054,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.37681159420289856,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6714975845410628,
+   "seed": 71054,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6038647342995169,
+   "found_goal": true,
+   "goal_step": 157,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.391304347826087,
+   "seed": 71054,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.37681159420289856,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.2731707317073171,
+   "seed": 71055,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.22439024390243903,
+   "found_goal": true,
+   "goal_step": 64,
+   "collisions": 15
+  },
+  {
+   "seen_coverage": 0.6439024390243903,
+   "seed": 71055,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5463414634146342,
+   "found_goal": true,
+   "goal_step": 22,
+   "collisions": 4
+  },
+  {
+   "seen_coverage": 0.6780487804878049,
+   "seed": 71055,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5804878048780487,
+   "found_goal": true,
+   "goal_step": 14,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.697560975609756,
+   "seed": 71055,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5951219512195122,
+   "found_goal": true,
+   "goal_step": 14,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.5756097560975609,
+   "seed": 71055,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5414634146341464,
+   "found_goal": true,
+   "goal_step": 20,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6634146341463415,
+   "seed": 71055,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5609756097560976,
+   "found_goal": true,
+   "goal_step": 20,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6292682926829268,
+   "seed": 71055,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5317073170731708,
+   "found_goal": true,
+   "goal_step": 22,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.07281553398058252,
+   "seed": 71056,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.06310679611650485,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 13
+  },
+  {
+   "seen_coverage": 0.5728155339805825,
+   "seed": 71056,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.558252427184466,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.7087378640776699,
+   "seed": 71056,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.6213592233009708,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.6262135922330098,
+   "seed": 71056,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.587378640776699,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6504854368932039,
+   "seed": 71056,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.558252427184466,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.5145631067961165,
+   "seed": 71056,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5048543689320388,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6504854368932039,
+   "seed": 71056,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.558252427184466,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.2727272727272727,
+   "seed": 71057,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.18181818181818182,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 7
+  },
+  {
+   "seen_coverage": 0.5311004784688995,
+   "seed": 71057,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.46411483253588515,
+   "found_goal": true,
+   "goal_step": 41,
+   "collisions": 4
+  },
+  {
+   "seen_coverage": 0.7272727272727273,
+   "seed": 71057,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5885167464114832,
+   "found_goal": true,
+   "goal_step": 53,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6172248803827751,
+   "seed": 71057,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5119617224880383,
+   "found_goal": true,
+   "goal_step": 53,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6267942583732058,
+   "seed": 71057,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.49282296650717705,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.44019138755980863,
+   "seed": 71057,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.42105263157894735,
+   "found_goal": true,
+   "goal_step": 141,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6267942583732058,
+   "seed": 71057,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.49282296650717705,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.09090909090909091,
+   "seed": 71058,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.07177033492822966,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 12
+  },
+  {
+   "seen_coverage": 0.6602870813397129,
+   "seed": 71058,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5885167464114832,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.10526315789473684,
+   "seed": 71058,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.09090909090909091,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7129186602870813,
+   "seed": 71058,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5885167464114832,
+   "found_goal": true,
+   "goal_step": 105,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6794258373205742,
+   "seed": 71058,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5167464114832536,
+   "found_goal": true,
+   "goal_step": 112,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7368421052631579,
+   "seed": 71058,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6172248803827751,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6698564593301436,
+   "seed": 71058,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.583732057416268,
+   "found_goal": true,
+   "goal_step": 156,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.17391304347826086,
+   "seed": 71059,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.12077294685990338,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 15
+  },
+  {
+   "seen_coverage": 0.7294685990338164,
+   "seed": 71059,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.6183574879227053,
+   "found_goal": true,
+   "goal_step": 99,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7632850241545893,
+   "seed": 71059,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.6376811594202898,
+   "found_goal": true,
+   "goal_step": 71,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7004830917874396,
+   "seed": 71059,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5990338164251208,
+   "found_goal": true,
+   "goal_step": 148,
+   "collisions": 4
+  },
+  {
+   "seen_coverage": 0.7053140096618358,
+   "seed": 71059,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.6280193236714976,
+   "found_goal": true,
+   "goal_step": 122,
+   "collisions": 5
+  },
+  {
+   "seen_coverage": 0.5942028985507246,
+   "seed": 71059,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5072463768115942,
+   "found_goal": true,
+   "goal_step": 83,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6714975845410628,
+   "seed": 71059,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5942028985507246,
+   "found_goal": true,
+   "goal_step": 122,
+   "collisions": 4
+  },
+  {
+   "seen_coverage": 0.12682926829268293,
+   "seed": 71060,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.1024390243902439,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 9
+  },
+  {
+   "seen_coverage": 0.6585365853658537,
+   "seed": 71060,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5414634146341464,
+   "found_goal": true,
+   "goal_step": 150,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6195121951219512,
+   "seed": 71060,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5317073170731708,
+   "found_goal": true,
+   "goal_step": 143,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5902439024390244,
+   "seed": 71060,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5219512195121951,
+   "found_goal": true,
+   "goal_step": 109,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.05853658536585366,
+   "seed": 71060,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.04878048780487805,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.05853658536585366,
+   "seed": 71060,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.04878048780487805,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.05853658536585366,
+   "seed": 71060,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.04878048780487805,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.19047619047619047,
+   "seed": 71061,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.11428571428571428,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 13
+  },
+  {
+   "seen_coverage": 0.5,
+   "seed": 71061,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.49047619047619045,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.5285714285714286,
+   "seed": 71061,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5047619047619047,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5285714285714286,
+   "seed": 71061,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5047619047619047,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5238095238095238,
+   "seed": 71061,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5142857142857142,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5142857142857142,
+   "seed": 71061,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5047619047619047,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6952380952380952,
+   "seed": 71061,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6095238095238096,
+   "found_goal": true,
+   "goal_step": 125,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.0966183574879227,
+   "seed": 71062,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.0821256038647343,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 15
+  },
+  {
+   "seen_coverage": 0.2463768115942029,
+   "seed": 71062,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.23671497584541062,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.0966183574879227,
+   "seed": 71062,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.0821256038647343,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.0966183574879227,
+   "seed": 71062,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.0821256038647343,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.1111111111111111,
+   "seed": 71062,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.10144927536231885,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.1111111111111111,
+   "seed": 71062,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.10144927536231885,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.1111111111111111,
+   "seed": 71062,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.10144927536231885,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.07211538461538461,
+   "seed": 71063,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.0625,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 12
+  },
+  {
+   "seen_coverage": 0.6778846153846154,
+   "seed": 71063,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5913461538461539,
+   "found_goal": true,
+   "goal_step": 107,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6971153846153846,
+   "seed": 71063,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.6057692307692307,
+   "found_goal": true,
+   "goal_step": 135,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6778846153846154,
+   "seed": 71063,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.6009615384615384,
+   "found_goal": true,
+   "goal_step": 93,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6826923076923077,
+   "seed": 71063,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.6153846153846154,
+   "found_goal": true,
+   "goal_step": 95,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.5144230769230769,
+   "seed": 71063,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.4326923076923077,
+   "found_goal": true,
+   "goal_step": 109,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6826923076923077,
+   "seed": 71063,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6153846153846154,
+   "found_goal": true,
+   "goal_step": 95,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.07766990291262135,
+   "seed": 71064,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.05825242718446602,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 15
+  },
+  {
+   "seen_coverage": 0.5533980582524272,
+   "seed": 71064,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5145631067961165,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6796116504854369,
+   "seed": 71064,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.6213592233009708,
+   "found_goal": true,
+   "goal_step": 40,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.7087378640776699,
+   "seed": 71064,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.6407766990291263,
+   "found_goal": true,
+   "goal_step": 128,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8106796116504854,
+   "seed": 71064,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.6990291262135923,
+   "found_goal": true,
+   "goal_step": 121,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6650485436893204,
+   "seed": 71064,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5970873786407767,
+   "found_goal": true,
+   "goal_step": 51,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7135922330097088,
+   "seed": 71064,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6310679611650486,
+   "found_goal": true,
+   "goal_step": 124,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.07834101382488479,
+   "seed": 71065,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.06451612903225806,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 19
+  },
+  {
+   "seen_coverage": 0.7050691244239631,
+   "seed": 71065,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5852534562211982,
+   "found_goal": true,
+   "goal_step": 107,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.6267281105990783,
+   "seed": 71065,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5391705069124424,
+   "found_goal": true,
+   "goal_step": 74,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6267281105990783,
+   "seed": 71065,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5345622119815668,
+   "found_goal": true,
+   "goal_step": 74,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6589861751152074,
+   "seed": 71065,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5161290322580645,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.3271889400921659,
+   "seed": 71065,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.2350230414746544,
+   "found_goal": true,
+   "goal_step": 61,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6774193548387096,
+   "seed": 71065,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5253456221198156,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.16019417475728157,
+   "seed": 71066,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.13592233009708737,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 6
+  },
+  {
+   "seen_coverage": 0.6359223300970874,
+   "seed": 71066,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5631067961165048,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5631067961165048,
+   "seed": 71066,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.48058252427184467,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.5485436893203883,
+   "seed": 71066,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.4854368932038835,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.45145631067961167,
+   "seed": 71066,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.441747572815534,
+   "found_goal": true,
+   "goal_step": 89,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6650485436893204,
+   "seed": 71066,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.558252427184466,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.45145631067961167,
+   "seed": 71066,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.441747572815534,
+   "found_goal": true,
+   "goal_step": 89,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.22815533980582525,
+   "seed": 71067,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.1796116504854369,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 8
+  },
+  {
+   "seen_coverage": 0.6213592233009708,
+   "seed": 71067,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5097087378640777,
+   "found_goal": true,
+   "goal_step": 145,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5048543689320388,
+   "seed": 71067,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.4563106796116505,
+   "found_goal": true,
+   "goal_step": 47,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5048543689320388,
+   "seed": 71067,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.4563106796116505,
+   "found_goal": true,
+   "goal_step": 47,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.529126213592233,
+   "seed": 71067,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.46116504854368934,
+   "found_goal": true,
+   "goal_step": 98,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.3058252427184466,
+   "seed": 71067,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.22815533980582525,
+   "found_goal": true,
+   "goal_step": 57,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.529126213592233,
+   "seed": 71067,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.46116504854368934,
+   "found_goal": true,
+   "goal_step": 98,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.23809523809523808,
+   "seed": 71068,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.14285714285714285,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 9
+  },
+  {
+   "seen_coverage": 0.5761904761904761,
+   "seed": 71068,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.4714285714285714,
+   "found_goal": true,
+   "goal_step": 123,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5095238095238095,
+   "seed": 71068,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.47619047619047616,
+   "found_goal": true,
+   "goal_step": 85,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5904761904761905,
+   "seed": 71068,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5285714285714286,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7,
+   "seed": 71068,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5952380952380952,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.48095238095238096,
+   "seed": 71068,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.40476190476190477,
+   "found_goal": true,
+   "goal_step": 145,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6333333333333333,
+   "seed": 71068,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5476190476190477,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.0794392523364486,
+   "seed": 71069,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.06074766355140187,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 10
+  },
+  {
+   "seen_coverage": 0.5280373831775701,
+   "seed": 71069,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.45794392523364486,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7616822429906542,
+   "seed": 71069,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5794392523364486,
+   "found_goal": true,
+   "goal_step": 106,
+   "collisions": 4
+  },
+  {
+   "seen_coverage": 0.1588785046728972,
+   "seed": 71069,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.14953271028037382,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7616822429906542,
+   "seed": 71069,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5934579439252337,
+   "found_goal": true,
+   "goal_step": 103,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6074766355140186,
+   "seed": 71069,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5373831775700935,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.705607476635514,
+   "seed": 71069,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5607476635514018,
+   "found_goal": true,
+   "goal_step": 109,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.24271844660194175,
+   "seed": 71070,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.18446601941747573,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 15
+  },
+  {
+   "seen_coverage": 0.5242718446601942,
+   "seed": 71070,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5097087378640777,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5194174757281553,
+   "seed": 71070,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.470873786407767,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5194174757281553,
+   "seed": 71070,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.470873786407767,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.49029126213592233,
+   "seed": 71070,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.45145631067961167,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.5145631067961165,
+   "seed": 71070,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.47572815533980584,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.49029126213592233,
+   "seed": 71070,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.45145631067961167,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.14691943127962084,
+   "seed": 71071,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.09004739336492891,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 14
+  },
+  {
+   "seen_coverage": 0.6729857819905213,
+   "seed": 71071,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.6018957345971564,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7914691943127962,
+   "seed": 71071,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.6208530805687204,
+   "found_goal": true,
+   "goal_step": 38,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.7582938388625592,
+   "seed": 71071,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5781990521327014,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6540284360189573,
+   "seed": 71071,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5639810426540285,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 5
+  },
+  {
+   "seen_coverage": 0.7677725118483413,
+   "seed": 71071,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6018957345971564,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6303317535545023,
+   "seed": 71071,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5023696682464455,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 5
+  },
+  {
+   "seen_coverage": 0.14903846153846154,
+   "seed": 71072,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.11538461538461539,
+   "found_goal": true,
+   "goal_step": 11,
+   "collisions": 15
+  },
+  {
+   "seen_coverage": 0.6778846153846154,
+   "seed": 71072,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5817307692307693,
+   "found_goal": true,
+   "goal_step": 5,
+   "collisions": 5
+  },
+  {
+   "seen_coverage": 0.5528846153846154,
+   "seed": 71072,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.44711538461538464,
+   "found_goal": true,
+   "goal_step": 6,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.5961538461538461,
+   "seed": 71072,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5192307692307693,
+   "found_goal": true,
+   "goal_step": 6,
+   "collisions": 4
+  },
+  {
+   "seen_coverage": 0.6201923076923077,
+   "seed": 71072,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.4855769230769231,
+   "found_goal": true,
+   "goal_step": 6,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.6826923076923077,
+   "seed": 71072,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5769230769230769,
+   "found_goal": true,
+   "goal_step": 5,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6201923076923077,
+   "seed": 71072,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.4855769230769231,
+   "found_goal": true,
+   "goal_step": 6,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.14423076923076922,
+   "seed": 71073,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.10576923076923077,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 10
+  },
+  {
+   "seen_coverage": 0.6057692307692307,
+   "seed": 71073,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5288461538461539,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6826923076923077,
+   "seed": 71073,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5384615384615384,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.7259615384615384,
+   "seed": 71073,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5865384615384616,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.7019230769230769,
+   "seed": 71073,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5817307692307693,
+   "found_goal": true,
+   "goal_step": 160,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6201923076923077,
+   "seed": 71073,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5721153846153846,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6971153846153846,
+   "seed": 71073,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5865384615384616,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.12077294685990338,
+   "seed": 71074,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.1111111111111111,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 13
+  },
+  {
+   "seen_coverage": 0.6038647342995169,
+   "seed": 71074,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5410628019323671,
+   "found_goal": true,
+   "goal_step": 143,
+   "collisions": 4
+  },
+  {
+   "seen_coverage": 0.6038647342995169,
+   "seed": 71074,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5458937198067633,
+   "found_goal": true,
+   "goal_step": 122,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6038647342995169,
+   "seed": 71074,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5458937198067633,
+   "found_goal": true,
+   "goal_step": 122,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6763285024154589,
+   "seed": 71074,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5603864734299517,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6811594202898551,
+   "seed": 71074,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6038647342995169,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6183574879227053,
+   "seed": 71074,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5265700483091788,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.07804878048780488,
+   "seed": 71075,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.06341463414634146,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 19
+  },
+  {
+   "seen_coverage": 0.5414634146341464,
+   "seed": 71075,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5170731707317073,
+   "found_goal": true,
+   "goal_step": 70,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.7073170731707317,
+   "seed": 71075,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.6146341463414634,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6682926829268293,
+   "seed": 71075,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5658536585365853,
+   "found_goal": true,
+   "goal_step": 159,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6341463414634146,
+   "seed": 71075,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5658536585365853,
+   "found_goal": true,
+   "goal_step": 121,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.624390243902439,
+   "seed": 71075,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5317073170731708,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6341463414634146,
+   "seed": 71075,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5658536585365853,
+   "found_goal": true,
+   "goal_step": 121,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.09405940594059406,
+   "seed": 71076,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.07920792079207921,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 8
+  },
+  {
+   "seen_coverage": 0.13366336633663367,
+   "seed": 71076,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.12376237623762376,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.1782178217821782,
+   "seed": 71076,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.16831683168316833,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.5198019801980198,
+   "seed": 71076,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.504950495049505,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7722772277227723,
+   "seed": 71076,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.6534653465346535,
+   "found_goal": true,
+   "goal_step": 147,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.46534653465346537,
+   "seed": 71076,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.4504950495049505,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7475247524752475,
+   "seed": 71076,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6435643564356436,
+   "found_goal": true,
+   "goal_step": 157,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.05581395348837209,
+   "seed": 71077,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.046511627906976744,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 18
+  },
+  {
+   "seen_coverage": 0.6930232558139535,
+   "seed": 71077,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5581395348837209,
+   "found_goal": true,
+   "goal_step": 85,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.7581395348837209,
+   "seed": 71077,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5953488372093023,
+   "found_goal": true,
+   "goal_step": 133,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6,
+   "seed": 71077,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.4511627906976744,
+   "found_goal": true,
+   "goal_step": 95,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6325581395348837,
+   "seed": 71077,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5023255813953489,
+   "found_goal": true,
+   "goal_step": 97,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7488372093023256,
+   "seed": 71077,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5581395348837209,
+   "found_goal": true,
+   "goal_step": 143,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6372093023255814,
+   "seed": 71077,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5255813953488372,
+   "found_goal": true,
+   "goal_step": 97,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.07211538461538461,
+   "seed": 71078,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.057692307692307696,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 18
+  },
+  {
+   "seen_coverage": 0.5,
+   "seed": 71078,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.4230769230769231,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.5528846153846154,
+   "seed": 71078,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.47115384615384615,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5528846153846154,
+   "seed": 71078,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.47115384615384615,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.09134615384615384,
+   "seed": 71078,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.07692307692307693,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.1346153846153846,
+   "seed": 71078,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.125,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.09134615384615384,
+   "seed": 71078,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.07692307692307693,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.2,
+   "seed": 71079,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.13333333333333333,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 12
+  },
+  {
+   "seen_coverage": 0.6666666666666666,
+   "seed": 71079,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5761904761904761,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6571428571428571,
+   "seed": 71079,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5476190476190477,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6619047619047619,
+   "seed": 71079,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5571428571428572,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6428571428571429,
+   "seed": 71079,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5333333333333333,
+   "found_goal": true,
+   "goal_step": 118,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5761904761904761,
+   "seed": 71079,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.49047619047619045,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6,
+   "seed": 71079,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.49523809523809526,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.08737864077669903,
+   "seed": 71080,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.07281553398058252,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 10
+  },
+  {
+   "seen_coverage": 0.6504854368932039,
+   "seed": 71080,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5679611650485437,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6504854368932039,
+   "seed": 71080,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.558252427184466,
+   "found_goal": true,
+   "goal_step": 98,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6504854368932039,
+   "seed": 71080,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5679611650485437,
+   "found_goal": true,
+   "goal_step": 98,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6456310679611651,
+   "seed": 71080,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.587378640776699,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.6262135922330098,
+   "seed": 71080,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5631067961165048,
+   "found_goal": true,
+   "goal_step": 138,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6456310679611651,
+   "seed": 71080,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5679611650485437,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.0966183574879227,
+   "seed": 71081,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.07246376811594203,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 15
+  },
+  {
+   "seen_coverage": 0.6714975845410628,
+   "seed": 71081,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5652173913043478,
+   "found_goal": true,
+   "goal_step": 154,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6135265700483091,
+   "seed": 71081,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5410628019323671,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.5169082125603864,
+   "seed": 71081,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.4782608695652174,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6763285024154589,
+   "seed": 71081,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5942028985507246,
+   "found_goal": true,
+   "goal_step": 84,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6473429951690821,
+   "seed": 71081,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5942028985507246,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6763285024154589,
+   "seed": 71081,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5942028985507246,
+   "found_goal": true,
+   "goal_step": 84,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.0625,
+   "seed": 71082,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.04807692307692308,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 13
+  },
+  {
+   "seen_coverage": 0.5096153846153846,
+   "seed": 71082,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.49038461538461536,
+   "found_goal": true,
+   "goal_step": 74,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6875,
+   "seed": 71082,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.6009615384615384,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5096153846153846,
+   "seed": 71082,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.4807692307692308,
+   "found_goal": true,
+   "goal_step": 136,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7067307692307693,
+   "seed": 71082,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5721153846153846,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.5192307692307693,
+   "seed": 71082,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5,
+   "found_goal": true,
+   "goal_step": 72,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6923076923076923,
+   "seed": 71082,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5625,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.08737864077669903,
+   "seed": 71083,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.06796116504854369,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 12
+  },
+  {
+   "seen_coverage": 0.6213592233009708,
+   "seed": 71083,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5533980582524272,
+   "found_goal": true,
+   "goal_step": 28,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6116504854368932,
+   "seed": 71083,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5679611650485437,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6116504854368932,
+   "seed": 71083,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5194174757281553,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6796116504854369,
+   "seed": 71083,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.587378640776699,
+   "found_goal": true,
+   "goal_step": 134,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6699029126213593,
+   "seed": 71083,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5533980582524272,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5825242718446602,
+   "seed": 71083,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.529126213592233,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.07582938388625593,
+   "seed": 71084,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.06635071090047394,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 16
+  },
+  {
+   "seen_coverage": 0.6824644549763034,
+   "seed": 71084,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5023696682464455,
+   "found_goal": true,
+   "goal_step": 154,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.5592417061611374,
+   "seed": 71084,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.44549763033175355,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6492890995260664,
+   "seed": 71084,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.4976303317535545,
+   "found_goal": true,
+   "goal_step": 151,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5734597156398105,
+   "seed": 71084,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.4976303317535545,
+   "found_goal": true,
+   "goal_step": 92,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6872037914691943,
+   "seed": 71084,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5450236966824644,
+   "found_goal": true,
+   "goal_step": 140,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.5734597156398105,
+   "seed": 71084,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.4976303317535545,
+   "found_goal": true,
+   "goal_step": 92,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.04830917874396135,
+   "seed": 71085,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.03864734299516908,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 12
+  },
+  {
+   "seen_coverage": 0.6376811594202898,
+   "seed": 71085,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5700483091787439,
+   "found_goal": true,
+   "goal_step": 28,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.8019323671497585,
+   "seed": 71085,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.6183574879227053,
+   "found_goal": true,
+   "goal_step": 28,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.8260869565217391,
+   "seed": 71085,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.6521739130434783,
+   "found_goal": true,
+   "goal_step": 28,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.12560386473429952,
+   "seed": 71085,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.0966183574879227,
+   "found_goal": true,
+   "goal_step": 28,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7246376811594203,
+   "seed": 71085,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6231884057971014,
+   "found_goal": true,
+   "goal_step": 28,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6714975845410628,
+   "seed": 71085,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5700483091787439,
+   "found_goal": true,
+   "goal_step": 28,
+   "collisions": 4
+  },
+  {
+   "seen_coverage": 0.1822429906542056,
+   "seed": 71086,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.1261682242990654,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 11
+  },
+  {
+   "seen_coverage": 0.5514018691588785,
+   "seed": 71086,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.4719626168224299,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5700934579439252,
+   "seed": 71086,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5233644859813084,
+   "found_goal": true,
+   "goal_step": 50,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.5700934579439252,
+   "seed": 71086,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5233644859813084,
+   "found_goal": true,
+   "goal_step": 50,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6355140186915887,
+   "seed": 71086,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5327102803738317,
+   "found_goal": true,
+   "goal_step": 97,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.7710280373831776,
+   "seed": 71086,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.602803738317757,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7710280373831776,
+   "seed": 71086,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6074766355140186,
+   "found_goal": true,
+   "goal_step": 97,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.0825242718446602,
+   "seed": 71087,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.06796116504854369,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 11
+  },
+  {
+   "seen_coverage": 0.5728155339805825,
+   "seed": 71087,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5339805825242718,
+   "found_goal": true,
+   "goal_step": 101,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6310679611650486,
+   "seed": 71087,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.558252427184466,
+   "found_goal": true,
+   "goal_step": 93,
+   "collisions": 6
+  },
+  {
+   "seen_coverage": 0.6067961165048543,
+   "seed": 71087,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5485436893203883,
+   "found_goal": true,
+   "goal_step": 142,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.48058252427184467,
+   "seed": 71087,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.36893203883495146,
+   "found_goal": true,
+   "goal_step": 83,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6844660194174758,
+   "seed": 71087,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6310679611650486,
+   "found_goal": true,
+   "goal_step": 80,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7378640776699029,
+   "seed": 71087,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6407766990291263,
+   "found_goal": true,
+   "goal_step": 83,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.14761904761904762,
+   "seed": 71088,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.11428571428571428,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 9
+  },
+  {
+   "seen_coverage": 0.7714285714285715,
+   "seed": 71088,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.6047619047619047,
+   "found_goal": true,
+   "goal_step": 25,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7428571428571429,
+   "seed": 71088,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5904761904761905,
+   "found_goal": true,
+   "goal_step": 59,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7,
+   "seed": 71088,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5666666666666667,
+   "found_goal": true,
+   "goal_step": 59,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7571428571428571,
+   "seed": 71088,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.6428571428571429,
+   "found_goal": true,
+   "goal_step": 61,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.580952380952381,
+   "seed": 71088,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.49523809523809526,
+   "found_goal": true,
+   "goal_step": 25,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5952380952380952,
+   "seed": 71088,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5380952380952381,
+   "found_goal": true,
+   "goal_step": 61,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.09852216748768473,
+   "seed": 71089,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.08374384236453201,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 13
+  },
+  {
+   "seen_coverage": 0.5369458128078818,
+   "seed": 71089,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5270935960591133,
+   "found_goal": true,
+   "goal_step": 102,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.11330049261083744,
+   "seed": 71089,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.09852216748768473,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.11330049261083744,
+   "seed": 71089,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.09852216748768473,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.27586206896551724,
+   "seed": 71089,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.26108374384236455,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7438423645320197,
+   "seed": 71089,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6748768472906403,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.27586206896551724,
+   "seed": 71089,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.26108374384236455,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.17061611374407584,
+   "seed": 71090,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.12796208530805686,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 18
+  },
+  {
+   "seen_coverage": 0.6208530805687204,
+   "seed": 71090,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5545023696682464,
+   "found_goal": true,
+   "goal_step": 160,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6682464454976303,
+   "seed": 71090,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5687203791469194,
+   "found_goal": true,
+   "goal_step": 60,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6018957345971564,
+   "seed": 71090,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5165876777251185,
+   "found_goal": true,
+   "goal_step": 72,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6303317535545023,
+   "seed": 71090,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5592417061611374,
+   "found_goal": true,
+   "goal_step": 88,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.5450236966824644,
+   "seed": 71090,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.4597156398104265,
+   "found_goal": true,
+   "goal_step": 123,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6303317535545023,
+   "seed": 71090,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5592417061611374,
+   "found_goal": true,
+   "goal_step": 90,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.05825242718446602,
+   "seed": 71091,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.04854368932038835,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 9
+  },
+  {
+   "seen_coverage": 0.6553398058252428,
+   "seed": 71091,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5436893203883495,
+   "found_goal": true,
+   "goal_step": 53,
+   "collisions": 4
+  },
+  {
+   "seen_coverage": 0.21359223300970873,
+   "seed": 71091,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.20388349514563106,
+   "found_goal": true,
+   "goal_step": 24,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.06796116504854369,
+   "seed": 71091,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.05825242718446602,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7330097087378641,
+   "seed": 71091,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.6310679611650486,
+   "found_goal": true,
+   "goal_step": 24,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6796116504854369,
+   "seed": 71091,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5922330097087378,
+   "found_goal": true,
+   "goal_step": 52,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7330097087378641,
+   "seed": 71091,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.6310679611650486,
+   "found_goal": true,
+   "goal_step": 24,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.07177033492822966,
+   "seed": 71092,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.05741626794258373,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 16
+  },
+  {
+   "seen_coverage": 0.6220095693779905,
+   "seed": 71092,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5550239234449761,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6555023923444976,
+   "seed": 71092,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5454545454545454,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.69377990430622,
+   "seed": 71092,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.569377990430622,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.69377990430622,
+   "seed": 71092,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5502392344497608,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.5885167464114832,
+   "seed": 71092,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.49282296650717705,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5215311004784688,
+   "seed": 71092,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.45933014354066987,
+   "found_goal": true,
+   "goal_step": 77,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.15311004784688995,
+   "seed": 71093,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.11483253588516747,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 10
+  },
+  {
+   "seen_coverage": 0.7559808612440191,
+   "seed": 71093,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.6172248803827751,
+   "found_goal": true,
+   "goal_step": 80,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.7129186602870813,
+   "seed": 71093,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5933014354066986,
+   "found_goal": true,
+   "goal_step": 102,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.48325358851674644,
+   "seed": 71093,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.4258373205741627,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5454545454545454,
+   "seed": 71093,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.4688995215311005,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.5789473684210527,
+   "seed": 71093,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5119617224880383,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.5454545454545454,
+   "seed": 71093,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.4688995215311005,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.1619047619047619,
+   "seed": 71094,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.09047619047619047,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 7
+  },
+  {
+   "seen_coverage": 0.5761904761904761,
+   "seed": 71094,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5238095238095238,
+   "found_goal": true,
+   "goal_step": 78,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6952380952380952,
+   "seed": 71094,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5714285714285714,
+   "found_goal": true,
+   "goal_step": 34,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.5761904761904761,
+   "seed": 71094,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.4857142857142857,
+   "found_goal": true,
+   "goal_step": 30,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7476190476190476,
+   "seed": 71094,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.6285714285714286,
+   "found_goal": true,
+   "goal_step": 116,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.7428571428571429,
+   "seed": 71094,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6142857142857143,
+   "found_goal": true,
+   "goal_step": 159,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6857142857142857,
+   "seed": 71094,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5761904761904761,
+   "found_goal": true,
+   "goal_step": 32,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.20689655172413793,
+   "seed": 71095,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.14285714285714285,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 14
+  },
+  {
+   "seen_coverage": 0.541871921182266,
+   "seed": 71095,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.4433497536945813,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 4
+  },
+  {
+   "seen_coverage": 0.4975369458128079,
+   "seed": 71095,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.42857142857142855,
+   "found_goal": true,
+   "goal_step": 107,
+   "collisions": 4
+  },
+  {
+   "seen_coverage": 0.46798029556650245,
+   "seed": 71095,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.43842364532019706,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.5862068965517241,
+   "seed": 71095,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.49261083743842365,
+   "found_goal": true,
+   "goal_step": 48,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.7044334975369458,
+   "seed": 71095,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.6108374384236454,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.5862068965517241,
+   "seed": 71095,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5024630541871922,
+   "found_goal": true,
+   "goal_step": 48,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.08292682926829269,
+   "seed": 71096,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.05365853658536585,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 9
+  },
+  {
+   "seen_coverage": 0.6146341463414634,
+   "seed": 71096,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5463414634146342,
+   "found_goal": true,
+   "goal_step": 31,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6,
+   "seed": 71096,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5365853658536586,
+   "found_goal": true,
+   "goal_step": 31,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6,
+   "seed": 71096,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5365853658536586,
+   "found_goal": true,
+   "goal_step": 31,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6634146341463415,
+   "seed": 71096,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5170731707317073,
+   "found_goal": true,
+   "goal_step": 31,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.09268292682926829,
+   "seed": 71096,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.06341463414634146,
+   "found_goal": true,
+   "goal_step": 31,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6634146341463415,
+   "seed": 71096,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5170731707317073,
+   "found_goal": true,
+   "goal_step": 31,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.12322274881516587,
+   "seed": 71097,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.06635071090047394,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 11
+  },
+  {
+   "seen_coverage": 0.6161137440758294,
+   "seed": 71097,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5213270142180095,
+   "found_goal": true,
+   "goal_step": 85,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6208530805687204,
+   "seed": 71097,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5071090047393365,
+   "found_goal": true,
+   "goal_step": 84,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.6208530805687204,
+   "seed": 71097,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5071090047393365,
+   "found_goal": true,
+   "goal_step": 84,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.6966824644549763,
+   "seed": 71097,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5497630331753555,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5023696682464455,
+   "seed": 71097,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.44549763033175355,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.6966824644549763,
+   "seed": 71097,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.5497630331753555,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.1323529411764706,
+   "seed": 71098,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.09313725490196079,
+   "found_goal": true,
+   "goal_step": 17,
+   "collisions": 11
+  },
+  {
+   "seen_coverage": 0.4803921568627451,
+   "seed": 71098,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.4411764705882353,
+   "found_goal": true,
+   "goal_step": 6,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.8382352941176471,
+   "seed": 71098,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.696078431372549,
+   "found_goal": true,
+   "goal_step": 6,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.7794117647058824,
+   "seed": 71098,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.6421568627450981,
+   "found_goal": true,
+   "goal_step": 6,
+   "collisions": 1
+  },
+  {
+   "seen_coverage": 0.7156862745098039,
+   "seed": 71098,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.5882352941176471,
+   "found_goal": true,
+   "goal_step": 6,
+   "collisions": 3
+  },
+  {
+   "seen_coverage": 0.6225490196078431,
+   "seed": 71098,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.5147058823529411,
+   "found_goal": true,
+   "goal_step": 6,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.5196078431372549,
+   "seed": 71098,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.4852941176470588,
+   "found_goal": true,
+   "goal_step": 6,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.2336448598130841,
+   "seed": 71099,
+   "regime": "noisy",
+   "agent": "random",
+   "coverage": 0.16355140186915887,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 6
+  },
+  {
+   "seen_coverage": 0.6962616822429907,
+   "seed": 71099,
+   "regime": "noisy",
+   "agent": "nearest_frontier",
+   "coverage": 0.5233644859813084,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 4
+  },
+  {
+   "seen_coverage": 0.719626168224299,
+   "seed": 71099,
+   "regime": "noisy",
+   "agent": "infogain_frontier",
+   "coverage": 0.5747663551401869,
+   "found_goal": true,
+   "goal_step": 86,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.719626168224299,
+   "seed": 71099,
+   "regime": "noisy",
+   "agent": "efe_v2",
+   "coverage": 0.5747663551401869,
+   "found_goal": true,
+   "goal_step": 86,
+   "collisions": 2
+  },
+  {
+   "seen_coverage": 0.102803738317757,
+   "seed": 71099,
+   "regime": "noisy",
+   "agent": "efe_route",
+   "coverage": 0.09345794392523364,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.29439252336448596,
+   "seed": 71099,
+   "regime": "noisy",
+   "agent": "efe_route_no_epistemic",
+   "coverage": 0.24766355140186916,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  },
+  {
+   "seen_coverage": 0.102803738317757,
+   "seed": 71099,
+   "regime": "noisy",
+   "agent": "efe_route_no_goal_belief",
+   "coverage": 0.09345794392523364,
+   "found_goal": false,
+   "goal_step": null,
+   "collisions": 0
+  }
+ ]
+}

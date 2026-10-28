@@ -9,7 +9,7 @@
 | Perception (slots) | done | object IoU 0.68, position 7.8 mm mean | `results/slots/joba_log.jsonl` |
 | Thinker (HRM) gate | passed | 96.0% agreement with the Bayesian teacher (transformer 95.8%) | `results/thinker/real_c1000.md` |
 | 2 walking (G1) | v1 released | stand, walk 10 m, headings, run: 20/20 each; pushes 93% at 0.5 m/s, 53% at 1.0 m/s; fall causes 59% (dev) | `docs/LOCOMOTION_STAGE2.md` |
-| 3 maze | v3: route EFE + noisy sensing | goal 79% vs nearest frontier 60% (p=0.003), ties info-gain baseline 78%; noisy 58% vs 48-50% (n.s.) | `docs/MAZE.md` §10 |
+| 3 maze | v3: route EFE + noisy sensing | goal 79% vs nearest frontier 60% (p=0.003), ties info-gain baseline 78%; noisy: no rule wins (2nd set); sensor model self-learned | `docs/MAZE.md` §10 |
 | 4 doors/keys | discovery agent | mock 99.9% solved (111.6 actions) vs novelty 80.9%; physics 12/25 with decoys | `docs/DISCOVERY.md` |
 | 5 chess | done (PR #1 reviewed and merged, 2026-10-28) | 1037 conditional engine-anchor Elo [863, 1134] at 1 s/move; beats old player 17-2-1 | `docs/CHESS_STRENGTH.md` |
 | 6 language | earlier build only; causal explanations in progress (below) | 456/456 held-out parses per language | `docs/LANGUAGE_STAGE6.md` |

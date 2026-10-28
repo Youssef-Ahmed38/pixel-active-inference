@@ -17,7 +17,10 @@ This document details the Active Inference implementation of Stage 3 in **Pixel 
 > 28 vs 9 discordant mazes, sign test p = 0.003). What does not (yet): v3 ties the information-gain
 > baseline with exact sensing, and under noise its +8 to +10 point lead over the baselines and
 > +3 over its own no-epistemic ablation are not significant (p = 0.17 to 0.74). The goal-belief term
-> adds nothing. Details in section 10 below; the v2 review that follows is kept unchanged.
+> adds nothing. A second fresh set (71000-71099) did **not** replicate the noisy lead (route EFE
+> 53-56% vs 54-58% for the baselines): under noise no decision rule wins. The noisy sensor model is
+> now learned from the agent's own looks and bumps (EM, no simulator labels) and works as well as
+> the labelled fit. Details in section 10 below; the v2 review that follows is kept unchanged.
 
 > **Honest summary (review, 2026-10-28).** On 30 fresh mazes the EFE explorer covers 64.6%
 > [62.6, 66.6] against 64.0% [62.4, 65.8] for the nearest-frontier baseline: **a tie, not a gain**.
@@ -266,9 +269,43 @@ goal-belief term does not help (61% without it). Next: a learned, persistent sen
 cell misread repeatedly), where re-looking should matter more, and a sensor model and spatial prior
 learned from the agent's own exploration instead of labelled training mazes.
 
+### 10.1 Sensor model learned from the agent's own experience (no simulator labels)
+
+`pai/maze/self_calibration.py`. In the 20 training mazes the agent explores with a generic sensor
+model and logs every noisy look at every cell. Its body gives a few certain labels: a cell it stands
+on is floor (goal when it reports reaching the goal), a cell it bumps into is a wall (a bump is
+touch, not a look). A Dawid-Skene EM treats each cell's type as latent and fits the shared
+confusion matrix and the class frequencies. From 39,864 looks at 5,639 cells and 2,104 body labels
+it recovers the simulator's matrix to within 0.016 per entry, as close as the fit from true labels:
+
+| P(seen \| true) | wall | floor | goal |
+|---|---|---|---|
+| simulator (hidden) | 0.90 / 0.09 / 0.01 | 0.08 / 0.90 / 0.02 | 0.02 / 0.38 / 0.60 |
+| fitted from true labels | 0.905 / 0.086 / 0.009 | 0.079 / 0.902 / 0.019 | 0.023 / 0.376 / 0.602 |
+| **learned from own experience** | 0.901 / 0.090 / 0.008 | 0.080 / 0.899 / 0.021 | 0.032 / 0.364 / 0.603 |
+
+(each cell: seen wall / floor / goal.) Second final test, noisy sensing, 100 new fresh mazes
+(seeds 71000-71099), same frozen settings, each agent run with each sensor model:
+
+| Agent (goal found) | Sensor fitted from true labels | Sensor learned from own experience |
+|---|---|---|
+| nearest frontier | 54.0% | 56.0% |
+| information-gain frontier | 58.0% | 58.0% |
+| EFE v2 | 54.0% | 56.0% |
+| EFE over routes (v3) | 53.0% | 56.0% |
+| v3, no epistemic term | 56.0% | 51.0% |
+
+**Reading.** (1) The self-learned sensor model is as good as the labelled one (every agent within
+3 points), so the noisy-maze agents no longer need simulator labels. (2) **Replication failed:**
+on this second set the route-EFE agent's noisy-sensing lead from the first set (58% vs 48-50%)
+disappears (53-56% vs 54-58%; all sign tests p >= 0.47). With iid sensor noise, none of the
+decision rules beats the others; the first set's lead was chance. Files:
+`results/maze_v3_selfcal_truth.json`, `results/maze_v3_selfcal_self.json`.
+
 Reproduce:
 
 ```bash
+.venv/Scripts/python scripts/maze_v3_eval.py --test-start 71000 --num-test-mazes 100 --effort-weight 2.0 --switch-margin 0 --regimes noisy --sensor-source self --output results/maze_v3_selfcal_self.json
 .venv/Scripts/python scripts/maze_v3_eval.py --test-start 20000 --num-test-mazes 30 --effort-weight 2.0 --switch-margin 0 --output data/maze_dev/v3_dev.json
 .venv/Scripts/python scripts/maze_v3_eval.py --test-start 70000 --num-test-mazes 100 --effort-weight 2.0 --switch-margin 0 --output results/maze_v3_final.json
 ```
