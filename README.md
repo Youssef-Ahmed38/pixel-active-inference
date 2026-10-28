@@ -9,6 +9,12 @@ beliefs (`scripts/make_showreel.py`).
 
 <img src="docs/media/showreel.png" width="640">
 
+**The G1 rides a bicycle:** [docs/BIKE_G1.md](docs/BIKE_G1.md): the walking humanoid seated on a realistic
+24-inch bicycle (hands on the grips, feet pedalling), balance learned by practice: 23/40 fresh 30 m rides
+(the untuned rule 0/40), with a comparison to published robot cycling work.
+
+<img src="docs/media/bike/g1_riding.gif" width="400">
+
 **One agent, many skills, the same principles:** active inference (world models, expected free
 energy, surprise and Bayesian hidden-cause inference, curiosity), episodic memory and recipes, and an
 HRM "thinker", learned rather than scripted and evaluated on fresh seeds. Plan:
