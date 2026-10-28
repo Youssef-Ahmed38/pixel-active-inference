@@ -4,8 +4,8 @@ Date: 13 October 2026. Read-only audit; the only file written is this one.
 Scope: `pai/cognition`, `pai/maze` (with walking), the key chain, contact repair,
 `pai/chess` (Stage 5), `pai/language` (Stage 6), `pai/bike` (Stage 7), with their
 scripts, tests, docs and result files. Judged against each build's own stated gates,
-`docs/ROADMAP.md` (main target: one agent, the same brain across stages) and
-`docs/BUILD_PLAN_STAGES_2_7.md`.
+the roadmap of that time (main target: one agent, the same brain across stages) and the stage
+build plan of that time (both since replaced; earlier versions are in the repository history).
 
 Every number below was either read from a result file during this audit or produced
 by a test command run during this audit. No simulator evaluation was re-run.
