@@ -54,29 +54,24 @@ The paper draft (`paper/`, IEEEtran in the user's format) is **local only** by t
 `data/paper_overleaf.zip`. Updated 2026-10-28 06:50 with all results above (maze section rewritten
 around the branchy-maze result and the corridor correction; walker figure added).
 
-## In progress (2026-10-28 08:55; the user is away: work continues without asking)
+## In progress (2026-10-28 11:10; the user is away: work continues without asking)
 
-- **PR #5 open (Stage 4, Codex, reviewed):** key chain as an induced recipe; final 736000-736049:
-  cold 38, warm 38, prior-only 39, old scripted 35 of 40 solvable scenes; replay gives no reliable
-  gain. Large results gzip-compressed. Codex's original uncommitted files are still in the main
-  checkout (identical content; remove them after the merge, then pull).
-- **A (walls) done, uncommitted:** v4 released by the agreed rule. Final on new seeds 57000+: every
-  gate 20/20; wall test falls **2/40 vs 14/40 for v3**; pushes equal or better on the same seeds.
-  But in noisy mazes (persistent misreads, 81000-81029) v4 falls as often as v3 (7/60 each): traced
-  to rapidly switching goals (turn on the spot / walk at 0.6 m/s while still turning), not walls.
-- **A2: v5 training** (`configs/locomotion_v5.yaml`, goals changing every 0.5-3 s, walls kept; from
-  v4), chain `data/run_v5.sh`: train (~1.1 h, `runs/locomotion/train_v5.log`), dev gates + walls,
-  then dev maze falls v5 vs v4 on 20100-20129 (`data/maze_dev/walker_persistent_20100_*.json`). If
-  it holds every gate and reduces maze falls, final on new seeds and new mazes (not 57000+, 81000+).
-- **B (four fall causes) done on v4, uncommitted:** final over three new seeds 59006-59008: 504/544
-  (92.6%) vs 41.7% for the old rule; wall 23/29; 17 own stumbles still called push. Written into
-  `docs/LOCOMOTION_STAGE2.md`.
-- **C (own eyes) final running:** `results/maze_camera_final.json` (branchy 82000-82029, head camera,
-  own odometry with map-based pose correction, v4 walker), log `runs/maze_camera_final.log`. Dev
-  (20000-20009): camera route EFE 9/10 vs grid sensor 8/10, median drift 5 cm, 0 falls. Design
-  written in `docs/MAZE.md` section 12; add the final table.
-- After A2/C: one PR for A+B+C (walking v4/v5, four fall causes, the walker's own eyes), media, local
-  paper numbers.
+- **Open PRs for the user to merge:** #5 (Stage 4 key chain as an induced recipe, Codex, reviewed)
+  and #6 (walking v4 with wall contact, four fall causes, the maze walker's own eyes; plus the v5
+  negative result). Codex's original Stage 4 files are still untracked in the main checkout
+  (identical; remove after merging #5, then pull). Branch `walking-walls-eyes` has a worktree at
+  `../pai-walls`.
+- **v5 not released:** fast-changing goals kept every gate but raised development maze falls
+  (13 vs 8 of 60). v4 stays released.
+- **Smooth steering for the maze walker** (main checkout, uncommitted: `pai/maze/walker.py`
+  `smooth=True`, `scripts/maze_walker_eval.py --smooth`): start walking below 10 degrees heading
+  error, keep walking until 40, ramp speed at most 1 m/s^2. Development (20100-20129, v4): falls 8 -> 2
+  of 60, goals route EFE 14 -> 16, nearest frontier 2 -> 8. Final running on new mazes 83000-83029:
+  `results/maze_walker_persistent_83000_v4{_smooth,}.json`. Then add to PR #6 (docs: MAZE.md
+  section 11/12 and LOCOMOTION_STAGE2.md v4 paragraph).
+- **Codex: arm cause likelihoods** (`docs/briefs/ARM_CAUSE_LIKELIHOODS.md`, task `arm-causes`):
+  stopped once on "model at capacity" during its camera final; resumed with
+  `data/codex_tasks/arm-causes/continue1.md`. Review when it reports.
 
 ## Next steps (plan agreed with the user, 2026-10-28; in order)
 
