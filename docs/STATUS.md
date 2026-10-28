@@ -33,13 +33,18 @@ Everything is merged into `main` (PRs #1-#4). Nothing is running; no PR is open.
    the G1 walker on branchy mazes; the five-panel perception video; solid walls (60 paired mazes:
    0 falls, outcomes unchanged); noisy sensing with the walker (persistent misreads 14 vs 5,
    p = 0.004, but 24 falls in 240 walked episodes). Details in `docs/MAZE.md` section 11.
-4. Merged PRs #2, #3, #4 (the user asked). Cleaned the main checkout's leftover copies of the merged
-   files and pulled; removed the merged language worktree and the stale `pai-ceiling` worktree (its
-   uncommitted diff is kept in `data/archive/`).
+4. Merged PRs #2, #3, #4 (the user asked; #4 needed main merged in: README rows and this file).
+   Cleaned the main checkout: its 60 leftover copies were all older versions of merged files (each
+   checked against the history), archived anyway in `data/archive/main_checkout_leftovers_20261028.tar`,
+   then removed; `main` pulled to the merge of #4. Removed the merged language worktree
+   (`C:\projects\pai-lang`) and the stale `C:\projects\pai-ceiling` worktree; the latter's uncommitted
+   work is kept in `data/archive/pai_ceiling_uncommitted_20261028.patch` (tracked edits, on branch
+   `ceiling` at cadd001) and `pai_ceiling_untracked_20261028.tar` (results/discovery_v3, home_doors).
 
 Running the walker or the G1 tests from another worktree needs `third_party/` and `runs/` from the
-main checkout (directory junctions: `cmd //c mklink /J third_party <main>	hird_party`, same for `runs`;
-remove them with `cmd //c rmdir` when done).
+main checkout as directory junctions (`cmd //c "mklink /J third_party C:\projects\pixel-active-inference\third_party"`,
+same for `runs`); remove a junction with `cmd //c rmdir <path>` (never a recursive delete, which
+would follow it into the real folder).
 
 Copilot's automatic PR review comes from the user's personal Copilot setting (cannot be removed by
 us). PR descriptions must not mention Claude.
@@ -64,4 +69,4 @@ control, language v3, maze correction, branchy mazes, walker with solid walls an
 ## Housekeeping
 
 - Archived drafts (not in git): `data/archive/` (old chess drafts, a Kaggle job text, partial language
-  files, the abandoned `pai-ceiling` diff).
+  files, the abandoned `pai-ceiling` work, the main checkout leftovers of 2026-10-28).
