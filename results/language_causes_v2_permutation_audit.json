@@ -1,0 +1,137 @@
+{
+  "permutation_seed": 72899,
+  "episodes": 25,
+  "checkpoint_sha256": "711ec0903c103966dc6238009d9910c1cc33698208b18889f5e4caf3cb32ade5",
+  "models": {
+    "english": {
+      "correct": 5,
+      "total": 5,
+      "mapping": {
+        "push": "an external force pushed my arm",
+        "none": "no unusual cause was detected",
+        "camera_shift": "the camera moved",
+        "slippery_object": "the object slipped relative to my fingers",
+        "heavier_object": "the object weighed more than expected"
+      },
+      "numeric": [
+        {
+          "phrase": "an external force pushed my arm",
+          "template": "I estimated onset at planning step {value}.",
+          "feature": 8,
+          "normalized_rmse": 0.0626394375998269,
+          "correlation": 0.999534994351533,
+          "support": 5,
+          "margin": 0.27288996960304635,
+          "decoded_feature": [
+            "push",
+            "onset"
+          ]
+        },
+        {
+          "phrase": "the camera moved",
+          "template": "I estimated camera displacement (x, y, z) of about {value} mm.",
+          "feature": 12,
+          "normalized_rmse": 0.007754734821132387,
+          "correlation": 0.9999729396851456,
+          "support": 5,
+          "margin": 0.9935093704608899,
+          "decoded_feature": [
+            "camera_shift",
+            "camera_offset_mm"
+          ]
+        },
+        {
+          "phrase": "the camera moved",
+          "template": "I estimated onset at planning step {value}.",
+          "feature": 6,
+          "normalized_rmse": 0.04983534077556937,
+          "correlation": 0.9996100971597155,
+          "support": 5,
+          "margin": 0.2579472443133152,
+          "decoded_feature": [
+            "camera_shift",
+            "onset"
+          ]
+        },
+        {
+          "phrase": "the object weighed more than expected",
+          "template": "I estimated about {value} kg of extra mass.",
+          "feature": 7,
+          "normalized_rmse": 0.018968995440767522,
+          "correlation": 0.9999278181572852,
+          "support": 5,
+          "margin": 1.4211139552844283,
+          "decoded_feature": [
+            "heavier_object",
+            "extra_mass_kg"
+          ]
+        }
+      ]
+    },
+    "arabic": {
+      "correct": 5,
+      "total": 5,
+      "mapping": {
+        "slippery_object": "الجسم انزلق بالنسبة إلى أصابعي",
+        "heavier_object": "الجسم كان أثقل مما توقعت",
+        "camera_shift": "الكاميرا تحركت",
+        "push": "قوة خارجية دفعت ذراعي",
+        "none": "لم أكتشف سببا غير معتاد"
+      },
+      "numeric": [
+        {
+          "phrase": "الجسم كان أثقل مما توقعت",
+          "template": "قدرت الكتلة الإضافية بحوالي {value} كغ.",
+          "feature": 7,
+          "normalized_rmse": 0.018968995440767522,
+          "correlation": 0.9999278181572852,
+          "support": 5,
+          "margin": 1.4211139552844283,
+          "decoded_feature": [
+            "heavier_object",
+            "extra_mass_kg"
+          ]
+        },
+        {
+          "phrase": "الكاميرا تحركت",
+          "template": "قدرت إزاحة الكاميرا (س، ص، ع) بحوالي {value} مم.",
+          "feature": 12,
+          "normalized_rmse": 0.007754734821132387,
+          "correlation": 0.9999729396851456,
+          "support": 5,
+          "margin": 0.9935093704608899,
+          "decoded_feature": [
+            "camera_shift",
+            "camera_offset_mm"
+          ]
+        },
+        {
+          "phrase": "الكاميرا تحركت",
+          "template": "قدرت البداية عند خطوة التخطيط {value}.",
+          "feature": 6,
+          "normalized_rmse": 0.04983534077556937,
+          "correlation": 0.9996100971597155,
+          "support": 5,
+          "margin": 0.2579472443133152,
+          "decoded_feature": [
+            "camera_shift",
+            "onset"
+          ]
+        },
+        {
+          "phrase": "قوة خارجية دفعت ذراعي",
+          "template": "قدرت البداية عند خطوة التخطيط {value}.",
+          "feature": 8,
+          "normalized_rmse": 0.0626394375998269,
+          "correlation": 0.999534994351533,
+          "support": 5,
+          "margin": 0.27288996960304635,
+          "decoded_feature": [
+            "push",
+            "onset"
+          ]
+        }
+      ]
+    }
+  }
+}
