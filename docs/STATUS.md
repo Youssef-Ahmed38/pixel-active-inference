@@ -18,7 +18,7 @@
 Audit fix #1 is done (arm relations come from perception, commit aa8d259); audit #4 is done for
 walking (PR #3); the other audit items are open (see the queue).
 
-PRs #1-#12 are merged into `main`. Open: #13 (maze walker at 0.4 m/s), #14 (bicycle v2).
+PRs #1-#12 are merged into `main`. Open: #13 (maze walker at 0.4 m/s), #14 (bicycle v2, incl. three training seeds), #15 (thinker go/no-go).
 
 ## Session log, 2026-10-28 (a second Claude session, in a worktree, while the main session's account was switched)
 
@@ -62,12 +62,14 @@ learns through its own perception* (fast sensory prediction, slower hidden-cause
 3 training seeds and standard baselines; target IEEE Transactions on Cognitive and Developmental
 Systems (check the current quartile). No hardware for now. The paper stays local (`paper/`).
 
-- **Codex, thinker go/no-go** (`docs/briefs/THINKER_HIERARCHY.md`, `docs/THINKER_HIERARCHY.md`):
-  round 1 NO-GO under the registered rule (cluster accuracy 28.8% vs flat 24.8%, CI [-1, +9] pp;
-  probe 37.8% vs 29.5%), but the data could not test it (the Bayesian reference scored 28.5% on it:
-  short episodes, objects rarely grasped). Round 2 runs with a data-quality gate registered before
-  training (normal arm behaviour, Bayesian reference >= 80% on development) and final seeds 93000+.
-  Codex works in the main checkout; do not pull or clean the main checkout until it finishes.
+- **Thinker go/no-go (PR #15): NO-GO with good data.** Round 3 reproduced the published arm
+  (task 87.5%, cause 85%), passed both registered data gates (Bayesian reference 90.5% on final
+  seeds 99000-99039) and found no advantage of the hierarchy: cluster accuracy 48.7% vs flat 44.5%
+  (paired CI [-28.8, +37.1] pp), prediction 0.7% worse, iterative inference no benefit, no timescale
+  ordering. The paper (local) is reframed: the explicit hierarchy (sensory prediction, cause level
+  with structured cause models, goal level with an information term) is the contribution; learning
+  the cause structure from perception is the open problem, reported as a registered negative.
+  The thesis framing is the user's call when back.
 - **Bicycle (PR #14):** late U-turn bug fixed; dead-end-aware planning; rule 37/40 deliveries on new
   towns; residual PPO rides random geometry 40/40 vs rule 31/40 (p = 0.004) but delivers 34/40
   (lane changes were not trained); PPO from scratch 0/40. **Running:** residual PPO run 2 with lane
