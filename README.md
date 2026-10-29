@@ -36,7 +36,8 @@ beliefs (`scripts/make_showreel.py`).
 it plans on the street map, looks down each street with its head camera, keeps a belief over blocked
 streets, replans, changes lane around parked cars, and corners and U-turns with steering it learned by
 practice (three training seeds: 120/120 new routes). On new towns: **37/40 deliveries** against 23/40
-riding blind. The video shows its head camera, its own map and its decisions.
+riding blind. The video shows its head camera, its own map and its decisions. **Its own arms now steer:** with the fork motor off, the
+G1's arms and waist turn the handlebar, and it delivers 35/40 in new towns (fork motor 37/40, p = 0.5).
 
 <img src="docs/media/bike/delivery.gif" width="640">
 
@@ -55,7 +56,7 @@ of standard geometry, hands on the grips, feet pedalling; balance learned by pra
 | 4 doors, keys | discovers how to open locked doors by experiment | mock: 99.9% solved in 111.6 actions (novelty 80.9%); physics 12/25 with decoys; **key chain without a script** (no role IDs or shape rules): 38/40 unseen scenes vs 35/40 for the old scripted chain | recipe replay gives no reliable gain over prior-only transfer; key handling in physics | [DISCOVERY](docs/DISCOVERY.md) |
 | 5 chess | learned rules, learned value, search; Stockfish only as a teacher | **1037** conditional engine-anchor Elo [863, 1134] at 1 s/move; beats its old self 17-2-1 | still weaker than Stockfish 1320-1700; the HRM thinker inside search with learned halting thinks longer on hard positions but does not play stronger (paired match 1-8-11, ladder 904 vs 904 at 0.2 s) | [CHESS_STRENGTH](docs/CHESS_STRENGTH.md) |
 | 6 language | English and Arabic: instructions, questions, narration, and **why** things happened, from the agent's own beliefs | 456/456 held-out parses; causes named correctly **41/50** per language; **83/100** on a larger set with absence claims hedged by their probability; correct Arabic composition (all 29 sentences checked); instructions 41/50 = the arm's own rate | calibration of absence claims did not improve | [LANGUAGE_STAGE6](docs/LANGUAGE_STAGE6.md) |
-| 7 bicycle | the G1 rides a realistic bicycle and delivers parcels in new towns, discovering obstacles with its own camera | deliveries **37/40** vs 23/40 blind; perception audit passed; cornering rule 120/120 routes over three training seeds; a learned correction (residual PPO) rides unseen corner shapes 40/40 vs 31/40 (p = 0.004); from video: 20/20 rides from an on-board camera | the arms do not produce the steering; no other traffic; PPO from scratch 0/40 | [BIKE_TOWN](docs/BIKE_TOWN.md), [BIKE_G1](docs/BIKE_G1.md), [BIKE_STAGE7](docs/BIKE_STAGE7.md) |
+| 7 bicycle | the G1 rides a realistic bicycle and delivers parcels in new towns, discovering obstacles with its own camera | deliveries **37/40** vs 23/40 blind; perception audit passed; cornering rule 120/120 routes over three training seeds; a learned correction (residual PPO) rides unseen corner shapes 40/40 vs 31/40 (p = 0.004); from video: 20/20 rides from an on-board camera | no other traffic; PPO from scratch 0/40; the drive torque still acts at the wheel | [BIKE_TOWN](docs/BIKE_TOWN.md), [BIKE_G1](docs/BIKE_G1.md), [BIKE_STAGE7](docs/BIKE_STAGE7.md) |
 | cause level, learned | can the cause level be discovered from perception without labels? (registered test) | a three-level hierarchy **48.7%** vs a flat model **44.5%** (no advantage; paired CI [-28.8, +37.1] pp); the explicit cause level **90.5%** on the same episodes | learning the cause structure: the central open problem | [THINKER_HIERARCHY](docs/THINKER_HIERARCHY.md) |
 
 ### Stage 2: a humanoid that learns to walk

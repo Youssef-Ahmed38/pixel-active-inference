@@ -29,6 +29,8 @@ from pai.bike.riding import CORNER_R, LEAN_DEFAULT as DEFAULT, LeanFollower, lan
 
 _ENVS = {}
 ARM_KP = 5.0
+ARM_STEER = False         # True: the G1's arms (and waist yaw) turn the handlebar; the fork servo is off
+LANE_CHANGES = False      # True: half of the routes change lane around 1-2 parked cars (as in deliveries)
 STEER_KP = 300.0
 OFF_ROAD_M = 3.0          # further than this from the route ends the ride (left the road)
 LO = np.array([0, 0, 0, 0, 1, 1.0, 1.5, 1.0])
@@ -63,12 +65,36 @@ def u_turn_routes(town, rng, k=2):
     return out
 
 
+def _init_worker(arm_steer, lane_changes=False):
+    global ARM_STEER, LANE_CHANGES
+    ARM_STEER = arm_steer
+    LANE_CHANGES = lane_changes
+
+
+def with_cars(path, seed, route):
+    """For half of the routes (chosen by a hash of town and route, the same in every run): 1-2 parked
+    cars in the rider's lane at straight places, the path changing lane around them as the delivery
+    planner does (``pai/bike/navigation.avoid_cars``), often just after a corner."""
+    from pai.bike.navigation import avoid_cars
+    from pai.bike.riding import curvature
+    g = np.random.default_rng(seed * 1_000_003 + sum((i + 1) * 97 * n for i, n in enumerate(route)) + 7)
+    if g.random() < 0.5:
+        return path
+    kap = np.abs(curvature(path))
+    ok = [k for k in range(16, len(path) - 16) if kap[max(0, k - 2):k + 3].max() < 0.02]
+    if not ok:
+        return path
+    cars = [tuple(path[int(g.choice(ok))]) for _ in range(int(g.integers(1, 3)))]
+    return avoid_cars(path, cars)
+
+
 def env_for(seed):
     if seed not in _ENVS:
         from pai.bike.g1_rider import G1BikeEnv
         from pai.bike.town import Town, town_scene
         town = Town(n=4, seed=seed)
-        _ENVS[seed] = (town, G1BikeEnv(scenery=town_scene(town), max_seconds=1e9, arm_kp=ARM_KP, steer_kp=STEER_KP))
+        _ENVS[seed] = (town, G1BikeEnv(scenery=town_scene(town), max_seconds=1e9, arm_kp=ARM_KP, steer_kp=STEER_KP,
+                                       arm_steer=ARM_STEER))
     return _ENVS[seed]
 
 
@@ -76,6 +102,8 @@ def ride(args):
     seed, route, gains, max_t = args
     town, env = env_for(seed)
     path = lane_path(town.nodes, route, radius=CORNER_R)
+    if LANE_CHANGES:
+        path = with_cars(path, seed, route)
     f = LeanFollower(path, gains)
     d = path[min(5, len(path) - 1)] - path[0]
     s = env.reset(seed=seed, speed=2.5, roll=0.0, start_xy=path[0], yaw=float(np.arctan2(d[1], d[0])))
@@ -126,8 +154,13 @@ def main():
                     help="practice score = progress - weight x mean cross-track error (m), capped at 2 m")
     ap.add_argument("--final-towns", type=int, nargs=2, default=[4200, 4210])
     ap.add_argument("--seed", type=int, default=0, help="seed of the cross-entropy search (practice runs)")
+    ap.add_argument("--arm-steer", action="store_true", help="the G1's arms steer (no fork servo)")
+    ap.add_argument("--lane-changes", action="store_true", help="half of the routes change lane around parked cars")
     ap.add_argument("--u-turns", type=int, default=0, help="U-turn routes per town (practice, dev, final)")
     args = ap.parse_args()
+    global ARM_STEER, LANE_CHANGES
+    ARM_STEER = args.arm_steer
+    LANE_CHANGES = args.lane_changes
     u = args.u_turns
     practice, dev, final = (courses(range(4000, 4004), u_turns=u), courses(range(4100, 4105), u_turns=u),
                             courses(range(*args.final_towns), u_turns=u))
@@ -143,7 +176,7 @@ def main():
     def value(x):
         ct = x["mean_cross_track_m"] if x["mean_cross_track_m"] is not None else 2.0
         return x["progress"] - args.track_weight * min(ct, 2.0)
-    with Pool(args.workers) as pool:
+    with Pool(args.workers, initializer=_init_worker, initargs=(args.arm_steer, args.lane_changes)) as pool:
         def score(g):
             res = pool.map(ride, [(s, r, g, 90.0) for s, r in practice])
             return float(np.mean([value(x) for x in res]))
@@ -176,7 +209,7 @@ def main():
                          "mean_heading_error_deg_completed": round(float(np.mean([r["mean_heading_error_deg"] for r in ok])), 2) if ok else None,
                          "mean_cross_track_m_completed": round(float(np.mean([r["mean_cross_track_m"] for r in ok])), 3) if ok else None,
                          "max_cross_track_m_completed": round(float(np.max([r["max_cross_track_m"] for r in ok])), 3) if ok else None}
-    report = {"follower": "LeanFollower", "arm_kp": ARM_KP, "steer_kp": STEER_KP, "corner_radius_m": CORNER_R,
+    report = {"follower": "LeanFollower", "arm_kp": ARM_KP, "steer_kp": STEER_KP, "arm_steer": ARM_STEER, "lane_changes": LANE_CHANGES, "corner_radius_m": CORNER_R,
               "practice_towns": [4000, 4003], "dev_towns": [4100, 4104], "final_towns": args.final_towns,
               "gains_names": ["roll", "roll_rate", "heading_to_lean", "steer_feedforward", "speed", "lookahead_m",
                               "cruise_mps", "corner_mps"] + (["u_turn_mps"] if args.u_turns else []),
