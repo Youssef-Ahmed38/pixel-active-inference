@@ -1,0 +1,15 @@
+{
+  "pid": 27940,
+  "command": [
+    "python",
+    "-u",
+    "scripts/arm_baseline_run.py"
+  ],
+  "launcher": [
+    "python",
+    "scripts/arm_baseline_launch.py"
+  ],
+  "independent_stdin_stdout_stderr": true,
+  "detached": true,
+  "breakaway_from_parent_job": true
+}

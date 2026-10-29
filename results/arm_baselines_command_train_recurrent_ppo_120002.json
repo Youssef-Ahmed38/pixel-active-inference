@@ -1,0 +1,11 @@
+{
+  "command": [
+    "python",
+    "scripts/arm_baseline_train.py",
+    "--kind",
+    "recurrent_ppo",
+    "--seed",
+    "120002"
+  ],
+  "exit_code": 0
+}

@@ -1,0 +1,245 @@
+{
+  "history": [
+    {
+      "steps": 25600,
+      "episodes": 168,
+      "rolling_return": -1.7691957306324213,
+      "rolling_success": 0.0,
+      "wall_s": 170.60671591758728,
+      "approx_kl": 0.005774667952209711
+    },
+    {
+      "steps": 51200,
+      "episodes": 340,
+      "rolling_return": -1.7507960698782212,
+      "rolling_success": 0.0,
+      "wall_s": 342.6054837703705,
+      "approx_kl": 0.01190982572734356
+    },
+    {
+      "steps": 76800,
+      "episodes": 512,
+      "rolling_return": -1.7462310758818822,
+      "rolling_success": 0.0,
+      "wall_s": 513.2342875003815,
+      "approx_kl": 0.011771253310143948
+    },
+    {
+      "steps": 102400,
+      "episodes": 680,
+      "rolling_return": -1.7569278853174768,
+      "rolling_success": 0.0,
+      "wall_s": 694.7184221744537,
+      "approx_kl": 0.01066133938729763
+    },
+    {
+      "steps": 128000,
+      "episodes": 852,
+      "rolling_return": -1.7721109206457677,
+      "rolling_success": 0.0,
+      "wall_s": 893.499428987503,
+      "approx_kl": 0.008020567707717419
+    },
+    {
+      "steps": 153600,
+      "episodes": 1024,
+      "rolling_return": -1.7934758915109053,
+      "rolling_success": 0.0,
+      "wall_s": 1100.2682211399078,
+      "approx_kl": 0.007842841558158398
+    },
+    {
+      "steps": 179200,
+      "episodes": 1192,
+      "rolling_return": -1.8041871945137062,
+      "rolling_success": 0.0,
+      "wall_s": 1309.3074357509613,
+      "approx_kl": 0.010999482125043869
+    },
+    {
+      "steps": 204800,
+      "episodes": 1364,
+      "rolling_return": -1.7853470085544123,
+      "rolling_success": 0.0,
+      "wall_s": 1529.5606637001038,
+      "approx_kl": 0.019330348819494247
+    },
+    {
+      "steps": 230400,
+      "episodes": 1536,
+      "rolling_return": -1.8001278628250201,
+      "rolling_success": 0.0,
+      "wall_s": 1783.2820653915405,
+      "approx_kl": 0.012157073244452477
+    },
+    {
+      "steps": 256000,
+      "episodes": 1704,
+      "rolling_return": -1.7795708543699775,
+      "rolling_success": 0.0,
+      "wall_s": 2210.0483272075653,
+      "approx_kl": 0.011961113661527634
+    },
+    {
+      "steps": 281600,
+      "episodes": 1876,
+      "rolling_return": -1.7426955707051142,
+      "rolling_success": 0.0,
+      "wall_s": 2610.5311806201935,
+      "approx_kl": 0.011100942268967628
+    },
+    {
+      "steps": 307200,
+      "episodes": 2048,
+      "rolling_return": -1.7398177932669068,
+      "rolling_success": 0.0,
+      "wall_s": 2931.4170184135437,
+      "approx_kl": 0.005051526241004467
+    },
+    {
+      "steps": 332800,
+      "episodes": 2216,
+      "rolling_return": -1.7436375317324844,
+      "rolling_success": 0.0,
+      "wall_s": 3248.20042347908,
+      "approx_kl": 0.01643291860818863
+    },
+    {
+      "steps": 358400,
+      "episodes": 2388,
+      "rolling_return": -1.7493254078509495,
+      "rolling_success": 0.0,
+      "wall_s": 3340.4056577682495,
+      "approx_kl": 0.030513782054185867
+    },
+    {
+      "steps": 384000,
+      "episodes": 2560,
+      "rolling_return": -1.7463681059514302,
+      "rolling_success": 0.0,
+      "wall_s": 3428.419773578644,
+      "approx_kl": 0.011788463220000267
+    },
+    {
+      "steps": 409600,
+      "episodes": 2728,
+      "rolling_return": -1.7456959541116441,
+      "rolling_success": 0.0,
+      "wall_s": 3556.395131111145,
+      "approx_kl": 0.005425315350294113
+    },
+    {
+      "steps": 435200,
+      "episodes": 2900,
+      "rolling_return": -1.754217233503939,
+      "rolling_success": 0.0,
+      "wall_s": 3693.944410800934,
+      "approx_kl": 0.004639384336769581
+    },
+    {
+      "steps": 460800,
+      "episodes": 3072,
+      "rolling_return": -1.7362135464605801,
+      "rolling_success": 0.0,
+      "wall_s": 3831.893179655075,
+      "approx_kl": 0.004652929492294788
+    },
+    {
+      "steps": 486400,
+      "episodes": 3240,
+      "rolling_return": -1.695337190921618,
+      "rolling_success": 0.0,
+      "wall_s": 3960.841661453247,
+      "approx_kl": 0.005648807622492313
+    },
+    {
+      "steps": 512000,
+      "episodes": 3412,
+      "rolling_return": -1.6868758135174702,
+      "rolling_success": 0.0,
+      "wall_s": 4091.4879467487335,
+      "approx_kl": 0.0072424933314323425
+    },
+    {
+      "steps": 537600,
+      "episodes": 3584,
+      "rolling_return": -1.6888849630952234,
+      "rolling_success": 0.0,
+      "wall_s": 4226.891762495041,
+      "approx_kl": 0.006802438758313656
+    },
+    {
+      "steps": 563200,
+      "episodes": 3752,
+      "rolling_return": -1.6898920408318405,
+      "rolling_success": 0.0,
+      "wall_s": 4369.297099113464,
+      "approx_kl": 0.008938038721680641
+    },
+    {
+      "steps": 588800,
+      "episodes": 3924,
+      "rolling_return": -1.685978110389766,
+      "rolling_success": 0.0,
+      "wall_s": 4512.829962253571,
+      "approx_kl": 0.009009153582155704
+    },
+    {
+      "steps": 614400,
+      "episodes": 4096,
+      "rolling_return": -1.6700869517642065,
+      "rolling_success": 0.0,
+      "wall_s": 4647.513602733612,
+      "approx_kl": 0.012495209462940693
+    },
+    {
+      "steps": 640000,
+      "episodes": 4264,
+      "rolling_return": -1.6558367958648568,
+      "rolling_success": 0.0,
+      "wall_s": 4780.748131036758,
+      "approx_kl": 0.015133772045373917
+    },
+    {
+      "steps": 665600,
+      "episodes": 4436,
+      "rolling_return": -1.7057022221490667,
+      "rolling_success": 0.0,
+      "wall_s": 4916.474348068237,
+      "approx_kl": 0.0043102349154651165
+    },
+    {
+      "steps": 691200,
+      "episodes": 4608,
+      "rolling_return": -1.7412291037168541,
+      "rolling_success": 0.0,
+      "wall_s": 5051.6970500946045,
+      "approx_kl": 0.009727268479764462
+    },
+    {
+      "steps": 716800,
+      "episodes": 4776,
+      "rolling_return": -1.7345168284816435,
+      "rolling_success": 0.0,
+      "wall_s": 5186.058683395386,
+      "approx_kl": 0.009045297279953957
+    },
+    {
+      "steps": 742400,
+      "episodes": 4948,
+      "rolling_return": -1.732336531403934,
+      "rolling_success": 0.0,
+      "wall_s": 5317.4184601306915,
+      "approx_kl": 0.00735592283308506
+    },
+    {
+      "steps": 768000,
+      "episodes": 5120,
+      "rolling_return": -1.816832125258868,
+      "rolling_success": 0.0,
+      "wall_s": 5451.913011550903,
+      "approx_kl": 0.007622209377586842
+    }
+  ],
+  "last_step": 768000
+}

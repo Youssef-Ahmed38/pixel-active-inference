@@ -1,0 +1,161 @@
+{
+  "exit_code": 0,
+  "tests": [
+    {
+      "test": "tests/test_arm_baselines.py::test_sensor_features_and_reward_ignore_truth",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_arm_baselines.py::test_timeout_bootstraps_but_episode_recursion_stops",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_arm_baselines.py::test_recurrent_reset_erases_previous_episode_memory",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_arm_baselines.py::test_squashed_logprob_and_clipped_losses_are_finite_with_gradients",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_arm_baselines.py::test_paired_tests_use_identical_episodes_and_discordant_counts",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_arm_baselines.py::test_worker_randomization_exactly_matches_slice_distribution",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_arm_baselines.py::test_checkpoint_restores_optimizer_and_random_streams",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_arm_baselines.py::test_worker_checkpoint_replays_exactly_across_process_and_episode_reset",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_cause_inference_identifies_each_cause",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_heavier_object_impossible_without_holding",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_surprise_monitor_triggers_only_on_spikes",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_world_model_shapes_and_checkpoint",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_mppi_moves_towards_goal",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_goal_subgoals_advance_in_order",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_episode_report_mentions_explanation_and_truth",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_masks_to_patches_fractions",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_goal_falls_back_to_regrasp_when_object_is_dropped",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_calibration_sets_floor_and_threshold",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_calibration_per_step_keeps_quiet_steps_sensitive",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_planner_respects_gripper_mode_from_goal_level",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_counterfactual_credit_finds_the_necessary_factor",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_memory_saves_trajectories_beside_jsonl",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_unknown_wins_only_when_no_cause_fits",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_lowered_waits_until_object_is_still",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_recipe_extraction_and_proposal_transfer_to_a_new_layout",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_push_while_holding_is_not_a_slip",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_object_squeezed_out_while_grasping_is_a_slip_not_a_push",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_drop_is_a_slip_with_the_weight_lost",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_no_weight_lost_while_the_object_rests_on_the_table",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_push_while_grasping_drags_the_object_sideways_only",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_push_moves_a_held_object_with_the_hand",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_slice.py::test_phase_credit_with_abduction_survives_model_drift",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_cognition.py::test_shared_efe_accounting_matches_both_domains",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_cognition.py::test_cause_posterior_needs_confident_evidence",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_cognition.py::test_memory_stores_arm_and_maze_records",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_cognition.py::test_maze_thinker_uses_observed_evidence_not_cause_reports",
+      "outcome": "passed"
+    },
+    {
+      "test": "tests/test_cognition.py::test_shared_controller_reaches_maze_goal_with_skill_adapter",
+      "outcome": "passed"
+    }
+  ],
+  "command": [
+    "python",
+    "scripts/arm_baseline_tests.py",
+    "--basetemp",
+    "data/pytest_arm_baselines_resume_20261028",
+    "--output",
+    "results/arm_baselines_tests_resume.json"
+  ]
+}

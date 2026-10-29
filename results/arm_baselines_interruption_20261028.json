@@ -1,0 +1,63 @@
+{
+  "observed_utc": "2026-10-28T19:48:52.215769+00:00",
+  "status": "interrupted_no_resumable_checkpoint",
+  "active_registered_processes": [],
+  "partial_trials": [
+    {
+      "file": "results/arm_baselines_ppo_s120000_progress.json",
+      "modified_utc": "2026-10-28T19:37:07.908616+00:00",
+      "last_logged_step": 409600,
+      "last_logged_metrics": {
+        "steps": 409600,
+        "episodes": 2728,
+        "rolling_return": -1.7048012447676613,
+        "rolling_success": 0.0,
+        "wall_s": 3310.4973816871643,
+        "approx_kl": 0.006711595691740513
+      },
+      "sha256": "727e646bc4ebaa10c53b19ce68ab100a6db4c9284ef1c04e78550872c402006d"
+    },
+    {
+      "file": "results/arm_baselines_ppo_s120001_progress.json",
+      "modified_utc": "2026-10-28T19:36:56.523201+00:00",
+      "last_logged_step": 409600,
+      "last_logged_metrics": {
+        "steps": 409600,
+        "episodes": 2728,
+        "rolling_return": -1.670460414463374,
+        "rolling_success": 0.0,
+        "wall_s": 3299.3244388103485,
+        "approx_kl": 0.006742112338542938
+      },
+      "sha256": "4a02eb3da1e14bd1d4626e409039383956f4f0d978620234c1367f8746f475e1"
+    },
+    {
+      "file": "results/arm_baselines_recurrent_ppo_s120000_progress.json",
+      "modified_utc": "2026-10-28T19:39:24.357269+00:00",
+      "last_logged_step": 332800,
+      "last_logged_metrics": {
+        "steps": 332800,
+        "episodes": 2216,
+        "rolling_return": -1.7574330760961903,
+        "rolling_success": 0.0,
+        "wall_s": 3446.8882224559784,
+        "approx_kl": 0.006620536558330059
+      },
+      "sha256": "2ee1755a172794afadaa96640aaa93a26c0af4b10279516710b7f7db0b9a3ca9"
+    }
+  ],
+  "minimum_logged_decisions": 1152000,
+  "actual_decisions_note": "Lower bound only: updates after last log may have occurred; no live trainer state survives.",
+  "completed_training_records": [],
+  "model_checkpoints": [],
+  "registered_agent_sources_unchanged": {
+    "pai/agents/slice_agent.py": true,
+    "pai/envs/tabletop.py": true,
+    "pai/perception/camera_frame.py": true,
+    "pai/causes/inference.py": true,
+    "configs/tabletop.yaml": true
+  },
+  "world_model_unchanged": true,
+  "cause_of_process_exit": "Unknown; no exit record or traceback found. Service/session loss is possible but not established.",
+  "actions": "No trial restarted, no parameters changed, no final evaluation attempted. Restart authorization requested because exact continuation is impossible."
+}

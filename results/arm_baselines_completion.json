@@ -1,0 +1,15 @@
+{
+  "final_records": 800,
+  "training_decisions": 4684800,
+  "training_wall_seconds_sum": 40743.12738966942,
+  "discarded_decisions_lower_bound": 1152000,
+  "tests_passed": 37,
+  "verdict": "PPO variants did not acquire clean task; no claim of superiority over competent learning baselines. Full/no-adapt paired gain17pp, exact sign p=0.0000152587890625.",
+  "frozen_audit": {
+    "final_records": 800,
+    "trained_models": 6,
+    "paired_layouts_and_disturbances": true,
+    "frozen_hashes_unchanged": true,
+    "training_sources_identical": true
+  }
+}

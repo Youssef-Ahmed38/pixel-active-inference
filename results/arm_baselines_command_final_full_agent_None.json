@@ -1,0 +1,10 @@
+{
+  "command": [
+    "python",
+    "scripts/arm_baseline_eval.py",
+    "evaluate",
+    "--method",
+    "full_agent"
+  ],
+  "exit_code": 0
+}

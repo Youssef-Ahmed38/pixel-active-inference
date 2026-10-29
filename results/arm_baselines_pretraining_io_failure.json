@@ -1,0 +1,5 @@
+{
+  "error": "Windows denied multiprocessing named-pipe creation (WinError5)",
+  "learning_updates": 0,
+  "remedy": "Temporary ThreadPoolExecutor fallback verified; final workers use anonymous stdio subprocess pipes and avoid Torch imports. Scientific settings unchanged before learning."
+}

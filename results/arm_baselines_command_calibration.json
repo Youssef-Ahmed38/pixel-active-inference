@@ -1,0 +1,8 @@
+{
+  "command": [
+    "python",
+    "scripts/arm_baseline_eval.py",
+    "calibration"
+  ],
+  "exit_code": 0
+}

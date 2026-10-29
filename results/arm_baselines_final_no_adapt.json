@@ -1,0 +1,2822 @@
+{
+  "method": "no_adapt",
+  "training_seed": null,
+  "split": "final",
+  "records": [
+    {
+      "index": 0,
+      "seed": 110000,
+      "condition": "none",
+      "disturbance_draw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "success": true,
+      "steps": 90,
+      "inferred": "none",
+      "posterior": null,
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions held throughout.\n  My explanation: nothing unusual happened.",
+      "realized_disturbances": []
+    },
+    {
+      "index": 1,
+      "seed": 110001,
+      "condition": "none",
+      "disturbance_draw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "success": true,
+      "steps": 86,
+      "inferred": "none",
+      "posterior": null,
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions held throughout.\n  My explanation: nothing unusual happened.",
+      "realized_disturbances": []
+    },
+    {
+      "index": 2,
+      "seed": 110002,
+      "condition": "none",
+      "disturbance_draw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "success": true,
+      "steps": 99,
+      "inferred": "none",
+      "posterior": null,
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions held throughout.\n  My explanation: nothing unusual happened.",
+      "realized_disturbances": []
+    },
+    {
+      "index": 3,
+      "seed": 110003,
+      "condition": "none",
+      "disturbance_draw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "success": true,
+      "steps": 88,
+      "inferred": "none",
+      "posterior": null,
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 1 steps, most at 5.7 s (surprise 14; spikes start at 14).\n  My explanation: nothing unusual happened.",
+      "realized_disturbances": []
+    },
+    {
+      "index": 4,
+      "seed": 110004,
+      "condition": "none",
+      "disturbance_draw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "success": true,
+      "steps": 73,
+      "inferred": "none",
+      "posterior": null,
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions held throughout.\n  My explanation: nothing unusual happened.",
+      "realized_disturbances": []
+    },
+    {
+      "index": 5,
+      "seed": 110005,
+      "condition": "none",
+      "disturbance_draw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "success": true,
+      "steps": 69,
+      "inferred": "none",
+      "posterior": null,
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions held throughout.\n  My explanation: nothing unusual happened.",
+      "realized_disturbances": []
+    },
+    {
+      "index": 6,
+      "seed": 110006,
+      "condition": "none",
+      "disturbance_draw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "success": true,
+      "steps": 59,
+      "inferred": "none",
+      "posterior": null,
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions held throughout.\n  My explanation: nothing unusual happened.",
+      "realized_disturbances": []
+    },
+    {
+      "index": 7,
+      "seed": 110007,
+      "condition": "none",
+      "disturbance_draw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "success": true,
+      "steps": 63,
+      "inferred": "none",
+      "posterior": null,
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions held throughout.\n  My explanation: nothing unusual happened.",
+      "realized_disturbances": []
+    },
+    {
+      "index": 8,
+      "seed": 110008,
+      "condition": "none",
+      "disturbance_draw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "success": true,
+      "steps": 62,
+      "inferred": "none",
+      "posterior": null,
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions held throughout.\n  My explanation: nothing unusual happened.",
+      "realized_disturbances": []
+    },
+    {
+      "index": 9,
+      "seed": 110009,
+      "condition": "none",
+      "disturbance_draw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "success": true,
+      "steps": 149,
+      "inferred": "none",
+      "posterior": null,
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions held throughout.\n  My explanation: nothing unusual happened.",
+      "realized_disturbances": []
+    },
+    {
+      "index": 10,
+      "seed": 110010,
+      "condition": "none",
+      "disturbance_draw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "success": true,
+      "steps": 70,
+      "inferred": "none",
+      "posterior": null,
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions held throughout.\n  My explanation: nothing unusual happened.",
+      "realized_disturbances": []
+    },
+    {
+      "index": 11,
+      "seed": 110011,
+      "condition": "none",
+      "disturbance_draw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "success": true,
+      "steps": 63,
+      "inferred": "push",
+      "posterior": {
+        "none": 8.667135717518063e-38,
+        "push": 1.0,
+        "heavier_object": 3.549182682987133e-41,
+        "slippery_object": 4.416054985533613e-25,
+        "camera_shift": 4.266799571683883e-43,
+        "unknown": 3.70669290082785e-115
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 2 steps, most at 2.2 s (surprise 107; spikes start at 14).\n  My explanation: something pushed my arm, probability 1.00 (onset=20, end=22, force_N=[-5.6, -5.2, -17.4], offset_mm=[0.2, 1.3, -0.1]).",
+      "realized_disturbances": []
+    },
+    {
+      "index": 12,
+      "seed": 110012,
+      "condition": "none",
+      "disturbance_draw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "success": true,
+      "steps": 84,
+      "inferred": "none",
+      "posterior": null,
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions held throughout.\n  My explanation: nothing unusual happened.",
+      "realized_disturbances": []
+    },
+    {
+      "index": 13,
+      "seed": 110013,
+      "condition": "none",
+      "disturbance_draw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "success": true,
+      "steps": 65,
+      "inferred": "none",
+      "posterior": null,
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions held throughout.\n  My explanation: nothing unusual happened.",
+      "realized_disturbances": []
+    },
+    {
+      "index": 14,
+      "seed": 110014,
+      "condition": "none",
+      "disturbance_draw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "success": true,
+      "steps": 110,
+      "inferred": "none",
+      "posterior": {
+        "none": 0.9995461189601761,
+        "push": 4.353243278048769e-10,
+        "heavier_object": 0.0003761518721662525,
+        "slippery_object": 5.9956259811695155e-05,
+        "camera_shift": 1.77724725218643e-05,
+        "unknown": 1.708805035322366e-139
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions held throughout.\n  My explanation: nothing unusual happened, probability 1.00.",
+      "realized_disturbances": []
+    },
+    {
+      "index": 15,
+      "seed": 110015,
+      "condition": "none",
+      "disturbance_draw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "success": true,
+      "steps": 90,
+      "inferred": "none",
+      "posterior": null,
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions held throughout.\n  My explanation: nothing unusual happened.",
+      "realized_disturbances": []
+    },
+    {
+      "index": 16,
+      "seed": 110016,
+      "condition": "none",
+      "disturbance_draw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "success": true,
+      "steps": 79,
+      "inferred": "none",
+      "posterior": null,
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions held throughout.\n  My explanation: nothing unusual happened.",
+      "realized_disturbances": []
+    },
+    {
+      "index": 17,
+      "seed": 110017,
+      "condition": "none",
+      "disturbance_draw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "success": true,
+      "steps": 66,
+      "inferred": "none",
+      "posterior": null,
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions held throughout.\n  My explanation: nothing unusual happened.",
+      "realized_disturbances": []
+    },
+    {
+      "index": 18,
+      "seed": 110018,
+      "condition": "none",
+      "disturbance_draw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "success": true,
+      "steps": 90,
+      "inferred": "none",
+      "posterior": null,
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions held throughout.\n  My explanation: nothing unusual happened.",
+      "realized_disturbances": []
+    },
+    {
+      "index": 19,
+      "seed": 110019,
+      "condition": "none",
+      "disturbance_draw_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "success": true,
+      "steps": 67,
+      "inferred": "none",
+      "posterior": null,
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions held throughout.\n  My explanation: nothing unusual happened.",
+      "realized_disturbances": []
+    },
+    {
+      "index": 20,
+      "seed": 110020,
+      "condition": "push",
+      "disturbance_draw_sha256": "fb8df7f09b3c63d81d0889d18c04ebf6ccc5c94ff632530c1e5aba6b8b9ec02b",
+      "success": true,
+      "steps": 67,
+      "inferred": "push",
+      "posterior": {
+        "none": 0.0,
+        "push": 1.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 0.0
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 3 steps, most at 4.0 s (surprise 11217; spikes start at 14).\n  My explanation: something pushed my arm, probability 1.00 (onset=40, end=42, force_N=[30.7, -32.9, 0.0], offset_mm=[-0.9, 2.1, -1.0]).",
+      "realized_disturbances": [
+        {
+          "t": 202,
+          "type": "disturbance_start",
+          "disturbance": "push",
+          "params": {
+            "body": "hand",
+            "force": [
+              -30.622945113780137,
+              32.93512019078,
+              0.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 21,
+      "seed": 110021,
+      "condition": "push",
+      "disturbance_draw_sha256": "695ffc371bf5f389e3ab69885c8c5ae96e23da9552a272136e7bfd1df6d8033a",
+      "success": true,
+      "steps": 98,
+      "inferred": "push",
+      "posterior": {
+        "none": 2.5857798557671225e-154,
+        "push": 1.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 5.683574104934968e-160,
+        "unknown": 4.1442536940368625e-127
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 4 steps, most at 4.4 s (surprise 242; spikes start at 14).\n  My explanation: something pushed my arm, probability 1.00 (onset=43, end=45, force_N=[-9.1, -34.8, 1.8], offset_mm=[0.9, 2.5, -0.1]).",
+      "realized_disturbances": [
+        {
+          "t": 215,
+          "type": "disturbance_start",
+          "disturbance": "push",
+          "params": {
+            "body": "hand",
+            "force": [
+              9.193889865849886,
+              35.17942824574972,
+              0.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 22,
+      "seed": 110022,
+      "condition": "push",
+      "disturbance_draw_sha256": "612109b5b7da40676a041f4c134f846a5b3efa32180a38756d3b2c8dee230e7d",
+      "success": true,
+      "steps": 71,
+      "inferred": "push",
+      "posterior": {
+        "none": 0.0,
+        "push": 1.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 0.0
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 4 steps, most at 3.2 s (surprise 10858; spikes start at 14).\n  My explanation: something pushed my arm, probability 1.00 (onset=32, end=34, force_N=[38.3, -21.6, 0.1], offset_mm=[-2.5, 1.1, -1.9]).",
+      "realized_disturbances": [
+        {
+          "t": 160,
+          "type": "disturbance_start",
+          "disturbance": "push",
+          "params": {
+            "body": "hand",
+            "force": [
+              -38.23166875886555,
+              21.51595027099762,
+              0.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 23,
+      "seed": 110023,
+      "condition": "push",
+      "disturbance_draw_sha256": "e46c7491fca47ce74ec981bf5fd4ee6905e766ffbeab9b0fa48c9e9ba851f148",
+      "success": true,
+      "steps": 82,
+      "inferred": "push",
+      "posterior": {
+        "none": 0.0,
+        "push": 1.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 0.0
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 4 steps, most at 5.6 s (surprise 11564; spikes start at 14).\n  My explanation: something pushed my arm, probability 1.00 (onset=56, end=58, force_N=[20.3, 40.6, 0.1], offset_mm=[-0.5, -3.2, -1.4]).",
+      "realized_disturbances": [
+        {
+          "t": 280,
+          "type": "disturbance_start",
+          "disturbance": "push",
+          "params": {
+            "body": "hand",
+            "force": [
+              -20.35375723809742,
+              -40.50275759577518,
+              0.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 24,
+      "seed": 110024,
+      "condition": "push",
+      "disturbance_draw_sha256": "c9f51f78ed97af9282dd5fd248d90df31fb8dfe32441d0c982d21a35213cb0d7",
+      "success": true,
+      "steps": 81,
+      "inferred": "push",
+      "posterior": {
+        "none": 0.0,
+        "push": 1.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 0.0
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 4 steps, most at 4.5 s (surprise 5774; spikes start at 14).\n  My explanation: something pushed my arm, probability 1.00 (onset=45, end=47, force_N=[25.6, 19.5, 0.1], offset_mm=[-1.4, -0.9, -1.1]).",
+      "realized_disturbances": [
+        {
+          "t": 225,
+          "type": "disturbance_start",
+          "disturbance": "push",
+          "params": {
+            "body": "hand",
+            "force": [
+              -25.518741559454256,
+              -19.445146689232907,
+              0.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 25,
+      "seed": 110025,
+      "condition": "push",
+      "disturbance_draw_sha256": "f4ff1dfe870562487e776aad3cb0ea35200e5d24d0f84ac696475e538ecc0326",
+      "success": true,
+      "steps": 81,
+      "inferred": "push",
+      "posterior": {
+        "none": 0.0,
+        "push": 1.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 0.0
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 3 steps, most at 4.8 s (surprise 12609; spikes start at 14).\n  My explanation: something pushed my arm, probability 1.00 (onset=48, end=50, force_N=[-25.9, 40.0, 0.0], offset_mm=[1.0, -1.4, 0.3]).",
+      "realized_disturbances": [
+        {
+          "t": 242,
+          "type": "disturbance_start",
+          "disturbance": "push",
+          "params": {
+            "body": "hand",
+            "force": [
+              25.84698189737462,
+              -40.04621352314508,
+              0.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 26,
+      "seed": 110026,
+      "condition": "push",
+      "disturbance_draw_sha256": "4a3a82f921f3dd3ba7942643c4589936f696b5cdc0111b84c7b56451116dadd4",
+      "success": true,
+      "steps": 60,
+      "inferred": "push",
+      "posterior": {
+        "none": 0.0,
+        "push": 1.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 0.0
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 4 steps, most at 3.6 s (surprise 13382; spikes start at 14).\n  My explanation: something pushed my arm, probability 1.00 (onset=36, end=38, force_N=[-9.6, 48.2, 0.1], offset_mm=[-0.1, -2.4, 0.0]).",
+      "realized_disturbances": [
+        {
+          "t": 182,
+          "type": "disturbance_start",
+          "disturbance": "push",
+          "params": {
+            "body": "hand",
+            "force": [
+              9.616133766305492,
+              -48.226187581268746,
+              0.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 27,
+      "seed": 110027,
+      "condition": "push",
+      "disturbance_draw_sha256": "d7cee28e09d0b6e34a4047d8a64a84674afdff3080da54d786d0000e90bbc905",
+      "success": true,
+      "steps": 73,
+      "inferred": "push",
+      "posterior": {
+        "none": 0.0,
+        "push": 1.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 0.0
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 3 steps, most at 5.6 s (surprise 7400; spikes start at 14).\n  My explanation: something pushed my arm, probability 1.00 (onset=55, end=57, force_N=[-25.5, -26.0, 0.1], offset_mm=[0.3, 1.2, 1.0]).",
+      "realized_disturbances": [
+        {
+          "t": 278,
+          "type": "disturbance_start",
+          "disturbance": "push",
+          "params": {
+            "body": "hand",
+            "force": [
+              25.423019340802494,
+              26.17376691532297,
+              0.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 28,
+      "seed": 110028,
+      "condition": "push",
+      "disturbance_draw_sha256": "11838b68bb9fcba73fcd7ea9e88f57061d1fd7a397b6e0b0bba046edcc504457",
+      "success": true,
+      "steps": 64,
+      "inferred": "push",
+      "posterior": {
+        "none": 0.0,
+        "push": 1.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 0.0
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 3 steps, most at 6.2 s (surprise 6296; spikes start at 14).\n  My explanation: something pushed my arm, probability 1.00 (onset=62, end=64, force_N=[33.0, 6.1, 0.0], offset_mm=[-1.1, -0.2, -0.7]).",
+      "realized_disturbances": [
+        {
+          "t": 311,
+          "type": "disturbance_start",
+          "disturbance": "push",
+          "params": {
+            "body": "hand",
+            "force": [
+              -32.96795458658759,
+              -6.044348388894849,
+              0.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 29,
+      "seed": 110029,
+      "condition": "push",
+      "disturbance_draw_sha256": "af0959792168b7805ebff20e02c1f6bbed6fb2bc7cf98ec5c2b820361e11336d",
+      "success": true,
+      "steps": 71,
+      "inferred": "push",
+      "posterior": {
+        "none": 0.0,
+        "push": 1.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 0.0
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 3 steps, most at 3.4 s (surprise 12989; spikes start at 14).\n  My explanation: something pushed my arm, probability 1.00 (onset=33, end=35, force_N=[-33.7, -34.9, 0.0], offset_mm=[0.7, 0.4, -0.1]).",
+      "realized_disturbances": [
+        {
+          "t": 168,
+          "type": "disturbance_start",
+          "disturbance": "push",
+          "params": {
+            "body": "hand",
+            "force": [
+              33.73366578301357,
+              34.97420986187734,
+              0.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 30,
+      "seed": 110030,
+      "condition": "push",
+      "disturbance_draw_sha256": "27b274170ada460ae6322d3210ab3c71aee7d40143aee6ff7fe21b1b11427155",
+      "success": true,
+      "steps": 64,
+      "inferred": "push",
+      "posterior": {
+        "none": 0.0,
+        "push": 1.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 0.0
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 4 steps, most at 4.6 s (surprise 8705; spikes start at 14).\n  My explanation: something pushed my arm, probability 1.00 (onset=46, end=48, force_N=[25.9, 29.7, 0.0], offset_mm=[-1.1, -3.3, -0.5]).",
+      "realized_disturbances": [
+        {
+          "t": 231,
+          "type": "disturbance_start",
+          "disturbance": "push",
+          "params": {
+            "body": "hand",
+            "force": [
+              -25.842526249472257,
+              -29.66042808150075,
+              0.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 31,
+      "seed": 110031,
+      "condition": "push",
+      "disturbance_draw_sha256": "401d11da8bfa4ea448754b93d2a249b12b2589ce0c3bb4e6490eeb026da08de9",
+      "success": true,
+      "steps": 70,
+      "inferred": "push",
+      "posterior": {
+        "none": 0.0,
+        "push": 1.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 0.0
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 4 steps, most at 3.1 s (surprise 14013; spikes start at 14).\n  My explanation: something pushed my arm, probability 1.00 (onset=31, end=33, force_N=[49.7, 5.3, 0.1], offset_mm=[-2.8, -0.4, -2.2]).",
+      "realized_disturbances": [
+        {
+          "t": 155,
+          "type": "disturbance_start",
+          "disturbance": "push",
+          "params": {
+            "body": "hand",
+            "force": [
+              -49.57054967607526,
+              -5.241090021422943,
+              0.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 32,
+      "seed": 110032,
+      "condition": "push",
+      "disturbance_draw_sha256": "9cf95f362c32d9d082083fa31fcfb35e54d6101f64ef0ee88b7b2c99471d40fd",
+      "success": true,
+      "steps": 70,
+      "inferred": "push",
+      "posterior": {
+        "none": 0.0,
+        "push": 1.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 0.0
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 4 steps, most at 5.1 s (surprise 7666; spikes start at 14).\n  My explanation: something pushed my arm, probability 1.00 (onset=50, end=52, force_N=[-5.7, -36.8, 0.0], offset_mm=[-0.2, 1.8, -0.1]).",
+      "realized_disturbances": [
+        {
+          "t": 252,
+          "type": "disturbance_start",
+          "disturbance": "push",
+          "params": {
+            "body": "hand",
+            "force": [
+              5.683254580666437,
+              36.78268134406217,
+              0.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 33,
+      "seed": 110033,
+      "condition": "push",
+      "disturbance_draw_sha256": "20253c7ea1a3f966a588c8d96e249c33d4ced8af3365cdf300181e6db267f6f8",
+      "success": true,
+      "steps": 58,
+      "inferred": "push",
+      "posterior": {
+        "none": 0.0,
+        "push": 1.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 0.0
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 4 steps, most at 4.3 s (surprise 13169; spikes start at 14).\n  My explanation: something pushed my arm, probability 1.00 (onset=41, end=43, force_N=[-2.7, -48.5, 0.0], offset_mm=[0.2, 2.3, 0.5]).",
+      "realized_disturbances": [
+        {
+          "t": 208,
+          "type": "disturbance_start",
+          "disturbance": "push",
+          "params": {
+            "body": "hand",
+            "force": [
+              2.705163912170924,
+              48.734447077584285,
+              0.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 34,
+      "seed": 110034,
+      "condition": "push",
+      "disturbance_draw_sha256": "b413ee67682e78bd6cfef17d51f7a6f83b606ef7fe61c2e8c063967670771997",
+      "success": true,
+      "steps": 102,
+      "inferred": "push",
+      "posterior": {
+        "none": 7.0909373293338355e-155,
+        "push": 1.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 1.2810998580629711e-160,
+        "unknown": 2.420958428470394e-140
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 3 steps, most at 5.3 s (surprise 208; spikes start at 14).\n  My explanation: something pushed my arm, probability 1.00 (onset=53, end=55, force_N=[15.2, 39.4, 2.4], offset_mm=[-0.4, -1.4, 0.2]).",
+      "realized_disturbances": [
+        {
+          "t": 267,
+          "type": "disturbance_start",
+          "disturbance": "push",
+          "params": {
+            "body": "hand",
+            "force": [
+              -15.27820493033162,
+              -39.47144809259728,
+              0.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 35,
+      "seed": 110035,
+      "condition": "push",
+      "disturbance_draw_sha256": "138672c001138d8ab43af6c050413d6de5de0b0964d182f2c354fbe00cddc506",
+      "success": true,
+      "steps": 81,
+      "inferred": "push",
+      "posterior": {
+        "none": 0.0,
+        "push": 1.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 2.95570844531169e-309
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 3 steps, most at 2.5 s (surprise 2225; spikes start at 14).\n  My explanation: something pushed my arm, probability 1.00 (onset=25, end=27, force_N=[-31.1, -19.9, -0.0], offset_mm=[1.3, 1.0, 1.1]).",
+      "realized_disturbances": [
+        {
+          "t": 126,
+          "type": "disturbance_start",
+          "disturbance": "push",
+          "params": {
+            "body": "hand",
+            "force": [
+              31.023407772723218,
+              19.85257856457825,
+              0.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 36,
+      "seed": 110036,
+      "condition": "push",
+      "disturbance_draw_sha256": "682bf5025f4e4669c861c67456c37f3472973354ce7fbcb63c256c592758ca9a",
+      "success": true,
+      "steps": 62,
+      "inferred": "push",
+      "posterior": {
+        "none": 0.0,
+        "push": 1.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 0.0
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 4 steps, most at 4.5 s (surprise 10983; spikes start at 14).\n  My explanation: something pushed my arm, probability 1.00 (onset=45, end=47, force_N=[36.3, -25.4, 0.1], offset_mm=[-1.1, 1.0, -0.9]).",
+      "realized_disturbances": [
+        {
+          "t": 227,
+          "type": "disturbance_start",
+          "disturbance": "push",
+          "params": {
+            "body": "hand",
+            "force": [
+              -36.318262788373765,
+              25.429771770930518,
+              0.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 37,
+      "seed": 110037,
+      "condition": "push",
+      "disturbance_draw_sha256": "81371c2a311c23357790b2a700f08f0addbf301c0c14b2ebf44133c4de4f30b6",
+      "success": true,
+      "steps": 72,
+      "inferred": "push",
+      "posterior": {
+        "none": 0.0,
+        "push": 1.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 0.0
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 4 steps, most at 3.6 s (surprise 6941; spikes start at 14).\n  My explanation: something pushed my arm, probability 1.00 (onset=36, end=38, force_N=[-23.1, -26.6, -0.0], offset_mm=[1.1, 2.2, 0.5]).",
+      "realized_disturbances": [
+        {
+          "t": 180,
+          "type": "disturbance_start",
+          "disturbance": "push",
+          "params": {
+            "body": "hand",
+            "force": [
+              23.09865851982747,
+              26.518970697413792,
+              0.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 38,
+      "seed": 110038,
+      "condition": "push",
+      "disturbance_draw_sha256": "76eda0fb37f42e7bc77a128cf28e5cdae4ba11ecdc9a43ccb5fe88f75051ae4d",
+      "success": true,
+      "steps": 62,
+      "inferred": "push",
+      "posterior": {
+        "none": 0.0,
+        "push": 1.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 0.0
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 3 steps, most at 6.1 s (surprise 6602; spikes start at 14).\n  My explanation: something pushed my arm, probability 1.00 (onset=61, end=63, force_N=[20.1, -27.9, 0.0], offset_mm=[-0.5, 2.1, -0.8]).",
+      "realized_disturbances": [
+        {
+          "t": 306,
+          "type": "disturbance_start",
+          "disturbance": "push",
+          "params": {
+            "body": "hand",
+            "force": [
+              -20.061415365686738,
+              27.814838725997888,
+              0.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 39,
+      "seed": 110039,
+      "condition": "push",
+      "disturbance_draw_sha256": "3bbb789f2c480da5d4dd72decccfafb0ad79b3de7afc6180cccbb657aedf8e49",
+      "success": true,
+      "steps": 129,
+      "inferred": "push",
+      "posterior": {
+        "none": 3.634375447741613e-47,
+        "push": 1.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 1.4165657462382664e-52,
+        "unknown": 5.0351446961245355e-129
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 3 steps, most at 4.9 s (surprise 57; spikes start at 14).\n  My explanation: something pushed my arm, probability 1.00 (onset=47, end=49, force_N=[-25.2, -32.1, 5.2], offset_mm=[1.0, 1.4, 0.5]).",
+      "realized_disturbances": [
+        {
+          "t": 237,
+          "type": "disturbance_start",
+          "disturbance": "push",
+          "params": {
+            "body": "hand",
+            "force": [
+              24.34194991364562,
+              32.27309530321986,
+              0.0
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 40,
+      "seed": 110040,
+      "condition": "heavier_object",
+      "disturbance_draw_sha256": "b5e829a637e87ddd14a115d7cc7b043d1e91e1a313b9658aa44a2786ccee9d40",
+      "success": true,
+      "steps": 84,
+      "inferred": "heavier_object",
+      "posterior": {
+        "none": 0.0,
+        "push": 1.8798843194212104e-06,
+        "heavier_object": 0.9999981201156806,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 9.638342972474299e-204
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 26 steps, most at 6.5 s (surprise 189; spikes start at 14).\n  My explanation: the object is heavier than I expected, probability 1.00 (extra_weight_N=5.67, extra_mass_kg=0.578, sag_mm=0.21).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "payload",
+          "params": {
+            "body": "red",
+            "mass": 0.59272050811729
+          }
+        }
+      ]
+    },
+    {
+      "index": 41,
+      "seed": 110041,
+      "condition": "heavier_object",
+      "disturbance_draw_sha256": "4e9ee49f2c28e1acdd0d2ad63c8aaff03496121bbbd7ae35ff26c7a3353f1bea",
+      "success": true,
+      "steps": 67,
+      "inferred": "heavier_object",
+      "posterior": {
+        "none": 0.0,
+        "push": 1.699489326030457e-06,
+        "heavier_object": 0.999998300510674,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 6.090861213167756e-164
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 17 steps, most at 4.0 s (surprise 60; spikes start at 14).\n  My explanation: the object is heavier than I expected, probability 1.00 (extra_weight_N=3.18, extra_mass_kg=0.325, sag_mm=0.35).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "payload",
+          "params": {
+            "body": "red",
+            "mass": 0.3279017972997615
+          }
+        }
+      ]
+    },
+    {
+      "index": 42,
+      "seed": 110042,
+      "condition": "heavier_object",
+      "disturbance_draw_sha256": "f3e481e6fb0b60e6397a2b37fc230d5956c8bbb5587019e631eef57285b5a62a",
+      "success": true,
+      "steps": 56,
+      "inferred": "heavier_object",
+      "posterior": {
+        "none": 4.104208392636228e-155,
+        "push": 2.6562564612397874e-07,
+        "heavier_object": 0.9999997343743539,
+        "slippery_object": 1.0105254499218129e-162,
+        "camera_shift": 9.13570246435073e-161,
+        "unknown": 1.1740599451111687e-148
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 17 steps, most at 2.1 s (surprise 69; spikes start at 14).\n  My explanation: the object is heavier than I expected, probability 1.00 (extra_weight_N=3.48, extra_mass_kg=0.354, sag_mm=0.0).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "payload",
+          "params": {
+            "body": "red",
+            "mass": 0.35702710975262913
+          }
+        }
+      ]
+    },
+    {
+      "index": 43,
+      "seed": 110043,
+      "condition": "heavier_object",
+      "disturbance_draw_sha256": "0b03bb8b7341fc70011244b3588a9c4201caeeba9cc38df8bc6c7f34ba6a81f0",
+      "success": true,
+      "steps": 111,
+      "inferred": "heavier_object",
+      "posterior": {
+        "none": 0.0,
+        "push": 1.256122778800273e-07,
+        "heavier_object": 0.9999998743877221,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 1.7023993197008184e-169
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 18 steps, most at 8.4 s (surprise 78; spikes start at 14).\n  My explanation: the object is heavier than I expected, probability 1.00 (extra_weight_N=3.57, extra_mass_kg=0.364, sag_mm=0.26).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "payload",
+          "params": {
+            "body": "red",
+            "mass": 0.3686335997202528
+          }
+        }
+      ]
+    },
+    {
+      "index": 44,
+      "seed": 110044,
+      "condition": "heavier_object",
+      "disturbance_draw_sha256": "05a9fd4ea2f7579951a1176d2746dab659548db7da1eb530bb1d85b124462c73",
+      "success": true,
+      "steps": 138,
+      "inferred": "heavier_object",
+      "posterior": {
+        "none": 0.0,
+        "push": 0.00023748830215989417,
+        "heavier_object": 0.9997625116978401,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 4.964379798518329e-212
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 39 steps, most at 11.1 s (surprise 159; spikes start at 14).\n  My explanation: the object is heavier than I expected, probability 1.00 (extra_weight_N=5.07, extra_mass_kg=0.517, sag_mm=0.2).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "payload",
+          "params": {
+            "body": "red",
+            "mass": 0.5258214805467913
+          }
+        }
+      ]
+    },
+    {
+      "index": 45,
+      "seed": 110045,
+      "condition": "heavier_object",
+      "disturbance_draw_sha256": "f5d6fee01fe2cc846299f7dfb09d1f05f931d1f172580805890baa2cbc636dd5",
+      "success": true,
+      "steps": 87,
+      "inferred": "heavier_object",
+      "posterior": {
+        "none": 0.0,
+        "push": 1.1673591419050933e-05,
+        "heavier_object": 0.9999883264085809,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 2.058797918047616e-169
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 19 steps, most at 4.4 s (surprise 93; spikes start at 14).\n  My explanation: the object is heavier than I expected, probability 1.00 (extra_weight_N=3.94, extra_mass_kg=0.402, sag_mm=0.24).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "payload",
+          "params": {
+            "body": "red",
+            "mass": 0.4076593538961932
+          }
+        }
+      ]
+    },
+    {
+      "index": 46,
+      "seed": 110046,
+      "condition": "heavier_object",
+      "disturbance_draw_sha256": "286b1f90fa4e0f2574f3a678550b3072c3a186967a8e4b8322293fe293284e8c",
+      "success": true,
+      "steps": 149,
+      "inferred": "heavier_object",
+      "posterior": {
+        "none": 2.2589803500507823e-69,
+        "push": 4.4814966626242537e-07,
+        "heavier_object": 0.9999995518503338,
+        "slippery_object": 1.0884113502928047e-76,
+        "camera_shift": 3.5108388561360735e-74,
+        "unknown": 1.0357530231559803e-135
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 9 steps, most at 11.0 s (surprise 49; spikes start at 14).\n  My explanation: the object is heavier than I expected, probability 1.00 (extra_weight_N=6.87, extra_mass_kg=0.7, sag_mm=0.2).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "payload",
+          "params": {
+            "body": "red",
+            "mass": 0.43287463893182154
+          }
+        }
+      ]
+    },
+    {
+      "index": 47,
+      "seed": 110047,
+      "condition": "heavier_object",
+      "disturbance_draw_sha256": "c593fa846520a79ffa529c8ce5e087ddd7f0f7d56e15dedcf00c327624df9b57",
+      "success": true,
+      "steps": 66,
+      "inferred": "heavier_object",
+      "posterior": {
+        "none": 0.0,
+        "push": 4.612048200993692e-06,
+        "heavier_object": 0.999995387951799,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 1.0134389780167616e-157
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 36 steps, most at 2.4 s (surprise 167; spikes start at 14).\n  My explanation: the object is heavier than I expected, probability 1.00 (extra_weight_N=5.22, extra_mass_kg=0.532, sag_mm=0.15).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "payload",
+          "params": {
+            "body": "red",
+            "mass": 0.5413779990836203
+          }
+        }
+      ]
+    },
+    {
+      "index": 48,
+      "seed": 110048,
+      "condition": "heavier_object",
+      "disturbance_draw_sha256": "2f1bd5b0622fbef40bc0485af0d00aa2a19718110bfc11cc0e00f4af4a4e20c2",
+      "success": true,
+      "steps": 63,
+      "inferred": "heavier_object",
+      "posterior": {
+        "none": 0.0,
+        "push": 8.799461989101578e-08,
+        "heavier_object": 0.9999999120053802,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 2.1468839165813536e-155
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 17 steps, most at 3.6 s (surprise 57; spikes start at 14).\n  My explanation: the object is heavier than I expected, probability 1.00 (extra_weight_N=3.15, extra_mass_kg=0.322, sag_mm=0.2).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "payload",
+          "params": {
+            "body": "red",
+            "mass": 0.3248110501071808
+          }
+        }
+      ]
+    },
+    {
+      "index": 49,
+      "seed": 110049,
+      "condition": "heavier_object",
+      "disturbance_draw_sha256": "2ac28f62bd9d69436bd624d444feaefad1b6bf21f95a0a5c96aec7d6d0a08fa1",
+      "success": true,
+      "steps": 61,
+      "inferred": "heavier_object",
+      "posterior": {
+        "none": 0.0,
+        "push": 3.197895034625769e-05,
+        "heavier_object": 0.9999680210496538,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 1.40842461439102e-135
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 35 steps, most at 2.3 s (surprise 117; spikes start at 14).\n  My explanation: the object is heavier than I expected, probability 1.00 (extra_weight_N=4.6, extra_mass_kg=0.469, sag_mm=0.11).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "payload",
+          "params": {
+            "body": "red",
+            "mass": 0.47277319918052996
+          }
+        }
+      ]
+    },
+    {
+      "index": 50,
+      "seed": 110050,
+      "condition": "heavier_object",
+      "disturbance_draw_sha256": "a6c3793dc1a6e033a8bcceebc371097858b6440b625c51087b3b820802c56567",
+      "success": true,
+      "steps": 78,
+      "inferred": "heavier_object",
+      "posterior": {
+        "none": 0.0,
+        "push": 2.210889975393095e-07,
+        "heavier_object": 0.9999997789110024,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 7.170061614200166e-178
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 33 steps, most at 4.5 s (surprise 116; spikes start at 14).\n  My explanation: the object is heavier than I expected, probability 1.00 (extra_weight_N=4.42, extra_mass_kg=0.451, sag_mm=0.19).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "payload",
+          "params": {
+            "body": "red",
+            "mass": 0.45820107857113723
+          }
+        }
+      ]
+    },
+    {
+      "index": 51,
+      "seed": 110051,
+      "condition": "heavier_object",
+      "disturbance_draw_sha256": "7685469fd404793dfb28084739d1b35ab6bf1edeb04690a1bc0069f7276ae430",
+      "success": true,
+      "steps": 77,
+      "inferred": "heavier_object",
+      "posterior": {
+        "none": 0.0,
+        "push": 2.9313245527885944e-06,
+        "heavier_object": 0.9999970686754471,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 4.100115141440064e-192
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 31 steps, most at 5.8 s (surprise 138; spikes start at 14).\n  My explanation: the object is heavier than I expected, probability 1.00 (extra_weight_N=4.81, extra_mass_kg=0.491, sag_mm=0.19).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "payload",
+          "params": {
+            "body": "red",
+            "mass": 0.5022507358909214
+          }
+        }
+      ]
+    },
+    {
+      "index": 52,
+      "seed": 110052,
+      "condition": "heavier_object",
+      "disturbance_draw_sha256": "d8ecbceac38069967da64d62105186af06bff15414aee51d026b308fd3c0bce6",
+      "success": true,
+      "steps": 100,
+      "inferred": "heavier_object",
+      "posterior": {
+        "none": 0.0,
+        "push": 9.959418546182242e-07,
+        "heavier_object": 0.9999990040581455,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 1.1778812509206454e-180
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 27 steps, most at 7.8 s (surprise 93; spikes start at 14).\n  My explanation: the object is heavier than I expected, probability 1.00 (extra_weight_N=3.99, extra_mass_kg=0.407, sag_mm=0.08).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "payload",
+          "params": {
+            "body": "red",
+            "mass": 0.41190254232060813
+          }
+        }
+      ]
+    },
+    {
+      "index": 53,
+      "seed": 110053,
+      "condition": "heavier_object",
+      "disturbance_draw_sha256": "1a0eb2a35d94ffa5fa1e48409b0376e06172dcc21dabc09622790a0c69b210bb",
+      "success": true,
+      "steps": 69,
+      "inferred": "heavier_object",
+      "posterior": {
+        "none": 0.0,
+        "push": 1.6531414540001077e-07,
+        "heavier_object": 0.9999998346858545,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 7.5461159809703085e-202
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 42 steps, most at 3.8 s (surprise 123; spikes start at 14).\n  My explanation: the object is heavier than I expected, probability 1.00 (extra_weight_N=4.57, extra_mass_kg=0.466, sag_mm=0.17).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "payload",
+          "params": {
+            "body": "red",
+            "mass": 0.47107286836201767
+          }
+        }
+      ]
+    },
+    {
+      "index": 54,
+      "seed": 110054,
+      "condition": "heavier_object",
+      "disturbance_draw_sha256": "8c0d23c6e3ad8261fe43aaacf4d66113b92ec15956dd897e302f1d614d956308",
+      "success": true,
+      "steps": 68,
+      "inferred": "heavier_object",
+      "posterior": {
+        "none": 1.8412945275867842e-284,
+        "push": 9.383271522883812e-08,
+        "heavier_object": 0.9999999061672847,
+        "slippery_object": 5.123867557209825e-291,
+        "camera_shift": 8.470007937256774e-290,
+        "unknown": 7.622462342986695e-156
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 16 steps, most at 2.7 s (surprise 60; spikes start at 14).\n  My explanation: the object is heavier than I expected, probability 1.00 (extra_weight_N=3.2, extra_mass_kg=0.326, sag_mm=0.14).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "payload",
+          "params": {
+            "body": "red",
+            "mass": 0.32944618443275325
+          }
+        }
+      ]
+    },
+    {
+      "index": 55,
+      "seed": 110055,
+      "condition": "heavier_object",
+      "disturbance_draw_sha256": "e3c24fc8e956a560af9568e413530a9a99b8953542eec78b3a033576a0dd17b6",
+      "success": true,
+      "steps": 74,
+      "inferred": "heavier_object",
+      "posterior": {
+        "none": 0.0,
+        "push": 1.2772729801802116e-06,
+        "heavier_object": 0.9999987227270198,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 1.4877288921655204e-170
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 25 steps, most at 4.9 s (surprise 62; spikes start at 14).\n  My explanation: the object is heavier than I expected, probability 1.00 (extra_weight_N=3.21, extra_mass_kg=0.327, sag_mm=0.38).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "payload",
+          "params": {
+            "body": "red",
+            "mass": 0.33103746613169294
+          }
+        }
+      ]
+    },
+    {
+      "index": 56,
+      "seed": 110056,
+      "condition": "heavier_object",
+      "disturbance_draw_sha256": "be41097e60d7fbdb587cc1a3389db4f22d3d25133417850d83420ee14bade123",
+      "success": true,
+      "steps": 61,
+      "inferred": "heavier_object",
+      "posterior": {
+        "none": 0.0,
+        "push": 8.855720029090713e-08,
+        "heavier_object": 0.9999999114427996,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 1.0407328492860687e-188
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 33 steps, most at 3.0 s (surprise 149; spikes start at 14).\n  My explanation: the object is heavier than I expected, probability 1.00 (extra_weight_N=5.08, extra_mass_kg=0.518, sag_mm=0.19).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "payload",
+          "params": {
+            "body": "red",
+            "mass": 0.5224686972612781
+          }
+        }
+      ]
+    },
+    {
+      "index": 57,
+      "seed": 110057,
+      "condition": "heavier_object",
+      "disturbance_draw_sha256": "8c015e1875a39441d847c854971188021ecba6f9e7059bc677e39fec5af1c1ee",
+      "success": true,
+      "steps": 56,
+      "inferred": "heavier_object",
+      "posterior": {
+        "none": 1.9415787357765162e-174,
+        "push": 1.5625534268507069e-06,
+        "heavier_object": 0.9999984374465731,
+        "slippery_object": 2.192918620843926e-182,
+        "camera_shift": 4.9205608670509984e-180,
+        "unknown": 1.0660128209889778e-147
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 14 steps, most at 2.2 s (surprise 74; spikes start at 14).\n  My explanation: the object is heavier than I expected, probability 1.00 (extra_weight_N=3.56, extra_mass_kg=0.362, sag_mm=0.04).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "payload",
+          "params": {
+            "body": "red",
+            "mass": 0.36789483090114833
+          }
+        }
+      ]
+    },
+    {
+      "index": 58,
+      "seed": 110058,
+      "condition": "heavier_object",
+      "disturbance_draw_sha256": "57d486094fd30c8bcc44c07504ae319e7627446b4b1fd4c9481d2359c6eff5ac",
+      "success": true,
+      "steps": 70,
+      "inferred": "heavier_object",
+      "posterior": {
+        "none": 0.0,
+        "push": 4.721629159024066e-06,
+        "heavier_object": 0.9999952783708409,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 2.73211102383887e-162
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 36 steps, most at 2.9 s (surprise 188; spikes start at 14).\n  My explanation: the object is heavier than I expected, probability 1.00 (extra_weight_N=5.6, extra_mass_kg=0.571, sag_mm=0.05).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "payload",
+          "params": {
+            "body": "red",
+            "mass": 0.579756020610569
+          }
+        }
+      ]
+    },
+    {
+      "index": 59,
+      "seed": 110059,
+      "condition": "heavier_object",
+      "disturbance_draw_sha256": "1d4807a1d374b791bb5290d67d112b5eb6ee1c7f6c58cc87f16cbf3eb0ce3c5e",
+      "success": true,
+      "steps": 113,
+      "inferred": "heavier_object",
+      "posterior": {
+        "none": 0.0,
+        "push": 1.417539434320515e-07,
+        "heavier_object": 0.9999998582460566,
+        "slippery_object": 0.0,
+        "camera_shift": 0.0,
+        "unknown": 2.1114286841910028e-185
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 21 steps, most at 8.6 s (surprise 106; spikes start at 14).\n  My explanation: the object is heavier than I expected, probability 1.00 (extra_weight_N=4.27, extra_mass_kg=0.435, sag_mm=0.3).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "payload",
+          "params": {
+            "body": "red",
+            "mass": 0.4392059150820017
+          }
+        }
+      ]
+    },
+    {
+      "index": 60,
+      "seed": 110060,
+      "condition": "slippery_object",
+      "disturbance_draw_sha256": "1eea95f0a3bfa4b8261201999904806da060c3249e1af528ed44461520cfa713",
+      "success": true,
+      "steps": 149,
+      "inferred": "slippery_object",
+      "posterior": {
+        "none": 8.479264508213897e-07,
+        "push": 8.834553409934445e-11,
+        "heavier_object": 0.0,
+        "slippery_object": 0.9999986689066643,
+        "camera_shift": 4.830785394082453e-07,
+        "unknown": 6.753538397007028e-137
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 1 steps, most at 1.9 s (surprise 35; spikes start at 14).\n  My explanation: the object is sliding in my hand, probability 1.00 (onset=4, sink_mm=-0.0, slide_mm=[16.4, -0.1], weight_lost_N=-0.0).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "friction",
+          "params": {
+            "body": "red",
+            "scale": 0.05
+          }
+        }
+      ]
+    },
+    {
+      "index": 61,
+      "seed": 110061,
+      "condition": "slippery_object",
+      "disturbance_draw_sha256": "1eea95f0a3bfa4b8261201999904806da060c3249e1af528ed44461520cfa713",
+      "success": false,
+      "steps": 149,
+      "inferred": "slippery_object",
+      "posterior": {
+        "none": 6.296401581304983e-149,
+        "push": 4.7936203197846453e-88,
+        "heavier_object": 1.2081791756811863e-145,
+        "slippery_object": 1.0,
+        "camera_shift": 3.831686479458073e-88,
+        "unknown": 1.3070881453377976e-140
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 5 steps, most at 4.2 s (surprise 361; spikes start at 14).\n  My explanation: the object is sliding in my hand, probability 1.00 (onset=42, sink_mm=46.3, slide_mm=[-0.2, 5.9], weight_lost_N=0.73).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "friction",
+          "params": {
+            "body": "red",
+            "scale": 0.05
+          }
+        }
+      ]
+    },
+    {
+      "index": 62,
+      "seed": 110062,
+      "condition": "slippery_object",
+      "disturbance_draw_sha256": "1eea95f0a3bfa4b8261201999904806da060c3249e1af528ed44461520cfa713",
+      "success": true,
+      "steps": 149,
+      "inferred": "slippery_object",
+      "posterior": {
+        "none": 2.0268770250537492e-184,
+        "push": 3.13678322178588e-103,
+        "heavier_object": 3.067607412144463e-177,
+        "slippery_object": 1.0,
+        "camera_shift": 9.970245315794636e-99,
+        "unknown": 6.399030742952353e-86
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 5 steps, most at 14.7 s (surprise 442; spikes start at 14).\n  My explanation: the object is sliding in my hand, probability 1.00 (onset=147, sink_mm=45.7, slide_mm=[1.2, 6.6], weight_lost_N=0.78).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "friction",
+          "params": {
+            "body": "red",
+            "scale": 0.05
+          }
+        }
+      ]
+    },
+    {
+      "index": 63,
+      "seed": 110063,
+      "condition": "slippery_object",
+      "disturbance_draw_sha256": "1eea95f0a3bfa4b8261201999904806da060c3249e1af528ed44461520cfa713",
+      "success": false,
+      "steps": 149,
+      "inferred": "push",
+      "posterior": {
+        "none": 7.451386609555022e-112,
+        "push": 1.0,
+        "heavier_object": 5.205637596711009e-115,
+        "slippery_object": 4.098769152420303e-72,
+        "camera_shift": 1.2367110992877034e-94,
+        "unknown": 3.4328106060308067e-46
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 10 steps, most at 12.8 s (surprise 282; spikes start at 14).\n  My explanation: something pushed my arm, probability 1.00 (onset=128, end=128, force_N=[1.1, 9.4, -4.4], offset_mm=[0.3, 0.4, -0.4]).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "friction",
+          "params": {
+            "body": "red",
+            "scale": 0.05
+          }
+        }
+      ]
+    },
+    {
+      "index": 64,
+      "seed": 110064,
+      "condition": "slippery_object",
+      "disturbance_draw_sha256": "1eea95f0a3bfa4b8261201999904806da060c3249e1af528ed44461520cfa713",
+      "success": false,
+      "steps": 149,
+      "inferred": "slippery_object",
+      "posterior": {
+        "none": 3.275260283922126e-127,
+        "push": 3.3254275621211134e-89,
+        "heavier_object": 1.1317307942278373e-126,
+        "slippery_object": 1.0,
+        "camera_shift": 1.767114404725819e-86,
+        "unknown": 2.427463157126131e-135
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 4 steps, most at 12.5 s (surprise 310; spikes start at 14).\n  My explanation: the object is sliding in my hand, probability 1.00 (onset=125, sink_mm=50.6, slide_mm=[1.2, 1.6], weight_lost_N=0.82).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "friction",
+          "params": {
+            "body": "red",
+            "scale": 0.05
+          }
+        }
+      ]
+    },
+    {
+      "index": 65,
+      "seed": 110065,
+      "condition": "slippery_object",
+      "disturbance_draw_sha256": "1eea95f0a3bfa4b8261201999904806da060c3249e1af528ed44461520cfa713",
+      "success": true,
+      "steps": 149,
+      "inferred": "slippery_object",
+      "posterior": {
+        "none": 1.330277357231385e-102,
+        "push": 7.408565557307495e-56,
+        "heavier_object": 9.889816063777549e-102,
+        "slippery_object": 1.0,
+        "camera_shift": 3.507830709830986e-57,
+        "unknown": 6.309675728331515e-134
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 4 steps, most at 11.6 s (surprise 254; spikes start at 14).\n  My explanation: the object is sliding in my hand, probability 1.00 (onset=116, sink_mm=35.9, slide_mm=[0.1, -3.8], weight_lost_N=0.72).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "friction",
+          "params": {
+            "body": "red",
+            "scale": 0.05
+          }
+        }
+      ]
+    },
+    {
+      "index": 66,
+      "seed": 110066,
+      "condition": "slippery_object",
+      "disturbance_draw_sha256": "1eea95f0a3bfa4b8261201999904806da060c3249e1af528ed44461520cfa713",
+      "success": true,
+      "steps": 149,
+      "inferred": "slippery_object",
+      "posterior": {
+        "none": 2.3014435730301877e-97,
+        "push": 1.420743094344648e-59,
+        "heavier_object": 5.210765322762013e-93,
+        "slippery_object": 1.0,
+        "camera_shift": 1.4582464100949096e-58,
+        "unknown": 1.3442894099819926e-138
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 5 steps, most at 8.7 s (surprise 241; spikes start at 14).\n  My explanation: the object is sliding in my hand, probability 1.00 (onset=87, sink_mm=37.2, slide_mm=[3.1, 6.4], weight_lost_N=0.62).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "friction",
+          "params": {
+            "body": "red",
+            "scale": 0.05
+          }
+        }
+      ]
+    },
+    {
+      "index": 67,
+      "seed": 110067,
+      "condition": "slippery_object",
+      "disturbance_draw_sha256": "1eea95f0a3bfa4b8261201999904806da060c3249e1af528ed44461520cfa713",
+      "success": false,
+      "steps": 149,
+      "inferred": "slippery_object",
+      "posterior": {
+        "none": 2.7147305298023944e-173,
+        "push": 1.1372102677479538e-103,
+        "heavier_object": 1.399419261031365e-167,
+        "slippery_object": 1.0,
+        "camera_shift": 1.0745267560541602e-99,
+        "unknown": 7.209277831649141e-141
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 6 steps, most at 8.4 s (surprise 416; spikes start at 14).\n  My explanation: the object is sliding in my hand, probability 1.00 (onset=84, sink_mm=48.1, slide_mm=[-1.0, -5.0], weight_lost_N=0.77).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "friction",
+          "params": {
+            "body": "red",
+            "scale": 0.05
+          }
+        }
+      ]
+    },
+    {
+      "index": 68,
+      "seed": 110068,
+      "condition": "slippery_object",
+      "disturbance_draw_sha256": "1eea95f0a3bfa4b8261201999904806da060c3249e1af528ed44461520cfa713",
+      "success": false,
+      "steps": 149,
+      "inferred": "push",
+      "posterior": {
+        "none": 2.031021000644388e-151,
+        "push": 1.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 6.625363472859479e-157,
+        "unknown": 5.374368717186986e-117
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 20 steps, most at 9.4 s (surprise 115; spikes start at 14).\n  My explanation: something pushed my arm, probability 1.00 (onset=89, end=98, force_N=[-6.2, -25.4, -87.0], offset_mm=[1.1, 0.0, 1.8]).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "friction",
+          "params": {
+            "body": "red",
+            "scale": 0.05
+          }
+        }
+      ]
+    },
+    {
+      "index": 69,
+      "seed": 110069,
+      "condition": "slippery_object",
+      "disturbance_draw_sha256": "1eea95f0a3bfa4b8261201999904806da060c3249e1af528ed44461520cfa713",
+      "success": true,
+      "steps": 149,
+      "inferred": "slippery_object",
+      "posterior": {
+        "none": 1.0486912737564132e-210,
+        "push": 3.481469627517178e-119,
+        "heavier_object": 6.383206357744515e-199,
+        "slippery_object": 1.0,
+        "camera_shift": 1.3298683072359905e-117,
+        "unknown": 1.2852559840122127e-144
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 7 steps, most at 13.9 s (surprise 502; spikes start at 14).\n  My explanation: the object is sliding in my hand, probability 1.00 (onset=139, sink_mm=51.3, slide_mm=[0.7, -6.4], weight_lost_N=0.78).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "friction",
+          "params": {
+            "body": "red",
+            "scale": 0.05
+          }
+        }
+      ]
+    },
+    {
+      "index": 70,
+      "seed": 110070,
+      "condition": "slippery_object",
+      "disturbance_draw_sha256": "1eea95f0a3bfa4b8261201999904806da060c3249e1af528ed44461520cfa713",
+      "success": true,
+      "steps": 149,
+      "inferred": "slippery_object",
+      "posterior": {
+        "none": 6.830326396998524e-75,
+        "push": 1.5126964917409511e-47,
+        "heavier_object": 2.0427707917311862e-72,
+        "slippery_object": 1.0,
+        "camera_shift": 1.5527449386184182e-44,
+        "unknown": 3.0301355455641824e-116
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 7 steps, most at 2.9 s (surprise 190; spikes start at 14).\n  My explanation: the object is sliding in my hand, probability 1.00 (onset=29, sink_mm=31.8, slide_mm=[-0.2, 5.5], weight_lost_N=0.77).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "friction",
+          "params": {
+            "body": "red",
+            "scale": 0.05
+          }
+        }
+      ]
+    },
+    {
+      "index": 71,
+      "seed": 110071,
+      "condition": "slippery_object",
+      "disturbance_draw_sha256": "1eea95f0a3bfa4b8261201999904806da060c3249e1af528ed44461520cfa713",
+      "success": true,
+      "steps": 149,
+      "inferred": "push",
+      "posterior": {
+        "none": 1.106851231800337e-14,
+        "push": 0.9999999999999889,
+        "heavier_object": 1.2327379696425809e-17,
+        "slippery_object": 2.3913848975432356e-21,
+        "camera_shift": 3.6098135200311956e-20,
+        "unknown": 5.220105744012252e-108
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 2 steps, most at 13.8 s (surprise 57; spikes start at 14).\n  My explanation: something pushed my arm, probability 1.00 (onset=138, end=138, force_N=[-0.1, -3.1, -0.7], offset_mm=[-0.5, 0.4, -0.3]).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "friction",
+          "params": {
+            "body": "red",
+            "scale": 0.05
+          }
+        }
+      ]
+    },
+    {
+      "index": 72,
+      "seed": 110072,
+      "condition": "slippery_object",
+      "disturbance_draw_sha256": "1eea95f0a3bfa4b8261201999904806da060c3249e1af528ed44461520cfa713",
+      "success": false,
+      "steps": 149,
+      "inferred": "slippery_object",
+      "posterior": {
+        "none": 1.7819493216631098e-06,
+        "push": 6.621207973066152e-11,
+        "heavier_object": 0.0,
+        "slippery_object": 0.9999980613661252,
+        "camera_shift": 1.566183411771801e-07,
+        "unknown": 8.227924043041839e-135
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 2 steps, most at 2.8 s (surprise 32; spikes start at 14).\n  My explanation: the object is sliding in my hand, probability 1.00 (onset=13, sink_mm=-0.0, slide_mm=[-16.5, -3.4], weight_lost_N=-0.0).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "friction",
+          "params": {
+            "body": "red",
+            "scale": 0.05
+          }
+        }
+      ]
+    },
+    {
+      "index": 73,
+      "seed": 110073,
+      "condition": "slippery_object",
+      "disturbance_draw_sha256": "1eea95f0a3bfa4b8261201999904806da060c3249e1af528ed44461520cfa713",
+      "success": true,
+      "steps": 149,
+      "inferred": "slippery_object",
+      "posterior": {
+        "none": 1.5024677380197046e-63,
+        "push": 6.253026647494823e-40,
+        "heavier_object": 1.3899850751842851e-63,
+        "slippery_object": 1.0,
+        "camera_shift": 1.4501232149828594e-35,
+        "unknown": 7.868181518617284e-117
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 4 steps, most at 13.1 s (surprise 164; spikes start at 14).\n  My explanation: the object is sliding in my hand, probability 1.00 (onset=131, sink_mm=28.3, slide_mm=[0.3, -0.9], weight_lost_N=0.8).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "friction",
+          "params": {
+            "body": "red",
+            "scale": 0.05
+          }
+        }
+      ]
+    },
+    {
+      "index": 74,
+      "seed": 110074,
+      "condition": "slippery_object",
+      "disturbance_draw_sha256": "1eea95f0a3bfa4b8261201999904806da060c3249e1af528ed44461520cfa713",
+      "success": false,
+      "steps": 149,
+      "inferred": "unknown",
+      "posterior": {
+        "none": 5.5223639582027323e-191,
+        "push": 2.0781690254120814e-63,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 8.65704435070247e-197,
+        "unknown": 1.0
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 40 steps, most at 6.9 s (surprise 91; spikes start at 14).\n  My explanation: something happened that I cannot explain yet, probability 1.00 (residual_rms=1.41).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "friction",
+          "params": {
+            "body": "red",
+            "scale": 0.05
+          }
+        }
+      ]
+    },
+    {
+      "index": 75,
+      "seed": 110075,
+      "condition": "slippery_object",
+      "disturbance_draw_sha256": "1eea95f0a3bfa4b8261201999904806da060c3249e1af528ed44461520cfa713",
+      "success": true,
+      "steps": 149,
+      "inferred": "slippery_object",
+      "posterior": {
+        "none": 3.5985387429826755e-29,
+        "push": 5.395782575122978e-26,
+        "heavier_object": 1.295256096098957e-30,
+        "slippery_object": 1.0,
+        "camera_shift": 4.595799657846009e-21,
+        "unknown": 3.906103837262858e-135
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 2 steps, most at 14.3 s (surprise 84; spikes start at 14).\n  My explanation: the object is sliding in my hand, probability 1.00 (onset=143, sink_mm=24.1, slide_mm=[1.6, -6.0], weight_lost_N=0.78).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "friction",
+          "params": {
+            "body": "red",
+            "scale": 0.05
+          }
+        }
+      ]
+    },
+    {
+      "index": 76,
+      "seed": 110076,
+      "condition": "slippery_object",
+      "disturbance_draw_sha256": "1eea95f0a3bfa4b8261201999904806da060c3249e1af528ed44461520cfa713",
+      "success": true,
+      "steps": 149,
+      "inferred": "slippery_object",
+      "posterior": {
+        "none": 2.430106904575262e-121,
+        "push": 3.1598481180114373e-85,
+        "heavier_object": 6.498901143996581e-119,
+        "slippery_object": 1.0,
+        "camera_shift": 1.4100388219312927e-79,
+        "unknown": 2.4779652383859468e-141
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 10 steps, most at 11.8 s (surprise 297; spikes start at 14).\n  My explanation: the object is sliding in my hand, probability 1.00 (onset=118, sink_mm=47.5, slide_mm=[-0.5, -4.8], weight_lost_N=0.8).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "friction",
+          "params": {
+            "body": "red",
+            "scale": 0.05
+          }
+        }
+      ]
+    },
+    {
+      "index": 77,
+      "seed": 110077,
+      "condition": "slippery_object",
+      "disturbance_draw_sha256": "1eea95f0a3bfa4b8261201999904806da060c3249e1af528ed44461520cfa713",
+      "success": true,
+      "steps": 149,
+      "inferred": "slippery_object",
+      "posterior": {
+        "none": 1.2775020698310118e-19,
+        "push": 3.4561629087748847e-18,
+        "heavier_object": 3.0800420123944336e-20,
+        "slippery_object": 0.9999999999999165,
+        "camera_shift": 8.359052236534445e-14,
+        "unknown": 1.4348977084470574e-131
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 3 steps, most at 4.1 s (surprise 62; spikes start at 14).\n  My explanation: the object is sliding in my hand, probability 1.00 (onset=41, sink_mm=17.9, slide_mm=[3.4, -6.1], weight_lost_N=0.76).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "friction",
+          "params": {
+            "body": "red",
+            "scale": 0.05
+          }
+        }
+      ]
+    },
+    {
+      "index": 78,
+      "seed": 110078,
+      "condition": "slippery_object",
+      "disturbance_draw_sha256": "1eea95f0a3bfa4b8261201999904806da060c3249e1af528ed44461520cfa713",
+      "success": false,
+      "steps": 149,
+      "inferred": "push",
+      "posterior": {
+        "none": 2.3022442503134385e-31,
+        "push": 1.0,
+        "heavier_object": 4.190605773299746e-34,
+        "slippery_object": 1.387311361291097e-29,
+        "camera_shift": 1.5646477306903838e-32,
+        "unknown": 7.067629082018856e-110
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 9 steps, most at 8.3 s (surprise 95; spikes start at 14).\n  My explanation: something pushed my arm, probability 1.00 (onset=83, end=83, force_N=[-0.0, 4.1, -0.5], offset_mm=[-0.4, -0.5, -0.5]).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "friction",
+          "params": {
+            "body": "red",
+            "scale": 0.05
+          }
+        }
+      ]
+    },
+    {
+      "index": 79,
+      "seed": 110079,
+      "condition": "slippery_object",
+      "disturbance_draw_sha256": "1eea95f0a3bfa4b8261201999904806da060c3249e1af528ed44461520cfa713",
+      "success": false,
+      "steps": 149,
+      "inferred": "slippery_object",
+      "posterior": {
+        "none": 1.2342657774743258e-65,
+        "push": 9.65560167472726e-37,
+        "heavier_object": 2.966773564859583e-65,
+        "slippery_object": 1.0,
+        "camera_shift": 1.7697459740852875e-38,
+        "unknown": 8.336619492425068e-88
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 7 steps, most at 6.9 s (surprise 168; spikes start at 14).\n  My explanation: the object is sliding in my hand, probability 1.00 (onset=69, sink_mm=28.9, slide_mm=[0.6, 6.0], weight_lost_N=0.79).",
+      "realized_disturbances": [
+        {
+          "t": 1,
+          "type": "disturbance_start",
+          "disturbance": "friction",
+          "params": {
+            "body": "red",
+            "scale": 0.05
+          }
+        }
+      ]
+    },
+    {
+      "index": 80,
+      "seed": 110080,
+      "condition": "camera_shift",
+      "disturbance_draw_sha256": "9ed2a8f6bf7c1ef8993e752aa6aeb0e39db91162b8a9943cabab8444d00bda06",
+      "success": true,
+      "steps": 149,
+      "inferred": "camera_shift",
+      "posterior": {
+        "none": 0.0,
+        "push": 2.272693986176152e-303,
+        "heavier_object": 0.0,
+        "slippery_object": 2.404711147694254e-204,
+        "camera_shift": 1.0,
+        "unknown": 6.528510951547384e-164
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 1 steps, most at 4.0 s (surprise 911; spikes start at 14).\n  My explanation: my camera moved: everything I see jumped while my hand did not, probability 1.00 (onset=40, camera_offset_mm=[41.1, -20.1, -2.5], seen_jump=[-0.0411, 0.0201, 0.0025]).",
+      "realized_disturbances": [
+        {
+          "t": 201,
+          "type": "disturbance_start",
+          "disturbance": "camera_shift",
+          "params": {
+            "offset": [
+              0.04102012080602953,
+              -0.019770872273580986,
+              -0.002586269990229861
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 81,
+      "seed": 110081,
+      "condition": "camera_shift",
+      "disturbance_draw_sha256": "c5c27774f407321a60ba12ca797c3f86ded5190d1a2bd671940725ce043b0a36",
+      "success": false,
+      "steps": 149,
+      "inferred": "camera_shift",
+      "posterior": {
+        "none": 0.0,
+        "push": 0.0,
+        "heavier_object": 0.0,
+        "slippery_object": 1.0164341142241119e-301,
+        "camera_shift": 1.0,
+        "unknown": 1.7189805900172872e-172
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 1 steps, most at 3.3 s (surprise 1320; spikes start at 14).\n  My explanation: my camera moved: everything I see jumped while my hand did not, probability 1.00 (onset=33, camera_offset_mm=[1.6, -55.2, -0.0], seen_jump=[-0.0016, 0.0552, 0.0]).",
+      "realized_disturbances": [
+        {
+          "t": 168,
+          "type": "disturbance_start",
+          "disturbance": "camera_shift",
+          "params": {
+            "offset": [
+              0.0016963153660493296,
+              -0.05560237226411151,
+              -0.00038875251569249654
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 82,
+      "seed": 110082,
+      "condition": "camera_shift",
+      "disturbance_draw_sha256": "c96ac5e47a3f884fbb3cf5561333f3762b40cd5a1a1a982c2d7e86d0e6d506a2",
+      "success": false,
+      "steps": 149,
+      "inferred": "camera_shift",
+      "posterior": {
+        "none": 0.0,
+        "push": 0.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 1.0,
+        "unknown": 1.1768705386842428e-164
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 1 steps, most at 1.9 s (surprise 960; spikes start at 14).\n  My explanation: my camera moved: everything I see jumped while my hand did not, probability 1.00 (onset=19, camera_offset_mm=[7.3, -47.5, -6.6], seen_jump=[-0.0073, 0.0475, 0.0066]).",
+      "realized_disturbances": [
+        {
+          "t": 97,
+          "type": "disturbance_start",
+          "disturbance": "camera_shift",
+          "params": {
+            "offset": [
+              0.007266164815624337,
+              -0.04751191961932232,
+              -0.006640800548926402
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 83,
+      "seed": 110083,
+      "condition": "camera_shift",
+      "disturbance_draw_sha256": "68aa6e6fe5584f6bb215a315f80ef5626fe1ce0cee5c4d61ae81d12c135367b4",
+      "success": false,
+      "steps": 149,
+      "inferred": "camera_shift",
+      "posterior": {
+        "none": 0.0,
+        "push": 0.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 1.0,
+        "unknown": 5.050820860954859e-168
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 1 steps, most at 1.6 s (surprise 1303; spikes start at 14).\n  My explanation: my camera moved: everything I see jumped while my hand did not, probability 1.00 (onset=16, camera_offset_mm=[-7.9, -55.2, -5.0], seen_jump=[0.0079, 0.0552, 0.005]).",
+      "realized_disturbances": [
+        {
+          "t": 81,
+          "type": "disturbance_start",
+          "disturbance": "camera_shift",
+          "params": {
+            "offset": [
+              -0.0074456533890144925,
+              -0.0562408677491753,
+              -0.005065165650088166
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 84,
+      "seed": 110084,
+      "condition": "camera_shift",
+      "disturbance_draw_sha256": "e13221dd47373a7b07e8819878f11fded441a231c84971415142122b2dba9ff5",
+      "success": false,
+      "steps": 149,
+      "inferred": "camera_shift",
+      "posterior": {
+        "none": 0.0,
+        "push": 0.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 1.0,
+        "unknown": 1.7110580733007745e-175
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 1 steps, most at 3.5 s (surprise 1472; spikes start at 14).\n  My explanation: my camera moved: everything I see jumped while my hand did not, probability 1.00 (onset=35, camera_offset_mm=[-57.5, -7.9, 3.3], seen_jump=[0.0575, 0.0079, -0.0033]).",
+      "realized_disturbances": [
+        {
+          "t": 177,
+          "type": "disturbance_start",
+          "disturbance": "camera_shift",
+          "params": {
+            "offset": [
+              -0.057542101432132495,
+              -0.007871077494978828,
+              0.0031086416907451526
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 85,
+      "seed": 110085,
+      "condition": "camera_shift",
+      "disturbance_draw_sha256": "b28fc1a5c91831adf5e596702d215a72b0e49e460d216165080434a98807038f",
+      "success": true,
+      "steps": 149,
+      "inferred": "camera_shift",
+      "posterior": {
+        "none": 4.705792386887429e-153,
+        "push": 5.487139414773718e-137,
+        "heavier_object": 1.210724475384076e-155,
+        "slippery_object": 1.740511671358663e-97,
+        "camera_shift": 1.0,
+        "unknown": 7.803487809364942e-145
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 2 steps, most at 3.5 s (surprise 364; spikes start at 14).\n  My explanation: my camera moved: everything I see jumped while my hand did not, probability 1.00 (onset=35, camera_offset_mm=[-29.4, -9.4, 5.3], seen_jump=[0.0294, 0.0094, -0.0053]).",
+      "realized_disturbances": [
+        {
+          "t": 176,
+          "type": "disturbance_start",
+          "disturbance": "camera_shift",
+          "params": {
+            "offset": [
+              -0.02930918178646521,
+              -0.00973299282800128,
+              0.0049849673751924724
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 86,
+      "seed": 110086,
+      "condition": "camera_shift",
+      "disturbance_draw_sha256": "a160f6bbdc8c8ec7fc6d302f993471b7246add906d9d7e6e0747c0366671b186",
+      "success": false,
+      "steps": 149,
+      "inferred": "camera_shift",
+      "posterior": {
+        "none": 4.220538072925707e-170,
+        "push": 3.555248743823514e-180,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 1.0,
+        "unknown": 4.602492756684997e-150
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 6 steps, most at 3.3 s (surprise 404; spikes start at 14).\n  My explanation: my camera moved: everything I see jumped while my hand did not, probability 1.00 (onset=33, camera_offset_mm=[-4.0, 30.3, -4.4], seen_jump=[0.004, -0.0303, 0.0044]).",
+      "realized_disturbances": [
+        {
+          "t": 168,
+          "type": "disturbance_start",
+          "disturbance": "camera_shift",
+          "params": {
+            "offset": [
+              -0.004127834565430171,
+              0.030329373458281943,
+              -0.004379818000951306
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 87,
+      "seed": 110087,
+      "condition": "camera_shift",
+      "disturbance_draw_sha256": "fc15efbda676fb5ece11548d9c6b7f50434f1922e6e3b19eb8031bd67d8782a9",
+      "success": false,
+      "steps": 149,
+      "inferred": "camera_shift",
+      "posterior": {
+        "none": 3.5034858985215944e-291,
+        "push": 1.5795397183411218e-228,
+        "heavier_object": 1.3178621724762515e-294,
+        "slippery_object": 2.6541820280052793e-153,
+        "camera_shift": 1.0,
+        "unknown": 1.1808845503422705e-60
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 3 steps, most at 3.7 s (surprise 682; spikes start at 14).\n  My explanation: my camera moved: everything I see jumped while my hand did not, probability 1.00 (onset=37, camera_offset_mm=[39.0, -0.5, -4.9], seen_jump=[-0.039, 0.0005, 0.0049]).",
+      "realized_disturbances": [
+        {
+          "t": 186,
+          "type": "disturbance_start",
+          "disturbance": "camera_shift",
+          "params": {
+            "offset": [
+              0.03886073063782357,
+              -0.000508453431389279,
+              -0.005053914157137849
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 88,
+      "seed": 110088,
+      "condition": "camera_shift",
+      "disturbance_draw_sha256": "3eeb31a14f91ad5992305543564a9cb76d81412999d3e78efb03b7b87b174396",
+      "success": false,
+      "steps": 149,
+      "inferred": "camera_shift",
+      "posterior": {
+        "none": 0.0,
+        "push": 0.0,
+        "heavier_object": 0.0,
+        "slippery_object": 1.9046187475922464e-238,
+        "camera_shift": 1.0,
+        "unknown": 2.080915198995781e-165
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 1 steps, most at 3.2 s (surprise 1046; spikes start at 14).\n  My explanation: my camera moved: everything I see jumped while my hand did not, probability 1.00 (onset=32, camera_offset_mm=[48.0, 3.5, -7.9], seen_jump=[-0.048, -0.0035, 0.0079]).",
+      "realized_disturbances": [
+        {
+          "t": 161,
+          "type": "disturbance_start",
+          "disturbance": "camera_shift",
+          "params": {
+            "offset": [
+              0.048024248920996375,
+              0.003538932791412831,
+              -0.00802697002259938
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 89,
+      "seed": 110089,
+      "condition": "camera_shift",
+      "disturbance_draw_sha256": "e620d13b5c15389be1cdbdf6f5251cd054b44d133257493be43bedad2e5e477c",
+      "success": true,
+      "steps": 149,
+      "inferred": "camera_shift",
+      "posterior": {
+        "none": 0.0,
+        "push": 6.407290865e-314,
+        "heavier_object": 0.0,
+        "slippery_object": 9.383720043344244e-218,
+        "camera_shift": 1.0,
+        "unknown": 7.951642799151401e-158
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 26 steps, most at 4.4 s (surprise 913; spikes start at 14).\n  My explanation: my camera moved: everything I see jumped while my hand did not, probability 1.00 (onset=44, camera_offset_mm=[-6.0, -46.5, 5.0], seen_jump=[0.006, 0.0465, -0.005]).",
+      "realized_disturbances": [
+        {
+          "t": 220,
+          "type": "disturbance_start",
+          "disturbance": "camera_shift",
+          "params": {
+            "offset": [
+              -0.006192587142494453,
+              -0.04654989753853759,
+              0.0045183864404995475
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 90,
+      "seed": 110090,
+      "condition": "camera_shift",
+      "disturbance_draw_sha256": "0446dccc2624929b1b6358dda2308f18eb239748aed0792aebe039a054994585",
+      "success": true,
+      "steps": 149,
+      "inferred": "camera_shift",
+      "posterior": {
+        "none": 9.137265065547327e-248,
+        "push": 2.1338871284327726e-195,
+        "heavier_object": 3.799539784764777e-251,
+        "slippery_object": 2.1152126846712407e-130,
+        "camera_shift": 1.0,
+        "unknown": 2.9947581355812485e-155
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 19 steps, most at 4.7 s (surprise 582; spikes start at 14).\n  My explanation: my camera moved: everything I see jumped while my hand did not, probability 1.00 (onset=47, camera_offset_mm=[11.5, 34.0, 5.3], seen_jump=[-0.0115, -0.034, -0.0053]).",
+      "realized_disturbances": [
+        {
+          "t": 237,
+          "type": "disturbance_start",
+          "disturbance": "camera_shift",
+          "params": {
+            "offset": [
+              0.011485368865993861,
+              0.03404996986162476,
+              0.0052664344323176526
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 91,
+      "seed": 110091,
+      "condition": "camera_shift",
+      "disturbance_draw_sha256": "f45114a84b5fea98e36b7a1fb3d4886072541a6b13dfe8d261bf472984d726c3",
+      "success": false,
+      "steps": 149,
+      "inferred": "camera_shift",
+      "posterior": {
+        "none": 0.0,
+        "push": 0.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 1.0,
+        "unknown": 6.645699478633388e-165
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 1 steps, most at 2.1 s (surprise 931; spikes start at 14).\n  My explanation: my camera moved: everything I see jumped while my hand did not, probability 1.00 (onset=21, camera_offset_mm=[-41.1, 21.6, -1.9], seen_jump=[0.0411, -0.0216, 0.0019]).",
+      "realized_disturbances": [
+        {
+          "t": 105,
+          "type": "disturbance_start",
+          "disturbance": "camera_shift",
+          "params": {
+            "offset": [
+              -0.04100942328412862,
+              0.021612634504550567,
+              -0.0019270793682984629
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 92,
+      "seed": 110092,
+      "condition": "camera_shift",
+      "disturbance_draw_sha256": "b062dbae2a92f14c9291e24d122021c29a28e532a3e3529ba2c38f115ce1236d",
+      "success": false,
+      "steps": 149,
+      "inferred": "camera_shift",
+      "posterior": {
+        "none": 0.0,
+        "push": 0.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 1.0,
+        "unknown": 2.5502515388203855e-171
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 1 steps, most at 4.5 s (surprise 1146; spikes start at 14).\n  My explanation: my camera moved: everything I see jumped while my hand did not, probability 1.00 (onset=45, camera_offset_mm=[49.7, 11.5, 3.9], seen_jump=[-0.0497, -0.0115, -0.0039]).",
+      "realized_disturbances": [
+        {
+          "t": 229,
+          "type": "disturbance_start",
+          "disturbance": "camera_shift",
+          "params": {
+            "offset": [
+              0.049665479022989255,
+              0.01151173521475034,
+              0.0039436101614244885
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 93,
+      "seed": 110093,
+      "condition": "camera_shift",
+      "disturbance_draw_sha256": "c477191d04e3109dc0b8bf6ffebe74a2b997009b44c1918b49d902dd046b48ab",
+      "success": false,
+      "steps": 149,
+      "inferred": "camera_shift",
+      "posterior": {
+        "none": 0.0,
+        "push": 0.0,
+        "heavier_object": 0.0,
+        "slippery_object": 4.181805991157745e-243,
+        "camera_shift": 1.0,
+        "unknown": 2.4095381948656528e-166
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 5 steps, most at 4.1 s (surprise 1069; spikes start at 14).\n  My explanation: my camera moved: everything I see jumped while my hand did not, probability 1.00 (onset=41, camera_offset_mm=[24.4, 43.0, 5.2], seen_jump=[-0.0244, -0.043, -0.0052]).",
+      "realized_disturbances": [
+        {
+          "t": 205,
+          "type": "disturbance_start",
+          "disturbance": "camera_shift",
+          "params": {
+            "offset": [
+              0.024423629143731862,
+              0.043157759324624324,
+              0.005286936177163337
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 94,
+      "seed": 110094,
+      "condition": "camera_shift",
+      "disturbance_draw_sha256": "34837d44a9341872f7a77dcc65a710d93ab17b152026c095d42e77f18b4180ae",
+      "success": false,
+      "steps": 149,
+      "inferred": "camera_shift",
+      "posterior": {
+        "none": 9.746128452499157e-226,
+        "push": 5.535328993739904e-236,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 1.0,
+        "unknown": 2.1810190001768487e-154
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 3 steps, most at 4.8 s (surprise 532; spikes start at 14).\n  My explanation: my camera moved: everything I see jumped while my hand did not, probability 1.00 (onset=48, camera_offset_mm=[-28.4, -19.8, -3.8], seen_jump=[0.0284, 0.0198, 0.0038]).",
+      "realized_disturbances": [
+        {
+          "t": 240,
+          "type": "disturbance_start",
+          "disturbance": "camera_shift",
+          "params": {
+            "offset": [
+              -0.02841686490051686,
+              -0.01979534590005385,
+              -0.003813538843622593
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 95,
+      "seed": 110095,
+      "condition": "camera_shift",
+      "disturbance_draw_sha256": "aac7aff439686e2a929a8c8ff5a5eee99c58ebf1e004d115892eefb43b06fae4",
+      "success": false,
+      "steps": 149,
+      "inferred": "camera_shift",
+      "posterior": {
+        "none": 0.0,
+        "push": 0.0,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 1.0,
+        "unknown": 2.110055793074968e-174
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 1 steps, most at 4.0 s (surprise 1393; spikes start at 14).\n  My explanation: my camera moved: everything I see jumped while my hand did not, probability 1.00 (onset=40, camera_offset_mm=[-4.4, -56.7, 5.7], seen_jump=[0.0044, 0.0567, -0.0057]).",
+      "realized_disturbances": [
+        {
+          "t": 201,
+          "type": "disturbance_start",
+          "disturbance": "camera_shift",
+          "params": {
+            "offset": [
+              -0.0044992141158803275,
+              -0.056647286401636895,
+              0.005730694192617002
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 96,
+      "seed": 110096,
+      "condition": "camera_shift",
+      "disturbance_draw_sha256": "01405b272e87a483a7a0fd539b23e182bc20d3230bd6d1bc8915b785ddc4abb9",
+      "success": false,
+      "steps": 149,
+      "inferred": "camera_shift",
+      "posterior": {
+        "none": 5.909613408545818e-232,
+        "push": 5.24200578026195e-183,
+        "heavier_object": 2.2229448585388277e-235,
+        "slippery_object": 5.133620170289458e-127,
+        "camera_shift": 1.0,
+        "unknown": 1.8557510503616237e-151
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 10 steps, most at 2.6 s (surprise 546; spikes start at 14).\n  My explanation: my camera moved: everything I see jumped while my hand did not, probability 1.00 (onset=26, camera_offset_mm=[8.7, 33.4, -7.3], seen_jump=[-0.0087, -0.0334, 0.0073]).",
+      "realized_disturbances": [
+        {
+          "t": 134,
+          "type": "disturbance_start",
+          "disturbance": "camera_shift",
+          "params": {
+            "offset": [
+              0.008714873335359195,
+              0.03321735200749274,
+              -0.00746627462541752
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 97,
+      "seed": 110097,
+      "condition": "camera_shift",
+      "disturbance_draw_sha256": "b2188c11964b0808a4236d669b4484930cb09f71d95d910261e1d3fad23837e3",
+      "success": false,
+      "steps": 149,
+      "inferred": "camera_shift",
+      "posterior": {
+        "none": 6.109080793476218e-260,
+        "push": 2.660426011314663e-204,
+        "heavier_object": 2.6262104624772042e-263,
+        "slippery_object": 1.1284660293062913e-136,
+        "camera_shift": 1.0,
+        "unknown": 2.9955573493640566e-155
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 2 steps, most at 3.8 s (surprise 610; spikes start at 14).\n  My explanation: my camera moved: everything I see jumped while my hand did not, probability 1.00 (onset=38, camera_offset_mm=[-13.9, 34.4, 2.2], seen_jump=[0.0139, -0.0344, -0.0022]).",
+      "realized_disturbances": [
+        {
+          "t": 190,
+          "type": "disturbance_start",
+          "disturbance": "camera_shift",
+          "params": {
+            "offset": [
+              -0.014045151383586639,
+              0.034411573153738155,
+              0.0020397766940117995
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 98,
+      "seed": 110098,
+      "condition": "camera_shift",
+      "disturbance_draw_sha256": "a9fad0bb3b0f62474d729bac9971b45c4f2538007be19b7d8248c748d606d082",
+      "success": false,
+      "steps": 149,
+      "inferred": "camera_shift",
+      "posterior": {
+        "none": 2.081115145552533e-216,
+        "push": 1.5043988940019734e-226,
+        "heavier_object": 0.0,
+        "slippery_object": 0.0,
+        "camera_shift": 1.0,
+        "unknown": 2.870226806864571e-153
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 1 steps, most at 3.0 s (surprise 510; spikes start at 14).\n  My explanation: my camera moved: everything I see jumped while my hand did not, probability 1.00 (onset=30, camera_offset_mm=[32.3, 6.9, -8.7], seen_jump=[-0.0323, -0.0069, 0.0087]).",
+      "realized_disturbances": [
+        {
+          "t": 151,
+          "type": "disturbance_start",
+          "disturbance": "camera_shift",
+          "params": {
+            "offset": [
+              0.032222782256694546,
+              0.006911710397407327,
+              -0.008638181190828218
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "index": 99,
+      "seed": 110099,
+      "condition": "camera_shift",
+      "disturbance_draw_sha256": "bb61c230858fa9e2821476adfe8f1f32172557592b7103db03492cf549e3188e",
+      "success": false,
+      "steps": 149,
+      "inferred": "camera_shift",
+      "posterior": {
+        "none": 0.0,
+        "push": 7.303551938025724e-295,
+        "heavier_object": 0.0,
+        "slippery_object": 9.985477121384577e-198,
+        "camera_shift": 1.0,
+        "unknown": 2.7092068485967217e-157
+      },
+      "adaptations": [],
+      "explanation": "  Surprise: my predictions failed at 2 steps, most at 2.6 s (surprise 876; spikes start at 14).\n  My explanation: my camera moved: everything I see jumped while my hand did not, probability 1.00 (onset=26, camera_offset_mm=[-35.7, -27.5, 1.5], seen_jump=[0.0357, 0.0275, -0.0015]).",
+      "realized_disturbances": [
+        {
+          "t": 133,
+          "type": "disturbance_start",
+          "disturbance": "camera_shift",
+          "params": {
+            "offset": [
+              -0.03559186974627196,
+              -0.02734966091012267,
+              0.0011953656742704297
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "complete": true
+}

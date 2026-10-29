@@ -1,0 +1,7 @@
+{
+  "final_records": 800,
+  "trained_models": 6,
+  "paired_layouts_and_disturbances": true,
+  "frozen_hashes_unchanged": true,
+  "training_sources_identical": true
+}

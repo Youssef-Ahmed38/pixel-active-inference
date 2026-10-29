@@ -1,0 +1,7 @@
+{
+  "command": [
+    "python",
+    "scripts/arm_baseline_report.py"
+  ],
+  "exit_code": 0
+}

@@ -1,0 +1,12 @@
+{
+  "command": [
+    "python",
+    "scripts/arm_baseline_eval.py",
+    "evaluate",
+    "--method",
+    "recurrent_ppo",
+    "--seed",
+    "120001"
+  ],
+  "exit_code": 0
+}
