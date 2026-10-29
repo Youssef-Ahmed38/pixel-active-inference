@@ -297,3 +297,64 @@ pedals and the drive torque still acts at the rear wheel.
     python scripts/bike_g1_turn_practice.py --start-from results/bike_g1_turns_v3.json --u-turns 2 --track-weight 0.3 --iterations 16 --arm-steer --final-towns 4250 4260 --output results/bike_g1_turns_armsteer.json
     python scripts/bike_g1_turn_practice.py --start-from results/bike_g1_turns_armsteer.json --u-turns 2 --track-weight 0.3 --iterations 12 --arm-steer --lane-changes --final-towns 4260 4270 --output results/bike_g1_turns_armsteer_lanes.json
     python scripts/bike_g1_delivery_eval.py --towns 4620 4640 --workers 4 --arm-steer --gains-from results/bike_g1_turns_armsteer_lanes.json --output results/bike_g1_delivery_armsteer_lanes.json
+
+## Moving traffic (registered final: NO-GO for speed-based avoidance)
+
+<img src="media/bike/delivery_traffic.png" width="720">
+
+`media/bike/delivery_traffic.mp4`: a delivery with 10 moving vehicles (red; parked cars are blue) in
+final town 4644. `media/bike/delivery_traffic_misread.mp4`: the failure that remains (town 4647).
+
+**The world.** `pai/bike/traffic.py`: each vehicle drives a chain of 3-4 streets in its right-hand lane
+and back, at its own speed (2-4 m/s). Its driver slows and stops 4 m behind whatever is ahead in its
+lane (the rider included), and waits short of a junction the rider is about to occupy. Vehicles are
+hidden state: the rider is told nothing about them. Contact is the footprint plus 0.3 m.
+
+**The rider** (`--avoid-traffic`, `pai/bike/traffic_perception.py`). Every 0.2 s the head camera looks
+along the path; depth points standing in the road ahead (minus known parked cars and barriers) are
+grouped into objects and tracked (velocity from matched positions). For each speed in the bicycle's
+stable range (1.9-3.2 m/s; it cannot stop) the rider's positions over the next 4 s are compared with
+every track's extrapolation, and it rides at the speed with the largest predicted clearance, but only
+when some speed is unsafe (< 3.5 m) and the choice changes the clearance by at least 0.3 m (slowing
+through a turn below the practised speed costs balance). A vehicle seen to travel 2 m and then stop
+stays a vehicle.
+
+**A bug found on the way.** The head camera rendered from a copy of the joint positions only, so the
+moving vehicles (mocap bodies) stayed where they were built: in every earlier traffic run the rider
+had never seen a moving vehicle. Fixed in `HeadCamera.look`, with a test
+(`test_head_camera_sees_a_moved_vehicle`). Results without traffic are unaffected: with all the changes
+in this section and no traffic, the fork-steering deliveries in towns 4620-4639 were run again and all
+80 rides (looking and blind) ended exactly as published (outcome and time).
+
+**Final** (registered before running; towns 4640-4659, never used, 40 deliveries, 10 vehicles each;
+the same towns, houses and traffic for all riders; frozen code and gains):
+
+| Rider | Delivered (Wilson 95%) | Traffic collisions | Parked car / barrier collisions | Fell | Off road |
+|---|---:|---:|---:|---:|---:|
+| Looking + speed avoidance | 27/40 (0.52-0.80) | 4 | 3 | 5 | 1 |
+| Looking (no avoidance) | 27/40 (0.52-0.80) | 4 | 3 | 4 | 2 |
+| Blind | 24/40 (0.45-0.74) | 0 | 16 | 0 | 0 |
+
+The primary endpoint (fewer traffic collisions with avoidance) is **not met**: the same 4 rides end in
+a traffic collision with and without it (paired, p = 1.0), although it chose a speed 512 times.
+Looking against blind: 27 against 24 (7 against 4 rides, p = 0.55); without traffic it was 37 against 23 (other final towns, 4540-4559).
+On the development towns (4300-4309) avoidance had looked slightly better (traffic
+collisions 1 against 2 with 6 and with 10 vehicles); that did not hold.
+
+**Why.** All 4 traffic collisions have the same cause, and it is not speed. A street look is a single
+depth frame; a vehicle in the street reads as a parked car (20% of the street readings were wrong with
+10 vehicles). The rider then changes into the other lane to pass a car that is not parked and meets an
+oncoming vehicle whose driver has stopped for it; no speed in 1.9-3.2 m/s gets out of that. The blind
+rider never changes lane (it sees no parked cars), and drivers yield to a rider in its own lane: it had
+no traffic collision at all. Two repairs were tried on the development towns and dropped: looking at
+the street twice 0.6 s apart and discarding obstacles that moved (it also discarded real barriers,
+whose estimated position drifts as the rider nears: 4 collisions, 3 falls), and hiding tracked
+vehicles from the street look (parked cars' centroids wander, so real cars were hidden: 2 collisions).
+
+**What it says.** The missing piece is perception over time: telling a parked car from a moving one
+needs motion, which one frame cannot give. That is the job of the next level of the thinker (a
+belief about each object that persists and is updated across looks), not of the speed controller.
+
+    python scripts/bike_g1_delivery_eval.py --towns 4640 4660 --traffic 10 --avoid-traffic --workers 4 --output results/bike_g1_traffic_final_avoid.json
+    python scripts/bike_g1_delivery_eval.py --towns 4640 4660 --traffic 10 --workers 4 --output results/bike_g1_traffic_final_plain.json
+    python scripts/bike_g1_delivery_video.py --town 4644 --house 6 --traffic 10 --avoid-traffic --out docs/media/bike/delivery_traffic

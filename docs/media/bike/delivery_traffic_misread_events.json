@@ -1,0 +1,48 @@
+{
+ "house": 7,
+ "blind": false,
+ "outcome": "traffic_collision",
+ "time_s": 7.3,
+ "distance_m": 16.5,
+ "replans": 0,
+ "looks": 2,
+ "wrong_looks": 1,
+ "traffic_speed_choices": 11,
+ "hit": null,
+ "mean_heading_error_deg": 4.39,
+ "mean_cross_track_m": 0.142,
+ "events": [
+  {
+   "t": 0.0,
+   "at": 0,
+   "street": [
+    0,
+    1
+   ],
+   "seen": "partial",
+   "points": 140,
+   "look_yaw": 0.04,
+   "where": [
+    18.79,
+    -1.0
+   ],
+   "truth": "clear",
+   "from_node_m": 1.0,
+   "decision": "change lane"
+  },
+  {
+   "t": 6.42,
+   "at": 1,
+   "street": [
+    1,
+    2
+   ],
+   "seen": "clear",
+   "points": 0,
+   "look_yaw": -0.001,
+   "where": null,
+   "truth": "clear",
+   "from_node_m": 10.99
+  }
+ ]
+}

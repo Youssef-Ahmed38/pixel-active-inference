@@ -104,3 +104,78 @@ def test_truth_guard_blocks_the_rider_from_hidden_obstacles():
         _ = t.obstacles
     with scoring():
         assert t.truth["blocked"]
+
+
+def test_traffic_is_deterministic_and_drivers_yield_to_the_rider():
+    from pai.bike.traffic import Traffic
+    t = Town(n=4, seed=4300)
+    a, b = Traffic(t, n=4, seed=1), Traffic(t, n=4, seed=1)
+    for _ in range(50):
+        a.step(0.02, (-99.0, -99.0))
+        b.step(0.02, (-99.0, -99.0))
+    assert all(np.allclose(x.at()[0], y.at()[0]) for x, y in zip(a.vehicles, b.vehicles))
+    v = a.vehicles[0]
+    c, yaw = v.at()
+    rider = c + 5.0 * np.array([np.cos(yaw), np.sin(yaw)])      # 5 m ahead in its lane
+    s0 = v.s
+    a.step(0.1, rider)
+    assert v.s - s0 < 0.25 * v.speed * 0.1 + 1e-9              # slows strongly behind the rider
+
+
+def test_tracker_estimates_velocity_and_speed_choice_avoids_a_crossing_vehicle():
+    from pai.bike.traffic_perception import TrafficTracker
+    tr = TrafficTracker()
+    for k in range(4):                                         # an object moving at 3 m/s in +y, 6 m ahead
+        tr.update([np.array([6.0, -6.0 + 0.6 * k])], 0.2 * k)
+    assert abs(tr.tracks[0]["v"][1] - 3.0) < 0.3 and abs(tr.tracks[0]["v"][0]) < 0.3
+    path = np.stack([np.linspace(0, 30, 61), np.zeros(61)], 1)  # the rider rides +x along y = 0
+    v, clears = tr.choose_speed(path, 0, np.array([0.0, 0.0]), 0.6, None)
+    assert v is not None and clears[v] == max(clears.values())
+
+
+def test_head_camera_sees_a_moved_vehicle():
+    import mujoco
+
+    from pai.bike.navigation import HeadCamera
+    spec = mujoco.MjSpec()
+    spec.worldbody.add_geom(type=mujoco.mjtGeom.mjGEOM_PLANE, size=[50, 50, 0.1])
+    spec.worldbody.add_body(name="g1_torso_link", pos=[0, 0, 0.8]).add_geom(size=[0.05, 0, 0])
+    car = spec.worldbody.add_body(name="vehicle_0", mocap=True, pos=[0, 30, 0.7])
+    car.add_geom(type=mujoco.mjtGeom.mjGEOM_BOX, size=[2.0, 0.85, 0.7])
+    model = spec.compile()
+    data = mujoco.MjData(model)
+    data.mocap_pos[0] = [6.0, 0.0, 0.7]                        # the vehicle has moved in front of the rider
+    mujoco.mj_forward(model, data)
+    cam = HeadCamera(model)
+    _, pts, z = cam.look(data, 0.0)
+    cam.close()
+    p = pts.reshape(-1, 3)[(z.reshape(-1) < 20) & (pts.reshape(-1, 3)[:, 2] > 0.3)]
+    assert len(p) > 20 and abs(np.median(p[:, 0]) - 4.0) < 0.5   # its near face, 4 m ahead
+
+
+def test_drivers_wait_short_of_a_junction_the_rider_is_at():
+    from pai.bike.traffic import Traffic
+    t = Town(n=4, seed=4300)
+    tr = Traffic(t, n=4, seed=1)
+    for v in tr.vehicles:                                      # find a vehicle 5.5-6.5 m before a junction
+        for _ in range(2000):
+            c, yaw = v.at()
+            d = np.array([np.cos(yaw), np.sin(yaw)])
+            rj = tr.junctions - c
+            along, across = rj @ d, rj @ np.array([-d[1], d[0]])
+            ok = (along > 5.5) & (along < 6.5) & (np.abs(across) < 2.5)
+            if ok.any():
+                break
+            v.s += 0.25
+        if ok.any():
+            break
+    j = tr.junctions[int(np.argmax(ok))]
+    others = [w for w in tr.vehicles if w is not v]
+    for w in others:                                           # only this vehicle moves
+        w.speed = 0.0
+    s0 = v.s
+    tr.step(0.1, j + np.array([0.0, 0.0]) + 3.0 * np.array([-d[1], d[0]]))   # the rider at the junction, to the side
+    slowed = v.s - s0
+    v.s = s0
+    tr.step(0.1, (-99.0, -99.0))                               # the rider far away
+    assert slowed < 0.3 * (v.s - s0)

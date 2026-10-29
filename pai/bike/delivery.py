@@ -68,10 +68,16 @@ def plan_delivery(town: Town, belief: StreetBelief, start: int, house: int, bann
 
 
 class Delivery:
-    def __init__(self, town: Town, env, gains, prior: float, camera: HeadCamera | None, follower=None):
+    def __init__(self, town: Town, env, gains, prior: float, camera: HeadCamera | None, follower=None,
+                 traffic=None, avoid_traffic: bool = False):
         """``follower(path)`` makes the steering for a path (default: the practised lean-target rule
-        with ``gains``; e.g. a ``PPOFollower`` for the learned policy)."""
+        with ``gains``; e.g. a ``PPOFollower`` for the learned policy). ``traffic``: moving vehicles
+        (``pai/bike/traffic.Traffic``), placed in the scene every step; touching one ends the ride."""
         self.town, self.env, self.gains, self.cam = town, env, np.asarray(gains), camera
+        self.traffic = traffic
+        # avoid_traffic: look ahead every 0.2 s, track moving objects, choose the speed with the largest
+        # predicted clearance (pai/bike/traffic_perception.py); the rider is not told about the vehicles
+        self.avoid_traffic = avoid_traffic
         self.follower = follower or (lambda path: LeanFollower(path, self.gains))
         self.prior = prior
 
@@ -139,6 +145,14 @@ class Delivery:
         s = env.reset(seed=seed, speed=2.5, roll=0.0, start_xy=path[0], yaw=float(np.arctan2(d[1], d[0])))
         looked_at = set()
         head, cross = [], []
+        tracker, next_scan, speed_choices = None, 0.0, 0
+        if self.traffic is not None:
+            self.traffic.reset()
+            self.traffic.place(env.model, env.data, env.data.time)   # before the first look
+        if self.avoid_traffic and not blind:
+            from pai.bike.traffic_perception import (LOOK_EVERY_S, TrafficTracker, objects_from_points,
+                                                     standing_points_ahead)
+            tracker = TrafficTracker()
         outcome, hit, replans, looks, wrong_looks = "timeout", None, 0, 0, 0
         while env.data.time < max_t:
             xy = env.data.qpos[:2].copy()
@@ -197,16 +211,29 @@ class Delivery:
                     events.append(ev)
                     if record:
                         frames.append({"t": ev["t"], "pov": img})
-                    if i in looked_at:
-                        break
+                    break          # one look per control step; a changed route is checked again next step
                 if outcome == "no_route":
                     break
+            if self.traffic is not None:              # the world moves its vehicles (seen by the camera)
+                self.traffic.step(env.control_dt, xy)
+                self.traffic.place(env.model, env.data, env.data.time)
+            if tracker is not None and env.data.time >= next_scan:
+                next_scan = env.data.time + LOOK_EVERY_S
+                ahead = path[min(f.i + 6, len(path) - 1)] - xy
+                _, pts, z = self.cam.look(env.data, math.atan2(ahead[1], ahead[0]))
+                known = list(belief.cars.values()) + list(belief.barriers.values())
+                cents = objects_from_points(standing_points_ahead(pts.reshape(-1, 3), z.reshape(-1), path, f.i, known))
+                tracker.update(cents, env.data.time)
+                v, _ = tracker.choose_speed(path, f.i, xy, env.data.time, None)
+                f.v_override = v
+                speed_choices += v is not None
             a_, info = f.action(s, xy)
             s = env.step(a_)
             head.append(abs(info["heading_error"]))
             cross.append(info["cross_track"])
             if record:
                 frames.append({"t": round(env.data.time, 3), "qpos": env.data.qpos.copy(), "speed": float(s[2]),
+                               "mocap": (env.data.mocap_pos.copy(), env.data.mocap_quat.copy()),
                                "roll": float(s[0]), "steer": float(s[3]), "lean_ref": info["lean_ref"],
                                "route": list(route), "target_speed": info["target_speed"]})
             if env.fallen:
@@ -219,12 +246,19 @@ class Delivery:
             if hit is not None:
                 outcome = "collision"
                 break
+            if self.traffic is not None:
+                with scoring():                        # the world's collision check, not the rider's knowledge
+                    v = self.traffic.hit(env.data.qpos[:2], env.data.time)
+                if v is not None:
+                    outcome = "traffic_collision"
+                    break
             if np.linalg.norm(env.data.qpos[:2] - path[-1]) < PAD_R:
                 outcome = "delivered"
                 break
         ridden = float(np.sum(np.linalg.norm(np.diff(path[: f.i + 1], axis=0), axis=1)))
         res = {"house": house, "blind": blind, "outcome": outcome, "time_s": round(env.data.time, 2),
                "distance_m": round(ridden, 1), "replans": replans, "looks": looks, "wrong_looks": wrong_looks,
+               "traffic_speed_choices": speed_choices,
                "hit": None if hit is None else hit.kind,
                "mean_heading_error_deg": round(float(np.degrees(np.mean(head))), 2) if head else None,
                "mean_cross_track_m": round(float(np.mean(cross)), 3) if cross else None,
