@@ -51,12 +51,20 @@ def deliver(args):
     seed, house, blind, gains, prior = args[:5]
     ppo = args[5] if len(args) > 5 else None
     arm_steer = args[6] if len(args) > 6 else False
-    if seed not in _CACHE or _CACHE.get("_ppo") != ppo or _CACHE.get("_arm") != arm_steer:
+    n_traffic = args[7] if len(args) > 7 else 0
+    avoid = args[8] if len(args) > 8 else False
+    if seed not in _CACHE or _CACHE.get("_ppo") != ppo or _CACHE.get("_arm") != arm_steer or _CACHE.get("_traffic") != n_traffic or _CACHE.get("_avoid") != avoid:
         from pai.bike.g1_rider import G1BikeEnv
         from pai.bike.navigation import HeadCamera
         from pai.bike.town import Town, town_scene
         town = Town(n=4, seed=seed)
-        env = G1BikeEnv(scenery=town_scene(town), max_seconds=1e9, arm_kp=ARM_KP, steer_kp=STEER_KP,
+        traffic = None
+        scene = town_scene(town)
+        if n_traffic:
+            from pai.bike.traffic import Traffic, town_traffic_scene
+            traffic = Traffic(town, n=n_traffic, seed=seed)
+            scene = town_traffic_scene(town, traffic)
+        env = G1BikeEnv(scenery=scene, max_seconds=1e9, arm_kp=ARM_KP, steer_kp=STEER_KP,
                         arm_steer=arm_steer)
         follower = None
         if ppo is not None:          # the learned PPO riding policy instead of the practised rule
@@ -68,7 +76,10 @@ def deliver(args):
         _CACHE.clear()
         _CACHE["_ppo"] = ppo
         _CACHE["_arm"] = arm_steer
-        _CACHE[seed] = Delivery(town, env, gains, prior, HeadCamera(env.model), follower=follower)
+        _CACHE["_traffic"] = n_traffic
+        _CACHE["_avoid"] = avoid
+        _CACHE[seed] = Delivery(town, env, gains, prior, HeadCamera(env.model), follower=follower, traffic=traffic,
+                                 avoid_traffic=avoid)
     r = _CACHE[seed].run(house, seed=seed, blind=blind)
     r["town"] = seed
     return r
@@ -93,7 +104,7 @@ def summarise(rows):
     ok = [r for r in rows if r["outcome"] == "delivered"]
     looks = sum(r["looks"] for r in rows)
     out = {"delivered": len(ok), "deliveries": len(rows), "wilson95": wilson(len(ok), len(rows))}
-    for o in ("collision", "fell", "off_road", "timeout", "no_route"):
+    for o in ("collision", "traffic_collision", "fell", "off_road", "timeout", "no_route"):
         out[o] = sum(r["outcome"] == o for r in rows)
     out["collisions_by_kind"] = {k: sum(r["hit"] == k for r in rows) for k in ("blocking", "partial")}
     if ok:
@@ -114,6 +125,8 @@ def main():
     ap.add_argument("--workers", type=int, default=8)
     ap.add_argument("--ppo", help="steer with this PPO checkpoint instead of the practised rule")
     ap.add_argument("--arm-steer", action="store_true", help="the G1's arms turn the handlebar (no fork servo)")
+    ap.add_argument("--traffic", type=int, default=0, help="number of moving vehicles in each town")
+    ap.add_argument("--avoid-traffic", action="store_true", help="track moving objects and choose a safe speed")
     ap.add_argument("--output", type=Path, required=True)
     args = ap.parse_args()
     gains = np.array(json.loads(args.gains_from.read_text())["practised"])
@@ -121,13 +134,13 @@ def main():
     jobs = jobs_for(range(*args.towns))
     with Pool(args.workers) as pool:
         # one town per worker task keeps a worker's cached scene: order jobs by town
-        res = pool.map(deliver, [(s, h, blind, gains, prior, args.ppo, args.arm_steer) for s, h in jobs for blind in (False, True)],
+        res = pool.map(deliver, [(s, h, blind, gains, prior, args.ppo, args.arm_steer, args.traffic, args.avoid_traffic) for s, h in jobs for blind in (False, True)],
                        chunksize=2)
     look = [r for r in res if not r["blind"]]
     blind = [r for r in res if r["blind"]]
     a = sum(x["outcome"] == "delivered" and y["outcome"] != "delivered" for x, y in zip(look, blind))
     b = sum(y["outcome"] == "delivered" and x["outcome"] != "delivered" for x, y in zip(look, blind))
-    report = {"towns": args.towns, "steering": args.ppo and Path(args.ppo).name or "practised rule", "arm_steer": args.arm_steer, "gains": gains.round(4).tolist(), "blocked_prior": round(prior, 3),
+    report = {"towns": args.towns, "steering": args.ppo and Path(args.ppo).name or "practised rule", "arm_steer": args.arm_steer, "traffic": args.traffic, "avoid_traffic": args.avoid_traffic, "gains": gains.round(4).tolist(), "blocked_prior": round(prior, 3),
               "arm_kp": ARM_KP, "steer_kp": STEER_KP,
               "summary": {"looking": summarise(look), "blind": summarise(blind)},
               "paired": {"looking_only": a, "blind_only": b, "sign_test_p": round(sign_test(a, b), 4)},

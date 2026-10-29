@@ -95,12 +95,21 @@ def main():
     ap.add_argument("--gains-from", type=Path, default=ROOT / "results/bike_g1_turns_v3.json")
     ap.add_argument("--out", type=Path, required=True)
     ap.add_argument("--arm-steer", action="store_true", help="the G1's arms turn the handlebar (no fork servo)")
+    ap.add_argument("--traffic", type=int, default=0, help="number of moving vehicles")
+    ap.add_argument("--avoid-traffic", action="store_true", help="track moving objects and choose a safe speed")
+    ap.add_argument("--title", default="", help="extra text for the title bar")
     args = ap.parse_args()
     gains = np.array(json.loads(args.gains_from.read_text())["practised"])
     town = Town(n=4, seed=args.town)
-    env = G1BikeEnv(scenery=town_scene(town), max_seconds=1e9, arm_kp=5.0, steer_kp=300.0, arm_steer=args.arm_steer)
+    scene, traffic = town_scene(town), None
+    if args.traffic:
+        from pai.bike.traffic import Traffic, town_traffic_scene
+        traffic = Traffic(town, n=args.traffic, seed=args.town)
+        scene = town_traffic_scene(town, traffic)
+    env = G1BikeEnv(scenery=scene, max_seconds=1e9, arm_kp=5.0, steer_kp=300.0, arm_steer=args.arm_steer)
     cam = HeadCamera(env.model, width=480, height=360)
-    dv = Delivery(town, env, gains, blocked_prior(range(4000, 4004)), HeadCamera(env.model))
+    dv = Delivery(town, env, gains, blocked_prior(range(4000, 4004)), HeadCamera(env.model), traffic=traffic,
+                  avoid_traffic=args.avoid_traffic)
     res = dv.run(args.house, seed=args.town, record=True)
     print(res["outcome"], res["time_s"], "s,", res["replans"], "replans,", res["looks"], "looks")
     steps = [f for f in res["frames"] if "qpos" in f]
@@ -119,6 +128,7 @@ def main():
         st = steps[k]
         t = st["t"]
         data.qpos[:] = st["qpos"]
+        data.mocap_pos[:], data.mocap_quat[:] = st["mocap"]
         mujoco.mj_forward(m, data)
         w, x, y, z = data.qpos[3:7]
         yaw = math.atan2(2 * (w * z + x * y), 1 - 2 * (y * y + z * z))
@@ -140,7 +150,7 @@ def main():
         d.text((W - 472, 4), "G1 head camera" + ("  - checking the next street" if looking else ""),
                fill=(255, 255, 255), font=f_small)
         d.rectangle([0, 0, 800, 30], fill=(0, 0, 0))
-        d.text((10, 6), f"G1 parcel delivery: depot -> house {args.house}   (town {args.town}, never seen before)",
+        d.text((10, 6), f"G1 parcel delivery: depot -> house {args.house}   (town {args.town}){args.title}",
                fill=(255, 255, 255), font=f_mid)
         d.text((16, 458), f"t = {t:5.1f} s   speed {st['speed']:3.1f} m/s (target {st['target_speed']:.1f})   "
                f"roll {math.degrees(st['roll']):+5.1f} deg", fill=(235, 235, 235), font=f_big)

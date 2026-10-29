@@ -181,6 +181,8 @@ class LeanFollower(PathFollower):
         v_target = cruise
         if ahead.size and ahead.max() > 0.5:
             v_target = tight if ahead.max() > 1.17 else corner
+        if getattr(self, "v_override", None) is not None:      # set by the traffic logic
+            v_target = self.v_override
         lean_ref = float(np.clip(-(math.atan(v * v * kap / G) + k_head * err), -self.max_lean, self.max_lean))
         torque = np.clip(k_speed * (v_target - speed), -12, 12)
         steering = np.clip(k_ff * WHEELBASE * kap - k_roll * (roll - lean_ref) - k_rate * rate, -0.6, 0.6)

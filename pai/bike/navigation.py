@@ -109,6 +109,8 @@ class HeadCamera:
 
     def look(self, data, yaw: float):
         self.data.qpos[:] = data.qpos
+        self.data.mocap_pos[:] = data.mocap_pos          # moving bodies (traffic) are mocap, not qpos
+        self.data.mocap_quat[:] = data.mocap_quat
         mujoco.mj_forward(self.model, self.data)
         eye = self.data.xpos[self.head] + np.array([0, 0, 0.45])
         fwd = np.array([math.cos(yaw), math.sin(yaw), 0.0])
