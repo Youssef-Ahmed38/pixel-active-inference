@@ -1,0 +1,11 @@
+{
+ "env": "G1JoystickFlatTerrain",
+ "steps": 200000000,
+ "envs": 8192,
+ "seed": 0,
+ "wall_s": 6449.5,
+ "steps_per_s": 31010,
+ "devices": [
+  "cuda:0"
+ ]
+}
