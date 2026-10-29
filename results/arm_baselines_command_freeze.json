@@ -1,0 +1,8 @@
+{
+  "command": [
+    "python",
+    "scripts/arm_baseline_eval.py",
+    "freeze"
+  ],
+  "exit_code": 0
+}

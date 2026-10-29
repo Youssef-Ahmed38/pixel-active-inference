@@ -1,0 +1,305 @@
+{
+  "registered_utc": "2026-10-28T18:24:49.791689+00:00",
+  "methods": [
+    "ppo",
+    "recurrent_ppo",
+    "full_agent",
+    "no_adapt"
+  ],
+  "training_seeds": [
+    120000,
+    120001,
+    120002
+  ],
+  "final_seed_base": 110000,
+  "final_n": 100,
+  "development_seed_base": 111000,
+  "development_n": 50,
+  "calibration_seeds": [
+    112000,
+    112001,
+    112002,
+    112003,
+    112004,
+    112005,
+    112006,
+    112007
+  ],
+  "disturbance_rng_bases": {
+    "final": 115000,
+    "development": 116000
+  },
+  "train_layout_rule": "10000000 + seed_index*1000000 + worker*100000 + episode_counter; conditions uniform independently",
+  "budget_steps": 1000448,
+  "n_envs": 4,
+  "rollout": 256,
+  "epochs": 6,
+  "minibatch": 256,
+  "sequence": 32,
+  "lr": 0.0003,
+  "gamma": 0.99,
+  "gae_lambda": 0.95,
+  "clip": 0.2,
+  "entropy": 0.01,
+  "value_coefficient": 0.5,
+  "grad_clip": 0.5,
+  "target_kl": 0.03,
+  "plateau": "After750592 steps, stop if best of last4 logged rolling100 returns fails to exceed best of preceding4 by1% of max(1,abs(previousbest)); evaluated every25600 steps",
+  "selection": "Last completed update under fixed budget/plateau; no final or development checkpoint selection",
+  "observations": "158 floats: default privileged camera-frame entity tokens, q/dq, previous action, own relative hand/object/plate features, elapsed fraction; no cause labels, event logs, disturbance parameters or scripted phase",
+  "reward": "Given potential shaping .99*Phi(next)-Phi(current) -.01 -.002*motion effort +20 for perceived on(red,plate) with open hand. Phi=reach+2*softgrasp+lift*(2*softgrasp+3*alignment). All from own tokens; true task success only scores.",
+  "timing": "Actions every5 control steps (.1s); xyz velocities\u00b1.25m/s, grip\u00b11, yaw0; cap150; perceived goal+open hand early termination;25 passive open/still control steps before true success test",
+  "final_policy": "Deterministic tanh(mean); recurrent hidden reset per episode; all models frozen before final physical collection",
+  "statistics": "Per-condition/overall Wilson95 per run; mean\u00b1sampleSD over3 neural seeds. Exact two-sided paired sign test on discordant successes vs full per seed; no pooled pseudo-independent count. Also no-adapt vs full.",
+  "optional_model_based_rl": false,
+  "config": {
+    "seed": 0,
+    "env": {
+      "image_size": 256,
+      "render_images": true,
+      "control_dt": 0.02,
+      "control": "ee",
+      "max_ee_vel": 0.25,
+      "max_yaw_vel": 1.5,
+      "max_joint_vel": 1.5,
+      "ik_damping": 0.05,
+      "ik_nullspace_gain": 0.02,
+      "ee_low": [
+        0.2,
+        -0.4,
+        0.005
+      ],
+      "ee_high": [
+        0.8,
+        0.4,
+        0.55
+      ],
+      "stiffness": 0.15,
+      "gripper_strength": 10.0,
+      "home_q": [
+        0.0,
+        0.0,
+        0.0,
+        -2.2,
+        0.0,
+        2.2,
+        0.785
+      ],
+      "settle_steps": 200,
+      "spawn_low": [
+        0.35,
+        -0.25
+      ],
+      "spawn_high": [
+        0.65,
+        0.25
+      ],
+      "object_friction": 1.0,
+      "table_rgba": [
+        0.55,
+        0.42,
+        0.3,
+        1
+      ],
+      "blocks": [
+        {
+          "name": "red",
+          "size": 0.04,
+          "mass": 0.08,
+          "rgba": [
+            0.85,
+            0.15,
+            0.15,
+            1
+          ]
+        },
+        {
+          "name": "green",
+          "size": 0.04,
+          "mass": 0.08,
+          "rgba": [
+            0.15,
+            0.7,
+            0.2,
+            1
+          ]
+        },
+        {
+          "name": "blue",
+          "size": 0.04,
+          "mass": 0.08,
+          "rgba": [
+            0.15,
+            0.3,
+            0.85,
+            1
+          ]
+        },
+        {
+          "name": "yellow",
+          "size": 0.04,
+          "mass": 0.08,
+          "rgba": [
+            0.9,
+            0.8,
+            0.15,
+            1
+          ]
+        }
+      ],
+      "plate": {
+        "radius": 0.07,
+        "height": 0.012,
+        "mass": 0.2,
+        "rgba": [
+          0.92,
+          0.92,
+          0.9,
+          1
+        ]
+      },
+      "bowl": {
+        "radius": 0.07,
+        "height": 0.05,
+        "mass": 0.3,
+        "rgba": [
+          0.3,
+          0.55,
+          0.75,
+          1
+        ]
+      },
+      "cameras": [
+        {
+          "name": "front",
+          "pos": [
+            1.35,
+            0.0,
+            0.85
+          ],
+          "target": [
+            0.45,
+            0.0,
+            0.05
+          ],
+          "fovy": 50
+        },
+        {
+          "name": "side",
+          "pos": [
+            0.5,
+            -1.1,
+            0.7
+          ],
+          "target": [
+            0.45,
+            0.0,
+            0.05
+          ],
+          "fovy": 50
+        },
+        {
+          "name": "top",
+          "pos": [
+            0.9,
+            0.0,
+            1.25
+          ],
+          "target": [
+            0.45,
+            0.0,
+            0.0
+          ],
+          "fovy": 50
+        },
+        {
+          "name": "work",
+          "pos": [
+            1.05,
+            0.0,
+            0.95
+          ],
+          "target": [
+            0.5,
+            0.0,
+            0.02
+          ],
+          "fovy": 36
+        }
+      ],
+      "render": {
+        "msaa": 0,
+        "shadow_size": 0
+      },
+      "disturbances": []
+    },
+    "world_model": {
+      "data_dir": "data/slice_transitions",
+      "out_dir": "runs/slice_world_model",
+      "n_members": 5,
+      "d_model": 128,
+      "n_layers": 3,
+      "n_heads": 4,
+      "lr": 0.001,
+      "batch_size": 512,
+      "steps": 8000,
+      "log_every": 500
+    },
+    "slice": {
+      "world_model": "runs/slice_world_model/world_model.pt",
+      "action_repeat": 5,
+      "max_plan_steps": 150,
+      "settle_steps": 25,
+      "horizon": 10,
+      "samples": 256,
+      "iterations": 2,
+      "temperature": 0.1,
+      "epistemic_weight": 0.0,
+      "episodes": 20,
+      "seed_planner": true,
+      "slippery_carry": "low",
+      "slippery_carry_speed": 1.0,
+      "watch_settle": true
+    },
+    "slots": {
+      "frames_dir": "data/slice_frames",
+      "cache_dir": "data/slice_features",
+      "out_dir": "runs/slots",
+      "camera": "work",
+      "image_size": 448,
+      "feat_dim": 128,
+      "n_slots": 8,
+      "dim": 128,
+      "iters": 3,
+      "lr": 0.0004,
+      "batch_size": 64,
+      "steps": 20000,
+      "batch_size_auto": false,
+      "vram_fill": 0.9,
+      "pool_memory": true,
+      "gpu_cache": "auto",
+      "assignment": "fixed",
+      "mask_weight": 1.0,
+      "attn_weight": 1.0,
+      "recon_weight": 1.0,
+      "token_weight": 1.0,
+      "pos_weight": 1.0,
+      "val_fraction": 0.05,
+      "log_every": 1000
+    }
+  },
+  "world_model_sha256": "2e53d10bb944c3498b6aed22f8bccd209950155a4bdd465f08e3533085f53bb9",
+  "agent_sources": {
+    "pai/agents/slice_agent.py": "d557998f64cb80e6bbb80de0e411d91e5b0266ad684d95d10862937e99e1c824",
+    "pai/envs/tabletop.py": "9d3e21d6705223ba2f4e8669945240bdb4074ac28407c43e745eedc70c8162dd",
+    "pai/perception/camera_frame.py": "d8d4cca32310b7ba89e69a50c91b414c20bd04279c4cacd9e2164276cd29e24e",
+    "pai/causes/inference.py": "b8bc059371003492bffbdc1479bee10b833b8d5e55207d3ba98e191573abe2bf",
+    "configs/tabletop.yaml": "99e9d2935fd2de292c2b6f324cc70c9bf818b0aabc0798a50a1d8dcde28f4768"
+  },
+  "versions": {
+    "torch": "2.11.0+cu130",
+    "numpy": "1.26.4",
+    "mujoco": "3.14.0",
+    "scipy": "1.15.3"
+  }
+}

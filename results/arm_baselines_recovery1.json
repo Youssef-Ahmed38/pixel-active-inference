@@ -1,0 +1,21 @@
+{
+  "reason": "MuJoCo FatalError: Could not allocate memory during worker reset",
+  "method": "recurrent_ppo",
+  "seed": 120002,
+  "checkpoint_decisions": 332800,
+  "extra_decisions_lower_bound": 0,
+  "extra_decisions_upper_bound": 25599,
+  "extra_decisions_exact": "Unknown: process failed between progress logs. Re-executed from saved optimizer/RNG/worker state; no new learning trajectory.",
+  "checkpoint_sha256": "7a4e36a4b4346f1cfd137fb23e35c2360a186887ff6f604fd1d80f1fd97b52e4",
+  "archives": [
+    "results/arm_baselines_recovery_failure1_detached_stderr.log",
+    "results/arm_baselines_recovery_failure1_detached_launch.json",
+    "results/arm_baselines_recovery_failure1_command_train_recurrent_ppo_120002.json",
+    "results/arm_baselines_recovery_failure1_train_recurrent_ppo_120002.log",
+    "results/arm_baselines_recovery_failure1_worker_recurrent_ppo120002_2_0.log",
+    "results/arm_baselines_recovery_failure1_worker_recurrent_ppo120002_2_1.log",
+    "results/arm_baselines_recovery_failure1_worker_recurrent_ppo120002_2_2.log",
+    "results/arm_baselines_recovery_failure1_worker_recurrent_ppo120002_2_3.log"
+  ],
+  "configuration_unchanged": true
+}

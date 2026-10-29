@@ -1,0 +1,102 @@
+{
+  "utc": "2026-10-28T19:54:49.369591+00:00",
+  "authorization": "User explicitly authorized unchanged restarts, periodic full checkpoints and detached processes.",
+  "plan_sha256": "eb7ed28550d1ae8baef5efd8cf5ac8a8605542189d9697e19295eb7b1af2b011",
+  "discarded_minimum_decisions": 1152000,
+  "discarded_experience_used_for_results": false,
+  "archives": [
+    {
+      "original": "results/arm_baselines_ppo_s120000_progress.json",
+      "archive": "results/arm_baselines_discarded_20261028_ppo_s120000_progress_archive.json",
+      "sha256": "727e646bc4ebaa10c53b19ce68ab100a6db4c9284ef1c04e78550872c402006d"
+    },
+    {
+      "original": "results/arm_baselines_ppo_s120001_progress.json",
+      "archive": "results/arm_baselines_discarded_20261028_ppo_s120001_progress_archive.json",
+      "sha256": "4a02eb3da1e14bd1d4626e409039383956f4f0d978620234c1367f8746f475e1"
+    },
+    {
+      "original": "results/arm_baselines_recurrent_ppo_s120000_progress.json",
+      "archive": "results/arm_baselines_discarded_20261028_recurrent_ppo_s120000_progress_archive.json",
+      "sha256": "2ee1755a172794afadaa96640aaa93a26c0af4b10279516710b7f7db0b9a3ca9"
+    },
+    {
+      "original": "results/arm_baselines_train_ppo_120000.log",
+      "archive": "results/arm_baselines_discarded_20261028_train_ppo_120000.log",
+      "sha256": "8dd5b22127ab90ce5633a6d765d1e3282a759ce72334d2b0e850c6c4c382d7fb"
+    },
+    {
+      "original": "results/arm_baselines_train_ppo_120001.log",
+      "archive": "results/arm_baselines_discarded_20261028_train_ppo_120001.log",
+      "sha256": "aa2d259be61ddfb542a524f026fc04ac8f9bfe27ba1fd8134a65297528a35daf"
+    },
+    {
+      "original": "results/arm_baselines_train_recurrent_ppo_120000.log",
+      "archive": "results/arm_baselines_discarded_20261028_train_recurrent_ppo_120000.log",
+      "sha256": "813939e9dbd4ebf4477bfe9e6d64d0d5c7c96b217841b4850415406fffcc9cea"
+    },
+    {
+      "original": "results/arm_baselines_worker_ppo120000_0_0.log",
+      "archive": "results/arm_baselines_discarded_20261028_worker_ppo120000_0_0.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "results/arm_baselines_worker_ppo120000_0_1.log",
+      "archive": "results/arm_baselines_discarded_20261028_worker_ppo120000_0_1.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "results/arm_baselines_worker_ppo120000_0_2.log",
+      "archive": "results/arm_baselines_discarded_20261028_worker_ppo120000_0_2.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "results/arm_baselines_worker_ppo120000_0_3.log",
+      "archive": "results/arm_baselines_discarded_20261028_worker_ppo120000_0_3.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "results/arm_baselines_worker_ppo120001_1_0.log",
+      "archive": "results/arm_baselines_discarded_20261028_worker_ppo120001_1_0.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "results/arm_baselines_worker_ppo120001_1_1.log",
+      "archive": "results/arm_baselines_discarded_20261028_worker_ppo120001_1_1.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "results/arm_baselines_worker_ppo120001_1_2.log",
+      "archive": "results/arm_baselines_discarded_20261028_worker_ppo120001_1_2.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "results/arm_baselines_worker_ppo120001_1_3.log",
+      "archive": "results/arm_baselines_discarded_20261028_worker_ppo120001_1_3.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "results/arm_baselines_worker_recurrent_ppo120000_0_0.log",
+      "archive": "results/arm_baselines_discarded_20261028_worker_recurrent_ppo120000_0_0.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "results/arm_baselines_worker_recurrent_ppo120000_0_1.log",
+      "archive": "results/arm_baselines_discarded_20261028_worker_recurrent_ppo120000_0_1.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "results/arm_baselines_worker_recurrent_ppo120000_0_2.log",
+      "archive": "results/arm_baselines_discarded_20261028_worker_recurrent_ppo120000_0_2.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "results/arm_baselines_worker_recurrent_ppo120000_0_3.log",
+      "archive": "results/arm_baselines_discarded_20261028_worker_recurrent_ppo120000_0_3.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "checkpoint_interval_decisions": 25600,
+  "resume": "Exact current-episode deterministic replay, worker sampling RNG/counter, policy/optimizer, CPU/CUDA/Python/NumPy RNG, recurrent state, shuffle RNG, counters, plateau history.",
+  "detachment": "DETACHED_PROCESS | CREATE_NEW_PROCESS_GROUP | CREATE_BREAKAWAY_FROM_JOB; independent redirected handles"
+}

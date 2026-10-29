@@ -1,0 +1,9 @@
+{
+  "simulation": "Anonymous stdio pipes, four independent CPU simulation processes per trial",
+  "max_concurrent_training_trials": 3,
+  "total_simulation_workers": 12,
+  "blas_threads_per_worker": 1,
+  "policy_torch_threads": 1,
+  "reason": "Named-pipe denial avoided; prevent torch imports in physics workers; scientific budget/hyperparameters unchanged before any learning updates",
+  "timing_probe_decisions": 3072
+}

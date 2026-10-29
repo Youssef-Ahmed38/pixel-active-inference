@@ -1,0 +1,8 @@
+{
+  "decisions": 1024,
+  "wall_s": 10.734559297561646,
+  "decisions_per_s": 95.39283091319841,
+  "learning_updates": 0,
+  "layout_range": "19000000+; separate from registered training/dev/final",
+  "purpose": "Interface/timing probe, not a trained baseline result"
+}
