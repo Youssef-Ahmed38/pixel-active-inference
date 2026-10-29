@@ -139,20 +139,25 @@ depend on the approximate physics (`scripts/gpu/g1_playground_eval.py`). Same ki
 gates, 20 starts each, new seeds, **nominal dynamics for both** (our walkers re-evaluated with
 `env.randomize=false`):
 
-| Test | Baseline (training physics / full accuracy) | Our v4, training seeds 0 / 1 / 2 |
-|---|---:|---:|
-| Stand 30 s, walk 10 m, headings | 20/20 each (heading error 3.2 / 3.0 deg) | 20/20 each (0.6 / 3.0 / 6.3 deg) |
-| Push 1.0 m/s | 100% / 100% | 100% / 100% / 100% |
-| Push 1.25 m/s | 90% / 90% | 90% / 100% / 97% |
-| Push 1.5 m/s | 90% / 95% | 60% / 77% / 70% |
-| Push 2.0 m/s | 60% / 60% | 7% / 3% / 0% |
+| Test | Baseline seed 0 (training physics / full accuracy) | Baseline seed 1 (training / full) | Our v4, training seeds 0 / 1 / 2 |
+|---|---:|---:|---:|
+| Stand 30 s, walk 10 m, headings | 20/20 each (3.2 / 3.0 deg) | 20/20 each (2.0 / 1.8 deg) | 20/20 each (0.6 / 3.0 / 6.3 deg) |
+| Push 1.0 m/s | 100% / 100% | 100% / 95% | 100% / 100% / 100% |
+| Push 1.25 m/s | 90% / 90% | 90% / 95% | 90% / 100% / 97% |
+| Push 1.5 m/s | 90% / 95% | 100% / 100% | 60% / 77% / 70% |
+| Push 2.0 m/s | 60% / 60% | 85% / 90% | 7% / 3% / 0% |
+
+Baseline seed 1 crashed once at 22M steps (a CUDA error while the GPU also rendered for another job;
+GPU rendering and GPU training are now never run together) and was resumed from its 22.3M-step
+checkpoint for the remaining 177.7M steps, so it also totals 200M; alone on the GPU it trained at
+about 49,800 steps/s.
 
 The standard recipe is clearly more robust to strong pushes; walking, headings and moderate pushes are
 equal. Differences: the baseline uses its own G1 model and gait-phase rewards and has no 2 m/s run
 (its commands stop at 1 m/s); its pushes are instantaneous velocity changes, ours the same change over
 0.2 s. Our walker's own contributions are the curiosity-trained body model, the fall-cause inference
 and the maze integration, not push robustness; the stronger baseline walker could serve as the body
-under the same cause level. `results/gpu_g1_baseline_eval.json`, `results/gpu_g1_baseline_training_*.json`,
+under the same cause level. `results/gpu_g1_baseline_eval{,_s1}.json`, `results/gpu_g1_baseline_*training*.json`,
 `results/locomotion/nominal_v4_s{0,1,2}.json`.
 
     # in WSL2 (Ubuntu 24.04, JAX with CUDA, MuJoCo Playground)
