@@ -39,3 +39,22 @@ def test_realistic_bicycle_has_the_named_parts():
     for name in ("saddle", "grip_l", "grip_r", "pedal_l", "pedal_r"):
         m.site(name)
     assert 9 < float(m.body_mass[m.body("frame").id:].sum()) < 14     # about 11.4 kg
+
+
+def test_arms_can_steer_the_handlebar():
+    """With arm_steer the fork servo is off; the arm/waist table keeps the palms on the grips
+    within +-0.3 rad, and a held bike's handlebar follows commanded angles through the arms."""
+    import numpy as np
+    from pai.bike.g1_rider import STEER_TABLE, G1BikeEnv
+    env = G1BikeEnv(scenery=False, max_seconds=1e9, arm_steer=True, arm_steer_kp=80.0)
+    assert env.model.actuator_gainprm[env.a_steer, 0] == 0.0
+    inner = np.abs(STEER_TABLE) <= 0.3 + 1e-9
+    assert env.arm_table_gap[inner].max() < 0.005
+    env.reset(seed=0, speed=0.0, roll=0.0)
+    d = env.data
+    root = d.qpos[:7].copy()
+    for _ in range(40):
+        env.step(np.array([0.0, 0.25, 0.0]))
+        d.qpos[:7] = root
+        d.qvel[:6] = 0.0
+    assert abs(d.qpos[env.steer_q] - 0.25) < 0.03

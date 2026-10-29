@@ -27,8 +27,8 @@ solved by least squares over the G1's joint angles within their limits, so the h
 the grips and pedals (residual gaps 2-16 mm, under 1 mm after settling). Total mass 44.8 kg.
 
 **Stated simplifications:** the drive torque acts at the rear wheel (the legs follow the pedals rather
-than producing it); steering is a servo on the fork that the hands hold, not steering produced by the
-arms; the G1 does not collide with the bike; the rider rides straight (no heading changes; corners,
+than producing it); steering is a servo on the fork that the hands hold (later the arms steer:
+[BIKE_TOWN.md](BIKE_TOWN.md), "The G1's own arms steer"); the G1 does not collide with the bike; the rider rides straight (no heading changes; corners,
 U-turns and deliveries in a town: [BIKE_TOWN.md](BIKE_TOWN.md)).
 
 ## Learning to balance by practice

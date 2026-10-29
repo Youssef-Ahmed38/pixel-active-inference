@@ -36,6 +36,8 @@ POSE = {
 }
 LEG = ("hip_pitch", "hip_roll", "hip_yaw", "knee", "ankle_pitch", "ankle_roll")
 GEAR = 0.5            # crank angle per wheel angle (as in pai/bike/real_bike.py)
+ARM = ("shoulder_pitch", "shoulder_roll", "shoulder_yaw", "elbow", "wrist_roll", "wrist_pitch", "wrist_yaw")
+STEER_TABLE = np.linspace(-0.6, 0.6, 25)   # handlebar angles of the arm-steering table (rad)
 
 
 def build_spec(scenery=True, seed: int = 0) -> mujoco.MjSpec:
@@ -64,7 +66,7 @@ class G1BikeEnv:
     domain = "bike_g1"
 
     def __init__(self, distance=10.0, control_dt=.02, max_seconds=10.0, leg_kp=8.0, scenery=True,
-                 arm_kp=None, steer_kp=None):
+                 arm_kp=None, steer_kp=None, arm_steer=False, arm_steer_kp=60.0):
         # arm_kp: soft arm servos so the arms follow the handlebar (None keeps the stiff arms of the
         # straight-riding results, which hold the steering to about +-0.24 rad)
         self.model = build_spec(scenery).compile()
@@ -99,6 +101,21 @@ class G1BikeEnv:
         self.front = m.joint("front_spin")
         self.lean_q = m.jnt_qposadr[m.joint("g1_waist_roll_joint").id]
         self.ik_q, self.ik_gap = self._solve_pose()
+        # arm_steer: the G1's arms turn the handlebar. The fork's steering servo is switched off; a
+        # steering command becomes arm joint targets (inverse kinematics: palms on the grips with the
+        # handlebar at that angle), and the arm servos (stiffness arm_steer_kp) push the bars round
+        # through the hands' grip constraints.
+        self.arm_steer = arm_steer
+        if arm_steer:
+            m.actuator_gainprm[self.a_steer, 0] = 0.0
+            m.actuator_biasprm[self.a_steer, 1:3] = 0.0
+            # the arms and the waist's yaw (a rider turns the torso toward a sharply turned handlebar)
+            self.arm_act = [i for i in self.g1_act if any(k in m.actuator(i).name for k in ARM + ("waist_yaw",))]
+            for i in self.arm_act:
+                m.actuator_gainprm[i, 0] = arm_steer_kp
+                m.actuator_biasprm[i, 1] = -arm_steer_kp
+                m.actuator_biasprm[i, 2] = -0.1 * arm_steer_kp
+            self.arm_table, self.arm_table_gap = self._solve_arm_table()
         for i in self.g1_act:
             jid = m.actuator_trnid[i, 0]
             if jid in self.ik_q:
@@ -135,6 +152,45 @@ class G1BikeEnv:
         sol = least_squares(residual, x0, bounds=(lo, hi), max_nfev=400)
         gap = np.sqrt(np.sum(residual(sol.x)[:12].reshape(4, 3) ** 2, axis=1))
         return {j: float(v) for j, v in zip(joints, sol.x)}, gap
+
+    def _solve_arm_table(self):
+        """Arm joint targets for each handlebar angle in STEER_TABLE: least squares on the arm joints
+        only (legs and torso stay in the seated solution), each solution starting from its neighbour."""
+        from scipy.optimize import least_squares
+        m = self.model
+        d = mujoco.MjData(m)
+        arm_j = [m.actuator_trnid[i, 0] for i in self.arm_act]
+        adr = [m.jnt_qposadr[j] for j in arm_j]
+        lo, hi = m.jnt_range[arm_j, 0], m.jnt_range[arm_j, 1]
+        pairs = [(m.site(a).id, m.site(b).id) for a, b in (("g1_left_palm", "grip_l"), ("g1_right_palm", "grip_r"))]
+        base = m.qpos0.copy()
+        for j, v in self.ik_q.items():
+            base[m.jnt_qposadr[j]] = v
+        x_mid = np.array([self.ik_q.get(j, 0.0) for j in arm_j])
+
+        def solve(delta, x0):
+            def residual(x):
+                d.qpos[:] = base
+                d.qpos[self.steer_q] = delta
+                d.qpos[adr] = x
+                mujoco.mj_kinematics(m, d)
+                return np.concatenate([d.site_xpos[a] - d.site_xpos[b] for a, b in pairs] + [0.01 * (x - x0)])
+            sol = least_squares(residual, np.clip(x0, lo + 1e-4, hi - 1e-4), bounds=(lo, hi), max_nfev=300)
+            gap = float(np.max(np.linalg.norm(residual(sol.x)[:6].reshape(2, 3), axis=1)))
+            return sol.x, gap
+
+        mid = len(STEER_TABLE) // 2
+        table, gaps = [None] * len(STEER_TABLE), [None] * len(STEER_TABLE)
+        table[mid], gaps[mid] = solve(STEER_TABLE[mid], x_mid)
+        for k in range(mid + 1, len(STEER_TABLE)):
+            table[k], gaps[k] = solve(STEER_TABLE[k], table[k - 1])
+        for k in range(mid - 1, -1, -1):
+            table[k], gaps[k] = solve(STEER_TABLE[k], table[k + 1])
+        return np.array(table), np.array(gaps)
+
+    def arm_targets(self, delta: float) -> np.ndarray:
+        """Arm joint targets for a handlebar angle (linear interpolation in the table)."""
+        return np.array([np.interp(delta, STEER_TABLE, self.arm_table[:, k]) for k in range(self.arm_table.shape[1])])
 
     def _settle(self, seconds=1.5):
         """Hold the bike still and upright while the G1 settles into the seat, bars and pedals."""
@@ -198,6 +254,8 @@ class G1BikeEnv:
         ctrl = self.pose.copy()
         ctrl[self.a_pedal] = torque
         ctrl[self.a_steer] = steer
+        if self.arm_steer:
+            ctrl[self.arm_act] = self.arm_targets(steer)
         ctrl[self.a_lean] = lean
         lo, hi = self.model.actuator_ctrlrange[:, 0], self.model.actuator_ctrlrange[:, 1]
         self.data.ctrl[:] = np.clip(ctrl, lo, hi)

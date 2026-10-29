@@ -256,3 +256,44 @@ truth); any other read raises `TruthAccessError` (tested).
 `results/bike_g1_audit.json`.
 
     python scripts/bike_g1_audit.py --towns 4300 4305 --output results/bike_g1_audit.json
+
+## The G1's own arms steer
+
+<img src="media/bike/delivery_arms.gif" width="640">
+
+`media/bike/delivery_arms.mp4`: a delivery in a new town (4630, house 2) with the fork's steering motor
+switched off: the handlebar turns only because the G1's arms and waist push it. The rider sees a barrier,
+replans, and changes lane around a parked car (delivered in 48 s).
+
+**How.** `G1BikeEnv(arm_steer=True)` (`pai/bike/g1_rider.py`) turns the fork's steering servo off. A
+steering command becomes joint targets for both arms (shoulder pitch, roll and yaw, elbow, three wrist
+joints) and the waist's yaw: a table of least-squares inverse-kinematics solutions keeping both palms on
+the grips for handlebar angles from -0.6 to 0.6 rad (each solved from its neighbour, so the motion is
+smooth), interpolated, and tracked by the arm servos (stiffness 80); the hands' grip constraints carry the
+force to the bars. Without the waist the arms reach only about +-0.25 rad; with it the palms stay on the
+grips within 2 mm up to +-0.3 rad and 19 mm at +-0.45 rad, and a held handlebar follows commanded angles of
+0.2 / 0.3 / 0.4 rad to 0.20 / 0.30 / 0.38 rad.
+
+**Learning to ride with it.** The rule practised with the fork motor fails with arm steering (3 of 16
+practice routes): the arms add lag and give. Practised again (`--arm-steer`, from the v3 gains), it rides
+**40/40 new routes** (towns 4250-4259, half with a U-turn; 0 falls; heading error 6.2 deg, 0.17 m from the
+lane; the previous gains 5/40). In deliveries on new towns 4600-4619 it fell in 10 of 40, every time in a
+ride with a lane change, which its practice routes did not contain: 29/40 delivered against 36/40 for the
+fork-motor rider on the same towns (paired 1 vs 8, p = 0.04). Practising lane changes too
+(`--lane-changes`: half of the routes change lane around 1-2 parked cars; 39/40 new routes on towns
+4260-4269 vs 33/40 before) closed the gap. Final, new towns 4620-4639, 40 deliveries each:
+
+| Steering | Delivered | Falls | Paired against blind |
+|---|---:|---:|---|
+| **The G1's arms (practised with lane changes)** | **35/40** [73.9, 94.5] | 3 | 17-0 |
+| Fork motor (practised rule) | 37/40 [80.1, 97.4] | 1 | 19-0 |
+| Blind (no looking), same towns | 18/40 | 0 (22 collisions) | |
+
+Arms against fork motor on the same deliveries: 0 vs 2, p = 0.5. Steering by the arms no longer costs
+deliveries. Still given: the inverse-kinematics table and the arm servo stiffness; the legs follow the
+pedals and the drive torque still acts at the rear wheel.
+`results/bike_g1_turns_armsteer{,_lanes}.json`, `results/bike_g1_delivery_{armsteer,fork_4600,armsteer_lanes,fork_4620}.json`.
+
+    python scripts/bike_g1_turn_practice.py --start-from results/bike_g1_turns_v3.json --u-turns 2 --track-weight 0.3 --iterations 16 --arm-steer --final-towns 4250 4260 --output results/bike_g1_turns_armsteer.json
+    python scripts/bike_g1_turn_practice.py --start-from results/bike_g1_turns_armsteer.json --u-turns 2 --track-weight 0.3 --iterations 12 --arm-steer --lane-changes --final-towns 4260 4270 --output results/bike_g1_turns_armsteer_lanes.json
+    python scripts/bike_g1_delivery_eval.py --towns 4620 4640 --workers 4 --arm-steer --gains-from results/bike_g1_turns_armsteer_lanes.json --output results/bike_g1_delivery_armsteer_lanes.json

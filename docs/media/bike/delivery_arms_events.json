@@ -1,0 +1,93 @@
+{
+ "house": 2,
+ "blind": false,
+ "outcome": "delivered",
+ "time_s": 47.92,
+ "distance_m": 85.4,
+ "replans": 1,
+ "looks": 5,
+ "wrong_looks": 0,
+ "hit": null,
+ "mean_heading_error_deg": 4.96,
+ "mean_cross_track_m": 0.186,
+ "events": [
+  {
+   "t": 0.0,
+   "at": 0,
+   "street": [
+    0,
+    1
+   ],
+   "seen": "clear",
+   "points": 0,
+   "look_yaw": 0.04,
+   "where": null,
+   "truth": "clear",
+   "from_node_m": 1.0
+  },
+  {
+   "t": 10.96,
+   "at": 1,
+   "street": [
+    1,
+    5
+   ],
+   "seen": "blocking",
+   "points": 232,
+   "look_yaw": 1.386,
+   "where": [
+    24.87,
+    15.09
+   ],
+   "truth": "blocking",
+   "from_node_m": 4.98,
+   "decision": "replan via 1-2-6-pad"
+  },
+  {
+   "t": 10.98,
+   "at": 1,
+   "street": [
+    1,
+    2
+   ],
+   "seen": "clear",
+   "points": 0,
+   "look_yaw": 0.035,
+   "where": null,
+   "truth": "clear",
+   "from_node_m": 4.95
+  },
+  {
+   "t": 25.62,
+   "at": 2,
+   "street": [
+    2,
+    6
+   ],
+   "seen": "partial",
+   "points": 289,
+   "look_yaw": 1.386,
+   "where": [
+    49.0,
+    14.59
+   ],
+   "truth": "partial",
+   "from_node_m": 4.98,
+   "decision": "change lane"
+  },
+  {
+   "t": 39.92,
+   "at": 6,
+   "street": [
+    6,
+    5
+   ],
+   "seen": "clear",
+   "points": 0,
+   "look_yaw": 2.962,
+   "where": null,
+   "truth": "clear",
+   "from_node_m": 4.99
+  }
+ ]
+}

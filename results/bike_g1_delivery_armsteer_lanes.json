@@ -1,0 +1,4128 @@
+{
+ "towns": [
+  4620,
+  4640
+ ],
+ "steering": "practised rule",
+ "arm_steer": true,
+ "gains": [
+  6.965,
+  1.0085,
+  0.1107,
+  2.3705,
+  6.676,
+  3.2341,
+  1.9013,
+  2.1915,
+  2.8722
+ ],
+ "blocked_prior": 0.125,
+ "arm_kp": 5.0,
+ "steer_kp": 300.0,
+ "summary": {
+  "looking": {
+   "delivered": 35,
+   "deliveries": 40,
+   "wilson95": [
+    0.739,
+    0.945
+   ],
+   "collision": 0,
+   "fell": 3,
+   "off_road": 1,
+   "timeout": 0,
+   "no_route": 1,
+   "collisions_by_kind": {
+    "blocking": 0,
+    "partial": 0
+   },
+   "mean_time_s_delivered": 43.1,
+   "mean_distance_m_delivered": 76.4,
+   "mean_heading_error_deg_delivered": 4.76,
+   "mean_cross_track_m_delivered": 0.173,
+   "replans": 27,
+   "street_looks": 184,
+   "street_looks_wrong": 0
+  },
+  "blind": {
+   "delivered": 18,
+   "deliveries": 40,
+   "wilson95": [
+    0.307,
+    0.602
+   ],
+   "collision": 22,
+   "fell": 0,
+   "off_road": 0,
+   "timeout": 0,
+   "no_route": 0,
+   "collisions_by_kind": {
+    "blocking": 13,
+    "partial": 9
+   },
+   "mean_time_s_delivered": 28.8,
+   "mean_distance_m_delivered": 50.4,
+   "mean_heading_error_deg_delivered": 3.29,
+   "mean_cross_track_m_delivered": 0.159,
+   "replans": 0,
+   "street_looks": 0,
+   "street_looks_wrong": 0
+  }
+ },
+ "paired": {
+  "looking_only": 17,
+  "blind_only": 0,
+  "sign_test_p": 0.0
+ },
+ "deliveries": [
+  {
+   "house": 7,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 19.88,
+   "distance_m": 36.2,
+   "replans": 0,
+   "looks": 2,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 5.42,
+   "mean_cross_track_m": 0.182,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 10.96,
+     "at": 1,
+     "street": [
+      1,
+      5
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.386,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.98
+    }
+   ],
+   "town": 4620
+  },
+  {
+   "house": 7,
+   "blind": true,
+   "outcome": "delivered",
+   "time_s": 19.88,
+   "distance_m": 36.2,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 5.42,
+   "mean_cross_track_m": 0.182,
+   "events": [],
+   "town": 4620
+  },
+  {
+   "house": 8,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 34.74,
+   "distance_m": 60.2,
+   "replans": 0,
+   "looks": 3,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 3.44,
+   "mean_cross_track_m": 0.161,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      4
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.611,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 7.84,
+     "at": 4,
+     "street": [
+      4,
+      8
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.599,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 10.98
+    },
+    {
+     "t": 26.28,
+     "at": 8,
+     "street": [
+      8,
+      9
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.2,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.98
+    }
+   ],
+   "town": 4620
+  },
+  {
+   "house": 8,
+   "blind": true,
+   "outcome": "delivered",
+   "time_s": 34.74,
+   "distance_m": 60.2,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 3.44,
+   "mean_cross_track_m": 0.161,
+   "events": [],
+   "town": 4620
+  },
+  {
+   "house": 5,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 19.6,
+   "distance_m": 33.1,
+   "replans": 0,
+   "looks": 2,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 0.93,
+   "mean_cross_track_m": 0.133,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 7.84,
+     "at": 1,
+     "street": [
+      1,
+      2
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.029,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 10.98
+    }
+   ],
+   "town": 4621
+  },
+  {
+   "house": 5,
+   "blind": true,
+   "outcome": "delivered",
+   "time_s": 19.6,
+   "distance_m": 33.1,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 0.93,
+   "mean_cross_track_m": 0.133,
+   "events": [],
+   "town": 4621
+  },
+  {
+   "house": 7,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 75.88,
+   "distance_m": 137.1,
+   "replans": 2,
+   "looks": 8,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 6.48,
+   "mean_cross_track_m": 0.186,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 10.96,
+     "at": 1,
+     "street": [
+      1,
+      5
+     ],
+     "seen": "blocking",
+     "points": 175,
+     "look_yaw": 1.386,
+     "where": [
+      24.95,
+      16.67
+     ],
+     "truth": "blocking",
+     "from_node_m": 4.98,
+     "decision": "replan via 1-2-6-pad"
+    },
+    {
+     "t": 10.98,
+     "at": 1,
+     "street": [
+      1,
+      2
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.035,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.95
+    },
+    {
+     "t": 25.62,
+     "at": 2,
+     "street": [
+      2,
+      6
+     ],
+     "seen": "blocking",
+     "points": 247,
+     "look_yaw": 1.386,
+     "where": [
+      49.87,
+      14.72
+     ],
+     "truth": "blocking",
+     "from_node_m": 4.98,
+     "decision": "replan via 2-3-7-6-pad"
+    },
+    {
+     "t": 25.64,
+     "at": 2,
+     "street": [
+      2,
+      3
+     ],
+     "seen": "partial",
+     "points": 204,
+     "look_yaw": 0.035,
+     "where": [
+      61.46,
+      -1.0
+     ],
+     "truth": "partial",
+     "from_node_m": 4.94,
+     "decision": "change lane"
+    },
+    {
+     "t": 39.46,
+     "at": 3,
+     "street": [
+      3,
+      7
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.384,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.99
+    },
+    {
+     "t": 53.56,
+     "at": 7,
+     "street": [
+      7,
+      6
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 2.955,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 5.0
+    },
+    {
+     "t": 67.62,
+     "at": 6,
+     "street": [
+      6,
+      10
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.771,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.97
+    }
+   ],
+   "town": 4621
+  },
+  {
+   "house": 7,
+   "blind": true,
+   "outcome": "collision",
+   "time_s": 22.64,
+   "distance_m": 41.1,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": "blocking",
+   "mean_heading_error_deg": 5.09,
+   "mean_cross_track_m": 0.181,
+   "events": [],
+   "town": 4621
+  },
+  {
+   "house": 5,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 19.7,
+   "distance_m": 35.6,
+   "replans": 0,
+   "looks": 2,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 4.58,
+   "mean_cross_track_m": 0.156,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      4
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.611,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 7.84,
+     "at": 4,
+     "street": [
+      4,
+      8
+     ],
+     "seen": "partial",
+     "points": 108,
+     "look_yaw": 1.599,
+     "where": [
+      1.0,
+      36.19
+     ],
+     "truth": "partial",
+     "from_node_m": 10.98,
+     "decision": "change lane"
+    }
+   ],
+   "town": 4622
+  },
+  {
+   "house": 5,
+   "blind": true,
+   "outcome": "collision",
+   "time_s": 20.04,
+   "distance_m": 34.0,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": "partial",
+   "mean_heading_error_deg": 0.94,
+   "mean_cross_track_m": 0.133,
+   "events": [],
+   "town": 4622
+  },
+  {
+   "house": 3,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 36.98,
+   "distance_m": 61.3,
+   "replans": 0,
+   "looks": 3,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 0.97,
+   "mean_cross_track_m": 0.133,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 7.84,
+     "at": 1,
+     "street": [
+      1,
+      2
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.029,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 10.98
+    },
+    {
+     "t": 23.2,
+     "at": 2,
+     "street": [
+      2,
+      3
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.029,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 10.98
+    }
+   ],
+   "town": 4622
+  },
+  {
+   "house": 3,
+   "blind": true,
+   "outcome": "delivered",
+   "time_s": 36.98,
+   "distance_m": 61.3,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 0.97,
+   "mean_cross_track_m": 0.133,
+   "events": [],
+   "town": 4622
+  },
+  {
+   "house": 7,
+   "blind": false,
+   "outcome": "fell",
+   "time_s": 15.58,
+   "distance_m": 29.1,
+   "replans": 2,
+   "looks": 4,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 10.75,
+   "mean_cross_track_m": 0.258,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 7.84,
+     "at": 1,
+     "street": [
+      1,
+      2
+     ],
+     "seen": "blocking",
+     "points": 120,
+     "look_yaw": 0.029,
+     "where": [
+      37.3,
+      -0.02
+     ],
+     "truth": "blocking",
+     "from_node_m": 10.98,
+     "decision": "replan via 1-5-6-2-pad"
+    },
+    {
+     "t": 11.2,
+     "at": 1,
+     "street": [
+      1,
+      5
+     ],
+     "seen": "blocking",
+     "points": 182,
+     "look_yaw": 1.385,
+     "where": [
+      24.91,
+      16.66
+     ],
+     "truth": "blocking",
+     "from_node_m": 5.0,
+     "decision": "replan via 1-0-4-5-6-2-pad"
+    },
+    {
+     "t": 11.22,
+     "at": 1,
+     "street": [
+      1,
+      0
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 3.09,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.96
+    }
+   ],
+   "town": 4623
+  },
+  {
+   "house": 7,
+   "blind": true,
+   "outcome": "collision",
+   "time_s": 21.64,
+   "distance_m": 36.5,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": "blocking",
+   "mean_heading_error_deg": 0.95,
+   "mean_cross_track_m": 0.133,
+   "events": [],
+   "town": 4623
+  },
+  {
+   "house": 1,
+   "blind": false,
+   "outcome": "fell",
+   "time_s": 15.58,
+   "distance_m": 29.1,
+   "replans": 2,
+   "looks": 4,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 10.75,
+   "mean_cross_track_m": 0.258,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 7.84,
+     "at": 1,
+     "street": [
+      1,
+      2
+     ],
+     "seen": "blocking",
+     "points": 120,
+     "look_yaw": 0.029,
+     "where": [
+      37.3,
+      -0.02
+     ],
+     "truth": "blocking",
+     "from_node_m": 10.98,
+     "decision": "replan via 1-5-6-2-pad"
+    },
+    {
+     "t": 11.2,
+     "at": 1,
+     "street": [
+      1,
+      5
+     ],
+     "seen": "blocking",
+     "points": 182,
+     "look_yaw": 1.385,
+     "where": [
+      24.91,
+      16.66
+     ],
+     "truth": "blocking",
+     "from_node_m": 5.0,
+     "decision": "replan via 1-0-4-5-6-2-pad"
+    },
+    {
+     "t": 11.22,
+     "at": 1,
+     "street": [
+      1,
+      0
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 3.09,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.96
+    }
+   ],
+   "town": 4623
+  },
+  {
+   "house": 1,
+   "blind": true,
+   "outcome": "collision",
+   "time_s": 21.64,
+   "distance_m": 36.6,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": "blocking",
+   "mean_heading_error_deg": 0.95,
+   "mean_cross_track_m": 0.133,
+   "events": [],
+   "town": 4623
+  },
+  {
+   "house": 3,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 18.42,
+   "distance_m": 33.7,
+   "replans": 0,
+   "looks": 2,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 5.43,
+   "mean_cross_track_m": 0.186,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 10.96,
+     "at": 1,
+     "street": [
+      1,
+      5
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.386,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.98
+    }
+   ],
+   "town": 4624
+  },
+  {
+   "house": 3,
+   "blind": true,
+   "outcome": "delivered",
+   "time_s": 18.42,
+   "distance_m": 33.7,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 5.43,
+   "mean_cross_track_m": 0.186,
+   "events": [],
+   "town": 4624
+  },
+  {
+   "house": 6,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 76.36,
+   "distance_m": 137.1,
+   "replans": 1,
+   "looks": 7,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 5.75,
+   "mean_cross_track_m": 0.173,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 7.84,
+     "at": 1,
+     "street": [
+      1,
+      2
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.029,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 10.98
+    },
+    {
+     "t": 26.44,
+     "at": 2,
+     "street": [
+      2,
+      6
+     ],
+     "seen": "blocking",
+     "points": 263,
+     "look_yaw": 1.385,
+     "where": [
+      49.86,
+      13.55
+     ],
+     "truth": "blocking",
+     "from_node_m": 5.0,
+     "decision": "replan via 2-3-7-6-pad"
+    },
+    {
+     "t": 26.46,
+     "at": 2,
+     "street": [
+      2,
+      3
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.035,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.96
+    },
+    {
+     "t": 41.04,
+     "at": 3,
+     "street": [
+      3,
+      7
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.386,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.99
+    },
+    {
+     "t": 55.18,
+     "at": 7,
+     "street": [
+      7,
+      6
+     ],
+     "seen": "partial",
+     "points": 854,
+     "look_yaw": 2.957,
+     "where": [
+      66.36,
+      26.0
+     ],
+     "truth": "partial",
+     "from_node_m": 4.97,
+     "decision": "change lane"
+    },
+    {
+     "t": 68.12,
+     "at": 6,
+     "street": [
+      6,
+      2
+     ],
+     "seen": "blocking",
+     "points": 361,
+     "look_yaw": -1.759,
+     "where": [
+      50.02,
+      13.78
+     ],
+     "truth": "blocking",
+     "from_node_m": 4.97
+    }
+   ],
+   "town": 4624
+  },
+  {
+   "house": 6,
+   "blind": true,
+   "outcome": "delivered",
+   "time_s": 36.56,
+   "distance_m": 63.0,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 3.67,
+   "mean_cross_track_m": 0.162,
+   "events": [],
+   "town": 4624
+  },
+  {
+   "house": 8,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 49.56,
+   "distance_m": 86.7,
+   "replans": 0,
+   "looks": 4,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 5.96,
+   "mean_cross_track_m": 0.181,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 7.84,
+     "at": 1,
+     "street": [
+      1,
+      2
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.029,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 10.98
+    },
+    {
+     "t": 23.2,
+     "at": 2,
+     "street": [
+      2,
+      3
+     ],
+     "seen": "partial",
+     "points": 108,
+     "look_yaw": 0.029,
+     "where": [
+      61.97,
+      -1.0
+     ],
+     "truth": "partial",
+     "from_node_m": 10.98,
+     "decision": "change lane"
+    },
+    {
+     "t": 40.88,
+     "at": 3,
+     "street": [
+      3,
+      7
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.383,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.99
+    }
+   ],
+   "town": 4625
+  },
+  {
+   "house": 8,
+   "blind": true,
+   "outcome": "collision",
+   "time_s": 36.04,
+   "distance_m": 59.5,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": "partial",
+   "mean_heading_error_deg": 0.96,
+   "mean_cross_track_m": 0.132,
+   "events": [],
+   "town": 4625
+  },
+  {
+   "house": 6,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 23.28,
+   "distance_m": 39.2,
+   "replans": 0,
+   "looks": 2,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 0.98,
+   "mean_cross_track_m": 0.133,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 7.84,
+     "at": 1,
+     "street": [
+      1,
+      2
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.029,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 10.98
+    }
+   ],
+   "town": 4625
+  },
+  {
+   "house": 6,
+   "blind": true,
+   "outcome": "delivered",
+   "time_s": 23.28,
+   "distance_m": 39.2,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 0.98,
+   "mean_cross_track_m": 0.133,
+   "events": [],
+   "town": 4625
+  },
+  {
+   "house": 6,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 62.88,
+   "distance_m": 111.9,
+   "replans": 1,
+   "looks": 6,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 6.31,
+   "mean_cross_track_m": 0.198,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 10.96,
+     "at": 1,
+     "street": [
+      1,
+      5
+     ],
+     "seen": "blocking",
+     "points": 384,
+     "look_yaw": 1.386,
+     "where": [
+      24.92,
+      10.87
+     ],
+     "truth": "blocking",
+     "from_node_m": 4.98,
+     "decision": "replan via 1-2-6-5-pad"
+    },
+    {
+     "t": 10.98,
+     "at": 1,
+     "street": [
+      1,
+      2
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.035,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.95
+    },
+    {
+     "t": 25.62,
+     "at": 2,
+     "street": [
+      2,
+      6
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.386,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.98
+    },
+    {
+     "t": 39.84,
+     "at": 6,
+     "street": [
+      6,
+      5
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 2.956,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.99
+    },
+    {
+     "t": 53.92,
+     "at": 5,
+     "street": [
+      5,
+      1
+     ],
+     "seen": "blocking",
+     "points": 244,
+     "look_yaw": -1.756,
+     "where": [
+      24.95,
+      11.1
+     ],
+     "truth": "blocking",
+     "from_node_m": 4.99
+    }
+   ],
+   "town": 4626
+  },
+  {
+   "house": 6,
+   "blind": true,
+   "outcome": "collision",
+   "time_s": 19.38,
+   "distance_m": 35.6,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": "blocking",
+   "mean_heading_error_deg": 5.46,
+   "mean_cross_track_m": 0.183,
+   "events": [],
+   "town": 4626
+  },
+  {
+   "house": 2,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 62.48,
+   "distance_m": 111.4,
+   "replans": 1,
+   "looks": 6,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 5.64,
+   "mean_cross_track_m": 0.19,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 10.96,
+     "at": 1,
+     "street": [
+      1,
+      5
+     ],
+     "seen": "blocking",
+     "points": 384,
+     "look_yaw": 1.386,
+     "where": [
+      24.92,
+      10.87
+     ],
+     "truth": "blocking",
+     "from_node_m": 4.98,
+     "decision": "replan via 1-2-6-7-pad"
+    },
+    {
+     "t": 10.98,
+     "at": 1,
+     "street": [
+      1,
+      2
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.035,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.95
+    },
+    {
+     "t": 25.62,
+     "at": 2,
+     "street": [
+      2,
+      6
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.386,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.98
+    },
+    {
+     "t": 39.68,
+     "at": 6,
+     "street": [
+      6,
+      7
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.201,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.99
+    },
+    {
+     "t": 51.56,
+     "at": 7,
+     "street": [
+      7,
+      11
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.387,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.96
+    }
+   ],
+   "town": 4626
+  },
+  {
+   "house": 2,
+   "blind": true,
+   "outcome": "collision",
+   "time_s": 19.36,
+   "distance_m": 35.5,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": "blocking",
+   "mean_heading_error_deg": 5.49,
+   "mean_cross_track_m": 0.183,
+   "events": [],
+   "town": 4626
+  },
+  {
+   "house": 4,
+   "blind": false,
+   "outcome": "fell",
+   "time_s": 61.32,
+   "distance_m": 107.6,
+   "replans": 2,
+   "looks": 7,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 6.19,
+   "mean_cross_track_m": 0.198,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 10.96,
+     "at": 1,
+     "street": [
+      1,
+      5
+     ],
+     "seen": "blocking",
+     "points": 662,
+     "look_yaw": 1.386,
+     "where": [
+      24.89,
+      8.04
+     ],
+     "truth": "blocking",
+     "from_node_m": 4.98,
+     "decision": "replan via 1-2-6-pad"
+    },
+    {
+     "t": 10.98,
+     "at": 1,
+     "street": [
+      1,
+      2
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.035,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.95
+    },
+    {
+     "t": 25.62,
+     "at": 2,
+     "street": [
+      2,
+      6
+     ],
+     "seen": "blocking",
+     "points": 357,
+     "look_yaw": 1.386,
+     "where": [
+      49.87,
+      11.89
+     ],
+     "truth": "blocking",
+     "from_node_m": 4.98,
+     "decision": "replan via 2-3-7-pad"
+    },
+    {
+     "t": 25.64,
+     "at": 2,
+     "street": [
+      2,
+      3
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.035,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.94
+    },
+    {
+     "t": 40.2,
+     "at": 3,
+     "street": [
+      3,
+      7
+     ],
+     "seen": "partial",
+     "points": 430,
+     "look_yaw": 1.385,
+     "where": [
+      74.0,
+      12.32
+     ],
+     "truth": "partial",
+     "from_node_m": 5.0,
+     "decision": "change lane"
+    },
+    {
+     "t": 54.38,
+     "at": 7,
+     "street": [
+      7,
+      6
+     ],
+     "seen": "partial",
+     "points": 210,
+     "look_yaw": 2.958,
+     "where": [
+      57.63,
+      26.0
+     ],
+     "truth": "partial",
+     "from_node_m": 4.98,
+     "decision": "change lane"
+    }
+   ],
+   "town": 4627
+  },
+  {
+   "house": 4,
+   "blind": true,
+   "outcome": "collision",
+   "time_s": 17.72,
+   "distance_m": 32.5,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": "blocking",
+   "mean_heading_error_deg": 5.64,
+   "mean_cross_track_m": 0.184,
+   "events": [],
+   "town": 4627
+  },
+  {
+   "house": 1,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 30.7,
+   "distance_m": 56.1,
+   "replans": 0,
+   "looks": 3,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 7.88,
+   "mean_cross_track_m": 0.197,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      4
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.611,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 7.84,
+     "at": 4,
+     "street": [
+      4,
+      8
+     ],
+     "seen": "partial",
+     "points": 115,
+     "look_yaw": 1.599,
+     "where": [
+      1.0,
+      35.63
+     ],
+     "truth": "partial",
+     "from_node_m": 10.98,
+     "decision": "change lane"
+    },
+    {
+     "t": 25.22,
+     "at": 8,
+     "street": [
+      8,
+      9
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.2,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.98
+    }
+   ],
+   "town": 4627
+  },
+  {
+   "house": 1,
+   "blind": true,
+   "outcome": "collision",
+   "time_s": 19.74,
+   "distance_m": 33.5,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": "partial",
+   "mean_heading_error_deg": 0.93,
+   "mean_cross_track_m": 0.133,
+   "events": [],
+   "town": 4627
+  },
+  {
+   "house": 6,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 35.62,
+   "distance_m": 61.2,
+   "replans": 0,
+   "looks": 3,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 3.07,
+   "mean_cross_track_m": 0.14,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      4
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.611,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 7.84,
+     "at": 4,
+     "street": [
+      4,
+      8
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.599,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 10.98
+    },
+    {
+     "t": 23.2,
+     "at": 8,
+     "street": [
+      8,
+      12
+     ],
+     "seen": "partial",
+     "points": 108,
+     "look_yaw": 1.6,
+     "where": [
+      1.0,
+      61.26
+     ],
+     "truth": "partial",
+     "from_node_m": 10.98,
+     "decision": "change lane"
+    }
+   ],
+   "town": 4628
+  },
+  {
+   "house": 6,
+   "blind": true,
+   "outcome": "collision",
+   "time_s": 35.56,
+   "distance_m": 59.1,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": "partial",
+   "mean_heading_error_deg": 0.96,
+   "mean_cross_track_m": 0.133,
+   "events": [],
+   "town": 4628
+  },
+  {
+   "house": 4,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 63.04,
+   "distance_m": 110.6,
+   "replans": 0,
+   "looks": 5,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 6.08,
+   "mean_cross_track_m": 0.179,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 10.96,
+     "at": 1,
+     "street": [
+      1,
+      5
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.386,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.98
+    },
+    {
+     "t": 21.9,
+     "at": 5,
+     "street": [
+      5,
+      9
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.598,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 10.97
+    },
+    {
+     "t": 37.4,
+     "at": 9,
+     "street": [
+      9,
+      13
+     ],
+     "seen": "partial",
+     "points": 80,
+     "look_yaw": 1.599,
+     "where": [
+      26.0,
+      63.74
+     ],
+     "truth": "partial",
+     "from_node_m": 10.98,
+     "decision": "change lane"
+    },
+    {
+     "t": 55.14,
+     "at": 13,
+     "street": [
+      13,
+      14
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.201,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.98
+    }
+   ],
+   "town": 4628
+  },
+  {
+   "house": 4,
+   "blind": true,
+   "outcome": "collision",
+   "time_s": 51.18,
+   "distance_m": 87.1,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": "partial",
+   "mean_heading_error_deg": 2.82,
+   "mean_cross_track_m": 0.154,
+   "events": [],
+   "town": 4628
+  },
+  {
+   "house": 6,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 30.3,
+   "distance_m": 55.7,
+   "replans": 0,
+   "looks": 3,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 6.57,
+   "mean_cross_track_m": 0.195,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 10.96,
+     "at": 1,
+     "street": [
+      1,
+      5
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.386,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.98
+    },
+    {
+     "t": 24.96,
+     "at": 5,
+     "street": [
+      5,
+      6
+     ],
+     "seen": "blocking",
+     "points": 548,
+     "look_yaw": 0.2,
+     "where": [
+      35.84,
+      24.92
+     ],
+     "truth": "blocking",
+     "from_node_m": 4.98
+    }
+   ],
+   "town": 4629
+  },
+  {
+   "house": 6,
+   "blind": true,
+   "outcome": "delivered",
+   "time_s": 30.3,
+   "distance_m": 55.7,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 6.57,
+   "mean_cross_track_m": 0.195,
+   "events": [],
+   "town": 4629
+  },
+  {
+   "house": 1,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 35.34,
+   "distance_m": 58.7,
+   "replans": 0,
+   "looks": 3,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 1.46,
+   "mean_cross_track_m": 0.135,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      4
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.611,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 7.84,
+     "at": 4,
+     "street": [
+      4,
+      8
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.599,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 10.98
+    },
+    {
+     "t": 23.2,
+     "at": 8,
+     "street": [
+      8,
+      12
+     ],
+     "seen": "partial",
+     "points": 95,
+     "look_yaw": 1.6,
+     "where": [
+      -1.0,
+      63.73
+     ],
+     "truth": "partial",
+     "from_node_m": 10.98,
+     "decision": "change lane"
+    }
+   ],
+   "town": 4629
+  },
+  {
+   "house": 1,
+   "blind": true,
+   "outcome": "delivered",
+   "time_s": 35.32,
+   "distance_m": 58.6,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 0.97,
+   "mean_cross_track_m": 0.133,
+   "events": [],
+   "town": 4629
+  },
+  {
+   "house": 6,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 65.22,
+   "distance_m": 114.8,
+   "replans": 1,
+   "looks": 6,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 5.11,
+   "mean_cross_track_m": 0.171,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 10.96,
+     "at": 1,
+     "street": [
+      1,
+      5
+     ],
+     "seen": "blocking",
+     "points": 232,
+     "look_yaw": 1.386,
+     "where": [
+      24.87,
+      15.09
+     ],
+     "truth": "blocking",
+     "from_node_m": 4.98,
+     "decision": "replan via 1-2-6-10-pad"
+    },
+    {
+     "t": 10.98,
+     "at": 1,
+     "street": [
+      1,
+      2
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.035,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.95
+    },
+    {
+     "t": 25.62,
+     "at": 2,
+     "street": [
+      2,
+      6
+     ],
+     "seen": "partial",
+     "points": 289,
+     "look_yaw": 1.386,
+     "where": [
+      49.0,
+      14.59
+     ],
+     "truth": "partial",
+     "from_node_m": 4.98,
+     "decision": "change lane"
+    },
+    {
+     "t": 36.72,
+     "at": 6,
+     "street": [
+      6,
+      10
+     ],
+     "seen": "partial",
+     "points": 80,
+     "look_yaw": 1.617,
+     "where": [
+      51.0,
+      39.46
+     ],
+     "truth": "partial",
+     "from_node_m": 10.97,
+     "decision": "change lane"
+    },
+    {
+     "t": 51.12,
+     "at": 10,
+     "street": [
+      10,
+      14
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.541,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 10.96
+    }
+   ],
+   "town": 4630
+  },
+  {
+   "house": 6,
+   "blind": true,
+   "outcome": "collision",
+   "time_s": 21.74,
+   "distance_m": 39.6,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": "blocking",
+   "mean_heading_error_deg": 5.24,
+   "mean_cross_track_m": 0.182,
+   "events": [],
+   "town": 4630
+  },
+  {
+   "house": 2,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 47.92,
+   "distance_m": 85.4,
+   "replans": 1,
+   "looks": 5,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 4.96,
+   "mean_cross_track_m": 0.186,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 10.96,
+     "at": 1,
+     "street": [
+      1,
+      5
+     ],
+     "seen": "blocking",
+     "points": 232,
+     "look_yaw": 1.386,
+     "where": [
+      24.87,
+      15.09
+     ],
+     "truth": "blocking",
+     "from_node_m": 4.98,
+     "decision": "replan via 1-2-6-pad"
+    },
+    {
+     "t": 10.98,
+     "at": 1,
+     "street": [
+      1,
+      2
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.035,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.95
+    },
+    {
+     "t": 25.62,
+     "at": 2,
+     "street": [
+      2,
+      6
+     ],
+     "seen": "partial",
+     "points": 289,
+     "look_yaw": 1.386,
+     "where": [
+      49.0,
+      14.59
+     ],
+     "truth": "partial",
+     "from_node_m": 4.98,
+     "decision": "change lane"
+    },
+    {
+     "t": 39.92,
+     "at": 6,
+     "street": [
+      6,
+      5
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 2.962,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.99
+    }
+   ],
+   "town": 4630
+  },
+  {
+   "house": 2,
+   "blind": true,
+   "outcome": "collision",
+   "time_s": 21.74,
+   "distance_m": 39.6,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": "blocking",
+   "mean_heading_error_deg": 5.24,
+   "mean_cross_track_m": 0.182,
+   "events": [],
+   "town": 4630
+  },
+  {
+   "house": 1,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 21.24,
+   "distance_m": 39.5,
+   "replans": 0,
+   "looks": 2,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 5.29,
+   "mean_cross_track_m": 0.193,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 10.96,
+     "at": 1,
+     "street": [
+      1,
+      5
+     ],
+     "seen": "partial",
+     "points": 437,
+     "look_yaw": 1.386,
+     "where": [
+      24.0,
+      12.03
+     ],
+     "truth": "partial",
+     "from_node_m": 4.98,
+     "decision": "change lane"
+    }
+   ],
+   "town": 4631
+  },
+  {
+   "house": 1,
+   "blind": true,
+   "outcome": "delivered",
+   "time_s": 21.86,
+   "distance_m": 39.5,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 5.22,
+   "mean_cross_track_m": 0.18,
+   "events": [],
+   "town": 4631
+  },
+  {
+   "house": 6,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 33.96,
+   "distance_m": 58.7,
+   "replans": 0,
+   "looks": 3,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 3.55,
+   "mean_cross_track_m": 0.165,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      4
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.611,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 7.84,
+     "at": 4,
+     "street": [
+      4,
+      8
+     ],
+     "seen": "partial",
+     "points": 76,
+     "look_yaw": 1.599,
+     "where": [
+      -1.0,
+      42.47
+     ],
+     "truth": "partial",
+     "from_node_m": 10.98,
+     "decision": "change lane"
+    },
+    {
+     "t": 23.22,
+     "at": 8,
+     "street": [
+      8,
+      12
+     ],
+     "seen": "partial",
+     "points": 140,
+     "look_yaw": 1.606,
+     "where": [
+      1.0,
+      58.31
+     ],
+     "truth": "partial",
+     "from_node_m": 10.98,
+     "decision": "change lane"
+    }
+   ],
+   "town": 4631
+  },
+  {
+   "house": 6,
+   "blind": true,
+   "outcome": "collision",
+   "time_s": 33.76,
+   "distance_m": 56.1,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": "partial",
+   "mean_heading_error_deg": 0.95,
+   "mean_cross_track_m": 0.133,
+   "events": [],
+   "town": 4631
+  },
+  {
+   "house": 1,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 3.94,
+   "distance_m": 7.7,
+   "replans": 0,
+   "looks": 1,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 0.92,
+   "mean_cross_track_m": 0.129,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    }
+   ],
+   "town": 4632
+  },
+  {
+   "house": 1,
+   "blind": true,
+   "outcome": "delivered",
+   "time_s": 3.94,
+   "distance_m": 7.7,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 0.92,
+   "mean_cross_track_m": 0.129,
+   "events": [],
+   "town": 4632
+  },
+  {
+   "house": 4,
+   "blind": false,
+   "outcome": "no_route",
+   "time_s": 206.22,
+   "distance_m": 381.5,
+   "replans": 5,
+   "looks": 21,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 9.18,
+   "mean_cross_track_m": 0.225,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 10.96,
+     "at": 1,
+     "street": [
+      1,
+      5
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.386,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.98
+    },
+    {
+     "t": 21.9,
+     "at": 5,
+     "street": [
+      5,
+      9
+     ],
+     "seen": "blocking",
+     "points": 162,
+     "look_yaw": 1.598,
+     "where": [
+      25.01,
+      34.9
+     ],
+     "truth": "blocking",
+     "from_node_m": 10.97,
+     "decision": "replan via 5-6-10-14-pad"
+    },
+    {
+     "t": 25.38,
+     "at": 5,
+     "street": [
+      5,
+      6
+     ],
+     "seen": "partial",
+     "points": 419,
+     "look_yaw": 0.201,
+     "where": [
+      40.02,
+      26.0
+     ],
+     "truth": "partial",
+     "from_node_m": 4.99,
+     "decision": "change lane"
+    },
+    {
+     "t": 37.28,
+     "at": 6,
+     "street": [
+      6,
+      10
+     ],
+     "seen": "blocking",
+     "points": 207,
+     "look_yaw": 1.392,
+     "where": [
+      49.88,
+      40.63
+     ],
+     "truth": "blocking",
+     "from_node_m": 4.99,
+     "decision": "replan via 6-7-11-10-14-pad"
+    },
+    {
+     "t": 37.3,
+     "at": 6,
+     "street": [
+      6,
+      7
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.047,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.96
+    },
+    {
+     "t": 51.86,
+     "at": 7,
+     "street": [
+      7,
+      11
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.386,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.98
+    },
+    {
+     "t": 66.74,
+     "at": 11,
+     "street": [
+      11,
+      10
+     ],
+     "seen": "partial",
+     "points": 196,
+     "look_yaw": 2.958,
+     "where": [
+      57.83,
+      49.0
+     ],
+     "truth": "partial",
+     "from_node_m": 4.99,
+     "decision": "change lane"
+    },
+    {
+     "t": 79.92,
+     "at": 10,
+     "street": [
+      10,
+      14
+     ],
+     "seen": "blocking",
+     "points": 231,
+     "look_yaw": 1.77,
+     "where": [
+      49.56,
+      65.41
+     ],
+     "truth": "blocking",
+     "from_node_m": 4.98,
+     "decision": "replan via 10-9-13-pad"
+    },
+    {
+     "t": 79.94,
+     "at": 10,
+     "street": [
+      10,
+      9
+     ],
+     "seen": "blocking",
+     "points": 387,
+     "look_yaw": -3.093,
+     "where": [
+      42.28,
+      50.0
+     ],
+     "truth": "blocking",
+     "from_node_m": 4.94,
+     "decision": "replan via 10-11-15-14-pad"
+    },
+    {
+     "t": 79.96,
+     "at": 10,
+     "street": [
+      10,
+      11
+     ],
+     "seen": "partial",
+     "points": 2300,
+     "look_yaw": -0.071,
+     "where": [
+      59.36,
+      49.0
+     ],
+     "truth": "partial",
+     "from_node_m": 4.89,
+     "decision": "change lane"
+    },
+    {
+     "t": 95.34,
+     "at": 11,
+     "street": [
+      11,
+      15
+     ],
+     "seen": "partial",
+     "points": 1043,
+     "look_yaw": 1.384,
+     "where": [
+      74.0,
+      58.34
+     ],
+     "truth": "partial",
+     "from_node_m": 4.98,
+     "decision": "change lane"
+    },
+    {
+     "t": 109.52,
+     "at": 15,
+     "street": [
+      15,
+      14
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 2.955,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.97
+    },
+    {
+     "t": 120.44,
+     "at": 14,
+     "street": [
+      14,
+      13
+     ],
+     "seen": "blocking",
+     "points": 168,
+     "look_yaw": -3.115,
+     "where": [
+      41.81,
+      75.0
+     ],
+     "truth": "blocking",
+     "from_node_m": 10.98,
+     "decision": "replan via 14-15-11-7-6-5-4-8-9-13-pad"
+    },
+    {
+     "t": 123.48,
+     "at": 14,
+     "street": [
+      14,
+      15
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": -0.062,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.96
+    },
+    {
+     "t": 139.54,
+     "at": 15,
+     "street": [
+      15,
+      11
+     ],
+     "seen": "partial",
+     "points": 144,
+     "look_yaw": -1.371,
+     "where": [
+      74.0,
+      58.34
+     ],
+     "truth": "partial",
+     "from_node_m": 4.96,
+     "decision": "change lane"
+    },
+    {
+     "t": 147.7,
+     "at": 11,
+     "street": [
+      11,
+      7
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": -1.59,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 10.99
+    },
+    {
+     "t": 165.44,
+     "at": 7,
+     "street": [
+      7,
+      6
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": -2.941,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.98
+    },
+    {
+     "t": 174.06,
+     "at": 6,
+     "street": [
+      6,
+      5
+     ],
+     "seen": "partial",
+     "points": 128,
+     "look_yaw": -3.114,
+     "where": [
+      40.03,
+      26.0
+     ],
+     "truth": "partial",
+     "from_node_m": 10.99,
+     "decision": "change lane"
+    },
+    {
+     "t": 188.08,
+     "at": 5,
+     "street": [
+      5,
+      4
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 3.131,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 10.97
+    }
+   ],
+   "town": 4632
+  },
+  {
+   "house": 4,
+   "blind": true,
+   "outcome": "collision",
+   "time_s": 34.3,
+   "distance_m": 59.5,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": "blocking",
+   "mean_heading_error_deg": 3.73,
+   "mean_cross_track_m": 0.164,
+   "events": [],
+   "town": 4632
+  },
+  {
+   "house": 5,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 72.06,
+   "distance_m": 131.2,
+   "replans": 1,
+   "looks": 7,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 8.4,
+   "mean_cross_track_m": 0.22,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 10.96,
+     "at": 1,
+     "street": [
+      1,
+      5
+     ],
+     "seen": "partial",
+     "points": 474,
+     "look_yaw": 1.386,
+     "where": [
+      26.0,
+      12.23
+     ],
+     "truth": "partial",
+     "from_node_m": 4.98,
+     "decision": "change lane"
+    },
+    {
+     "t": 24.94,
+     "at": 5,
+     "street": [
+      5,
+      6
+     ],
+     "seen": "blocking",
+     "points": 366,
+     "look_yaw": 0.2,
+     "where": [
+      38.16,
+      24.99
+     ],
+     "truth": "blocking",
+     "from_node_m": 4.97,
+     "decision": "replan via 5-9-10-14-pad"
+    },
+    {
+     "t": 24.96,
+     "at": 5,
+     "street": [
+      5,
+      9
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.609,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.94
+    },
+    {
+     "t": 39.5,
+     "at": 9,
+     "street": [
+      9,
+      10
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.2,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.97
+    },
+    {
+     "t": 51.26,
+     "at": 10,
+     "street": [
+      10,
+      14
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.387,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.97
+    },
+    {
+     "t": 65.3,
+     "at": 14,
+     "street": [
+      14,
+      15
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.201,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 5.0
+    }
+   ],
+   "town": 4633
+  },
+  {
+   "house": 5,
+   "blind": true,
+   "outcome": "collision",
+   "time_s": 19.34,
+   "distance_m": 35.5,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": "partial",
+   "mean_heading_error_deg": 5.49,
+   "mean_cross_track_m": 0.183,
+   "events": [],
+   "town": 4633
+  },
+  {
+   "house": 8,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 62.34,
+   "distance_m": 110.2,
+   "replans": 1,
+   "looks": 6,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 6.55,
+   "mean_cross_track_m": 0.196,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 10.96,
+     "at": 1,
+     "street": [
+      1,
+      5
+     ],
+     "seen": "partial",
+     "points": 474,
+     "look_yaw": 1.386,
+     "where": [
+      26.0,
+      12.23
+     ],
+     "truth": "partial",
+     "from_node_m": 4.98,
+     "decision": "change lane"
+    },
+    {
+     "t": 24.94,
+     "at": 5,
+     "street": [
+      5,
+      6
+     ],
+     "seen": "blocking",
+     "points": 366,
+     "look_yaw": 0.2,
+     "where": [
+      38.16,
+      24.99
+     ],
+     "truth": "blocking",
+     "from_node_m": 4.97,
+     "decision": "replan via 5-9-10-pad"
+    },
+    {
+     "t": 24.96,
+     "at": 5,
+     "street": [
+      5,
+      9
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.609,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.94
+    },
+    {
+     "t": 39.5,
+     "at": 9,
+     "street": [
+      9,
+      10
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.2,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.97
+    },
+    {
+     "t": 48.14,
+     "at": 10,
+     "street": [
+      10,
+      11
+     ],
+     "seen": "blocking",
+     "points": 93,
+     "look_yaw": 0.027,
+     "where": [
+      64.17,
+      49.99
+     ],
+     "truth": "blocking",
+     "from_node_m": 10.97
+    }
+   ],
+   "town": 4633
+  },
+  {
+   "house": 8,
+   "blind": true,
+   "outcome": "collision",
+   "time_s": 19.34,
+   "distance_m": 35.5,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": "partial",
+   "mean_heading_error_deg": 5.49,
+   "mean_cross_track_m": 0.183,
+   "events": [],
+   "town": 4633
+  },
+  {
+   "house": 4,
+   "blind": false,
+   "outcome": "off_road",
+   "time_s": 40.8,
+   "distance_m": 73.5,
+   "replans": 2,
+   "looks": 6,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 10.13,
+   "mean_cross_track_m": 0.245,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 10.96,
+     "at": 1,
+     "street": [
+      1,
+      5
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.386,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.98
+    },
+    {
+     "t": 24.96,
+     "at": 5,
+     "street": [
+      5,
+      6
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.2,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.98
+    },
+    {
+     "t": 36.74,
+     "at": 6,
+     "street": [
+      6,
+      10
+     ],
+     "seen": "blocking",
+     "points": 271,
+     "look_yaw": 1.386,
+     "where": [
+      49.88,
+      38.31
+     ],
+     "truth": "blocking",
+     "from_node_m": 4.99,
+     "decision": "replan via 6-7-11-10-pad"
+    },
+    {
+     "t": 36.76,
+     "at": 6,
+     "street": [
+      6,
+      7
+     ],
+     "seen": "blocking",
+     "points": 133,
+     "look_yaw": 0.037,
+     "where": [
+      67.02,
+      24.98
+     ],
+     "truth": "blocking",
+     "from_node_m": 4.96,
+     "decision": "replan via 6-2-1-5-9-10-pad"
+    },
+    {
+     "t": 36.78,
+     "at": 6,
+     "street": [
+      6,
+      2
+     ],
+     "seen": "partial",
+     "points": 280,
+     "look_yaw": -1.372,
+     "where": [
+      49.0,
+      9.93
+     ],
+     "truth": "partial",
+     "from_node_m": 4.93,
+     "decision": "change lane"
+    }
+   ],
+   "town": 4634
+  },
+  {
+   "house": 4,
+   "blind": true,
+   "outcome": "collision",
+   "time_s": 46.66,
+   "distance_m": 85.0,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": "blocking",
+   "mean_heading_error_deg": 6.59,
+   "mean_cross_track_m": 0.197,
+   "events": [],
+   "town": 4634
+  },
+  {
+   "house": 8,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 33.24,
+   "distance_m": 57.9,
+   "replans": 0,
+   "looks": 3,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 3.91,
+   "mean_cross_track_m": 0.164,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      4
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.611,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 7.84,
+     "at": 4,
+     "street": [
+      4,
+      8
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.599,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 10.98
+    },
+    {
+     "t": 26.28,
+     "at": 8,
+     "street": [
+      8,
+      9
+     ],
+     "seen": "partial",
+     "points": 279,
+     "look_yaw": 0.2,
+     "where": [
+      17.31,
+      51.0
+     ],
+     "truth": "partial",
+     "from_node_m": 4.98,
+     "decision": "change lane"
+    }
+   ],
+   "town": 4634
+  },
+  {
+   "house": 8,
+   "blind": true,
+   "outcome": "delivered",
+   "time_s": 33.22,
+   "distance_m": 57.8,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 3.48,
+   "mean_cross_track_m": 0.162,
+   "events": [],
+   "town": 4634
+  },
+  {
+   "house": 3,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 75.88,
+   "distance_m": 135.7,
+   "replans": 2,
+   "looks": 8,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 6.08,
+   "mean_cross_track_m": 0.178,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 10.96,
+     "at": 1,
+     "street": [
+      1,
+      5
+     ],
+     "seen": "blocking",
+     "points": 307,
+     "look_yaw": 1.386,
+     "where": [
+      24.85,
+      12.64
+     ],
+     "truth": "blocking",
+     "from_node_m": 4.98,
+     "decision": "replan via 1-2-6-10-9-pad"
+    },
+    {
+     "t": 10.98,
+     "at": 1,
+     "street": [
+      1,
+      2
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.035,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.95
+    },
+    {
+     "t": 25.62,
+     "at": 2,
+     "street": [
+      2,
+      6
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.386,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.98
+    },
+    {
+     "t": 36.66,
+     "at": 6,
+     "street": [
+      6,
+      10
+     ],
+     "seen": "blocking",
+     "points": 120,
+     "look_yaw": 1.6,
+     "where": [
+      50.02,
+      37.39
+     ],
+     "truth": "blocking",
+     "from_node_m": 10.97,
+     "decision": "replan via 6-5-9-pad"
+    },
+    {
+     "t": 40.1,
+     "at": 6,
+     "street": [
+      6,
+      5
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 2.956,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.98
+    },
+    {
+     "t": 54.04,
+     "at": 5,
+     "street": [
+      5,
+      9
+     ],
+     "seen": "partial",
+     "points": 313,
+     "look_yaw": 1.771,
+     "where": [
+      26.0,
+      39.4
+     ],
+     "truth": "partial",
+     "from_node_m": 4.98,
+     "decision": "change lane"
+    },
+    {
+     "t": 62.36,
+     "at": 9,
+     "street": [
+      9,
+      13
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.546,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 10.96
+    }
+   ],
+   "town": 4635
+  },
+  {
+   "house": 3,
+   "blind": true,
+   "outcome": "collision",
+   "time_s": 20.56,
+   "distance_m": 37.5,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": "blocking",
+   "mean_heading_error_deg": 5.49,
+   "mean_cross_track_m": 0.182,
+   "events": [],
+   "town": 4635
+  },
+  {
+   "house": 8,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 19.4,
+   "distance_m": 32.7,
+   "replans": 0,
+   "looks": 2,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 0.94,
+   "mean_cross_track_m": 0.133,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      4
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.611,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 7.84,
+     "at": 4,
+     "street": [
+      4,
+      8
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.599,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 10.98
+    }
+   ],
+   "town": 4635
+  },
+  {
+   "house": 8,
+   "blind": true,
+   "outcome": "delivered",
+   "time_s": 19.4,
+   "distance_m": 32.7,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 0.94,
+   "mean_cross_track_m": 0.133,
+   "events": [],
+   "town": 4635
+  },
+  {
+   "house": 7,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 7.66,
+   "distance_m": 13.7,
+   "replans": 0,
+   "looks": 1,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 0.87,
+   "mean_cross_track_m": 0.134,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    }
+   ],
+   "town": 4636
+  },
+  {
+   "house": 7,
+   "blind": true,
+   "outcome": "delivered",
+   "time_s": 7.66,
+   "distance_m": 13.7,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 0.87,
+   "mean_cross_track_m": 0.134,
+   "events": [],
+   "town": 4636
+  },
+  {
+   "house": 1,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 62.26,
+   "distance_m": 112.9,
+   "replans": 1,
+   "looks": 6,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 7.96,
+   "mean_cross_track_m": 0.2,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      4
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.611,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 7.84,
+     "at": 4,
+     "street": [
+      4,
+      8
+     ],
+     "seen": "partial",
+     "points": 70,
+     "look_yaw": 1.599,
+     "where": [
+      1.0,
+      41.35
+     ],
+     "truth": "partial",
+     "from_node_m": 10.98,
+     "decision": "change lane"
+    },
+    {
+     "t": 22.36,
+     "at": 8,
+     "street": [
+      8,
+      12
+     ],
+     "seen": "blocking",
+     "points": 120,
+     "look_yaw": 1.54,
+     "where": [
+      -0.05,
+      62.44
+     ],
+     "truth": "blocking",
+     "from_node_m": 10.98,
+     "decision": "replan via 8-9-13-pad"
+    },
+    {
+     "t": 25.6,
+     "at": 8,
+     "street": [
+      8,
+      9
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.19,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.99
+    },
+    {
+     "t": 38.02,
+     "at": 9,
+     "street": [
+      9,
+      13
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.385,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.97
+    },
+    {
+     "t": 52.22,
+     "at": 13,
+     "street": [
+      13,
+      12
+     ],
+     "seen": "partial",
+     "points": 403,
+     "look_yaw": 2.956,
+     "where": [
+      11.83,
+      76.0
+     ],
+     "truth": "partial",
+     "from_node_m": 4.98,
+     "decision": "change lane"
+    }
+   ],
+   "town": 4636
+  },
+  {
+   "house": 1,
+   "blind": true,
+   "outcome": "collision",
+   "time_s": 23.2,
+   "distance_m": 39.0,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": "partial",
+   "mean_heading_error_deg": 0.97,
+   "mean_cross_track_m": 0.132,
+   "events": [],
+   "town": 4636
+  },
+  {
+   "house": 2,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 20.22,
+   "distance_m": 34.2,
+   "replans": 0,
+   "looks": 2,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 0.96,
+   "mean_cross_track_m": 0.133,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      4
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.611,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 7.84,
+     "at": 4,
+     "street": [
+      4,
+      8
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.599,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 10.98
+    }
+   ],
+   "town": 4637
+  },
+  {
+   "house": 2,
+   "blind": true,
+   "outcome": "delivered",
+   "time_s": 20.22,
+   "distance_m": 34.2,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 0.96,
+   "mean_cross_track_m": 0.133,
+   "events": [],
+   "town": 4637
+  },
+  {
+   "house": 1,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 48.22,
+   "distance_m": 84.9,
+   "replans": 0,
+   "looks": 4,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 5.05,
+   "mean_cross_track_m": 0.179,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 10.96,
+     "at": 1,
+     "street": [
+      1,
+      5
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.386,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.98
+    },
+    {
+     "t": 24.96,
+     "at": 5,
+     "street": [
+      5,
+      6
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.2,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.98
+    },
+    {
+     "t": 33.58,
+     "at": 6,
+     "street": [
+      6,
+      7
+     ],
+     "seen": "partial",
+     "points": 93,
+     "look_yaw": 0.028,
+     "where": [
+      64.41,
+      26.0
+     ],
+     "truth": "partial",
+     "from_node_m": 10.98,
+     "decision": "change lane"
+    }
+   ],
+   "town": 4637
+  },
+  {
+   "house": 1,
+   "blind": true,
+   "outcome": "delivered",
+   "time_s": 48.2,
+   "distance_m": 84.8,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 4.69,
+   "mean_cross_track_m": 0.175,
+   "events": [],
+   "town": 4637
+  },
+  {
+   "house": 2,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 74.16,
+   "distance_m": 131.4,
+   "replans": 1,
+   "looks": 7,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 5.53,
+   "mean_cross_track_m": 0.185,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 10.96,
+     "at": 1,
+     "street": [
+      1,
+      5
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.386,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.98
+    },
+    {
+     "t": 21.9,
+     "at": 5,
+     "street": [
+      5,
+      9
+     ],
+     "seen": "blocking",
+     "points": 180,
+     "look_yaw": 1.598,
+     "where": [
+      25.05,
+      32.48
+     ],
+     "truth": "blocking",
+     "from_node_m": 10.97,
+     "decision": "replan via 5-6-10-14-pad"
+    },
+    {
+     "t": 25.38,
+     "at": 5,
+     "street": [
+      5,
+      6
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.201,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.99
+    },
+    {
+     "t": 37.2,
+     "at": 6,
+     "street": [
+      6,
+      10
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.387,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.97
+    },
+    {
+     "t": 48.12,
+     "at": 10,
+     "street": [
+      10,
+      14
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.6,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 10.98
+    },
+    {
+     "t": 66.78,
+     "at": 14,
+     "street": [
+      14,
+      13
+     ],
+     "seen": "blocking",
+     "points": 217,
+     "look_yaw": 2.956,
+     "where": [
+      34.16,
+      74.96
+     ],
+     "truth": "blocking",
+     "from_node_m": 5.0
+    }
+   ],
+   "town": 4638
+  },
+  {
+   "house": 2,
+   "blind": true,
+   "outcome": "collision",
+   "time_s": 32.76,
+   "distance_m": 57.0,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": "blocking",
+   "mean_heading_error_deg": 3.85,
+   "mean_cross_track_m": 0.165,
+   "events": [],
+   "town": 4638
+  },
+  {
+   "house": 3,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 45.74,
+   "distance_m": 83.4,
+   "replans": 0,
+   "looks": 4,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 6.71,
+   "mean_cross_track_m": 0.198,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 10.96,
+     "at": 1,
+     "street": [
+      1,
+      5
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.386,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.98
+    },
+    {
+     "t": 24.96,
+     "at": 5,
+     "street": [
+      5,
+      6
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.2,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.98
+    },
+    {
+     "t": 36.74,
+     "at": 6,
+     "street": [
+      6,
+      10
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.386,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.99
+    }
+   ],
+   "town": 4638
+  },
+  {
+   "house": 3,
+   "blind": true,
+   "outcome": "delivered",
+   "time_s": 45.74,
+   "distance_m": 83.4,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 6.71,
+   "mean_cross_track_m": 0.198,
+   "events": [],
+   "town": 4638
+  },
+  {
+   "house": 4,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 54.88,
+   "distance_m": 102.3,
+   "replans": 1,
+   "looks": 6,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 9.95,
+   "mean_cross_track_m": 0.219,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      4
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.611,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 7.84,
+     "at": 4,
+     "street": [
+      4,
+      8
+     ],
+     "seen": "blocking",
+     "points": 162,
+     "look_yaw": 1.599,
+     "where": [
+      0.06,
+      34.29
+     ],
+     "truth": "blocking",
+     "from_node_m": 10.98,
+     "decision": "replan via 4-5-9-8-pad"
+    },
+    {
+     "t": 11.2,
+     "at": 4,
+     "street": [
+      4,
+      5
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.201,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 5.0
+    },
+    {
+     "t": 23.18,
+     "at": 5,
+     "street": [
+      5,
+      9
+     ],
+     "seen": "partial",
+     "points": 825,
+     "look_yaw": 1.386,
+     "where": [
+      26.0,
+      32.72
+     ],
+     "truth": "partial",
+     "from_node_m": 4.99,
+     "decision": "change lane"
+    },
+    {
+     "t": 36.16,
+     "at": 9,
+     "street": [
+      9,
+      8
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 2.953,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.98
+    },
+    {
+     "t": 50.14,
+     "at": 8,
+     "street": [
+      8,
+      12
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.772,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 5.0
+    }
+   ],
+   "town": 4639
+  },
+  {
+   "house": 4,
+   "blind": true,
+   "outcome": "collision",
+   "time_s": 19.78,
+   "distance_m": 33.5,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": "blocking",
+   "mean_heading_error_deg": 0.93,
+   "mean_cross_track_m": 0.132,
+   "events": [],
+   "town": 4639
+  },
+  {
+   "house": 3,
+   "blind": false,
+   "outcome": "delivered",
+   "time_s": 63.72,
+   "distance_m": 111.8,
+   "replans": 0,
+   "looks": 5,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 7.08,
+   "mean_cross_track_m": 0.205,
+   "events": [
+    {
+     "t": 0.0,
+     "at": 0,
+     "street": [
+      0,
+      1
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.04,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 1.0
+    },
+    {
+     "t": 10.96,
+     "at": 1,
+     "street": [
+      1,
+      5
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.386,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.98
+    },
+    {
+     "t": 24.96,
+     "at": 5,
+     "street": [
+      5,
+      6
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.2,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.98
+    },
+    {
+     "t": 33.58,
+     "at": 6,
+     "street": [
+      6,
+      7
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 0.028,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 10.98
+    },
+    {
+     "t": 52.2,
+     "at": 7,
+     "street": [
+      7,
+      11
+     ],
+     "seen": "clear",
+     "points": 0,
+     "look_yaw": 1.386,
+     "where": null,
+     "truth": "clear",
+     "from_node_m": 4.98
+    }
+   ],
+   "town": 4639
+  },
+  {
+   "house": 3,
+   "blind": true,
+   "outcome": "delivered",
+   "time_s": 63.72,
+   "distance_m": 111.8,
+   "replans": 0,
+   "looks": 0,
+   "wrong_looks": 0,
+   "hit": null,
+   "mean_heading_error_deg": 7.08,
+   "mean_cross_track_m": 0.205,
+   "events": [],
+   "town": 4639
+  }
+ ]
+}
